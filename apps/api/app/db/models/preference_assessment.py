@@ -45,6 +45,15 @@ class StyleMatchLabelEnum(str, enum.Enum):
     LIMITED = "LIMITED"
     LOW = "LOW"
 
+class NarrativeInterestLevelEnum(str, enum.Enum):
+    PRIMARY = "PRIMARY"
+    SECONDARY = "SECONDARY"
+    NOT_SELECTED = "NOT_SELECTED"
+
+class NarrativeCompletionModeEnum(str, enum.Enum):
+    EXPLICIT_SELECTION = "EXPLICIT_SELECTION"
+    SKIPPED = "SKIPPED"
+
 class PreferenceDimensionStatus(str, enum.Enum):
     MEASURED = "MEASURED"
     NOT_MEASURED = "NOT_MEASURED"
@@ -150,6 +159,12 @@ class PreferenceAssessmentModel(Base):
     )
     importance_profile: Mapped[Optional["ImportanceProfileModel"]] = relationship(
         "ImportanceProfileModel",
+        back_populates="assessment",
+        uselist=False,
+        cascade="all, delete-orphan"
+    )
+    narrative_profile: Mapped[Optional["UserNarrativeProfileModel"]] = relationship(
+        "UserNarrativeProfileModel",
         back_populates="assessment",
         uselist=False,
         cascade="all, delete-orphan"
@@ -1055,3 +1070,101 @@ class VisualStyleMatchDimensionModel(Base):
     __table_args__ = (
         UniqueConstraint("match_result_id", "dimension_key", name="uq_match_dimension_key"),
     )
+
+
+class UserNarrativeProfileModel(Base):
+    __tablename__ = "user_narrative_profiles"
+
+    id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        primary_key=True,
+        default=uuid.uuid4
+    )
+    assessment_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("preference_assessments.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True
+    )
+    user_preference_profile_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("user_preference_profiles.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True
+    )
+    profile_version: Mapped[str] = mapped_column(
+        String(50),
+        nullable=False,
+        default="user-narrative-profile-v1"
+    )
+    completion_mode: Mapped[NarrativeCompletionModeEnum] = mapped_column(
+        SQLEnum(NarrativeCompletionModeEnum, name="narrative_completion_mode_enum", native_enum=False),
+        nullable=False,
+        default=NarrativeCompletionModeEnum.EXPLICIT_SELECTION
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        nullable=False,
+        default=lambda: datetime.now(timezone.utc)
+    )
+
+    assessment: Mapped["PreferenceAssessmentModel"] = relationship(
+        "PreferenceAssessmentModel",
+        back_populates="narrative_profile"
+    )
+    user_preference_profile: Mapped["UserPreferenceProfileModel"] = relationship(
+        "UserPreferenceProfileModel"
+    )
+    themes: Mapped[List["UserNarrativeThemeModel"]] = relationship(
+        "UserNarrativeThemeModel",
+        back_populates="narrative_profile",
+        cascade="all, delete-orphan"
+    )
+
+    __table_args__ = (
+        UniqueConstraint("assessment_id", "profile_version", name="uq_narrative_profile_assessment_version"),
+    )
+
+
+class UserNarrativeThemeModel(Base):
+    __tablename__ = "user_narrative_themes"
+
+    id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        primary_key=True,
+        default=uuid.uuid4
+    )
+    narrative_profile_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("user_narrative_profiles.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True
+    )
+    theme_key: Mapped[str] = mapped_column(
+        String(50),
+        nullable=False
+    )
+    interest_level: Mapped[NarrativeInterestLevelEnum] = mapped_column(
+        SQLEnum(NarrativeInterestLevelEnum, name="narrative_interest_level_enum", native_enum=False),
+        nullable=False,
+        default=NarrativeInterestLevelEnum.NOT_SELECTED
+    )
+    interest_weight: Mapped[float] = mapped_column(
+        Float,
+        nullable=False,
+        default=0.00
+    )
+
+    @property
+    def key(self) -> str:
+        return self.theme_key
+
+    narrative_profile: Mapped["UserNarrativeProfileModel"] = relationship(
+        "UserNarrativeProfileModel",
+        back_populates="themes"
+    )
+
+    __table_args__ = (
+        UniqueConstraint("narrative_profile_id", "theme_key", name="uq_narrative_theme_key"),
+    )
+

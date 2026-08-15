@@ -20,6 +20,7 @@ from app.domain.preferences.schemas import (
     VisualStimulusRead,
     MetaImportanceProfileResponse
 )
+from app.domain.narrative.schemas import MetaNarrativeProfileResponse
 
 router = APIRouter(prefix="/meta", tags=["metadata"])
 
@@ -69,3 +70,7 @@ async def get_importance_profile_metadata():
         weights=IMPORTANCE_LEVEL_WEIGHTS,
         canonical_dimensions=[d["key"] for d in CANONICAL_STYLE_DNA]
     )
+
+@router.get("/narrative-profile", response_model=MetaNarrativeProfileResponse)
+async def get_narrative_profile_metadata():
+    return MetaNarrativeProfileResponse()

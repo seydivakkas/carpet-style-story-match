@@ -77,3 +77,18 @@ ConfidenceProfile (9D C1..C9) ─────────► explanation metadat
 - **Formula**: $\text{similarity}_i = 1 - |\text{user}_i - \text{carpet}_i|$, $\text{score} = \frac{\sum W_i \cdot \text{similarity}_i}{\sum W_i}$.
 - **Invariant**: Confidence metrics are read ONLY for explanation metadata and NEVER alter match score.
 - **Coverage Policy**: Minimum 6 comparable dimensions & %70 weighted coverage required for PARTIAL status; otherwise returns `NOT_AVAILABLE` with no fake score.
+
+## User Narrative Profile Pipeline
+
+```text
+Reviewed UserPreferenceProfile
+       │
+       ├── ImportanceProfile (9D W1..W9) ──────► VisualStyleMatch (Visual Match Engine)
+       │
+       └── UserNarrativeProfile (8 Themes) ────► Future NarrativeAffinity
+```
+
+- **Explicit User Selection**: Derived ONLY from explicit user choices (`PRIMARY`, `SECONDARY`, `NOT_SELECTED`). Zero system inference!
+- **Independence**: Independent of 9D preference values, confidence metrics, importance weights, and visual style match score.
+- **Separate Branches**: `UserPreferenceProfile ──► VisualStyleMatch` vs `UserNarrativeProfile ──► Future NarrativeAffinity`.
+

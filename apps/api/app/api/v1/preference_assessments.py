@@ -62,11 +62,34 @@ from app.domain.stylematch.exceptions import (
     StyleMatchCarpetProfileFailedError,
     StyleMatchNotFoundError
 )
+from app.domain.narrative.schemas import (
+    NarrativeSelectionRequest,
+    UserNarrativeProfileResponse
+)
+from app.domain.narrative.service import NarrativeProfileService
+from app.domain.narrative.exceptions import (
+    NarrativeProfileRequiresReviewedPreferenceProfileError,
+    NarrativeProfileNotFoundError,
+    NarrativeProfileAlreadyExistsError,
+    NarrativeSelectionEmptyError,
+    NarrativeSelectionOverlapError,
+    NarrativeSelectionDuplicateError,
+    NarrativeSelectionTooManyPrimaryError,
+    NarrativeSelectionTooManySecondaryError,
+    NarrativeSelectionUnknownThemeError,
+    NarrativeSkipConflictError
+)
 
 router = APIRouter(prefix="", tags=["Preference Assessments"])
 
 def get_service(db: AsyncSession = Depends(get_db)) -> PreferenceAssessmentService:
     return PreferenceAssessmentService(db)
+
+def get_style_match_service(db: AsyncSession = Depends(get_db)) -> StyleMatchService:
+    return StyleMatchService(db)
+
+def get_narrative_service(db: AsyncSession = Depends(get_db)) -> NarrativeProfileService:
+    return NarrativeProfileService(db)
 
 def build_presentation_read(p) -> VisualPresentationRead:
     left_url = f"/api/v1/preference-stimuli/{p.stimulus_version}/{p.stimulus_key.lower()}_{p.left_variant.lower()}.svg"
@@ -673,6 +696,100 @@ async def list_style_matches(
 # ---------------------------------------------------------
 # STIMULUS ASSET SERVING ENDPOINT
 # ---------------------------------------------------------
+
+@router.post(
+    "/preference-assessments/{assessment_id}/narrative-profile",
+    response_model=UserNarrativeProfileResponse,
+    status_code=status.HTTP_201_CREATED,
+    summary="Create explicit User Narrative Profile for reviewed assessment"
+)
+async def create_narrative_profile(
+    assessment_id: uuid.UUID,
+    payload: NarrativeSelectionRequest,
+    service: NarrativeProfileService = Depends(get_narrative_service)
+):
+    try:
+        return await service.create_narrative_profile(
+            assessment_id=assessment_id,
+            skip=payload.skip,
+            primary_themes=payload.primary_themes,
+            secondary_themes=payload.secondary_themes
+        )
+    except AssessmentNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "ASSESSMENT_NOT_FOUND", "message": str(exc)}
+        ) from exc
+    except NarrativeProfileRequiresReviewedPreferenceProfileError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail={"code": "NARRATIVE_PROFILE_REQUIRES_REVIEWED_PREFERENCE_PROFILE", "message": str(exc)}
+        ) from exc
+    except NarrativeProfileAlreadyExistsError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail={"code": "NARRATIVE_PROFILE_ALREADY_EXISTS", "message": str(exc)}
+        ) from exc
+    except NarrativeSelectionEmptyError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail={"code": "NARRATIVE_SELECTION_EMPTY", "message": str(exc)}
+        ) from exc
+    except NarrativeSelectionOverlapError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail={"code": "NARRATIVE_SELECTION_OVERLAP", "message": str(exc)}
+        ) from exc
+    except NarrativeSelectionDuplicateError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail={"code": "NARRATIVE_SELECTION_DUPLICATE", "message": str(exc)}
+        ) from exc
+    except NarrativeSelectionTooManyPrimaryError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail={"code": "NARRATIVE_SELECTION_TOO_MANY_PRIMARY", "message": str(exc)}
+        ) from exc
+    except NarrativeSelectionTooManySecondaryError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail={"code": "NARRATIVE_SELECTION_TOO_MANY_SECONDARY", "message": str(exc)}
+        ) from exc
+    except NarrativeSelectionUnknownThemeError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail={"code": "NARRATIVE_SELECTION_UNKNOWN_THEME", "message": str(exc)}
+        ) from exc
+    except NarrativeSkipConflictError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail={"code": "NARRATIVE_SKIP_CONFLICT", "message": str(exc)}
+        ) from exc
+
+
+@router.get(
+    "/preference-assessments/{assessment_id}/narrative-profile",
+    response_model=UserNarrativeProfileResponse,
+    status_code=status.HTTP_200_OK,
+    summary="Get User Narrative Profile for assessment"
+)
+async def get_narrative_profile(
+    assessment_id: uuid.UUID,
+    service: NarrativeProfileService = Depends(get_narrative_service)
+):
+    try:
+        return await service.get_narrative_profile(assessment_id)
+    except AssessmentNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "ASSESSMENT_NOT_FOUND", "message": str(exc)}
+        ) from exc
+    except NarrativeProfileNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "NARRATIVE_PROFILE_NOT_FOUND", "message": str(exc)}
+        ) from exc
+
 
 STIMULI_STATIC_DIR = os.path.join(os.path.dirname(__file__), "..", "..", "static", "stimuli")
 
