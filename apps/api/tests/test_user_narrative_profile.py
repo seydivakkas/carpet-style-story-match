@@ -363,3 +363,27 @@ async def test_meta_narrative_profile_endpoint(client: AsyncClient):
     assert data["max_primary"] == 3
     assert data["max_secondary"] == 3
     assert data["skip_supported"] is True
+
+
+@pytest.mark.asyncio
+async def test_canonical_key_contract_validation(client: AsyncClient):
+    ass_id = await create_reviewed_assessment(client)
+
+    # Sending presentation code N3_JOURNEY_DISCOVERY must be rejected with 422 UNPROCESSABLE_ENTITY
+    res_bad = await client.post(
+        f"/api/v1/preference-assessments/{ass_id}/narrative-profile",
+        json={"skip": False, "primary_themes": ["N3_JOURNEY_DISCOVERY"], "secondary_themes": []}
+    )
+    assert res_bad.status_code == 422
+    assert res_bad.json()["detail"]["code"] == "NARRATIVE_SELECTION_UNKNOWN_THEME"
+
+    # Sending canonical key journey_discovery must succeed
+    res_good = await client.post(
+        f"/api/v1/preference-assessments/{ass_id}/narrative-profile",
+        json={"skip": False, "primary_themes": ["journey_discovery"], "secondary_themes": ["continuity_connection"]}
+    )
+    assert res_good.status_code == 201
+    theme_keys = [t["key"] for t in res_good.json()["themes"]]
+    assert "journey_discovery" in theme_keys
+    assert "N3_JOURNEY_DISCOVERY" not in theme_keys
+

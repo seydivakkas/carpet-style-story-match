@@ -90,24 +90,35 @@ export default function AssessmentCompletePage({ params }: { params: Promise<{ i
           </div>
 
           {/* Narrative Profile Card */}
-          <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 space-y-3">
-            <div className="flex items-center space-x-3">
-              <div className="p-2.5 bg-emerald-500/10 text-emerald-400 rounded-xl">
-                <BookOpen className="w-5 h-5" />
+          {(() => {
+            const isSkipped =
+              narrativeProfile?.completion_mode === "SKIPPED" ||
+              Boolean(narrativeProfile?.is_skipped);
+            const themes = narrativeProfile?.themes ?? narrativeProfile?.selections ?? [];
+            const primaryCount = themes.filter((t) => t.interest_level === "PRIMARY").length;
+            const secondaryCount = themes.filter((t) => t.interest_level === "SECONDARY").length;
+
+            return (
+              <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 space-y-3">
+                <div className="flex items-center space-x-3">
+                  <div className="p-2.5 bg-emerald-500/10 text-emerald-400 rounded-xl">
+                    <BookOpen className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-slate-100 text-sm">Hikâye Temaları</h3>
+                    <span className="text-[11px] font-mono text-emerald-400">
+                      {isSkipped ? "ATLADI" : "SEÇİLDİ"}
+                    </span>
+                  </div>
+                </div>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  {isSkipped
+                    ? "Hikâye temaları seçilmedi."
+                    : `${primaryCount} ana ilgi, ${secondaryCount} ikincil ilgi teması seçildi.`}
+                </p>
               </div>
-              <div>
-                <h3 className="font-semibold text-slate-100 text-sm">Hikâye Temaları</h3>
-                <span className="text-[11px] font-mono text-emerald-400">
-                  {narrativeProfile?.is_skipped ? "ATLADI" : "SEÇİLDİ"}
-                </span>
-              </div>
-            </div>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              {narrativeProfile?.is_skipped
-                ? "Hikâye temaları seçilmedi (varsayılan nötr)."
-                : `${narrativeProfile?.selections.filter(s => s.interest_level === "PRIMARY").length || 0} ana ilgi teması seçildi.`}
-            </p>
-          </div>
+            );
+          })()}
         </div>
 
         {/* Action CTAs */}

@@ -71,7 +71,10 @@ export default function TextPreferencesPage({ params }: { params: Promise<{ id: 
     );
   }
 
-  const sortedQuestions = [...(questions || [])].sort((a, b) => a.order - b.order);
+  const rawQuestions = Array.isArray(questions)
+    ? questions
+    : (questions as unknown as { questions?: typeof questions })?.questions || [];
+  const sortedQuestions = [...rawQuestions].sort((a, b) => a.order - b.order);
   const totalQuestions = sortedQuestions.length;
   const answeredCount = Object.keys(selectedChoices).length;
   const isAllAnswered = totalQuestions > 0 && answeredCount >= totalQuestions;
@@ -117,11 +120,12 @@ export default function TextPreferencesPage({ params }: { params: Promise<{ id: 
         {/* Question Cards */}
         <div className="space-y-6">
           {sortedQuestions.map((q, idx) => {
-            const currentChoice = selectedChoices[q.key];
+            const qKey = q.question_key || (q as unknown as { key: string }).key;
+            const currentChoice = selectedChoices[qKey];
 
             return (
               <div
-                key={q.key}
+                key={qKey}
                 className={`bg-slate-900/60 border rounded-2xl p-6 transition-all space-y-4 ${
                   currentChoice
                     ? "border-slate-700/80 shadow-md"
@@ -154,7 +158,7 @@ export default function TextPreferencesPage({ params }: { params: Promise<{ id: 
                     return (
                       <button
                         key={choice}
-                        onClick={() => handleSelectChoice(q.key, choice)}
+                        onClick={() => handleSelectChoice(qKey, choice)}
                         className={`px-3 py-2.5 rounded-xl text-xs font-medium border transition-all text-center flex flex-col items-center justify-center space-y-1 ${
                           isSelected
                             ? "bg-amber-500 text-slate-950 border-amber-400 font-bold shadow-lg shadow-amber-500/20 scale-[1.02]"
