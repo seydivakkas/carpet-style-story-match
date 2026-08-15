@@ -216,3 +216,27 @@ Motif (Neutral Visual Description) ──────► MotifStoryClaim (DOCUME
 - **Truthful Coverage Rules**: $\ge 6$ comparable dimensions required. 6–8 comparable dimensions $\to$ status `PARTIAL`. $< 6$ comparable dimensions $\to$ status `NOT_AVAILABLE`.
 - **Disclaimer Enforcement**: Every API response includes a mandatory Turkish disclaimer explicitly clarifying visual similarity $\neq$ attribution/authentication.
 - **API Endpoints**: `/api/v1/historical-connections` (POST, GET, LIST) and `/api/v1/meta/historical-connections`.
+
+## 16. Frontend Product Experience v1 (GÖREV 15)
+
+```text
+Next.js 15 (App Router) / React 19 / TypeScript Web Application
+├── / (Home Page — 3 Independent Axes Overview)
+├── /assessment/new (Start Assessment)
+├── /assessment/[id]/text (Step 1: Text Preferences)
+├── /assessment/[id]/visual (Step 2: Visual A/B Cards)
+├── /assessment/[id]/profile (Step 3: 9D Profile Review & Overrides)
+├── /assessment/[id]/importance (Step 4: Importance Profile)
+├── /assessment/[id]/narrative (Step 5: Cultural Motif Themes)
+├── /assessment/[id]/complete (Step 6: Completion & Catalog CTAs)
+├── /catalog & /catalog/[idOrSku] (Catalog & 3 Independent Evaluation Axes)
+├── /historical-references & /[idOrKey] (Verified Museum Collection)
+└── /historical-connections/[connectionId] (Pairwise Historical Connection 9D Breakdown)
+```
+
+- **Architecture**: Next.js 15 App Router with TanStack Query v5 API client layer (`apps/web/lib/api/`).
+- **Independent Axes Policy**: Displays three separate result panels without combining scores into a total percentage.
+- **No Personality Language**: Grounded aesthetic terminology ("estetik tercih", "görsel yakınlık", "anlatı ilgisi").
+- **Truthful Data**: Displaying genuine empty states and error handling when database records are empty.
+- **URL-Backed Workflow**: State retention across browser reloads via URL parameterization (`/assessment/[id]/...`).
+
