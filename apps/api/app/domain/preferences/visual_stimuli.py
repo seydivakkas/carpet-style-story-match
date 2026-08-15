@@ -259,8 +259,8 @@ class ProceduralStimulusGenerator:
 
         bg = (40, 60, 90)
         band_c = (200, 160, 80)
-        line_c = (240, 240, 240)
-        detail_c = (30, 20, 10)
+        line_c = (235, 205, 135)
+        detail_c = (150, 115, 45)
 
         draw.rectangle([0, 0, W, H], fill=bg)
 
@@ -270,26 +270,43 @@ class ProceduralStimulusGenerator:
         line_h = cls.hex_color(line_c)
         detail_h = cls.hex_color(detail_c)
 
+        cx = W // 2
+
         for i in range(1, 6):
             y1 = i * band_height + 5
             y2 = y1 + band_height - 30
+            cy_mid = (y1 + y2) // 2
+
             draw.rectangle([60, y1, W-60, y2], fill=band_c)
             svg_bands.append(f'<rect x="60" y="{y1}" width="{W-120}" height="{y2-y1}" fill="{band_h}"/>')
 
             if variant == "B":
-                # Concentric inner borders
-                draw.rectangle([66, y1+4, W-66, y2-4], outline=line_c, width=2)
-                draw.rectangle([72, y1+8, W-72, y2-8], outline=detail_c, width=2)
-                svg_bands.append(f'<rect x="66" y="{y1+4}" width="{W-132}" height="{y2-y1-8}" fill="none" stroke="{line_h}" stroke-width="2"/>')
-                svg_bands.append(f'<rect x="72" y="{y1+8}" width="{W-144}" height="{y2-y1-16}" fill="none" stroke="{detail_h}" stroke-width="2"/>')
+                # Concentric inner borders (tone-on-tone)
+                draw.rectangle([66, y1+3, W-66, y2-3], outline=line_c, width=2)
+                draw.rectangle([72, y1+6, W-72, y2-6], outline=detail_c, width=2)
+                draw.line([(72, cy_mid), (W-72, cy_mid)], fill=line_c, width=1)
+                svg_bands.append(f'<rect x="66" y="{y1+3}" width="{W-132}" height="{y2-y1-6}" fill="none" stroke="{line_h}" stroke-width="2"/>')
+                svg_bands.append(f'<rect x="72" y="{y1+6}" width="{W-144}" height="{y2-y1-12}" fill="none" stroke="{detail_h}" stroke-width="2"/>')
+                svg_bands.append(f'<line x1="72" y1="{cy_mid}" x2="{W-72}" y2="{cy_mid}" stroke="{line_h}" stroke-width="1"/>')
 
-                # Fine dense vertical hatching & micro-diamonds inside each band
-                for stroke_x in range(80, W-80, 8):
-                    draw.line([(stroke_x, y1+10), (stroke_x, y2-10)], fill=line_c, width=2)
-                    cy_mid = (y1 + y2) // 2
-                    draw.polygon([(stroke_x, cy_mid-3), (stroke_x+3, cy_mid), (stroke_x, cy_mid+3), (stroke_x-3, cy_mid)], fill=detail_c)
-                    svg_bands.append(f'<line x1="{stroke_x}" y1="{y1+10}" x2="{stroke_x}" y2="{y2-10}" stroke="{line_h}" stroke-width="2"/>')
-                    svg_bands.append(f'<polygon points="{stroke_x},{cy_mid-3} {stroke_x+3},{cy_mid} {stroke_x},{cy_mid+3} {stroke_x-3},{cy_mid}" fill="{detail_h}"/>')
+                # Strictly symmetric vertical hatching & micro-diamonds
+                max_offset = (W // 2) - 80
+                for offset in range(0, max_offset + 1, 6):
+                    x1_pos = cx - offset
+                    x2_pos = cx + offset
+
+                    # Left line & micro-element
+                    draw.line([(x1_pos, y1+8), (x1_pos, y2-8)], fill=line_c, width=1)
+                    draw.polygon([(x1_pos, cy_mid-2), (x1_pos+2, cy_mid), (x1_pos, cy_mid+2), (x1_pos-2, cy_mid)], fill=detail_c)
+                    svg_bands.append(f'<line x1="{x1_pos}" y1="{y1+8}" x2="{x1_pos}" y2="{y2-8}" stroke="{line_h}" stroke-width="1"/>')
+                    svg_bands.append(f'<polygon points="{x1_pos},{cy_mid-2} {x1_pos+2},{cy_mid} {x1_pos},{cy_mid+2} {x1_pos-2},{cy_mid}" fill="{detail_h}"/>')
+
+                    if offset > 0:
+                        # Right line & micro-element
+                        draw.line([(x2_pos, y1+8), (x2_pos, y2-8)], fill=line_c, width=1)
+                        draw.polygon([(x2_pos, cy_mid-2), (x2_pos+2, cy_mid), (x2_pos, cy_mid+2), (x2_pos-2, cy_mid)], fill=detail_c)
+                        svg_bands.append(f'<line x1="{x2_pos}" y1="{y1+8}" x2="{x2_pos}" y2="{y2-8}" stroke="{line_h}" stroke-width="1"/>')
+                        svg_bands.append(f'<polygon points="{x2_pos},{cy_mid-2} {x2_pos+2},{cy_mid} {x2_pos},{cy_mid+2} {x2_pos-2},{cy_mid}" fill="{detail_h}"/>')
 
         bg_h = cls.hex_color(bg)
         bands_str = "\n  ".join(svg_bands)

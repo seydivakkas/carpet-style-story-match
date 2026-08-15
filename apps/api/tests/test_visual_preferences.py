@@ -14,7 +14,9 @@ from app.domain.preferences.constants import (
     VISUAL_PREFERENCE_STIMULI_VERSION,
     VISUAL_PREFERENCE_EVIDENCE_VERSION,
     VISUAL_CHOICE_DISPLAY_SCALE,
-    VISUAL_EVIDENCE_MATRIX_WEIGHTS
+    VISUAL_EVIDENCE_MATRIX_WEIGHTS,
+    STIMULUS_TARGET_DELTA_MIN,
+    STIMULUS_MAX_NON_TARGET_DELTA
 )
 from app.domain.preferences.visual_stimuli import (
     STIMULI_CATALOG,
@@ -129,8 +131,14 @@ def test_cv_engine_validation_on_generated_stimuli():
 
         print(f"Card {key} (Target: {target_dim}): A={val_a}, B={val_b}, Delta={target_delta}, Max Non-Target={max_non_target_delta}")
 
-        # Assert target delta >= 0.35
-        assert target_delta >= 0.35, f"{key} target delta {target_delta} < 0.35 (A={val_a}, B={val_b})"
+        # Assert target delta >= STIMULUS_TARGET_DELTA_MIN (0.35)
+        assert target_delta >= STIMULUS_TARGET_DELTA_MIN, f"{key} target delta {target_delta} < {STIMULUS_TARGET_DELTA_MIN} (A={val_a}, B={val_b})"
+
+        # Assert max_non_target_delta <= STIMULUS_MAX_NON_TARGET_DELTA (0.15) for structural cards V3, V4, V5, V6
+        if key in ["V3_VISUAL_COMPLEXITY", "V4_STRUCTURAL_ORDER", "V5_RHYTHM_REPETITION", "V6_FORM_LANGUAGE"]:
+            assert max_non_target_delta <= STIMULUS_MAX_NON_TARGET_DELTA, (
+                f"{key} max non-target delta {max_non_target_delta} > {STIMULUS_MAX_NON_TARGET_DELTA}"
+            )
 
     # Check D6/D7 decoupling contamination
     v4_d7_contam = round(abs(results["V4_STRUCTURAL_ORDER"]["map_b"]["rhythm_repetition"] - results["V4_STRUCTURAL_ORDER"]["map_a"]["rhythm_repetition"]), 4)
@@ -141,9 +149,9 @@ def test_cv_engine_validation_on_generated_stimuli():
     print(f"V4 D7 Contamination: {v4_d7_contam}")
     print(f"V5 D6 Contamination: {v5_d6_contam}")
 
-    assert v4_d7_contam <= 0.15, f"V4 D7 contamination {v4_d7_contam} > 0.15"
-    assert v5_d6_contam <= 0.15, f"V5 D6 contamination {v5_d6_contam} > 0.15"
-    assert v3_d7_contam <= 0.15, f"V3 D7 contamination {v3_d7_contam} > 0.15"
+    assert v4_d7_contam <= STIMULUS_MAX_NON_TARGET_DELTA, f"V4 D7 contamination {v4_d7_contam} > {STIMULUS_MAX_NON_TARGET_DELTA}"
+    assert v5_d6_contam <= STIMULUS_MAX_NON_TARGET_DELTA, f"V5 D6 contamination {v5_d6_contam} > {STIMULUS_MAX_NON_TARGET_DELTA}"
+    assert v3_d7_contam <= STIMULUS_MAX_NON_TARGET_DELTA, f"V3 D7 contamination {v3_d7_contam} > {STIMULUS_MAX_NON_TARGET_DELTA}"
 
 # ---------------------------------------------------------
 # API & INTEGRATION TESTS

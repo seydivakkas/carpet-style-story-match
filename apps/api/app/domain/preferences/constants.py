@@ -116,3 +116,7 @@ VISUAL_EVIDENCE_MATRIX_WEIGHTS: Dict[str, List[float]] = {
     "V5_RHYTHM_REPETITION":[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0], # D7
     "V6_FORM_LANGUAGE":    [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], # D9
 }
+
+# Single Source of Truth for Visual Stimulus Calibration Thresholds
+STIMULUS_TARGET_DELTA_MIN: float = 0.35
+STIMULUS_MAX_NON_TARGET_DELTA: float = 0.15
