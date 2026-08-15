@@ -5,6 +5,8 @@ from app.domain.contracts import (
     StyleDNAContractResponse,
     NarrativeThemesContractResponse
 )
+from app.domain.preferences.constants import CANONICAL_TEXT_QUESTIONS
+from app.domain.preferences.schemas import TextQuestionsListResponse, TextQuestionRead
 
 router = APIRouter(prefix="/meta", tags=["metadata"])
 
@@ -20,4 +22,11 @@ async def get_narrative_themes_metadata():
     return NarrativeThemesContractResponse(
         total_themes=len(CANONICAL_NARRATIVE_THEMES),
         themes=CANONICAL_NARRATIVE_THEMES
+    )
+
+@router.get("/preference-text-questions", response_model=TextQuestionsListResponse)
+async def get_preference_text_questions_metadata():
+    return TextQuestionsListResponse(
+        total_questions=len(CANONICAL_TEXT_QUESTIONS),
+        questions=[TextQuestionRead(**q) for q in CANONICAL_TEXT_QUESTIONS]
     )

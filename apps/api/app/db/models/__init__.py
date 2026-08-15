@@ -6,6 +6,15 @@ from app.db.models.carpet_style_profile import (
     StyleProfileStatus,
     StyleDimensionStatus
 )
+from app.db.models.preference_assessment import (
+    PreferenceAssessmentModel,
+    TextPreferenceResponseModel,
+    TextPreferenceProfileModel,
+    TextPreferenceDimensionModel,
+    AssessmentStatus,
+    PreferenceDimensionStatus,
+    TextChoiceEnum
+)
 
 __all__ = [
     "CarpetModel",
@@ -15,4 +24,11 @@ __all__ = [
     "CarpetStyleDimensionModel",
     "StyleProfileStatus",
     "StyleDimensionStatus",
+    "PreferenceAssessmentModel",
+    "TextPreferenceResponseModel",
+    "TextPreferenceProfileModel",
+    "TextPreferenceDimensionModel",
+    "AssessmentStatus",
+    "PreferenceDimensionStatus",
+    "TextChoiceEnum",
 ]
