@@ -9,6 +9,14 @@ from app.db.models.preference_assessment import (
     TextPreferenceDimensionModel
 )
 
+from app.db.models.motif_knowledge import (
+    CuratedSourceModel,
+    MotifModel,
+    MotifStoryClaimModel,
+    MotifStoryClaimSourceModel,
+    MotifStoryClaimThemeModel
+)
+
 __all__ = [
     "Base",
     "CarpetModel",
@@ -18,5 +26,10 @@ __all__ = [
     "PreferenceAssessmentModel",
     "TextPreferenceResponseModel",
     "TextPreferenceProfileModel",
-    "TextPreferenceDimensionModel"
+    "TextPreferenceDimensionModel",
+    "CuratedSourceModel",
+    "MotifModel",
+    "MotifStoryClaimModel",
+    "MotifStoryClaimSourceModel",
+    "MotifStoryClaimThemeModel"
 ]

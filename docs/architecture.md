@@ -92,3 +92,21 @@ Reviewed UserPreferenceProfile
 - **Independence**: Independent of 9D preference values, confidence metrics, importance weights, and visual style match score.
 - **Separate Branches**: `UserPreferenceProfile ──► VisualStyleMatch` vs `UserNarrativeProfile ──► Future NarrativeAffinity`.
 
+## Curated Motif Story + Source Provenance Knowledge Pipeline
+
+```text
+CuratedSource (MUSEUM_CATALOG, ACADEMIC_BOOK, etc.)
+       │
+       ▼
+Motif (Neutral Visual Description) ──────► MotifStoryClaim (DOCUMENTED, CONTEXTUAL, CONTESTED, UNKNOWN)
+                                                  │
+                                                  ├──► Source Links (Citation + Locator)
+                                                  │
+                                                  └──► Narrative Themes (Frozen N1..N8)
+```
+
+- **Separation**: Neutral Motif identity (`MotifModel`) is decoupled from Motif Story Claims (`MotifStoryClaimModel`).
+- **Status Invariants**: `DOCUMENTED` ($\ge 1$ source), `CONTEXTUAL` ($\ge 1$ source + context note), `CONTESTED` ($\ge 2$ sources + contest note), `UNKNOWN` (0 claim text, 0 theme links).
+- **Public API**: Read-only endpoints for motifs, claims, and sources. Knowledge curation imports use CLI script with dry-run and atomic transactions.
+
+
