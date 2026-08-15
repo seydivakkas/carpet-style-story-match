@@ -108,3 +108,51 @@ def test_multiple_sizes_do_not_create_multiple_products():
     assert len(res["available_sizes"]) == 3
     # Exactly ONE single product dict is returned
     assert res["name"] == "Vega 12345 678"
+
+
+def test_non_product_url_rejection():
+    from app.domain.carpet_catalog.merinos_parser import is_non_product_url, is_valid_product_sku
+
+    assert is_non_product_url("https://www.merinos.com.tr/blog") is True
+    assert is_non_product_url("https://www.merinos.com.tr/blog/") is True
+    assert is_non_product_url("https://www.merinos.com.tr/blog/month/2024-10") is True
+    assert is_non_product_url("https://www.merinos.com.tr/blog/month/2023-11") is True
+    assert is_non_product_url("https://www.merinos.com.tr/blog/category/news") is True
+    assert is_non_product_url("https://www.merinos.com.tr/blog/tag/halilar") is True
+    assert is_non_product_url("https://www.merinos.com.tr/kurumsal") is True
+    assert is_non_product_url("https://www.merinos.com.tr/iletisim") is True
+    assert is_non_product_url("https://www.merinos.com.tr/90823-070") is False
+
+    assert is_valid_product_sku("2024 10") is False
+    assert is_valid_product_sku("2022 11") is False
+    assert is_valid_product_sku("90823 070") is True
+
+
+def test_parse_product_page_blog_rejection():
+    html_fixture = "<html><body><h1>Blog Post</h1></body></html>"
+    with pytest.raises(ValueError, match="Invalid non-product URL"):
+        parse_product_page(html_fixture, "https://www.merinos.com.tr/blog/month/2024-10")
+
+    with pytest.raises(ValueError, match="Invalid non-product URL"):
+        parse_product_page(html_fixture, "https://www.merinos.com.tr/blog/category/design")
+
+
+def test_collection_page_filters_blog_and_nav_links():
+    html_fixture = """
+    <html>
+    <body>
+        <h1>Synthetic Collection</h1>
+        <a href="/90823-070">Product 1</a>
+        <a href="/73941-060">Product 2</a>
+        <a href="/blog/month/2024-10">Blog Archive</a>
+        <a href="/kurumsal">Navigation Link</a>
+    </body>
+    </html>
+    """
+    res = parse_collection_page(html_fixture, "https://www.merinos.com.tr/SyntheticCollection")
+    links = res["product_links"]
+    assert len(links) == 2
+    assert "https://www.merinos.com.tr/90823-070" in links
+    assert "https://www.merinos.com.tr/73941-060" in links
+    assert not any("blog" in link for link in links)
+    assert not any("kurumsal" in link for link in links)

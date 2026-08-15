@@ -242,60 +242,6 @@
       "activated_at": "2026-08-15T21:43:21.428166"
     },
     {
-      "sku": "2022 10",
-      "carpet_id": "abd15757-7855-4865-bb70-77dfb1036dfc",
-      "product_url": "https://www.merinos.com.tr/blog/month/2022-10",
-      "source_image_url": null,
-      "rights_mode": "AUTHORIZED_INTERNAL",
-      "status": "SOURCE_PRODUCT_UNAVAILABLE",
-      "activated_at": null
-    },
-    {
-      "sku": "2022 11",
-      "carpet_id": "e1d2746c-2dc0-4dac-ae40-af1110214afa",
-      "product_url": "https://www.merinos.com.tr/blog/month/2022-11",
-      "source_image_url": null,
-      "rights_mode": "AUTHORIZED_INTERNAL",
-      "status": "SOURCE_PRODUCT_UNAVAILABLE",
-      "activated_at": null
-    },
-    {
-      "sku": "2023 10",
-      "carpet_id": "293eda13-5072-4e82-bfa3-0013f8b8ebb9",
-      "product_url": "https://www.merinos.com.tr/blog/month/2023-10",
-      "source_image_url": null,
-      "rights_mode": "AUTHORIZED_INTERNAL",
-      "status": "SOURCE_PRODUCT_UNAVAILABLE",
-      "activated_at": null
-    },
-    {
-      "sku": "2023 11",
-      "carpet_id": "c762f251-2784-49c2-8ca8-d4dc2cc395b0",
-      "product_url": "https://www.merinos.com.tr/blog/month/2023-11",
-      "source_image_url": null,
-      "rights_mode": "AUTHORIZED_INTERNAL",
-      "status": "SOURCE_PRODUCT_UNAVAILABLE",
-      "activated_at": null
-    },
-    {
-      "sku": "2024 10",
-      "carpet_id": "329970c9-5e2c-4cd9-87bc-72f11101c043",
-      "product_url": "https://www.merinos.com.tr/blog/month/2024-10",
-      "source_image_url": null,
-      "rights_mode": "AUTHORIZED_INTERNAL",
-      "status": "SOURCE_PRODUCT_UNAVAILABLE",
-      "activated_at": null
-    },
-    {
-      "sku": "2024 11",
-      "carpet_id": "8981dae9-2944-4b06-a208-7fcf6eb5cb14",
-      "product_url": "https://www.merinos.com.tr/blog/month/2024-11",
-      "source_image_url": null,
-      "rights_mode": "AUTHORIZED_INTERNAL",
-      "status": "SOURCE_PRODUCT_UNAVAILABLE",
-      "activated_at": null
-    },
-    {
       "sku": "33260 030",
       "carpet_id": "6b99d9cf-b756-4629-b03d-7f033f42bb6f",
       "image_id": "d55b6c8b-78c9-4b27-90ea-61335c1fa342",

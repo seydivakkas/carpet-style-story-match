@@ -20,6 +20,11 @@
 - **Readiness Transition**:
   - Before primary image activation: `NO_PRIMARY_IMAGE`
   - After primary image activation: `STYLE_DNA_MISSING`
+- **False-Positive Catalog Cleanup Notice (A2A.1)**:
+  - Discovered 6 non-product blog archive URLs (`/blog/month/YYYY-MM`) incorrectly parsed as SKUs (`2022 10`..`2024 11`) during initial seed ingestion.
+  - All 6 invalid records safely deleted via `cleanup_merinos_catalog_false_positives.py`.
+  - Parser URL & SKU validation hardened in `merinos_parser.py` to permanently reject blog/archive/nav routes.
+  - Canonical Merinos catalog baseline reconciled to **232 real products** (227 with active primary image, 5 without).
 - **Scope Boundary**: Style DNA batch analysis is NOT executed during A2 (reserved for Post-v1 A3).
 
 ---

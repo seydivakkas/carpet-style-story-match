@@ -1,0 +1,73 @@
+{
+  "rights_mode": "CLEANUP",
+  "dry_run": false,
+  "applied": true,
+  "db_catalog_before": 238,
+  "canonical_source_skus": 232,
+  "false_positive_candidates": 6,
+  "deleted": 6,
+  "review_required": 0,
+  "db_catalog_after": 232,
+  "per_record": [
+    {
+      "sku": "2022 10",
+      "carpet_id": "abd15757-7855-4865-bb70-77dfb1036dfc",
+      "source_reference": "https://www.merinos.com.tr/blog/month/2022-10",
+      "reason": "BLOG_ARCHIVE_NON_PRODUCT_ROUTE",
+      "dependent_image_count": 0,
+      "dependent_style_profile_count": 0,
+      "dependent_motif_association_count": 0,
+      "deletion_status": "DELETED"
+    },
+    {
+      "sku": "2022 11",
+      "carpet_id": "e1d2746c-2dc0-4dac-ae40-af1110214afa",
+      "source_reference": "https://www.merinos.com.tr/blog/month/2022-11",
+      "reason": "BLOG_ARCHIVE_NON_PRODUCT_ROUTE",
+      "dependent_image_count": 0,
+      "dependent_style_profile_count": 0,
+      "dependent_motif_association_count": 0,
+      "deletion_status": "DELETED"
+    },
+    {
+      "sku": "2023 10",
+      "carpet_id": "293eda13-5072-4e82-bfa3-0013f8b8ebb9",
+      "source_reference": "https://www.merinos.com.tr/blog/month/2023-10",
+      "reason": "BLOG_ARCHIVE_NON_PRODUCT_ROUTE",
+      "dependent_image_count": 0,
+      "dependent_style_profile_count": 0,
+      "dependent_motif_association_count": 0,
+      "deletion_status": "DELETED"
+    },
+    {
+      "sku": "2023 11",
+      "carpet_id": "c762f251-2784-49c2-8ca8-d4dc2cc395b0",
+      "source_reference": "https://www.merinos.com.tr/blog/month/2023-11",
+      "reason": "BLOG_ARCHIVE_NON_PRODUCT_ROUTE",
+      "dependent_image_count": 0,
+      "dependent_style_profile_count": 0,
+      "dependent_motif_association_count": 0,
+      "deletion_status": "DELETED"
+    },
+    {
+      "sku": "2024 10",
+      "carpet_id": "329970c9-5e2c-4cd9-87bc-72f11101c043",
+      "source_reference": "https://www.merinos.com.tr/blog/month/2024-10",
+      "reason": "BLOG_ARCHIVE_NON_PRODUCT_ROUTE",
+      "dependent_image_count": 0,
+      "dependent_style_profile_count": 0,
+      "dependent_motif_association_count": 0,
+      "deletion_status": "DELETED"
+    },
+    {
+      "sku": "2024 11",
+      "carpet_id": "8981dae9-2944-4b06-a208-7fcf6eb5cb14",
+      "source_reference": "https://www.merinos.com.tr/blog/month/2024-11",
+      "reason": "BLOG_ARCHIVE_NON_PRODUCT_ROUTE",
+      "dependent_image_count": 0,
+      "dependent_style_profile_count": 0,
+      "dependent_motif_association_count": 0,
+      "deletion_status": "DELETED"
+    }
+  ]
+}

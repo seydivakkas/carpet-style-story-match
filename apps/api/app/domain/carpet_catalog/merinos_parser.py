@@ -6,6 +6,45 @@ from typing import Dict, Any, List, Optional
 from bs4 import BeautifulSoup
 
 
+NON_PRODUCT_URL_PATTERNS = [
+    r"/blog\b",
+    r"/blog/",
+    r"/blog/month/",
+    r"/blog/category/",
+    r"/blog/tag/",
+    r"/haber\b",
+    r"/haberler\b",
+    r"/duyuru\b",
+    r"/kurumsal\b",
+    r"/iletisim\b",
+    r"/sepet\b",
+    r"/hesabim\b",
+    r"/kategori\b",
+    r"\.(jpg|jpeg|png|webp|gif|css|js|pdf)\b",
+]
+
+
+def is_non_product_url(url: str) -> bool:
+    """Return True if the URL points to a non-product page (blog, news, nav, asset)."""
+    if not url:
+        return True
+    url_lower = url.lower()
+    for pattern in NON_PRODUCT_URL_PATTERNS:
+        if re.search(pattern, url_lower):
+            return True
+    return False
+
+
+def is_valid_product_sku(sku: str) -> bool:
+    """Validate if a SKU string represents a legitimate product SKU (not a date or nav string)."""
+    if not sku:
+        return False
+    # Reject date patterns like YYYY MM or YYYY-MM e.g. 2022 10, 2024 11
+    if re.match(r"^(19|20)\d{2}[\s-](0[1-9]|1[0-2])$", sku):
+        return False
+    return True
+
+
 def normalize_sku(raw_sku: str) -> str:
     """Normalize raw SKU string. Preserves official SKU characters after stripping extra whitespace."""
     if not raw_sku:
@@ -29,6 +68,9 @@ def parse_collection_page(html: str, collection_url: str) -> Dict[str, Any]:
     product_links = set()
     for a in soup.find_all("a", href=True):
         href = a["href"].strip()
+        if is_non_product_url(href):
+            continue
+
         # Product path patterns on Merinos site e.g. /90823-070 or /73941-060
         if re.search(r"/\d{4,6}[-\s]\d{2,4}", href) or (
             re.search(r"/\d{5,7}", href)
@@ -41,7 +83,9 @@ def parse_collection_page(html: str, collection_url: str) -> Dict[str, Any]:
                     full_url = "https://www.merinos.com.tr/" + href
             else:
                 full_url = href
-            product_links.add(full_url)
+            
+            if not is_non_product_url(full_url):
+                product_links.add(full_url)
 
     return {
         "collection_name": collection_name,
@@ -52,6 +96,9 @@ def parse_collection_page(html: str, collection_url: str) -> Dict[str, Any]:
 
 def parse_product_page(html: str, product_url: str, fallback_collection: Optional[str] = None) -> Dict[str, Any]:
     """Parse a Merinos product HTML page to extract factual product metadata."""
+    if is_non_product_url(product_url):
+        raise ValueError(f"Invalid non-product URL provided to parse_product_page: {product_url}")
+
     soup = BeautifulSoup(html, "html.parser")
 
     # 1. Collection Name
@@ -69,9 +116,13 @@ def parse_product_page(html: str, product_url: str, fallback_collection: Optiona
         # Fallback to URL path regex match (e.g. 90823-070 from /90823-070)
         match = re.search(r"/(\d{4,6}[-\s]\d{2,4})", product_url)
         if match:
-            raw_sku = match.group(1).replace("-", " ")
+            cand = match.group(1).replace("-", " ")
+            if is_valid_product_sku(cand):
+                raw_sku = cand
 
     sku = normalize_sku(raw_sku)
+    if not is_valid_product_sku(sku):
+        raise ValueError(f"Product page at {product_url} did not yield a valid product SKU (got '{sku}').")
 
     # 3. Product Name
     name = f"{collection_name} {sku}".strip() if collection_name and sku else (sku or collection_name or "Merinos Halı")
