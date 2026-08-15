@@ -49,6 +49,19 @@ from app.domain.preferences.exceptions import (
     ImportanceProfileAlreadyExistsError,
     ImportanceProfileNotFoundError
 )
+from app.domain.stylematch.schemas import (
+    StyleMatchCreateRequest,
+    VisualStyleMatchResultResponse
+)
+from app.domain.stylematch.service import StyleMatchService
+from app.domain.stylematch.exceptions import (
+    StyleMatchRequiresImportanceCompleteError,
+    StyleMatchPreferenceProfileNotFoundError,
+    StyleMatchImportanceProfileNotFoundError,
+    StyleMatchCarpetProfileNotFoundError,
+    StyleMatchCarpetProfileFailedError,
+    StyleMatchNotFoundError
+)
 
 router = APIRouter(prefix="", tags=["Preference Assessments"])
 
@@ -582,6 +595,80 @@ async def get_importance_profile(
             status_code=status.HTTP_404_NOT_FOUND,
             detail={"code": "IMPORTANCE_PROFILE_NOT_FOUND", "message": str(exc)}
         ) from exc
+
+# ---------------------------------------------------------
+# VISUAL STYLE MATCH ENDPOINTS
+# ---------------------------------------------------------
+
+@router.post(
+    "/preference-assessments/{assessment_id}/style-matches",
+    response_model=VisualStyleMatchResultResponse,
+    status_code=status.HTTP_201_CREATED,
+    summary="Compute and persist visual style match between user preference profile and a carpet style profile"
+)
+async def create_style_match(
+    assessment_id: uuid.UUID,
+    payload: StyleMatchCreateRequest,
+    db: AsyncSession = Depends(get_db)
+):
+    try:
+        return await StyleMatchService.create_style_match_async(db, assessment_id, payload)
+    except AssessmentNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "ASSESSMENT_NOT_FOUND", "message": str(exc)}
+        ) from exc
+    except StyleMatchRequiresImportanceCompleteError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail={"code": exc.code, "message": exc.message}
+        ) from exc
+    except StyleMatchPreferenceProfileNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": exc.code, "message": exc.message}
+        ) from exc
+    except StyleMatchCarpetProfileNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": exc.code, "message": exc.message}
+        ) from exc
+    except StyleMatchCarpetProfileFailedError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail={"code": exc.code, "message": exc.message}
+        ) from exc
+
+@router.get(
+    "/preference-assessments/{assessment_id}/style-matches/{match_id}",
+    response_model=VisualStyleMatchResultResponse,
+    status_code=status.HTTP_200_OK,
+    summary="Get visual style match result by ID"
+)
+async def get_style_match(
+    assessment_id: uuid.UUID,
+    match_id: uuid.UUID,
+    db: AsyncSession = Depends(get_db)
+):
+    try:
+        return await StyleMatchService.get_style_match_async(db, assessment_id, match_id)
+    except StyleMatchNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": exc.code, "message": exc.message}
+        ) from exc
+
+@router.get(
+    "/preference-assessments/{assessment_id}/style-matches",
+    response_model=List[VisualStyleMatchResultResponse],
+    status_code=status.HTTP_200_OK,
+    summary="List visual style match results for assessment"
+)
+async def list_style_matches(
+    assessment_id: uuid.UUID,
+    db: AsyncSession = Depends(get_db)
+):
+    return await StyleMatchService.list_style_matches_async(db, assessment_id)
 
 # ---------------------------------------------------------
 # STIMULUS ASSET SERVING ENDPOINT

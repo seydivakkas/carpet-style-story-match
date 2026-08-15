@@ -33,6 +33,18 @@ class ImportanceCompletionModeEnum(str, enum.Enum):
     EXPLICIT_SELECTION = "EXPLICIT_SELECTION"
     SKIPPED_ALL_STANDARD = "SKIPPED_ALL_STANDARD"
 
+class StyleMatchStatusEnum(str, enum.Enum):
+    COMPLETE = "COMPLETE"
+    PARTIAL = "PARTIAL"
+    NOT_AVAILABLE = "NOT_AVAILABLE"
+
+class StyleMatchLabelEnum(str, enum.Enum):
+    VERY_STRONG = "VERY_STRONG"
+    STRONG = "STRONG"
+    MODERATE = "MODERATE"
+    LIMITED = "LIMITED"
+    LOW = "LOW"
+
 class PreferenceDimensionStatus(str, enum.Enum):
     MEASURED = "MEASURED"
     NOT_MEASURED = "NOT_MEASURED"
@@ -141,6 +153,12 @@ class PreferenceAssessmentModel(Base):
         back_populates="assessment",
         uselist=False,
         cascade="all, delete-orphan"
+    )
+    style_matches: Mapped[List["VisualStyleMatchResultModel"]] = relationship(
+        "VisualStyleMatchResultModel",
+        back_populates="assessment",
+        cascade="all, delete-orphan",
+        order_by="VisualStyleMatchResultModel.created_at.desc()"
     )
 
 class TextPreferenceResponseModel(Base):
@@ -835,4 +853,205 @@ class ImportanceDimensionModel(Base):
 
     __table_args__ = (
         UniqueConstraint("importance_profile_id", "dimension_key", name="uq_importance_dimension_key"),
+    )
+
+class VisualStyleMatchResultModel(Base):
+    __tablename__ = "visual_style_match_results"
+
+    id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        primary_key=True,
+        default=uuid.uuid4
+    )
+    assessment_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("preference_assessments.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True
+    )
+    user_preference_profile_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("user_preference_profiles.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True
+    )
+    importance_profile_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("importance_profiles.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True
+    )
+    carpet_style_profile_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("carpet_style_profiles.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True
+    )
+    match_version: Mapped[str] = mapped_column(
+        String(50),
+        nullable=False,
+        default="visual-style-match-v1"
+    )
+    status: Mapped[StyleMatchStatusEnum] = mapped_column(
+        SQLEnum(StyleMatchStatusEnum, name="style_match_status_enum", native_enum=False),
+        nullable=False,
+        default=StyleMatchStatusEnum.COMPLETE
+    )
+    score: Mapped[Optional[float]] = mapped_column(
+        Float,
+        nullable=True
+    )
+    score_100: Mapped[Optional[float]] = mapped_column(
+        Float,
+        nullable=True
+    )
+    match_label: Mapped[Optional[StyleMatchLabelEnum]] = mapped_column(
+        SQLEnum(StyleMatchLabelEnum, name="style_match_label_enum", native_enum=False),
+        nullable=True
+    )
+    comparable_dimension_count: Mapped[int] = mapped_column(
+        Integer,
+        nullable=False,
+        default=0
+    )
+    weighted_coverage: Mapped[float] = mapped_column(
+        Float,
+        nullable=False,
+        default=0.0
+    )
+    total_importance_weight: Mapped[float] = mapped_column(
+        Float,
+        nullable=False,
+        default=0.0
+    )
+    comparable_weight: Mapped[float] = mapped_column(
+        Float,
+        nullable=False,
+        default=0.0
+    )
+    explanation_json: Mapped[Optional[str]] = mapped_column(
+        String(2000),
+        nullable=True
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        nullable=False,
+        default=lambda: datetime.now(timezone.utc)
+    )
+
+    assessment: Mapped["PreferenceAssessmentModel"] = relationship(
+        "PreferenceAssessmentModel",
+        back_populates="style_matches"
+    )
+    user_preference_profile: Mapped["UserPreferenceProfileModel"] = relationship(
+        "UserPreferenceProfileModel"
+    )
+    importance_profile: Mapped["ImportanceProfileModel"] = relationship(
+        "ImportanceProfileModel"
+    )
+    carpet_style_profile: Mapped["CarpetStyleProfileModel"] = relationship(
+        "CarpetStyleProfileModel"
+    )
+    dimensions: Mapped[List["VisualStyleMatchDimensionModel"]] = relationship(
+        "VisualStyleMatchDimensionModel",
+        back_populates="match_result",
+        cascade="all, delete-orphan",
+        order_by="VisualStyleMatchDimensionModel.dimension_key"
+    )
+
+    __table_args__ = (
+        UniqueConstraint(
+            "assessment_id",
+            "user_preference_profile_id",
+            "importance_profile_id",
+            "carpet_style_profile_id",
+            "match_version",
+            name="uq_style_match_assessment_profiles"
+        ),
+    )
+
+class VisualStyleMatchDimensionModel(Base):
+    __tablename__ = "visual_style_match_dimensions"
+
+    id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        primary_key=True,
+        default=uuid.uuid4
+    )
+    match_result_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("visual_style_match_results.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True
+    )
+    dimension_key: Mapped[str] = mapped_column(
+        String(50),
+        nullable=False
+    )
+    user_value: Mapped[Optional[float]] = mapped_column(
+        Float,
+        nullable=True
+    )
+    user_provenance: Mapped[Optional[UserPreferenceProvenanceEnum]] = mapped_column(
+        SQLEnum(UserPreferenceProvenanceEnum, name="user_preference_provenance_enum", native_enum=False),
+        nullable=True
+    )
+    carpet_value: Mapped[Optional[float]] = mapped_column(
+        Float,
+        nullable=True
+    )
+    carpet_dimension_status: Mapped[Optional[str]] = mapped_column(
+        String(50),
+        nullable=True
+    )
+    importance_level: Mapped[ImportanceLevelEnum] = mapped_column(
+        SQLEnum(ImportanceLevelEnum, name="importance_level_enum", native_enum=False),
+        nullable=False,
+        default=ImportanceLevelEnum.STANDARD
+    )
+    importance_weight: Mapped[float] = mapped_column(
+        Float,
+        nullable=False,
+        default=0.60
+    )
+    difference: Mapped[Optional[float]] = mapped_column(
+        Float,
+        nullable=True
+    )
+    similarity: Mapped[Optional[float]] = mapped_column(
+        Float,
+        nullable=True
+    )
+    weighted_similarity: Mapped[Optional[float]] = mapped_column(
+        Float,
+        nullable=True
+    )
+    weighted_difference: Mapped[Optional[float]] = mapped_column(
+        Float,
+        nullable=True
+    )
+    comparable: Mapped[bool] = mapped_column(
+        nullable=False,
+        default=True
+    )
+    user_preference_confidence: Mapped[Optional[float]] = mapped_column(
+        Float,
+        nullable=True
+    )
+    carpet_measurement_confidence: Mapped[Optional[float]] = mapped_column(
+        Float,
+        nullable=True
+    )
+
+    @property
+    def key(self) -> str:
+        return self.dimension_key
+
+    match_result: Mapped["VisualStyleMatchResultModel"] = relationship(
+        "VisualStyleMatchResultModel",
+        back_populates="dimensions"
+    )
+
+    __table_args__ = (
+        UniqueConstraint("match_result_id", "dimension_key", name="uq_match_dimension_key"),
     )

@@ -90,6 +90,20 @@ CANONICAL_DIMENSIONS_ORDER: List[str] = [
     "form_language",       # D9
 ]
 
+CANONICAL_DIMENSIONS = CANONICAL_DIMENSIONS_ORDER
+
+DIMENSION_NAMES_TR: Dict[str, str] = {
+    "color_energy": "Renk Enerjisi",
+    "color_diversity": "Renk Çeşitliliği",
+    "contrast": "Kontrast",
+    "warmth": "Renk Sıcaklığı",
+    "visual_complexity": "Görsel Karmaşıklık",
+    "structural_order": "Yapısal Düzen",
+    "rhythm_repetition": "Ritim ve Tekrar",
+    "focal_strength": "Odak Gücü",
+    "form_language": "Form Dili"
+}
+
 # Canonical Text Choice Scale Mapping
 TEXT_CHOICE_MAP: Dict[TextChoiceEnum, float] = {
     TextChoiceEnum.STRONGLY_A: -1.00,
