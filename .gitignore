@@ -68,3 +68,7 @@ yarn-error.log*
 # Operating System
 .DS_Store
 Thumbs.db
+
+# Runtime Storage
+data/
+uploads/

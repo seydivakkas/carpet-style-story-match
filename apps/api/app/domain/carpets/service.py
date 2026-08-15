@@ -66,4 +66,13 @@ class CarpetService:
 
     async def delete_carpet(self, carpet_id: uuid.UUID) -> None:
         carpet = await self.get_carpet_by_id(carpet_id)
+        
+        # Clean up files on disk if LocalImageStorage is used
+        try:
+            from app.domain.images.storage import LocalImageStorage
+            storage = LocalImageStorage()
+            storage.delete_carpet_dir(carpet_id)
+        except Exception:
+            pass
+
         await self.repo.delete(carpet)
