@@ -65,6 +65,65 @@ def test_museum_classification():
     assert role == ExternalDatasetRole.HISTORICAL_CANDIDATE
     assert cat_elig == CatalogEligibility.INELIGIBLE
     assert hist_elig == HistoricalEligibility.ELIGIBLE
+    assert "institutional_historical_provenance_verified" in reasons
+
+
+def test_safavid_original_without_object_provenance():
+    """A2B.1 TEST: Kaggle Safavid original without object provenance is RESEARCH_ONLY, NOT HISTORICAL_CANDIDATE."""
+    role, cat_elig, hist_elig, reasons = DatasetRoleClassifier.classify(
+        provider_type=DatasetProviderType.KAGGLE,
+        is_original=True,
+        is_augmented=False,
+        institution=None,
+        original_object_id=None,
+        original_source_url=None,
+    )
+    assert role == ExternalDatasetRole.RESEARCH_ONLY
+    assert cat_elig == CatalogEligibility.INELIGIBLE
+    assert hist_elig == HistoricalEligibility.INELIGIBLE
+    assert "missing_object_level_historical_provenance" in reasons
+
+
+def test_safavid_original_with_verified_museum_provenance():
+    """A2B.1 TEST: Kaggle Safavid original with verified per-image museum object provenance is HISTORICAL_CANDIDATE."""
+    role, cat_elig, hist_elig, reasons = DatasetRoleClassifier.classify(
+        provider_type=DatasetProviderType.KAGGLE,
+        authoritative_source_type=DatasetProviderType.MUSEUM,
+        institution="The Metropolitan Museum of Art",
+        original_object_id="MET-1970.65",
+        original_source_url="https://www.metmuseum.org/art/collection/search/197065",
+        is_original=True,
+        is_augmented=False,
+    )
+    assert role == ExternalDatasetRole.HISTORICAL_CANDIDATE
+    assert cat_elig == CatalogEligibility.INELIGIBLE
+    assert hist_elig == HistoricalEligibility.ELIGIBLE
+    assert "secondary_dataset_with_verified_institutional_provenance" in reasons
+
+
+def test_safavid_label_alone_no_promotion():
+    """A2B.1 TEST: Source label 'Safavid' alone without institutional provenance gives no historical promotion."""
+    role, cat_elig, hist_elig, reasons = DatasetRoleClassifier.classify(
+        provider_type=DatasetProviderType.ACADEMIC_DATASET,
+        is_original=True,
+        institution=None,
+        original_object_id=None,
+    )
+    assert role == ExternalDatasetRole.RESEARCH_ONLY
+    assert hist_elig == HistoricalEligibility.INELIGIBLE
+
+
+def test_augmented_with_museum_parent_remains_benchmark():
+    """A2B.1 TEST: Augmented record with museum parent object ID remains BENCHMARK_ONLY."""
+    role, cat_elig, hist_elig, reasons = DatasetRoleClassifier.classify(
+        provider_type=DatasetProviderType.KAGGLE,
+        authoritative_source_type=DatasetProviderType.MUSEUM,
+        institution="The Metropolitan Museum of Art",
+        original_object_id="MET-1970.65",
+        is_augmented=True,
+    )
+    assert role == ExternalDatasetRole.BENCHMARK_ONLY
+    assert hist_elig == HistoricalEligibility.INELIGIBLE
 
 
 def test_augmented_classification():

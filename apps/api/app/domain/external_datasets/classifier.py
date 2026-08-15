@@ -9,11 +9,12 @@ from app.domain.external_datasets.schemas import (
 
 
 class DatasetRoleClassifier:
-    """Pure deterministic role classifier. Zero black-box pixel guesswork."""
+    """Pure deterministic role classifier. Zero black-box pixel or label guesswork."""
 
     @staticmethod
     def classify(
         provider_type: DatasetProviderType,
+        authoritative_source_type: Optional[DatasetProviderType] = None,
         manufacturer: Optional[str] = None,
         official_sku: Optional[str] = None,
         official_product_url: Optional[str] = None,
@@ -31,6 +32,8 @@ class DatasetRoleClassifier:
         role: ExternalDatasetRole = ExternalDatasetRole.QUARANTINE
         cat_elig: CatalogEligibility = CatalogEligibility.INELIGIBLE
         hist_elig: HistoricalEligibility = HistoricalEligibility.INELIGIBLE
+
+        effective_auth_source = authoritative_source_type or provider_type
 
         # 1. Check synthetic or augmented invariant
         if is_synthetic:
@@ -85,34 +88,41 @@ class DatasetRoleClassifier:
                 hist_elig = HistoricalEligibility.INELIGIBLE
                 return role, cat_elig, hist_elig, reasons
 
-        # 3. Check historical candidate criteria
-        is_museum_provider = provider_type in (DatasetProviderType.MUSEUM, DatasetProviderType.ARCHIVE)
+        # 3. Check object-level historical candidate criteria
         has_institution = bool(institution and institution.strip())
         has_object_id = bool(original_object_id and original_object_id.strip())
         has_source_url = bool(original_source_url and original_source_url.strip())
 
-        if is_museum_provider:
-            if not has_institution:
-                reasons.append("missing_institution_identity")
-            if not has_object_id:
-                reasons.append("missing_institutional_object_id")
-            if not has_source_url:
-                reasons.append("missing_original_source_url")
+        is_museum_or_archive = (
+            provider_type in (DatasetProviderType.MUSEUM, DatasetProviderType.ARCHIVE)
+            or effective_auth_source in (DatasetProviderType.MUSEUM, DatasetProviderType.ARCHIVE)
+            or (has_institution and has_object_id and has_source_url)
+        )
 
-            if has_institution and has_object_id and has_source_url and is_original:
-                reasons.append("institutional_historical_provenance_verified")
+        if is_museum_or_archive and is_original:
+            if has_institution and has_object_id and has_source_url:
+                if provider_type in (DatasetProviderType.MUSEUM, DatasetProviderType.ARCHIVE):
+                    reasons.append("institutional_historical_provenance_verified")
+                else:
+                    reasons.append("secondary_dataset_with_verified_institutional_provenance")
                 role = ExternalDatasetRole.HISTORICAL_CANDIDATE
                 cat_elig = CatalogEligibility.INELIGIBLE
                 hist_elig = HistoricalEligibility.ELIGIBLE
                 return role, cat_elig, hist_elig, reasons
-            elif is_original:
+            elif provider_type in (DatasetProviderType.MUSEUM, DatasetProviderType.ARCHIVE):
+                if not has_institution:
+                    reasons.append("missing_institution_identity")
+                if not has_object_id:
+                    reasons.append("missing_institutional_object_id")
+                if not has_source_url:
+                    reasons.append("missing_original_source_url")
                 reasons.append("incomplete_historical_metadata_requires_review")
                 role = ExternalDatasetRole.HISTORICAL_CANDIDATE
                 cat_elig = CatalogEligibility.INELIGIBLE
                 hist_elig = HistoricalEligibility.REVIEW_REQUIRED
                 return role, cat_elig, hist_elig, reasons
 
-        # 4. Check research dataset providers (Kaggle, Roboflow, Academic, GitHub, Internal, Other)
+        # 4. Research dataset providers without object-level museum provenance
         if provider_type in (
             DatasetProviderType.KAGGLE,
             DatasetProviderType.ROBOFLOW,
@@ -124,6 +134,8 @@ class DatasetRoleClassifier:
             reasons.append(f"research_dataset_source_{provider_type.value.lower()}")
             if not has_sku:
                 reasons.append("missing_official_product_sku")
+            if not (has_institution and has_object_id):
+                reasons.append("missing_object_level_historical_provenance")
             role = ExternalDatasetRole.RESEARCH_ONLY
             cat_elig = CatalogEligibility.INELIGIBLE
             hist_elig = HistoricalEligibility.INELIGIBLE

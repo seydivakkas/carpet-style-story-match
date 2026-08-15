@@ -31,7 +31,7 @@ graph TD
 ## 3. Five-Tier Role Classification
 
 1. **`CATALOG_CANDIDATE`**: Verified commercial products from official carpet manufacturers with non-empty SKU, valid product URL, and verified commercial rights.
-2. **`HISTORICAL_CANDIDATE`**: High-resolution original museum or archival accession photographs with stable institutional object IDs.
+2. **`HISTORICAL_CANDIDATE`**: Original museum or archival accession photographs with verified object-level institutional provenance (institution name, stable accession object ID, and official institutional source URL). Dataset names, folder names, or source labels (e.g. "Safavid") alone NEVER qualify a record as a historical candidate.
 3. **`RESEARCH_ONLY`**: Academic computer vision corpora, Kaggle datasets, and pattern family collections used exclusively for offline distribution study and feature exploration.
 4. **`BENCHMARK_ONLY`**: Transformed, augmented, cropped, or synthetic images intended solely for algorithm robustness testing.
 5. **`QUARANTINE`**: Records with ambiguous provenance, missing original URLs, or unverified license terms.

@@ -102,8 +102,8 @@
       "contains_originals": true,
       "contains_augmentations": false,
       "contains_synthetic": false,
-      "default_role": "HISTORICAL_CANDIDATE",
-      "notes": "Original museum high-res accession photographs of 16th-17th century Safavid carpets"
+      "default_role": "RESEARCH_ONLY",
+      "notes": "Original museum photographs of 16th-17th century carpets; default RESEARCH_ONLY unless verified per-image accession provenance exists"
     },
     {
       "dataset_key": "safavid-carpets-augmentations",
