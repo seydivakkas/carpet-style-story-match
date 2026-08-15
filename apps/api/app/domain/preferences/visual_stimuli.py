@@ -157,7 +157,7 @@ class ProceduralStimulusGenerator:
 
     # -----------------------------------------------------------------
     # V1: Color Energy (BASE_A Medallion)
-    # A = muted/calm, B = vivid/energetic
+    # A = desaturated calm chroma, B = vivid energetic chroma (matching L* structure)
     # -----------------------------------------------------------------
     @classmethod
     def _render_v1(cls, variant: str) -> Tuple[str, Image.Image]:
@@ -166,17 +166,19 @@ class ProceduralStimulusGenerator:
         draw = ImageDraw.Draw(img)
 
         if variant == "A":
-            bg = (130, 125, 120)
-            border = (90, 85, 80)
-            inner = (150, 145, 140)
-            med = (110, 105, 100)
-            accent = (140, 130, 120)
+            # Desaturated muted tones matching L* lightness of Variant B
+            bg = (120, 110, 105)
+            border = (60, 55, 70)
+            inner = (215, 210, 200)
+            med = (105, 95, 110)
+            accent = (135, 145, 135)
         else:
-            bg = (220, 30, 20)
-            border = (20, 40, 160)
-            inner = (240, 200, 10)
-            med = (180, 20, 140)
-            accent = (10, 180, 50)
+            # Saturated vivid energetic tones
+            bg = (215, 45, 30)       # Crimson
+            border = (30, 50, 195)    # Cobalt
+            inner = (245, 205, 35)    # Gold
+            med = (175, 35, 185)     # Magenta
+            accent = (25, 175, 75)    # Emerald
 
         draw.rectangle([0, 0, W, H], fill=bg)
         draw.rectangle([40, 40, W-40, H-40], fill=border, outline=inner, width=8)
@@ -203,7 +205,7 @@ class ProceduralStimulusGenerator:
 
     # -----------------------------------------------------------------
     # V2: Contrast (BASE_B All-Over)
-    # A = soft separation, B = strong separation
+    # A = soft separation, B = strong separation (exact same warm hue family)
     # -----------------------------------------------------------------
     @classmethod
     def _render_v2(cls, variant: str) -> Tuple[str, Image.Image]:
@@ -212,13 +214,15 @@ class ProceduralStimulusGenerator:
         draw = ImageDraw.Draw(img)
 
         if variant == "A":
-            bg = (140, 135, 130)
-            motif_c = (115, 110, 105)
-            border = (125, 120, 115)
+            # Soft luminance contrast (warm terracotta theme with edge definition)
+            bg = (140, 100, 60)
+            motif_c = (205, 165, 125)
+            border = (175, 135, 95)
         else:
-            bg = (15, 20, 30)
-            motif_c = (245, 245, 250)
-            border = (220, 220, 230)
+            # High luminance contrast (same warm amber/terracotta theme)
+            bg = (35, 18, 8)
+            motif_c = (245, 205, 150)
+            border = (210, 170, 120)
 
         draw.rectangle([0, 0, W, H], fill=bg)
         draw.rectangle([30, 30, W-30, H-30], fill=bg, outline=border, width=6)
@@ -238,7 +242,7 @@ class ProceduralStimulusGenerator:
 
         bg_h = cls.hex_color(bg)
         border_h = cls.hex_color(border)
-        motifs_str = "\n  ".join(motifs_svg)
+        motifs_str = "\n  ".join(svg_motifs if 'svg_motifs' in locals() else motifs_svg)
 
         svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}">
   <rect width="{W}" height="{H}" fill="{bg_h}"/>

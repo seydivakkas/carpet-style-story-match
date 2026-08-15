@@ -88,12 +88,12 @@ All controlled visual stimuli are top-down abstract carpet designs rendered proc
 
 ## 4. Calibrated Measured Style DNA Values & Asset Hashes
 
-| Card | Target Dim | Measured A | Measured B | Target Delta | $D_7$ Contam | SHA-256 (A) | SHA-256 (B) |
-|---|---|---|---|---|---|---|---|
-| $V_1$ | `color_energy` ($D_1$) | 0.0615 | 1.0000 | **0.9385** | 0.0000 | `415af2bac3eeea12d2bcd9cd036125ba5d48f772bb04e705fa76f4bac5e4a57e` | `1271bc14f1e631dbdc03a307129a5bbece5ee4e8ee18c9f1524236d2012556b8` |
-| $V_2$ | `contrast` ($D_3$) | 0.1013 | 0.9407 | **0.8394** | 0.0000 | `5eb12a1167ca6b9d3df6aefbae0771c3120bfe003ddec9e5d954948a3e0da155` | `daf4b424f627e97099ecd14bc16f366cd2d6ce5745c1ba3c7e7d46c473f6e8d2` |
-| $V_3$ | `visual_complexity` ($D_5$) | 0.3595 | 0.7124 | **0.3529** | 0.0000 | `c181d953051a88811de34da3d9fb186c85ca0ff2ba754c94174a649fa05495f7` | `bacef15743ad34b92df0b2af6436bea8fba3e92c36347e9a7891572e02218f24` |
-| $V_4$ | `structural_order` ($D_6$) | 0.6063 | 0.9943 | **0.3880** | 0.0000 | `77c8bad3ccf96944ae2ad1cf02c9185aeb0ea2caa7361d42d4ed71fdb4b6eaae` | `f867720040889344798e61827238d449f993a9bd9d2f13a290a8d4b6680b1874` |
-| $V_5$ | `rhythm_repetition` ($D_7$) | 0.5993 | 0.9719 | **0.3726** | 0.0030 ($D_6$) | `79f5cccf74630077d16242880c94cc431502f8fb9db05418f87ad1ec84bf6a8b` | `d0747b8f7ea25120ffd1d4e70a6b09b3d76ebaa7674671f8539a10f48dec2a87` |
-| $V_6$ | `form_language` ($D_9$) | 0.4066 | 0.9922 | **0.5856** | 0.0000 | `42a87b530c935359207111654c8dc31783e80b63ed7cf7c908216e1bfc1551cb` | `8f55af132a95a42965413d7bed4ffab1ce4302b0683681c2ade2cf4a04791a3d` |
+| Card | Target Dim | Measured A | Measured B | Target Delta | Max Non-Target | Largest Non-Target | Validation | SHA-256 (A) | SHA-256 (B) |
+|---|---|---|---|---|---|---|---|---|---|
+| $V_1$ | `color_energy` ($D_1$) | 0.1038 | 1.0000 | **0.8962** | 0.1230 | warmth ($D_4$) | **PASS** | `36422f92d374ebfc84f2ed7a74ee2ff1c1d4d0d1152f99f0d59acea06af6747a` | `fceff54c8e4529cc1eee7ad558f2696f6c33cf34c87e9363c18863ccab1f4cab` |
+| $V_2$ | `contrast` ($D_3$) | 0.2610 | 0.7915 | **0.5305** | 0.1119 | color_energy ($D_1$) | **PASS** | `f5f964612cbdf7744ff0b4f9251fb1e1f15e33809cc771c10b032a9be4575677` | `11d182175fab9ddafabae8c310ae84eccd0c01b365459f40538e1386b403dcb8` |
+| $V_3$ | `visual_complexity` ($D_5$) | 0.3595 | 0.8204 | **0.4609** | 0.1348 | contrast ($D_3$) | **PASS** | `c181d953051a88811de34da3d9fb186c85ca0ff2ba754c94174a649fa05495f7` | `b896982ed5fe4e5f5ea6f596d67c90caeb3a8ab55a3a08599d65dff6b6fe8994` |
+| $V_4$ | `structural_order` ($D_6$) | 0.6063 | 0.9943 | **0.3880** | 0.0221 | focal_strength ($D_8$) | **PASS** | `77c8bad3ccf96944ae2ad1cf02c9185aeb0ea2caa7361d42d4ed71fdb4b6eaae` | `f867720040889344798e61827238d449f993a9bd9d2f13a290a8d4b6680b1874` |
+| $V_5$ | `rhythm_repetition` ($D_7$) | 0.5993 | 0.9719 | **0.3726** | 0.0706 | form_language ($D_9$) | **PASS** | `79f5cccf74630077d16242880c94cc431502f8fb9db05418f87ad1ec84bf6a8b` | `d0747b8f7ea25120ffd1d4e70a6b09b3d76ebaa7674671f8539a10f48dec2a87` |
+| $V_6$ | `form_language` ($D_9$) | 0.4066 | 0.9922 | **0.5856** | 0.0826 | focal_strength ($D_8$) | **PASS** | `42a87b530c935359207111654c8dc31783e80b63ed7cf7c908216e1bfc1551cb` | `8f55af132a95a42965413d7bed4ffab1ce4302b0683681c2ade2cf4a04791a3d` |
 

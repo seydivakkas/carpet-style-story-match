@@ -83,6 +83,70 @@ def test_visual_aggregator_canonical_poles():
     for k in ["color_energy", "contrast", "visual_complexity", "structural_order", "rhythm_repetition", "form_language"]:
         assert map_high[k]["value"] == 1.00
 
+def validate_stimulus_metrics(
+    target_dim: str,
+    map_a: dict,
+    map_b: dict,
+    target_min: float = STIMULUS_TARGET_DELTA_MIN,
+    max_non_target_limit: float = STIMULUS_MAX_NON_TARGET_DELTA,
+) -> dict:
+    """Authoritative validation helper for 9D visual preference stimulus pairs."""
+    val_a = map_a.get(target_dim)
+    val_b = map_b.get(target_dim)
+    if val_a is None or val_b is None:
+        target_delta = 0.0
+        target_pass = False
+    else:
+        target_delta = round(val_b - val_a, 4)
+        target_pass = target_delta >= target_min
+
+    non_target_deltas = {
+        dim: round(abs(map_b[dim] - map_a[dim]), 4)
+        for dim in map_a.keys()
+        if dim != target_dim and map_a[dim] is not None and map_b[dim] is not None
+    }
+    max_non_target_delta = max(non_target_deltas.values()) if non_target_deltas else 0.0
+    largest_non_target_dim = [k for k, v in non_target_deltas.items() if v == max_non_target_delta][0] if non_target_deltas else "none"
+    mean_non_target_delta = round(sum(non_target_deltas.values()) / len(non_target_deltas), 4) if non_target_deltas else 0.0
+
+    contamination_pass = max_non_target_delta <= max_non_target_limit
+    is_valid = target_pass and contamination_pass
+
+    return {
+        "target_dim": target_dim,
+        "val_a": val_a,
+        "val_b": val_b,
+        "target_delta": target_delta,
+        "target_pass": target_pass,
+        "non_target_deltas": non_target_deltas,
+        "max_non_target_delta": max_non_target_delta,
+        "largest_non_target_dim": largest_non_target_dim,
+        "mean_non_target_delta": mean_non_target_delta,
+        "contamination_pass": contamination_pass,
+        "is_valid": is_valid,
+    }
+
+
+def test_negative_stimulus_validator_contamination_rejection():
+    """Negative test: Prove high target_delta (0.80) does NOT excuse contamination (0.30 > 0.15)."""
+    map_a = {
+        "color_energy": 0.10, "color_diversity": 0.40, "contrast": 0.20, "warmth": 0.50,
+        "visual_complexity": 0.40, "structural_order": 0.70, "rhythm_repetition": 0.50,
+        "focal_strength": 0.40, "form_language": 0.50
+    }
+    map_b = {
+        "color_energy": 0.90, # Target Delta = 0.80 (>= 0.35)
+        "color_diversity": 0.40,
+        "contrast": 0.50, # Non-target Delta = 0.30 (> 0.15 FAIL)
+        "warmth": 0.50, "visual_complexity": 0.40, "structural_order": 0.70,
+        "rhythm_repetition": 0.50, "focal_strength": 0.40, "form_language": 0.50
+    }
+    val_res = validate_stimulus_metrics("color_energy", map_a, map_b)
+    assert val_res["target_pass"] is True
+    assert val_res["contamination_pass"] is False
+    assert val_res["is_valid"] is False, "Synthetic stimulus with 0.30 contamination must fail validation"
+
+
 def test_cv_engine_validation_on_generated_stimuli():
     hashes = generate_and_save_all_stimuli(TEST_STIMULI_DIR)
     assert len(hashes) == 12
@@ -107,38 +171,26 @@ def test_cv_engine_validation_on_generated_stimuli():
         map_a = {d["key"]: d["value"] for d in dims_a}
         map_b = {d["key"]: d["value"] for d in dims_b}
 
-        val_a = map_a[target_dim]
-        val_b = map_b[target_dim]
-        target_delta = round(val_b - val_a, 4)
+        metrics = validate_stimulus_metrics(target_dim, map_a, map_b)
+        results[key] = metrics
+        results[key]["map_a"] = map_a
+        results[key]["map_b"] = map_b
 
-        # Compute non-target deltas
-        non_target_deltas = {
-            dim: round(abs(map_b[dim] - map_a[dim]), 4)
-            for dim in map_a.keys()
-            if dim != target_dim and map_a[dim] is not None and map_b[dim] is not None
-        }
-        max_non_target_delta = max(non_target_deltas.values())
-
-        results[key] = {
-            "val_a": val_a,
-            "val_b": val_b,
-            "target_delta": target_delta,
-            "non_target_deltas": non_target_deltas,
-            "max_non_target_delta": max_non_target_delta,
-            "map_a": map_a,
-            "map_b": map_b
-        }
-
-        print(f"Card {key} (Target: {target_dim}): A={val_a}, B={val_b}, Delta={target_delta}, Max Non-Target={max_non_target_delta}")
+        print(
+            f"Card {key} (Target: {target_dim}): A={metrics['val_a']}, B={metrics['val_b']}, "
+            f"Delta={metrics['target_delta']}, Max Non-Target={metrics['max_non_target_delta']} ({metrics['largest_non_target_dim']})"
+        )
 
         # Assert target delta >= STIMULUS_TARGET_DELTA_MIN (0.35)
-        assert target_delta >= STIMULUS_TARGET_DELTA_MIN, f"{key} target delta {target_delta} < {STIMULUS_TARGET_DELTA_MIN} (A={val_a}, B={val_b})"
+        assert metrics["target_pass"], f"{key} target delta {metrics['target_delta']} < {STIMULUS_TARGET_DELTA_MIN}"
 
-        # Assert max_non_target_delta <= STIMULUS_MAX_NON_TARGET_DELTA (0.15) for structural cards V3, V4, V5, V6
-        if key in ["V3_VISUAL_COMPLEXITY", "V4_STRUCTURAL_ORDER", "V5_RHYTHM_REPETITION", "V6_FORM_LANGUAGE"]:
-            assert max_non_target_delta <= STIMULUS_MAX_NON_TARGET_DELTA, (
-                f"{key} max non-target delta {max_non_target_delta} > {STIMULUS_MAX_NON_TARGET_DELTA}"
-            )
+        # Assert max_non_target_delta <= STIMULUS_MAX_NON_TARGET_DELTA (0.15) for ALL CARDS
+        assert metrics["contamination_pass"], (
+            f"{key} max non-target delta {metrics['max_non_target_delta']} > {STIMULUS_MAX_NON_TARGET_DELTA} ({metrics['largest_non_target_dim']})"
+        )
+
+        # Assert overall validity
+        assert metrics["is_valid"] is True
 
     # Check D6/D7 decoupling contamination
     v4_d7_contam = round(abs(results["V4_STRUCTURAL_ORDER"]["map_b"]["rhythm_repetition"] - results["V4_STRUCTURAL_ORDER"]["map_a"]["rhythm_repetition"]), 4)
