@@ -7,16 +7,16 @@ Telif Hakkı (c) 2026 Seydi Eryılmaz (@seydivakkas)
 
 ## 1. Overview & Purpose
 
-The **Validation, Calibration & End-to-End Benchmark v1** subsystem provides an automated, deterministic quality guardrail for the Carpet Style & Story Match platform. It rigorously verifies algorithm invariants, preference matrices, computer vision Style DNA calibrations, narrative affinity projections, historical reference connections, abstention rules, and cross-layer metric independence.
+The **Validation, Calibration & End-to-End Benchmark v1** subsystem provides an automated, deterministic quality release gate for the Carpet Style & Story Match platform. It strictly verifies algorithm invariants, preference matrices, computer vision Style DNA calibrations, motif knowledge provenance, carpet curation invariants, narrative affinity projections, historical reference connections, abstention rules, snapshot integrity, and cross-layer metric independence.
 
 Key System Invariant:
 > **NO HIDDEN FAILURES (RULE 7)**: Required benchmark check failures CANNOT be masked or swallowed. Any single required check failure sets the overall benchmark status to `FAIL` and returns exit code 1.
 
 ---
 
-## 2. Benchmark Check Group Inventory (38 Checks)
+## 2. Benchmark Check Group Inventory (57 Checks)
 
-The benchmark suite consists of 38 comprehensive checks organized into 15 domain groups:
+The benchmark suite consists of 57 comprehensive checks organized into 20 domain groups:
 
 | Group ID | Domain | Check Count | Required | Description |
 |---|---|---|---|---|
@@ -26,15 +26,20 @@ The benchmark suite consists of 38 comprehensive checks organized into 15 domain
 | **GROUP_D** | Visual Preference Catalog | 1 | 1 | 6 visual stimuli cards catalog contract. |
 | **GROUP_E** | Multimodal & Confidence | 4 | 4 | 9/9 completed profile coverage, D3 weighted merge arithmetic, confidence formula cases, user override provenance preservation. |
 | **GROUP_F** | Importance Profile | 2 | 2 | Default skip profile (9x STANDARD=0.60), priority/flexible overlap rejection. |
-| **GROUP_G** | Visual Style Match | 4 | 4 | Exact identity baseline (100.0 VERY_STRONG), polar difference baseline (20.0 LOW), priority weight sensitivity, <70% coverage abstention. |
+| **GROUP_G** | Visual Style Match | 5 | 5 | Exact identity baseline (100.0 VERY_STRONG), exact polar opposite baseline (0.0 LOW), priority weight sensitivity, <70% coverage abstention, boundary threshold assertions (90, 89.99, 75, 74.99, 60, 59.99, 45, 44.99). |
 | **GROUP_H** | User Narrative Profile | 1 | 1 | Theme weights & defaults (1.00 / 0.60 / 0.00). |
 | **GROUP_K** | Narrative Affinity | 3 | 3 | Golden case (0.375 MODERATE), contested-only evidence abstention, user skipped profile abstention. |
+| **GROUP_I** | Motif Knowledge Provenance | 4 | 4 | DOCUMENTED (>=1 source), CONTEXTUAL (>=1 source & note), CONTESTED (>=2 sources & note), UNKNOWN (null text & 0 links, absence != UNKNOWN). |
+| **GROUP_J** | Carpet Curation & Provenance | 4 | 4 | CURATOR_CONFIRMED/SOURCE_DOCUMENTED/UNCERTAIN notes & story constraints, CONTEXTUAL/CONTESTED applicability_note, non-auto-inheritance, two-layer provenance separation. |
 | **GROUP_L** | Historical Source Type | 1 | 1 | Historical source_type='HISTORICAL' and primary_reference_type='MUSEUM_OBJECT'. |
 | **GROUP_M** | Historical Connection | 3 | 3 | Golden case (1.00 VERY_CLOSE), <6 dimensions coverage abstention, non-attribution contract (no probability/authenticity scores). |
-| **GROUP_N** | Cross-Layer Independence | 2 | 2 | Metric independence between Style Match and Narrative Affinity; 3-axis evaluation invariant (no combined/total score). |
-| **GROUP_O** | Abstention Correctness | 1 | 1 | 100% abstention correctness when evidence is missing or skipped. |
+| **GROUP_N** | Cross-Layer Independence | 2 | 2 | Metric independence between Style Match, Narrative Affinity, and Historical Connection (5 parameter isolation checks); 3-axis evaluation invariant (no combined/total score). |
+| **GROUP_O** | Abstention Correctness | 1 | 1 | 100% abstention correctness across 5 explicit missing/contested evidence scenarios. |
 | **GROUP_P** | Determinism & Hashes | 1 | 1 | Narrative evidence snapshot hash sorting invariance. |
-| **GROUP_R** | Security & Persistence | 1 | 1 | Server-owned calculated values security protection (no client injection of scores/weights/confidence). |
+| **GROUP_Q** | Snapshot Integrity | 4 | 4 | 9D Visual Style Match rows, 8 Narrative Affinity theme rows, 9D Historical Connection rows, 0 orphan snapshot children invariant. |
+| **GROUP_R** | Security & Persistence | 2 | 2 | Server-owned calculated values security protection (no client injection); path traversal, invalid MIME & oversize image guardrails. |
+| **GROUP_S** | E2E Product Scenarios | 4 | 4 | E2E-1 Happy Path, E2E-2 Skip Path, E2E-3 Partial Data Path, E2E-4 Contested Knowledge Path. |
+| **GROUP_T** | Migration Release Gate | 1 | 1 | Alembic fresh database 001->014 upgrade & downgrade/re-upgrade release gate PASS. |
 
 ---
 
@@ -47,20 +52,6 @@ The benchmark suite consists of 38 comprehensive checks organized into 15 domain
 - **STYLE_MATCH_MIN_WEIGHTED_COVERAGE**: `0.70` (70%)
 - **STYLE_MATCH_MIN_COMPARABLE_DIMENSIONS**: `6`
 - **HISTORICAL_CONNECTION_MIN_COMPARABLE_DIMENSIONS**: `6`
-
-### Visual Stimulus SHA-256 Hashes
-- `v1_color_energy_a.svg`: `da16f4adbf8c20575d278aa7c191a6134bdf8bb8f000305ca78eb6be9a35e0ce`
-- `v1_color_energy_b.svg`: `1e5086d991b5c219154f8b22a00fe4ef19f9bb49ec012845c08cd9aaedfa9b36`
-- `v2_contrast_a.svg`: `bf5aeaa5bd9986bbfbc4ca944d18ec069fdf5851b473ef7b539c2c589b2512f4`
-- `v2_contrast_b.svg`: `a6ec15446aa27ed7c093a1c2afb5ee68112521a0cc4a9bb5fce61bf968b598ff`
-- `v3_visual_complexity_a.svg`: `aeefbcf3ce3e08f5154aa143e9ec2d75a61138b36eaefaafe44747ebc796ae77`
-- `v3_visual_complexity_b.svg`: `a9a6225b1fca8305c48fd392f4422e032906ed5377f0a6d13ffb7a44f5139c27`
-- `v4_structural_order_a.svg`: `dbf588c5efbce19dbccb5ee57f3604f5e7149a4eec9c3aeebaf1df3fe61bfb41`
-- `v4_structural_order_b.svg`: `2be589c3726a45ef92e316a75f0a07204f1df91ff248ddb5650aa7383f98246f`
-- `v5_rhythm_repetition_a.svg`: `7513360b8d7ef20857ac0ac11fec84e318ee4ebfe3ea5ffae4d2217c2fbc9fb8`
-- `v5_rhythm_repetition_b.svg`: `e463bd9b3bfe8faeddbd3dddf58544e31f0f9c2d7658ee6e1a49abddbbfa73b5`
-- `v6_form_language_a.svg`: `c71a3962b7ae4d3c3fb2bcaea1efeeea62b3226dbab8cf8073b64bc7df53b80b`
-- `v6_form_language_b.svg`: `3ea0aa125e1a1796cfbfa85d263b65ef3df6c6eb0d1487bb0efc3ee8ef01fdf4`
 
 ---
 
