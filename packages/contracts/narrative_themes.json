@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NarrativeThemes",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "key": { "type": "string" },
+      "code": { "type": "string" },
+      "label_tr": { "type": "string" },
+      "description": { "type": "string" }
+    },
+    "required": ["key", "code", "label_tr", "description"],
+    "additionalProperties": false
+  }
+}

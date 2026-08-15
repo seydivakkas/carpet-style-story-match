@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "StyleDNA",
+  "type": "object",
+  "properties": {
+    "color_energy": { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "D1 Renk Enerjisi" },
+    "color_diversity": { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "D2 Renk Çeşitliliği" },
+    "contrast": { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "D3 Kontrast" },
+    "warmth": { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "D4 Renk Sıcaklığı" },
+    "visual_complexity": { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "D5 Görsel Karmaşıklık" },
+    "structural_order": { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "D6 Düzen & Simetri" },
+    "rhythm_repetition": { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "D7 Ritim & Tekrar" },
+    "focal_strength": { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "D8 Odak Gücü" },
+    "form_language": { "type": "number", "minimum": 0.0, "maximum": 1.0, "description": "D9 Form Dili" }
+  },
+  "required": [
+    "color_energy",
+    "color_diversity",
+    "contrast",
+    "warmth",
+    "visual_complexity",
+    "structural_order",
+    "rhythm_repetition",
+    "focal_strength",
+    "form_language"
+  ],
+  "additionalProperties": false
+}
