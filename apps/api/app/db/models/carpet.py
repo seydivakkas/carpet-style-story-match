@@ -13,7 +13,7 @@ from sqlalchemy import (
     Index
 )
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.session import Base
 
 class CarpetSourceType(str, enum.Enum):
@@ -95,6 +95,12 @@ class CarpetModel(Base):
         nullable=False,
         default=lambda: datetime.now(timezone.utc),
         onupdate=lambda: datetime.now(timezone.utc)
+    )
+
+    motif_associations: Mapped[list["CarpetMotifAssociationModel"]] = relationship(
+        "CarpetMotifAssociationModel",
+        back_populates="carpet",
+        cascade="all, delete-orphan"
     )
 
     __table_args__ = (

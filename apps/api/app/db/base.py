@@ -17,6 +17,12 @@ from app.db.models.motif_knowledge import (
     MotifStoryClaimThemeModel
 )
 
+from app.db.models.carpet_story_association import (
+    CarpetMotifAssociationModel,
+    CarpetMotifAssociationSourceModel,
+    CarpetStoryAssociationModel
+)
+
 __all__ = [
     "Base",
     "CarpetModel",
@@ -31,5 +37,8 @@ __all__ = [
     "MotifModel",
     "MotifStoryClaimModel",
     "MotifStoryClaimSourceModel",
-    "MotifStoryClaimThemeModel"
+    "MotifStoryClaimThemeModel",
+    "CarpetMotifAssociationModel",
+    "CarpetMotifAssociationSourceModel",
+    "CarpetStoryAssociationModel"
 ]

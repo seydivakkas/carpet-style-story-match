@@ -109,4 +109,32 @@ Motif (Neutral Visual Description) ──────► MotifStoryClaim (DOCUME
 - **Status Invariants**: `DOCUMENTED` ($\ge 1$ source), `CONTEXTUAL` ($\ge 1$ source + context note), `CONTESTED` ($\ge 2$ sources + contest note), `UNKNOWN` (0 claim text, 0 theme links).
 - **Public API**: Read-only endpoints for motifs, claims, and sources. Knowledge curation imports use CLI script with dry-run and atomic transactions.
 
+---
+
+## 12. Carpet Catalog & Curated Story Associations v1 (GÖREV 11)
+
+```text
++-------------------+       +-------------------------------+       +------------------+
+|   CarpetModel     |-----> | CarpetMotifAssociationModel   |-----> |   MotifModel     |
++-------------------+       +-------------------------------+       +------------------+
+  (source_type=             (CURATOR_CONFIRMED /                     (neutral visual)
+   CATALOG, unique           SOURCE_DOCUMENTED /
+   sku)                      UNCERTAIN)
+                                           │
+                                           ▼
+                            +-------------------------------+       +------------------+
+                            | CarpetStoryAssociationModel   |-----> |MotifStoryClaim   |
+                            +-------------------------------+       +------------------+
+                             (no auto-inheritance,                   (DOCUMENTED /
+                              explicit link only)                     CONTEXTUAL /
+                                                                      CONTESTED)
+```
+
+- **Single Entity Invariant**: Re-uses `CarpetModel` where `source_type == CATALOG` with trimmed, unique `sku` business keys.
+- **Two-Layer Association Invariant**: `CarpetMotifAssociationModel` (carpet $\leftrightarrow$ motif presence) and `CarpetStoryAssociationModel` (motif association $\leftrightarrow$ claim).
+- **Explicit Story Invariant**: No auto-inheritance of motif claims; every carpet story association is explicitly declared and validated.
+- **Readiness State**: Side-effect-free dynamic calculation of `StyleDnaReadinessEnum` (`NO_PRIMARY_IMAGE`, `STYLE_DNA_MISSING`, `STYLE_DNA_FAILED`, `STYLE_DNA_PARTIAL`, `STYLE_DNA_COMPLETE`).
+- **Read-Only API**: `/api/v1/catalog/carpets`, `/api/v1/catalog/carpets/{id}`, `/api/v1/catalog/carpets/{id}/motifs`, `/api/v1/catalog/carpets/{id}/story-associations`.
+
+
 
