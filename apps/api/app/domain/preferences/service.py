@@ -47,17 +47,25 @@ from app.domain.preferences.exceptions import (
     PreferenceConfidenceProfileNotFoundError,
     PreferenceDimensionNotFoundError,
     PreferenceValueError,
-    PreferenceProfileAlreadyReviewedError
+    PreferenceProfileAlreadyReviewedError,
+    ImportanceRequiresReviewedPreferenceProfileError,
+    ImportanceProfileAlreadyExistsError,
+    ImportanceProfileNotFoundError
 )
 from app.db.models.preference_assessment import (
     UserProfileStatusEnum,
     UserPreferenceProvenanceEnum,
-    ConfidenceStatusEnum
+    ConfidenceStatusEnum,
+    ImportanceLevelEnum,
+    ImportanceCompletionModeEnum,
+    ImportanceProfileModel
 )
 from app.domain.preferences.constants import (
     MULTIMODAL_PREFERENCE_VERSION,
-    PREFERENCE_CONFIDENCE_VERSION
+    PREFERENCE_CONFIDENCE_VERSION,
+    IMPORTANCE_PROFILE_VERSION
 )
+from app.domain.preferences.builder import ImportanceProfileBuilder
 from app.domain.preferences.aggregator import (
     MultimodalPreferenceAggregator,
     PreferenceConfidenceCalculator
@@ -401,3 +409,64 @@ class PreferenceAssessmentService:
             return profile
 
         return await self.repo.confirm_user_preference_profile(assessment_id)
+
+    # ---------------------------------------------------------
+    # IMPORTANCE PROFILE METHODS (GÖREV 07)
+    # ---------------------------------------------------------
+
+    async def create_importance_profile(
+        self,
+        assessment_id: uuid.UUID,
+        skip: bool = False,
+        priority_dimensions: Optional[List[str]] = None,
+        flexible_dimensions: Optional[List[str]] = None
+    ) -> ImportanceProfileModel:
+        priority_dimensions = priority_dimensions or []
+        flexible_dimensions = flexible_dimensions or []
+
+        assessment = await self.get_assessment(assessment_id)
+        if assessment.status not in (AssessmentStatus.PROFILE_REVIEWED, AssessmentStatus.IMPORTANCE_COMPLETE):
+            raise ImportanceRequiresReviewedPreferenceProfileError(assessment_id, assessment.status.value)
+
+        user_profile = await self.repo.get_user_preference_profile_by_assessment_id(assessment_id)
+        if not user_profile or user_profile.status != UserProfileStatusEnum.REVIEWED:
+            raise ImportanceRequiresReviewedPreferenceProfileError(
+                assessment_id,
+                assessment.status.value if assessment else "NONE"
+            )
+
+        # Check if importance profile already exists
+        existing = await self.repo.get_importance_profile_by_assessment_id(assessment_id)
+        if existing:
+            # Idempotency check: if request results in identical dimensions & completion mode, return existing
+            completion_mode, new_dims = ImportanceProfileBuilder.build(skip, priority_dimensions, flexible_dimensions)
+            existing_mode = existing.completion_mode
+            existing_dim_map = {d.dimension_key: d.level for d in existing.dimensions}
+            new_dim_map = {d["dimension_key"]: d["level"] for d in new_dims}
+
+            if existing_mode == completion_mode and existing_dim_map == new_dim_map:
+                return existing
+            else:
+                raise ImportanceProfileAlreadyExistsError(assessment_id)
+
+        # Build 9 canonical dimensions using pure builder
+        completion_mode, dimensions_data = ImportanceProfileBuilder.build(skip, priority_dimensions, flexible_dimensions)
+
+        # Persist
+        return await self.repo.create_importance_profile(
+            assessment_id=assessment_id,
+            user_preference_profile_id=user_profile.id,
+            completion_mode=completion_mode,
+            dimensions_data=dimensions_data,
+            importance_version=IMPORTANCE_PROFILE_VERSION
+        )
+
+    async def get_importance_profile(
+        self,
+        assessment_id: uuid.UUID
+    ) -> ImportanceProfileModel:
+        await self.get_assessment(assessment_id)
+        profile = await self.repo.get_importance_profile_by_assessment_id(assessment_id)
+        if not profile:
+            raise ImportanceProfileNotFoundError(assessment_id)
+        return profile

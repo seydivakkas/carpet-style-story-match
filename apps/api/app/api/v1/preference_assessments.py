@@ -18,7 +18,9 @@ from app.domain.preferences.schemas import (
     VisualPreferenceProfileRead,
     DimensionOverrideRequest,
     UserPreferenceProfileResponse,
-    PreferenceConfidenceProfileResponse
+    PreferenceConfidenceProfileResponse,
+    ImportanceSelectionRequest,
+    ImportanceProfileResponse
 )
 from app.domain.preferences.exceptions import (
     AssessmentNotFoundError,
@@ -35,7 +37,17 @@ from app.domain.preferences.exceptions import (
     PreferenceConfidenceProfileNotFoundError,
     PreferenceDimensionNotFoundError,
     PreferenceValueError,
-    PreferenceProfileAlreadyReviewedError
+    PreferenceProfileAlreadyReviewedError,
+    ImportanceRequiresReviewedPreferenceProfileError,
+    ImportanceSelectionTooManyPriorityError,
+    ImportanceSelectionTooManyFlexibleError,
+    ImportanceSelectionOverlapError,
+    ImportanceSelectionDuplicateError,
+    ImportanceSelectionUnknownDimensionError,
+    ImportanceSelectionInvalidSkipError,
+    ImportanceSelectionEmptyError,
+    ImportanceProfileAlreadyExistsError,
+    ImportanceProfileNotFoundError
 )
 
 router = APIRouter(prefix="", tags=["Preference Assessments"])
@@ -473,6 +485,102 @@ async def confirm_user_preference_profile(
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail={"code": "PREFERENCE_PROFILE_NOT_FOUND", "message": str(exc)}
+        ) from exc
+
+# ---------------------------------------------------------
+# IMPORTANCE PROFILE ENDPOINTS (GÖREV 07)
+# ---------------------------------------------------------
+
+@router.post(
+    "/preference-assessments/{assessment_id}/importance-profile",
+    response_model=ImportanceProfileResponse,
+    status_code=status.HTTP_201_CREATED,
+    summary="Create explicit Importance Profile for reviewed assessment"
+)
+async def create_importance_profile(
+    assessment_id: uuid.UUID,
+    payload: ImportanceSelectionRequest,
+    service: PreferenceAssessmentService = Depends(get_service)
+):
+    try:
+        return await service.create_importance_profile(
+            assessment_id=assessment_id,
+            skip=payload.skip,
+            priority_dimensions=payload.priority_dimensions,
+            flexible_dimensions=payload.flexible_dimensions
+        )
+    except AssessmentNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "ASSESSMENT_NOT_FOUND", "message": str(exc)}
+        ) from exc
+    except ImportanceRequiresReviewedPreferenceProfileError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail={"code": "IMPORTANCE_REQUIRES_REVIEWED_PREFERENCE_PROFILE", "message": str(exc)}
+        ) from exc
+    except ImportanceSelectionTooManyPriorityError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail={"code": "IMPORTANCE_TOO_MANY_PRIORITY", "message": str(exc)}
+        ) from exc
+    except ImportanceSelectionTooManyFlexibleError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail={"code": "IMPORTANCE_TOO_MANY_FLEXIBLE", "message": str(exc)}
+        ) from exc
+    except ImportanceSelectionOverlapError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail={"code": "IMPORTANCE_SELECTION_OVERLAP", "message": str(exc)}
+        ) from exc
+    except ImportanceSelectionDuplicateError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail={"code": "IMPORTANCE_SELECTION_DUPLICATE", "message": str(exc)}
+        ) from exc
+    except ImportanceSelectionUnknownDimensionError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail={"code": "IMPORTANCE_SELECTION_UNKNOWN_DIMENSION", "message": str(exc)}
+        ) from exc
+    except ImportanceSelectionInvalidSkipError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail={"code": "IMPORTANCE_SELECTION_INVALID_SKIP", "message": str(exc)}
+        ) from exc
+    except ImportanceSelectionEmptyError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail={"code": "IMPORTANCE_SELECTION_EMPTY", "message": str(exc)}
+        ) from exc
+    except ImportanceProfileAlreadyExistsError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail={"code": "IMPORTANCE_PROFILE_ALREADY_EXISTS", "message": str(exc)}
+        ) from exc
+
+@router.get(
+    "/preference-assessments/{assessment_id}/importance-profile",
+    response_model=ImportanceProfileResponse,
+    status_code=status.HTTP_200_OK,
+    summary="Get Importance Profile for assessment"
+)
+async def get_importance_profile(
+    assessment_id: uuid.UUID,
+    service: PreferenceAssessmentService = Depends(get_service)
+):
+    try:
+        return await service.get_importance_profile(assessment_id)
+    except AssessmentNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "ASSESSMENT_NOT_FOUND", "message": str(exc)}
+        ) from exc
+    except ImportanceProfileNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "IMPORTANCE_PROFILE_NOT_FOUND", "message": str(exc)}
         ) from exc
 
 # ---------------------------------------------------------

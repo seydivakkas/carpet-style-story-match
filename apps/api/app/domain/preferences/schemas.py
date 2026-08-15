@@ -9,7 +9,9 @@ from app.db.models.preference_assessment import (
     VisualChoiceEnum,
     UserProfileStatusEnum,
     UserPreferenceProvenanceEnum,
-    ConfidenceStatusEnum
+    ConfidenceStatusEnum,
+    ImportanceLevelEnum,
+    ImportanceCompletionModeEnum
 )
 from app.domain.contracts import CANONICAL_STYLE_DNA
 
@@ -228,3 +230,53 @@ class PreferenceConfidenceProfileResponse(BaseModel):
         return ordered
 
     model_config = ConfigDict(from_attributes=True)
+
+# ---------------------------------------------------------
+# IMPORTANCE PROFILE SCHEMAS (GÖREV 07)
+# ---------------------------------------------------------
+
+class ImportanceSelectionRequest(BaseModel):
+    skip: bool = False
+    priority_dimensions: List[str] = Field(default_factory=list)
+    flexible_dimensions: List[str] = Field(default_factory=list)
+
+    model_config = ConfigDict(extra="forbid")
+
+class ImportanceDimensionResponse(BaseModel):
+    dimension_key: str
+    level: ImportanceLevelEnum
+    weight: float
+
+    @property
+    def key(self) -> str:
+        return self.dimension_key
+
+    model_config = ConfigDict(from_attributes=True)
+
+class ImportanceProfileResponse(BaseModel):
+    id: uuid.UUID
+    assessment_id: uuid.UUID
+    user_preference_profile_id: uuid.UUID
+    importance_version: str
+    completion_mode: ImportanceCompletionModeEnum
+    created_at: datetime
+    dimensions: List[ImportanceDimensionResponse]
+
+    @field_validator("dimensions", mode="after")
+    @classmethod
+    def enforce_canonical_ordering(cls, dims: List[ImportanceDimensionResponse]) -> List[ImportanceDimensionResponse]:
+        dim_map = {d.dimension_key: d for d in dims}
+        ordered = []
+        for key in CANONICAL_KEYS:
+            if key in dim_map:
+                ordered.append(dim_map[key])
+        return ordered
+
+    model_config = ConfigDict(from_attributes=True)
+
+class MetaImportanceProfileResponse(BaseModel):
+    version: str
+    max_priority: int
+    max_flexible: int
+    weights: dict
+    canonical_dimensions: List[str]

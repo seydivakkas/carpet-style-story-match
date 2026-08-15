@@ -8,6 +8,17 @@ VISUAL_PREFERENCE_EVIDENCE_VERSION = "visual-preference-evidence-v1"
 MULTIMODAL_PREFERENCE_VERSION = "multimodal-preference-v1"
 PREFERENCE_CONFIDENCE_VERSION = "preference-confidence-v1"
 
+IMPORTANCE_PROFILE_VERSION = "importance-v1"
+
+MAX_PRIORITY_DIMENSIONS = 3
+MAX_FLEXIBLE_DIMENSIONS = 3
+
+IMPORTANCE_LEVEL_WEIGHTS: Dict[str, float] = {
+    "PRIORITY": 1.00,
+    "STANDARD": 0.60,
+    "FLEXIBLE": 0.25,
+}
+
 # 6 Text Questions definition
 CANONICAL_TEXT_QUESTIONS: List[Dict[str, Any]] = [
     {

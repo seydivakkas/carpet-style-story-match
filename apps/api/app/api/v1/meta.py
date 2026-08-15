@@ -5,13 +5,20 @@ from app.domain.contracts import (
     StyleDNAContractResponse,
     NarrativeThemesContractResponse
 )
-from app.domain.preferences.constants import CANONICAL_TEXT_QUESTIONS
+from app.domain.preferences.constants import (
+    CANONICAL_TEXT_QUESTIONS,
+    IMPORTANCE_PROFILE_VERSION,
+    MAX_PRIORITY_DIMENSIONS,
+    MAX_FLEXIBLE_DIMENSIONS,
+    IMPORTANCE_LEVEL_WEIGHTS
+)
 from app.domain.preferences.visual_stimuli import STIMULI_CATALOG, CANONICAL_VISUAL_CARDS
 from app.domain.preferences.schemas import (
     TextQuestionsListResponse,
     TextQuestionRead,
     VisualStimuliListResponse,
-    VisualStimulusRead
+    VisualStimulusRead,
+    MetaImportanceProfileResponse
 )
 
 router = APIRouter(prefix="/meta", tags=["metadata"])
@@ -51,4 +58,14 @@ async def get_preference_visual_stimuli_metadata():
     return VisualStimuliListResponse(
         total_stimuli=len(stimuli_list),
         stimuli=stimuli_list
+    )
+
+@router.get("/importance-profile", response_model=MetaImportanceProfileResponse)
+async def get_importance_profile_metadata():
+    return MetaImportanceProfileResponse(
+        version=IMPORTANCE_PROFILE_VERSION,
+        max_priority=MAX_PRIORITY_DIMENSIONS,
+        max_flexible=MAX_FLEXIBLE_DIMENSIONS,
+        weights=IMPORTANCE_LEVEL_WEIGHTS,
+        canonical_dimensions=[d["key"] for d in CANONICAL_STYLE_DNA]
     )

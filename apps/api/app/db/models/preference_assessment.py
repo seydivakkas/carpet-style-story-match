@@ -22,6 +22,16 @@ class AssessmentStatus(str, enum.Enum):
     VISUAL_COMPLETE = "VISUAL_COMPLETE"
     PROFILE_READY = "PROFILE_READY"
     PROFILE_REVIEWED = "PROFILE_REVIEWED"
+    IMPORTANCE_COMPLETE = "IMPORTANCE_COMPLETE"
+
+class ImportanceLevelEnum(str, enum.Enum):
+    PRIORITY = "PRIORITY"
+    STANDARD = "STANDARD"
+    FLEXIBLE = "FLEXIBLE"
+
+class ImportanceCompletionModeEnum(str, enum.Enum):
+    EXPLICIT_SELECTION = "EXPLICIT_SELECTION"
+    SKIPPED_ALL_STANDARD = "SKIPPED_ALL_STANDARD"
 
 class PreferenceDimensionStatus(str, enum.Enum):
     MEASURED = "MEASURED"
@@ -122,6 +132,12 @@ class PreferenceAssessmentModel(Base):
     )
     confidence_profile: Mapped[Optional["PreferenceConfidenceProfileModel"]] = relationship(
         "PreferenceConfidenceProfileModel",
+        back_populates="assessment",
+        uselist=False,
+        cascade="all, delete-orphan"
+    )
+    importance_profile: Mapped[Optional["ImportanceProfileModel"]] = relationship(
+        "ImportanceProfileModel",
         back_populates="assessment",
         uselist=False,
         cascade="all, delete-orphan"
@@ -723,4 +739,100 @@ class PreferenceConfidenceDimensionModel(Base):
 
     __table_args__ = (
         UniqueConstraint("confidence_profile_id", "dimension_key", name="uq_confidence_profile_dimension_key"),
+    )
+
+class ImportanceProfileModel(Base):
+    __tablename__ = "importance_profiles"
+
+    id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        primary_key=True,
+        default=uuid.uuid4
+    )
+    assessment_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("preference_assessments.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True
+    )
+    user_preference_profile_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("user_preference_profiles.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True
+    )
+    importance_version: Mapped[str] = mapped_column(
+        String(50),
+        nullable=False,
+        default="importance-v1"
+    )
+    completion_mode: Mapped[ImportanceCompletionModeEnum] = mapped_column(
+        SQLEnum(ImportanceCompletionModeEnum, name="importance_completion_mode_enum", native_enum=False),
+        nullable=False,
+        default=ImportanceCompletionModeEnum.EXPLICIT_SELECTION
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        nullable=False,
+        default=lambda: datetime.now(timezone.utc)
+    )
+
+    assessment: Mapped["PreferenceAssessmentModel"] = relationship(
+        "PreferenceAssessmentModel",
+        back_populates="importance_profile"
+    )
+    user_preference_profile: Mapped["UserPreferenceProfileModel"] = relationship(
+        "UserPreferenceProfileModel"
+    )
+    dimensions: Mapped[List["ImportanceDimensionModel"]] = relationship(
+        "ImportanceDimensionModel",
+        back_populates="importance_profile",
+        cascade="all, delete-orphan",
+        order_by="ImportanceDimensionModel.dimension_key"
+    )
+
+    __table_args__ = (
+        UniqueConstraint("assessment_id", "importance_version", name="uq_importance_profile_assessment_version"),
+    )
+
+class ImportanceDimensionModel(Base):
+    __tablename__ = "importance_dimensions"
+
+    id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        primary_key=True,
+        default=uuid.uuid4
+    )
+    importance_profile_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("importance_profiles.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True
+    )
+    dimension_key: Mapped[str] = mapped_column(
+        String(50),
+        nullable=False
+    )
+    level: Mapped[ImportanceLevelEnum] = mapped_column(
+        SQLEnum(ImportanceLevelEnum, name="importance_level_enum", native_enum=False),
+        nullable=False,
+        default=ImportanceLevelEnum.STANDARD
+    )
+    weight: Mapped[float] = mapped_column(
+        Float,
+        nullable=False,
+        default=0.60
+    )
+
+    @property
+    def key(self) -> str:
+        return self.dimension_key
+
+    importance_profile: Mapped["ImportanceProfileModel"] = relationship(
+        "ImportanceProfileModel",
+        back_populates="dimensions"
+    )
+
+    __table_args__ = (
+        UniqueConstraint("importance_profile_id", "dimension_key", name="uq_importance_dimension_key"),
     )

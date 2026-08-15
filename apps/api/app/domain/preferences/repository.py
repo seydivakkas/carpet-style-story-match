@@ -17,12 +17,16 @@ from app.db.models.preference_assessment import (
     UserPreferenceDimensionModel,
     PreferenceConfidenceProfileModel,
     PreferenceConfidenceDimensionModel,
+    ImportanceProfileModel,
+    ImportanceDimensionModel,
     AssessmentStatus,
     TextChoiceEnum,
     VisualChoiceEnum,
     UserProfileStatusEnum,
     UserPreferenceProvenanceEnum,
-    ConfidenceStatusEnum
+    ConfidenceStatusEnum,
+    ImportanceLevelEnum,
+    ImportanceCompletionModeEnum
 )
 
 class PreferenceAssessmentRepository:
@@ -53,6 +57,7 @@ class PreferenceAssessmentRepository:
                 selectinload(PreferenceAssessmentModel.visual_profile).selectinload(VisualPreferenceProfileModel.dimensions),
                 selectinload(PreferenceAssessmentModel.user_preference_profile).selectinload(UserPreferenceProfileModel.dimensions),
                 selectinload(PreferenceAssessmentModel.confidence_profile).selectinload(PreferenceConfidenceProfileModel.dimensions),
+                selectinload(PreferenceAssessmentModel.importance_profile).selectinload(ImportanceProfileModel.dimensions),
             )
             .where(PreferenceAssessmentModel.id == assessment_id)
         )
@@ -472,6 +477,55 @@ class PreferenceAssessmentRepository:
         assessment = ass_result.scalar_one_or_none()
         if assessment:
             assessment.status = AssessmentStatus.PROFILE_REVIEWED
+
+        await self.session.commit()
+        await self.session.refresh(profile, attribute_names=["dimensions"])
+        return profile
+
+    async def get_importance_profile_by_assessment_id(
+        self,
+        assessment_id: uuid.UUID
+    ) -> Optional[ImportanceProfileModel]:
+        stmt = (
+            select(ImportanceProfileModel)
+            .options(selectinload(ImportanceProfileModel.dimensions))
+            .where(ImportanceProfileModel.assessment_id == assessment_id)
+        )
+        result = await self.session.execute(stmt)
+        return result.scalar_one_or_none()
+
+    async def create_importance_profile(
+        self,
+        assessment_id: uuid.UUID,
+        user_preference_profile_id: uuid.UUID,
+        completion_mode: ImportanceCompletionModeEnum,
+        dimensions_data: List[Dict[str, Any]],
+        importance_version: str = "importance-v1"
+    ) -> ImportanceProfileModel:
+        profile = ImportanceProfileModel(
+            assessment_id=assessment_id,
+            user_preference_profile_id=user_preference_profile_id,
+            importance_version=importance_version,
+            completion_mode=completion_mode
+        )
+        self.session.add(profile)
+        await self.session.flush()
+
+        for dim in dimensions_data:
+            dim_model = ImportanceDimensionModel(
+                importance_profile_id=profile.id,
+                dimension_key=dim["dimension_key"],
+                level=dim["level"],
+                weight=dim["weight"]
+            )
+            self.session.add(dim_model)
+
+        # Update assessment status to IMPORTANCE_COMPLETE
+        assessment_stmt = select(PreferenceAssessmentModel).where(PreferenceAssessmentModel.id == assessment_id)
+        ass_result = await self.session.execute(assessment_stmt)
+        assessment = ass_result.scalar_one_or_none()
+        if assessment:
+            assessment.status = AssessmentStatus.IMPORTANCE_COMPLETE
 
         await self.session.commit()
         await self.session.refresh(profile, attribute_names=["dimensions"])

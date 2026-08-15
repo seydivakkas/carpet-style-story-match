@@ -53,10 +53,11 @@ carpet-style-story-match/
 TextPreferenceProfile (6 Text Cards)
           \
            ──> UserPreferenceProfile (9D D1..D9) <── User Override / Review Confirmation
-          /            │
-VisualPreferenceProfile \──> PreferenceConfidenceProfile (9D C1..C9)
+          /            ├──> PreferenceConfidenceProfile (9D C1..C9) [Evidence Metric]
+VisualPreferenceProfile └──> ImportanceProfile (9D W1..W9) [Explicit User Weights]
 (6 Visual Stimuli)
 ```
 
-- **Separation**: Preference values ($D_1 \dots D_9$) $\ne$ Confidence metrics ($C_1 \dots C_9$).
-- **Lifecycle**: `TEXT_PENDING` $\to$ `TEXT_COMPLETE` $\to$ `VISUAL_PENDING` $\to$ `VISUAL_COMPLETE` $\to$ `PROFILE_READY` $\to$ `PROFILE_REVIEWED`.
+- **Separation**: Preference values ($D_1 \dots D_9$) $\ne$ Confidence metrics ($C_1 \dots C_9$) $\ne$ Importance weights ($W_1 \dots W_9$).
+- **Siblings**: ConfidenceProfile and ImportanceProfile are independent sibling metadata entities attached to UserPreferenceProfile.
+- **Lifecycle**: `TEXT_PENDING` $\to$ `TEXT_COMPLETE` $\to$ `VISUAL_PENDING` $\to$ `VISUAL_COMPLETE` $\to$ `PROFILE_READY` $\to$ `PROFILE_REVIEWED` $\to$ `IMPORTANCE_COMPLETE`.

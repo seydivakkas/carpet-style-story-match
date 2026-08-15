@@ -111,3 +111,66 @@ class PreferenceProfileAlreadyReviewedError(PreferenceDomainException):
         super().__init__(
             f"Preference profile for assessment '{assessment_id}' is already PROFILE_REVIEWED and immutable."
         )
+
+# ---------------------------------------------------------
+# IMPORTANCE PROFILE EXCEPTIONS (GÖREV 07)
+# ---------------------------------------------------------
+
+class ImportanceRequiresReviewedPreferenceProfileError(PreferenceDomainException):
+    def __init__(self, assessment_id: uuid.UUID, current_status: str):
+        self.assessment_id = assessment_id
+        self.current_status = current_status
+        super().__init__(
+            f"Cannot create ImportanceProfile for assessment '{assessment_id}': status is '{current_status}'. "
+            "ImportanceProfile requires status 'PROFILE_REVIEWED'."
+        )
+
+class ImportanceSelectionTooManyPriorityError(PreferenceDomainException):
+    def __init__(self, count: int, max_allowed: int = 3):
+        self.count = count
+        self.max_allowed = max_allowed
+        super().__init__(f"Too many PRIORITY dimensions selected: {count}. Maximum allowed is {max_allowed}.")
+
+class ImportanceSelectionTooManyFlexibleError(PreferenceDomainException):
+    def __init__(self, count: int, max_allowed: int = 3):
+        self.count = count
+        self.max_allowed = max_allowed
+        super().__init__(f"Too many FLEXIBLE dimensions selected: {count}. Maximum allowed is {max_allowed}.")
+
+class ImportanceSelectionOverlapError(PreferenceDomainException):
+    def __init__(self, overlapping_keys: List[str]):
+        self.overlapping_keys = overlapping_keys
+        super().__init__(
+            f"Dimensions cannot be selected as both PRIORITY and FLEXIBLE: {', '.join(overlapping_keys)}."
+        )
+
+class ImportanceSelectionDuplicateError(PreferenceDomainException):
+    def __init__(self, duplicate_keys: List[str]):
+        self.duplicate_keys = duplicate_keys
+        super().__init__(f"Duplicate dimension keys found in selection: {', '.join(duplicate_keys)}.")
+
+class ImportanceSelectionUnknownDimensionError(PreferenceDomainException):
+    def __init__(self, unknown_keys: List[str]):
+        self.unknown_keys = unknown_keys
+        super().__init__(f"Unknown dimension keys selected: {', '.join(unknown_keys)}.")
+
+class ImportanceSelectionInvalidSkipError(PreferenceDomainException):
+    def __init__(self):
+        super().__init__("When 'skip' is True, 'priority_dimensions' and 'flexible_dimensions' must be empty lists.")
+
+class ImportanceSelectionEmptyError(PreferenceDomainException):
+    def __init__(self):
+        super().__init__(
+            "Explicit selection cannot have both 'priority_dimensions' and 'flexible_dimensions' empty when 'skip' is False. "
+            "Set 'skip=True' if default standard importance is desired."
+        )
+
+class ImportanceProfileAlreadyExistsError(PreferenceDomainException):
+    def __init__(self, assessment_id: uuid.UUID):
+        self.assessment_id = assessment_id
+        super().__init__(f"ImportanceProfile for assessment '{assessment_id}' already exists and is immutable.")
+
+class ImportanceProfileNotFoundError(PreferenceDomainException):
+    def __init__(self, assessment_id: uuid.UUID):
+        self.assessment_id = assessment_id
+        super().__init__(f"ImportanceProfile for assessment '{assessment_id}' was not found.")
