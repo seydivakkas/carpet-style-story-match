@@ -74,8 +74,18 @@ data/
 !data/
 !data/activation/
 !data/activation/**
+!data/external_datasets/
+!data/external_datasets/registry.json
+!data/external_datasets/label-mappings.json
+!data/external_datasets/README.md
+!data/external_datasets/manifests/
+!data/external_datasets/reports/
+data/external_datasets/raw/
+data/external_datasets/cache/
+kaggle.json
 uploads/
 
 # Graphify Knowledge Graph
 graphify-out/
+
 

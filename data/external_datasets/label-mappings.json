@@ -1,0 +1,51 @@
+{
+  "schema_version": "external-dataset-label-mappings-v1",
+  "updated_at": "2026-08-16T00:00:00Z",
+  "mappings": [
+    {
+      "dataset_key": "iranian-patterns",
+      "source_label": "Lechak-Toranj",
+      "label_type": "PATTERN_FAMILY",
+      "canonical_taxonomy": "pattern_family",
+      "canonical_label": "MEDALLION_CORNER",
+      "mapping_status": "CURATOR_CONFIRMED",
+      "notes": "Lechak-Toranj maps to Medallion & Corner pattern family"
+    },
+    {
+      "dataset_key": "iranian-patterns",
+      "source_label": "Afshan",
+      "label_type": "PATTERN_FAMILY",
+      "canonical_taxonomy": "pattern_family",
+      "canonical_label": "OVERALL_ALLOVER",
+      "mapping_status": "CURATOR_CONFIRMED",
+      "notes": "Afshan maps to Allover / Floral Field distribution"
+    },
+    {
+      "dataset_key": "rug-construction-detection",
+      "source_label": "Hand-knotted",
+      "label_type": "CONSTRUCTION",
+      "canonical_taxonomy": "construction_type",
+      "canonical_label": "HAND_KNOTTED",
+      "mapping_status": "CURATOR_CONFIRMED",
+      "notes": "Hand knotting technical construction"
+    },
+    {
+      "dataset_key": "rug-construction-detection",
+      "source_label": "Machine-woven",
+      "label_type": "CONSTRUCTION",
+      "canonical_taxonomy": "construction_type",
+      "canonical_label": "MACHINE_WOVEN",
+      "mapping_status": "CURATOR_CONFIRMED",
+      "notes": "Industrial power loom weave construction"
+    },
+    {
+      "dataset_key": "safavid-carpets-originals",
+      "source_label": "Safavid",
+      "label_type": "PERIOD_SOURCE_LABEL",
+      "canonical_taxonomy": "historical_period",
+      "canonical_label": null,
+      "mapping_status": "UNMAPPED",
+      "notes": "Source period label must not automatically authenticate historical dynasty without institutional review"
+    }
+  ]
+}
