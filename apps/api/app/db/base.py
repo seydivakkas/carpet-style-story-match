@@ -34,6 +34,14 @@ from app.db.models.carpet_historical_reference import (
     HistoricalReferenceSourceModel
 )
 
+from app.db.models.carpet_historical_connection import (
+    HistoricalConnectionStatusEnum,
+    HistoricalConnectionNotAvailableReasonEnum,
+    HistoricalConnectionLevelEnum,
+    HistoricalConnectionResultModel,
+    HistoricalConnectionDimensionModel
+)
+
 __all__ = [
     "Base",
     "CarpetModel",
@@ -56,5 +64,10 @@ __all__ = [
     "NarrativeAffinityThemeResultModel",
     "HistoricalSourceRoleEnum",
     "HistoricalReferenceMetadataModel",
-    "HistoricalReferenceSourceModel"
+    "HistoricalReferenceSourceModel",
+    "HistoricalConnectionStatusEnum",
+    "HistoricalConnectionNotAvailableReasonEnum",
+    "HistoricalConnectionLevelEnum",
+    "HistoricalConnectionResultModel",
+    "HistoricalConnectionDimensionModel"
 ]

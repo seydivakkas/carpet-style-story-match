@@ -188,3 +188,31 @@ Motif (Neutral Visual Description) ──────► MotifStoryClaim (DOCUME
 - **Deterministic Importer & Dry-Run**: CLI importer script `import_historical_references.py` supporting dry-run validation, atomic transaction, idempotency, and conflict detection.
 - **Side-Effect-Free Public APIs**: `/api/v1/historical-references`, `/api/v1/historical-references/{id_or_key}`, `/api/v1/meta/historical-references`.
 - **Style DNA Readiness**: Shared `derive_style_dna_readiness` helper dynamically computes readiness state without side effects.
+
+## 15. Explainable Historical Connection Engine v1 (GÖREV 14)
+
+```text
++------------------------------+        +-----------------------------------+
+|  CarpetStyleProfileModel     |        | HistoricalReferenceMetadataModel  |
+|  (Catalog Target Profile)    |        | + Primary Image Style DNA Profile |
++------------------------------+        +-----------------------------------+
+               │                                          │
+               └────────────────────┬─────────────────────┘
+                                    ▼
+                 +--------------------------------------+
+                 |    HistoricalConnectionEngine v1     |
+                 +--------------------------------------+
+                                    │
+                                    ▼
+                 +--------------------------------------+
+                 |  HistoricalConnectionResultModel     |
+                 +--------------------------------------+
+                   (status, level, coverage, 9D rows)
+```
+
+- **Domain Boundaries**: Style DNA similarity comparison only. NO historical probability, authenticity scoring, or claim of attribution.
+- **Strict Target Type Guard**: Target carpet must be of `source_type != HISTORICAL`. `HISTORICAL` targets are strictly rejected.
+- **Unweighted Metric**: Absolute difference $\Delta_d = |v_{\text{target}, d} - v_{\text{reference}, d}|$, similarity $= 1.0 - \Delta_d$, overall similarity $= \text{mean}(\text{similarity})$.
+- **Truthful Coverage Rules**: $\ge 6$ comparable dimensions required. 6–8 comparable dimensions $\to$ status `PARTIAL`. $< 6$ comparable dimensions $\to$ status `NOT_AVAILABLE`.
+- **Disclaimer Enforcement**: Every API response includes a mandatory Turkish disclaimer explicitly clarifying visual similarity $\neq$ attribution/authentication.
+- **API Endpoints**: `/api/v1/historical-connections` (POST, GET, LIST) and `/api/v1/meta/historical-connections`.
