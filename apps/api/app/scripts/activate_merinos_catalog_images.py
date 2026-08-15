@@ -7,7 +7,7 @@ import os
 import sys
 import uuid
 import urllib.parse
-from typing import Dict, Any, List, Optional
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 import app.db.models
 from app.db.session import AsyncSessionLocal
@@ -15,11 +15,12 @@ from app.db.models.carpet import CarpetModel, CarpetSourceType
 from app.db.models.carpet_image import CarpetImageModel
 from app.domain.carpets.repository import CarpetRepository
 from app.domain.carpets.service import CarpetService
-from app.domain.images.exceptions import ImageDuplicateError
+from app.domain.images.exceptions import ImageDuplicateError, ImageDomainException, ImageStorageFailedError
 from app.domain.images.repository import CarpetImageRepository
 from app.domain.images.service import CarpetImageService
 from app.domain.images.storage import LocalImageStorage
 from app.domain.images.validation import ImageValidationService
+from app.domain.carpet_catalog.repository import CarpetCatalogRepository
 from app.domain.carpet_catalog.merinos_image_downloader import (
     download_image_bytes,
     is_host_allowlisted,
@@ -175,50 +176,85 @@ async def run_activation_async(
         print(f"  Saved image activation report: {output_report}")
         return
 
-    # --- AUTHORIZED_INTERNAL MODE INGESTION ---
-    print("\n[2/3] Executing AUTHORIZED_INTERNAL image acquisition & database ingestion...")
-    activated_count = 0
-    already_active_count = 0
-    invalid_count = 0
-    download_failed_count = 0
-    storage_failed_count = 0
-    activation_records = []
-
+    # --- DB CATALOG CARPET RECONCILIATION & ACQUISITION ---
+    print("\n[2/3] Reconciling DB catalog population & executing image ingestion...")
+    
     async def _process_with_session(sess: AsyncSession):
-        nonlocal activated_count, already_active_count, invalid_count, download_failed_count, storage_failed_count, image_url_missing_count
         carpet_repo = CarpetRepository(sess)
+        catalog_repo = CarpetCatalogRepository(sess)
         carpet_service = CarpetService(carpet_repo)
         image_repo = CarpetImageRepository(sess)
         storage = LocalImageStorage()
         validator = ImageValidationService()
         image_service = CarpetImageService(carpet_service, image_repo, storage, validator)
 
-        for idx, p in enumerate(products, 1):
-            sku = p.get("sku", "").strip()
-            prod_url = p.get("source_url", "")
-            img_url = p.get("primary_image_url")
+        # Query canonical DB catalog carpets
+        db_carpets_res = await sess.execute(
+            select(CarpetModel).where(
+                CarpetModel.source_type == CarpetSourceType.CATALOG,
+                CarpetModel.is_active.is_(True)
+            ).order_by(CarpetModel.sku)
+        )
+        db_carpets = db_carpets_res.scalars().all()
+        db_carpet_map = {c.sku.strip().upper(): c for c in db_carpets}
+        
+        # Build lookup from source dataset
+        source_map = {p.get("sku", "").strip().upper(): p for p in products}
 
-            print(f"  [{idx}/{len(products)}] Processing SKU '{sku}'...")
+        # Combine all canonical SKUs (DB catalog SKUs + source products)
+        all_skus = sorted(list(set(db_carpet_map.keys()).union(source_map.keys())))
+        if limit and limit > 0:
+            all_skus = all_skus[:limit]
 
-            if not img_url:
-                print(f"    Notice: No primary image URL for SKU '{sku}'")
-                image_url_missing_count += 1
+        activated_count = 0
+        already_active_count = 0
+        source_product_unavailable_count = 0
+        image_not_found_count = 0
+        invalid_count = 0
+        download_failed_count = 0
+        storage_failed_count = 0
+        skipped_existing_primary_count = 0
+        
+        activation_records = []
+        readiness_distribution = {
+            "NO_PRIMARY_IMAGE": 0,
+            "STYLE_DNA_MISSING": 0,
+            "STYLE_DNA_FAILED": 0,
+            "STYLE_DNA_PARTIAL": 0,
+            "STYLE_DNA_COMPLETE": 0,
+        }
+
+        for idx, sku in enumerate(all_skus, 1):
+            print(f"  [{idx}/{len(all_skus)}] Reconciling SKU '{sku}'...")
+            carpet = db_carpet_map.get(sku)
+            source_p = source_map.get(sku)
+
+            # Check if SKU is in source dataset
+            if not source_p:
+                print(f"    Notice: SKU '{sku}' present in DB but unavailable in source dataset (non-product URL).")
+                source_product_unavailable_count += 1
+                readiness_distribution["NO_PRIMARY_IMAGE"] += 1
                 activation_records.append({
                     "sku": sku,
-                    "product_url": prod_url,
+                    "carpet_id": str(carpet.id) if carpet else None,
+                    "product_url": carpet.source_reference if carpet else "",
                     "source_image_url": None,
                     "rights_mode": rights_mode,
-                    "status": "IMAGE_NOT_FOUND",
+                    "status": "SOURCE_PRODUCT_UNAVAILABLE",
                     "activated_at": None,
                 })
                 continue
 
-            # Lookup Carpet record by SKU
-            carpet = await carpet_repo.get_by_sku(sku)
+            prod_url = source_p.get("source_url", "")
+            img_url = source_p.get("primary_image_url")
+
             if not carpet:
-                print(f"    WARNING: Carpet model with SKU '{sku}' not found in DB", file=sys.stderr)
+                print(f"    WARNING: SKU '{sku}' in source dataset but not found in DB.", file=sys.stderr)
+                source_product_unavailable_count += 1
+                readiness_distribution["NO_PRIMARY_IMAGE"] += 1
                 activation_records.append({
                     "sku": sku,
+                    "carpet_id": None,
                     "product_url": prod_url,
                     "source_image_url": img_url,
                     "rights_mode": rights_mode,
@@ -227,21 +263,54 @@ async def run_activation_async(
                 })
                 continue
 
-            # Check if primary image already exists
-            existing_images = await image_repo.list_by_carpet_id(carpet.id)
-            has_primary = any(img.is_primary for img in existing_images)
-            if has_primary and not replace_primary:
-                print(f"    Notice: Carpet SKU '{sku}' already has a primary image. Skipping.")
+            # Check existing DB primary image
+            existing_primary = await catalog_repo.get_primary_image(carpet.id)
+            if existing_primary and not replace_primary:
+                print(f"    Notice: Carpet SKU '{sku}' already has primary image (ID={existing_primary.id}).")
                 already_active_count += 1
+                readiness_distribution["STYLE_DNA_MISSING"] += 1
+                activation_records.append({
+                    "sku": sku,
+                    "carpet_id": str(carpet.id),
+                    "image_id": str(existing_primary.id),
+                    "product_url": prod_url,
+                    "source_image_url": img_url,
+                    "rights_mode": rights_mode,
+                    "status": "ACTIVATED",
+                    "content_sha256": existing_primary.sha256,
+                    "image_width": existing_primary.width_px,
+                    "image_height": existing_primary.height_px,
+                    "content_type": existing_primary.content_type,
+                    "activated_at": existing_primary.created_at.isoformat(),
+                })
+                continue
+
+            if not img_url:
+                print(f"    Notice: No primary image URL available for SKU '{sku}'.")
+                image_not_found_count += 1
+                readiness_distribution["NO_PRIMARY_IMAGE"] += 1
+                activation_records.append({
+                    "sku": sku,
+                    "carpet_id": str(carpet.id),
+                    "product_url": prod_url,
+                    "source_image_url": None,
+                    "rights_mode": rights_mode,
+                    "status": "IMAGE_NOT_FOUND",
+                    "activated_at": None,
+                })
+                continue
+
+            if rights_mode == "URL_ONLY" or dry_run:
                 activation_records.append({
                     "sku": sku,
                     "carpet_id": str(carpet.id),
                     "product_url": prod_url,
                     "source_image_url": img_url,
                     "rights_mode": rights_mode,
-                    "status": "ALREADY_ACTIVE",
-                    "activated_at": datetime.now(timezone.utc).isoformat(),
+                    "status": "URL_ONLY",
+                    "activated_at": None,
                 })
+                readiness_distribution["NO_PRIMARY_IMAGE"] += 1
                 continue
 
             # Download official image bytes safely
@@ -250,6 +319,7 @@ async def run_activation_async(
             except (InvalidHostError, InvalidSchemeError, RedirectHostError) as e:
                 print(f"    Security rejection for image URL '{img_url}': {e}", file=sys.stderr)
                 download_failed_count += 1
+                readiness_distribution["NO_PRIMARY_IMAGE"] += 1
                 activation_records.append({
                     "sku": sku,
                     "carpet_id": str(carpet.id),
@@ -263,6 +333,7 @@ async def run_activation_async(
             except ImageOversizeError as e:
                 print(f"    Oversize image for SKU '{sku}': {e}", file=sys.stderr)
                 invalid_count += 1
+                readiness_distribution["NO_PRIMARY_IMAGE"] += 1
                 activation_records.append({
                     "sku": sku,
                     "carpet_id": str(carpet.id),
@@ -276,6 +347,7 @@ async def run_activation_async(
             except Exception as e:
                 print(f"    Download failed for SKU '{sku}': {e}", file=sys.stderr)
                 download_failed_count += 1
+                readiness_distribution["NO_PRIMARY_IMAGE"] += 1
                 activation_records.append({
                     "sku": sku,
                     "carpet_id": str(carpet.id),
@@ -298,6 +370,7 @@ async def run_activation_async(
                 )
 
                 activated_count += 1
+                readiness_distribution["STYLE_DNA_MISSING"] += 1
                 print(f"    [SUCCESS] Activated primary image (ID={image_model.id}, {image_model.width_px}x{image_model.height_px}px) for SKU '{sku}'")
 
                 activation_records.append({
@@ -316,6 +389,7 @@ async def run_activation_async(
                 })
             except ImageDuplicateError:
                 already_active_count += 1
+                readiness_distribution["STYLE_DNA_MISSING"] += 1
                 print(f"    Notice: Image for SKU '{sku}' already active in DB.")
                 activation_records.append({
                     "sku": sku,
@@ -326,9 +400,23 @@ async def run_activation_async(
                     "status": "ALREADY_ACTIVE",
                     "activated_at": datetime.now(timezone.utc).isoformat(),
                 })
-            except Exception as e:
-                print(f"    Validation or storage ingestion failed for SKU '{sku}': {e}", file=sys.stderr)
+            except ImageStorageFailedError as e:
+                print(f"    Storage persistence failed for SKU '{sku}': {e}", file=sys.stderr)
                 storage_failed_count += 1
+                readiness_distribution["NO_PRIMARY_IMAGE"] += 1
+                activation_records.append({
+                    "sku": sku,
+                    "carpet_id": str(carpet.id),
+                    "product_url": prod_url,
+                    "source_image_url": img_url,
+                    "rights_mode": rights_mode,
+                    "status": "STORAGE_FAILED",
+                    "activated_at": None,
+                })
+            except ImageDomainException as e:
+                print(f"    Image validation failed for SKU '{sku}': {e}", file=sys.stderr)
+                invalid_count += 1
+                readiness_distribution["NO_PRIMARY_IMAGE"] += 1
                 activation_records.append({
                     "sku": sku,
                     "carpet_id": str(carpet.id),
@@ -338,51 +426,90 @@ async def run_activation_async(
                     "status": "INVALID_IMAGE",
                     "activated_at": None,
                 })
+            except Exception as e:
+                print(f"    Unexpected error for SKU '{sku}': {e}", file=sys.stderr)
+                storage_failed_count += 1
+                readiness_distribution["NO_PRIMARY_IMAGE"] += 1
+                activation_records.append({
+                    "sku": sku,
+                    "carpet_id": str(carpet.id),
+                    "product_url": prod_url,
+                    "source_image_url": img_url,
+                    "rights_mode": rights_mode,
+                    "status": "STORAGE_FAILED",
+                    "activated_at": None,
+                })
+
+        total_catalog = len(all_skus)
+        total_activated_or_active = activated_count + already_active_count
+        
+        # Calculate terminal totals & unaccounted invariant
+        terminal_total = (
+            total_activated_or_active
+            + source_product_unavailable_count
+            + image_not_found_count
+            + invalid_count
+            + download_failed_count
+            + storage_failed_count
+            + skipped_existing_primary_count
+        )
+        unaccounted = total_catalog - terminal_total
+
+        whole_cat_rate = (total_activated_or_active / total_catalog * 100.0) if total_catalog > 0 else 0.0
+        source_avail_rate = (total_activated_or_active / len(products) * 100.0) if len(products) > 0 else 0.0
+
+        report = {
+            "rights_mode": rights_mode,
+            "dry_run": dry_run,
+            "authorization_assumed": False,
+            "catalog_total": total_catalog,
+            "source_records_total": len(products),
+            "processed_total": len(all_skus),
+            "image_url_found": image_url_found_count,
+            "image_url_missing": total_catalog - image_url_found_count,
+            "activated": activated_count,
+            "already_active": already_active_count,
+            "source_product_unavailable": source_product_unavailable_count,
+            "image_not_found": image_not_found_count,
+            "invalid_image": invalid_count,
+            "download_failed": download_failed_count,
+            "storage_failed": storage_failed_count,
+            "skipped_existing_primary": skipped_existing_primary_count,
+            "terminal_status_total": terminal_total,
+            "unaccounted": unaccounted,
+            "primary_image_count": total_activated_or_active,
+            "without_primary_image_count": total_catalog - total_activated_or_active,
+            "activation_rate_whole_catalog": round(whole_cat_rate, 4),
+            "activation_rate_source_available": round(source_avail_rate, 4),
+            "readiness_distribution": readiness_distribution,
+            "style_dna_profiles_created": 0,
+        }
+
+        activation_dataset = {
+            "dataset_type": "merinos-image-activation-sidecar",
+            "rights_mode": rights_mode,
+            "dry_run": dry_run,
+            "activated_records": activation_records,
+        }
+
+        print("\n[3/3] Saving activation reports...")
+        os.makedirs(os.path.dirname(os.path.abspath(output_activation)), exist_ok=True)
+        with open(output_activation, "w", encoding="utf-8") as f:
+            json.dump(activation_dataset, f, ensure_ascii=False, indent=2)
+
+        os.makedirs(os.path.dirname(os.path.abspath(output_report)), exist_ok=True)
+        with open(output_report, "w", encoding="utf-8") as f:
+            json.dump(report, f, ensure_ascii=False, indent=2)
+
+        print(f"  Activation sidecar saved: {output_activation}")
+        print(f"  Activation report saved: {output_report}")
+        print(f"\n[SUMMARY] Catalog Total: {total_catalog}, Primary Active: {total_activated_or_active}, Unaccounted: {unaccounted}, Rate: {round(whole_cat_rate, 2)}%")
 
     if session is not None:
         await _process_with_session(session)
     else:
         async with AsyncSessionLocal() as sess:
             await _process_with_session(sess)
-
-    total_prods = len(products)
-    total_active = activated_count + already_active_count
-    act_rate = (total_active / total_prods * 100.0) if total_prods > 0 else 0.0
-
-    report = {
-        "rights_mode": rights_mode,
-        "dry_run": dry_run,
-        "products_total": total_prods,
-        "image_url_found": image_url_found_count,
-        "image_url_missing": image_url_missing_count,
-        "activated": activated_count,
-        "already_active": already_active_count,
-        "invalid": invalid_count,
-        "download_failed": download_failed_count,
-        "storage_failed": storage_failed_count,
-        "primary_image_count": total_active,
-        "activation_rate": round(act_rate, 2),
-    }
-
-    activation_dataset = {
-        "dataset_type": "merinos-image-activation-sidecar",
-        "rights_mode": rights_mode,
-        "dry_run": dry_run,
-        "activated_records": activation_records,
-    }
-
-    print("\n[3/3] Saving activation reports...")
-    os.makedirs(os.path.dirname(os.path.abspath(output_activation)), exist_ok=True)
-    with open(output_activation, "w", encoding="utf-8") as f:
-        json.dump(activation_dataset, f, ensure_ascii=False, indent=2)
-
-    os.makedirs(os.path.dirname(os.path.abspath(output_report)), exist_ok=True)
-    with open(output_report, "w", encoding="utf-8") as f:
-        json.dump(report, f, ensure_ascii=False, indent=2)
-
-    print(f"  Activation sidecar saved: {output_activation}")
-    print(f"  Activation report saved: {output_report}")
-    print(f"\n[SUMMARY] Total: {total_prods}, Activated: {activated_count}, Already Active: {already_active_count}, Rate: {round(act_rate, 2)}%")
 
 
 def main():

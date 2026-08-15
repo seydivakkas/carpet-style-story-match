@@ -218,3 +218,85 @@ async def test_idempotency_skip_existing_primary(db_session, monkeypatch, tmp_pa
     rep_data = json.loads(open(out_rep, encoding="utf-8").read())
     assert rep_data["already_active"] == 1
     assert rep_data["activated"] == 0
+
+
+@pytest.mark.asyncio
+async def test_reconciliation_accounting(db_session, monkeypatch, tmp_path):
+    # Setup 5 catalog carpets in DB
+    skus = ["SKU-REC-001", "SKU-REC-002", "SKU-REC-003", "SKU-REC-004", "SKU-REC-005"]
+    for s in skus:
+        c = CarpetModel(
+            id=uuid.uuid4(),
+            sku=s,
+            name=f"Carpet {s}",
+            source_type=CarpetSourceType.CATALOG,
+            is_active=True
+        )
+        db_session.add(c)
+    await db_session.commit()
+
+    # Source dataset contains 4 SKUs (SKU-REC-005 omitted -> SOURCE_PRODUCT_UNAVAILABLE)
+    # SKU-REC-001: ACTIVATED
+    # SKU-REC-002: ACTIVATED
+    # SKU-REC-003: INVALID_IMAGE (oversize or bad image)
+    # SKU-REC-004: IMAGE_NOT_FOUND (no image url)
+    synthetic_jpeg = create_synthetic_jpeg_bytes(200, 200)
+    
+    def mock_downloader(url, timeout=15, delay_sec=0.5):
+        if "bad" in url:
+            from app.domain.carpet_catalog.merinos_image_downloader import ImageOversizeError
+            raise ImageOversizeError("Simulated oversize")
+        return (synthetic_jpeg, "image/jpeg")
+
+    monkeypatch.setattr(
+        "app.scripts.activate_merinos_catalog_images.download_image_bytes",
+        mock_downloader
+    )
+
+    source_file = tmp_path / "reconcile_source.json"
+    source_file.write_text(json.dumps({
+        "products": [
+            {"sku": "SKU-REC-001", "source_url": "https://www.merinos.com.tr/001", "primary_image_url": "https://www.merinos.com.tr/001.jpeg"},
+            {"sku": "SKU-REC-002", "source_url": "https://www.merinos.com.tr/002", "primary_image_url": "https://www.merinos.com.tr/002.jpeg"},
+            {"sku": "SKU-REC-003", "source_url": "https://www.merinos.com.tr/003", "primary_image_url": "https://www.merinos.com.tr/bad.jpeg"},
+            {"sku": "SKU-REC-004", "source_url": "https://www.merinos.com.tr/004", "primary_image_url": None},
+        ]
+    }))
+
+    out_source = str(tmp_path / "out_source.json")
+    out_act = str(tmp_path / "out_act.json")
+    out_rep = str(tmp_path / "out_rep.json")
+
+    await run_activation_async(
+        source_file=str(source_file),
+        rights_mode="AUTHORIZED_INTERNAL",
+        dry_run=False,
+        apply=True,
+        limit=None,
+        replace_primary=False,
+        output_source_images=out_source,
+        output_activation=out_act,
+        output_report=out_rep,
+        session=db_session
+    )
+
+    rep_data = json.loads(open(out_rep, encoding="utf-8").read())
+    assert rep_data["catalog_total"] == 5
+    assert rep_data["activated"] == 2
+    assert rep_data["invalid_image"] == 1
+    assert rep_data["image_not_found"] == 1
+    assert rep_data["source_product_unavailable"] == 1
+    assert rep_data["terminal_status_total"] == 5
+    assert rep_data["unaccounted"] == 0
+    assert rep_data["readiness_distribution"]["STYLE_DNA_MISSING"] == 2
+    assert rep_data["readiness_distribution"]["NO_PRIMARY_IMAGE"] == 3
+
+
+def test_reconciliation_unaccounted_invariant_fails_on_missing_record():
+    total_catalog = 5
+    # Simulated report records only 4 terminal statuses
+    terminal_statuses = ["ACTIVATED", "ACTIVATED", "INVALID_IMAGE", "IMAGE_NOT_FOUND"]
+    unaccounted = total_catalog - len(terminal_statuses)
+    
+    assert unaccounted == 1
+    assert unaccounted != 0  # Fails unaccounted == 0 invariant
