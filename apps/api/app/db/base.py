@@ -23,6 +23,11 @@ from app.db.models.carpet_story_association import (
     CarpetStoryAssociationModel
 )
 
+from app.db.models.carpet_narrative_affinity import (
+    NarrativeAffinityResultModel,
+    NarrativeAffinityThemeResultModel
+)
+
 __all__ = [
     "Base",
     "CarpetModel",
@@ -40,5 +45,7 @@ __all__ = [
     "MotifStoryClaimThemeModel",
     "CarpetMotifAssociationModel",
     "CarpetMotifAssociationSourceModel",
-    "CarpetStoryAssociationModel"
+    "CarpetStoryAssociationModel",
+    "NarrativeAffinityResultModel",
+    "NarrativeAffinityThemeResultModel"
 ]

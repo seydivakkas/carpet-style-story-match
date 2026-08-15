@@ -136,5 +136,30 @@ Motif (Neutral Visual Description) ──────► MotifStoryClaim (DOCUME
 - **Readiness State**: Side-effect-free dynamic calculation of `StyleDnaReadinessEnum` (`NO_PRIMARY_IMAGE`, `STYLE_DNA_MISSING`, `STYLE_DNA_FAILED`, `STYLE_DNA_PARTIAL`, `STYLE_DNA_COMPLETE`).
 - **Read-Only API**: `/api/v1/catalog/carpets`, `/api/v1/catalog/carpets/{id}`, `/api/v1/catalog/carpets/{id}/motifs`, `/api/v1/catalog/carpets/{id}/story-associations`.
 
+## 13. Explainable Narrative Affinity Engine v1 (GÖREV 12)
 
+```text
++----------------------------+        +------------------------------+
+| UserNarrativeProfileModel  |        | CarpetStoryAssociationModel  |
++----------------------------+        +------------------------------+
+  (N1..N8 interest weights)             (Explicit story claims)
+              │                                      │
+              └──────────────────┬───────────────────┘
+                                 ▼
+               +-----------------------------------+
+               |    NarrativeAffinityEngine v1     |
+               +-----------------------------------+
+                                 │
+                                 ▼
+               +-----------------------------------+
+               |   NarrativeAffinityResultModel    |
+               +-----------------------------------+
+                 (status, level, coverage, 8 rows)
+```
 
+- **Absolute Separation**: Narrative Affinity is completely independent of Visual Style Match, Style DNA, Importance Profile, or Preference Confidence. No numeric product score or percentage is exposed.
+- **Strict Input Scope**: Operates only on `UserNarrativeProfile` and catalog carpet explicit `CarpetStoryAssociation` records.
+- **Categorical Output**: Categorizes affinity as `VERY_STRONG` ($\ge 0.80$), `STRONG` ($\ge 0.60$), `MODERATE` ($\ge 0.35$), or `LIMITED` ($< 0.35$).
+- **Contested Policy**: `CONTESTED` claims do not enter the confirmed coverage numerator; tracked as `contested_overlap`.
+- **Snapshot & Idempotency**: Persisted with SHA-256 snapshot hash `(user_narrative_profile_id, carpet_id, snapshot_hash, affinity_version)`.
+- **API Endpoints**: `/api/v1/preference-assessments/{id}/narrative-affinities` (POST, GET, LIST).
