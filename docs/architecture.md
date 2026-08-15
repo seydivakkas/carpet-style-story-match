@@ -163,3 +163,28 @@ Motif (Neutral Visual Description) ──────► MotifStoryClaim (DOCUME
 - **Contested Policy**: `CONTESTED` claims do not enter the confirmed coverage numerator; tracked as `contested_overlap`.
 - **Snapshot & Idempotency**: Persisted with SHA-256 snapshot hash `(user_narrative_profile_id, carpet_id, snapshot_hash, affinity_version)`.
 - **API Endpoints**: `/api/v1/preference-assessments/{id}/narrative-affinities` (POST, GET, LIST).
+
+## 14. Verified Historical Reference Collection v1 (GÖREV 13)
+
+```text
++-----------------------+       +-----------------------------------+
+|  CuratedSourceModel   | <──── | HistoricalReferenceSourceModel   |
++-----------------------+       +-----------------------------------+
+  (MUSEUM_OBJECT /                        (PRIMARY_OBJECT_RECORD /
+   ARCHIVE_RECORD)                         SUPPORTING_REFERENCE)
+                                                     │
+                                                     ▼
++-----------------------+ 1:1   +-----------------------------------+
+|      CarpetModel      | <───> | HistoricalReferenceMetadataModel  |
++-----------------------+       +-----------------------------------+
+  (source_type=                  (reference_key, institution_name,
+   HISTORICAL)                    object_identifier, culture, period,
+                                  dates, geography, medium, URLs)
+```
+
+- **CarpetModel Reuse**: Reuses `CarpetModel` with `source_type = HISTORICAL` for institutional historical reference objects.
+- **Source-Reported Invariant**: Preserves institutional metadata without auto-normalization, period parsing, or culture guessing. `UNKNOWN REMAINS UNKNOWN`.
+- **Primary Source Link Constraint**: Exactly 1 `PRIMARY_OBJECT_RECORD` link required per reference item, pointing to a `CuratedSourceModel` of type `MUSEUM_OBJECT` or `ARCHIVE_RECORD`.
+- **Deterministic Importer & Dry-Run**: CLI importer script `import_historical_references.py` supporting dry-run validation, atomic transaction, idempotency, and conflict detection.
+- **Side-Effect-Free Public APIs**: `/api/v1/historical-references`, `/api/v1/historical-references/{id_or_key}`, `/api/v1/meta/historical-references`.
+- **Style DNA Readiness**: Shared `derive_style_dna_readiness` helper dynamically computes readiness state without side effects.

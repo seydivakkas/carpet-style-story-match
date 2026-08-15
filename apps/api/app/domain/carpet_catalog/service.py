@@ -18,6 +18,7 @@ from app.domain.carpet_catalog.schemas import (
     PrimaryImageSummary,
     StyleDnaReadinessEnum,
 )
+from app.domain.common.readiness import derive_style_dna_readiness
 from app.domain.motif_knowledge.schemas import CuratedSourceRead, ClaimSourceRead
 
 
@@ -58,18 +59,7 @@ class CarpetCatalogService:
         current_profile = await self.repo.get_current_style_profile(carpet.id)
 
         # Derive Style DNA readiness state side-effect-free
-        if not primary_image:
-            readiness = StyleDnaReadinessEnum.NO_PRIMARY_IMAGE
-        elif not current_profile:
-            readiness = StyleDnaReadinessEnum.STYLE_DNA_MISSING
-        elif current_profile.status.value == "FAILED":
-            readiness = StyleDnaReadinessEnum.STYLE_DNA_FAILED
-        elif current_profile.status.value == "PARTIAL":
-            readiness = StyleDnaReadinessEnum.STYLE_DNA_PARTIAL
-        elif current_profile.status.value == "COMPLETE":
-            readiness = StyleDnaReadinessEnum.STYLE_DNA_COMPLETE
-        else:
-            readiness = StyleDnaReadinessEnum.STYLE_DNA_MISSING
+        readiness = derive_style_dna_readiness(primary_image, current_profile)
 
         primary_img_summary = None
         if primary_image:

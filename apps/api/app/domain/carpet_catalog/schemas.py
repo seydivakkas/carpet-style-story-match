@@ -10,12 +10,7 @@ from app.db.models.motif_knowledge import MotifStoryStatusEnum
 from app.domain.motif_knowledge.schemas import ClaimSourceRead
 
 
-class StyleDnaReadinessEnum(str, enum.Enum):
-    NO_PRIMARY_IMAGE = "NO_PRIMARY_IMAGE"
-    STYLE_DNA_MISSING = "STYLE_DNA_MISSING"
-    STYLE_DNA_FAILED = "STYLE_DNA_FAILED"
-    STYLE_DNA_PARTIAL = "STYLE_DNA_PARTIAL"
-    STYLE_DNA_COMPLETE = "STYLE_DNA_COMPLETE"
+from app.domain.common.readiness import StyleDnaReadinessEnum
 
 
 # --- READ SCHEMAS ---

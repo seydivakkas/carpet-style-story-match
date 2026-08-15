@@ -28,6 +28,12 @@ from app.db.models.carpet_narrative_affinity import (
     NarrativeAffinityThemeResultModel
 )
 
+from app.db.models.carpet_historical_reference import (
+    HistoricalSourceRoleEnum,
+    HistoricalReferenceMetadataModel,
+    HistoricalReferenceSourceModel
+)
+
 __all__ = [
     "Base",
     "CarpetModel",
@@ -47,5 +53,8 @@ __all__ = [
     "CarpetMotifAssociationSourceModel",
     "CarpetStoryAssociationModel",
     "NarrativeAffinityResultModel",
-    "NarrativeAffinityThemeResultModel"
+    "NarrativeAffinityThemeResultModel",
+    "HistoricalSourceRoleEnum",
+    "HistoricalReferenceMetadataModel",
+    "HistoricalReferenceSourceModel"
 ]
