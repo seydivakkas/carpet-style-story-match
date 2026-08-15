@@ -1,0 +1,4133 @@
+{
+  "dataset_type": "merinos-public-catalog-source",
+  "source": "official-public-site",
+  "retrieved_at": "2026-08-15T21:26:15.308842+00:00",
+  "collections_processed": [
+    "Elegance",
+    "Arden",
+    "Vega",
+    "Octavia",
+    "Ritim",
+    "Havana",
+    "Premium",
+    "Lion",
+    "Toronto",
+    "Diyez",
+    "Launge",
+    "Therapy",
+    "Rodin",
+    "Recycle",
+    "Valeria"
+  ],
+  "products": [
+    {
+      "sku": "73941 060",
+      "name": "Elegance 73941 060",
+      "collection": "Elegance",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73941-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "41d316c6cf771617c86520afa26d4d52172381594b204eb9a44d67a5fee4ecf1"
+    },
+    {
+      "sku": "73941 097",
+      "name": "Elegance 73941 097",
+      "collection": "Elegance",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73941-097",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "47d353dbd89ee2254b665c04c9c97ed92a226731b922ad5f1c1673595d98e4e8"
+    },
+    {
+      "sku": "74423 096",
+      "name": "Elegance 74423 096",
+      "collection": "Elegance",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74423-096",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "1c46e1e398e985112e7e65efec6dedcd59e1395b425fc55b53bcefcdb7933859"
+    },
+    {
+      "sku": "74425 060",
+      "name": "Elegance 74425 060",
+      "collection": "Elegance",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74425-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "00b51aef659d1dcfb3b70fdbc7be68af263509d653d6e9416b751aeb671299ea"
+    },
+    {
+      "sku": "74427 070",
+      "name": "Elegance 74427 070",
+      "collection": "Elegance",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74427-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "cd3f538a71064694318a6cbc3944a6747ce1047276fbe67d0ca51eaaa62fc56a"
+    },
+    {
+      "sku": "74427 095",
+      "name": "Elegance 74427 095",
+      "collection": "Elegance",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74427-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "31e6249f2968d7c73113b6e2ae338adbd6829a12b3ffe15dd11d801c31dced7f"
+    },
+    {
+      "sku": "74429 096",
+      "name": "Elegance 74429 096",
+      "collection": "Elegance",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74429-096",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "61a12cda3bbaf33a97d48188dc892add9aeb15d3c72566b30429de67b3224467"
+    },
+    {
+      "sku": "74430 060",
+      "name": "Elegance 74430 060",
+      "collection": "Elegance",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74430-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "b11894cdae49e335cd15dee41fdc0ac13e6b442c026945ea989f373186694481"
+    },
+    {
+      "sku": "74430 095",
+      "name": "Elegance 74430 095",
+      "collection": "Elegance",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74430-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "e770bf9511aeb838313e96475c3525c225a9bc3ff87d81d87e92eb2341723e3e"
+    },
+    {
+      "sku": "74433 095",
+      "name": "Elegance 74433 095",
+      "collection": "Elegance",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74433-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "8fc7803210b16816658f87873fa08046236045e4f0a4c6c5dce94f48b5d2a352"
+    },
+    {
+      "sku": "90819 070",
+      "name": "Elegance 90819 070",
+      "collection": "Elegance",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/90819-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "26263a07fea9b879fb5af9ba7fe827426e1d7bf116e3ea7a40db83483360ab0d"
+    },
+    {
+      "sku": "90819 095",
+      "name": "Elegance 90819 095",
+      "collection": "Elegance",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/90819-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "90fdc1a49ee716954384e2af34a726d7230dc1aa15dbd4cfd2808ee1c038c475"
+    },
+    {
+      "sku": "90823 070",
+      "name": "Elegance 90823 070",
+      "collection": "Elegance",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/90823-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "6f174570cf7d9c5d02bae744d1ff4f15616e4dcfaaf84aefe684b0bfc3c93804"
+    },
+    {
+      "sku": "72484 062",
+      "name": "Arden 72484 062",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/72484-062",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "be94ea1aaf07a889f9a1b2965c2307aa84aceae4286fc9132b950cad9f1e752d"
+    },
+    {
+      "sku": "72487 060",
+      "name": "Arden 72487 060",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/72487-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "b1d683103f070be040768ebbef46f6e98e61720bbd1272a6cfb0422c89afe2a3"
+    },
+    {
+      "sku": "72487 095",
+      "name": "Arden 72487 095",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/72487-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "a65d3803697568d1cf703b85687832cde094e07aa9fe5f14507c6fdf99885f1c"
+    },
+    {
+      "sku": "72487 957",
+      "name": "Arden 72487 957",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/72487-957",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "243b33041e1a3a37170d263af107cb041808828dd933083642abd67ffeb78176"
+    },
+    {
+      "sku": "72821 060",
+      "name": "Arden 72821 060",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/72821-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "804e90f136d25367ad2a934911adb55d66a561e13fe4dccb5cde37d42c52ac4d"
+    },
+    {
+      "sku": "72821 070",
+      "name": "Arden 72821 070",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/72821-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "168aebf7b84ff604988692fddf7d8711f92a402366c463bcdf841f94b7f83bff"
+    },
+    {
+      "sku": "72821 096",
+      "name": "Arden 72821 096",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/72821-096",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "c9d1c9f8608db7838115bf0015fc8e7f4f6ad45347336737581143eb7804cc89"
+    },
+    {
+      "sku": "73395 060",
+      "name": "Arden 73395 060",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73395-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "49ce7f5ffa3e40ada81dfb2cbe8ca9fba9c94dcb11d31695c931ea7b6d5c048d"
+    },
+    {
+      "sku": "73395 070",
+      "name": "Arden 73395 070",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73395-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "1d9e18cfbf7178d083b5da7ce8ed3d77c8189033bdaf2a297b58ca9e923933f9"
+    },
+    {
+      "sku": "73395 097",
+      "name": "Arden 73395 097",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73395-097",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "c50ab0669fcce48298cf83825e14a18a34459ca1cc616913c253ee7cda63c4f0"
+    },
+    {
+      "sku": "73401 070",
+      "name": "Arden 73401 070",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73401-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "92ed2f7465fbec0aab5bdc0b396aa0373a62bb503e0b7bf4efb32db3d4fabcff"
+    },
+    {
+      "sku": "79415 071",
+      "name": "Arden 79415 071",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/79415-071",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "cf04abc41699e25f20b1c0f31a963f76091edf10e15e95f84744a0666436c46d"
+    },
+    {
+      "sku": "79416 071",
+      "name": "Arden 79416 071",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/79416-071",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "ba889568a54eab585b626454791a8377147e1ae484eac89f003dff3c884371f5"
+    },
+    {
+      "sku": "79419 070",
+      "name": "Arden 79419 070",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/79419-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "32369440769725e5e9da39f90d2a48bd9c22f50e76965c7a5bde4fbb9501f61f"
+    },
+    {
+      "sku": "79419 071",
+      "name": "Arden 79419 071",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/79419-071",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "813c6cd232ec45022ef85078250006335234868eb6bfacf659cf4fb4c1161519"
+    },
+    {
+      "sku": "79419 095",
+      "name": "Arden 79419 095",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/79419-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "19e0865a45db68c4a6dcfab114826338a713b1bc6f0a6940c5a891d30c5d2641"
+    },
+    {
+      "sku": "79422 060",
+      "name": "Arden 79422 060",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/79422-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "448127dd1926d8394584573449c180605ddf373be57e86c9867a071bce819292"
+    },
+    {
+      "sku": "79422 081",
+      "name": "Arden 79422 081",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/79422-081",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "a8f5f15795938507dd956c4a470fcdc765e019ffbcd422bd1692f85b248107a8"
+    },
+    {
+      "sku": "79422 095",
+      "name": "Arden 79422 095",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/79422-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "67d3b5b3403e82c1c653b562205aad6ec8dd74e6d8a99699f5881458c4ee6ef7"
+    },
+    {
+      "sku": "79423 060",
+      "name": "Arden 79423 060",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/79423-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "1bb722cc58ff76cfee83ee9df4ef740b24139d7f1d7b959c08332860998e5590"
+    },
+    {
+      "sku": "79423 082",
+      "name": "Arden 79423 082",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/79423-082",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "cbb69f3ce0de6db27161293de28c3297a729b55e8cbafdf640450f519cf87007"
+    },
+    {
+      "sku": "79423 095",
+      "name": "Arden 79423 095",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/79423-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "c71421f29e7594a5ef0fc88564f7a620570e697e3cb0f40c4492bb776d5e145e"
+    },
+    {
+      "sku": "79431 082",
+      "name": "Arden 79431 082",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/79431-082",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "ab0e7cfbcac4036747cd5b17c5029d68f84f114f5d5a62756d8ab26e8af39462"
+    },
+    {
+      "sku": "79433 072",
+      "name": "Arden 79433 072",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/79433-072",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "515fe7b30d5d85d0def6efd6609a4dcf9e46cb5a5011ab1946ecb42a26bb8a31"
+    },
+    {
+      "sku": "73928 060",
+      "name": "Vega 73928 060",
+      "collection": "Vega",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73928-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "fd273301ed6681bfc533a809263a5f8b252af6562520e536f44e5444485e241a"
+    },
+    {
+      "sku": "74103 060",
+      "name": "Vega 74103 060",
+      "collection": "Vega",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74103-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "bfaea741a5d3f19d2d36f4c5ca708d983ad05cab4cbce9d4bcb3d9be6a531c60"
+    },
+    {
+      "sku": "74103 061",
+      "name": "Vega 74103 061",
+      "collection": "Vega",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74103-061",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "d2d39dbdf8b1526334678f66ff71765243b8cbb7f53a79aba6c1c772795e14cf"
+    },
+    {
+      "sku": "74103 070",
+      "name": "Vega 74103 070",
+      "collection": "Vega",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74103-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "7897e929d4cfb2cdb5a690fb2fc3d7175d2b8ca2d61e597a2196c6c0f696e5a6"
+    },
+    {
+      "sku": "74105 060",
+      "name": "Vega 74105 060",
+      "collection": "Vega",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74105-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "0229cc6807ae386041352ed77a512ea5813fb1cd81fd32844ef0facc49199b58"
+    },
+    {
+      "sku": "74436 060",
+      "name": "Vega 74436 060",
+      "collection": "Vega",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74436-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "e5290a3ceed6c602ff060e4d9823a9b21836f85329ab124dfda8e50f5f876efd"
+    },
+    {
+      "sku": "74436 071",
+      "name": "Vega 74436 071",
+      "collection": "Vega",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74436-071",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "0f4638fb7bb5d87a9a9ec1495b4efcb945580bf80249d895eca7810dfc01babf"
+    },
+    {
+      "sku": "74436 095",
+      "name": "Vega 74436 095",
+      "collection": "Vega",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74436-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "cdb2174c97e9f84365c52194784502a34213900fca632e4a362d1a18ac52063d"
+    },
+    {
+      "sku": "74436 096",
+      "name": "Vega 74436 096",
+      "collection": "Vega",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74436-096",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "d5afe62e9cd50103088ec5fdf448e71fb82a8a6b1d372ce96fbe127804b279fb"
+    },
+    {
+      "sku": "74928 062",
+      "name": "Vega 74928 062",
+      "collection": "Vega",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74928-062",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "178ca3db69c750e31d2d970ea8404fb431003f3815abec326d348a4797d20288"
+    },
+    {
+      "sku": "74928 957",
+      "name": "Vega 74928 957",
+      "collection": "Vega",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74928-957",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "03a005689017fba4c34d504fab3439f60833f68a865d2fdaacb263eb489d1b1e"
+    },
+    {
+      "sku": "90235 070",
+      "name": "Vega 90235 070",
+      "collection": "Vega",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/90235-070",
+      "available_sizes": [],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "a7fca7d1412ce38522381d08ffde239d54e778d8786815704d05055b3690abc6"
+    },
+    {
+      "sku": "90235 095",
+      "name": "Vega 90235 095",
+      "collection": "Vega",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/90235-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "650f8113c3ba94b8d64b0132dbc032729bd6886672e1397992dd907504da6ae0"
+    },
+    {
+      "sku": "90237 070",
+      "name": "Vega 90237 070",
+      "collection": "Vega",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/90237-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "009e51e1ca0800b810fadc59489d32f235030d390a90e4e0267c610ac91293d0"
+    },
+    {
+      "sku": "90237 095",
+      "name": "Vega 90237 095",
+      "collection": "Vega",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/90237-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "6edf70b5f9165015b604efaf71031caa5c9bb1bca674c7c51815d91635c6e89a"
+    },
+    {
+      "sku": "75478 096",
+      "name": "Octavia 75478 096",
+      "collection": "Octavia",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/75478-096",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "f479e1edbb6aa04fed9100ac443099c36601e294fed3ac2921827ed3b32089de"
+    },
+    {
+      "sku": "75487 060",
+      "name": "Octavia 75487 060",
+      "collection": "Octavia",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/75487-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "fa5a02002941c44807638d28831f3635f82db6fbff0a0e7ebe8433fba3afc75c"
+    },
+    {
+      "sku": "75487 070",
+      "name": "Octavia 75487 070",
+      "collection": "Octavia",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/75487-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "66df7f3b40db12d30ea51f2278a3445126ac05a988ceab1fffe6e8876614fc40"
+    },
+    {
+      "sku": "75490 060",
+      "name": "Octavia 75490 060",
+      "collection": "Octavia",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/75490-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "0fb66c66ce0ef8247a15cc20499b4e357e6685aac7767fea4bd1db45ef8b6d93"
+    },
+    {
+      "sku": "75490 070",
+      "name": "Octavia 75490 070",
+      "collection": "Octavia",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/75490-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "692f36864efb7b1f734456b060e21b28a63b0cd761aa78f7f9d5d5f0501732fe"
+    },
+    {
+      "sku": "75490 095",
+      "name": "Octavia 75490 095",
+      "collection": "Octavia",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/75490-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "7bf21557a5bd88fff466cd17c00babbca5a217cd09fa05cfec7e801d6db4c16c"
+    },
+    {
+      "sku": "75490 096",
+      "name": "Octavia 75490 096",
+      "collection": "Octavia",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/75490-096",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "dacf68d24458bfd330571562b9bc8229babe642290ad2973c59c7de195acd5ca"
+    },
+    {
+      "sku": "75491 060",
+      "name": "Octavia 75491 060",
+      "collection": "Octavia",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/75491-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "3314e260484158816d70e9eb107aa3e0ca17dcb96d74352fa3fbd01f9b88128c"
+    },
+    {
+      "sku": "75491 070",
+      "name": "Octavia 75491 070",
+      "collection": "Octavia",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/75491-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "eedd7c9a6396a881e34c7295ab1f76aed207cde241f65c5a9e50d42aac1fb4cd"
+    },
+    {
+      "sku": "75491 095",
+      "name": "Octavia 75491 095",
+      "collection": "Octavia",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/75491-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "c4a0a5e22a6c3b032c1c663ac6b6fd7aba6347ede549dd25b34a725501a043ee"
+    },
+    {
+      "sku": "75491 096",
+      "name": "Octavia 75491 096",
+      "collection": "Octavia",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/75491-096",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "0983a970942461d5bee88eacf41c170fd455666437159905f5bb612041804bd4"
+    },
+    {
+      "sku": "73338 060",
+      "name": "Ritim 73338 060",
+      "collection": "Ritim",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73338-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "812dec5d16d8eead58ade11f46a0a917685dec68569193a9c47531bd2ef1b4b2"
+    },
+    {
+      "sku": "73338 070",
+      "name": "Ritim 73338 070",
+      "collection": "Ritim",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73338-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "80008bdc9782bb60baf6ace1c8cd6cdf690b4692aef2bd355e64a59f8552eb4c"
+    },
+    {
+      "sku": "73338 071",
+      "name": "Ritim 73338 071",
+      "collection": "Ritim",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73338-071",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "9b8f27727b249e82ce2c17e762eb5eb068535d814b2b51b5481c2bdc0ae3e80a"
+    },
+    {
+      "sku": "73339 060",
+      "name": "Ritim 73339 060",
+      "collection": "Ritim",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73339-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "d0f81ad5941a211640e42a49bfd8e7c082be69388284315d48a41c4ef4aba68d"
+    },
+    {
+      "sku": "73339 071",
+      "name": "Ritim 73339 071",
+      "collection": "Ritim",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73339-071",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "dc6d638256c04ee79f34f85dcd3c219bdb97bc2036697027c489b1d824d92b15"
+    },
+    {
+      "sku": "73339 095",
+      "name": "Ritim 73339 095",
+      "collection": "Ritim",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73339-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "5124ee50d36fddb89c8bdff35e0dbc2855b970153ceba3980318ecbd67159f9a"
+    },
+    {
+      "sku": "73340 070",
+      "name": "Ritim 73340 070",
+      "collection": "Ritim",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73340-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "5f9c8b38833d0e56fe951a9cdf8b3f90b59abd4c77a19b008918854a2a2fcb7b"
+    },
+    {
+      "sku": "73344 071",
+      "name": "Ritim 73344 071",
+      "collection": "Ritim",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73344-071",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "9ff9e8a3793ed3d169587b052248a8c5a94f1321e840e898ff081185ef35a6ef"
+    },
+    {
+      "sku": "73344 095",
+      "name": "Ritim 73344 095",
+      "collection": "Ritim",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73344-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "5eb95f448b5e63a6aa45252c021c4bd5cb8f3122c4517a45932d1dac5f2d1b49"
+    },
+    {
+      "sku": "74210 060",
+      "name": "Ritim 74210 060",
+      "collection": "Ritim",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74210-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "45fd597f22941c538b29edd45bb36b5fa08f5cc42c46cc06d806bd05d3868fe0"
+    },
+    {
+      "sku": "74210 110",
+      "name": "Ritim 74210 110",
+      "collection": "Ritim",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74210-110",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "06b4ee766144aa3d0577184731d06088a9280640d21202b1149fc7da11bf3d0a"
+    },
+    {
+      "sku": "74212 060",
+      "name": "Ritim 74212 060",
+      "collection": "Ritim",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74212-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "4a58401fa922c5bc3b588bd0c72cf4eb5670f33f7102824d148969df2c762d06"
+    },
+    {
+      "sku": "73474 060",
+      "name": "Havana 73474 060",
+      "collection": "Havana",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73474-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "0b3755cc9da28aeefb3c90cef537cadc0f2fae61dffa8b26a0bd14b266c3726e"
+    },
+    {
+      "sku": "73480 070",
+      "name": "Havana 73480 070",
+      "collection": "Havana",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73480-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "3178292fec4e9f5ff5fac406ee7673824b6b5f872a7e3b37d9ceacc8fc578d6b"
+    },
+    {
+      "sku": "73482 060",
+      "name": "Havana 73482 060",
+      "collection": "Havana",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73482-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "888b0df0d158a32d2ff4b08a3c17bd09f973455005e28c9b43825b0c396c6b3d"
+    },
+    {
+      "sku": "73482 070",
+      "name": "Havana 73482 070",
+      "collection": "Havana",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73482-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "830fe0e7a85ecd39f621b70b57c28e727e069d379b8f8b2c42da71b124138e6c"
+    },
+    {
+      "sku": "73482 071",
+      "name": "Havana 73482 071",
+      "collection": "Havana",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73482-071",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "9c54759ad716b154f61553712eb1f91e5b5d1727ff105f45268cef755ed89275"
+    },
+    {
+      "sku": "73482 111",
+      "name": "Havana 73482 111",
+      "collection": "Havana",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73482-111",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "be33a6c2cd624db93c9f047d97482b58a61af068e5f22f5ea57ae7d4cceb7cd2"
+    },
+    {
+      "sku": "73486 060",
+      "name": "Havana 73486 060",
+      "collection": "Havana",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/73486-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "436a84b538475a97c00bb92ddf0ac25e5796b97880e1a3e59f5202d1b6e3fa2b"
+    },
+    {
+      "sku": "74480 070",
+      "name": "Havana 74480 070",
+      "collection": "Havana",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/74480-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "f5ee96cad9a7b008a11c1bce27e680c7531d1185caad744dea00964dfe92388c"
+    },
+    {
+      "sku": "75272 060",
+      "name": "Havana 75272 060",
+      "collection": "Havana",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/75272-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "883fdebac2a817e034a5890f569ed814709c38bc24efae496c18396403b0847e"
+    },
+    {
+      "sku": "69799 060",
+      "name": "Premium 69799 060",
+      "collection": "Premium",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/69799-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "e15f4328f7ba303883b3eec39be8d2f938110d6b2b428a49c6826a636a584571"
+    },
+    {
+      "sku": "69799 070",
+      "name": "Premium 69799 070",
+      "collection": "Premium",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/69799-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "c9343f7b154ffcc043376cd8491fe22295634044503caae99d1a2eac5a78039d"
+    },
+    {
+      "sku": "69799 095",
+      "name": "Premium 69799 095",
+      "collection": "Premium",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/69799-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "d7a3c1608eab2e9582f3eed38f298389fb2be706932f8f0bef664b673bebf2a7"
+    },
+    {
+      "sku": "69800 060",
+      "name": "Premium 69800 060",
+      "collection": "Premium",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/69800-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "84ef8dfe11360764da95d6443528280ebdb746aa47464dbc872c8618caa8b82c"
+    },
+    {
+      "sku": "69800 070",
+      "name": "Premium 69800 070",
+      "collection": "Premium",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/69800-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "eded23ae18fa3e6fc5fb15cecfe26a5cfdfbe18a20dfba3dfcf0c88f2fabd992"
+    },
+    {
+      "sku": "69800 095",
+      "name": "Premium 69800 095",
+      "collection": "Premium",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/69800-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "b7e679c35a47282c438e37abc7db724ae0187142f24c9ccef56f1e5c5cfacf6b"
+    },
+    {
+      "sku": "69804 060",
+      "name": "Premium 69804 060",
+      "collection": "Premium",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/69804-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "e71da0323c8c486cd4fd23643d9af8425588502050157bb26d466a2e4bf82c2b"
+    },
+    {
+      "sku": "69804 071",
+      "name": "Premium 69804 071",
+      "collection": "Premium",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/69804-071",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "60552c7e850bcb4e4bdc8f5a3d9ef18e17c7015bf7894bf8abd1371256b7efbe"
+    },
+    {
+      "sku": "69804 095",
+      "name": "Premium 69804 095",
+      "collection": "Premium",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/69804-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "000a5f75e30ce02995507d1cd18289585dc9794120dc22f34af60361bc4e6a2c"
+    },
+    {
+      "sku": "69805 060",
+      "name": "Premium 69805 060",
+      "collection": "Premium",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/69805-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "8ee056957f574ddf6da44e63546fa69f9cfd1b0e243b94dc238908c33a89e27e"
+    },
+    {
+      "sku": "69805 070",
+      "name": "Premium 69805 070",
+      "collection": "Premium",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/69805-070-2",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "0d6b7893e695cd5517d2da6bee08577843a4e4392d2c6e73f6ccb23060a95e9b"
+    },
+    {
+      "sku": "69805 095",
+      "name": "Premium 69805 095",
+      "collection": "Premium",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/69805-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "8bf59395a0f55c9308f3afbde146f3bbc0e1cd9f1f2ad682e4d555ae1ec7ca5c"
+    },
+    {
+      "sku": "69810 060",
+      "name": "Premium 69810 060",
+      "collection": "Premium",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/69810-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "2e275f2669d568aa448ee6c34e1d8d5ae2332f8745b54b9c0f15240a8c028a21"
+    },
+    {
+      "sku": "69810 095",
+      "name": "Premium 69810 095",
+      "collection": "Premium",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/69810-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "e59b01625416b80981e9e68bb31e96adf15986eda47c4bda928fb7bb9fbf4d78"
+    },
+    {
+      "sku": "69813 060",
+      "name": "Premium 69813 060",
+      "collection": "Premium",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/69813-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "70197a820e7d59240fdcf64f9463853c861e31c3ccde0342b113399836318778"
+    },
+    {
+      "sku": "69813 095",
+      "name": "Premium 69813 095",
+      "collection": "Premium",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/69813-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "e5b510ced58772e6ef481e6ce9d685f3612ec0112af7da38d159af3e03ee5734"
+    },
+    {
+      "sku": "62744 030",
+      "name": "Lion 62744 030",
+      "collection": "Lion",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/62744-030",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "3c59b02af721cd8dc1bf6c3d29e9235671ed6a33ee6622c052d2d1f0be32be08"
+    },
+    {
+      "sku": "62744 070",
+      "name": "Lion 62744 070",
+      "collection": "Lion",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/62744-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "bbd6b5a2bb0b04ea2c4c61749ffe07d4a860b08e3b587762d6eaa1cf334e945f"
+    },
+    {
+      "sku": "62744 095",
+      "name": "Lion 62744 095",
+      "collection": "Lion",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/62744-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "d3160c5e05910e6bc11886ad0dcd7b6ce793b3151184f4d372249b2219baa605"
+    },
+    {
+      "sku": "62745 030",
+      "name": "Lion 62745 030",
+      "collection": "Lion",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/62745-030",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "9bd10db711f32d6641bc28dc66b8e52fe7d90c48cdd0c2205fd7a303a79b5851"
+    },
+    {
+      "sku": "62745 070",
+      "name": "Lion 62745 070",
+      "collection": "Lion",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/62745-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "b2a1c7c75227935db6c80c858b4c5d5e427131a34d393cdc5a719fb82b2cf6be"
+    },
+    {
+      "sku": "62745 095",
+      "name": "Lion 62745 095",
+      "collection": "Lion",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/62745-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "5d81be301e943b1b9d62e7e3ea4b6855488304fc5a1753437e13bd8aa302b305"
+    },
+    {
+      "sku": "62750 030",
+      "name": "Lion 62750 030",
+      "collection": "Lion",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/62750-030",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "973ada95536e5bbc62a448af45a0b0928552e61f43a40af3af083a1feabfbaa8"
+    },
+    {
+      "sku": "62750 070",
+      "name": "Lion 62750 070",
+      "collection": "Lion",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/62750-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "a17007717f5994ba338108f4f2131ef926a3ad6f2de8188f290497cdda4e6b3a"
+    },
+    {
+      "sku": "62750 095",
+      "name": "Lion 62750 095",
+      "collection": "Lion",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/62750-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "912283c32fc481f01f6aef182f67c517476554f72e7d94d1f823f4ca896cbbe7"
+    },
+    {
+      "sku": "62752 030",
+      "name": "Lion 62752 030",
+      "collection": "Lion",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/62752-030",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "3dc2a8c317421b76a78981932c9620d71ca00dd91470dfd6fe0b273356216fb6"
+    },
+    {
+      "sku": "62752 070",
+      "name": "Lion 62752 070",
+      "collection": "Lion",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/62752-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "f8e161cb1098465287ac8a6dffd1e74a5a132de199c0aac53abdac43c7fd91db"
+    },
+    {
+      "sku": "62752 095",
+      "name": "Lion 62752 095",
+      "collection": "Lion",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/62752-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "c5cc60f670effccb7b70ae963c7abfaeaac03589056958e201eeb51c7290f01f"
+    },
+    {
+      "sku": "63994 090",
+      "name": "Lion 63994 090",
+      "collection": "Lion",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/63994-090",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "2ccfd594bd58af06930a087747fcd2b497bc10d8df279b7ba7dc4f76c1e6bc26"
+    },
+    {
+      "sku": "16561 035",
+      "name": "Toronto 16561 035",
+      "collection": "Toronto",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/16561-035",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "2178933417ce1a88274903595407751fab736043055cdacb5417f2c9282ba8f2"
+    },
+    {
+      "sku": "16561 060",
+      "name": "Toronto 16561 060",
+      "collection": "Toronto",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/16561-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "cbcb09a3320ac4977a62202bc1c64f5bb6a17b91ca0e5975f6fec201654686a9"
+    },
+    {
+      "sku": "16561 195",
+      "name": "Toronto 16561 195",
+      "collection": "Toronto",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/16561-195",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "84f7e138d4104b83a835a42c34386ca1014912568491ab116e97e7503bccd998"
+    },
+    {
+      "sku": "5000 179",
+      "name": "Toronto 5000 179",
+      "collection": "Toronto",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/5000-179",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "36a3728fc2bd61e259e879bddff278657b302c6a20d64951e399cbcf2c79e6a6"
+    },
+    {
+      "sku": "5004 178",
+      "name": "Toronto 5004 178",
+      "collection": "Toronto",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/5004-178",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "ef9ccd3dc9792081c9dcf501403ff7ff050befabdcf880b54f6b35cedfb27cbe"
+    },
+    {
+      "sku": "5008 170",
+      "name": "Toronto 5008 170",
+      "collection": "Toronto",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/5008-170",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "37b3cd08c02fe8ecc5dd1d46a1a74552c32c3e73e26643813b981496e25720de"
+    },
+    {
+      "sku": "5011 060",
+      "name": "Toronto 5011 060",
+      "collection": "Toronto",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/5011-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "934c3f3a435fc11a4c7b312934f7d317402ba336c6e98af6e3484a46307d605b"
+    },
+    {
+      "sku": "64076 178",
+      "name": "Toronto 64076 178",
+      "collection": "Toronto",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/64076-178",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "7640f3453900bf076607b3493653c47570526e3554ea634652e1053cd366c65b"
+    },
+    {
+      "sku": "64109 178",
+      "name": "Toronto 64109 178",
+      "collection": "Toronto",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/64109-178",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "d40cd98f96dfa3f4e05cd1f2022141ff777de8556de74e9d592adc7a63562527"
+    },
+    {
+      "sku": "64361 060",
+      "name": "Toronto 64361 060",
+      "collection": "Toronto",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/64361-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "cddb3bd3853d591a7962021f27067c1808dd1e71baf85374f0f361f32b692439"
+    },
+    {
+      "sku": "65601 178",
+      "name": "Toronto 65601 178",
+      "collection": "Toronto",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/65601-178",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "e2517417d8021facae2677eb778d29849b643e5485de820666218bdb0a980263"
+    },
+    {
+      "sku": "34929 030",
+      "name": "Diyez 34929 030",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/34929-030",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "bdb9b7570e457b360088a0cfda845a5967318e20a9ca6aac3f37af20d99fd2e8"
+    },
+    {
+      "sku": "34930 030",
+      "name": "Diyez 34930 030",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/34930-030",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "168feb0edf4535ec21bf36914876231550c3677484a40a0e562de51158cf487e"
+    },
+    {
+      "sku": "34932 030",
+      "name": "Diyez 34932 030",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/34932-030",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "e5192c8ced39af1bb4ed739ae01b72a941c8a1d53f399f209c9afc7c4dd23924"
+    },
+    {
+      "sku": "34932 095",
+      "name": "Diyez 34932 095",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/34932-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "588a589c3fa7a007ef0520895cff58fa01b265bb273a0057ad8767245e8b8df9"
+    },
+    {
+      "sku": "37917 060",
+      "name": "Diyez 37917 060",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/37917-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "d73a4c314039e10685fa9bb560c091c0c1a0092673a88c22c4956d9514065655"
+    },
+    {
+      "sku": "37917 095",
+      "name": "Diyez 37917 095",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/37917-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "56be1b60d59109104bb82409fb0448d6c862b22dd4bf981b316d77d28a3b2e3e"
+    },
+    {
+      "sku": "39139 060",
+      "name": "Diyez 39139 060",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/39139-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "c61f6c5304397ff161fa358c0d5eb148044edc86b549bf77dad0a72e07cfab20"
+    },
+    {
+      "sku": "39139 095",
+      "name": "Diyez 39139 095",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/39139-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "5e3f6c1285de7297ac9d4f0f2626ddc3e76581c2239b2f32adc6abaca8f5c437"
+    },
+    {
+      "sku": "39140 031",
+      "name": "Diyez 39140 031",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/39140-031",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "07414fcd21571f18a81ca01fa0661c091738a87e0827e3a17652b7a933e35806"
+    },
+    {
+      "sku": "39140 080",
+      "name": "Diyez 39140 080",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/39140-080",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "50a1f6162d3d2976dded049f574034a34f7300c23f7a1b72999df24cb7ba7702"
+    },
+    {
+      "sku": "39140 095",
+      "name": "Diyez 39140 095",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/39140-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "8269fed0725749dc458fb280cd6de021fe06f61c90102dbc72148d5ead47e7fa"
+    },
+    {
+      "sku": "39398 060",
+      "name": "Diyez 39398 060",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/39398-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "8ecba54ff47108431b831fbfde18cb80e95e958f494d78597838eb520a5e77bd"
+    },
+    {
+      "sku": "39398 095",
+      "name": "Diyez 39398 095",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/39398-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "098a2731cb4f9489de870703858dd83c176b2f7840b7412bb5e71542c8b39630"
+    },
+    {
+      "sku": "64249 095",
+      "name": "Diyez 64249 095",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/64249-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "374cef88bf2743a463546e9fd634b8209efaaea7c0ec460c89043de2f139ac23"
+    },
+    {
+      "sku": "64249 096",
+      "name": "Diyez 64249 096",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/64249-096",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "7345f813f52b70471fcc355665f906faf56e9745579722f4fa8e9101e35dcec9"
+    },
+    {
+      "sku": "64256 030",
+      "name": "Diyez 64256 030",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/64256-030",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "62ce059265776055d6505b4ccce8a3335c1770557a3e98e98f88f11ac1a8884d"
+    },
+    {
+      "sku": "64256 096",
+      "name": "Diyez 64256 096",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/64256-096",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "2f19e4eda8c5a909f2e7e6de937c484cbb7faec8f75776d0980884329d11b064"
+    },
+    {
+      "sku": "79458 060",
+      "name": "Diyez 79458 060",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/79458-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "273d2ab18b06b565d4407ad50025446b222753e94fa1c853e5ee6bf2253f3059"
+    },
+    {
+      "sku": "79465 030",
+      "name": "Diyez 79465 030",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/79465-030",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "9316a183fe8cf4ff58fe718f29e2ff9857845b5071f7cd52378c70b954cfffa3"
+    },
+    {
+      "sku": "79465 060",
+      "name": "Diyez 79465 060",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/79465-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "5f572b875c90cd2407efd3e8a32435a73307e1d05c007c0a9394d9ac66c10bf9"
+    },
+    {
+      "sku": "79465 095",
+      "name": "Diyez 79465 095",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/79465-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "72a26e3b95e86224e3c77a5899a310062204bacca9927983d9a311aec1982e9d"
+    },
+    {
+      "sku": "79469 060",
+      "name": "Diyez 79469 060",
+      "collection": "Diyez",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/79469-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "30f7376d18055518a89e3e881050c2063ebaaca2cdcd610649d4cc47efba8410"
+    },
+    {
+      "sku": "54094 260",
+      "name": "Launge 54094 260",
+      "collection": "Launge",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/54094-260",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "160x230",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "12c4067cc92c0ee8448413d59c80808669bf72675c9c7779c9539e786583fe69"
+    },
+    {
+      "sku": "54094 261",
+      "name": "Launge 54094 261",
+      "collection": "Launge",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/54094-261",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "160x230",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "fc073058666284415e3e359b4d716117e21c306acc5c24caac9203a766c1c148"
+    },
+    {
+      "sku": "54094 270",
+      "name": "Launge 54094 270",
+      "collection": "Launge",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/54094-270",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "160x230",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "b951ac5555c938d7a05708f2501cdb39c328193064c1763f4efd9eaf9236baf7"
+    },
+    {
+      "sku": "54094 295",
+      "name": "Launge 54094 295",
+      "collection": "Launge",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/54094-295",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "160x230",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "2ada193d89832ea963c66affbb17f4bce3e7e769378d31c1ec88b67dbb43bbba"
+    },
+    {
+      "sku": "54096 260",
+      "name": "Launge 54096 260",
+      "collection": "Launge",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/54096-260",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "160x230",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "6a19adf16804129670a385de7b6c843cd3df0abb4c6bf98bb8755a6404e3136b"
+    },
+    {
+      "sku": "54096 261",
+      "name": "Launge 54096 261",
+      "collection": "Launge",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/54096-261",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "160x230",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "140ee30c169ca0ff23f0722e8c2043c7893d0186775556c355ff918bfc4dac28"
+    },
+    {
+      "sku": "54096 270",
+      "name": "Launge 54096 270",
+      "collection": "Launge",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/54096-270",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "160x230",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "0eb6006f16a3bec68b55d6b771cdeb034706ca1f1a3be87a0afce07420311a99"
+    },
+    {
+      "sku": "54096 295",
+      "name": "Launge 54096 295",
+      "collection": "Launge",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/54096-295",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "160x230",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "d2056e8397564f2b63e5a864cda54dd9ba52d9adc1e31b4f200256f66d3937cb"
+    },
+    {
+      "sku": "54097 260",
+      "name": "Launge 54097 260",
+      "collection": "Launge",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/54097-260",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "160x230",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "223c40794b66bb728a7abca9baf8e6dd1665a7692ee355ddfc36a95ed240df7c"
+    },
+    {
+      "sku": "65150 260",
+      "name": "Launge 65150 260",
+      "collection": "Launge",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/65150-260",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "160x230",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "6c559521d853a695e295ed37c78ed32551308aae4377d2f2036864353ddce3b0"
+    },
+    {
+      "sku": "65150 270",
+      "name": "Launge 65150 270",
+      "collection": "Launge",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/65150-270",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "160x230",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "ff539edccb91c8370d3547e6d0aaf4a179a6ec7850ae3ba9bb24759667ed65b4"
+    },
+    {
+      "sku": "65151 260",
+      "name": "Launge 65151 260",
+      "collection": "Launge",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/65151-260",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "160x230",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "90e71993a5b9cc5c6c211ca55a3ee26374892a5f222ac7988a369828956bc9c5"
+    },
+    {
+      "sku": "65151 270",
+      "name": "Launge 65151 270",
+      "collection": "Launge",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/65151-270",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "150x233",
+        "160x230",
+        "170x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "2b3234b331b219dfa307747824a4c40d8e45443a2a10777a9a7f18a35e4bf8ce"
+    },
+    {
+      "sku": "19112 030",
+      "name": "Therapy 19112 030",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/19112-030",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "41d5dc121f55abeafe6d5e79a341bf9117c5656e8597db0a0ac8a40356c4bc53"
+    },
+    {
+      "sku": "19112 096",
+      "name": "Therapy 19112 096",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/19112-096",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "2a40e637063bdcabb406230e5bfead03b9cc5fe385adcb8e42d980beb70af986"
+    },
+    {
+      "sku": "19114 030",
+      "name": "Therapy 19114 030",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/19114-030",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "e525b9accab2cfd41c2de7deaf7e4b98892986e827e14495d23ccc79ffc663ae"
+    },
+    {
+      "sku": "19114 081",
+      "name": "Therapy 19114 081",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/19114-081",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "8cfc79137e051e00df65ee7ea17137d318c74c5a71e4d4c29b22f5b479e020a1"
+    },
+    {
+      "sku": "19114 096",
+      "name": "Therapy 19114 096",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/19114-096",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "4bd62abec2819ae706b62712a84f7e3eda258f43c2f6759cfec1b719c0dbec4d"
+    },
+    {
+      "sku": "19119 030",
+      "name": "Therapy 19119 030",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/19119-030",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "8d26b39367b2de0061c822d7aca883182206ac7a8c2c3367a13bb156859b9513"
+    },
+    {
+      "sku": "19119 080",
+      "name": "Therapy 19119 080",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/19119-080",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "48e7c8aa230e07671b8c33472e175c2141f39de659d3f68d93055bc078b56af4"
+    },
+    {
+      "sku": "19119 096",
+      "name": "Therapy 19119 096",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/19119-096",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "e63a5e88eb8b7ebca7cc7ec10526b92648091b68f08cb40154c3d08cf017e83d"
+    },
+    {
+      "sku": "19137 030",
+      "name": "Therapy 19137 030",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/19137-030",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "23b8bb563a4d9abf0bbebea7c4752cd9f279b169473273301aa8ca5ad23c2866"
+    },
+    {
+      "sku": "33260 030",
+      "name": "Therapy 33260 030",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/33260-030",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "5e5bda81c45d5b4ee0eb8c9360530233341257c361fff472f903e08ec3d46b54"
+    },
+    {
+      "sku": "33260 080",
+      "name": "Therapy 33260 080",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/33260-080",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "96b5a2c53c64fc61da71dc1325eadf6dab0accd0c03257fe92602d8bb3e9b9d0"
+    },
+    {
+      "sku": "33260 095",
+      "name": "Therapy 33260 095",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/33260-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "5e2af092b2bb235635e2473d6562f029f52d14ba8a4e42bc02de6a072c956bd8"
+    },
+    {
+      "sku": "33261 030",
+      "name": "Therapy 33261 030",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/33261-030",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "d3a622f2814ad9fde54849cd6c7be9baa013434136fe46840aa90e0395246bab"
+    },
+    {
+      "sku": "34665 080",
+      "name": "Therapy 34665 080",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/34665-080",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "18d850108b4a62390e01ba6cfdb599cdd66757d6555631df9fa38c8d7f4ad3cd"
+    },
+    {
+      "sku": "34665 096",
+      "name": "Therapy 34665 096",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/34665-096",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "637044c86f0116cbed04169095cade364ecc5e2a00d5b90b9ce95e52ec7deac7"
+    },
+    {
+      "sku": "36124 060",
+      "name": "Therapy 36124 060",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/36124-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "7e239a6f2979d846ed539c1fa5927388c02187cf5232d6e746be9a5a006dff97"
+    },
+    {
+      "sku": "36125 096",
+      "name": "Therapy 36125 096",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/36125-096",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "80b4bdb5dffcceabd597deceaca4cc094bff8492d4877668d92046789d5ae257"
+    },
+    {
+      "sku": "36126 060",
+      "name": "Therapy 36126 060",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/36126-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "e706c75d4a191e7348a57b6a95d55a2481726b3c656db7fb0d86ef72d6708cc9"
+    },
+    {
+      "sku": "36128 090",
+      "name": "Therapy 36128 090",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/36128-090",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "372811e773df432b3df09cc98da858a8050bf35b68be2638abbc65a6c9053aad"
+    },
+    {
+      "sku": "36130 091",
+      "name": "Therapy 36130 091",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/36130-091",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "2da66b659e958295642f71b57c6b094c89a8fc3d8202bee281cbe70a8354b5ee"
+    },
+    {
+      "sku": "65287 060",
+      "name": "Therapy 65287 060",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/65287-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "0cf47ed030864b03c0bfb45f1c62393c094100902157c0e0bbfa778457a2a93f"
+    },
+    {
+      "sku": "65288 060",
+      "name": "Therapy 65288 060",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/65288-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "82fef7842eec5a3d0199aedcd8dc8d32929f001a2838599d323f058c56e000fd"
+    },
+    {
+      "sku": "65291 060",
+      "name": "Therapy 65291 060",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/65291-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "470d1080080dfd127ef50f681df1e961a1dc0e9360745736ef70024a58cb0a2f"
+    },
+    {
+      "sku": "79541 095",
+      "name": "Therapy 79541 095",
+      "collection": "Therapy",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/79541-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "4254995baf2511f172db329e857cdf32b11abf61fe456a9c240f59c2db954704"
+    },
+    {
+      "sku": "19770 071",
+      "name": "Rodin 19770 071",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/19770-071",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "25e9d29d600847503f0b07f655a2de90c1fbcafc9d7b05cbcc92de0d98362ffd"
+    },
+    {
+      "sku": "19770 095",
+      "name": "Rodin 19770 095",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/19770-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "1e78577573b9cf5b5095820a4bc803a70136b960ac4c5e390a8df72508e949d2"
+    },
+    {
+      "sku": "19772 095",
+      "name": "Rodin 19772 095",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/19772-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "9ec26af8d735a03cb8c648a6dfadf6eb74dc11fd0f533258384e7cc4f9264717"
+    },
+    {
+      "sku": "19774 096",
+      "name": "Rodin 19774 096",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/19774-096",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "49253fa53c49d912eaf39fe6d83422411b8fc6db7cf530108575ec7f91a9fa13"
+    },
+    {
+      "sku": "19777 095",
+      "name": "Rodin 19777 095",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/19777-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "92bd1073a2cf9df898b97a96679726bb0bc831fbed9395d19e38958b6885ee9f"
+    },
+    {
+      "sku": "34672 093",
+      "name": "Rodin 34672 093",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/34672-093",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "224ae8e8e79a54294138a6cc1d2ef7b592f5ef2cd095d7bf49538a3c47f8d9ff"
+    },
+    {
+      "sku": "34673 090",
+      "name": "Rodin 34673 090",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/34673-090",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "09776f7077ae839f6aeec17b9cdf6ad1b95442ccfaba8336005051fba3c6fecc"
+    },
+    {
+      "sku": "34675 090",
+      "name": "Rodin 34675 090",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/34675-090",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "2196dd03ed7848c2a3dc5fcdf93c7b82eeb9f14e8a801175baba875f42585101"
+    },
+    {
+      "sku": "34712 090",
+      "name": "Rodin 34712 090",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/34712-090",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "6cd03dbea124cfdc5f191072b0aa5c41190023451926a41e175c42889ab759fd"
+    },
+    {
+      "sku": "60893 030",
+      "name": "Rodin 60893 030",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/60893-030",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "4e7d5b7e8df592fbb50d4072aad9b260a76322b76b2b97bcc83adafe76d4fa54"
+    },
+    {
+      "sku": "60893 071",
+      "name": "Rodin 60893 071",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/60893-071",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "edb5965a6a075c1e820cbf281107a8a8aa673224f63abf56d462b5fd582d3775"
+    },
+    {
+      "sku": "60893 095",
+      "name": "Rodin 60893 095",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/60893-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "3f207667c26c3bc3a5efdd80b664aa98448cc587ad9cd913a2d7b4db2485c4f7"
+    },
+    {
+      "sku": "60894 060",
+      "name": "Rodin 60894 060",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/60894-060",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "7e21aa947f4567132f971d5fdab793d1b30b5745d3bb1fa3cb06b347a24c9f35"
+    },
+    {
+      "sku": "60894 070",
+      "name": "Rodin 60894 070",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/60894-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "3521208dd7d5a75a1ea407670a460d8f067faf395c45f8243c76c5abff0d6043"
+    },
+    {
+      "sku": "60894 075",
+      "name": "Rodin 60894 075",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/60894-075",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "6f46549760316a1f21311fa6e7d8d83a18b03a210a1eff08966ea7f0ff629f02"
+    },
+    {
+      "sku": "60894 096",
+      "name": "Rodin 60894 096",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/60894-096",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "8f1f889116cfb10e262981fda785fdad18cd2c1befb9e9ac9a8b568ca7c87f64"
+    },
+    {
+      "sku": "60895 070",
+      "name": "Rodin 60895 070",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/60895-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "730502841d55c4507c80137121066ca2a3e72f88fe0dd7d73cf9db37f7331b0d"
+    },
+    {
+      "sku": "60895 097",
+      "name": "Rodin 60895 097",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/60895-097",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "b6a708ef6ea79e2c13542a88f32f5bed177e6e029c3ab86d25fb76a7435b6971"
+    },
+    {
+      "sku": "60896 070",
+      "name": "Rodin 60896 070",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/60896-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "70f3febeefef83213e36ce083cd923390c59276a5efe28499801f3a44f65e5c9"
+    },
+    {
+      "sku": "60896 095",
+      "name": "Rodin 60896 095",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/60896-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "d7591bdd83146fec8360532862db49f58d24c65af1a35af8c3e807b8227a6c87"
+    },
+    {
+      "sku": "60900 030",
+      "name": "Rodin 60900 030",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/60900-030",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "3e4c8fad8264295265d13447f47a01569fe07fa5ecb556ea7d627ef25ab0d62d"
+    },
+    {
+      "sku": "60900 070",
+      "name": "Rodin 60900 070",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/60900-070",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "e9594a23ab6b358682f46e488d8fdd8c99ea112141e81c2908020fea4b39c4fa"
+    },
+    {
+      "sku": "60900 095",
+      "name": "Rodin 60900 095",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/60900-095",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "c34054e7d206b6d0c6e3c86010fffdbec804143a696fa3fbed3e1c3639c2c889"
+    },
+    {
+      "sku": "77772 071",
+      "name": "Rodin 77772 071",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/77772-071",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "100x200",
+        "100x300",
+        "125x200",
+        "160x230",
+        "180x250",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "7da3ce50e9130401590d15a9a30a62401b8b3b35bd5f388cf4145990a55c3ca4"
+    },
+    {
+      "sku": "37406 061",
+      "name": "Recycle 37406 061",
+      "collection": "Recycle",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/37406-061",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "567c1783f747089bdc1f1fa6f75aa2ca811a5130008bc5d4d1f175da3f841072"
+    },
+    {
+      "sku": "37406 071",
+      "name": "Recycle 37406 071",
+      "collection": "Recycle",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/37406-071",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "7916da46110ff1e082e1ec02e2c0dec51ebfa8c60a838a111dc6b97822064c24"
+    },
+    {
+      "sku": "37406 091",
+      "name": "Recycle 37406 091",
+      "collection": "Recycle",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/37406-091",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "2df397424c6f9850d270dde2747dc7eb10b09a7769e3ad638e47828ab4b005eb"
+    },
+    {
+      "sku": "37406 096",
+      "name": "Recycle 37406 096",
+      "collection": "Recycle",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/37406-096",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "0d26214e5e877893780beedddc1c46cdda10505190f36374f4441ebe52cf56a3"
+    },
+    {
+      "sku": "37804 061",
+      "name": "Recycle 37804 061",
+      "collection": "Recycle",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/37804-061",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "7d60da024d7a39a1533a627f12f8cfe2e09b15183c7d52243957e5532a2f31d3"
+    },
+    {
+      "sku": "37804 071",
+      "name": "Recycle 37804 071",
+      "collection": "Recycle",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/37804-071",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "e7da43ff56bcc7d55c2f54ebf17ca5eab118772e3f7902a3f375f8cf44c556da"
+    },
+    {
+      "sku": "37804 091",
+      "name": "Recycle 37804 091",
+      "collection": "Recycle",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/37804-091",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "74875dc357ad5262c04053bbfecfad3c264f47c456013d1f6c82ebc78ab1d033"
+    },
+    {
+      "sku": "37804 096",
+      "name": "Recycle 37804 096",
+      "collection": "Recycle",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/37804-096",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "04f845bba563a75445d1590c71e702246a546d4b07f8d35a0e115112b5563029"
+    },
+    {
+      "sku": "38422 061",
+      "name": "Recycle 38422 061",
+      "collection": "Recycle",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/38422-061",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "80bb4d14e95f1443f2ce397b775e35b3cce3db5ff177e3f59c484d61e67383de"
+    },
+    {
+      "sku": "38422 071",
+      "name": "Recycle 38422 071",
+      "collection": "Recycle",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/38422-071",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "75fcaf1f0f2a4352b376a76ac172601b2462ec2a3dff8969f4ddbaa421b1e862"
+    },
+    {
+      "sku": "38422 091",
+      "name": "Recycle 38422 091",
+      "collection": "Recycle",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/38422-091",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "15fba90067ec4df8ee98348016080c62cecce6c4025a2dbd116ec035c655aeb6"
+    },
+    {
+      "sku": "38422 096",
+      "name": "Recycle 38422 096",
+      "collection": "Recycle",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/38422-096",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "e4c5ff72ce88c2620c495457f328c170d747cc01ff6461dc02d19c3d4cf48dde"
+    },
+    {
+      "sku": "38433 665",
+      "name": "Recycle 38433 665",
+      "collection": "Recycle",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/38433-665",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "2e971b350e830def7ff48b4634e58d4dcc70c3324b359ce0992d31f87c8af9ea"
+    },
+    {
+      "sku": "38446 061",
+      "name": "Recycle 38446 061",
+      "collection": "Recycle",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/38446-061",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "5e375e6faa9841c278c9ba4dd4e995d0ffcf022fa16a068750c42f9eba9767f7"
+    },
+    {
+      "sku": "38446 071",
+      "name": "Recycle 38446 071",
+      "collection": "Recycle",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/38446-071",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "9e02825dd5ee87be9d385254fae7fc58ded9619efa29bbbb784bd5f7684dc081"
+    },
+    {
+      "sku": "38446 091",
+      "name": "Recycle 38446 091",
+      "collection": "Recycle",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/38446-091",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "f5e72cfd0f200f89e309d1672b8bb86ed4c5a3991eb997553686e7b7e6a54378"
+    },
+    {
+      "sku": "38446 096",
+      "name": "Recycle 38446 096",
+      "collection": "Recycle",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/38446-096",
+      "available_sizes": [
+        "80x150",
+        "80x300",
+        "120x180",
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "ade7ff4dc410d432777f089c579a9da5e2ddcb069986b30142645eb546b818cb"
+    },
+    {
+      "sku": "91001 020",
+      "name": "Valeria 91001 020",
+      "collection": "Valeria",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/91001-020",
+      "available_sizes": [
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "0dc9fc5ffe71f7c06f0d685925bacb3517f9af931f3b32baf56f8082ad13ac22"
+    },
+    {
+      "sku": "91001 060",
+      "name": "Valeria 91001 060",
+      "collection": "Valeria",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/91001-060",
+      "available_sizes": [
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "82c564099c827a443c0e13a2dcdefec82400b24f8618168c5aba8d57c075afbd"
+    },
+    {
+      "sku": "91003 040",
+      "name": "Valeria 91003 040",
+      "collection": "Valeria",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/91003-040",
+      "available_sizes": [
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "7d27f36af579912c4b7a560fa34c6a169f788630adb069c757478b1387903ae3"
+    },
+    {
+      "sku": "91003 060",
+      "name": "Valeria 91003 060",
+      "collection": "Valeria",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/91003-060",
+      "available_sizes": [
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "f418a3ba33e8f557f18a243274f3de37db051d834eded41958f842e20d97f024"
+    },
+    {
+      "sku": "91008 060",
+      "name": "Valeria 91008 060",
+      "collection": "Valeria",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/91008-060",
+      "available_sizes": [
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "33fd9b3d6ac7108af3089afc09fe30991137ce6b692ebb8844285d70d6da101f"
+    },
+    {
+      "sku": "91010 110",
+      "name": "Valeria 91010 110",
+      "collection": "Valeria",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/91010-110",
+      "available_sizes": [
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "c9c25aecaa49db6d81ac7c1a38f86b33796afb64785b6f2a1597079496cfc601"
+    },
+    {
+      "sku": "91047 110",
+      "name": "Valeria 91047 110",
+      "collection": "Valeria",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/91047-110",
+      "available_sizes": [
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "c9b1af9e92f2e6f1aa584b9dfab653b8efe56d440e9809911684996ad2979946"
+    },
+    {
+      "sku": "91062 060",
+      "name": "Valeria 91062 060",
+      "collection": "Valeria",
+      "manufacturer": "Merinos",
+      "source_url": "https://www.merinos.com.tr/91062-060",
+      "available_sizes": [
+        "160x230",
+        "200x290"
+      ],
+      "primary_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "source_hash": "e4c1247c08669c59ee9986946d32759064e90cc6f28bdb6781b8e800ae291068"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "retrieved_at": "2026-08-15T21:26:15.308842+00:00",
+  "collection_count": 15,
+  "discovered_product_links": 234,
+  "unique_sku_count": 232,
+  "duplicate_sku_count": 2,
+  "invalid_sku_count": 0,
+  "sku_conflicts_count": 0,
+  "products_ready_for_import": 232,
+  "products_blocked": 0,
+  "dimension_contract_status": "DIMENSIONS_OPTIONAL_NULL_STORED"
+}
