@@ -15,7 +15,10 @@ from app.domain.preferences.schemas import (
     VisualPresentationRead,
     VisualResponseCreate,
     VisualResponseRead,
-    VisualPreferenceProfileRead
+    VisualPreferenceProfileRead,
+    DimensionOverrideRequest,
+    UserPreferenceProfileResponse,
+    PreferenceConfidenceProfileResponse
 )
 from app.domain.preferences.exceptions import (
     AssessmentNotFoundError,
@@ -26,7 +29,13 @@ from app.domain.preferences.exceptions import (
     VisualPreferencesIncompleteError,
     VisualPreferencesAlreadyCompletedError,
     InvalidStimulusKeyError,
-    VisualProfileNotFoundError
+    VisualProfileNotFoundError,
+    MultimodalProfileRequiresVisualCompleteError,
+    PreferenceProfileNotFoundError,
+    PreferenceConfidenceProfileNotFoundError,
+    PreferenceDimensionNotFoundError,
+    PreferenceValueError,
+    PreferenceProfileAlreadyReviewedError
 )
 
 router = APIRouter(prefix="", tags=["Preference Assessments"])
@@ -324,6 +333,146 @@ async def get_visual_profile(
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail={"code": "VISUAL_PROFILE_NOT_FOUND", "message": str(exc)}
+        ) from exc
+
+# ---------------------------------------------------------
+# MULTIMODAL PREFERENCE PROFILE ENDPOINTS (GÖREV 06)
+# ---------------------------------------------------------
+
+@router.post(
+    "/preference-assessments/{assessment_id}/build-profile",
+    response_model=UserPreferenceProfileResponse,
+    status_code=status.HTTP_200_OK,
+    summary="Build multimodal 9D User Preference Profile and Confidence Profile"
+)
+async def build_multimodal_profile(
+    assessment_id: uuid.UUID,
+    service: PreferenceAssessmentService = Depends(get_service)
+):
+    try:
+        return await service.build_multimodal_profile(assessment_id)
+    except AssessmentNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "ASSESSMENT_NOT_FOUND", "message": str(exc)}
+        ) from exc
+    except MultimodalProfileRequiresVisualCompleteError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail={"code": "MULTIMODAL_PROFILE_REQUIRES_VISUAL_COMPLETE", "message": str(exc)}
+        ) from exc
+
+@router.get(
+    "/preference-assessments/{assessment_id}/preference-profile",
+    response_model=UserPreferenceProfileResponse,
+    status_code=status.HTTP_200_OK,
+    summary="Get calculated User Preference Profile"
+)
+async def get_user_preference_profile(
+    assessment_id: uuid.UUID,
+    service: PreferenceAssessmentService = Depends(get_service)
+):
+    try:
+        return await service.get_user_preference_profile(assessment_id)
+    except AssessmentNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "ASSESSMENT_NOT_FOUND", "message": str(exc)}
+        ) from exc
+    except PreferenceProfileNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "PREFERENCE_PROFILE_NOT_FOUND", "message": str(exc)}
+        ) from exc
+
+@router.get(
+    "/preference-assessments/{assessment_id}/confidence-profile",
+    response_model=PreferenceConfidenceProfileResponse,
+    status_code=status.HTTP_200_OK,
+    summary="Get calculated Preference Confidence Profile"
+)
+async def get_confidence_profile(
+    assessment_id: uuid.UUID,
+    service: PreferenceAssessmentService = Depends(get_service)
+):
+    try:
+        return await service.get_confidence_profile(assessment_id)
+    except AssessmentNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "ASSESSMENT_NOT_FOUND", "message": str(exc)}
+        ) from exc
+    except PreferenceConfidenceProfileNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "PREFERENCE_CONFIDENCE_PROFILE_NOT_FOUND", "message": str(exc)}
+        ) from exc
+
+@router.put(
+    "/preference-assessments/{assessment_id}/preference-profile/dimensions/{dimension_key}",
+    response_model=UserPreferenceProfileResponse,
+    status_code=status.HTTP_200_OK,
+    summary="User override of a single preference dimension value"
+)
+async def override_preference_dimension(
+    assessment_id: uuid.UUID,
+    dimension_key: str,
+    payload: DimensionOverrideRequest,
+    service: PreferenceAssessmentService = Depends(get_service)
+):
+    try:
+        return await service.override_user_preference_dimension(
+            assessment_id=assessment_id,
+            dimension_key=dimension_key,
+            value=payload.value
+        )
+    except AssessmentNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "ASSESSMENT_NOT_FOUND", "message": str(exc)}
+        ) from exc
+    except PreferenceProfileNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "PREFERENCE_PROFILE_NOT_FOUND", "message": str(exc)}
+        ) from exc
+    except PreferenceDimensionNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "PREFERENCE_DIMENSION_NOT_FOUND", "message": str(exc)}
+        ) from exc
+    except PreferenceValueError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail={"code": "PREFERENCE_VALUE_OUT_OF_RANGE", "message": str(exc)}
+        ) from exc
+    except PreferenceProfileAlreadyReviewedError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail={"code": "PREFERENCE_PROFILE_ALREADY_REVIEWED", "message": str(exc)}
+        ) from exc
+
+@router.post(
+    "/preference-assessments/{assessment_id}/confirm-profile",
+    response_model=UserPreferenceProfileResponse,
+    status_code=status.HTTP_200_OK,
+    summary="Confirm preference profile review"
+)
+async def confirm_user_preference_profile(
+    assessment_id: uuid.UUID,
+    service: PreferenceAssessmentService = Depends(get_service)
+):
+    try:
+        return await service.confirm_user_preference_profile(assessment_id)
+    except AssessmentNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "ASSESSMENT_NOT_FOUND", "message": str(exc)}
+        ) from exc
+    except PreferenceProfileNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "PREFERENCE_PROFILE_NOT_FOUND", "message": str(exc)}
         ) from exc
 
 # ---------------------------------------------------------

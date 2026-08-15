@@ -5,6 +5,9 @@ TEXT_PREFERENCE_EVIDENCE_VERSION = "text-preference-evidence-v1"
 VISUAL_PREFERENCE_STIMULI_VERSION = "visual-preference-stimuli-v1"
 VISUAL_PREFERENCE_EVIDENCE_VERSION = "visual-preference-evidence-v1"
 
+MULTIMODAL_PREFERENCE_VERSION = "multimodal-preference-v1"
+PREFERENCE_CONFIDENCE_VERSION = "preference-confidence-v1"
+
 # 6 Text Questions definition
 CANONICAL_TEXT_QUESTIONS: List[Dict[str, Any]] = [
     {

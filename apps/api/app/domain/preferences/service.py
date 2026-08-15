@@ -41,7 +41,26 @@ from app.domain.preferences.exceptions import (
     VisualPreferencesIncompleteError,
     VisualPreferencesAlreadyCompletedError,
     InvalidStimulusKeyError,
-    VisualProfileNotFoundError
+    VisualProfileNotFoundError,
+    MultimodalProfileRequiresVisualCompleteError,
+    PreferenceProfileNotFoundError,
+    PreferenceConfidenceProfileNotFoundError,
+    PreferenceDimensionNotFoundError,
+    PreferenceValueError,
+    PreferenceProfileAlreadyReviewedError
+)
+from app.db.models.preference_assessment import (
+    UserProfileStatusEnum,
+    UserPreferenceProvenanceEnum,
+    ConfidenceStatusEnum
+)
+from app.domain.preferences.constants import (
+    MULTIMODAL_PREFERENCE_VERSION,
+    PREFERENCE_CONFIDENCE_VERSION
+)
+from app.domain.preferences.aggregator import (
+    MultimodalPreferenceAggregator,
+    PreferenceConfidenceCalculator
 )
 
 VALID_QUESTION_KEYS = {q["question_key"] for q in CANONICAL_TEXT_QUESTIONS}
@@ -285,3 +304,100 @@ class PreferenceAssessmentService:
         if not profile:
             raise VisualProfileNotFoundError(assessment_id)
         return profile
+
+    # ---------------------------------------------------------
+    # MULTIMODAL PREFERENCE SERVICE METHODS (GÖREV 06)
+    # ---------------------------------------------------------
+
+    async def build_multimodal_profile(
+        self,
+        assessment_id: uuid.UUID
+    ) -> UserPreferenceProfileModel:
+        assessment = await self.get_assessment(assessment_id)
+
+        if assessment.status not in (AssessmentStatus.VISUAL_COMPLETE, AssessmentStatus.PROFILE_READY, AssessmentStatus.PROFILE_REVIEWED):
+            raise MultimodalProfileRequiresVisualCompleteError(assessment_id, assessment.status.value if hasattr(assessment.status, 'value') else str(assessment.status))
+
+        # Check existing profiles for idempotency
+        existing_user_profile = await self.repo.get_user_preference_profile_by_assessment_id(assessment_id)
+        existing_conf_profile = await self.repo.get_confidence_profile_by_assessment_id(assessment_id)
+        if existing_user_profile and existing_conf_profile:
+            return existing_user_profile
+
+        text_profile = await self.get_text_profile(assessment_id)
+        visual_profile = await self.get_visual_profile(assessment_id)
+
+        text_dims = {d.dimension_key: {"value": d.value, "status": d.status, "evidence_weight": d.evidence_weight} for d in text_profile.dimensions}
+        visual_dims = {d.dimension_key: {"value": d.value, "status": d.status, "evidence_weight": d.evidence_weight} for d in visual_profile.dimensions}
+
+        user_dims_data = MultimodalPreferenceAggregator.aggregate(text_dims, visual_dims)
+        conf_dims_data = PreferenceConfidenceCalculator.calculate(text_dims, visual_dims)
+
+        user_profile = await self.repo.create_user_preference_profile(
+            assessment_id=assessment_id,
+            profile_version=MULTIMODAL_PREFERENCE_VERSION,
+            dimensions=user_dims_data
+        )
+
+        await self.repo.create_confidence_profile(
+            assessment_id=assessment_id,
+            preference_profile_id=user_profile.id,
+            confidence_version=PREFERENCE_CONFIDENCE_VERSION,
+            dimensions=conf_dims_data
+        )
+
+        if assessment.status == AssessmentStatus.VISUAL_COMPLETE:
+            await self.repo.update_assessment_status(assessment_id, status=AssessmentStatus.PROFILE_READY)
+
+        return user_profile
+
+    async def get_user_preference_profile(
+        self,
+        assessment_id: uuid.UUID
+    ) -> UserPreferenceProfileModel:
+        await self.get_assessment(assessment_id)
+        profile = await self.repo.get_user_preference_profile_by_assessment_id(assessment_id)
+        if not profile:
+            raise PreferenceProfileNotFoundError(assessment_id)
+        return profile
+
+    async def get_confidence_profile(
+        self,
+        assessment_id: uuid.UUID
+    ) -> PreferenceConfidenceProfileModel:
+        await self.get_assessment(assessment_id)
+        conf_profile = await self.repo.get_confidence_profile_by_assessment_id(assessment_id)
+        if not conf_profile:
+            raise PreferenceConfidenceProfileNotFoundError(assessment_id)
+        return conf_profile
+
+    async def override_user_preference_dimension(
+        self,
+        assessment_id: uuid.UUID,
+        dimension_key: str,
+        value: float
+    ) -> UserPreferenceProfileModel:
+        if not (0.0 <= value <= 1.0):
+            raise PreferenceValueError(value)
+
+        profile = await self.get_user_preference_profile(assessment_id)
+        if profile.status == UserProfileStatusEnum.REVIEWED:
+            raise PreferenceProfileAlreadyReviewedError(assessment_id)
+
+        await self.repo.override_user_preference_dimension(
+            profile_id=profile.id,
+            dimension_key=dimension_key,
+            new_value=value
+        )
+        return await self.get_user_preference_profile(assessment_id)
+
+    async def confirm_user_preference_profile(
+        self,
+        assessment_id: uuid.UUID
+    ) -> UserPreferenceProfileModel:
+        # Idempotency check: if already confirmed/reviewed, return cleanly
+        profile = await self.get_user_preference_profile(assessment_id)
+        if profile.status == UserProfileStatusEnum.REVIEWED:
+            return profile
+
+        return await self.repo.confirm_user_preference_profile(assessment_id)

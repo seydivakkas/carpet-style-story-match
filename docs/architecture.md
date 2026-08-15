@@ -46,3 +46,17 @@ carpet-style-story-match/
 2. **Explicit Contracts**: All contracts are frozen and validated via unit tests.
 3. **CPU-First Execution**: Core operations run without hardware dependencies. No hard requirement on GPUs or external proprietary LLMs.
 4. **Honest Capabilities**: No fake scores, placeholder recommendation algorithms, or mock ratings are exposed in production endpoints.
+
+## Multimodal Preference Pipeline
+
+```text
+TextPreferenceProfile (6 Text Cards)
+          \
+           ──> UserPreferenceProfile (9D D1..D9) <── User Override / Review Confirmation
+          /            │
+VisualPreferenceProfile \──> PreferenceConfidenceProfile (9D C1..C9)
+(6 Visual Stimuli)
+```
+
+- **Separation**: Preference values ($D_1 \dots D_9$) $\ne$ Confidence metrics ($C_1 \dots C_9$).
+- **Lifecycle**: `TEXT_PENDING` $\to$ `TEXT_COMPLETE` $\to$ `VISUAL_PENDING` $\to$ `VISUAL_COMPLETE` $\to$ `PROFILE_READY` $\to$ `PROFILE_REVIEWED`.

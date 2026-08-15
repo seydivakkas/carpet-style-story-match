@@ -13,9 +13,16 @@ from app.db.models.preference_assessment import (
     VisualPreferenceResponseModel,
     VisualPreferenceProfileModel,
     VisualPreferenceDimensionModel,
+    UserPreferenceProfileModel,
+    UserPreferenceDimensionModel,
+    PreferenceConfidenceProfileModel,
+    PreferenceConfidenceDimensionModel,
     AssessmentStatus,
     TextChoiceEnum,
-    VisualChoiceEnum
+    VisualChoiceEnum,
+    UserProfileStatusEnum,
+    UserPreferenceProvenanceEnum,
+    ConfidenceStatusEnum
 )
 
 class PreferenceAssessmentRepository:
@@ -44,6 +51,8 @@ class PreferenceAssessmentRepository:
                 selectinload(PreferenceAssessmentModel.visual_presentations),
                 selectinload(PreferenceAssessmentModel.visual_responses),
                 selectinload(PreferenceAssessmentModel.visual_profile).selectinload(VisualPreferenceProfileModel.dimensions),
+                selectinload(PreferenceAssessmentModel.user_preference_profile).selectinload(UserPreferenceProfileModel.dimensions),
+                selectinload(PreferenceAssessmentModel.confidence_profile).selectinload(PreferenceConfidenceProfileModel.dimensions),
             )
             .where(PreferenceAssessmentModel.id == assessment_id)
         )
@@ -298,3 +307,172 @@ class PreferenceAssessmentRepository:
         )
         result = await self.session.execute(stmt)
         return result.scalar_one_or_none()
+
+    # ---------------------------------------------------------
+    # MULTIMODAL PREFERENCE REPOSITORY METHODS (GÖREV 06)
+    # ---------------------------------------------------------
+
+    async def create_user_preference_profile(
+        self,
+        assessment_id: uuid.UUID,
+        profile_version: str,
+        dimensions: List[Dict[str, Any]]
+    ) -> UserPreferenceProfileModel:
+        stmt = select(UserPreferenceProfileModel).where(
+            UserPreferenceProfileModel.assessment_id == assessment_id,
+            UserPreferenceProfileModel.profile_version == profile_version
+        ).options(selectinload(UserPreferenceProfileModel.dimensions))
+        result = await self.session.execute(stmt)
+        existing = result.scalar_one_or_none()
+
+        if existing:
+            return existing
+
+        profile = UserPreferenceProfileModel(
+            assessment_id=assessment_id,
+            profile_version=profile_version,
+            status=UserProfileStatusEnum.DRAFT
+        )
+        self.session.add(profile)
+        await self.session.flush()
+
+        for d in dimensions:
+            dim = UserPreferenceDimensionModel(
+                profile_id=profile.id,
+                dimension_key=d["dimension_key"],
+                inferred_value=d["inferred_value"],
+                final_value=d["final_value"],
+                status=d["status"],
+                provenance=d.get("provenance", UserPreferenceProvenanceEnum.INFERRED),
+                text_value=d.get("text_value"),
+                text_evidence_weight=d.get("text_evidence_weight", 0.0),
+                visual_value=d.get("visual_value"),
+                visual_evidence_weight=d.get("visual_evidence_weight", 0.0)
+            )
+            self.session.add(dim)
+
+        await self.session.commit()
+        await self.session.refresh(profile, attribute_names=["dimensions"])
+        return profile
+
+    async def create_confidence_profile(
+        self,
+        assessment_id: uuid.UUID,
+        preference_profile_id: uuid.UUID,
+        confidence_version: str,
+        dimensions: List[Dict[str, Any]]
+    ) -> PreferenceConfidenceProfileModel:
+        stmt = select(PreferenceConfidenceProfileModel).where(
+            PreferenceConfidenceProfileModel.preference_profile_id == preference_profile_id,
+            PreferenceConfidenceProfileModel.confidence_version == confidence_version
+        ).options(selectinload(PreferenceConfidenceProfileModel.dimensions))
+        result = await self.session.execute(stmt)
+        existing = result.scalar_one_or_none()
+
+        if existing:
+            return existing
+
+        conf_profile = PreferenceConfidenceProfileModel(
+            assessment_id=assessment_id,
+            preference_profile_id=preference_profile_id,
+            confidence_version=confidence_version
+        )
+        self.session.add(conf_profile)
+        await self.session.flush()
+
+        for d in dimensions:
+            dim = PreferenceConfidenceDimensionModel(
+                confidence_profile_id=conf_profile.id,
+                dimension_key=d["dimension_key"],
+                confidence=d["confidence"],
+                status=d["status"],
+                modality_count=d["modality_count"],
+                agreement=d["agreement"],
+                source_coverage=d["source_coverage"],
+                evidence_json=d.get("evidence_json")
+            )
+            self.session.add(dim)
+
+        await self.session.commit()
+        await self.session.refresh(conf_profile, attribute_names=["dimensions"])
+        return conf_profile
+
+    async def get_user_preference_profile_by_assessment_id(
+        self,
+        assessment_id: uuid.UUID
+    ) -> Optional[UserPreferenceProfileModel]:
+        stmt = (
+            select(UserPreferenceProfileModel)
+            .options(selectinload(UserPreferenceProfileModel.dimensions))
+            .where(UserPreferenceProfileModel.assessment_id == assessment_id)
+        )
+        result = await self.session.execute(stmt)
+        return result.scalar_one_or_none()
+
+    async def get_confidence_profile_by_assessment_id(
+        self,
+        assessment_id: uuid.UUID
+    ) -> Optional[PreferenceConfidenceProfileModel]:
+        stmt = (
+            select(PreferenceConfidenceProfileModel)
+            .options(selectinload(PreferenceConfidenceProfileModel.dimensions))
+            .where(PreferenceConfidenceProfileModel.assessment_id == assessment_id)
+        )
+        result = await self.session.execute(stmt)
+        return result.scalar_one_or_none()
+
+    async def override_user_preference_dimension(
+        self,
+        profile_id: uuid.UUID,
+        dimension_key: str,
+        new_value: float
+    ) -> UserPreferenceDimensionModel:
+        stmt = select(UserPreferenceDimensionModel).where(
+            UserPreferenceDimensionModel.profile_id == profile_id,
+            UserPreferenceDimensionModel.dimension_key == dimension_key
+        )
+        result = await self.session.execute(stmt)
+        dim = result.scalar_one_or_none()
+        if not dim:
+            from app.domain.preferences.exceptions import PreferenceDimensionNotFoundError
+            raise PreferenceDimensionNotFoundError(dimension_key)
+
+        dim.final_value = new_value
+        dim.provenance = UserPreferenceProvenanceEnum.USER_OVERRIDDEN
+        await self.session.commit()
+        await self.session.refresh(dim)
+        return dim
+
+    async def confirm_user_preference_profile(
+        self,
+        assessment_id: uuid.UUID
+    ) -> UserPreferenceProfileModel:
+        stmt = (
+            select(UserPreferenceProfileModel)
+            .options(selectinload(UserPreferenceProfileModel.dimensions))
+            .where(UserPreferenceProfileModel.assessment_id == assessment_id)
+        )
+        result = await self.session.execute(stmt)
+        profile = result.scalar_one_or_none()
+
+        if not profile:
+            from app.domain.preferences.exceptions import PreferenceProfileNotFoundError
+            raise PreferenceProfileNotFoundError(assessment_id)
+
+        # Update dimensions provenance
+        for dim in profile.dimensions:
+            if dim.provenance == UserPreferenceProvenanceEnum.INFERRED:
+                dim.provenance = UserPreferenceProvenanceEnum.USER_CONFIRMED
+
+        profile.status = UserProfileStatusEnum.REVIEWED
+
+        # Update assessment status
+        assessment_stmt = select(PreferenceAssessmentModel).where(PreferenceAssessmentModel.id == assessment_id)
+        ass_result = await self.session.execute(assessment_stmt)
+        assessment = ass_result.scalar_one_or_none()
+        if assessment:
+            assessment.status = AssessmentStatus.PROFILE_REVIEWED
+
+        await self.session.commit()
+        await self.session.refresh(profile, attribute_names=["dimensions"])
+        return profile

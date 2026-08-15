@@ -71,3 +71,43 @@ class VisualProfileNotFoundError(PreferenceDomainException):
     def __init__(self, assessment_id: uuid.UUID):
         self.assessment_id = assessment_id
         super().__init__(f"Visual preference profile for assessment '{assessment_id}' was not found.")
+
+# ---------------------------------------------------------
+# MULTIMODAL PREFERENCE EXCEPTIONS (GÖREV 06)
+# ---------------------------------------------------------
+
+class MultimodalProfileRequiresVisualCompleteError(PreferenceDomainException):
+    def __init__(self, assessment_id: uuid.UUID, current_status: str):
+        self.assessment_id = assessment_id
+        self.current_status = current_status
+        super().__init__(
+            f"Cannot build multimodal profile for assessment '{assessment_id}': status is '{current_status}'. "
+            "Multimodal profile requires status 'VISUAL_COMPLETE'."
+        )
+
+class PreferenceProfileNotFoundError(PreferenceDomainException):
+    def __init__(self, assessment_id: uuid.UUID):
+        self.assessment_id = assessment_id
+        super().__init__(f"User preference profile for assessment '{assessment_id}' was not found.")
+
+class PreferenceConfidenceProfileNotFoundError(PreferenceDomainException):
+    def __init__(self, assessment_id: uuid.UUID):
+        self.assessment_id = assessment_id
+        super().__init__(f"Preference confidence profile for assessment '{assessment_id}' was not found.")
+
+class PreferenceDimensionNotFoundError(PreferenceDomainException):
+    def __init__(self, dimension_key: str):
+        self.dimension_key = dimension_key
+        super().__init__(f"Invalid preference dimension key: '{dimension_key}'. Must be one of D1...D9.")
+
+class PreferenceValueError(PreferenceDomainException):
+    def __init__(self, value: float):
+        self.value = value
+        super().__init__(f"Preference dimension value '{value}' is out of range [0.0, 1.0].")
+
+class PreferenceProfileAlreadyReviewedError(PreferenceDomainException):
+    def __init__(self, assessment_id: uuid.UUID):
+        self.assessment_id = assessment_id
+        super().__init__(
+            f"Preference profile for assessment '{assessment_id}' is already PROFILE_REVIEWED and immutable."
+        )

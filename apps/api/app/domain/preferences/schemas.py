@@ -1,12 +1,15 @@
 import uuid
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, ConfigDict, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from app.db.models.preference_assessment import (
     AssessmentStatus,
     PreferenceDimensionStatus,
     TextChoiceEnum,
-    VisualChoiceEnum
+    VisualChoiceEnum,
+    UserProfileStatusEnum,
+    UserPreferenceProvenanceEnum,
+    ConfidenceStatusEnum
 )
 from app.domain.contracts import CANONICAL_STYLE_DNA
 
@@ -136,6 +139,88 @@ class VisualPreferenceProfileRead(BaseModel):
     @classmethod
     def enforce_canonical_ordering(cls, dims: List[VisualDimensionRead]) -> List[VisualDimensionRead]:
         dim_map = {d.key: d for d in dims}
+        ordered = []
+        for key in CANONICAL_KEYS:
+            if key in dim_map:
+                ordered.append(dim_map[key])
+        return ordered
+
+    model_config = ConfigDict(from_attributes=True)
+
+# ---------------------------------------------------------
+# MULTIMODAL PREFERENCE SCHEMAS (GÖREV 06)
+# ---------------------------------------------------------
+
+class DimensionOverrideRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    value: float = Field(..., ge=0.0, le=1.0)
+
+class UserPreferenceDimensionResponse(BaseModel):
+    dimension_key: str
+    inferred_value: Optional[float]
+    final_value: Optional[float]
+    status: PreferenceDimensionStatus
+    provenance: UserPreferenceProvenanceEnum
+    text_value: Optional[float]
+    text_evidence_weight: float
+    visual_value: Optional[float]
+    visual_evidence_weight: float
+
+    @property
+    def key(self) -> str:
+        return self.dimension_key
+
+    model_config = ConfigDict(from_attributes=True)
+
+class UserPreferenceProfileResponse(BaseModel):
+    id: uuid.UUID
+    assessment_id: uuid.UUID
+    profile_version: str
+    status: UserProfileStatusEnum
+    created_at: datetime
+    updated_at: datetime
+    dimensions: List[UserPreferenceDimensionResponse]
+
+    @field_validator("dimensions", mode="after")
+    @classmethod
+    def enforce_canonical_ordering(cls, dims: List[UserPreferenceDimensionResponse]) -> List[UserPreferenceDimensionResponse]:
+        dim_map = {d.dimension_key: d for d in dims}
+        ordered = []
+        for key in CANONICAL_KEYS:
+            if key in dim_map:
+                ordered.append(dim_map[key])
+        return ordered
+
+    model_config = ConfigDict(from_attributes=True)
+
+class PreferenceConfidenceDimensionResponse(BaseModel):
+    dimension_key: str
+    confidence: Optional[float]
+    status: ConfidenceStatusEnum
+    modality_count: int
+    agreement: Optional[float]
+    source_coverage: float
+    evidence_json: Optional[str] = None
+
+    @property
+    def key(self) -> str:
+        return self.dimension_key
+
+    model_config = ConfigDict(from_attributes=True)
+
+class PreferenceConfidenceProfileResponse(BaseModel):
+    id: uuid.UUID
+    assessment_id: uuid.UUID
+    preference_profile_id: uuid.UUID
+    confidence_version: str
+    created_at: datetime
+    updated_at: datetime
+    dimensions: List[PreferenceConfidenceDimensionResponse]
+
+    @field_validator("dimensions", mode="after")
+    @classmethod
+    def enforce_canonical_ordering(cls, dims: List[PreferenceConfidenceDimensionResponse]) -> List[PreferenceConfidenceDimensionResponse]:
+        dim_map = {d.dimension_key: d for d in dims}
         ordered = []
         for key in CANONICAL_KEYS:
             if key in dim_map:
