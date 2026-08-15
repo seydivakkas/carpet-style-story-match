@@ -1,35 +1,71 @@
 from app.domain.preferences.constants import (
     TEXT_PREFERENCE_EVIDENCE_VERSION,
+    VISUAL_PREFERENCE_STIMULI_VERSION,
+    VISUAL_PREFERENCE_EVIDENCE_VERSION,
     CANONICAL_TEXT_QUESTIONS,
     TEXT_CHOICE_MAP,
-    EVIDENCE_MATRIX_WEIGHTS
+    VISUAL_CHOICE_DISPLAY_SCALE,
+    TEXT_EVIDENCE_MATRIX_WEIGHTS,
+    VISUAL_EVIDENCE_MATRIX_WEIGHTS
 )
-from app.domain.preferences.aggregator import TextPreferenceAggregator
+from app.domain.preferences.aggregator import (
+    TextPreferenceAggregator,
+    VisualPreferenceAggregator
+)
+from app.domain.preferences.visual_stimuli import (
+    STIMULI_CATALOG,
+    CANONICAL_VISUAL_CARDS,
+    ProceduralStimulusGenerator,
+    generate_and_save_all_stimuli
+)
 from app.domain.preferences.schemas import (
     TextChoiceEnum,
+    VisualChoiceEnum,
     TextQuestionRead,
     TextQuestionsListResponse,
     TextResponseCreate,
     TextResponseRead,
     TextDimensionRead,
     TextPreferenceProfileRead,
-    PreferenceAssessmentRead
+    PreferenceAssessmentRead,
+    VisualStimulusRead,
+    VisualStimuliListResponse,
+    VisualPresentationRead,
+    VisualResponseCreate,
+    VisualResponseRead,
+    VisualDimensionRead,
+    VisualPreferenceProfileRead
 )
 from app.domain.preferences.exceptions import (
     AssessmentNotFoundError,
     TextPreferencesIncompleteError,
     TextPreferencesAlreadyCompletedError,
-    InvalidQuestionKeyError
+    InvalidQuestionKeyError,
+    VisualPhaseRequiresTextCompleteError,
+    VisualPreferencesIncompleteError,
+    VisualPreferencesAlreadyCompletedError,
+    InvalidStimulusKeyError,
+    VisualProfileNotFoundError
 )
 from app.domain.preferences.service import PreferenceAssessmentService
 
 __all__ = [
     "TEXT_PREFERENCE_EVIDENCE_VERSION",
+    "VISUAL_PREFERENCE_STIMULI_VERSION",
+    "VISUAL_PREFERENCE_EVIDENCE_VERSION",
     "CANONICAL_TEXT_QUESTIONS",
     "TEXT_CHOICE_MAP",
-    "EVIDENCE_MATRIX_WEIGHTS",
+    "VISUAL_CHOICE_DISPLAY_SCALE",
+    "TEXT_EVIDENCE_MATRIX_WEIGHTS",
+    "VISUAL_EVIDENCE_MATRIX_WEIGHTS",
     "TextPreferenceAggregator",
+    "VisualPreferenceAggregator",
+    "STIMULI_CATALOG",
+    "CANONICAL_VISUAL_CARDS",
+    "ProceduralStimulusGenerator",
+    "generate_and_save_all_stimuli",
     "TextChoiceEnum",
+    "VisualChoiceEnum",
     "TextQuestionRead",
     "TextQuestionsListResponse",
     "TextResponseCreate",
@@ -37,9 +73,21 @@ __all__ = [
     "TextDimensionRead",
     "TextPreferenceProfileRead",
     "PreferenceAssessmentRead",
+    "VisualStimulusRead",
+    "VisualStimuliListResponse",
+    "VisualPresentationRead",
+    "VisualResponseCreate",
+    "VisualResponseRead",
+    "VisualDimensionRead",
+    "VisualPreferenceProfileRead",
     "AssessmentNotFoundError",
     "TextPreferencesIncompleteError",
     "TextPreferencesAlreadyCompletedError",
     "InvalidQuestionKeyError",
+    "VisualPhaseRequiresTextCompleteError",
+    "VisualPreferencesIncompleteError",
+    "VisualPreferencesAlreadyCompletedError",
+    "InvalidStimulusKeyError",
+    "VisualProfileNotFoundError",
     "PreferenceAssessmentService",
 ]

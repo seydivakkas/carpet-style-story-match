@@ -1,6 +1,8 @@
 import uuid
+import os
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.responses import FileResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.session import get_db
@@ -9,22 +11,46 @@ from app.domain.preferences.schemas import (
     PreferenceAssessmentRead,
     TextResponseCreate,
     TextResponseRead,
-    TextPreferenceProfileRead
+    TextPreferenceProfileRead,
+    VisualPresentationRead,
+    VisualResponseCreate,
+    VisualResponseRead,
+    VisualPreferenceProfileRead
 )
 from app.domain.preferences.exceptions import (
     AssessmentNotFoundError,
     TextPreferencesIncompleteError,
     TextPreferencesAlreadyCompletedError,
-    InvalidQuestionKeyError
+    InvalidQuestionKeyError,
+    VisualPhaseRequiresTextCompleteError,
+    VisualPreferencesIncompleteError,
+    VisualPreferencesAlreadyCompletedError,
+    InvalidStimulusKeyError,
+    VisualProfileNotFoundError
 )
 
-router = APIRouter(prefix="/preference-assessments", tags=["Preference Assessments"])
+router = APIRouter(prefix="", tags=["Preference Assessments"])
 
 def get_service(db: AsyncSession = Depends(get_db)) -> PreferenceAssessmentService:
     return PreferenceAssessmentService(db)
 
+def build_presentation_read(p) -> VisualPresentationRead:
+    left_url = f"/api/v1/preference-stimuli/{p.stimulus_version}/{p.stimulus_key.lower()}_{p.left_variant.lower()}.svg"
+    right_url = f"/api/v1/preference-stimuli/{p.stimulus_version}/{p.stimulus_key.lower()}_{p.right_variant.lower()}.svg"
+    return VisualPresentationRead(
+        id=p.id,
+        assessment_id=p.assessment_id,
+        stimulus_key=p.stimulus_key,
+        left_asset_url=left_url,
+        right_asset_url=right_url
+    )
+
+# ---------------------------------------------------------
+# TEXT PREFERENCE ASSESSMENT ENDPOINTS
+# ---------------------------------------------------------
+
 @router.post(
-    "",
+    "/preference-assessments",
     response_model=PreferenceAssessmentRead,
     status_code=status.HTTP_201_CREATED,
     summary="Create a new anonymous Preference Assessment"
@@ -33,7 +59,7 @@ async def create_assessment(service: PreferenceAssessmentService = Depends(get_s
     return await service.create_assessment()
 
 @router.get(
-    "/{assessment_id}",
+    "/preference-assessments/{assessment_id}",
     response_model=PreferenceAssessmentRead,
     status_code=status.HTTP_200_OK,
     summary="Get Preference Assessment status"
@@ -51,7 +77,7 @@ async def get_assessment(
         ) from exc
 
 @router.put(
-    "/{assessment_id}/text-responses/{question_key}",
+    "/preference-assessments/{assessment_id}/text-responses/{question_key}",
     response_model=TextResponseRead,
     status_code=status.HTTP_200_OK,
     summary="Upsert user choice for a text preference question"
@@ -81,7 +107,7 @@ async def save_text_response(
         ) from exc
 
 @router.get(
-    "/{assessment_id}/text-responses",
+    "/preference-assessments/{assessment_id}/text-responses",
     response_model=List[TextResponseRead],
     status_code=status.HTTP_200_OK,
     summary="Get answered text preference responses"
@@ -99,7 +125,7 @@ async def get_text_responses(
         ) from exc
 
 @router.post(
-    "/{assessment_id}/complete-text",
+    "/preference-assessments/{assessment_id}/complete-text",
     response_model=TextPreferenceProfileRead,
     status_code=status.HTTP_200_OK,
     summary="Complete text preference assessment and generate Text Preference Profile"
@@ -127,7 +153,7 @@ async def complete_text_assessment(
         ) from exc
 
 @router.get(
-    "/{assessment_id}/text-profile",
+    "/preference-assessments/{assessment_id}/text-profile",
     response_model=TextPreferenceProfileRead,
     status_code=status.HTTP_200_OK,
     summary="Get calculated Text Preference Profile"
@@ -153,3 +179,175 @@ async def get_text_profile(
                 "missing_keys": exc.missing_keys
             }
         ) from exc
+
+# ---------------------------------------------------------
+# VISUAL PREFERENCE ASSESSMENT ENDPOINTS (GÖREV 05)
+# ---------------------------------------------------------
+
+@router.post(
+    "/preference-assessments/{assessment_id}/start-visual",
+    response_model=List[VisualPresentationRead],
+    status_code=status.HTTP_200_OK,
+    summary="Start visual preference phase and generate side-randomized presentations"
+)
+async def start_visual_phase(
+    assessment_id: uuid.UUID,
+    service: PreferenceAssessmentService = Depends(get_service)
+):
+    try:
+        presentations = await service.start_visual_phase(assessment_id)
+        return [build_presentation_read(p) for p in presentations]
+    except AssessmentNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "ASSESSMENT_NOT_FOUND", "message": str(exc)}
+        ) from exc
+    except VisualPhaseRequiresTextCompleteError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail={"code": "VISUAL_PHASE_REQUIRES_TEXT_COMPLETE", "message": str(exc)}
+        ) from exc
+
+@router.get(
+    "/preference-assessments/{assessment_id}/visual-presentations",
+    response_model=List[VisualPresentationRead],
+    status_code=status.HTTP_200_OK,
+    summary="Get visual preference card presentations in canonical order"
+)
+async def get_visual_presentations(
+    assessment_id: uuid.UUID,
+    service: PreferenceAssessmentService = Depends(get_service)
+):
+    try:
+        presentations = await service.get_visual_presentations(assessment_id)
+        return [build_presentation_read(p) for p in presentations]
+    except AssessmentNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "ASSESSMENT_NOT_FOUND", "message": str(exc)}
+        ) from exc
+
+@router.put(
+    "/preference-assessments/{assessment_id}/visual-responses/{stimulus_key}",
+    response_model=VisualResponseRead,
+    status_code=status.HTTP_200_OK,
+    summary="Save display choice for a visual preference card"
+)
+async def save_visual_response(
+    assessment_id: uuid.UUID,
+    stimulus_key: str,
+    payload: VisualResponseCreate,
+    service: PreferenceAssessmentService = Depends(get_service)
+):
+    try:
+        return await service.save_visual_response(assessment_id, stimulus_key, payload.choice)
+    except AssessmentNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "ASSESSMENT_NOT_FOUND", "message": str(exc)}
+        ) from exc
+    except InvalidStimulusKeyError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "INVALID_STIMULUS_KEY", "message": str(exc)}
+        ) from exc
+    except VisualPreferencesAlreadyCompletedError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail={"code": "VISUAL_PREFERENCES_ALREADY_COMPLETED", "message": str(exc)}
+        ) from exc
+
+@router.get(
+    "/preference-assessments/{assessment_id}/visual-responses",
+    response_model=List[VisualResponseRead],
+    status_code=status.HTTP_200_OK,
+    summary="Get answered visual preference responses"
+)
+async def get_visual_responses(
+    assessment_id: uuid.UUID,
+    service: PreferenceAssessmentService = Depends(get_service)
+):
+    try:
+        return await service.get_visual_responses(assessment_id)
+    except AssessmentNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "ASSESSMENT_NOT_FOUND", "message": str(exc)}
+        ) from exc
+
+@router.post(
+    "/preference-assessments/{assessment_id}/complete-visual",
+    response_model=VisualPreferenceProfileRead,
+    status_code=status.HTTP_200_OK,
+    summary="Complete visual preference assessment and generate Visual Preference Profile"
+)
+async def complete_visual_assessment(
+    assessment_id: uuid.UUID,
+    service: PreferenceAssessmentService = Depends(get_service)
+):
+    try:
+        return await service.complete_visual_assessment(assessment_id)
+    except AssessmentNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "ASSESSMENT_NOT_FOUND", "message": str(exc)}
+        ) from exc
+    except VisualPreferencesIncompleteError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail={
+                "code": "VISUAL_PREFERENCES_INCOMPLETE",
+                "message": str(exc),
+                "answered_count": exc.answered_count,
+                "missing_keys": exc.missing_keys
+            }
+        ) from exc
+
+@router.get(
+    "/preference-assessments/{assessment_id}/visual-profile",
+    response_model=VisualPreferenceProfileRead,
+    status_code=status.HTTP_200_OK,
+    summary="Get calculated Visual Preference Profile"
+)
+async def get_visual_profile(
+    assessment_id: uuid.UUID,
+    service: PreferenceAssessmentService = Depends(get_service)
+):
+    try:
+        return await service.get_visual_profile(assessment_id)
+    except AssessmentNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "ASSESSMENT_NOT_FOUND", "message": str(exc)}
+        ) from exc
+    except VisualProfileNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"code": "VISUAL_PROFILE_NOT_FOUND", "message": str(exc)}
+        ) from exc
+
+# ---------------------------------------------------------
+# STIMULUS ASSET SERVING ENDPOINT
+# ---------------------------------------------------------
+
+STIMULI_STATIC_DIR = os.path.join(os.path.dirname(__file__), "..", "..", "static", "stimuli")
+
+@router.get(
+    "/preference-stimuli/{version}/{filename}",
+    status_code=status.HTTP_200_OK,
+    summary="Serve static visual preference stimulus asset"
+)
+async def get_preference_stimulus_asset(version: str, filename: str):
+    # Path traversal prevention
+    clean_ver = os.path.basename(version)
+    clean_filename = os.path.basename(filename)
+
+    if not clean_filename.endswith((".svg", ".png")):
+        raise HTTPException(status_code=400, detail="Invalid asset extension")
+
+    file_path = os.path.join(STIMULI_STATIC_DIR, clean_ver, clean_filename)
+    if not os.path.exists(file_path):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Stimulus asset not found")
+
+    media_type = "image/svg+xml" if clean_filename.endswith(".svg") else "image/png"
+    return FileResponse(file_path, media_type=media_type)

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+  <rect width="600" height="800" fill="#322846"/>
+  <polygon points="100,40 150,100 100,160 50,100" fill="#dcaa5a" stroke="#b4466e" stroke-width="4"/>
+  <polygon points="100,220 150,280 100,340 50,280" fill="#dcaa5a" stroke="#b4466e" stroke-width="4"/>
+  <polygon points="100,400 150,460 100,520 50,460" fill="#dcaa5a" stroke="#b4466e" stroke-width="4"/>
+  <polygon points="100,580 150,640 100,700 50,640" fill="#dcaa5a" stroke="#b4466e" stroke-width="4"/>
+  <polygon points="300,40 350,100 300,160 250,100" fill="#dcaa5a" stroke="#b4466e" stroke-width="4"/>
+  <polygon points="300,220 350,280 300,340 250,280" fill="#dcaa5a" stroke="#b4466e" stroke-width="4"/>
+  <polygon points="300,400 350,460 300,520 250,460" fill="#dcaa5a" stroke="#b4466e" stroke-width="4"/>
+  <polygon points="300,580 350,640 300,700 250,640" fill="#dcaa5a" stroke="#b4466e" stroke-width="4"/>
+  <polygon points="500,40 550,100 500,160 450,100" fill="#dcaa5a" stroke="#b4466e" stroke-width="4"/>
+  <polygon points="500,220 550,280 500,340 450,280" fill="#dcaa5a" stroke="#b4466e" stroke-width="4"/>
+  <polygon points="500,400 550,460 500,520 450,460" fill="#dcaa5a" stroke="#b4466e" stroke-width="4"/>
+  <polygon points="500,580 550,640 500,700 450,640" fill="#dcaa5a" stroke="#b4466e" stroke-width="4"/>
+</svg>

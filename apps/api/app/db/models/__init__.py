@@ -11,9 +11,14 @@ from app.db.models.preference_assessment import (
     TextPreferenceResponseModel,
     TextPreferenceProfileModel,
     TextPreferenceDimensionModel,
+    VisualPreferencePresentationModel,
+    VisualPreferenceResponseModel,
+    VisualPreferenceProfileModel,
+    VisualPreferenceDimensionModel,
     AssessmentStatus,
     PreferenceDimensionStatus,
-    TextChoiceEnum
+    TextChoiceEnum,
+    VisualChoiceEnum
 )
 
 __all__ = [
@@ -28,7 +33,12 @@ __all__ = [
     "TextPreferenceResponseModel",
     "TextPreferenceProfileModel",
     "TextPreferenceDimensionModel",
+    "VisualPreferencePresentationModel",
+    "VisualPreferenceResponseModel",
+    "VisualPreferenceProfileModel",
+    "VisualPreferenceDimensionModel",
     "AssessmentStatus",
     "PreferenceDimensionStatus",
     "TextChoiceEnum",
+    "VisualChoiceEnum",
 ]
