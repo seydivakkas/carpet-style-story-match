@@ -1,18 +1,48 @@
-# Merinos Catalog Activation Dataset v1 (Post-v1 A1)
+# Merinos Catalog Activation Dataset v1 (Post-v1 A1 & A2)
 
-## Data Origin & Rights Notice
+## Overview & Provenance Notice
 
-- **Origin**: All product metadata in this directory originates strictly from official, publicly accessible product pages on [Merinos Official Website](https://www.merinos.com.tr/).
-- **Public Scraped Data Only**: No private dealer portals, authenticated APIs, or restricted endpoints were accessed.
-- **Imagery Policy (A1 Scope)**: Product image binaries are **NOT** downloaded or stored in A1. Image URLs are preserved as sidecar provenance metadata for future A2 image activation.
-- **Copyrighted Text Policy**: Full copyrighted page HTML and long descriptions are **NOT** stored. Only factual, non-copyrightable catalog metadata (SKU, title, collection, available size specifications, product URLs) is retained.
-- **Provenance**: `source_reference` (Product URL) and SHA-256 `source_hash` are attached to each product record for provenance tracking and source drift detection.
-- **Legal Compliance**: Usage of this metadata must strictly comply with applicable intellectual property and terms of use governing Merinos catalog data.
+- **Origin**: All product metadata and image assets originate strictly from official, publicly accessible product pages on [Merinos Official Website](https://www.merinos.com.tr/) and official CDN (`sm.mncdn.com`, `wwwmerinoscomtr.sm.mncdn.com`).
+- **Host Allowlist Enforcement**: All image URL discovery, redirects, and binary downloads are restricted strictly to allowlisted official domains:
+  - `merinos.com.tr`
+  - `www.merinos.com.tr`
+  - `sm.mncdn.com`
+  - `wwwmerinoscomtr.sm.mncdn.com`
+- **Rights Modes**:
+  1. `URL_ONLY` (Default Mode): Extracts and validates image URL provenance metadata without downloading image binaries or creating database records.
+  2. `AUTHORIZED_INTERNAL`: Explicit authorization mode (`--apply` required) to download, validate, sanitize, and ingest primary product images into `CarpetImageModel`.
+- **Image Safety Controls**:
+  - Max file size limit: 15 MB
+  - Allowed MIME types: `image/jpeg`, `image/png`, `image/webp`
+  - Dimension constraints: Min 128x128px, Max 12000x12000px, Max 80M pixels
+  - Image sanitization: EXIF orientation normalization & metadata stripping via Pillow/OpenCV decode pipeline.
+  - Deduplication: Content SHA-256 hash tracking and atomic rollback on failure.
+- **Readiness Transition**:
+  - Before primary image activation: `NO_PRIMARY_IMAGE`
+  - After primary image activation: `STYLE_DNA_MISSING`
+- **Scope Boundary**: Style DNA batch analysis is NOT executed during A2 (reserved for Post-v1 A3).
 
 ---
 
 ## File Structure
 
-- `merinos-catalog-source.json`: Raw acquisition provenance dataset containing sidecar metadata (`available_sizes`, `primary_image_url`, `source_hash`).
+- `merinos-catalog-source.json`: Raw acquisition provenance dataset containing SKUs, collection mappings, available sizes, and product page URLs.
 - `merinos-catalog-curation.json`: Formatted import dataset adhering strictly to `carpet-catalog-curation-v1` schema.
-- `activation-report.json`: Data quality and acquisition summary report.
+- `activation-report.json`: Metadata acquisition summary report (A1).
+- `merinos-image-source.json`: Image URL candidate discovery provenance dataset (A2).
+- `merinos-image-activation.json`: Product image ingestion activation sidecar (A2).
+- `image-activation-report.json`: Product image activation summary report (A2).
+
+---
+
+## Usage Commands
+
+### 1. Default URL-Only Discovery (Safe, No DB Mutating Downloads)
+```bash
+python -m app.scripts.activate_merinos_catalog_images --rights-mode URL_ONLY
+```
+
+### 2. Authorized Internal Product Image Ingestion
+```bash
+python -m app.scripts.activate_merinos_catalog_images --rights-mode AUTHORIZED_INTERNAL --apply
+```

@@ -83,7 +83,7 @@ class CarpetImageService:
             # DB insert failed -> rollback DB & cleanup orphan file from storage
             await self.image_repo.session.rollback()
             self.storage.delete_image(storage_key)
-            if "uq_carpet_image_sha256" in str(exc):
+            if "uq_carpet_image_sha256" in str(exc) or "carpet_images.sha256" in str(exc) or "carpet_id, carpet_images.sha256" in str(exc):
                 raise ImageDuplicateError(carpet_id, sha256) from exc
             raise ImageStorageFailedError(f"Database insertion failed: {exc}") from exc
         except Exception as exc:

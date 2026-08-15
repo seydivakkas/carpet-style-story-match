@@ -42,6 +42,8 @@ class CatalogCarpetRead(BaseModel):
     is_active: bool
     created_at: datetime
     updated_at: datetime
+    primary_image: Optional[PrimaryImageSummary] = None
+    style_dna_readiness: Optional[StyleDnaReadinessEnum] = None
 
 
 class CatalogCarpetListResponse(BaseModel):

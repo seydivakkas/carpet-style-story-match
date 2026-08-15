@@ -71,6 +71,9 @@ Thumbs.db
 
 # Runtime Storage
 data/
+!data/
+!data/activation/
+!data/activation/**
 uploads/
 
 # Graphify Knowledge Graph

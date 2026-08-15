@@ -1,0 +1,3254 @@
+{
+  "dataset_type": "merinos-catalog-image-source",
+  "retrieved_at": "2026-08-15T21:43:41.348981+00:00",
+  "products": [
+    {
+      "sku": "73941 060",
+      "product_url": "https://www.merinos.com.tr/73941-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d58/d58b8fd9-1330-463d-ae87-07f96af76758_73941-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73941-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73941 097",
+      "product_url": "https://www.merinos.com.tr/73941-097",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/ee5/ee535a86-7768-4a94-b57d-b7c399ccc21a_73941-097_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73941-097",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74423 096",
+      "product_url": "https://www.merinos.com.tr/74423-096",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/8a3/8a3e3804-ed57-406d-ac36-a040207b0d39_74423-096_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74423-096",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74425 060",
+      "product_url": "https://www.merinos.com.tr/74425-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b53/b53f6edc-973e-4c73-8e48-c3b369c8f9a3_74425-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74425-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74427 070",
+      "product_url": "https://www.merinos.com.tr/74427-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/e50/e501537f-726f-4268-aff8-d1c8af8cd689_74427-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74427-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74427 095",
+      "product_url": "https://www.merinos.com.tr/74427-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/3c1/3c1fae23-2ab7-4439-a971-679c3bec9d19_74427-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74427-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74429 096",
+      "product_url": "https://www.merinos.com.tr/74429-096",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/9ca/9cae6e98-82e7-4e86-bba2-014345f834df_74429-096_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74429-096",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74430 060",
+      "product_url": "https://www.merinos.com.tr/74430-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d88/d88beb0c-9cb6-480b-afe2-102b6fccb0a0_74430-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74430-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74430 095",
+      "product_url": "https://www.merinos.com.tr/74430-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b60/b6034b08-bdd3-4bd4-83be-8e2d9b5f599c_74430-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74430-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74433 095",
+      "product_url": "https://www.merinos.com.tr/74433-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b92/b9297c4b-5d9f-4982-9b4e-c997b7b90c3b_74433-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74433-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "90819 070",
+      "product_url": "https://www.merinos.com.tr/90819-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/36d/36d5225c-9f2d-4c15-8b75-6c50c28fe0a5_90819-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/90819-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "90819 095",
+      "product_url": "https://www.merinos.com.tr/90819-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/28d/28d9c36e-c758-4276-b9d5-f4845e2cce0e_90819-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/90819-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "90823 070",
+      "product_url": "https://www.merinos.com.tr/90823-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/183/18353cc0-4ebd-45d6-8def-6559ca9e24ef_90823-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/90823-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "72484 062",
+      "product_url": "https://www.merinos.com.tr/72484-062",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/fca/fca535a3-4157-4549-a30d-ed75a8addd6c_72484-062_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/72484-062",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "72487 060",
+      "product_url": "https://www.merinos.com.tr/72487-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/ccf/ccf3410a-a3ec-4437-aa0b-69466e8e9b9f_72487-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/72487-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "72487 095",
+      "product_url": "https://www.merinos.com.tr/72487-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c41/c417db4b-dd32-4429-a576-56ceb0e9ea05_72487-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/72487-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "72487 957",
+      "product_url": "https://www.merinos.com.tr/72487-957",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/244/24457f35-5d8c-4734-a3f9-22146c2e7c6d_72487-957_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/72487-957",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "72821 060",
+      "product_url": "https://www.merinos.com.tr/72821-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/393/393a7ec0-7a93-4223-bba0-2b64e7361338_72821-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/72821-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "72821 070",
+      "product_url": "https://www.merinos.com.tr/72821-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/392/3922f8ce-689b-4d1e-9ace-dfc23cbb40b2_72821-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/72821-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "72821 096",
+      "product_url": "https://www.merinos.com.tr/72821-096",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c5a/c5aa76bd-c6a3-4593-aa40-39dd14bedeab_72821-096_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/72821-096",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73395 060",
+      "product_url": "https://www.merinos.com.tr/73395-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/3de/3decca24-6958-40a7-8acb-7eb104033c2f_73395-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73395-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73395 070",
+      "product_url": "https://www.merinos.com.tr/73395-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/433/433b66cd-f678-47fd-877b-0fede6ce0108_73395-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73395-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73395 097",
+      "product_url": "https://www.merinos.com.tr/73395-097",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/9eb/9eb07be5-f1bc-4e6f-b76a-dcdb4b346e3e_73395-097_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73395-097",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73401 070",
+      "product_url": "https://www.merinos.com.tr/73401-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b1c/b1cc233b-30fb-4f16-9441-8c8415531c2e_73401-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73401-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "79415 071",
+      "product_url": "https://www.merinos.com.tr/79415-071",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/007/0070ec6d-656f-4f2e-b85a-73be9ab4795a_79415-071_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/79415-071",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "79416 071",
+      "product_url": "https://www.merinos.com.tr/79416-071",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/0fa/0fa9e3fa-ec15-4192-b4dd-0c0f1ec812ad_79416-071_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/79416-071",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "79419 070",
+      "product_url": "https://www.merinos.com.tr/79419-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/fb5/fb53195f-8ae9-4007-9e7e-f07267d61997_79419-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/79419-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "79419 071",
+      "product_url": "https://www.merinos.com.tr/79419-071",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/f3b/f3b322e6-642b-4cdd-ad92-bc19e07269e8_79419-071_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/79419-071",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "79419 095",
+      "product_url": "https://www.merinos.com.tr/79419-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/0ef/0efe99c8-c608-4fcf-9089-eef2c76f477c_79419-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/79419-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "79422 060",
+      "product_url": "https://www.merinos.com.tr/79422-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/1cf/1cf888bd-ba5c-4372-bad1-9f6622f91e05_79422-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/79422-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "79422 081",
+      "product_url": "https://www.merinos.com.tr/79422-081",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/dd9/dd95f0d7-ca31-48dc-86b7-3c5b49427353_79422-081_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/79422-081",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "79422 095",
+      "product_url": "https://www.merinos.com.tr/79422-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d37/d372c85e-bef7-455a-b797-9c0be9322dce_79422-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/79422-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "79423 060",
+      "product_url": "https://www.merinos.com.tr/79423-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/3b1/3b11d964-55c1-4f8c-ac38-5d84c0ea763d_79423-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/79423-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "79423 082",
+      "product_url": "https://www.merinos.com.tr/79423-082",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/342/34291a75-2f09-4bc1-9076-ccf28bf800e3_79423-082_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/79423-082",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "79423 095",
+      "product_url": "https://www.merinos.com.tr/79423-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/26c/26c7109a-c983-4a8b-a034-111e8cbe713f_79423-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/79423-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "79431 082",
+      "product_url": "https://www.merinos.com.tr/79431-082",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/280/2804bc25-8f3b-4c90-85e9-328cd7d631a3_79431-082_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/79431-082",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "79433 072",
+      "product_url": "https://www.merinos.com.tr/79433-072",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d48/d48a5bf8-083f-41b9-83f1-903e263c337a_79433-072_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/79433-072",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73928 060",
+      "product_url": "https://www.merinos.com.tr/73928-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/2ae/2ae3f2e5-b29b-4409-b4db-8cc66797a3c8_73928-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73928-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74103 060",
+      "product_url": "https://www.merinos.com.tr/74103-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/1cb/1cb19de6-05fe-4293-9851-427346e5f617_74103-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74103-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74103 061",
+      "product_url": "https://www.merinos.com.tr/74103-061",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c53/c535ad84-1977-4659-88b8-a9c1e7ab0019_74103-061_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74103-061",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74103 070",
+      "product_url": "https://www.merinos.com.tr/74103-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/0fc/0fc6b94f-c503-4137-908d-cf3cda16dc4a_74103-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74103-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74105 060",
+      "product_url": "https://www.merinos.com.tr/74105-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/73f/73fb11e5-3475-4071-be32-6eaf587b1eca_74105-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74105-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74436 060",
+      "product_url": "https://www.merinos.com.tr/74436-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/fb5/fb5f59c5-e060-4fbc-8d13-9d7bb364ab1a_74436-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74436-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74436 071",
+      "product_url": "https://www.merinos.com.tr/74436-071",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/051/05101ee4-e4a5-4260-a66c-f868dd564fe1_74436-071_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74436-071",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74436 095",
+      "product_url": "https://www.merinos.com.tr/74436-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/352/3529d1c4-13d9-4965-91c2-9cabe9968ee6_74436-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74436-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74436 096",
+      "product_url": "https://www.merinos.com.tr/74436-096",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/e07/e0730590-1b14-4d28-88e2-032589140971_74436-096_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74436-096",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74928 062",
+      "product_url": "https://www.merinos.com.tr/74928-062",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74928-062",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74928 957",
+      "product_url": "https://www.merinos.com.tr/74928-957",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74928-957",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "90235 070",
+      "product_url": "https://www.merinos.com.tr/90235-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/fe9/fe962cff-3189-4a6b-bf81-0609e23a6674_90235-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/90235-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "90235 095",
+      "product_url": "https://www.merinos.com.tr/90235-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b17/b17ef1a1-8f74-42eb-96c0-a6267dc10aad_90235-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/90235-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "90237 070",
+      "product_url": "https://www.merinos.com.tr/90237-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/640/6402c982-04f3-46cd-9964-dfa95c09645a_90237-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/90237-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "90237 095",
+      "product_url": "https://www.merinos.com.tr/90237-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/544/54407f8d-c11a-4513-8611-6b015e2794bb_90237-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/90237-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "75478 096",
+      "product_url": "https://www.merinos.com.tr/75478-096",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c13/c136708b-d21b-4829-9820-a4b773725391_75478-096_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/75478-096",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "75487 060",
+      "product_url": "https://www.merinos.com.tr/75487-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/532/532eae72-8df3-4197-a474-a0c1f584b341_75487-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/75487-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "75487 070",
+      "product_url": "https://www.merinos.com.tr/75487-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/6f7/6f79b0ff-0924-419c-ae03-ccaa72ae88ae_75487-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/75487-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "75490 060",
+      "product_url": "https://www.merinos.com.tr/75490-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/32c/32ce9a77-acfa-4242-9980-62c33e19a3fa_75490-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/75490-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "75490 070",
+      "product_url": "https://www.merinos.com.tr/75490-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/15c/15c30fef-8337-4903-8954-92240edb9118_75490-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/75490-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "75490 095",
+      "product_url": "https://www.merinos.com.tr/75490-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/ced/ced087bd-e44c-4e47-8e61-1eaa4208139c_75490-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/75490-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "75490 096",
+      "product_url": "https://www.merinos.com.tr/75490-096",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/426/4266590d-0ac4-428e-9d9d-bf442d13abe7_75490-096_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/75490-096",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "75491 060",
+      "product_url": "https://www.merinos.com.tr/75491-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/60f/60fe72a9-2cd4-48da-83e3-f41b10b0a635_75491-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/75491-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "75491 070",
+      "product_url": "https://www.merinos.com.tr/75491-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/34d/34d34dc6-7f89-4151-90aa-1c74b6910d2a_75491-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/75491-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "75491 095",
+      "product_url": "https://www.merinos.com.tr/75491-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/5ff/5ffb9fab-2683-4b6e-a1cf-92ad7ed8314f_75491-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/75491-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "75491 096",
+      "product_url": "https://www.merinos.com.tr/75491-096",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/59f/59f36c68-bc38-42a1-b952-3ad4c09c8eb8_75491-096_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/75491-096",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73338 060",
+      "product_url": "https://www.merinos.com.tr/73338-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/aa7/aa766a9e-8b3e-4977-b9ea-eff3d188dc98_73338-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73338-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73338 070",
+      "product_url": "https://www.merinos.com.tr/73338-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/0dd/0dd77fa4-3934-4958-b14e-6e5086b1b1f5_73338-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73338-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73338 071",
+      "product_url": "https://www.merinos.com.tr/73338-071",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/e84/e84c6e5b-5cec-4dca-856b-383bc408e662_73338-071_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73338-071",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73339 060",
+      "product_url": "https://www.merinos.com.tr/73339-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/33e/33e8fe9a-b483-44e3-9860-c5f65e11fb40_73339-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73339-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73339 071",
+      "product_url": "https://www.merinos.com.tr/73339-071",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/358/35837a59-9552-4725-89f5-1e96e187f5cc_73339-071_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73339-071",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73339 095",
+      "product_url": "https://www.merinos.com.tr/73339-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/f1e/f1e2e994-f8b2-4716-98f1-57b5dde87ca4_73339-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73339-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73340 070",
+      "product_url": "https://www.merinos.com.tr/73340-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/8c9/8c918eba-9c5c-4d3f-9f2e-77488adf5c47_73340-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73340-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73344 071",
+      "product_url": "https://www.merinos.com.tr/73344-071",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/9a6/9a649df4-8579-4697-a85e-59b11fe5ee5e_73344-071_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73344-071",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73344 095",
+      "product_url": "https://www.merinos.com.tr/73344-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/0c4/0c421e9b-c85c-4da0-b6bb-18c2786429a6_73344-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73344-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74210 060",
+      "product_url": "https://www.merinos.com.tr/74210-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/088/0888e614-a152-46e6-8f56-221f8c3d822d_74210-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74210-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74210 110",
+      "product_url": "https://www.merinos.com.tr/74210-110",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/8c6/8c6e775e-a6d8-4a82-9bb8-876f15af7819_74210-110_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74210-110",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74212 060",
+      "product_url": "https://www.merinos.com.tr/74212-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/7b5/7b5c276c-e397-4320-b8a8-78af7e3bd491_74212-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74212-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73474 060",
+      "product_url": "https://www.merinos.com.tr/73474-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/fdc/fdc2bd71-34ec-471c-a393-c71ed04f20c5_73474-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73474-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73480 070",
+      "product_url": "https://www.merinos.com.tr/73480-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73480-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73482 060",
+      "product_url": "https://www.merinos.com.tr/73482-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/730/7309e777-e026-42e0-b339-72c469e23019_73482-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73482-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73482 070",
+      "product_url": "https://www.merinos.com.tr/73482-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/fa0/fa08b977-cac0-4b98-bdf9-613c117bb93a_73482-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73482-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73482 071",
+      "product_url": "https://www.merinos.com.tr/73482-071",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/7c4/7c4aa01b-c577-4898-b8e7-02be47a7e7e0_73482-071_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73482-071",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73482 111",
+      "product_url": "https://www.merinos.com.tr/73482-111",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/e68/e68f08a9-e464-4189-84ce-71e42628139a_73482-111_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73482-111",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "73486 060",
+      "product_url": "https://www.merinos.com.tr/73486-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/92d/92d57df8-71d8-4cbc-b469-c1df38c19d8b_73486-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/73486-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "74480 070",
+      "product_url": "https://www.merinos.com.tr/74480-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/74480-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "75272 060",
+      "product_url": "https://www.merinos.com.tr/75272-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/75272-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "69799 060",
+      "product_url": "https://www.merinos.com.tr/69799-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/e44/e44b1904-d0c7-4c06-b5e6-cec2cf6ef1ff_69799-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/69799-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "69799 070",
+      "product_url": "https://www.merinos.com.tr/69799-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/9dd/9ddd7c3a-7563-4d59-993b-26a185012b6c_69799-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/69799-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "69799 095",
+      "product_url": "https://www.merinos.com.tr/69799-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b93/b93727c5-f81e-4198-a826-d6feb8927e3f_69799-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/69799-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "69800 060",
+      "product_url": "https://www.merinos.com.tr/69800-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/6a7/6a7b6f61-e217-46ef-ac53-bdd3a128f84e_69800-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/69800-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "69800 070",
+      "product_url": "https://www.merinos.com.tr/69800-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/2db/2dbc58f9-2ae5-4fc1-b875-dca60e37e086_69800-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/69800-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "69800 095",
+      "product_url": "https://www.merinos.com.tr/69800-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/007/007f34e0-a884-43ac-bb4d-6feb3df6c7ac_69800-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/69800-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "69804 060",
+      "product_url": "https://www.merinos.com.tr/69804-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d92/d92b09bc-287f-4774-b7fb-3bcf7750118b_69804-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/69804-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "69804 071",
+      "product_url": "https://www.merinos.com.tr/69804-071",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/37b/37be28b4-3489-49a9-93b5-b607fc7fbaeb_69804-071_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/69804-071",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "69804 095",
+      "product_url": "https://www.merinos.com.tr/69804-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/85d/85d7135b-faeb-4862-986c-00f6c3f2eef0_69804-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/69804-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "69805 060",
+      "product_url": "https://www.merinos.com.tr/69805-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/62c/62c7018b-cde2-4cfe-b745-b9a6b77ca967_69805-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/69805-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "69805 070",
+      "product_url": "https://www.merinos.com.tr/69805-070-2",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/320/320bbbe1-103e-4eed-9324-a843e51a91c2_69805-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/69805-070-2",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "69805 095",
+      "product_url": "https://www.merinos.com.tr/69805-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/324/324e7e90-2b53-4720-ac6e-d2a3aa4f5671_69805-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/69805-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "69810 060",
+      "product_url": "https://www.merinos.com.tr/69810-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/73d/73dd3921-ede7-4b05-8581-1ecdd5394cc0_69810-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/69810-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "69810 095",
+      "product_url": "https://www.merinos.com.tr/69810-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/ced/ceda3aa7-def7-4b50-b07b-2909d9d24cbe_69810-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/69810-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "69813 060",
+      "product_url": "https://www.merinos.com.tr/69813-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c79/c794d6a4-9e19-4124-9409-5cde5ec4b2c3_69813-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/69813-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "69813 095",
+      "product_url": "https://www.merinos.com.tr/69813-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/e8c/e8c9707a-9ce9-42d3-8010-c91a752d2f17_69813-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/69813-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "62744 030",
+      "product_url": "https://www.merinos.com.tr/62744-030",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b59/b591ee73-19eb-4cb4-a853-40896cf8e410_62744-030_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/62744-030",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "62744 070",
+      "product_url": "https://www.merinos.com.tr/62744-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/cc9/cc96fa91-0214-47bd-87bd-0074cc314efd_62744-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/62744-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "62744 095",
+      "product_url": "https://www.merinos.com.tr/62744-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/31d/31d135a7-83f6-477a-8664-ea9a577d5fcb_62744-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/62744-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "62745 030",
+      "product_url": "https://www.merinos.com.tr/62745-030",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/981/981fbd5c-dfd9-4d3a-b1fc-85e0527ba1b2_62745-030_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/62745-030",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "62745 070",
+      "product_url": "https://www.merinos.com.tr/62745-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/066/0667350b-a954-40b0-9826-36929e1eb4b4_62745-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/62745-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "62745 095",
+      "product_url": "https://www.merinos.com.tr/62745-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/97f/97f6f968-bb00-44a8-ace3-74b6edf45941_62745-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/62745-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "62750 030",
+      "product_url": "https://www.merinos.com.tr/62750-030",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/160/1605a29f-134a-4f6c-a872-de242f19a1c4_62750-030_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/62750-030",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "62750 070",
+      "product_url": "https://www.merinos.com.tr/62750-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/8a6/8a602d93-2cb1-49a1-bf9b-0a2d4491401b_62750-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/62750-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "62750 095",
+      "product_url": "https://www.merinos.com.tr/62750-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/424/4245d05a-2e9b-4a56-85e1-01a5c70d917a_62750-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/62750-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "62752 030",
+      "product_url": "https://www.merinos.com.tr/62752-030",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/95b/95bc90eb-42b5-447e-9e7b-90887f45994c_62752-030_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/62752-030",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "62752 070",
+      "product_url": "https://www.merinos.com.tr/62752-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/62b/62bd91e3-22a1-4ec7-a32e-ee5e0200423c_62752-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/62752-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "62752 095",
+      "product_url": "https://www.merinos.com.tr/62752-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/e2c/e2cda767-be25-4665-9fa3-0540677544b8_62752-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/62752-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "63994 090",
+      "product_url": "https://www.merinos.com.tr/63994-090",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/467/4671daa2-a7ba-4604-a281-1e20f9a883bd_63994-090_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/63994-090",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "16561 035",
+      "product_url": "https://www.merinos.com.tr/16561-035",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/f57/f5740dac-cabb-48a3-a91a-a61a5c9b53b2_16561-035_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/16561-035",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "16561 060",
+      "product_url": "https://www.merinos.com.tr/16561-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/993/993fb249-dc5c-4145-9e98-e67f1c60c3d7_16561-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/16561-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "16561 195",
+      "product_url": "https://www.merinos.com.tr/16561-195",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/16e/16e7ffc8-6df8-4845-8c48-b79253eb23a5_16561-195_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/16561-195",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "5000 179",
+      "product_url": "https://www.merinos.com.tr/5000-179",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b46/b46cb42a-09fe-433f-a856-69783094684b_5000-179_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/5000-179",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "5004 178",
+      "product_url": "https://www.merinos.com.tr/5004-178",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/63f/63f003b4-0a4a-4d1e-a404-0fea2d3b0a77_5004-178_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/5004-178",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "5008 170",
+      "product_url": "https://www.merinos.com.tr/5008-170",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/afa/afaaa0b2-a7ae-4a2f-8fa5-ea8f1eaea56e_5008-170_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/5008-170",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "5011 060",
+      "product_url": "https://www.merinos.com.tr/5011-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/19f/19f74c62-5eff-491b-a5b7-d7dc7856c450_5011-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/5011-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "64076 178",
+      "product_url": "https://www.merinos.com.tr/64076-178",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/a04/a04e5f09-2153-492e-9539-71eda906e503_64076-178_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/64076-178",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "64109 178",
+      "product_url": "https://www.merinos.com.tr/64109-178",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c45/c453044a-d780-440b-a9a7-9faa1f02db2f_64109-178_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/64109-178",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "64361 060",
+      "product_url": "https://www.merinos.com.tr/64361-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/62e/62e3cf66-f00e-49ba-aa65-afccb9dc67d9_64361-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/64361-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "65601 178",
+      "product_url": "https://www.merinos.com.tr/65601-178",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d28/d28e87d6-1a37-4052-a6c3-99a0a1bd243a_65601-178_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/65601-178",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "34929 030",
+      "product_url": "https://www.merinos.com.tr/34929-030",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/314/314a86d4-c0b8-4c4a-9f82-a2699a3b5855_34929-030_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/34929-030",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "34930 030",
+      "product_url": "https://www.merinos.com.tr/34930-030",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/bd2/bd265d7a-c71e-4d49-9d24-c5bdd80f62be_34930-030_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/34930-030",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "34932 030",
+      "product_url": "https://www.merinos.com.tr/34932-030",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/35e/35e31400-df01-4a1d-a630-a9934c411354_34932-030_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/34932-030",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "34932 095",
+      "product_url": "https://www.merinos.com.tr/34932-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/343/34399fa5-68f3-4d4e-84c7-f8058a894170_34932-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/34932-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "37917 060",
+      "product_url": "https://www.merinos.com.tr/37917-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/11c/11c2d782-f49f-40b5-9895-701672d3df1c_37917-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/37917-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "37917 095",
+      "product_url": "https://www.merinos.com.tr/37917-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/565/565e0359-ebc6-49d9-9064-22b05e48a94a_37917-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/37917-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "39139 060",
+      "product_url": "https://www.merinos.com.tr/39139-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/666/666be9ca-0e70-4999-af55-c53502d03466_39139-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/39139-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "39139 095",
+      "product_url": "https://www.merinos.com.tr/39139-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c97/c97bf6c8-459b-4b74-a06c-c26cc0088429_39139-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/39139-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "39140 031",
+      "product_url": "https://www.merinos.com.tr/39140-031",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/0a8/0a89a46f-63ae-45ce-85d0-d91fd12683e7_39140-031_1200.png",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/39140-031",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "39140 080",
+      "product_url": "https://www.merinos.com.tr/39140-080",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c89/c8942aa6-21e2-4348-8615-ee9b5fecaf0a_39140-080_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/39140-080",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "39140 095",
+      "product_url": "https://www.merinos.com.tr/39140-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d2e/d2e45eb8-4c17-45fa-b580-4dd94234b74d_39140-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/39140-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "39398 060",
+      "product_url": "https://www.merinos.com.tr/39398-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/66b/66b33791-feaf-4b8c-9004-489436504f74_39398-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/39398-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "39398 095",
+      "product_url": "https://www.merinos.com.tr/39398-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c9f/c9f68a15-087d-474c-a54d-7111ff3bf6a4_39398-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/39398-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "64249 095",
+      "product_url": "https://www.merinos.com.tr/64249-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/34c/34c3b90d-daa1-4911-bedb-24ef0866263b_64249-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/64249-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "64249 096",
+      "product_url": "https://www.merinos.com.tr/64249-096",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/090/09017948-e712-4d4f-9b02-d4fd3a17854a_64249-096_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/64249-096",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "64256 030",
+      "product_url": "https://www.merinos.com.tr/64256-030",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/6b8/6b8a2051-2da9-4428-ad66-823b2efd0e2d_64256-030_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/64256-030",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "64256 096",
+      "product_url": "https://www.merinos.com.tr/64256-096",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c9e/c9e70dcc-b48c-496b-9689-e9be635d1e8d_64256-096_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/64256-096",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "79458 060",
+      "product_url": "https://www.merinos.com.tr/79458-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/4e7/4e7a5473-c4fa-49ff-8296-bcd950e98114_79458-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/79458-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "79465 030",
+      "product_url": "https://www.merinos.com.tr/79465-030",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/682/6825de13-75c7-4f6e-aeeb-c1c936ffb5e9_79465-030_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/79465-030",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "79465 060",
+      "product_url": "https://www.merinos.com.tr/79465-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/286/28618783-e826-46b6-9bdd-d1f20dd94b4e_79465-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/79465-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "79465 095",
+      "product_url": "https://www.merinos.com.tr/79465-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b09/b0932766-cb10-41b0-bf0f-a6ea050fde18_79465-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/79465-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "79469 060",
+      "product_url": "https://www.merinos.com.tr/79469-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/941/941a0ead-c1f5-42d1-a493-c09dd48acbe6_79469-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/79469-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "54094 260",
+      "product_url": "https://www.merinos.com.tr/54094-260",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/453/4537b55a-e642-4f03-9e4f-cff195f51e7c_54094-260_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/54094-260",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "54094 261",
+      "product_url": "https://www.merinos.com.tr/54094-261",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/4bd/4bd98669-8df7-4b83-a504-e571d9af92dc_54094-261_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/54094-261",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "54094 270",
+      "product_url": "https://www.merinos.com.tr/54094-270",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/82b/82b51705-1d53-4bab-95d8-bf1b613d2dce_54094-270_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/54094-270",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "54094 295",
+      "product_url": "https://www.merinos.com.tr/54094-295",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/121/121e2c3f-7594-4c15-adaf-73c87159ca93_54094-295_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/54094-295",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "54096 260",
+      "product_url": "https://www.merinos.com.tr/54096-260",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/79c/79cc771c-d9a2-48ec-adc4-36af3c3f7e15_54096-260_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/54096-260",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "54096 261",
+      "product_url": "https://www.merinos.com.tr/54096-261",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/358/3581380a-8654-4081-9e03-1c3290cfd2ac_54096-261_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/54096-261",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "54096 270",
+      "product_url": "https://www.merinos.com.tr/54096-270",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/03d/03d73def-3bc6-48aa-8553-281354c30289_54096-270_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/54096-270",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "54096 295",
+      "product_url": "https://www.merinos.com.tr/54096-295",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/3ca/3caf4387-b5f3-4ed7-b36b-9b3b5b6d6771_54096-295_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/54096-295",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "54097 260",
+      "product_url": "https://www.merinos.com.tr/54097-260",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/46d/46d6205c-4aad-4157-98e3-ff58e0224744_54097-260_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/54097-260",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "65150 260",
+      "product_url": "https://www.merinos.com.tr/65150-260",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/9b3/9b3e907d-5a8e-4179-ad52-447236fb9b54_65150-260_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/65150-260",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "65150 270",
+      "product_url": "https://www.merinos.com.tr/65150-270",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/bd1/bd1e18ef-f145-45da-bd4a-e0ef1893f25b_65150-270_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/65150-270",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "65151 260",
+      "product_url": "https://www.merinos.com.tr/65151-260",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/812/812ee661-eb9c-4244-8f9f-2a53c5a19ae7_65151-260_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/65151-260",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "65151 270",
+      "product_url": "https://www.merinos.com.tr/65151-270",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/93d/93d6df4d-9b41-44f6-aa84-e3a3adf52320_65151-270_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/65151-270",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "19112 030",
+      "product_url": "https://www.merinos.com.tr/19112-030",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b8d/b8d31ac7-c181-495a-ac6a-b753654a9a06_19112-030_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/19112-030",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "19112 096",
+      "product_url": "https://www.merinos.com.tr/19112-096",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/780/7802b125-f387-46cd-a7b9-79bffbe7458e_19112-096_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/19112-096",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "19114 030",
+      "product_url": "https://www.merinos.com.tr/19114-030",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/26b/26b4c1c9-65a3-410c-a5e6-d42d2278f341_19114-030_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/19114-030",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "19114 081",
+      "product_url": "https://www.merinos.com.tr/19114-081",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/22d/22db6703-e8d8-4320-a210-177168da1fcc_19114-081_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/19114-081",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "19114 096",
+      "product_url": "https://www.merinos.com.tr/19114-096",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/8b3/8b3fc450-a582-468d-9ed1-622c91cad2d9_19114-096_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/19114-096",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "19119 030",
+      "product_url": "https://www.merinos.com.tr/19119-030",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c77/c77486f6-40de-4757-a534-72216c98d50f_19119-030_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/19119-030",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "19119 080",
+      "product_url": "https://www.merinos.com.tr/19119-080",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/186/186de80a-0075-469c-b1bc-3ca5d2d1829f_19119-080_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/19119-080",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "19119 096",
+      "product_url": "https://www.merinos.com.tr/19119-096",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/18b/18b789a8-59f5-41de-9735-88db1d59ee3b_19119-096_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/19119-096",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "19137 030",
+      "product_url": "https://www.merinos.com.tr/19137-030",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/dca/dcabf7f6-c5f3-429b-a4fa-dc57c372fb5b_19137-030_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/19137-030",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "33260 030",
+      "product_url": "https://www.merinos.com.tr/33260-030",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c62/c623ca11-ee46-4b2a-a5fd-f4baba0e7561_33260-030_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/33260-030",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "33260 080",
+      "product_url": "https://www.merinos.com.tr/33260-080",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d74/d74b1c1a-1a85-4767-a538-93f3476edc0b_33260-080_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/33260-080",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "33260 095",
+      "product_url": "https://www.merinos.com.tr/33260-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/cc5/cc5f8d3a-90c4-45e4-8624-15db71c09cc2_33260-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/33260-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "33261 030",
+      "product_url": "https://www.merinos.com.tr/33261-030",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d11/d118dd98-90b4-4c09-9f6b-f702d467cbc6_33261-030_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/33261-030",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "34665 080",
+      "product_url": "https://www.merinos.com.tr/34665-080",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/284/284df306-864b-43bd-9126-dc6dced30f9e_34665-080_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/34665-080",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "34665 096",
+      "product_url": "https://www.merinos.com.tr/34665-096",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/899/899e4386-72b6-4f19-ade5-b104ea8d5ee8_34665-096_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/34665-096",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "36124 060",
+      "product_url": "https://www.merinos.com.tr/36124-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/76d/76da055d-7ba7-42b6-8a77-eaa19419bfa4_36124-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/36124-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "36125 096",
+      "product_url": "https://www.merinos.com.tr/36125-096",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/9d1/9d1a5c9d-6b59-44cc-9e08-63c192999dbe_36125-096_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/36125-096",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "36126 060",
+      "product_url": "https://www.merinos.com.tr/36126-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/14c/14c18747-586f-48d0-af96-c3b90aaf5375_36126-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/36126-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "36128 090",
+      "product_url": "https://www.merinos.com.tr/36128-090",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/ea1/ea1cae9b-e33a-44aa-89eb-05800679cedd_36128-090_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/36128-090",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "36130 091",
+      "product_url": "https://www.merinos.com.tr/36130-091",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/1d2/1d2914aa-f5c5-4083-9e6c-379bc8a41fef_36130-091_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/36130-091",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "65287 060",
+      "product_url": "https://www.merinos.com.tr/65287-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/ea3/ea32d1f0-e6f0-45dc-94e9-e4f6fd734c21_65287-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/65287-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "65288 060",
+      "product_url": "https://www.merinos.com.tr/65288-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/e72/e727d40e-3548-46e7-b367-607cb6c492df_65288-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/65288-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "65291 060",
+      "product_url": "https://www.merinos.com.tr/65291-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/7a8/7a89525d-2b52-469e-b471-434f184f3c8f_65291-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/65291-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "79541 095",
+      "product_url": "https://www.merinos.com.tr/79541-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/534/534ff5e6-167e-459e-8b89-24aca85c303d_79541-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/79541-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "19770 071",
+      "product_url": "https://www.merinos.com.tr/19770-071",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/454/454da4df-dcf9-4020-b6e0-35e17280da9a_19770-071_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/19770-071",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "19770 095",
+      "product_url": "https://www.merinos.com.tr/19770-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/f25/f2588287-9f20-4504-b8f1-3dcad15e3c0e_19770-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/19770-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "19772 095",
+      "product_url": "https://www.merinos.com.tr/19772-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/815/815aba98-5de3-4f6a-ab08-72e8388320cb_19772-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/19772-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "19774 096",
+      "product_url": "https://www.merinos.com.tr/19774-096",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/46e/46e5614c-2484-4f00-845f-e9d40ae962be_19774-096_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/19774-096",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "19777 095",
+      "product_url": "https://www.merinos.com.tr/19777-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/6cd/6cddacd1-4c6a-4f82-90ce-01f48b32b1cb_19777-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/19777-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "34672 093",
+      "product_url": "https://www.merinos.com.tr/34672-093",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/9b3/9b33b7bf-b1c7-4e81-a37b-6e9b54be0c76_34672-093_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/34672-093",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "34673 090",
+      "product_url": "https://www.merinos.com.tr/34673-090",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/75f/75f5d4d0-cb50-4acf-9efe-20b7dddeda7b_34673-090_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/34673-090",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "34675 090",
+      "product_url": "https://www.merinos.com.tr/34675-090",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/269/2696a95b-3507-4f09-afc6-4a8a5001ce49_34675-090_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/34675-090",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "34712 090",
+      "product_url": "https://www.merinos.com.tr/34712-090",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d47/d47ab261-f674-423d-8577-5c2d3c9def39_34712-090_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/34712-090",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "60893 030",
+      "product_url": "https://www.merinos.com.tr/60893-030",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/ab6/ab63894d-be14-4eec-9fec-12717af020c1_60893-030_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/60893-030",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "60893 071",
+      "product_url": "https://www.merinos.com.tr/60893-071",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/096/096512c3-a295-4a6d-be25-cafa36a39e0e_60893-071_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/60893-071",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "60893 095",
+      "product_url": "https://www.merinos.com.tr/60893-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b2e/b2e73f09-0d57-49d9-8f1d-f4be067a2375_60893-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/60893-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "60894 060",
+      "product_url": "https://www.merinos.com.tr/60894-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/7ab/7abbbb3d-8ea3-41ff-896d-0be5cc1e8be0_60894-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/60894-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "60894 070",
+      "product_url": "https://www.merinos.com.tr/60894-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/679/6790c267-c1c8-4f71-89d3-ab67b173b018_60894-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/60894-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "60894 075",
+      "product_url": "https://www.merinos.com.tr/60894-075",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/085/0854d90f-b4ad-405b-9747-f18b97f6159e_60894-075_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/60894-075",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "60894 096",
+      "product_url": "https://www.merinos.com.tr/60894-096",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d7c/d7c8cb9e-162a-434a-b996-70361c39aa36_60894-096_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/60894-096",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "60895 070",
+      "product_url": "https://www.merinos.com.tr/60895-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/f9b/f9b6d61b-74fe-43d9-b5ff-fe1c63f49312_60895-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/60895-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "60895 097",
+      "product_url": "https://www.merinos.com.tr/60895-097",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b5a/b5a29ac4-f77d-4528-996e-4bfca479d4ee_60895-097_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/60895-097",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "60896 070",
+      "product_url": "https://www.merinos.com.tr/60896-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/4f2/4f2eeffd-dad6-4b38-8121-fda3bccba72b_60896-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/60896-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "60896 095",
+      "product_url": "https://www.merinos.com.tr/60896-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/3ce/3ce3ac76-bdd1-494f-8da7-8c3aa3eb10ff_60896-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/60896-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "60900 030",
+      "product_url": "https://www.merinos.com.tr/60900-030",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/555/5554ae9d-30ba-4fad-95b0-eaeefa59f14c_60900-030_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/60900-030",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "60900 070",
+      "product_url": "https://www.merinos.com.tr/60900-070",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/8b2/8b209caf-acf2-49d3-8054-f55ac96637fb_60900-070_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/60900-070",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "60900 095",
+      "product_url": "https://www.merinos.com.tr/60900-095",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/62c/62c4aae1-1408-46c0-bfb5-b7ecdd08fea2_60900-095_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/60900-095",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "77772 071",
+      "product_url": "https://www.merinos.com.tr/77772-071",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/a1c/a1c83d7d-c949-42cd-9552-4747e4852e57_77772-071_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/77772-071",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "37406 061",
+      "product_url": "https://www.merinos.com.tr/37406-061",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c98/c9866ab8-dd6e-4abc-adf3-b9556691fe1e_37406-061_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/37406-061",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "37406 071",
+      "product_url": "https://www.merinos.com.tr/37406-071",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/04c/04cbf07f-3df7-4e88-9af1-ee3ade59e9d6_37406-071_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/37406-071",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "37406 091",
+      "product_url": "https://www.merinos.com.tr/37406-091",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/0ee/0ee6aab7-dede-4fd1-bc99-1a6ab1ca3cb7_37406-091_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/37406-091",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "37406 096",
+      "product_url": "https://www.merinos.com.tr/37406-096",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/acf/acfd63e5-0699-413c-9b65-0f5fde39f7a2_37406-096_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/37406-096",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "37804 061",
+      "product_url": "https://www.merinos.com.tr/37804-061",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/326/3266cdbb-8cc1-4665-a7ab-c6bb92e3270e_37804-061_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/37804-061",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "37804 071",
+      "product_url": "https://www.merinos.com.tr/37804-071",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/e01/e01fd8da-0d84-48db-97e9-8be06e9873ed_37804-071_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/37804-071",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "37804 091",
+      "product_url": "https://www.merinos.com.tr/37804-091",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/836/8369183b-26a5-4351-a326-d8089fdf27df_37804-091_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/37804-091",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "37804 096",
+      "product_url": "https://www.merinos.com.tr/37804-096",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c52/c5276a33-bb1c-4d38-aaf2-626c6f7e7c2a_37804-096_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/37804-096",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "38422 061",
+      "product_url": "https://www.merinos.com.tr/38422-061",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/0bc/0bc897a4-67ae-4600-9079-8ddbf715bf7d_38422-061_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/38422-061",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "38422 071",
+      "product_url": "https://www.merinos.com.tr/38422-071",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/720/720ecd9a-1d24-4807-bd8c-c7c10b74a90f_38422-071_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/38422-071",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "38422 091",
+      "product_url": "https://www.merinos.com.tr/38422-091",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/927/927f3dc9-c2a5-48ff-9941-3e6ab473a6a1_38422-091_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/38422-091",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "38422 096",
+      "product_url": "https://www.merinos.com.tr/38422-096",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/bd5/bd5bc829-93be-46a9-90ba-5b15b097ba06_38422-096_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/38422-096",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "38433 665",
+      "product_url": "https://www.merinos.com.tr/38433-665",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/a6c/a6cbce0b-8467-47ac-9d2b-36d9b23b2179_38433-665_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/38433-665",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "38446 061",
+      "product_url": "https://www.merinos.com.tr/38446-061",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/cab/cabc6ac3-86e9-4591-ba0a-63bf72fb4f07_38446-061_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/38446-061",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "38446 071",
+      "product_url": "https://www.merinos.com.tr/38446-071",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d9d/d9d0f470-f7d1-42c9-8de0-6b4be08b44fc_38446-071_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/38446-071",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "38446 091",
+      "product_url": "https://www.merinos.com.tr/38446-091",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/e52/e52461f0-f94a-4043-a9fb-54c66d6ffbb2_38446-091_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/38446-091",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "38446 096",
+      "product_url": "https://www.merinos.com.tr/38446-096",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/6c2/6c2f94f7-21c7-4554-aefb-a02dc261ecde_38446-096_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/38446-096",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "91001 020",
+      "product_url": "https://www.merinos.com.tr/91001-020",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d31/d3144077-b6c5-49c2-9224-33efb02aba49_91001-020_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/91001-020",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "91001 060",
+      "product_url": "https://www.merinos.com.tr/91001-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/59c/59c8b7cc-4a3a-4f9a-b1a8-5fe3557046d5_91001-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/91001-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "91003 040",
+      "product_url": "https://www.merinos.com.tr/91003-040",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/460/460665fe-962a-4d15-8a06-b9e3a92836c4_91003-040_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/91003-040",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "91003 060",
+      "product_url": "https://www.merinos.com.tr/91003-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d83/d8393e53-9338-4b75-aa11-179ccdc30da2_91003-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/91003-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "91008 060",
+      "product_url": "https://www.merinos.com.tr/91008-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d3c/d3c0081b-2d12-4286-809f-b8df2453def3_91008-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/91008-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "91010 110",
+      "product_url": "https://www.merinos.com.tr/91010-110",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/052/052949cd-aff6-4801-876e-dcd62a968436_91010-110_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/91010-110",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "91047 110",
+      "product_url": "https://www.merinos.com.tr/91047-110",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/741/741009c9-bdc9-474d-abaf-f3e3093fbdaa_91047-110_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/91047-110",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    },
+    {
+      "sku": "91062 060",
+      "product_url": "https://www.merinos.com.tr/91062-060",
+      "image_candidates": [
+        {
+          "source_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/055/0556d491-edaf-4861-a946-36ba7b091f72_91062-060_1200.jpeg",
+          "role": "PRIMARY_CANDIDATE",
+          "source_page_url": "https://www.merinos.com.tr/91062-060",
+          "discovered_at": "2026-08-15T21:43:41.348981+00:00",
+          "source_host": "wwwmerinoscomtr.sm.mncdn.com",
+          "valid_host": true
+        }
+      ]
+    }
+  ]
+}

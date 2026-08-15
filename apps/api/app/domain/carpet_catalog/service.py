@@ -45,9 +45,29 @@ class CarpetCatalogService:
             material=material,
             style_label=style_label
         )
+        carpet_reads = []
+        for c in carpets:
+            primary_img = await self.repo.get_primary_image(c.id)
+            current_profile = await self.repo.get_current_style_profile(c.id)
+            readiness = derive_style_dna_readiness(primary_img, current_profile)
+
+            primary_img_summary = None
+            if primary_img:
+                primary_img_summary = PrimaryImageSummary(
+                    image_id=primary_img.id,
+                    file_path=primary_img.storage_key,
+                    width=primary_img.width_px,
+                    height=primary_img.height_px
+                )
+
+            c_read = CatalogCarpetRead.model_validate(c)
+            c_read.primary_image = primary_img_summary
+            c_read.style_dna_readiness = readiness
+            carpet_reads.append(c_read)
+
         return CatalogCarpetListResponse(
             total_count=total_count,
-            carpets=[CatalogCarpetRead.model_validate(c) for c in carpets]
+            carpets=carpet_reads
         )
 
     async def get_catalog_carpet_detail(self, identifier: str) -> CatalogCarpetDetailRead:

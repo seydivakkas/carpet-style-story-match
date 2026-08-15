@@ -1,0 +1,2095 @@
+{
+  "dataset_type": "merinos-image-activation-sidecar",
+  "rights_mode": "AUTHORIZED_INTERNAL",
+  "dry_run": false,
+  "activated_records": [
+    {
+      "sku": "73941 060",
+      "carpet_id": "020f4814-03a2-4afa-a62b-24ee538fdf97",
+      "product_url": "https://www.merinos.com.tr/73941-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d58/d58b8fd9-1330-463d-ae87-07f96af76758_73941-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.700317+00:00"
+    },
+    {
+      "sku": "73941 097",
+      "carpet_id": "7e228ddc-56e6-4890-891c-4e012829a299",
+      "product_url": "https://www.merinos.com.tr/73941-097",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/ee5/ee535a86-7768-4a94-b57d-b7c399ccc21a_73941-097_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.702327+00:00"
+    },
+    {
+      "sku": "74423 096",
+      "carpet_id": "6fb0884f-1b3a-4d95-bf26-c8fdef3aba72",
+      "product_url": "https://www.merinos.com.tr/74423-096",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/8a3/8a3e3804-ed57-406d-ac36-a040207b0d39_74423-096_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.704239+00:00"
+    },
+    {
+      "sku": "74425 060",
+      "carpet_id": "a69bfa5e-4363-46c6-8157-9c747f984542",
+      "product_url": "https://www.merinos.com.tr/74425-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b53/b53f6edc-973e-4c73-8e48-c3b369c8f9a3_74425-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.706242+00:00"
+    },
+    {
+      "sku": "74427 070",
+      "carpet_id": "7bb52849-d38a-4475-a9de-af8cf446bf55",
+      "product_url": "https://www.merinos.com.tr/74427-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/e50/e501537f-726f-4268-aff8-d1c8af8cd689_74427-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.708414+00:00"
+    },
+    {
+      "sku": "74427 095",
+      "carpet_id": "1d03dcd3-f348-4462-b132-863078df70e2",
+      "product_url": "https://www.merinos.com.tr/74427-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/3c1/3c1fae23-2ab7-4439-a971-679c3bec9d19_74427-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.710795+00:00"
+    },
+    {
+      "sku": "74429 096",
+      "carpet_id": "d94cec0d-5225-4a66-848c-5318787c287b",
+      "product_url": "https://www.merinos.com.tr/74429-096",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/9ca/9cae6e98-82e7-4e86-bba2-014345f834df_74429-096_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.713371+00:00"
+    },
+    {
+      "sku": "74430 060",
+      "carpet_id": "242c54d2-36fe-412d-8b82-c8c148fcaa05",
+      "product_url": "https://www.merinos.com.tr/74430-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d88/d88beb0c-9cb6-480b-afe2-102b6fccb0a0_74430-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.715187+00:00"
+    },
+    {
+      "sku": "74430 095",
+      "carpet_id": "91c0c6b0-3ec2-4ef9-bc0c-54262bff18f9",
+      "product_url": "https://www.merinos.com.tr/74430-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b60/b6034b08-bdd3-4bd4-83be-8e2d9b5f599c_74430-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.717102+00:00"
+    },
+    {
+      "sku": "74433 095",
+      "carpet_id": "ed8e763f-51e1-43fe-8832-667c8a1f22b6",
+      "product_url": "https://www.merinos.com.tr/74433-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b92/b9297c4b-5d9f-4982-9b4e-c997b7b90c3b_74433-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.719043+00:00"
+    },
+    {
+      "sku": "90819 070",
+      "carpet_id": "c1b23626-014c-4284-bcf8-379217f2a93f",
+      "product_url": "https://www.merinos.com.tr/90819-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/36d/36d5225c-9f2d-4c15-8b75-6c50c28fe0a5_90819-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.720762+00:00"
+    },
+    {
+      "sku": "90819 095",
+      "carpet_id": "98de92fe-cd00-4b95-94fe-308f885612da",
+      "product_url": "https://www.merinos.com.tr/90819-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/28d/28d9c36e-c758-4276-b9d5-f4845e2cce0e_90819-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.722735+00:00"
+    },
+    {
+      "sku": "90823 070",
+      "carpet_id": "4bfba043-3cdf-414a-ac77-c965e5c34dbb",
+      "product_url": "https://www.merinos.com.tr/90823-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/183/18353cc0-4ebd-45d6-8def-6559ca9e24ef_90823-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.725139+00:00"
+    },
+    {
+      "sku": "72484 062",
+      "carpet_id": "e788782a-8d3f-4622-b201-c2536fce6141",
+      "product_url": "https://www.merinos.com.tr/72484-062",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/fca/fca535a3-4157-4549-a30d-ed75a8addd6c_72484-062_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.727777+00:00"
+    },
+    {
+      "sku": "72487 060",
+      "carpet_id": "be435375-19ee-4bd7-a5f7-829acb7b633f",
+      "product_url": "https://www.merinos.com.tr/72487-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/ccf/ccf3410a-a3ec-4437-aa0b-69466e8e9b9f_72487-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.729897+00:00"
+    },
+    {
+      "sku": "72487 095",
+      "carpet_id": "d22179a3-da16-438f-a2c1-d9cce94dd737",
+      "product_url": "https://www.merinos.com.tr/72487-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c41/c417db4b-dd32-4429-a576-56ceb0e9ea05_72487-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.731762+00:00"
+    },
+    {
+      "sku": "72487 957",
+      "carpet_id": "4dbe76d9-cd9d-4e27-9171-18798f5372fa",
+      "product_url": "https://www.merinos.com.tr/72487-957",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/244/24457f35-5d8c-4734-a3f9-22146c2e7c6d_72487-957_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.733649+00:00"
+    },
+    {
+      "sku": "72821 060",
+      "carpet_id": "20b92f87-db4e-4ae8-bee5-a3d5f8f6dac8",
+      "product_url": "https://www.merinos.com.tr/72821-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/393/393a7ec0-7a93-4223-bba0-2b64e7361338_72821-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.735489+00:00"
+    },
+    {
+      "sku": "72821 070",
+      "carpet_id": "aa9451c3-8907-4394-9a60-823bb857311d",
+      "product_url": "https://www.merinos.com.tr/72821-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/392/3922f8ce-689b-4d1e-9ace-dfc23cbb40b2_72821-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.737254+00:00"
+    },
+    {
+      "sku": "72821 096",
+      "carpet_id": "50cb78fc-5a25-4a18-b606-301be82b1151",
+      "product_url": "https://www.merinos.com.tr/72821-096",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c5a/c5aa76bd-c6a3-4593-aa40-39dd14bedeab_72821-096_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.739450+00:00"
+    },
+    {
+      "sku": "73395 060",
+      "carpet_id": "cecafe6e-ad05-420a-adf4-ede5f30acd92",
+      "product_url": "https://www.merinos.com.tr/73395-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/3de/3decca24-6958-40a7-8acb-7eb104033c2f_73395-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.741416+00:00"
+    },
+    {
+      "sku": "73395 070",
+      "carpet_id": "f959e496-31e7-44e1-b6c1-2d6454bd59d0",
+      "product_url": "https://www.merinos.com.tr/73395-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/433/433b66cd-f678-47fd-877b-0fede6ce0108_73395-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.744396+00:00"
+    },
+    {
+      "sku": "73395 097",
+      "carpet_id": "d01cb601-ff07-462a-92e9-814b3a852863",
+      "product_url": "https://www.merinos.com.tr/73395-097",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/9eb/9eb07be5-f1bc-4e6f-b76a-dcdb4b346e3e_73395-097_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.746178+00:00"
+    },
+    {
+      "sku": "73401 070",
+      "carpet_id": "d15e1889-78aa-479b-bf36-0390acb9b3cd",
+      "product_url": "https://www.merinos.com.tr/73401-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b1c/b1cc233b-30fb-4f16-9441-8c8415531c2e_73401-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.747850+00:00"
+    },
+    {
+      "sku": "79415 071",
+      "carpet_id": "dda6988d-afbf-497d-9412-a0fe955c98d4",
+      "product_url": "https://www.merinos.com.tr/79415-071",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/007/0070ec6d-656f-4f2e-b85a-73be9ab4795a_79415-071_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.749351+00:00"
+    },
+    {
+      "sku": "79416 071",
+      "carpet_id": "d53a1b18-9f6d-4b78-a4a7-4927982b73e6",
+      "product_url": "https://www.merinos.com.tr/79416-071",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/0fa/0fa9e3fa-ec15-4192-b4dd-0c0f1ec812ad_79416-071_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.750787+00:00"
+    },
+    {
+      "sku": "79419 070",
+      "carpet_id": "735b12b0-9586-4570-9064-3eeb13f4154a",
+      "product_url": "https://www.merinos.com.tr/79419-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/fb5/fb53195f-8ae9-4007-9e7e-f07267d61997_79419-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.752979+00:00"
+    },
+    {
+      "sku": "79419 071",
+      "carpet_id": "ae7114ce-a28c-4d5c-b800-f410ae635651",
+      "product_url": "https://www.merinos.com.tr/79419-071",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/f3b/f3b322e6-642b-4cdd-ad92-bc19e07269e8_79419-071_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.755343+00:00"
+    },
+    {
+      "sku": "79419 095",
+      "carpet_id": "443533e3-cd3b-454e-b2c2-feead2566afb",
+      "product_url": "https://www.merinos.com.tr/79419-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/0ef/0efe99c8-c608-4fcf-9089-eef2c76f477c_79419-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.757199+00:00"
+    },
+    {
+      "sku": "79422 060",
+      "carpet_id": "313b63ba-cee2-4b7d-9987-dfc4a7eb2eb4",
+      "product_url": "https://www.merinos.com.tr/79422-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/1cf/1cf888bd-ba5c-4372-bad1-9f6622f91e05_79422-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.759693+00:00"
+    },
+    {
+      "sku": "79422 081",
+      "carpet_id": "4eb498d7-41e9-4bc4-9299-6b7e3a191219",
+      "product_url": "https://www.merinos.com.tr/79422-081",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/dd9/dd95f0d7-ca31-48dc-86b7-3c5b49427353_79422-081_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.761610+00:00"
+    },
+    {
+      "sku": "79422 095",
+      "carpet_id": "39020d4f-ce13-4ee8-830c-f2d6ab54ccf2",
+      "product_url": "https://www.merinos.com.tr/79422-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d37/d372c85e-bef7-455a-b797-9c0be9322dce_79422-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.763357+00:00"
+    },
+    {
+      "sku": "79423 060",
+      "carpet_id": "f62a61c4-2642-46a7-93e2-c199a43509c9",
+      "product_url": "https://www.merinos.com.tr/79423-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/3b1/3b11d964-55c1-4f8c-ac38-5d84c0ea763d_79423-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.765101+00:00"
+    },
+    {
+      "sku": "79423 082",
+      "carpet_id": "18c497d6-e408-4f6d-a033-655536b96aa7",
+      "product_url": "https://www.merinos.com.tr/79423-082",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/342/34291a75-2f09-4bc1-9076-ccf28bf800e3_79423-082_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.767289+00:00"
+    },
+    {
+      "sku": "79423 095",
+      "carpet_id": "4315ec30-6f7b-4e12-9430-475f5693fc06",
+      "product_url": "https://www.merinos.com.tr/79423-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/26c/26c7109a-c983-4a8b-a034-111e8cbe713f_79423-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.769300+00:00"
+    },
+    {
+      "sku": "79431 082",
+      "carpet_id": "68e435d3-e5e4-4f87-b37b-45c8d773ac7f",
+      "product_url": "https://www.merinos.com.tr/79431-082",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/280/2804bc25-8f3b-4c90-85e9-328cd7d631a3_79431-082_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.771148+00:00"
+    },
+    {
+      "sku": "79433 072",
+      "carpet_id": "fc17c5ce-7603-4265-8b7a-5dc31ba0f320",
+      "product_url": "https://www.merinos.com.tr/79433-072",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d48/d48a5bf8-083f-41b9-83f1-903e263c337a_79433-072_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.773072+00:00"
+    },
+    {
+      "sku": "73928 060",
+      "carpet_id": "3252760c-c948-448b-b4eb-16a8403e2fbb",
+      "product_url": "https://www.merinos.com.tr/73928-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/2ae/2ae3f2e5-b29b-4409-b4db-8cc66797a3c8_73928-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.775290+00:00"
+    },
+    {
+      "sku": "74103 060",
+      "carpet_id": "4004140c-4a79-4064-ae87-7fddbbcd49c2",
+      "product_url": "https://www.merinos.com.tr/74103-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/1cb/1cb19de6-05fe-4293-9851-427346e5f617_74103-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.777021+00:00"
+    },
+    {
+      "sku": "74103 061",
+      "carpet_id": "76acb868-ea7a-49f8-936a-a586abb032ca",
+      "product_url": "https://www.merinos.com.tr/74103-061",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c53/c535ad84-1977-4659-88b8-a9c1e7ab0019_74103-061_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.778882+00:00"
+    },
+    {
+      "sku": "74103 070",
+      "carpet_id": "3467ac94-4017-4641-8765-25a0aa99ff0c",
+      "product_url": "https://www.merinos.com.tr/74103-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/0fc/0fc6b94f-c503-4137-908d-cf3cda16dc4a_74103-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.780842+00:00"
+    },
+    {
+      "sku": "74105 060",
+      "carpet_id": "4ff084d6-a6ca-4c90-b57e-f437f66435fe",
+      "product_url": "https://www.merinos.com.tr/74105-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/73f/73fb11e5-3475-4071-be32-6eaf587b1eca_74105-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.783086+00:00"
+    },
+    {
+      "sku": "74436 060",
+      "carpet_id": "b047ba6f-1a03-480d-bc6f-1d6217a8c26c",
+      "product_url": "https://www.merinos.com.tr/74436-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/fb5/fb5f59c5-e060-4fbc-8d13-9d7bb364ab1a_74436-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.785204+00:00"
+    },
+    {
+      "sku": "74436 071",
+      "carpet_id": "475c2e1b-e225-49dc-ae4d-47a3cc002801",
+      "product_url": "https://www.merinos.com.tr/74436-071",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/051/05101ee4-e4a5-4260-a66c-f868dd564fe1_74436-071_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.786767+00:00"
+    },
+    {
+      "sku": "74436 095",
+      "carpet_id": "65aee195-e8db-405e-91e3-0cfbe2e46ae0",
+      "product_url": "https://www.merinos.com.tr/74436-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/352/3529d1c4-13d9-4965-91c2-9cabe9968ee6_74436-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.788332+00:00"
+    },
+    {
+      "sku": "74436 096",
+      "carpet_id": "0a9edcfb-ff14-4ca6-91b8-1357a1c74e79",
+      "product_url": "https://www.merinos.com.tr/74436-096",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/e07/e0730590-1b14-4d28-88e2-032589140971_74436-096_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:01.789730+00:00"
+    },
+    {
+      "sku": "74928 062",
+      "carpet_id": "7299ac3b-48bf-472c-834e-b6cc991d1327",
+      "product_url": "https://www.merinos.com.tr/74928-062",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "74928 957",
+      "carpet_id": "cdc49b67-cf21-455e-a649-9d9516722823",
+      "product_url": "https://www.merinos.com.tr/74928-957",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "90235 070",
+      "carpet_id": "8a5e874a-0f90-4c4e-959e-13889735cee9",
+      "product_url": "https://www.merinos.com.tr/90235-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/fe9/fe962cff-3189-4a6b-bf81-0609e23a6674_90235-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.099086+00:00"
+    },
+    {
+      "sku": "90235 095",
+      "carpet_id": "e61fb08f-c798-4127-bc7d-de6882726006",
+      "product_url": "https://www.merinos.com.tr/90235-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b17/b17ef1a1-8f74-42eb-96c0-a6267dc10aad_90235-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.102531+00:00"
+    },
+    {
+      "sku": "90237 070",
+      "carpet_id": "67f8b36d-072a-43e3-9ae5-4cf25560e2a3",
+      "product_url": "https://www.merinos.com.tr/90237-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/640/6402c982-04f3-46cd-9964-dfa95c09645a_90237-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.105851+00:00"
+    },
+    {
+      "sku": "90237 095",
+      "carpet_id": "e3ed003a-ba9a-471d-8c89-9fbb6bbb9b27",
+      "product_url": "https://www.merinos.com.tr/90237-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/544/54407f8d-c11a-4513-8611-6b015e2794bb_90237-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.109952+00:00"
+    },
+    {
+      "sku": "75478 096",
+      "carpet_id": "716ca42f-8156-46e1-8494-ea4ed9612453",
+      "product_url": "https://www.merinos.com.tr/75478-096",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c13/c136708b-d21b-4829-9820-a4b773725391_75478-096_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.113118+00:00"
+    },
+    {
+      "sku": "75487 060",
+      "carpet_id": "ce785f43-d8c7-4227-b7be-b7f9897efbc9",
+      "product_url": "https://www.merinos.com.tr/75487-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/532/532eae72-8df3-4197-a474-a0c1f584b341_75487-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.116335+00:00"
+    },
+    {
+      "sku": "75487 070",
+      "carpet_id": "cfa93cde-6ff9-4aa0-9c19-36df1e6c1691",
+      "product_url": "https://www.merinos.com.tr/75487-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/6f7/6f79b0ff-0924-419c-ae03-ccaa72ae88ae_75487-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.119655+00:00"
+    },
+    {
+      "sku": "75490 060",
+      "carpet_id": "7d55e93e-c071-4db3-9255-4591b2bb5d1c",
+      "product_url": "https://www.merinos.com.tr/75490-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/32c/32ce9a77-acfa-4242-9980-62c33e19a3fa_75490-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.123747+00:00"
+    },
+    {
+      "sku": "75490 070",
+      "carpet_id": "63301c3c-4865-49ea-8806-e6da2a6cdd02",
+      "product_url": "https://www.merinos.com.tr/75490-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/15c/15c30fef-8337-4903-8954-92240edb9118_75490-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.126487+00:00"
+    },
+    {
+      "sku": "75490 095",
+      "carpet_id": "7995f2e7-2c8c-4701-b4d9-5f87bea3c301",
+      "product_url": "https://www.merinos.com.tr/75490-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/ced/ced087bd-e44c-4e47-8e61-1eaa4208139c_75490-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.129477+00:00"
+    },
+    {
+      "sku": "75490 096",
+      "carpet_id": "dfd08e3d-83fb-4bce-ac54-188c1684cac9",
+      "product_url": "https://www.merinos.com.tr/75490-096",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/426/4266590d-0ac4-428e-9d9d-bf442d13abe7_75490-096_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.132834+00:00"
+    },
+    {
+      "sku": "75491 060",
+      "carpet_id": "5011990a-6c1f-4945-a677-a79e25353e9a",
+      "product_url": "https://www.merinos.com.tr/75491-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/60f/60fe72a9-2cd4-48da-83e3-f41b10b0a635_75491-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.136433+00:00"
+    },
+    {
+      "sku": "75491 070",
+      "carpet_id": "8739afda-1215-4acf-b4d7-ba5bc30555c5",
+      "product_url": "https://www.merinos.com.tr/75491-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/34d/34d34dc6-7f89-4151-90aa-1c74b6910d2a_75491-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.139514+00:00"
+    },
+    {
+      "sku": "75491 095",
+      "carpet_id": "3ae67797-448d-4411-9088-4065ebcd6eb1",
+      "product_url": "https://www.merinos.com.tr/75491-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/5ff/5ffb9fab-2683-4b6e-a1cf-92ad7ed8314f_75491-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.142317+00:00"
+    },
+    {
+      "sku": "75491 096",
+      "carpet_id": "ca426954-a589-40c7-96e0-893771958753",
+      "product_url": "https://www.merinos.com.tr/75491-096",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/59f/59f36c68-bc38-42a1-b952-3ad4c09c8eb8_75491-096_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.145627+00:00"
+    },
+    {
+      "sku": "73338 060",
+      "carpet_id": "d39ca37c-21cd-4161-aca8-5d203b23d8ee",
+      "product_url": "https://www.merinos.com.tr/73338-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/aa7/aa766a9e-8b3e-4977-b9ea-eff3d188dc98_73338-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.149436+00:00"
+    },
+    {
+      "sku": "73338 070",
+      "carpet_id": "e1c31dde-8422-4f4b-a2d1-c151d29daaf2",
+      "product_url": "https://www.merinos.com.tr/73338-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/0dd/0dd77fa4-3934-4958-b14e-6e5086b1b1f5_73338-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.152672+00:00"
+    },
+    {
+      "sku": "73338 071",
+      "carpet_id": "961c94a7-16d5-4824-8fd7-58fd7dab6366",
+      "product_url": "https://www.merinos.com.tr/73338-071",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/e84/e84c6e5b-5cec-4dca-856b-383bc408e662_73338-071_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.155581+00:00"
+    },
+    {
+      "sku": "73339 060",
+      "carpet_id": "736ac496-ff7f-4097-93d2-5f1b4b7e690f",
+      "product_url": "https://www.merinos.com.tr/73339-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/33e/33e8fe9a-b483-44e3-9860-c5f65e11fb40_73339-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.159206+00:00"
+    },
+    {
+      "sku": "73339 071",
+      "carpet_id": "f8f8882c-2331-4b3f-b6c2-756aeedc7053",
+      "product_url": "https://www.merinos.com.tr/73339-071",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/358/35837a59-9552-4725-89f5-1e96e187f5cc_73339-071_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.162225+00:00"
+    },
+    {
+      "sku": "73339 095",
+      "carpet_id": "6038fb2f-513a-423c-b891-678c312f34de",
+      "product_url": "https://www.merinos.com.tr/73339-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/f1e/f1e2e994-f8b2-4716-98f1-57b5dde87ca4_73339-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.164882+00:00"
+    },
+    {
+      "sku": "73340 070",
+      "carpet_id": "56ee8aca-2068-4d17-8224-cbc536ff7929",
+      "product_url": "https://www.merinos.com.tr/73340-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/8c9/8c918eba-9c5c-4d3f-9f2e-77488adf5c47_73340-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.167520+00:00"
+    },
+    {
+      "sku": "73344 071",
+      "carpet_id": "cf765a13-3fb2-491c-9e64-82f42232546f",
+      "product_url": "https://www.merinos.com.tr/73344-071",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/9a6/9a649df4-8579-4697-a85e-59b11fe5ee5e_73344-071_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.170489+00:00"
+    },
+    {
+      "sku": "73344 095",
+      "carpet_id": "3633b010-b056-468a-9c35-552868948c8a",
+      "product_url": "https://www.merinos.com.tr/73344-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/0c4/0c421e9b-c85c-4da0-b6bb-18c2786429a6_73344-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.173461+00:00"
+    },
+    {
+      "sku": "74210 060",
+      "carpet_id": "8aa9027e-b7e5-45cc-9445-792d00964845",
+      "product_url": "https://www.merinos.com.tr/74210-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/088/0888e614-a152-46e6-8f56-221f8c3d822d_74210-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.176109+00:00"
+    },
+    {
+      "sku": "74210 110",
+      "carpet_id": "f55a570a-a770-4884-a0b0-df20f25ef3d3",
+      "product_url": "https://www.merinos.com.tr/74210-110",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/8c6/8c6e775e-a6d8-4a82-9bb8-876f15af7819_74210-110_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.178661+00:00"
+    },
+    {
+      "sku": "74212 060",
+      "carpet_id": "c28decdc-054f-4bd4-bdbf-4f885fa07ad4",
+      "product_url": "https://www.merinos.com.tr/74212-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/7b5/7b5c276c-e397-4320-b8a8-78af7e3bd491_74212-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.180885+00:00"
+    },
+    {
+      "sku": "73474 060",
+      "carpet_id": "4dc32fb0-6881-4e4f-883c-c54473c647ea",
+      "product_url": "https://www.merinos.com.tr/73474-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/fdc/fdc2bd71-34ec-471c-a393-c71ed04f20c5_73474-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.183466+00:00"
+    },
+    {
+      "sku": "73480 070",
+      "carpet_id": "9e98759f-474e-48b8-a96a-79ed9af967b2",
+      "product_url": "https://www.merinos.com.tr/73480-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "73482 060",
+      "carpet_id": "75d0098e-bf52-4cc2-8e15-12c15f0ea599",
+      "product_url": "https://www.merinos.com.tr/73482-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/730/7309e777-e026-42e0-b339-72c469e23019_73482-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.844692+00:00"
+    },
+    {
+      "sku": "73482 070",
+      "carpet_id": "bf55551b-48a8-41ec-aefe-76b6dd90a4af",
+      "product_url": "https://www.merinos.com.tr/73482-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/fa0/fa08b977-cac0-4b98-bdf9-613c117bb93a_73482-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.849640+00:00"
+    },
+    {
+      "sku": "73482 071",
+      "carpet_id": "36254ab0-5f68-45e6-ae77-e25c8268bf59",
+      "product_url": "https://www.merinos.com.tr/73482-071",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/7c4/7c4aa01b-c577-4898-b8e7-02be47a7e7e0_73482-071_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.853153+00:00"
+    },
+    {
+      "sku": "73482 111",
+      "carpet_id": "7c0823d8-325b-46d2-bc33-265ffd2cb2cc",
+      "product_url": "https://www.merinos.com.tr/73482-111",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/e68/e68f08a9-e464-4189-84ce-71e42628139a_73482-111_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.856582+00:00"
+    },
+    {
+      "sku": "73486 060",
+      "carpet_id": "ac1e1fe7-b22e-4df9-a31c-811dce833b0a",
+      "product_url": "https://www.merinos.com.tr/73486-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/92d/92d57df8-71d8-4cbc-b469-c1df38c19d8b_73486-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:03.859808+00:00"
+    },
+    {
+      "sku": "74480 070",
+      "carpet_id": "bed1ad1b-5a08-44fb-99c9-f87f42e235fe",
+      "product_url": "https://www.merinos.com.tr/74480-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "75272 060",
+      "carpet_id": "5bf0ef0f-12d9-477a-aa6f-5af0f882aa96",
+      "product_url": "https://www.merinos.com.tr/75272-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/829/829efa39-9cea-4d52-bfee-c76d176f474f_250.png",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "69799 060",
+      "carpet_id": "5b1ab57e-0e4d-4182-b61d-0961708d32eb",
+      "product_url": "https://www.merinos.com.tr/69799-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/e44/e44b1904-d0c7-4c06-b5e6-cec2cf6ef1ff_69799-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.171506+00:00"
+    },
+    {
+      "sku": "69799 070",
+      "carpet_id": "3479a3f6-8b9b-46c3-83ca-a5481ae59561",
+      "product_url": "https://www.merinos.com.tr/69799-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/9dd/9ddd7c3a-7563-4d59-993b-26a185012b6c_69799-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.176374+00:00"
+    },
+    {
+      "sku": "69799 095",
+      "carpet_id": "77a79638-feed-41e1-ba40-5590f3727757",
+      "product_url": "https://www.merinos.com.tr/69799-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b93/b93727c5-f81e-4198-a826-d6feb8927e3f_69799-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.181184+00:00"
+    },
+    {
+      "sku": "69800 060",
+      "carpet_id": "2db2ca49-61f9-4e47-b99d-df98e3e04ab0",
+      "product_url": "https://www.merinos.com.tr/69800-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/6a7/6a7b6f61-e217-46ef-ac53-bdd3a128f84e_69800-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.185675+00:00"
+    },
+    {
+      "sku": "69800 070",
+      "carpet_id": "ab230a2b-362f-455a-9058-8c4f953f2710",
+      "product_url": "https://www.merinos.com.tr/69800-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/2db/2dbc58f9-2ae5-4fc1-b875-dca60e37e086_69800-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.189436+00:00"
+    },
+    {
+      "sku": "69800 095",
+      "carpet_id": "0d3cf0e2-e63d-43aa-84ba-8821b058f858",
+      "product_url": "https://www.merinos.com.tr/69800-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/007/007f34e0-a884-43ac-bb4d-6feb3df6c7ac_69800-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.192522+00:00"
+    },
+    {
+      "sku": "69804 060",
+      "carpet_id": "693106a7-3fd8-48a6-9f3f-6cb92853b004",
+      "product_url": "https://www.merinos.com.tr/69804-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d92/d92b09bc-287f-4774-b7fb-3bcf7750118b_69804-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.196152+00:00"
+    },
+    {
+      "sku": "69804 071",
+      "carpet_id": "82b13dca-5385-4ac4-a5cc-41272ef29cb1",
+      "product_url": "https://www.merinos.com.tr/69804-071",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/37b/37be28b4-3489-49a9-93b5-b607fc7fbaeb_69804-071_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.198958+00:00"
+    },
+    {
+      "sku": "69804 095",
+      "carpet_id": "644b8974-d701-4028-9ace-24feb9de06e2",
+      "product_url": "https://www.merinos.com.tr/69804-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/85d/85d7135b-faeb-4862-986c-00f6c3f2eef0_69804-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.201293+00:00"
+    },
+    {
+      "sku": "69805 060",
+      "carpet_id": "abd2ac94-4570-49a5-98c9-4b1133d26d82",
+      "product_url": "https://www.merinos.com.tr/69805-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/62c/62c7018b-cde2-4cfe-b745-b9a6b77ca967_69805-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.203726+00:00"
+    },
+    {
+      "sku": "69805 070",
+      "carpet_id": "43458ceb-c3b8-46d6-b7a3-399862fe4ae2",
+      "product_url": "https://www.merinos.com.tr/69805-070-2",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/320/320bbbe1-103e-4eed-9324-a843e51a91c2_69805-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.206320+00:00"
+    },
+    {
+      "sku": "69805 095",
+      "carpet_id": "a8b45331-fdb6-4baf-bc4c-3240eb33045d",
+      "product_url": "https://www.merinos.com.tr/69805-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/324/324e7e90-2b53-4720-ac6e-d2a3aa4f5671_69805-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.209082+00:00"
+    },
+    {
+      "sku": "69810 060",
+      "carpet_id": "c72eb943-5e9e-4e7e-8b0e-fb7db4f2f48e",
+      "product_url": "https://www.merinos.com.tr/69810-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/73d/73dd3921-ede7-4b05-8581-1ecdd5394cc0_69810-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.211563+00:00"
+    },
+    {
+      "sku": "69810 095",
+      "carpet_id": "f0648e0c-ce7e-48ae-ab6e-b4610474af3b",
+      "product_url": "https://www.merinos.com.tr/69810-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/ced/ceda3aa7-def7-4b50-b07b-2909d9d24cbe_69810-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.214744+00:00"
+    },
+    {
+      "sku": "69813 060",
+      "carpet_id": "9a8b30a9-f7f9-48aa-acb1-8799135cf9ae",
+      "product_url": "https://www.merinos.com.tr/69813-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c79/c794d6a4-9e19-4124-9409-5cde5ec4b2c3_69813-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.216826+00:00"
+    },
+    {
+      "sku": "69813 095",
+      "carpet_id": "40dd20af-ba49-4e6d-9fed-f1476f6b889c",
+      "product_url": "https://www.merinos.com.tr/69813-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/e8c/e8c9707a-9ce9-42d3-8010-c91a752d2f17_69813-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.219395+00:00"
+    },
+    {
+      "sku": "62744 030",
+      "carpet_id": "2069add2-f43a-4136-8237-67a635257a62",
+      "product_url": "https://www.merinos.com.tr/62744-030",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b59/b591ee73-19eb-4cb4-a853-40896cf8e410_62744-030_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.222123+00:00"
+    },
+    {
+      "sku": "62744 070",
+      "carpet_id": "7ae0cd30-d985-40ec-88d4-8b112e6dbaf7",
+      "product_url": "https://www.merinos.com.tr/62744-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/cc9/cc96fa91-0214-47bd-87bd-0074cc314efd_62744-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.224748+00:00"
+    },
+    {
+      "sku": "62744 095",
+      "carpet_id": "a304727c-4c0b-49cd-9c6c-462606cc2510",
+      "product_url": "https://www.merinos.com.tr/62744-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/31d/31d135a7-83f6-477a-8664-ea9a577d5fcb_62744-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.227394+00:00"
+    },
+    {
+      "sku": "62745 030",
+      "carpet_id": "5b9e73a3-91bd-47fe-a8a1-2888a9f19ff3",
+      "product_url": "https://www.merinos.com.tr/62745-030",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/981/981fbd5c-dfd9-4d3a-b1fc-85e0527ba1b2_62745-030_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.229820+00:00"
+    },
+    {
+      "sku": "62745 070",
+      "carpet_id": "af40cf56-35cb-493b-b9ac-0ed8edcbb6c5",
+      "product_url": "https://www.merinos.com.tr/62745-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/066/0667350b-a954-40b0-9826-36929e1eb4b4_62745-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.232330+00:00"
+    },
+    {
+      "sku": "62745 095",
+      "carpet_id": "753bc535-9bdf-4cd5-89fc-f3f12d218397",
+      "product_url": "https://www.merinos.com.tr/62745-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/97f/97f6f968-bb00-44a8-ace3-74b6edf45941_62745-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.234516+00:00"
+    },
+    {
+      "sku": "62750 030",
+      "carpet_id": "e18d161f-7d34-40cc-bc9c-59e9d1a49fbf",
+      "product_url": "https://www.merinos.com.tr/62750-030",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/160/1605a29f-134a-4f6c-a872-de242f19a1c4_62750-030_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.236997+00:00"
+    },
+    {
+      "sku": "62750 070",
+      "carpet_id": "0f763ce4-cdff-4df7-8462-f4f55137d513",
+      "product_url": "https://www.merinos.com.tr/62750-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/8a6/8a602d93-2cb1-49a1-bf9b-0a2d4491401b_62750-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.239366+00:00"
+    },
+    {
+      "sku": "62750 095",
+      "carpet_id": "b29ebcaa-a5c0-4820-b4e9-86fbd31f4206",
+      "product_url": "https://www.merinos.com.tr/62750-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/424/4245d05a-2e9b-4a56-85e1-01a5c70d917a_62750-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.241531+00:00"
+    },
+    {
+      "sku": "62752 030",
+      "carpet_id": "05abcea1-9c3c-4e69-b457-17843433ac6d",
+      "product_url": "https://www.merinos.com.tr/62752-030",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/95b/95bc90eb-42b5-447e-9e7b-90887f45994c_62752-030_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.244366+00:00"
+    },
+    {
+      "sku": "62752 070",
+      "carpet_id": "4a1ac794-1ee2-4c1f-b7cf-430cb03ab60e",
+      "product_url": "https://www.merinos.com.tr/62752-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/62b/62bd91e3-22a1-4ec7-a32e-ee5e0200423c_62752-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.246668+00:00"
+    },
+    {
+      "sku": "62752 095",
+      "carpet_id": "690713b6-f654-4641-b490-f8cf9f0bf276",
+      "product_url": "https://www.merinos.com.tr/62752-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/e2c/e2cda767-be25-4665-9fa3-0540677544b8_62752-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.248608+00:00"
+    },
+    {
+      "sku": "63994 090",
+      "carpet_id": "697c3fe9-bae4-48e8-ae21-24a795e29887",
+      "product_url": "https://www.merinos.com.tr/63994-090",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/467/4671daa2-a7ba-4604-a281-1e20f9a883bd_63994-090_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.250583+00:00"
+    },
+    {
+      "sku": "16561 035",
+      "carpet_id": "952bf965-aaa5-4c52-83de-70a1321d5fd6",
+      "product_url": "https://www.merinos.com.tr/16561-035",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/f57/f5740dac-cabb-48a3-a91a-a61a5c9b53b2_16561-035_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.252520+00:00"
+    },
+    {
+      "sku": "16561 060",
+      "carpet_id": "ee6188d1-2e0d-4b66-b9fe-54e3f0f50942",
+      "product_url": "https://www.merinos.com.tr/16561-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/993/993fb249-dc5c-4145-9e98-e67f1c60c3d7_16561-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.254697+00:00"
+    },
+    {
+      "sku": "16561 195",
+      "carpet_id": "eacfe338-e1a8-4f80-828c-785c94c28ceb",
+      "product_url": "https://www.merinos.com.tr/16561-195",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/16e/16e7ffc8-6df8-4845-8c48-b79253eb23a5_16561-195_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.268192+00:00"
+    },
+    {
+      "sku": "5000 179",
+      "carpet_id": "57d62c36-05f6-45d2-9289-be1316f6fb8a",
+      "product_url": "https://www.merinos.com.tr/5000-179",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b46/b46cb42a-09fe-433f-a856-69783094684b_5000-179_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.270696+00:00"
+    },
+    {
+      "sku": "5004 178",
+      "carpet_id": "d9bbd321-8e0b-4223-ae8c-0714eba6e3a2",
+      "product_url": "https://www.merinos.com.tr/5004-178",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/63f/63f003b4-0a4a-4d1e-a404-0fea2d3b0a77_5004-178_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.272904+00:00"
+    },
+    {
+      "sku": "5008 170",
+      "carpet_id": "33f62d75-78ef-4cf8-9b8d-f20950b70291",
+      "product_url": "https://www.merinos.com.tr/5008-170",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/afa/afaaa0b2-a7ae-4a2f-8fa5-ea8f1eaea56e_5008-170_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.274862+00:00"
+    },
+    {
+      "sku": "5011 060",
+      "carpet_id": "ca7b6dcb-477b-44f4-9df5-0030a8061a20",
+      "product_url": "https://www.merinos.com.tr/5011-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/19f/19f74c62-5eff-491b-a5b7-d7dc7856c450_5011-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.276806+00:00"
+    },
+    {
+      "sku": "64076 178",
+      "carpet_id": "d4b52924-cd40-45b4-8d2a-1cfe6103e00e",
+      "product_url": "https://www.merinos.com.tr/64076-178",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/a04/a04e5f09-2153-492e-9539-71eda906e503_64076-178_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.279457+00:00"
+    },
+    {
+      "sku": "64109 178",
+      "carpet_id": "3c995719-5ac9-4896-93dd-c8dc5c1e186d",
+      "product_url": "https://www.merinos.com.tr/64109-178",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c45/c453044a-d780-440b-a9a7-9faa1f02db2f_64109-178_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.281742+00:00"
+    },
+    {
+      "sku": "64361 060",
+      "carpet_id": "4ec151e9-9cdf-4c38-91dc-900b65580dfa",
+      "product_url": "https://www.merinos.com.tr/64361-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/62e/62e3cf66-f00e-49ba-aa65-afccb9dc67d9_64361-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.283621+00:00"
+    },
+    {
+      "sku": "65601 178",
+      "carpet_id": "22b1bb11-6ef7-41c9-8dde-484ec4cf3829",
+      "product_url": "https://www.merinos.com.tr/65601-178",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d28/d28e87d6-1a37-4052-a6c3-99a0a1bd243a_65601-178_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.286342+00:00"
+    },
+    {
+      "sku": "34929 030",
+      "carpet_id": "29ca21a3-f0cc-452e-beb6-b78fd2663a89",
+      "product_url": "https://www.merinos.com.tr/34929-030",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/314/314a86d4-c0b8-4c4a-9f82-a2699a3b5855_34929-030_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.288110+00:00"
+    },
+    {
+      "sku": "34930 030",
+      "carpet_id": "dc2cf362-89dd-4171-bc73-6e8d1afc1091",
+      "product_url": "https://www.merinos.com.tr/34930-030",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/bd2/bd265d7a-c71e-4d49-9d24-c5bdd80f62be_34930-030_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.289709+00:00"
+    },
+    {
+      "sku": "34932 030",
+      "carpet_id": "424ba009-422d-4007-8101-7f1d3de68ae4",
+      "product_url": "https://www.merinos.com.tr/34932-030",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/35e/35e31400-df01-4a1d-a630-a9934c411354_34932-030_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.291835+00:00"
+    },
+    {
+      "sku": "34932 095",
+      "carpet_id": "680b2f98-02ce-4b85-83bc-9849825289f3",
+      "product_url": "https://www.merinos.com.tr/34932-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/343/34399fa5-68f3-4d4e-84c7-f8058a894170_34932-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.294186+00:00"
+    },
+    {
+      "sku": "37917 060",
+      "carpet_id": "aeccd347-8d4c-4022-bd01-b3cb69bec632",
+      "product_url": "https://www.merinos.com.tr/37917-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/11c/11c2d782-f49f-40b5-9895-701672d3df1c_37917-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.295842+00:00"
+    },
+    {
+      "sku": "37917 095",
+      "carpet_id": "80681a99-5747-4edc-8d65-73bbbf21a12d",
+      "product_url": "https://www.merinos.com.tr/37917-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/565/565e0359-ebc6-49d9-9064-22b05e48a94a_37917-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.297306+00:00"
+    },
+    {
+      "sku": "39139 060",
+      "carpet_id": "cfa98971-185f-41d3-8227-8b629a465d68",
+      "product_url": "https://www.merinos.com.tr/39139-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/666/666be9ca-0e70-4999-af55-c53502d03466_39139-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.299661+00:00"
+    },
+    {
+      "sku": "39139 095",
+      "carpet_id": "bc1bfaec-b636-4a50-8957-09eaa5e11307",
+      "product_url": "https://www.merinos.com.tr/39139-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c97/c97bf6c8-459b-4b74-a06c-c26cc0088429_39139-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "ALREADY_ACTIVE",
+      "activated_at": "2026-08-15T21:42:05.301762+00:00"
+    },
+    {
+      "sku": "39140 031",
+      "carpet_id": "46c41389-2749-4241-9b8f-f9a8d023a7e9",
+      "product_url": "https://www.merinos.com.tr/39140-031",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/0a8/0a89a46f-63ae-45ce-85d0-d91fd12683e7_39140-031_1200.png",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "39140 080",
+      "carpet_id": "c6c34eb1-fb15-4fb1-961b-a2836e0c4b65",
+      "product_url": "https://www.merinos.com.tr/39140-080",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c89/c8942aa6-21e2-4348-8615-ee9b5fecaf0a_39140-080_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "39140 095",
+      "carpet_id": "55ce3837-36b6-4b66-bbba-81546edd2dda",
+      "product_url": "https://www.merinos.com.tr/39140-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d2e/d2e45eb8-4c17-45fa-b580-4dd94234b74d_39140-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "39398 060",
+      "carpet_id": "668ae80a-2eaa-4e84-984f-142ff71c2354",
+      "product_url": "https://www.merinos.com.tr/39398-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/66b/66b33791-feaf-4b8c-9004-489436504f74_39398-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "39398 095",
+      "carpet_id": "96120416-0782-4350-ab46-81bf2e8c801b",
+      "product_url": "https://www.merinos.com.tr/39398-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c9f/c9f68a15-087d-474c-a54d-7111ff3bf6a4_39398-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "64249 095",
+      "carpet_id": "963682ba-ec9c-4ab1-bab3-0fdc2a100b33",
+      "product_url": "https://www.merinos.com.tr/64249-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/34c/34c3b90d-daa1-4911-bedb-24ef0866263b_64249-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "64249 096",
+      "carpet_id": "0bc7cfff-a915-4151-98a6-bc218f50b77b",
+      "product_url": "https://www.merinos.com.tr/64249-096",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/090/09017948-e712-4d4f-9b02-d4fd3a17854a_64249-096_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "64256 030",
+      "carpet_id": "67dc28fb-4357-4553-a316-37e1fecd4b22",
+      "product_url": "https://www.merinos.com.tr/64256-030",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/6b8/6b8a2051-2da9-4428-ad66-823b2efd0e2d_64256-030_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "64256 096",
+      "carpet_id": "0786a8a4-7c51-4f98-9998-373c46dc189f",
+      "product_url": "https://www.merinos.com.tr/64256-096",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c9e/c9e70dcc-b48c-496b-9689-e9be635d1e8d_64256-096_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "79458 060",
+      "carpet_id": "7a7b7848-5b45-4388-b019-94befb4ec7cb",
+      "product_url": "https://www.merinos.com.tr/79458-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/4e7/4e7a5473-c4fa-49ff-8296-bcd950e98114_79458-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "79465 030",
+      "carpet_id": "5534c990-937b-429d-b4bf-287524076a20",
+      "product_url": "https://www.merinos.com.tr/79465-030",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/682/6825de13-75c7-4f6e-aeeb-c1c936ffb5e9_79465-030_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "79465 060",
+      "carpet_id": "02a1eae8-edf5-45a6-9509-cfbc06f71735",
+      "product_url": "https://www.merinos.com.tr/79465-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/286/28618783-e826-46b6-9bdd-d1f20dd94b4e_79465-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "79465 095",
+      "carpet_id": "c41effe7-dcae-48b4-a01d-7eda13ec505d",
+      "product_url": "https://www.merinos.com.tr/79465-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b09/b0932766-cb10-41b0-bf0f-a6ea050fde18_79465-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "79469 060",
+      "carpet_id": "d271e2a4-cc05-4fab-9f1d-0c7d86ae948f",
+      "product_url": "https://www.merinos.com.tr/79469-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/941/941a0ead-c1f5-42d1-a493-c09dd48acbe6_79469-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "54094 260",
+      "carpet_id": "35cc8ec1-3683-42a3-a98f-7b718f3fd291",
+      "product_url": "https://www.merinos.com.tr/54094-260",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/453/4537b55a-e642-4f03-9e4f-cff195f51e7c_54094-260_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "54094 261",
+      "carpet_id": "d26147c8-949f-46c0-8c61-9afcaf842dae",
+      "product_url": "https://www.merinos.com.tr/54094-261",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/4bd/4bd98669-8df7-4b83-a504-e571d9af92dc_54094-261_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "54094 270",
+      "carpet_id": "831956f5-4f1e-424c-bc50-928cb10d0087",
+      "product_url": "https://www.merinos.com.tr/54094-270",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/82b/82b51705-1d53-4bab-95d8-bf1b613d2dce_54094-270_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "54094 295",
+      "carpet_id": "fa5360f5-6d05-48a8-a697-a2059eaae576",
+      "product_url": "https://www.merinos.com.tr/54094-295",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/121/121e2c3f-7594-4c15-adaf-73c87159ca93_54094-295_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "54096 260",
+      "carpet_id": "a7559404-f61a-45f8-8280-19f665e5a502",
+      "product_url": "https://www.merinos.com.tr/54096-260",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/79c/79cc771c-d9a2-48ec-adc4-36af3c3f7e15_54096-260_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "54096 261",
+      "carpet_id": "d0ddc651-13d4-4029-98d7-9f389a793a47",
+      "product_url": "https://www.merinos.com.tr/54096-261",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/358/3581380a-8654-4081-9e03-1c3290cfd2ac_54096-261_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "54096 270",
+      "carpet_id": "dc5047c3-3cc5-4737-befb-7d058523e7bb",
+      "product_url": "https://www.merinos.com.tr/54096-270",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/03d/03d73def-3bc6-48aa-8553-281354c30289_54096-270_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "54096 295",
+      "carpet_id": "e0f5cf86-5bce-476e-99c7-57e9d79f52c4",
+      "product_url": "https://www.merinos.com.tr/54096-295",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/3ca/3caf4387-b5f3-4ed7-b36b-9b3b5b6d6771_54096-295_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "54097 260",
+      "carpet_id": "08825e9f-3819-4af1-95e6-89f614f4447f",
+      "product_url": "https://www.merinos.com.tr/54097-260",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/46d/46d6205c-4aad-4157-98e3-ff58e0224744_54097-260_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "65150 260",
+      "carpet_id": "75d0e775-1e96-4ce1-ac7b-7baf1cd10a00",
+      "product_url": "https://www.merinos.com.tr/65150-260",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/9b3/9b3e907d-5a8e-4179-ad52-447236fb9b54_65150-260_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "65150 270",
+      "carpet_id": "9b64327d-5003-48f2-a86b-24a23dca1779",
+      "product_url": "https://www.merinos.com.tr/65150-270",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/bd1/bd1e18ef-f145-45da-bd4a-e0ef1893f25b_65150-270_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "65151 260",
+      "carpet_id": "cdb8fe66-624a-45ef-b722-37e36bc847a9",
+      "product_url": "https://www.merinos.com.tr/65151-260",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/812/812ee661-eb9c-4244-8f9f-2a53c5a19ae7_65151-260_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "65151 270",
+      "carpet_id": "5fd506b6-8529-45c7-bd59-531d55a48485",
+      "product_url": "https://www.merinos.com.tr/65151-270",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/93d/93d6df4d-9b41-44f6-aa84-e3a3adf52320_65151-270_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "19112 030",
+      "carpet_id": "d64e060e-db62-448c-b552-589ee05fdf4e",
+      "product_url": "https://www.merinos.com.tr/19112-030",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b8d/b8d31ac7-c181-495a-ac6a-b753654a9a06_19112-030_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "19112 096",
+      "carpet_id": "7aeb3fc7-fa4f-4cd7-92a4-e02d0437a2c6",
+      "product_url": "https://www.merinos.com.tr/19112-096",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/780/7802b125-f387-46cd-a7b9-79bffbe7458e_19112-096_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "19114 030",
+      "carpet_id": "5ce36edc-4774-4d5f-9c95-45c8fe973e06",
+      "product_url": "https://www.merinos.com.tr/19114-030",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/26b/26b4c1c9-65a3-410c-a5e6-d42d2278f341_19114-030_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "19114 081",
+      "carpet_id": "befc1ad0-87e5-4e5f-8974-2f34862b27eb",
+      "product_url": "https://www.merinos.com.tr/19114-081",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/22d/22db6703-e8d8-4320-a210-177168da1fcc_19114-081_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "19114 096",
+      "carpet_id": "d6aa2e12-3114-47b2-89ad-590d5c2e78d4",
+      "product_url": "https://www.merinos.com.tr/19114-096",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/8b3/8b3fc450-a582-468d-9ed1-622c91cad2d9_19114-096_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "19119 030",
+      "carpet_id": "8c4b1ce9-f227-43fb-af96-5d89d012caae",
+      "product_url": "https://www.merinos.com.tr/19119-030",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c77/c77486f6-40de-4757-a534-72216c98d50f_19119-030_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "19119 080",
+      "carpet_id": "23aaee8f-98eb-47c5-92ce-75ba8833cfff",
+      "product_url": "https://www.merinos.com.tr/19119-080",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/186/186de80a-0075-469c-b1bc-3ca5d2d1829f_19119-080_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "19119 096",
+      "carpet_id": "14428b38-c654-4326-ac1e-e9d3ec9fd369",
+      "product_url": "https://www.merinos.com.tr/19119-096",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/18b/18b789a8-59f5-41de-9735-88db1d59ee3b_19119-096_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "19137 030",
+      "carpet_id": "b9022468-0cfa-44f4-b1ab-2ba6a240b64f",
+      "product_url": "https://www.merinos.com.tr/19137-030",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/dca/dcabf7f6-c5f3-429b-a4fa-dc57c372fb5b_19137-030_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "33260 030",
+      "carpet_id": "6b99d9cf-b756-4629-b03d-7f033f42bb6f",
+      "product_url": "https://www.merinos.com.tr/33260-030",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c62/c623ca11-ee46-4b2a-a5fd-f4baba0e7561_33260-030_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "33260 080",
+      "carpet_id": "b79c9ecd-b66e-4b41-9515-06c344e421d1",
+      "product_url": "https://www.merinos.com.tr/33260-080",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d74/d74b1c1a-1a85-4767-a538-93f3476edc0b_33260-080_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "33260 095",
+      "carpet_id": "8498ba40-cc3e-4cac-8650-d83f4df99113",
+      "product_url": "https://www.merinos.com.tr/33260-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/cc5/cc5f8d3a-90c4-45e4-8624-15db71c09cc2_33260-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "33261 030",
+      "carpet_id": "244429b8-b21c-4575-93e0-5de228563066",
+      "product_url": "https://www.merinos.com.tr/33261-030",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d11/d118dd98-90b4-4c09-9f6b-f702d467cbc6_33261-030_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "34665 080",
+      "carpet_id": "5bc0fc82-30e7-4507-bedb-d0038b0bbc8c",
+      "product_url": "https://www.merinos.com.tr/34665-080",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/284/284df306-864b-43bd-9126-dc6dced30f9e_34665-080_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "34665 096",
+      "carpet_id": "017ff7be-c3fd-49f7-8b61-b2216c0a9950",
+      "product_url": "https://www.merinos.com.tr/34665-096",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/899/899e4386-72b6-4f19-ade5-b104ea8d5ee8_34665-096_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "36124 060",
+      "carpet_id": "d985abfc-62ae-4d98-9efd-2a0531affc71",
+      "product_url": "https://www.merinos.com.tr/36124-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/76d/76da055d-7ba7-42b6-8a77-eaa19419bfa4_36124-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "36125 096",
+      "carpet_id": "8ff82354-8d0a-4371-948b-8498b864ac3a",
+      "product_url": "https://www.merinos.com.tr/36125-096",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/9d1/9d1a5c9d-6b59-44cc-9e08-63c192999dbe_36125-096_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "36126 060",
+      "carpet_id": "cae62bf3-7545-46e0-acdf-9883cc496a5c",
+      "product_url": "https://www.merinos.com.tr/36126-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/14c/14c18747-586f-48d0-af96-c3b90aaf5375_36126-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "36128 090",
+      "carpet_id": "d7996cd2-47d7-4d99-9993-6f6dc0946dcc",
+      "product_url": "https://www.merinos.com.tr/36128-090",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/ea1/ea1cae9b-e33a-44aa-89eb-05800679cedd_36128-090_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "36130 091",
+      "carpet_id": "51b72777-6896-4e34-a624-2c2c67ccd9ab",
+      "product_url": "https://www.merinos.com.tr/36130-091",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/1d2/1d2914aa-f5c5-4083-9e6c-379bc8a41fef_36130-091_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "65287 060",
+      "carpet_id": "4c777786-3720-4356-855f-4c10869c414a",
+      "product_url": "https://www.merinos.com.tr/65287-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/ea3/ea32d1f0-e6f0-45dc-94e9-e4f6fd734c21_65287-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "65288 060",
+      "carpet_id": "66dc52f7-3f13-4e67-a8c0-83790553fe7f",
+      "product_url": "https://www.merinos.com.tr/65288-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/e72/e727d40e-3548-46e7-b367-607cb6c492df_65288-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "65291 060",
+      "carpet_id": "3c8c668c-551d-460d-b5db-bd3ef822bfd6",
+      "product_url": "https://www.merinos.com.tr/65291-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/7a8/7a89525d-2b52-469e-b471-434f184f3c8f_65291-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "79541 095",
+      "carpet_id": "870ef5bf-4492-4e1a-a39d-7f2a8538cda3",
+      "product_url": "https://www.merinos.com.tr/79541-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/534/534ff5e6-167e-459e-8b89-24aca85c303d_79541-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "19770 071",
+      "carpet_id": "3a1aa198-0ccb-456f-94bd-53cc4683973a",
+      "product_url": "https://www.merinos.com.tr/19770-071",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/454/454da4df-dcf9-4020-b6e0-35e17280da9a_19770-071_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "19770 095",
+      "carpet_id": "84dcd0d1-c145-431f-86c0-b3b6ad58df86",
+      "product_url": "https://www.merinos.com.tr/19770-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/f25/f2588287-9f20-4504-b8f1-3dcad15e3c0e_19770-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "19772 095",
+      "carpet_id": "531e2296-b204-4729-8f8a-dcfe209c129d",
+      "product_url": "https://www.merinos.com.tr/19772-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/815/815aba98-5de3-4f6a-ab08-72e8388320cb_19772-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "19774 096",
+      "carpet_id": "3fab756e-e767-4225-b267-dff91ccd8ec2",
+      "product_url": "https://www.merinos.com.tr/19774-096",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/46e/46e5614c-2484-4f00-845f-e9d40ae962be_19774-096_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "19777 095",
+      "carpet_id": "934d3578-fdcf-4622-b5d3-66d84fc8eab6",
+      "product_url": "https://www.merinos.com.tr/19777-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/6cd/6cddacd1-4c6a-4f82-90ce-01f48b32b1cb_19777-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "34672 093",
+      "carpet_id": "c4e2ecbf-b152-499d-8335-1e920f46bb54",
+      "product_url": "https://www.merinos.com.tr/34672-093",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/9b3/9b33b7bf-b1c7-4e81-a37b-6e9b54be0c76_34672-093_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "34673 090",
+      "carpet_id": "ab4ddca4-41c1-42cc-b6c9-337c85d765af",
+      "product_url": "https://www.merinos.com.tr/34673-090",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/75f/75f5d4d0-cb50-4acf-9efe-20b7dddeda7b_34673-090_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "34675 090",
+      "carpet_id": "380adf53-4f26-4ac7-8030-8e2e8c280087",
+      "product_url": "https://www.merinos.com.tr/34675-090",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/269/2696a95b-3507-4f09-afc6-4a8a5001ce49_34675-090_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "34712 090",
+      "carpet_id": "2ab11d48-87a4-44a3-9505-952a650390a6",
+      "product_url": "https://www.merinos.com.tr/34712-090",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d47/d47ab261-f674-423d-8577-5c2d3c9def39_34712-090_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "60893 030",
+      "carpet_id": "cec72434-09fb-4eee-8663-f73fa4a233b0",
+      "product_url": "https://www.merinos.com.tr/60893-030",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/ab6/ab63894d-be14-4eec-9fec-12717af020c1_60893-030_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "60893 071",
+      "carpet_id": "f2d7bf9c-3790-42a4-9757-f299265b6b86",
+      "product_url": "https://www.merinos.com.tr/60893-071",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/096/096512c3-a295-4a6d-be25-cafa36a39e0e_60893-071_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "60893 095",
+      "carpet_id": "7a22b51d-ad18-440f-b072-acb7112ca952",
+      "product_url": "https://www.merinos.com.tr/60893-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b2e/b2e73f09-0d57-49d9-8f1d-f4be067a2375_60893-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "60894 060",
+      "carpet_id": "c7db341f-805a-4f20-85df-35d4035d90fa",
+      "product_url": "https://www.merinos.com.tr/60894-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/7ab/7abbbb3d-8ea3-41ff-896d-0be5cc1e8be0_60894-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "60894 070",
+      "carpet_id": "1eee87e8-9f7d-40a5-b5cc-b2e3558b9fd6",
+      "product_url": "https://www.merinos.com.tr/60894-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/679/6790c267-c1c8-4f71-89d3-ab67b173b018_60894-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "60894 075",
+      "carpet_id": "7c95d2c0-b99b-4f0c-8f25-30dff86eb128",
+      "product_url": "https://www.merinos.com.tr/60894-075",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/085/0854d90f-b4ad-405b-9747-f18b97f6159e_60894-075_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "60894 096",
+      "carpet_id": "e47b02dc-fc00-448a-9a10-2ce1cd87cba4",
+      "product_url": "https://www.merinos.com.tr/60894-096",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d7c/d7c8cb9e-162a-434a-b996-70361c39aa36_60894-096_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "60895 070",
+      "carpet_id": "ea4329e9-6ae5-40c6-b384-331210ad3c9f",
+      "product_url": "https://www.merinos.com.tr/60895-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/f9b/f9b6d61b-74fe-43d9-b5ff-fe1c63f49312_60895-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "60895 097",
+      "carpet_id": "81fadb76-11d3-4044-9256-e0fd5918e63f",
+      "product_url": "https://www.merinos.com.tr/60895-097",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/b5a/b5a29ac4-f77d-4528-996e-4bfca479d4ee_60895-097_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "60896 070",
+      "carpet_id": "5ebd5e9d-37d4-480c-a427-1a54932fdeed",
+      "product_url": "https://www.merinos.com.tr/60896-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/4f2/4f2eeffd-dad6-4b38-8121-fda3bccba72b_60896-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "60896 095",
+      "carpet_id": "1f7adbdf-17a6-4c7f-a829-2935a24e3389",
+      "product_url": "https://www.merinos.com.tr/60896-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/3ce/3ce3ac76-bdd1-494f-8da7-8c3aa3eb10ff_60896-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "60900 030",
+      "carpet_id": "ca6bcee1-358d-44dd-8359-f21b51d66bf0",
+      "product_url": "https://www.merinos.com.tr/60900-030",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/555/5554ae9d-30ba-4fad-95b0-eaeefa59f14c_60900-030_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "60900 070",
+      "carpet_id": "56afba52-5d39-4e9e-b7ce-4a67be42170a",
+      "product_url": "https://www.merinos.com.tr/60900-070",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/8b2/8b209caf-acf2-49d3-8054-f55ac96637fb_60900-070_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "60900 095",
+      "carpet_id": "22947ead-9166-478f-84c4-b945048224c3",
+      "product_url": "https://www.merinos.com.tr/60900-095",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/62c/62c4aae1-1408-46c0-bfb5-b7ecdd08fea2_60900-095_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "77772 071",
+      "carpet_id": "7aa77a4b-46d7-4c29-adaf-26c7b0353935",
+      "product_url": "https://www.merinos.com.tr/77772-071",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/a1c/a1c83d7d-c949-42cd-9552-4747e4852e57_77772-071_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "37406 061",
+      "carpet_id": "dab5a973-c295-443a-b7f2-8ee6dbc5d05b",
+      "product_url": "https://www.merinos.com.tr/37406-061",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c98/c9866ab8-dd6e-4abc-adf3-b9556691fe1e_37406-061_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "37406 071",
+      "carpet_id": "04b3e5dc-f1fd-423a-a535-f17860ec95a0",
+      "product_url": "https://www.merinos.com.tr/37406-071",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/04c/04cbf07f-3df7-4e88-9af1-ee3ade59e9d6_37406-071_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "37406 091",
+      "carpet_id": "dad17b02-f7a6-46b1-9117-d6ae3eec861b",
+      "product_url": "https://www.merinos.com.tr/37406-091",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/0ee/0ee6aab7-dede-4fd1-bc99-1a6ab1ca3cb7_37406-091_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "37406 096",
+      "carpet_id": "8d54c877-1789-4c33-ad41-ad505421939a",
+      "product_url": "https://www.merinos.com.tr/37406-096",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/acf/acfd63e5-0699-413c-9b65-0f5fde39f7a2_37406-096_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "37804 061",
+      "carpet_id": "5a1c856e-be7d-44d9-aef3-90c38e55ac85",
+      "product_url": "https://www.merinos.com.tr/37804-061",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/326/3266cdbb-8cc1-4665-a7ab-c6bb92e3270e_37804-061_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "37804 071",
+      "carpet_id": "bd4cdb4a-7538-4f6f-ad31-70799fab8401",
+      "product_url": "https://www.merinos.com.tr/37804-071",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/e01/e01fd8da-0d84-48db-97e9-8be06e9873ed_37804-071_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "37804 091",
+      "carpet_id": "d4a39dfb-39b7-448a-9c7d-b28bcc10e855",
+      "product_url": "https://www.merinos.com.tr/37804-091",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/836/8369183b-26a5-4351-a326-d8089fdf27df_37804-091_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "37804 096",
+      "carpet_id": "f25d3ade-404e-4336-8712-4a29ba039b10",
+      "product_url": "https://www.merinos.com.tr/37804-096",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/c52/c5276a33-bb1c-4d38-aaf2-626c6f7e7c2a_37804-096_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "38422 061",
+      "carpet_id": "12c5b95f-e221-488b-93c2-632a3b02ba03",
+      "product_url": "https://www.merinos.com.tr/38422-061",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/0bc/0bc897a4-67ae-4600-9079-8ddbf715bf7d_38422-061_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "38422 071",
+      "carpet_id": "f8f4d1a8-332b-470e-be32-4be5f6ec154c",
+      "product_url": "https://www.merinos.com.tr/38422-071",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/720/720ecd9a-1d24-4807-bd8c-c7c10b74a90f_38422-071_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "38422 091",
+      "carpet_id": "f3976f42-7ada-4793-8f75-eaffa2f03955",
+      "product_url": "https://www.merinos.com.tr/38422-091",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/927/927f3dc9-c2a5-48ff-9941-3e6ab473a6a1_38422-091_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "38422 096",
+      "carpet_id": "11a80bce-6381-4c43-9982-2bfdd5938672",
+      "product_url": "https://www.merinos.com.tr/38422-096",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/bd5/bd5bc829-93be-46a9-90ba-5b15b097ba06_38422-096_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "38433 665",
+      "carpet_id": "dd21b76d-6732-4774-9ec5-e4f821d082b4",
+      "product_url": "https://www.merinos.com.tr/38433-665",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/a6c/a6cbce0b-8467-47ac-9d2b-36d9b23b2179_38433-665_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "38446 061",
+      "carpet_id": "c1d1e1fd-a0f5-4c0b-a980-0c2d4ca8062a",
+      "product_url": "https://www.merinos.com.tr/38446-061",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/cab/cabc6ac3-86e9-4591-ba0a-63bf72fb4f07_38446-061_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "38446 071",
+      "carpet_id": "2bc0b961-60f6-4751-9896-103f25a643f7",
+      "product_url": "https://www.merinos.com.tr/38446-071",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d9d/d9d0f470-f7d1-42c9-8de0-6b4be08b44fc_38446-071_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "38446 091",
+      "carpet_id": "aeed8960-ec14-4cf6-aaa8-9e378ac2545c",
+      "product_url": "https://www.merinos.com.tr/38446-091",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/e52/e52461f0-f94a-4043-a9fb-54c66d6ffbb2_38446-091_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "38446 096",
+      "carpet_id": "78c4fd16-5afd-4af2-bb50-cea857b5e7b5",
+      "product_url": "https://www.merinos.com.tr/38446-096",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/6c2/6c2f94f7-21c7-4554-aefb-a02dc261ecde_38446-096_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "91001 020",
+      "carpet_id": "18730712-aeb5-4bd7-924b-08a035ff3c26",
+      "product_url": "https://www.merinos.com.tr/91001-020",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d31/d3144077-b6c5-49c2-9224-33efb02aba49_91001-020_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "91001 060",
+      "carpet_id": "20e81e82-81bb-4704-ba8e-8090016be2f3",
+      "product_url": "https://www.merinos.com.tr/91001-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/59c/59c8b7cc-4a3a-4f9a-b1a8-5fe3557046d5_91001-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "91003 040",
+      "carpet_id": "518b010e-c57f-4aa9-bf9b-0e5b32e41c78",
+      "product_url": "https://www.merinos.com.tr/91003-040",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/460/460665fe-962a-4d15-8a06-b9e3a92836c4_91003-040_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "91003 060",
+      "carpet_id": "32931bd0-19e2-4e10-b520-6c95a7c5547c",
+      "product_url": "https://www.merinos.com.tr/91003-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d83/d8393e53-9338-4b75-aa11-179ccdc30da2_91003-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "91008 060",
+      "carpet_id": "c2b58763-7ed9-4fff-99cd-65693dd1e9df",
+      "product_url": "https://www.merinos.com.tr/91008-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/d3c/d3c0081b-2d12-4286-809f-b8df2453def3_91008-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "91010 110",
+      "carpet_id": "2c12ee4d-1153-465f-b813-e29ba5face64",
+      "product_url": "https://www.merinos.com.tr/91010-110",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/052/052949cd-aff6-4801-876e-dcd62a968436_91010-110_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "91047 110",
+      "carpet_id": "9882b22c-fdab-4c7d-98e1-fc25be5fdd78",
+      "product_url": "https://www.merinos.com.tr/91047-110",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/741/741009c9-bdc9-474d-abaf-f3e3093fbdaa_91047-110_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    },
+    {
+      "sku": "91062 060",
+      "carpet_id": "c23f74f0-4412-4c74-b703-36293c97e35b",
+      "product_url": "https://www.merinos.com.tr/91062-060",
+      "source_image_url": "https://wwwmerinoscomtr.sm.mncdn.com/content/images/thumbs/055/0556d491-edaf-4861-a946-36ba7b091f72_91062-060_1200.jpeg",
+      "rights_mode": "AUTHORIZED_INTERNAL",
+      "status": "INVALID_IMAGE",
+      "activated_at": null
+    }
+  ]
+}

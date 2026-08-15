@@ -6,19 +6,20 @@ from app.db.models.carpet_style_profile import (
     StyleProfileStatus,
     StyleDimensionStatus
 )
-from app.db.models.preference_assessment import (
-    PreferenceAssessmentModel,
-    TextPreferenceResponseModel,
-    TextPreferenceProfileModel,
-    TextPreferenceDimensionModel,
-    VisualPreferencePresentationModel,
-    VisualPreferenceResponseModel,
-    VisualPreferenceProfileModel,
-    VisualPreferenceDimensionModel,
-    AssessmentStatus,
-    PreferenceDimensionStatus,
-    TextChoiceEnum,
-    VisualChoiceEnum
+from app.db.models.motif_knowledge import (
+    MotifModel,
+    CuratedSourceModel,
+    MotifStoryClaimModel,
+    MotifStoryClaimThemeModel,
+    MotifStoryClaimSourceModel,
+    SourceTypeEnum,
+    MotifStoryStatusEnum
+)
+from app.db.models.carpet_story_association import (
+    CarpetMotifAssociationModel,
+    CarpetMotifAssociationSourceModel,
+    CarpetStoryAssociationModel,
+    MotifEvidenceTypeEnum
 )
 
 __all__ = [
@@ -41,4 +42,15 @@ __all__ = [
     "PreferenceDimensionStatus",
     "TextChoiceEnum",
     "VisualChoiceEnum",
+    "MotifModel",
+    "CuratedSourceModel",
+    "MotifStoryClaimModel",
+    "MotifStoryClaimThemeModel",
+    "MotifStoryClaimSourceModel",
+    "SourceTypeEnum",
+    "MotifStoryStatusEnum",
+    "CarpetMotifAssociationModel",
+    "CarpetMotifAssociationSourceModel",
+    "CarpetStoryAssociationModel",
+    "MotifEvidenceTypeEnum",
 ]

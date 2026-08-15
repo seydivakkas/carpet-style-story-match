@@ -1,0 +1,14 @@
+{
+  "rights_mode": "AUTHORIZED_INTERNAL",
+  "dry_run": false,
+  "products_total": 232,
+  "image_url_found": 232,
+  "image_url_missing": 0,
+  "activated": 0,
+  "already_active": 127,
+  "invalid": 0,
+  "download_failed": 0,
+  "storage_failed": 105,
+  "primary_image_count": 127,
+  "activation_rate": 54.74
+}
