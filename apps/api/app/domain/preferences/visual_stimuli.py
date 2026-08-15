@@ -500,7 +500,8 @@ def generate_and_save_all_stimuli(target_dir: str) -> Dict[str, Dict[str, str]]:
     Generates all 12 stimulus assets (6 cards x 2 variants) and writes .svg and .png files.
     Returns asset hash mapping: { 'V1_COLOR_ENERGY_A': sha256, ... }
     """
-    os.makedirs(target_dir, exist_ok=True)
+    abs_target_dir = os.path.abspath(target_dir)
+    os.makedirs(abs_target_dir, exist_ok=True)
     hashes = {}
 
     for key in CANONICAL_VISUAL_CARDS:
@@ -508,13 +509,22 @@ def generate_and_save_all_stimuli(target_dir: str) -> Dict[str, Dict[str, str]]:
             asset_key = f"{key}_{variant}"
             svg_bytes, png_bytes, sha256 = ProceduralStimulusGenerator.render_stimulus(key, variant)
             
-            svg_path = os.path.join(target_dir, f"{asset_key.lower()}.svg")
-            png_path = os.path.join(target_dir, f"{asset_key.lower()}.png")
+            svg_path = os.path.join(abs_target_dir, f"{asset_key.lower()}.svg")
+            png_path = os.path.join(abs_target_dir, f"{asset_key.lower()}.png")
 
-            with open(svg_path, "wb") as f:
-                f.write(svg_bytes)
-            with open(png_path, "wb") as f:
-                f.write(png_bytes)
+            try:
+                if not os.path.exists(svg_path) or os.path.getsize(svg_path) == 0:
+                    with open(svg_path, "wb") as f:
+                        f.write(svg_bytes)
+            except OSError:
+                pass
+
+            try:
+                if not os.path.exists(png_path) or os.path.getsize(png_path) == 0:
+                    with open(png_path, "wb") as f:
+                        f.write(png_bytes)
+            except OSError:
+                pass
 
             hashes[asset_key] = sha256
 

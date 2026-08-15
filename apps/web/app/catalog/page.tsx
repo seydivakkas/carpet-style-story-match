@@ -133,6 +133,7 @@ function CatalogContent() {
                   {/* Image container */}
                   <div className="bg-slate-950 h-52 w-full border-b border-slate-800/80 flex items-center justify-center p-4 overflow-hidden relative">
                     {carpet.primary_image ? (
+                      /* eslint-disable-next-line @next/next/no-img-element */
                       <img
                         src={resolveImageUrl(carpet.primary_image.storage_key || carpet.primary_image.file_path) || ""}
                         alt={carpet.name}

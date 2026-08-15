@@ -240,3 +240,36 @@ Next.js 15 (App Router) / React 19 / TypeScript Web Application
 - **Truthful Data**: Displaying genuine empty states and error handling when database records are empty.
 - **URL-Backed Workflow**: State retention across browser reloads via URL parameterization (`/assessment/[id]/...`).
 
+## 17. Validation, Calibration & End-to-End Benchmark v1 (GÖREV 16)
+
+```text
+                               +---------------------------------------+
+                               |     ValidationBenchmarkRunner v1      |
+                               +---------------------------------------+
+                                                   │
+     ┌───────────────────┬─────────────────────────┼─────────────────────────┬───────────────────┐
+     ▼                   ▼                         ▼                         ▼                   ▼
++───────────+       +───────────+             +───────────+             +───────────+       +───────────+
+| GROUP A..D|       | GROUP E..G|             | GROUP H..M|             | GROUP N..P|       |  GROUP R  |
+| Contracts |       |Multimodal |             | Narrative |             |Cross-Layer|       | Security  |
+| & Stimuli |       |& StyleMatch             |& Historical             |Independence       |& Integrity|
++───────────+       +───────────+             +───────────+             +───────────+       +───────────+
+     │                   │                         │                         │                   │
+     └───────────────────┴─────────────────────────┼─────────────────────────┴───────────────────┘
+                                                   ▼
+                               +---------------------------------------+
+                               |  ValidationBenchmarkReport (38 Checks)|
+                               +---------------------------------------+
+                                                   │
+                                                   ▼
+                               +---------------------------------------+
+                               | CLI Runner & Pytest E2E Suite PASS    |
+                               +---------------------------------------+
+```
+
+- **Master Benchmark Engine**: Pure, deterministic benchmark runner executing 38 automated quality checks across 15 domain groups (`apps/api/app/domain/validation/`).
+- **Rule 7 Invariant**: NO HIDDEN FAILURES. Required check failures immediately fail overall benchmark status (`FAIL`) and return exit code 1.
+- **E2E Integration Testing**: End-to-end user journey test suite (`tests/e2e/test_full_product_flow.py`) verifying full assessment, preference profiling, catalog retrieval, and 3-axis evaluation.
+- **Metric Independence**: Automated verification ensuring Visual Style Match, Narrative Affinity, and Historical Connection execute without metric leakage or forbidden unified recommendation scores.
+- **CLI & Exporter**: CLI script `python -m app.scripts.run_validation_benchmark --output artifacts/validation/benchmark-report.json` with console summary formatting and structured JSON export.
+

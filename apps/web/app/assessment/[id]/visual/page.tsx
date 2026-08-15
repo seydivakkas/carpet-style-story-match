@@ -164,6 +164,7 @@ export default function VisualPreferencesPage({ params }: { params: Promise<{ id
                   {/* Left Side */}
                   <div className="space-y-2 text-center">
                     <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 flex items-center justify-center min-h-[220px] max-h-[300px] overflow-hidden">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={resolveAssetUrl(p.left_asset_url)}
                         alt={`Görsel Çift ${idx + 1} Sol Seçenek`}
@@ -176,6 +177,7 @@ export default function VisualPreferencesPage({ params }: { params: Promise<{ id
                   {/* Right Side */}
                   <div className="space-y-2 text-center">
                     <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 flex items-center justify-center min-h-[220px] max-h-[300px] overflow-hidden">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={resolveAssetUrl(p.right_asset_url)}
                         alt={`Görsel Çift ${idx + 1} Sağ Seçenek`}

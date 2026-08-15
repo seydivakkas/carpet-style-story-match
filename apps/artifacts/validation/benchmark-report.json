@@ -1,0 +1,931 @@
+{
+  "benchmark_version": "validation-benchmark-v1",
+  "release_contract_version": "release-contract-v1",
+  "algorithm_versions": {
+    "style_dna": "style-dna-v1.0.0",
+    "text_preference_evidence": "text-preference-evidence-v1",
+    "visual_preference_stimuli": "visual-preference-stimuli-v1",
+    "visual_preference_evidence": "visual-preference-evidence-v1",
+    "multimodal_preference": "multimodal-preference-v1",
+    "preference_confidence": "preference-confidence-v1",
+    "importance": "importance-v1",
+    "visual_style_match": "visual-style-match-v1",
+    "user_narrative_profile": "user-narrative-profile-v1",
+    "motif_story_knowledge": "motif-story-knowledge-v1",
+    "carpet_catalog_curation": "carpet-catalog-curation-v1",
+    "narrative_affinity": "narrative-affinity-v1",
+    "historical_reference": "historical-reference-v1",
+    "historical_connection": "historical-connection-v1",
+    "frontend_experience": "frontend-experience-v1"
+  },
+  "started_at": "2026-08-15T19:08:31.445660+00:00",
+  "completed_at": "2026-08-15T19:08:33.636620+00:00",
+  "total_checks": 38,
+  "passed_checks": 38,
+  "failed_checks": 0,
+  "warning_checks": 0,
+  "overall_status": "PASS",
+  "groups": [
+    {
+      "group_id": "GROUP_A",
+      "title": "Benchmark Group GROUP_A",
+      "total_checks": 5,
+      "passed_checks": 5,
+      "failed_checks": 0,
+      "warning_checks": 0,
+      "status": "PASS",
+      "checks": [
+        {
+          "check_id": "A1",
+          "group_id": "GROUP_A",
+          "title": "Style DNA 9D Contract & Order",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Style DNA dimensions match exact 9D order D1..D9",
+          "details": null
+        },
+        {
+          "check_id": "A2",
+          "group_id": "GROUP_A",
+          "title": "Narrative Themes 8 Contract & Order",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Narrative themes match exact 8 themes N1..N8",
+          "details": null
+        },
+        {
+          "check_id": "A3",
+          "group_id": "GROUP_A",
+          "title": "Importance Level Weights Contract",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Importance weights: PRIORITY=1.00, STANDARD=0.60, FLEXIBLE=0.25",
+          "details": null
+        },
+        {
+          "check_id": "A4",
+          "group_id": "GROUP_A",
+          "title": "Narrative Preference Weights Contract",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Narrative weights: PRIMARY=1.00, SECONDARY=0.60, NOT_SELECTED=0.00",
+          "details": null
+        },
+        {
+          "check_id": "A5",
+          "group_id": "GROUP_A",
+          "title": "D6 (Structural Order) != D7 (Rhythm Repetition) Invariant",
+          "status": "PASS",
+          "is_required": true,
+          "message": "D6 (structural_order) and D7 (rhythm_repetition) are distinct dimensions",
+          "details": null
+        }
+      ]
+    },
+    {
+      "group_id": "GROUP_B",
+      "title": "Benchmark Group GROUP_B",
+      "total_checks": 5,
+      "passed_checks": 5,
+      "failed_checks": 0,
+      "warning_checks": 0,
+      "status": "PASS",
+      "checks": [
+        {
+          "check_id": "B1",
+          "group_id": "GROUP_B",
+          "title": "Style DNA Range & Value Bounding [0, 1]",
+          "status": "PASS",
+          "is_required": true,
+          "message": "All 9D values and confidence scores bounded in [0, 1] without NaN/Inf",
+          "details": null
+        },
+        {
+          "check_id": "B2",
+          "group_id": "GROUP_B",
+          "title": "Style DNA Engine Analysis Determinism",
+          "status": "PASS",
+          "is_required": true,
+          "message": "5 consecutive analyses stable within tolerance 0.0001",
+          "details": null
+        },
+        {
+          "check_id": "B3",
+          "group_id": "GROUP_B",
+          "title": "Visual Preference Stimuli SHA-256 Asset Integrity",
+          "status": "PASS",
+          "is_required": true,
+          "message": "All 12 visual stimulus SVG asset hashes verified",
+          "details": null
+        },
+        {
+          "check_id": "B4",
+          "group_id": "GROUP_B",
+          "title": "Visual Stimuli V1..V6 Target Delta & Contamination",
+          "status": "PASS",
+          "is_required": true,
+          "message": "All 6 stimuli satisfy target delta >= 0.35 and max contamination <= 0.15",
+          "details": {
+            "color_energy": {
+              "target_delta": 0.8962,
+              "max_non_target": 0.123
+            },
+            "contrast": {
+              "target_delta": 0.5305,
+              "max_non_target": 0.1119
+            },
+            "visual_complexity": {
+              "target_delta": 0.4609,
+              "max_non_target": 0.1348
+            },
+            "structural_order": {
+              "target_delta": 0.388,
+              "max_non_target": 0.0221
+            },
+            "rhythm_repetition": {
+              "target_delta": 0.3726,
+              "max_non_target": 0.0706
+            },
+            "form_language": {
+              "target_delta": 0.5856,
+              "max_non_target": 0.0826
+            }
+          }
+        },
+        {
+          "check_id": "B5",
+          "group_id": "GROUP_B",
+          "title": "Visual Stimulus Negative Validator Regression",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Negative validator correctly rejects contaminated stimulus (contamination 0.30 > 0.15)",
+          "details": null
+        }
+      ]
+    },
+    {
+      "group_id": "GROUP_C",
+      "title": "Benchmark Group GROUP_C",
+      "total_checks": 4,
+      "passed_checks": 4,
+      "failed_checks": 0,
+      "warning_checks": 0,
+      "status": "PASS",
+      "checks": [
+        {
+          "check_id": "C1",
+          "group_id": "GROUP_C",
+          "title": "Text Preference Question Count = 6",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Exactly 6 text preference questions defined",
+          "details": null
+        },
+        {
+          "check_id": "C2",
+          "group_id": "GROUP_C",
+          "title": "Text Preference D5 & D7 NOT_MEASURED Contract",
+          "status": "PASS",
+          "is_required": true,
+          "message": "D5 (visual_complexity) and D7 (rhythm_repetition) are NOT_MEASURED in text profile",
+          "details": null
+        },
+        {
+          "check_id": "C3",
+          "group_id": "GROUP_C",
+          "title": "Text Preference D8 Weak Weight = 0.25 Contract",
+          "status": "PASS",
+          "is_required": true,
+          "message": "D8 (focal_strength) weak weight is exactly 0.25",
+          "details": null
+        },
+        {
+          "check_id": "C4",
+          "group_id": "GROUP_C",
+          "title": "Text & Visual Polarity Scale Mapping",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Polarity mapping matches [-1.0, +1.0] standard scale",
+          "details": null
+        }
+      ]
+    },
+    {
+      "group_id": "GROUP_D",
+      "title": "Benchmark Group GROUP_D",
+      "total_checks": 1,
+      "passed_checks": 1,
+      "failed_checks": 0,
+      "warning_checks": 0,
+      "status": "PASS",
+      "checks": [
+        {
+          "check_id": "D1",
+          "group_id": "GROUP_D",
+          "title": "Visual Preference Stimuli Count = 6",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Exactly 6 visual preference stimuli defined",
+          "details": null
+        }
+      ]
+    },
+    {
+      "group_id": "GROUP_E",
+      "title": "Benchmark Group GROUP_E",
+      "total_checks": 4,
+      "passed_checks": 4,
+      "failed_checks": 0,
+      "warning_checks": 0,
+      "status": "PASS",
+      "checks": [
+        {
+          "check_id": "E1",
+          "group_id": "GROUP_E",
+          "title": "Multimodal Completed Profile 9/9 Coverage",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Completed multimodal profile covers all 9 dimensions",
+          "details": null
+        },
+        {
+          "check_id": "E2",
+          "group_id": "GROUP_E",
+          "title": "Multimodal Weighted Merge Contract (D3)",
+          "status": "PASS",
+          "is_required": true,
+          "message": "D3 weighted merge value 0.6773 matches expected weighted average 0.6773",
+          "details": null
+        },
+        {
+          "check_id": "E3",
+          "group_id": "GROUP_E",
+          "title": "Preference Confidence Formula & Known Cases",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Confidence cases verified: c1(dual)=0.9625, c2(single)=0.6, c3(weak)=0.15",
+          "details": null
+        },
+        {
+          "check_id": "E4",
+          "group_id": "GROUP_E",
+          "title": "User Override Provenance & Values Preservation",
+          "status": "PASS",
+          "is_required": true,
+          "message": "User override preserves inferred_value, updates final_value=0.80, sets USER_OVERRIDDEN provenance, keeps confidence",
+          "details": null
+        }
+      ]
+    },
+    {
+      "group_id": "GROUP_F",
+      "title": "Benchmark Group GROUP_F",
+      "total_checks": 2,
+      "passed_checks": 2,
+      "failed_checks": 0,
+      "warning_checks": 0,
+      "status": "PASS",
+      "checks": [
+        {
+          "check_id": "F1",
+          "group_id": "GROUP_F",
+          "title": "Importance Default Skip Profile (9 x STANDARD = 0.60)",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Skipped importance yields exactly 9 x STANDARD (0.60) dimensions",
+          "details": null
+        },
+        {
+          "check_id": "F2",
+          "group_id": "GROUP_F",
+          "title": "Importance Priority / Flexible Overlap Rejection",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Validation error thrown when same dimension is in priority and flexible lists",
+          "details": null
+        }
+      ]
+    },
+    {
+      "group_id": "GROUP_G",
+      "title": "Benchmark Group GROUP_G",
+      "total_checks": 4,
+      "passed_checks": 4,
+      "failed_checks": 0,
+      "warning_checks": 0,
+      "status": "PASS",
+      "checks": [
+        {
+          "check_id": "G1",
+          "group_id": "GROUP_G",
+          "title": "Style Match Exact Identity Baseline = 100.0 (VERY_STRONG)",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Exact match score=100.0, label=VERY_STRONG",
+          "details": null
+        },
+        {
+          "check_id": "G2",
+          "group_id": "GROUP_G",
+          "title": "Style Match Polar Difference Baseline = 20.0 (LOW)",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Polar difference score=20.0, label=StyleMatchLabelEnum.LOW",
+          "details": null
+        },
+        {
+          "check_id": "G3",
+          "group_id": "GROUP_G",
+          "title": "Style Match Priority Weight Sensitivity Contract",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Priority weight penalizes priority mismatch more: standard=91.11, priority=86.21",
+          "details": null
+        },
+        {
+          "check_id": "G4",
+          "group_id": "GROUP_G",
+          "title": "Style Match Coverage Guardrail Rule (5/9 = NOT_AVAILABLE)",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Coverage guardrail enforced: 5/9 dimensions yields status=NOT_AVAILABLE",
+          "details": null
+        }
+      ]
+    },
+    {
+      "group_id": "GROUP_H",
+      "title": "Benchmark Group GROUP_H",
+      "total_checks": 1,
+      "passed_checks": 1,
+      "failed_checks": 0,
+      "warning_checks": 0,
+      "status": "PASS",
+      "checks": [
+        {
+          "check_id": "H1",
+          "group_id": "GROUP_H",
+          "title": "User Narrative Profile Theme Weights & Defaults",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Primary=1.00, Secondary=0.60, Not Selected=0.00 default semantics verified",
+          "details": null
+        }
+      ]
+    },
+    {
+      "group_id": "GROUP_K",
+      "title": "Benchmark Group GROUP_K",
+      "total_checks": 3,
+      "passed_checks": 3,
+      "failed_checks": 0,
+      "warning_checks": 0,
+      "status": "PASS",
+      "checks": [
+        {
+          "check_id": "K1",
+          "group_id": "GROUP_K",
+          "title": "Narrative Affinity Golden Case (0.375 -> MODERATE)",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Narrative affinity coverage=0.375, level=MODERATE",
+          "details": null
+        },
+        {
+          "check_id": "K2",
+          "group_id": "GROUP_K",
+          "title": "Narrative Contested Evidence Policy & Abstention",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Contested-only evidence yields NOT_AVAILABLE with ONLY_CONTESTED_CARPET_EVIDENCE reason",
+          "details": null
+        },
+        {
+          "check_id": "K3",
+          "group_id": "GROUP_K",
+          "title": "User Skipped Narrative Profile Abstention",
+          "status": "PASS",
+          "is_required": true,
+          "message": "User skipped narrative profile yields NOT_AVAILABLE (not zero / LIMITED)",
+          "details": null
+        }
+      ]
+    },
+    {
+      "group_id": "GROUP_L",
+      "title": "Benchmark Group GROUP_L",
+      "total_checks": 1,
+      "passed_checks": 1,
+      "failed_checks": 0,
+      "warning_checks": 0,
+      "status": "PASS",
+      "checks": [
+        {
+          "check_id": "L1",
+          "group_id": "GROUP_L",
+          "title": "Historical Reference Source Type Contract",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Historical source_type='HISTORICAL' and primary_reference_type='MUSEUM_OBJECT'",
+          "details": null
+        }
+      ]
+    },
+    {
+      "group_id": "GROUP_M",
+      "title": "Benchmark Group GROUP_M",
+      "total_checks": 3,
+      "passed_checks": 3,
+      "failed_checks": 0,
+      "warning_checks": 0,
+      "status": "PASS",
+      "checks": [
+        {
+          "check_id": "M1",
+          "group_id": "GROUP_M",
+          "title": "Historical Connection Golden Case (Identical = 1.0 VERY_CLOSE)",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Historical connection similarity=1.0, level=VERY_CLOSE",
+          "details": null
+        },
+        {
+          "check_id": "M2",
+          "group_id": "GROUP_M",
+          "title": "Historical Connection Coverage Abstention (< 6 Dimensions)",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Insufficient historical coverage (<6 dimensions) yields NOT_AVAILABLE with similarity=None",
+          "details": null
+        },
+        {
+          "check_id": "M3",
+          "group_id": "GROUP_M",
+          "title": "Historical Non-Attribution Contract (No Probability / Authenticity Scores)",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Historical connection schema contains no attribution or authenticity scores",
+          "details": null
+        }
+      ]
+    },
+    {
+      "group_id": "GROUP_N",
+      "title": "Benchmark Group GROUP_N",
+      "total_checks": 2,
+      "passed_checks": 2,
+      "failed_checks": 0,
+      "warning_checks": 0,
+      "status": "PASS",
+      "checks": [
+        {
+          "check_id": "N1",
+          "group_id": "GROUP_N",
+          "title": "Cross-Layer Metric Independence",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Visual Style Match and Narrative Affinity execute independently without cross-leakage",
+          "details": null
+        },
+        {
+          "check_id": "N2",
+          "group_id": "GROUP_N",
+          "title": "3-Axis Evaluation Invariant (No Combined / Total Score)",
+          "status": "PASS",
+          "is_required": true,
+          "message": "All 3 evaluation axes (Visual, Narrative, Historical) remain strictly separate without combined score",
+          "details": null
+        }
+      ]
+    },
+    {
+      "group_id": "GROUP_O",
+      "title": "Benchmark Group GROUP_O",
+      "total_checks": 1,
+      "passed_checks": 1,
+      "failed_checks": 0,
+      "warning_checks": 0,
+      "status": "PASS",
+      "checks": [
+        {
+          "check_id": "O1",
+          "group_id": "GROUP_O",
+          "title": "Abstention Correctness = 100%",
+          "status": "PASS",
+          "is_required": true,
+          "message": "System correctly abstains (NOT_AVAILABLE) when evidence is missing or user skipped",
+          "details": null
+        }
+      ]
+    },
+    {
+      "group_id": "GROUP_P",
+      "title": "Benchmark Group GROUP_P",
+      "total_checks": 1,
+      "passed_checks": 1,
+      "failed_checks": 0,
+      "warning_checks": 0,
+      "status": "PASS",
+      "checks": [
+        {
+          "check_id": "P1",
+          "group_id": "GROUP_P",
+          "title": "Narrative Evidence Snapshot Hash Ordering Invariance",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Evidence snapshot hash is invariant to evidence sorting order",
+          "details": null
+        }
+      ]
+    },
+    {
+      "group_id": "GROUP_R",
+      "title": "Benchmark Group GROUP_R",
+      "total_checks": 1,
+      "passed_checks": 1,
+      "failed_checks": 0,
+      "warning_checks": 0,
+      "status": "PASS",
+      "checks": [
+        {
+          "check_id": "R1",
+          "group_id": "GROUP_R",
+          "title": "Server-Owned Calculated Values Security Protection",
+          "status": "PASS",
+          "is_required": true,
+          "message": "Clients cannot inject scores, weights, confidence, or affinity levels",
+          "details": null
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "check_id": "A1",
+      "group_id": "GROUP_A",
+      "title": "Style DNA 9D Contract & Order",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Style DNA dimensions match exact 9D order D1..D9",
+      "details": null
+    },
+    {
+      "check_id": "A2",
+      "group_id": "GROUP_A",
+      "title": "Narrative Themes 8 Contract & Order",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Narrative themes match exact 8 themes N1..N8",
+      "details": null
+    },
+    {
+      "check_id": "A3",
+      "group_id": "GROUP_A",
+      "title": "Importance Level Weights Contract",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Importance weights: PRIORITY=1.00, STANDARD=0.60, FLEXIBLE=0.25",
+      "details": null
+    },
+    {
+      "check_id": "A4",
+      "group_id": "GROUP_A",
+      "title": "Narrative Preference Weights Contract",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Narrative weights: PRIMARY=1.00, SECONDARY=0.60, NOT_SELECTED=0.00",
+      "details": null
+    },
+    {
+      "check_id": "A5",
+      "group_id": "GROUP_A",
+      "title": "D6 (Structural Order) != D7 (Rhythm Repetition) Invariant",
+      "status": "PASS",
+      "is_required": true,
+      "message": "D6 (structural_order) and D7 (rhythm_repetition) are distinct dimensions",
+      "details": null
+    },
+    {
+      "check_id": "B1",
+      "group_id": "GROUP_B",
+      "title": "Style DNA Range & Value Bounding [0, 1]",
+      "status": "PASS",
+      "is_required": true,
+      "message": "All 9D values and confidence scores bounded in [0, 1] without NaN/Inf",
+      "details": null
+    },
+    {
+      "check_id": "B2",
+      "group_id": "GROUP_B",
+      "title": "Style DNA Engine Analysis Determinism",
+      "status": "PASS",
+      "is_required": true,
+      "message": "5 consecutive analyses stable within tolerance 0.0001",
+      "details": null
+    },
+    {
+      "check_id": "B3",
+      "group_id": "GROUP_B",
+      "title": "Visual Preference Stimuli SHA-256 Asset Integrity",
+      "status": "PASS",
+      "is_required": true,
+      "message": "All 12 visual stimulus SVG asset hashes verified",
+      "details": null
+    },
+    {
+      "check_id": "B4",
+      "group_id": "GROUP_B",
+      "title": "Visual Stimuli V1..V6 Target Delta & Contamination",
+      "status": "PASS",
+      "is_required": true,
+      "message": "All 6 stimuli satisfy target delta >= 0.35 and max contamination <= 0.15",
+      "details": {
+        "color_energy": {
+          "target_delta": 0.8962,
+          "max_non_target": 0.123
+        },
+        "contrast": {
+          "target_delta": 0.5305,
+          "max_non_target": 0.1119
+        },
+        "visual_complexity": {
+          "target_delta": 0.4609,
+          "max_non_target": 0.1348
+        },
+        "structural_order": {
+          "target_delta": 0.388,
+          "max_non_target": 0.0221
+        },
+        "rhythm_repetition": {
+          "target_delta": 0.3726,
+          "max_non_target": 0.0706
+        },
+        "form_language": {
+          "target_delta": 0.5856,
+          "max_non_target": 0.0826
+        }
+      }
+    },
+    {
+      "check_id": "B5",
+      "group_id": "GROUP_B",
+      "title": "Visual Stimulus Negative Validator Regression",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Negative validator correctly rejects contaminated stimulus (contamination 0.30 > 0.15)",
+      "details": null
+    },
+    {
+      "check_id": "C1",
+      "group_id": "GROUP_C",
+      "title": "Text Preference Question Count = 6",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Exactly 6 text preference questions defined",
+      "details": null
+    },
+    {
+      "check_id": "C2",
+      "group_id": "GROUP_C",
+      "title": "Text Preference D5 & D7 NOT_MEASURED Contract",
+      "status": "PASS",
+      "is_required": true,
+      "message": "D5 (visual_complexity) and D7 (rhythm_repetition) are NOT_MEASURED in text profile",
+      "details": null
+    },
+    {
+      "check_id": "C3",
+      "group_id": "GROUP_C",
+      "title": "Text Preference D8 Weak Weight = 0.25 Contract",
+      "status": "PASS",
+      "is_required": true,
+      "message": "D8 (focal_strength) weak weight is exactly 0.25",
+      "details": null
+    },
+    {
+      "check_id": "C4",
+      "group_id": "GROUP_C",
+      "title": "Text & Visual Polarity Scale Mapping",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Polarity mapping matches [-1.0, +1.0] standard scale",
+      "details": null
+    },
+    {
+      "check_id": "D1",
+      "group_id": "GROUP_D",
+      "title": "Visual Preference Stimuli Count = 6",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Exactly 6 visual preference stimuli defined",
+      "details": null
+    },
+    {
+      "check_id": "E1",
+      "group_id": "GROUP_E",
+      "title": "Multimodal Completed Profile 9/9 Coverage",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Completed multimodal profile covers all 9 dimensions",
+      "details": null
+    },
+    {
+      "check_id": "E2",
+      "group_id": "GROUP_E",
+      "title": "Multimodal Weighted Merge Contract (D3)",
+      "status": "PASS",
+      "is_required": true,
+      "message": "D3 weighted merge value 0.6773 matches expected weighted average 0.6773",
+      "details": null
+    },
+    {
+      "check_id": "E3",
+      "group_id": "GROUP_E",
+      "title": "Preference Confidence Formula & Known Cases",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Confidence cases verified: c1(dual)=0.9625, c2(single)=0.6, c3(weak)=0.15",
+      "details": null
+    },
+    {
+      "check_id": "E4",
+      "group_id": "GROUP_E",
+      "title": "User Override Provenance & Values Preservation",
+      "status": "PASS",
+      "is_required": true,
+      "message": "User override preserves inferred_value, updates final_value=0.80, sets USER_OVERRIDDEN provenance, keeps confidence",
+      "details": null
+    },
+    {
+      "check_id": "F1",
+      "group_id": "GROUP_F",
+      "title": "Importance Default Skip Profile (9 x STANDARD = 0.60)",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Skipped importance yields exactly 9 x STANDARD (0.60) dimensions",
+      "details": null
+    },
+    {
+      "check_id": "F2",
+      "group_id": "GROUP_F",
+      "title": "Importance Priority / Flexible Overlap Rejection",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Validation error thrown when same dimension is in priority and flexible lists",
+      "details": null
+    },
+    {
+      "check_id": "G1",
+      "group_id": "GROUP_G",
+      "title": "Style Match Exact Identity Baseline = 100.0 (VERY_STRONG)",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Exact match score=100.0, label=VERY_STRONG",
+      "details": null
+    },
+    {
+      "check_id": "G2",
+      "group_id": "GROUP_G",
+      "title": "Style Match Polar Difference Baseline = 20.0 (LOW)",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Polar difference score=20.0, label=StyleMatchLabelEnum.LOW",
+      "details": null
+    },
+    {
+      "check_id": "G3",
+      "group_id": "GROUP_G",
+      "title": "Style Match Priority Weight Sensitivity Contract",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Priority weight penalizes priority mismatch more: standard=91.11, priority=86.21",
+      "details": null
+    },
+    {
+      "check_id": "G4",
+      "group_id": "GROUP_G",
+      "title": "Style Match Coverage Guardrail Rule (5/9 = NOT_AVAILABLE)",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Coverage guardrail enforced: 5/9 dimensions yields status=NOT_AVAILABLE",
+      "details": null
+    },
+    {
+      "check_id": "H1",
+      "group_id": "GROUP_H",
+      "title": "User Narrative Profile Theme Weights & Defaults",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Primary=1.00, Secondary=0.60, Not Selected=0.00 default semantics verified",
+      "details": null
+    },
+    {
+      "check_id": "K1",
+      "group_id": "GROUP_K",
+      "title": "Narrative Affinity Golden Case (0.375 -> MODERATE)",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Narrative affinity coverage=0.375, level=MODERATE",
+      "details": null
+    },
+    {
+      "check_id": "K2",
+      "group_id": "GROUP_K",
+      "title": "Narrative Contested Evidence Policy & Abstention",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Contested-only evidence yields NOT_AVAILABLE with ONLY_CONTESTED_CARPET_EVIDENCE reason",
+      "details": null
+    },
+    {
+      "check_id": "K3",
+      "group_id": "GROUP_K",
+      "title": "User Skipped Narrative Profile Abstention",
+      "status": "PASS",
+      "is_required": true,
+      "message": "User skipped narrative profile yields NOT_AVAILABLE (not zero / LIMITED)",
+      "details": null
+    },
+    {
+      "check_id": "L1",
+      "group_id": "GROUP_L",
+      "title": "Historical Reference Source Type Contract",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Historical source_type='HISTORICAL' and primary_reference_type='MUSEUM_OBJECT'",
+      "details": null
+    },
+    {
+      "check_id": "M1",
+      "group_id": "GROUP_M",
+      "title": "Historical Connection Golden Case (Identical = 1.0 VERY_CLOSE)",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Historical connection similarity=1.0, level=VERY_CLOSE",
+      "details": null
+    },
+    {
+      "check_id": "M2",
+      "group_id": "GROUP_M",
+      "title": "Historical Connection Coverage Abstention (< 6 Dimensions)",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Insufficient historical coverage (<6 dimensions) yields NOT_AVAILABLE with similarity=None",
+      "details": null
+    },
+    {
+      "check_id": "M3",
+      "group_id": "GROUP_M",
+      "title": "Historical Non-Attribution Contract (No Probability / Authenticity Scores)",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Historical connection schema contains no attribution or authenticity scores",
+      "details": null
+    },
+    {
+      "check_id": "N1",
+      "group_id": "GROUP_N",
+      "title": "Cross-Layer Metric Independence",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Visual Style Match and Narrative Affinity execute independently without cross-leakage",
+      "details": null
+    },
+    {
+      "check_id": "N2",
+      "group_id": "GROUP_N",
+      "title": "3-Axis Evaluation Invariant (No Combined / Total Score)",
+      "status": "PASS",
+      "is_required": true,
+      "message": "All 3 evaluation axes (Visual, Narrative, Historical) remain strictly separate without combined score",
+      "details": null
+    },
+    {
+      "check_id": "O1",
+      "group_id": "GROUP_O",
+      "title": "Abstention Correctness = 100%",
+      "status": "PASS",
+      "is_required": true,
+      "message": "System correctly abstains (NOT_AVAILABLE) when evidence is missing or user skipped",
+      "details": null
+    },
+    {
+      "check_id": "P1",
+      "group_id": "GROUP_P",
+      "title": "Narrative Evidence Snapshot Hash Ordering Invariance",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Evidence snapshot hash is invariant to evidence sorting order",
+      "details": null
+    },
+    {
+      "check_id": "R1",
+      "group_id": "GROUP_R",
+      "title": "Server-Owned Calculated Values Security Protection",
+      "status": "PASS",
+      "is_required": true,
+      "message": "Clients cannot inject scores, weights, confidence, or affinity levels",
+      "details": null
+    }
+  ]
+}

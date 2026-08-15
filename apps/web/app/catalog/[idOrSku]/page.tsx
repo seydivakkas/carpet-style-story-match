@@ -107,6 +107,7 @@ function CatalogDetailContent({ idOrSku }: { idOrSku: string }) {
         {/* Left: Image */}
         <div className="bg-slate-950 border border-slate-800/80 rounded-xl p-4 flex items-center justify-center min-h-[300px] lg:min-h-[400px]">
           {detail.primary_image ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
             <img
               src={resolveImageUrl(detail.primary_image.storage_key || detail.primary_image.file_path) || ""}
               alt={carpetData.name}
