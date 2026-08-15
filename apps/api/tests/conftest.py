@@ -1,3 +1,9 @@
+"""
+ÖZEL LİSANS — TÜM HAKLAR SAKLIDIR
+Telif Hakkı (c) 2026 Seydi Eryılmaz (@seydivakkas)
+
+Pytest Root Test Configuration & Fixtures.
+"""
 import pytest
 from typing import AsyncGenerator
 from httpx import AsyncClient, ASGITransport
@@ -5,6 +11,9 @@ from sqlalchemy import event
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.pool import StaticPool
 
+import app.db.session as db_session_module
+from app.core.config import settings
+from app.core.middleware import reset_rate_limiter
 from app.main import app
 from app.db.base import Base
 from app.db.session import get_db
@@ -32,6 +41,29 @@ TestingSessionLocal = async_sessionmaker(
     autoflush=False
 )
 
+# Monkeypatch app.db.session so scripts importing AsyncSessionLocal use test_engine
+db_session_module.engine = test_engine
+db_session_module.AsyncSessionLocal = TestingSessionLocal
+
+
+@pytest.fixture(autouse=True)
+def enforce_test_settings():
+    old_env = settings.APP_ENV
+    old_limit = settings.RATE_LIMIT_PER_MINUTE
+    old_flag = settings.ENABLE_RATE_LIMITER_IN_TEST
+
+    settings.APP_ENV = "test"
+    settings.ENABLE_RATE_LIMITER_IN_TEST = False
+    reset_rate_limiter()
+
+    yield
+
+    settings.APP_ENV = old_env
+    settings.RATE_LIMIT_PER_MINUTE = old_limit
+    settings.ENABLE_RATE_LIMITER_IN_TEST = old_flag
+    reset_rate_limiter()
+
+
 @pytest.fixture(autouse=True)
 async def setup_db():
     async with test_engine.begin() as conn:
@@ -40,16 +72,19 @@ async def setup_db():
     async with test_engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
 
+
 async def override_get_db() -> AsyncGenerator[AsyncSession, None]:
     async with TestingSessionLocal() as session:
         yield session
 
 app.dependency_overrides[get_db] = override_get_db
 
+
 @pytest.fixture
 async def client():
     async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
         yield ac
+
 
 @pytest.fixture
 async def db_session() -> AsyncGenerator[AsyncSession, None]:

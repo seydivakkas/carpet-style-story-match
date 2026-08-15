@@ -1,0 +1,106 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: carpet_postgres_prod
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-carpet_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-carpet_prod_password_change_me}
+      POSTGRES_DB: ${POSTGRES_DB:-carpet_db}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_prod_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-carpet_user} -d ${POSTGRES_DB:-carpet_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  migrate:
+    build:
+      context: .
+      dockerfile: docker/api.Dockerfile
+    container_name: carpet_migrate_prod
+    environment:
+      APP_ENV: production
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-carpet_user}:${POSTGRES_PASSWORD:-carpet_prod_password_change_me}@postgres:5432/${POSTGRES_DB:-carpet_db}
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  minio:
+    image: minio/minio:RELEASE.2024-01-16T16-07-38Z
+    container_name: carpet_minio_prod
+    restart: always
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadminpassword}
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_prod_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/api.Dockerfile
+    container_name: carpet_api_prod
+    restart: always
+    environment:
+      APP_ENV: production
+      DEBUG: "false"
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-carpet_user}:${POSTGRES_PASSWORD:-carpet_prod_password_change_me}@postgres:5432/${POSTGRES_DB:-carpet_db}
+      API_HOST: 0.0.0.0
+      API_PORT: 8000
+      CORS_ORIGINS: '["http://localhost:3000", "http://localhost"]'
+      TRUSTED_HOSTS: '["localhost", "127.0.0.1", "0.0.0.0", "api", "web"]'
+      STORAGE_BACKEND: ${STORAGE_BACKEND:-local}
+      IMAGE_STORAGE_ROOT: /app/data/uploads
+    ports:
+      - "8000:8000"
+    volumes:
+      - api_prod_data:/app/data/uploads
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:8000/health/ready')\""]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    depends_on:
+      postgres:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+
+  web:
+    build:
+      context: .
+      dockerfile: docker/web.Dockerfile
+    container_name: carpet_web_prod
+    restart: always
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD-SHELL", "node -e \"require('http').get('http://localhost:3000', (r) => process.exit(r.statusCode === 200 ? 0 : 1))\""]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  postgres_prod_data:
+  api_prod_data:
+  minio_prod_data:

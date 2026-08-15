@@ -2,10 +2,19 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
+# Create non-root system user
+RUN groupadd -g 10001 appuser && \
+    useradd -u 10001 -g appuser -m -s /bin/bash appuser && \
+    mkdir -p /app/data/uploads && \
+    chown -R appuser:appuser /app
+
 COPY apps/api/pyproject.toml .
 RUN pip install --no-cache-dir .
 
 COPY apps/api/ .
+RUN chown -R appuser:appuser /app
+
+USER appuser
 
 EXPOSE 8000
 

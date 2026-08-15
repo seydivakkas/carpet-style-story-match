@@ -1,4 +1,4 @@
-.PHONY: up down test lint check backend-test frontend-lint frontend-typecheck frontend-build
+.PHONY: up down test lint check backend-test frontend-lint frontend-typecheck frontend-build prod-build prod-config-check prod-smoke
 
 up:
 	docker compose up -d --build
@@ -17,6 +17,15 @@ frontend-typecheck:
 
 frontend-build:
 	cd apps/web && npm run build
+
+prod-build:
+	docker compose -f docker-compose.prod.yml build
+
+prod-config-check:
+	cd apps/api && python -m app.scripts.check_production_config --env production
+
+prod-smoke:
+	python scripts/smoke_production.py
 
 test: backend-test
 

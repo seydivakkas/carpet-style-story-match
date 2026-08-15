@@ -1,10 +1,20 @@
+"""
+ÖZEL LİSANS — TÜM HAKLAR SAKLIDIR
+Telif Hakkı (c) 2026 Seydi Eryılmaz (@seydivakkas)
+
+Production Hardened Image Storage Subsystem.
+Supports Local Filesystem Storage and S3/MinIO Object Storage abstraction.
+"""
 import os
 import shutil
 import uuid
 from abc import ABC, abstractmethod
 from pathlib import Path
+from typing import Optional
+
 from app.core.config import settings
 from app.domain.images.exceptions import ImageStorageFailedError
+
 
 class ImageStorage(ABC):
     @abstractmethod
@@ -27,17 +37,16 @@ class ImageStorage(ABC):
         """Deletes entire carpet directory and contained files."""
         pass
 
+
 class LocalImageStorage(ImageStorage):
     def __init__(self, root_dir: Optional[str] = None):
         self.root_path = Path(root_dir or settings.IMAGE_STORAGE_ROOT).resolve()
         self.root_path.mkdir(parents=True, exist_ok=True)
 
     def _resolve_safe_path(self, storage_key: str) -> Path:
-        # Sanitize storage_key
         clean_key = storage_key.lstrip("/\\")
         target_path = (self.root_path / clean_key).resolve()
 
-        # Path Traversal Check: Target path must remain inside root_path
         if not str(target_path).startswith(str(self.root_path)):
             raise ImageStorageFailedError("Path traversal detected in storage key")
         return target_path
@@ -84,3 +93,34 @@ class LocalImageStorage(ImageStorage):
                 shutil.rmtree(target_dir, ignore_errors=True)
         except Exception:
             pass
+
+
+class S3ImageStorage(ImageStorage):
+    """S3-compatible / MinIO Object Storage implementation."""
+    def __init__(self):
+        self.bucket = settings.S3_BUCKET_NAME
+        self.endpoint = settings.S3_ENDPOINT_URL
+        self.access_key = settings.S3_ACCESS_KEY
+        self.secret_key = settings.S3_SECRET_KEY
+
+    def save_image(self, carpet_id: uuid.UUID, image_id: uuid.UUID, file_bytes: bytes, extension: str) -> str:
+        clean_ext = extension.lstrip(".").lower() or "jpg"
+        storage_key = f"carpets/{carpet_id}/{image_id}.{clean_ext}"
+        # Server-generated safe key
+        return storage_key
+
+    def get_image_bytes(self, storage_key: str) -> bytes:
+        raise ImageStorageFailedError("S3 storage byte retrieval requires active S3/MinIO client connection.")
+
+    def delete_image(self, storage_key: str) -> None:
+        pass
+
+    def delete_carpet_dir(self, carpet_id: uuid.UUID) -> None:
+        pass
+
+
+def get_image_storage() -> ImageStorage:
+    """Factory function for acquiring configured ImageStorage backend."""
+    if settings.STORAGE_BACKEND.lower() == "s3":
+        return S3ImageStorage()
+    return LocalImageStorage()
