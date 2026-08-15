@@ -249,7 +249,7 @@ class ProceduralStimulusGenerator:
 
     # -----------------------------------------------------------------
     # V3: Visual Complexity (BASE_C Banded)
-    # A = simple macro bands, B = micro-ornaments and internal hatching
+    # A = simple macro bands, B = micro-ornaments, nested geometry and internal hatching
     # -----------------------------------------------------------------
     @classmethod
     def _render_v3(cls, variant: str) -> Tuple[str, Image.Image]:
@@ -260,6 +260,7 @@ class ProceduralStimulusGenerator:
         bg = (40, 60, 90)
         band_c = (200, 160, 80)
         line_c = (240, 240, 240)
+        detail_c = (30, 20, 10)
 
         draw.rectangle([0, 0, W, H], fill=bg)
 
@@ -267,18 +268,28 @@ class ProceduralStimulusGenerator:
         svg_bands = []
         band_h = cls.hex_color(band_c)
         line_h = cls.hex_color(line_c)
+        detail_h = cls.hex_color(detail_c)
 
         for i in range(1, 6):
-            y1 = i * band_height
-            y2 = y1 + band_height - 20
-            draw.rectangle([40, y1, W-40, y2], fill=band_c)
-            svg_bands.append(f'<rect x="40" y="{y1}" width="{W-80}" height="{y2-y1}" fill="{band_h}"/>')
+            y1 = i * band_height + 5
+            y2 = y1 + band_height - 30
+            draw.rectangle([60, y1, W-60, y2], fill=band_c)
+            svg_bands.append(f'<rect x="60" y="{y1}" width="{W-120}" height="{y2-y1}" fill="{band_h}"/>')
 
             if variant == "B":
-                for stroke_x in range(50, W-50, 15):
-                    draw.line([(stroke_x, y1+4), (stroke_x, y2-4)], fill=line_c, width=2)
-                    draw.ellipse([stroke_x-3, (y1+y2)//2-3, stroke_x+3, (y1+y2)//2+3], fill=line_c)
-                    svg_bands.append(f'<line x1="{stroke_x}" y1="{y1+4}" x2="{stroke_x}" y2="{y2-4}" stroke="{line_h}" stroke-width="2"/>')
+                # Concentric inner borders
+                draw.rectangle([66, y1+4, W-66, y2-4], outline=line_c, width=2)
+                draw.rectangle([72, y1+8, W-72, y2-8], outline=detail_c, width=2)
+                svg_bands.append(f'<rect x="66" y="{y1+4}" width="{W-132}" height="{y2-y1-8}" fill="none" stroke="{line_h}" stroke-width="2"/>')
+                svg_bands.append(f'<rect x="72" y="{y1+8}" width="{W-144}" height="{y2-y1-16}" fill="none" stroke="{detail_h}" stroke-width="2"/>')
+
+                # Fine dense vertical hatching & micro-diamonds inside each band
+                for stroke_x in range(80, W-80, 8):
+                    draw.line([(stroke_x, y1+10), (stroke_x, y2-10)], fill=line_c, width=2)
+                    cy_mid = (y1 + y2) // 2
+                    draw.polygon([(stroke_x, cy_mid-3), (stroke_x+3, cy_mid), (stroke_x, cy_mid+3), (stroke_x-3, cy_mid)], fill=detail_c)
+                    svg_bands.append(f'<line x1="{stroke_x}" y1="{y1+10}" x2="{stroke_x}" y2="{y2-10}" stroke="{line_h}" stroke-width="2"/>')
+                    svg_bands.append(f'<polygon points="{stroke_x},{cy_mid-3} {stroke_x+3},{cy_mid} {stroke_x},{cy_mid+3} {stroke_x-3},{cy_mid}" fill="{detail_h}"/>')
 
         bg_h = cls.hex_color(bg)
         bands_str = "\n  ".join(svg_bands)
@@ -312,17 +323,25 @@ class ProceduralStimulusGenerator:
         acc_h = cls.hex_color(acc)
 
         if variant == "A":
-            med_cx, med_cy = cx + 55, cy - 65
+            # Strongly asymmetric / perturbed spatial arrangement
+            med_cx, med_cy = cx - 110, cy + 120
             draw.ellipse([med_cx-120, med_cy-140, med_cx+120, med_cy+140], fill=med)
-            draw.rectangle([70, 90, 180, 200], fill=acc)
-            draw.ellipse([W-220, H-180, W-100, H-90], fill=acc)
+
+            # 4 corner motifs placed asymmetrically (3 concentrated on upper-right/top, 1 small on bottom-left)
+            draw.rectangle([W-220, 60, W-70, 210], fill=acc)
+            draw.rectangle([W-180, 230, W-80, 330], fill=acc)
+            draw.rectangle([220, 80, 320, 180], fill=acc)
+            draw.rectangle([50, H-120, 120, H-50], fill=acc)
 
             svg_shapes = f'''
   <ellipse cx="{med_cx}" cy="{med_cy}" rx="120" ry="140" fill="{med_h}"/>
-  <rect x="70" y="90" width="110" height="110" fill="{acc_h}"/>
-  <ellipse cx="{W-160}" cy="{H-135}" rx="60" ry="45" fill="{acc_h}"/>
+  <rect x="{W-220}" y="60" width="150" height="150" fill="{acc_h}"/>
+  <rect x="{W-180}" y="230" width="100" height="100" fill="{acc_h}"/>
+  <rect x="220" y="80" width="100" height="100" fill="{acc_h}"/>
+  <rect x="50" y="{H-120}" width="70" height="70" fill="{acc_h}"/>
 '''
         else:
+            # Perfect 4-way bilateral reflection symmetry
             med_cx, med_cy = cx, cy
             draw.ellipse([med_cx-130, med_cy-160, med_cx+130, med_cy+160], fill=med)
 

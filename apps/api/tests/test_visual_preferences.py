@@ -88,6 +88,7 @@ def test_cv_engine_validation_on_generated_stimuli():
     engine = StyleDNAEngine()
     results = {}
 
+    print("\n--- VISUAL STIMULI CV ENGINE VALIDATION RESULTS ---")
     for key in CANONICAL_VISUAL_CARDS:
         target_dim = STIMULI_CATALOG[key]["target_dimension"]
         png_a_path = os.path.join(TEST_STIMULI_DIR, f"{key.lower()}_a.png")
@@ -106,23 +107,43 @@ def test_cv_engine_validation_on_generated_stimuli():
 
         val_a = map_a[target_dim]
         val_b = map_b[target_dim]
+        target_delta = round(val_b - val_a, 4)
+
+        # Compute non-target deltas
+        non_target_deltas = {
+            dim: round(abs(map_b[dim] - map_a[dim]), 4)
+            for dim in map_a.keys()
+            if dim != target_dim and map_a[dim] is not None and map_b[dim] is not None
+        }
+        max_non_target_delta = max(non_target_deltas.values())
 
         results[key] = {
             "val_a": val_a,
             "val_b": val_b,
+            "target_delta": target_delta,
+            "non_target_deltas": non_target_deltas,
+            "max_non_target_delta": max_non_target_delta,
             "map_a": map_a,
             "map_b": map_b
         }
 
-        # Assert measured B > A in target dimension direction
-        assert val_b > val_a, f"CV validation failed for {key}: B ({val_b}) <= A ({val_a})"
+        print(f"Card {key} (Target: {target_dim}): A={val_a}, B={val_b}, Delta={target_delta}, Max Non-Target={max_non_target_delta}")
+
+        # Assert target delta >= 0.35
+        assert target_delta >= 0.35, f"{key} target delta {target_delta} < 0.35 (A={val_a}, B={val_b})"
 
     # Check D6/D7 decoupling contamination
-    v4_d7_contam = abs(results["V4_STRUCTURAL_ORDER"]["map_b"]["rhythm_repetition"] - results["V4_STRUCTURAL_ORDER"]["map_a"]["rhythm_repetition"])
-    v5_d6_contam = abs(results["V5_RHYTHM_REPETITION"]["map_b"]["structural_order"] - results["V5_RHYTHM_REPETITION"]["map_a"]["structural_order"])
+    v4_d7_contam = round(abs(results["V4_STRUCTURAL_ORDER"]["map_b"]["rhythm_repetition"] - results["V4_STRUCTURAL_ORDER"]["map_a"]["rhythm_repetition"]), 4)
+    v5_d6_contam = round(abs(results["V5_RHYTHM_REPETITION"]["map_b"]["structural_order"] - results["V5_RHYTHM_REPETITION"]["map_a"]["structural_order"]), 4)
+    v3_d7_contam = round(abs(results["V3_VISUAL_COMPLEXITY"]["map_b"]["rhythm_repetition"] - results["V3_VISUAL_COMPLEXITY"]["map_a"]["rhythm_repetition"]), 4)
+
+    print(f"V3 D7 Contamination: {v3_d7_contam}")
+    print(f"V4 D7 Contamination: {v4_d7_contam}")
+    print(f"V5 D6 Contamination: {v5_d6_contam}")
 
     assert v4_d7_contam <= 0.15, f"V4 D7 contamination {v4_d7_contam} > 0.15"
     assert v5_d6_contam <= 0.15, f"V5 D6 contamination {v5_d6_contam} > 0.15"
+    assert v3_d7_contam <= 0.15, f"V3 D7 contamination {v3_d7_contam} > 0.15"
 
 # ---------------------------------------------------------
 # API & INTEGRATION TESTS
