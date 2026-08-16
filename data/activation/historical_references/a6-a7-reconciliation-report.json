@@ -1,0 +1,40 @@
+{
+  "task": "POST-v1 A7A — Museum Source ↔ Historical Reference Reconciliation",
+  "status": "PASS",
+  "timestamp": "2026-08-16T10:24:23.130501+00:00",
+  "commits": {
+    "original_a6_commit": "65b0a2d",
+    "a7_commit": "5185986"
+  },
+  "lineage_discrepancy_resolution": {
+    "original_a6_ready_count": 20,
+    "current_a6_ready_count": 100,
+    "root_cause": "Original A6 commit 65b0a2d committed 20 pilot candidates (10 Met, 10 V&A). During A6/A7 dataset expansion validation, discovery was run with --limit 50 per provider, generating 100 accepted museum object sources (50 Met, 50 V&A). All 100 sources were acquired strictly via official Met and V&A adapters.",
+    "extra_sources_acquired_via_official_adapters": true,
+    "official_provenance_verified": true,
+    "all_sources_have_stable_id_and_url_and_hash": true,
+    "unverified_sources": 0
+  },
+  "a7_execution_behavior": {
+    "live_museum_api_discovery_by_a7": false,
+    "new_curated_source_creation_by_a7": 0,
+    "offline_reproducible": true,
+    "historical_images_downloaded": 0,
+    "historical_style_dna_profiles": 0
+  },
+  "set_invariants": {
+    "original_a6_sources": 20,
+    "current_a6_sources": 100,
+    "historical_references_promoted": 100,
+    "historical_not_in_a6": [],
+    "a6_ready_not_in_historical": [],
+    "unaccounted": 0
+  },
+  "curated_source_provenance": {
+    "curated_sources_before_a7": 101,
+    "curated_sources_after_a7": 101,
+    "created_by_a7": 0,
+    "museum_object_sources_total": 101,
+    "pre_existing_a4_safavid_medallion_carpet_retained": true
+  }
+}

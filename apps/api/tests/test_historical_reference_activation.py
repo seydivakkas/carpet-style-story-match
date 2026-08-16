@@ -183,6 +183,39 @@ async def test_isolation_and_boundary_invariants(db_session: AsyncSession):
 
 
 @pytest.mark.asyncio
+async def test_a7a_reconciliation_invariants(db_session: AsyncSession):
+    """Verify A7A reconciliation invariants: 1:1 match between A6 READY sources and HistoricalReference identities."""
+    await run_activation(dry_run=False, apply=True, db_session=db_session)
+
+    # Query all historical references
+    refs_res = await db_session.execute(select(HistoricalReferenceMetadataModel))
+    refs = refs_res.scalars().all()
+    assert len(refs) == 100
+
+    ref_keys = set(r.reference_key for r in refs)
+    assert len(ref_keys) == 100
+
+    # Query primary source keys linked
+    sources_res = await db_session.execute(
+        select(CuratedSourceModel).where(CuratedSourceModel.source_type == SourceTypeEnum.MUSEUM_OBJECT)
+    )
+    cs_sources = sources_res.scalars().all()
+    cs_keys = set(s.source_key for s in cs_sources)
+
+    # All primary source links must exist in CuratedSourceModel
+    source_links_res = await db_session.execute(
+        select(HistoricalReferenceSourceModel).where(
+            HistoricalReferenceSourceModel.source_role == HistoricalSourceRoleEnum.PRIMARY_OBJECT_RECORD
+        )
+    )
+    primary_links = source_links_res.scalars().all()
+    assert len(primary_links) == 100
+
+    for link in primary_links:
+        assert link.source_id in [s.id for s in cs_sources]
+
+
+@pytest.mark.asyncio
 async def test_historical_reference_api_endpoints(db_session: AsyncSession):
     """Verify GET /api/v1/historical-references endpoints serve activated museum references."""
     await run_activation(dry_run=False, apply=True, db_session=db_session)
