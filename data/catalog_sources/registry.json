@@ -26,11 +26,11 @@
       "adapter": "DinarsuCatalogAdapter",
       "metadata_policy": "OFFICIAL_CATALOG_ONLY",
       "image_policy": "URL_ONLY",
-      "verification_status": "VERIFIED",
-      "enabled": true,
-      "verified_at": "2026-08-16T23:00:00Z",
-      "status": "ACTIVE",
-      "notes": "Verified official manufacturer catalog source with URL_ONLY image policy"
+      "verification_status": "PENDING_VERIFICATION",
+      "enabled": false,
+      "verified_at": null,
+      "status": "REVIEW_REQUIRED",
+      "notes": "Verified source adapter created; catalog activation pending batch import"
     },
     {
       "provider_key": "padisah",

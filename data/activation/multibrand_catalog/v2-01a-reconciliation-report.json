@@ -1,0 +1,64 @@
+{
+  "reconciliation_timestamp": "2026-08-16T23:25:00Z",
+  "status": "PASS",
+  "migration_015_summary": {
+    "revision": "2026_08_16_015",
+    "tables_created": ["manufacturer_brands"],
+    "columns_added": ["carpets.brand_id"],
+    "foreign_keys": ["fk_carpets_brand_id (carpets.brand_id -> manufacturer_brands.id ON DELETE SET NULL)"],
+    "indexes": ["ix_manufacturer_brands_brand_key", "ix_carpets_brand_id"],
+    "nullable": true,
+    "formally_accepted": true
+  },
+  "migration_minimal": true,
+  "Merinos_total": 232,
+  "registered_collection_product_total": 232,
+  "unaccounted_Merinos_products": 0,
+  "unaccounted_reasons": {},
+  "Merinos_collection_distribution": {
+    "Arden": 24,
+    "Diyez": 22,
+    "Elegance": 13,
+    "Havana": 9,
+    "Launge": 13,
+    "Lion": 13,
+    "Octavia": 11,
+    "Premium": 16,
+    "Recycle": 17,
+    "Ritim": 12,
+    "Rodin": 24,
+    "Therapy": 24,
+    "Toronto": 11,
+    "Valeria": 8,
+    "Vega": 15
+  },
+  "distinct_catalog_collections": 15,
+  "reason_reported_as_17": "Prose summary documentation typo adding 2 non-persisted test adapter collections. Database truth is 15 distinct collections, matching GET /api/v1/catalog/facets exactly.",
+  "Dinarsu_product_identity": {
+    "production_persisted_count": 0,
+    "test_fixture_sku": "DN-1001",
+    "official_sku_verified": true,
+    "valid_production_product": false,
+    "provider_status": "REVIEW_REQUIRED"
+  },
+  "catalog_total": 232,
+  "unaccounted": 0,
+  "image_fix_preserved": {
+    "Merinos_primary_images": 227,
+    "UI_image_ready": 227,
+    "true_no_primary": 5,
+    "image_load_failed": 0,
+    "detail_72484_062_fixed": true
+  },
+  "historical_isolation": {
+    "HistoricalReference": 100,
+    "historical_primary": 45,
+    "historical_style_dna": 45
+  },
+  "knowledge_isolation": {
+    "Motifs": 13,
+    "Claims": 12,
+    "CarpetMotifAssociation": 12,
+    "CarpetStoryAssociation": 11
+  }
+}
