@@ -61,6 +61,13 @@ app.add_middleware(RateLimiterMiddleware)
 # Include API v1 Router
 app.include_router(api_v1_router)
 
+# Mount /static for local image storage
+from pathlib import Path
+from fastapi.staticfiles import StaticFiles
+_upload_dir = Path(settings.IMAGE_STORAGE_ROOT).resolve()
+_upload_dir.mkdir(parents=True, exist_ok=True)
+app.mount("/static", StaticFiles(directory=str(_upload_dir)), name="static")
+
 
 # Global exception handler to prevent traceback leakage in 500 responses
 @app.exception_handler(Exception)

@@ -156,7 +156,7 @@ async def get_carpet_image_content(
             status_code=status.HTTP_404_NOT_FOUND,
             detail={"code": "CARPET_NOT_FOUND", "message": str(exc)}
         )
-    except CarpetImageNotFoundError as exc:
+    except (CarpetImageNotFoundError, ImageStorageFailedError) as exc:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail={"code": "CARPET_IMAGE_NOT_FOUND", "message": str(exc)}
