@@ -1,0 +1,65 @@
+{
+  "test_timestamp": "2026-08-16T15:35:00Z",
+  "acceptance_suite": "tests/test_post_v1_e2e_acceptance.py",
+  "total_test_cases": 6,
+  "passed": 6,
+  "failed": 0,
+  "specimens_tested": {
+    "primary_specimen": {
+      "sku": "73941 060",
+      "name": "Elegance 73941 060",
+      "status": "PASS",
+      "visual_style_match": "MATCHED",
+      "narrative_affinity": "MATCHED",
+      "historical_connection": "EVALUATED"
+    },
+    "control_a_no_story": {
+      "sku": "72487 060",
+      "status": "PASS",
+      "result": "Clean zero narrative affinity / NO_CURATED_STORY"
+    },
+    "control_b_partial_style_dna": {
+      "sku": "72821 060",
+      "status": "PASS",
+      "result": "Partial DNA handling verified"
+    },
+    "control_c_no_image_catalog": {
+      "sku": "74928 062",
+      "status": "PASS",
+      "result": "NO_PRIMARY_IMAGE readiness flag verified"
+    },
+    "control_d_no_image_historical": {
+      "reference_key": "ref-met-489476",
+      "status": "PASS",
+      "result": "Gated image activation contract verified"
+    }
+  },
+  "non_profiling_audit": {
+    "prohibited_terms_scanned": [
+      "personality",
+      "kişilik",
+      "psychological",
+      "psikolojik",
+      "character type",
+      "karakter tipi",
+      "sen romantik birisin",
+      "kişiliğini yansıtıyor"
+    ],
+    "violations_found": 0,
+    "status": "COMPLIANT"
+  },
+  "canonical_theme_contract": {
+    "canonical_keys": [
+      "nature_growth",
+      "belonging_home",
+      "journey_discovery",
+      "continuity_connection",
+      "balance_order",
+      "renewal_transformation",
+      "tradition_craft",
+      "cultural_heritage"
+    ],
+    "invalid_code_rejection_verified": true,
+    "status": "VERIFIED"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "audit_timestamp": "2026-08-16T15:35:00Z",
+  "audit_scope": "Production Database Audit (carpet_db.sqlite)",
+  "baseline_verification": {
+    "catalog_carpets": {
+      "total": 232,
+      "primary_images": {
+        "total": 227,
+        "complete_style_dna": 224,
+        "partial_style_dna": 3
+      },
+      "no_primary_image": 5
+    },
+    "historical_references": {
+      "total": 100,
+      "primary_images": {
+        "total": 45,
+        "complete_style_dna": 45
+      },
+      "no_primary_image": 55
+    },
+    "curated_sources": {
+      "total": 106,
+      "museum_objects": 101,
+      "non_museum_objects": 5
+    },
+    "motifs": 13,
+    "claims": 12,
+    "carpet_motif_associations": 12,
+    "carpet_story_associations": 11
+  },
+  "relational_integrity": {
+    "orphan_carpet_images": 0,
+    "duplicate_primary_images": 0,
+    "orphan_style_profiles": 0,
+    "duplicate_current_style_profiles": 0,
+    "orphan_historical_metadata": 0,
+    "orphan_story_associations": 0,
+    "status": "100% CLEAN"
+  }
+}

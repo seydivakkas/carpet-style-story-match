@@ -1,0 +1,104 @@
+{
+  "traceability_matrix": {
+    "POST-v1 A1": {
+      "feature": "3-Layer System Separation & Preference Engine Baseline",
+      "status": "PASS",
+      "verification": "test_text_preferences.py, test_visual_preferences.py"
+    },
+    "POST-v1 A2": {
+      "feature": "Catalog Image Ingestion & Asset Serving",
+      "status": "COMPLETE",
+      "verification": "test_carpet_images.py"
+    },
+    "POST-v1 A2A": {
+      "feature": "Catalog Merinos Image Activation",
+      "status": "PASS",
+      "verification": "test_merinos_image_activation.py"
+    },
+    "POST-v1 A2A.1": {
+      "feature": "Merinos Ingestion Cleanup & Lineage Integrity",
+      "status": "PASS",
+      "verification": "test_merinos_cleanup.py"
+    },
+    "POST-v1 A2B": {
+      "feature": "Frozen 9D Style DNA Engine",
+      "status": "PASS",
+      "verification": "test_style_dna.py"
+    },
+    "POST-v1 A2B.1": {
+      "feature": "Full Catalog Style DNA Analysis Pipeline",
+      "status": "PASS",
+      "verification": "test_catalog_style_dna_analysis.py"
+    },
+    "POST-v1 A3": {
+      "feature": "Visual Style Match Engine (Layer 1)",
+      "status": "PASS",
+      "verification": "test_visual_style_match.py"
+    },
+    "POST-v1 A4": {
+      "feature": "User Importance Profile & Prioritization",
+      "status": "COMPLETE",
+      "verification": "test_importance_profile.py"
+    },
+    "POST-v1 A4A": {
+      "feature": "Multimodal Preference Integration",
+      "status": "PASS",
+      "verification": "test_multimodal_preferences.py"
+    },
+    "POST-v1 A5": {
+      "feature": "User Narrative Preference Profile & 8 Canonical Themes",
+      "status": "PASS",
+      "verification": "test_user_narrative_profile.py"
+    },
+    "POST-v1 A6": {
+      "feature": "Narrative Affinity Engine (Layer 2)",
+      "status": "PASS",
+      "verification": "test_narrative_affinity.py"
+    },
+    "POST-v1 A7": {
+      "feature": "Historical Museum Reference Data Model & Provenance Ingest",
+      "status": "COMPLETE",
+      "verification": "test_museum_source_activation.py"
+    },
+    "POST-v1 A7A": {
+      "feature": "Historical Reference Promotion & Primary Provenance Invariants",
+      "status": "PASS",
+      "verification": "test_historical_reference_activation.py"
+    },
+    "POST-v1 A7A.1": {
+      "feature": "Museum Source Lineage Arithmetic Reconciliation",
+      "status": "PASS",
+      "verification": "test_historical_reference_activation.py"
+    },
+    "POST-v1 A8": {
+      "feature": "Historical Local Image Ingestion & Rights Gating",
+      "status": "COMPLETE",
+      "verification": "test_historical_image_activation.py"
+    },
+    "POST-v1 A8A": {
+      "feature": "Historical Image Rights & Source-Hash Provenance Closure",
+      "status": "PASS",
+      "verification": "test_historical_image_activation.py"
+    },
+    "POST-v1 A8A.1": {
+      "feature": "Historical Image Terminal Accounting Closure",
+      "status": "PASS",
+      "verification": "test_historical_image_activation.py"
+    },
+    "POST-v1 A9": {
+      "feature": "Historical Style DNA Batch Analysis (Layer 3 Candidate Prep)",
+      "status": "COMPLETE",
+      "verification": "test_historical_style_dna_batch.py"
+    },
+    "POST-v1 A9A": {
+      "feature": "Pilot to Full Run Continuity & Profile Provenance Closure",
+      "status": "PASS",
+      "verification": "test_historical_style_dna_lineage.py"
+    },
+    "POST-v1 A10": {
+      "feature": "Final End-to-End User Journey & POST-v1 Acceptance",
+      "status": "PASS",
+      "verification": "test_post_v1_e2e_acceptance.py"
+    }
+  }
+}
