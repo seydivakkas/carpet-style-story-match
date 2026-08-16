@@ -70,8 +70,9 @@ yarn-error.log*
 Thumbs.db
 
 # Runtime Storage
-data/
-!data/
+apps/api/data/
+apps/api/data/**
+data/*
 !data/activation/
 !data/activation/**
 !data/external_datasets/
@@ -85,7 +86,11 @@ data/external_datasets/cache/
 kaggle.json
 uploads/
 
-# Graphify Knowledge Graph
-graphify-out/
+# Database
+*.sqlite
+*.db
+
+# Scratch
+scratch/
 
 

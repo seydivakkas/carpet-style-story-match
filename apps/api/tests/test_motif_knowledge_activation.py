@@ -205,7 +205,7 @@ async def test_catalog_and_boundary_immutability(db_session: AsyncSession):
         conn = sqlite3.connect(db_path)
         cur = conn.cursor()
         carpets = cur.execute("SELECT COUNT(*) FROM carpets WHERE source_type = 'CATALOG'").fetchone()[0]
-        images = cur.execute("SELECT COUNT(*) FROM carpet_images WHERE is_primary = 1").fetchone()[0]
+        images = cur.execute("SELECT COUNT(*) FROM carpet_images ci JOIN carpets c ON ci.carpet_id = c.id WHERE c.source_type = 'CATALOG' AND ci.is_primary = 1").fetchone()[0]
         styles = cur.execute("SELECT COUNT(*) FROM carpet_style_profiles").fetchone()[0]
         conn.close()
 

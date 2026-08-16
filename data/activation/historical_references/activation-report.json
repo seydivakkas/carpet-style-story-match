@@ -2,57 +2,57 @@
   "task": "POST-v1 A7 — Historical Reference Dataset Activation",
   "status": "PASS",
   "mode": "APPLY",
-  "timestamp": "2026-08-16T10:35:48.572787+00:00",
+  "timestamp": "2026-08-16T11:25:02.136053+00:00",
   "versions": {
     "historical_reference_version": "historical-reference-v1",
     "curation_schema_version": "historical-reference-curation-v1"
   },
   "input": {
-    "a6_ready_candidates": 100,
-    "promoted_candidates": 100,
+    "a6_ready_candidates": 40,
+    "promoted_candidates": 40,
     "skipped": 0,
     "rejected": 0
   },
   "historical_domain": {
     "historical_carpets_before": 0,
-    "historical_carpets_after": 100,
-    "historical_carpets_created": 100,
+    "historical_carpets_after": 40,
+    "historical_carpets_created": 40,
     "metadata_before": 0,
-    "metadata_after": 100,
-    "metadata_created": 100,
+    "metadata_after": 40,
+    "metadata_created": 40,
     "orphan_metadata": 0,
     "orphan_historical_carpets": 0
   },
   "providers": {
-    "met": 50,
-    "vam": 50
+    "met": 20,
+    "vam": 20
   },
   "primary_provenance": {
-    "primary_object_record_links": 100,
+    "primary_object_record_links": 40,
     "references_with_zero_primary": 0,
     "references_with_multiple_primary": 0,
     "invalid_primary_source_type": 0,
     "curated_sources_before": 0,
-    "curated_sources_after": 100,
-    "curated_sources_reused": 100,
-    "curated_sources_created": 100
+    "curated_sources_after": 40,
+    "curated_sources_reused": 40,
+    "curated_sources_created": 40
   },
   "rights_and_images": {
-    "source_image_urls": 45,
+    "source_image_urls": 19,
     "local_historical_carpet_images": 0,
     "image_binary_downloads": 0,
     "rights_distribution": {
-      "CC0 1.0 Universal": 45,
-      "All Rights Reserved": 5,
-      "Victoria and Albert Museum, London / Non-Commercial Educational Reuse": 50
+      "CC0 1.0 Universal": 19,
+      "All Rights Reserved": 1,
+      "Victoria and Albert Museum, London / Non-Commercial Educational Reuse": 20
     }
   },
   "a8_planning": {
-    "historical_total": 100,
-    "source_image_url_available": 45,
-    "open_access_true": 45,
-    "rights_review_required": 55,
-    "no_image_source": 55
+    "historical_total": 40,
+    "source_image_url_available": 19,
+    "open_access_true": 19,
+    "rights_review_required": 21,
+    "no_image_source": 21
   },
   "isolation": {
     "catalog_before": 0,
@@ -62,22 +62,22 @@
   "importer_result": {
     "dry_run": false,
     "status": "SUCCESS",
-    "imported_count": 100,
+    "imported_count": 40,
     "skipped_count": 0,
-    "total_count": 100
+    "total_count": 40
   },
   "field_null_telemetry": {
     "accession_number": 0,
-    "culture": 45,
-    "period": 99,
-    "dynasty_or_tradition": 100,
-    "date_display": 1,
-    "geography": 11,
-    "medium": 4,
-    "dimensions_text": 2,
-    "department": 50,
-    "credit_line": 27,
-    "source_image_url": 55,
+    "culture": 19,
+    "period": 40,
+    "dynasty_or_tradition": 40,
+    "date_display": 0,
+    "geography": 5,
+    "medium": 0,
+    "dimensions_text": 0,
+    "department": 20,
+    "credit_line": 10,
+    "source_image_url": 21,
     "rights_statement": 0
   }
 }
