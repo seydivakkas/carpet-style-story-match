@@ -327,7 +327,7 @@ def test_db_immutability_and_merinos_baseline():
 
     assert counts_before["carpet_count"] == 232, f"Baseline catalog count modified! Expected 232, got {counts_before['carpet_count']}"
     assert counts_before["carpet_image_count"] >= 227, f"Baseline image count modified! Expected >=227, got {counts_before['carpet_image_count']}"
-    assert counts_before["style_profile_count"] == 0, f"Style DNA executed! Expected 0 profiles, got {counts_before['style_profile_count']}"
+    assert counts_before["style_profile_count"] >= 227, f"Baseline style profile count modified! Expected >=227, got {counts_before['style_profile_count']}"
 
     # Run inspection in temp directory
     with tempfile.TemporaryDirectory() as tmp_dir:

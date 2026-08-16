@@ -37,6 +37,8 @@
 - `merinos-image-source.json`: Image URL candidate discovery provenance dataset (A2).
 - `merinos-image-activation.json`: Product image ingestion activation sidecar (A2).
 - `image-activation-report.json`: Product image activation summary report (A2).
+- `style-dna-batch-run.json`: Detailed execution run manifest for Style DNA batch processing (A3).
+- `style-dna-batch-report.json`: Final Style DNA batch summary report and 9D distribution telemetry (A3).
 
 ---
 
@@ -51,3 +53,33 @@ python -m app.scripts.activate_merinos_catalog_images --rights-mode URL_ONLY
 ```bash
 python -m app.scripts.activate_merinos_catalog_images --rights-mode AUTHORIZED_INTERNAL --apply
 ```
+
+### 3. Catalog Style DNA Batch Analysis (A3)
+```bash
+# Dry-run inspection (Safe, non-mutating)
+python -m app.scripts.analyze_catalog_style_dna --dry-run
+
+# Pilot run on 5 products
+python -m app.scripts.analyze_catalog_style_dna --pilot --apply --report data/activation/merinos/style-dna-pilot-report.json
+
+# Full catalog batch analysis
+python -m app.scripts.analyze_catalog_style_dna --apply --resume --report data/activation/merinos/style-dna-batch-report.json
+```
+
+---
+
+## Post-v1 A3 — Catalog Style DNA Batch Analysis
+
+- **Algorithm Version**: `style-dna-v1.0.0` (frozen, CPU-only model-free engine).
+- **Eligibility**:
+  - `source_type == CATALOG` (232 products).
+  - Eligible with primary image: 227 products.
+  - No primary image: 5 products (preserved as `NO_PRIMARY_IMAGE`).
+- **Idempotency & Stale Detection**:
+  - Skip re-computation if current primary image ID + SHA-256 + `style-dna-v1.0.0` profile already exists.
+  - Stale detection triggers re-analysis if primary image ID or SHA-256 changes.
+- **Readiness Transition**:
+  - Products with primary image: `STYLE_DNA_MISSING` → `STYLE_DNA_COMPLETE` / `STYLE_DNA_PARTIAL` / `STYLE_DNA_FAILED`.
+  - Products without primary image: remain `NO_PRIMARY_IMAGE`.
+- **A4 Boundary**: Real source-backed motif knowledge activation is reserved for POST-v1 A4.
+

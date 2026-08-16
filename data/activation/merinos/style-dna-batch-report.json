@@ -1,0 +1,160 @@
+{
+  "run_id": "run-1786864235",
+  "algorithm_version": "style-dna-v1.0.0",
+  "started_at": "2026-08-16T07:10:35.700542+00:00",
+  "completed_at": "2026-08-16T07:13:11.277462+00:00",
+  "mode": "APPLY",
+  "catalog_total": 232,
+  "manufacturer_distribution": {
+    "Merinos": 232
+  },
+  "eligible_total": 227,
+  "no_primary_image": 5,
+  "already_current": 0,
+  "stale": 5,
+  "pending": 0,
+  "processed": 227,
+  "style_dna_complete": 224,
+  "style_dna_partial": 3,
+  "style_dna_failed": 0,
+  "unaccounted": 0,
+  "range_violations": 0,
+  "nan_inf_violations": 0,
+  "readiness_distribution_after": {
+    "NO_PRIMARY_IMAGE": 5,
+    "STYLE_DNA_MISSING": 0,
+    "STYLE_DNA_COMPLETE": 224,
+    "STYLE_DNA_PARTIAL": 3,
+    "STYLE_DNA_FAILED": 0
+  },
+  "dimension_availability": {
+    "D1 color_energy": {
+      "AVAILABLE": 227,
+      "LOW_CONFIDENCE": 0,
+      "NOT_AVAILABLE": 0,
+      "FAILED": 0
+    },
+    "D2 color_diversity": {
+      "AVAILABLE": 227,
+      "LOW_CONFIDENCE": 0,
+      "NOT_AVAILABLE": 0,
+      "FAILED": 0
+    },
+    "D3 contrast": {
+      "AVAILABLE": 227,
+      "LOW_CONFIDENCE": 0,
+      "NOT_AVAILABLE": 0,
+      "FAILED": 0
+    },
+    "D4 warmth": {
+      "AVAILABLE": 64,
+      "LOW_CONFIDENCE": 163,
+      "NOT_AVAILABLE": 0,
+      "FAILED": 0
+    },
+    "D5 visual_complexity": {
+      "AVAILABLE": 227,
+      "LOW_CONFIDENCE": 0,
+      "NOT_AVAILABLE": 0,
+      "FAILED": 0
+    },
+    "D6 structural_order": {
+      "AVAILABLE": 227,
+      "LOW_CONFIDENCE": 0,
+      "NOT_AVAILABLE": 0,
+      "FAILED": 0
+    },
+    "D7 rhythm_repetition": {
+      "AVAILABLE": 227,
+      "LOW_CONFIDENCE": 0,
+      "NOT_AVAILABLE": 0,
+      "FAILED": 0
+    },
+    "D8 focal_strength": {
+      "AVAILABLE": 227,
+      "LOW_CONFIDENCE": 0,
+      "NOT_AVAILABLE": 0,
+      "FAILED": 0
+    },
+    "D9 form_language": {
+      "AVAILABLE": 224,
+      "LOW_CONFIDENCE": 0,
+      "NOT_AVAILABLE": 3,
+      "FAILED": 0
+    }
+  },
+  "dimension_statistics": {
+    "D1 color_energy": {
+      "count": 227,
+      "min": 0.0002,
+      "max": 0.2959,
+      "mean": 0.0641,
+      "std": 0.0504,
+      "collapse_warning": false
+    },
+    "D2 color_diversity": {
+      "count": 227,
+      "min": 0.0415,
+      "max": 0.6389,
+      "mean": 0.3019,
+      "std": 0.1171,
+      "collapse_warning": false
+    },
+    "D3 contrast": {
+      "count": 227,
+      "min": 0.0728,
+      "max": 0.7469,
+      "mean": 0.2909,
+      "std": 0.1404,
+      "collapse_warning": false
+    },
+    "D4 warmth": {
+      "count": 227,
+      "min": 0.2977,
+      "max": 0.8408,
+      "mean": 0.5475,
+      "std": 0.0915,
+      "collapse_warning": false
+    },
+    "D5 visual_complexity": {
+      "count": 227,
+      "min": 0.3492,
+      "max": 0.9794,
+      "mean": 0.7891,
+      "std": 0.1736,
+      "collapse_warning": false
+    },
+    "D6 structural_order": {
+      "count": 227,
+      "min": 0.2975,
+      "max": 0.9991,
+      "mean": 0.8904,
+      "std": 0.1125,
+      "collapse_warning": false
+    },
+    "D7 rhythm_repetition": {
+      "count": 227,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.7986,
+      "std": 0.2265,
+      "collapse_warning": false
+    },
+    "D8 focal_strength": {
+      "count": 227,
+      "min": 0.0778,
+      "max": 0.1664,
+      "mean": 0.1003,
+      "std": 0.0185,
+      "collapse_warning": false
+    },
+    "D9 form_language": {
+      "count": 224,
+      "min": 0.3028,
+      "max": 0.8707,
+      "mean": 0.542,
+      "std": 0.1224,
+      "collapse_warning": false
+    }
+  }
+}
