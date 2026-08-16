@@ -10,6 +10,7 @@ from app.api.v1.catalog import router as catalog_router
 from app.api.v1.narrative_affinity import router as narrative_affinity_router
 from app.api.v1.historical_reference import router as historical_reference_router
 from app.api.v1.historical_connection import router as historical_connection_router
+from app.api.v1.brands import router as brands_router
 
 api_v1_router = APIRouter(prefix="/api/v1")
 api_v1_router.include_router(health_router)
@@ -20,6 +21,7 @@ api_v1_router.include_router(style_dna_router)
 api_v1_router.include_router(preference_assessments_router)
 api_v1_router.include_router(motif_knowledge_router)
 api_v1_router.include_router(catalog_router)
+api_v1_router.include_router(brands_router)
 api_v1_router.include_router(narrative_affinity_router)
 api_v1_router.include_router(historical_reference_router)
 api_v1_router.include_router(historical_connection_router)

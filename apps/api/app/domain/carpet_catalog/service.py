@@ -9,6 +9,7 @@ from app.db.models.carpet_story_association import (
 from app.domain.contracts import CANONICAL_NARRATIVE_THEMES
 from app.domain.carpet_catalog.exceptions import CatalogCarpetNotFoundError
 from app.domain.carpet_catalog.repository import CarpetCatalogRepository
+from app.domain.images.storage import get_image_storage
 from app.domain.carpet_catalog.schemas import (
     CatalogCarpetRead,
     CatalogCarpetListResponse,
@@ -17,6 +18,8 @@ from app.domain.carpet_catalog.schemas import (
     CarpetStoryAssociationRead,
     PrimaryImageSummary,
     StyleDnaReadinessEnum,
+    BrandRead,
+    BrandListResponse,
 )
 from app.domain.common.readiness import derive_style_dna_readiness
 from app.domain.motif_knowledge.schemas import CuratedSourceRead, ClaimSourceRead
@@ -27,12 +30,25 @@ class CarpetCatalogService:
 
     def __init__(self, session: AsyncSession):
         self.repo = CarpetCatalogRepository(session)
+        self.storage = get_image_storage()
+
+    async def list_brands(self, verified_only: bool = False) -> BrandListResponse:
+        brands, total_count = await self.repo.list_brands(verified_only=verified_only)
+        brand_reads = [BrandRead.model_validate(b) for b in brands]
+        return BrandListResponse(total_count=total_count, brands=brand_reads)
+
+    async def get_brand_detail(self, brand_key: str) -> BrandRead:
+        brand = await self.repo.get_brand_by_key(brand_key)
+        if not brand:
+            raise CatalogCarpetNotFoundError(f"Manufacturer brand not found: {brand_key}")
+        return BrandRead.model_validate(brand)
 
     async def list_catalog_carpets(
         self,
         limit: int = 20,
         offset: int = 0,
         manufacturer: Optional[str] = None,
+        brand_key: Optional[str] = None,
         collection: Optional[str] = None,
         material: Optional[str] = None,
         style_label: Optional[str] = None
@@ -41,6 +57,7 @@ class CarpetCatalogService:
             limit=limit,
             offset=offset,
             manufacturer=manufacturer,
+            brand_key=brand_key,
             collection=collection,
             material=material,
             style_label=style_label
@@ -53,14 +70,18 @@ class CarpetCatalogService:
 
             primary_img_summary = None
             if primary_img:
+                is_avail = self.storage.image_exists(primary_img.storage_key)
                 primary_img_summary = PrimaryImageSummary(
                     image_id=primary_img.id,
                     file_path=primary_img.storage_key,
                     width=primary_img.width_px,
-                    height=primary_img.height_px
+                    height=primary_img.height_px,
+                    image_available=is_avail
                 )
 
             c_read = CatalogCarpetRead.model_validate(c)
+            if c.brand:
+                c_read.brand = BrandRead.model_validate(c.brand)
             c_read.primary_image = primary_img_summary
             c_read.style_dna_readiness = readiness
             carpet_reads.append(c_read)
@@ -83,18 +104,24 @@ class CarpetCatalogService:
 
         primary_img_summary = None
         if primary_image:
+            is_avail = self.storage.image_exists(primary_image.storage_key)
             primary_img_summary = PrimaryImageSummary(
                 image_id=primary_image.id,
                 file_path=primary_image.storage_key,
                 width=primary_image.width_px,
-                height=primary_image.height_px
+                height=primary_image.height_px,
+                image_available=is_avail
             )
 
         motif_assocs = await self.repo.list_carpet_motif_associations(carpet.id)
         story_assocs = await self.repo.list_carpet_story_associations(carpet.id)
 
+        carpet_read = CatalogCarpetRead.model_validate(carpet)
+        if carpet.brand:
+            carpet_read.brand = BrandRead.model_validate(carpet.brand)
+
         return CatalogCarpetDetailRead(
-            carpet=CatalogCarpetRead.model_validate(carpet),
+            carpet=carpet_read,
             primary_image=primary_img_summary,
             style_dna_readiness=readiness,
             motif_association_count=len(motif_assocs),

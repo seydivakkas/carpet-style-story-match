@@ -9,9 +9,11 @@ from sqlalchemy import (
     Boolean,
     DateTime,
     Enum as SQLEnum,
+    ForeignKey,
     CheckConstraint,
     Index
 )
+
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.session import Base
@@ -95,6 +97,18 @@ class CarpetModel(Base):
         nullable=False,
         default=lambda: datetime.now(timezone.utc),
         onupdate=lambda: datetime.now(timezone.utc)
+    )
+
+    brand_id: Mapped[Optional[uuid.UUID]] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("manufacturer_brands.id", ondelete="SET NULL"),
+        nullable=True,
+        index=True
+    )
+    
+    brand: Mapped[Optional["ManufacturerBrandModel"]] = relationship(
+        "ManufacturerBrandModel",
+        back_populates="carpets"
     )
 
     motif_associations: Mapped[list["CarpetMotifAssociationModel"]] = relationship(

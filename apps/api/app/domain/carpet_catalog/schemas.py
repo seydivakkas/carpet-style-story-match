@@ -15,6 +15,25 @@ from app.domain.common.readiness import StyleDnaReadinessEnum
 
 # --- READ SCHEMAS ---
 
+class BrandRead(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: uuid.UUID
+    brand_key: str
+    brand_name: str
+    brand_website: Optional[str] = None
+    logo_url: Optional[str] = None
+    is_verified: bool
+    parser_module: Optional[str] = None
+    created_at: datetime
+    updated_at: datetime
+
+
+class BrandListResponse(BaseModel):
+    total_count: int
+    brands: List[BrandRead]
+
+
 class PrimaryImageSummary(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
@@ -22,6 +41,7 @@ class PrimaryImageSummary(BaseModel):
     file_path: str
     width: int
     height: int
+    image_available: bool = True
 
 
 class CatalogCarpetRead(BaseModel):
@@ -42,6 +62,8 @@ class CatalogCarpetRead(BaseModel):
     is_active: bool
     created_at: datetime
     updated_at: datetime
+    brand_id: Optional[uuid.UUID] = None
+    brand: Optional[BrandRead] = None
     primary_image: Optional[PrimaryImageSummary] = None
     style_dna_readiness: Optional[StyleDnaReadinessEnum] = None
 

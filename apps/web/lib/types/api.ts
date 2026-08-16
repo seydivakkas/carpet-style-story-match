@@ -182,6 +182,24 @@ export interface NarrativeSelectionRequest {
   secondary_themes: string[];
 }
 
+// --- Manufacturer Brands ---
+export interface BrandRead {
+  id: string;
+  brand_key: string;
+  brand_name: string;
+  brand_website?: string | null;
+  logo_url?: string | null;
+  is_verified: boolean;
+  parser_module?: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface BrandListResponse {
+  total_count: number;
+  brands: BrandRead[];
+}
+
 // --- Catalog Carpets ---
 export interface PrimaryImageSummary {
   image_id: string;
@@ -189,6 +207,7 @@ export interface PrimaryImageSummary {
   storage_key?: string;
   width: number;
   height: number;
+  image_available?: boolean;
 }
 
 export interface CatalogCarpetRead {
@@ -207,6 +226,8 @@ export interface CatalogCarpetRead {
   is_active: boolean;
   created_at: string;
   updated_at: string;
+  brand_id?: string | null;
+  brand?: BrandRead | null;
 }
 
 export interface CatalogCarpetSummaryRead extends CatalogCarpetRead {
@@ -282,6 +303,7 @@ export interface CarpetStoryAssociationRead {
 
 export interface ListCatalogCarpetsParams extends Record<string, unknown> {
   manufacturer?: string;
+  brand_key?: string;
   collection?: string;
   material?: string;
   style_label?: string;

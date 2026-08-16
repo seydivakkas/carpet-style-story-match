@@ -25,6 +25,7 @@ async def list_catalog_carpets(
     limit: int = Query(20, ge=1, le=100),
     offset: int = Query(0, ge=0),
     manufacturer: Optional[str] = Query(None),
+    brand_key: Optional[str] = Query(None),
     collection: Optional[str] = Query(None),
     material: Optional[str] = Query(None),
     style_label: Optional[str] = Query(None),
@@ -35,6 +36,7 @@ async def list_catalog_carpets(
         limit=limit,
         offset=offset,
         manufacturer=manufacturer,
+        brand_key=brand_key,
         collection=collection,
         material=material,
         style_label=style_label

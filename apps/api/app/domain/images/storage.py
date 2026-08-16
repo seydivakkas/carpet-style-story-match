@@ -28,6 +28,11 @@ class ImageStorage(ABC):
         pass
 
     @abstractmethod
+    def image_exists(self, storage_key: str) -> bool:
+        """Return True if image file exists in storage."""
+        pass
+
+    @abstractmethod
     def delete_image(self, storage_key: str) -> None:
         """Deletes image file from storage."""
         pass
@@ -77,6 +82,13 @@ class LocalImageStorage(ImageStorage):
         except Exception as e:
             raise ImageStorageFailedError(f"Failed to read file from disk: {e}") from e
 
+    def image_exists(self, storage_key: str) -> bool:
+        try:
+            target_path = self._resolve_safe_path(storage_key)
+            return target_path.exists() and target_path.is_file()
+        except Exception:
+            return False
+
     def delete_image(self, storage_key: str) -> None:
         try:
             target_path = self._resolve_safe_path(storage_key)
@@ -111,6 +123,9 @@ class S3ImageStorage(ImageStorage):
 
     def get_image_bytes(self, storage_key: str) -> bytes:
         raise ImageStorageFailedError("S3 storage byte retrieval requires active S3/MinIO client connection.")
+
+    def image_exists(self, storage_key: str) -> bool:
+        return True
 
     def delete_image(self, storage_key: str) -> None:
         pass

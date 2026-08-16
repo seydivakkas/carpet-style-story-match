@@ -4,6 +4,7 @@ import json
 import re
 from typing import Dict, Any, List, Optional
 from bs4 import BeautifulSoup
+from app.domain.carpet_catalog.brand_parser_base import BrandParserBase
 
 
 NON_PRODUCT_URL_PATTERNS = [
@@ -137,7 +138,7 @@ def parse_product_page(html: str, product_url: str, fallback_collection: Optiona
             if clean_size not in sizes:
                 sizes.append(clean_size)
 
-    # 5. Primary Image URL (Metadata only for A2, NOT downloaded in A1)
+    # 5. Primary Image URL
     primary_image_url: Optional[str] = None
     sku_slug = sku.replace(" ", "-") if sku else ""
     sku_compact = sku.replace(" ", "") if sku else ""
@@ -169,3 +170,30 @@ def parse_product_page(html: str, product_url: str, fallback_collection: Optiona
     factual_dict["source_hash"] = hashlib.sha256(hash_str.encode("utf-8")).hexdigest()
 
     return factual_dict
+
+
+class MerinosParser(BrandParserBase):
+    """Class wrapper for Merinos official catalog parser extending BrandParserBase."""
+
+    @property
+    def brand_key(self) -> str:
+        return "merinos"
+
+    @property
+    def brand_name(self) -> str:
+        return "Merinos"
+
+    @property
+    def base_url(self) -> str:
+        return "https://www.merinos.com.tr"
+
+    def parse_collection_page(self, html: str, collection_url: str) -> Dict[str, Any]:
+        return parse_collection_page(html, collection_url)
+
+    def parse_product_page(
+        self,
+        html: str,
+        product_url: str,
+        fallback_collection: Optional[str] = None
+    ) -> Dict[str, Any]:
+        return parse_product_page(html, product_url, fallback_collection)

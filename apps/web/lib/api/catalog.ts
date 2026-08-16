@@ -11,11 +11,15 @@ import {
   NarrativeAffinityResultRead,
   ListCatalogCarpetsParams,
   PrimaryImageSummary,
-  CarpetStyleProfileRead
+  CarpetStyleProfileRead,
+  BrandRead,
+  BrandListResponse
 } from "../types/api";
 
 export const catalogKeys = {
   all: ["catalog"] as const,
+  brands: () => [...catalogKeys.all, "brands"] as const,
+  brand: (brandKey: string) => [...catalogKeys.all, "brand", brandKey] as const,
   carpets: (params?: Record<string, unknown>) => [...catalogKeys.all, "carpets", params] as const,
   carpet: (idOrSku: string) => [...catalogKeys.all, "carpet", idOrSku] as const,
   motifs: (idOrSku: string) => [...catalogKeys.all, "motifs", idOrSku] as const,
@@ -26,11 +30,27 @@ export const catalogKeys = {
   narrativeAffinity: (assessmentId: string, affinityId: string) => [...catalogKeys.all, "narrative-affinity", assessmentId, affinityId] as const
 };
 
+export function useBrands(verifiedOnly: boolean = false) {
+  return useQuery({
+    queryKey: [...catalogKeys.brands(), { verifiedOnly }],
+    queryFn: () => apiRequest<BrandListResponse>(`/api/v1/brands${verifiedOnly ? "?verified_only=true" : ""}`)
+  });
+}
+
+export function useBrand(brandKey: string) {
+  return useQuery({
+    queryKey: catalogKeys.brand(brandKey),
+    queryFn: () => apiRequest<BrandRead>(`/api/v1/brands/${brandKey}`),
+    enabled: Boolean(brandKey)
+  });
+}
+
 export function useCatalogCarpets(params?: ListCatalogCarpetsParams) {
   const queryParams = new URLSearchParams();
   if (params?.limit) queryParams.set("limit", String(params.limit));
   if (params?.offset) queryParams.set("offset", String(params.offset));
   if (params?.manufacturer) queryParams.set("manufacturer", params.manufacturer);
+  if (params?.brand_key) queryParams.set("brand_key", params.brand_key);
   if (params?.collection) queryParams.set("collection", params.collection);
   if (params?.material) queryParams.set("material", params.material);
   if (params?.style_label) queryParams.set("style_label", params.style_label);

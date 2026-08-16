@@ -145,6 +145,9 @@ function CatalogDetailContent({ idOrSku }: { idOrSku: string }) {
     }
   };
 
+  const brandName = carpetData.brand?.brand_name || carpetData.manufacturer || "Üretici";
+  const isImageAvailable = primaryImageUrl && detail.primary_image?.image_available !== false;
+
   return (
     <main className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-8 flex-1 space-y-8">
       {/* Top Header & Navigation */}
@@ -169,7 +172,7 @@ function CatalogDetailContent({ idOrSku }: { idOrSku: string }) {
       <div className="bg-slate-900/80 border border-slate-800/80 rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 lg:p-8 shadow-2xl">
         {/* Left: Image Container (5 cols on lg) */}
         <div className="lg:col-span-5 flex flex-col items-center justify-center bg-slate-950 border border-slate-800/80 rounded-xl p-4 min-h-[340px] lg:min-h-[440px] relative overflow-hidden shadow-inner group">
-          {primaryImageUrl ? (
+          {isImageAvailable ? (
             /* eslint-disable-next-line @next/next/no-img-element */
             <img
               src={primaryImageUrl}
@@ -179,12 +182,12 @@ function CatalogDetailContent({ idOrSku }: { idOrSku: string }) {
           ) : (
             <div className="flex flex-col items-center justify-center space-y-3 p-8 text-center">
               <div className="w-16 h-16 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-500">
-                <ImageIcon className="w-8 h-8" />
+                <ImageIcon className="w-8 h-8 text-amber-500/60" />
               </div>
               <div className="space-y-1">
-                <span className="text-sm font-semibold text-slate-300 block">Görsel Hazırlanıyor</span>
-                <p className="text-xs text-slate-500 max-w-[220px]">
-                  Bu halı ürünü için resmi görsel henüz sisteme aktarılmamıştır.
+                <span className="text-sm font-semibold text-slate-300 block">Görsel Dosyası Hazırlanıyor</span>
+                <p className="text-xs text-slate-500 max-w-[240px]">
+                  Bu {brandName} ürünü için metadata ve 9D Style DNA profili aktarılmış olup, yüksek çözünürlüklü medya dosyası depolama biriminde senkronize edilmektedir.
                 </p>
               </div>
             </div>
@@ -221,12 +224,10 @@ function CatalogDetailContent({ idOrSku }: { idOrSku: string }) {
 
             {/* Structured Specifications Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs text-slate-300 bg-slate-950/80 border border-slate-800/70 rounded-xl p-4">
-              {carpetData.manufacturer && (
-                <div>
-                  <span className="text-slate-500 block text-[10px] uppercase font-mono">Üretici / Marka</span>
-                  <span className="font-semibold text-slate-200">{carpetData.manufacturer}</span>
-                </div>
-              )}
+              <div>
+                <span className="text-slate-500 block text-[10px] uppercase font-mono">Üretici / Marka</span>
+                <span className="font-semibold text-amber-300">{brandName}</span>
+              </div>
               {carpetData.collection && (
                 <div>
                   <span className="text-slate-500 block text-[10px] uppercase font-mono">Koleksiyon</span>
@@ -265,7 +266,7 @@ function CatalogDetailContent({ idOrSku }: { idOrSku: string }) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center space-x-2 text-xs font-mono text-amber-400 hover:text-amber-300 transition-colors"
               >
-                <span>Resmi Ürün Sayfasını İncele (Merinos)</span>
+                <span>Resmi Ürün Sayfasını İncele ({brandName})</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>

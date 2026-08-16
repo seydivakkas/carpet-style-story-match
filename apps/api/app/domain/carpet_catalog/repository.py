@@ -16,28 +16,61 @@ from app.db.models.motif_knowledge import MotifStoryClaimModel, MotifStoryClaimS
 from app.domain.styledna.engine import STYLE_DNA_ALGORITHM_VERSION
 
 
+from app.db.models.manufacturer_brand import ManufacturerBrandModel
+
+
 class CarpetCatalogRepository:
     """Read-only database repository for catalog carpet queries."""
 
     def __init__(self, session: AsyncSession):
         self.session = session
 
+    async def list_brands(self, verified_only: bool = False) -> Tuple[List[ManufacturerBrandModel], int]:
+        stmt = select(ManufacturerBrandModel)
+        if verified_only:
+            stmt = stmt.where(ManufacturerBrandModel.is_verified.is_(True))
+        stmt = stmt.order_by(ManufacturerBrandModel.brand_name.asc())
+        
+        count_stmt = select(func.count(ManufacturerBrandModel.id))
+        if verified_only:
+            count_stmt = count_stmt.where(ManufacturerBrandModel.is_verified.is_(True))
+
+        total_res = await self.session.execute(count_stmt)
+        total_count = total_res.scalar_one()
+
+        res = await self.session.execute(stmt)
+        brands = list(res.scalars().all())
+        return brands, total_count
+
+    async def get_brand_by_key(self, brand_key: str) -> Optional[ManufacturerBrandModel]:
+        stmt = select(ManufacturerBrandModel).where(
+            func.lower(ManufacturerBrandModel.brand_key) == brand_key.lower().strip()
+        )
+        res = await self.session.execute(stmt)
+        return res.scalar_one_or_none()
+
     async def list_catalog_carpets(
         self,
         limit: int = 20,
         offset: int = 0,
         manufacturer: Optional[str] = None,
+        brand_key: Optional[str] = None,
         collection: Optional[str] = None,
         material: Optional[str] = None,
         style_label: Optional[str] = None
     ) -> Tuple[List[CarpetModel], int]:
-        stmt = select(CarpetModel).where(
+        stmt = select(CarpetModel).options(selectinload(CarpetModel.brand)).where(
             CarpetModel.source_type == CarpetSourceType.CATALOG,
             CarpetModel.is_active.is_(True)
         )
 
-        if manufacturer:
+        if brand_key:
+            stmt = stmt.join(CarpetModel.brand).where(
+                func.lower(ManufacturerBrandModel.brand_key) == brand_key.lower().strip()
+            )
+        elif manufacturer:
             stmt = stmt.where(CarpetModel.manufacturer == manufacturer)
+
         if collection:
             stmt = stmt.where(CarpetModel.collection == collection)
         if material:
@@ -50,8 +83,13 @@ class CarpetCatalogRepository:
             CarpetModel.source_type == CarpetSourceType.CATALOG,
             CarpetModel.is_active.is_(True)
         )
-        if manufacturer:
+        if brand_key:
+            count_stmt = count_stmt.join(CarpetModel.brand).where(
+                func.lower(ManufacturerBrandModel.brand_key) == brand_key.lower().strip()
+            )
+        elif manufacturer:
             count_stmt = count_stmt.where(CarpetModel.manufacturer == manufacturer)
+
         if collection:
             count_stmt = count_stmt.where(CarpetModel.collection == collection)
         if material:
@@ -76,12 +114,12 @@ class CarpetCatalogRepository:
     async def get_catalog_carpet_by_id_or_sku(self, identifier: str) -> Optional[CarpetModel]:
         is_uuid = self._is_valid_uuid(identifier)
         if is_uuid:
-            stmt = select(CarpetModel).where(
+            stmt = select(CarpetModel).options(selectinload(CarpetModel.brand)).where(
                 CarpetModel.source_type == CarpetSourceType.CATALOG,
                 or_(CarpetModel.id == uuid.UUID(identifier), CarpetModel.sku == identifier)
             )
         else:
-            stmt = select(CarpetModel).where(
+            stmt = select(CarpetModel).options(selectinload(CarpetModel.brand)).where(
                 CarpetModel.source_type == CarpetSourceType.CATALOG,
                 CarpetModel.sku == identifier
             )
