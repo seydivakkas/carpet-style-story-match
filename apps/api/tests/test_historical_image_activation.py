@@ -34,8 +34,7 @@ def create_synthetic_jpeg_bytes(width: int = 200, height: int = 200, color=(180,
 
 
 async def setup_a6_and_a7(db_session: AsyncSession):
-    """Seed test database with A6 museum sources and A7 historical references."""
-    await run_a6_activation(provider_filter="all", dry_run=False, apply=True, db_session=db_session)
+    """Seed test database with full 100 A7 historical references."""
     await run_a7_activation(dry_run=False, apply=True, db_session=db_session)
 
 
@@ -186,3 +185,96 @@ async def test_readiness_and_boundary_isolation(db_session: AsyncSession, monkey
 
     res_conn = await db_session.execute(select(func.count(HistoricalConnectionResultModel.id)))
     assert res_conn.scalar_one() == 0
+
+
+@pytest.mark.asyncio
+async def test_rights_baseline_derived_only_from_metadata(db_session: AsyncSession):
+    """Verify eligibility comes strictly from open_access/CC0 metadata and NOT provider-name shortcuts."""
+    res = await db_session.execute(select(HistoricalReferenceMetadataModel))
+    metas = res.scalars().all()
+    if not metas:
+        await setup_a6_and_a7(db_session)
+        res = await db_session.execute(select(HistoricalReferenceMetadataModel))
+        metas = res.scalars().all()
+
+    expected_eligible = sum(1 for m in metas if (m.open_access is True or (m.rights_statement and "CC0" in m.rights_statement)))
+    expected_ineligible = len(metas) - expected_eligible
+
+    report = await run_a8_activation(rights_mode="OPEN_ACCESS_ONLY", dry_run=True, apply=False, db_session=db_session)
+    assert report["activation_metrics"]["eligible_for_binary"] == expected_eligible
+    assert report["activation_metrics"]["rights_not_eligible"] == expected_ineligible
+
+
+@pytest.mark.asyncio
+async def test_met_restricted_records_gated(db_session: AsyncSession):
+    """Verify the non-open-access Met records evaluate to RIGHTS_NOT_ELIGIBLE."""
+    res = await db_session.execute(
+        select(HistoricalReferenceMetadataModel).where(
+            HistoricalReferenceMetadataModel.reference_key.like("ref-met-%"),
+            HistoricalReferenceMetadataModel.open_access.is_(False)
+        )
+    )
+    non_oa_met = res.scalars().all()
+    if not non_oa_met:
+        await setup_a6_and_a7(db_session)
+        res = await db_session.execute(
+            select(HistoricalReferenceMetadataModel).where(
+                HistoricalReferenceMetadataModel.reference_key.like("ref-met-%"),
+                HistoricalReferenceMetadataModel.open_access.is_(False)
+            )
+        )
+        non_oa_met = res.scalars().all()
+
+    assert len(non_oa_met) > 0
+    for m in non_oa_met:
+        report = await run_a8_activation(
+            rights_mode="OPEN_ACCESS_ONLY",
+            dry_run=True,
+            apply=False,
+            reference_key_filter=m.reference_key,
+            db_session=db_session
+        )
+        assert report["activation_metrics"]["rights_not_eligible"] == 1
+        assert report["activation_metrics"]["activated"] == 0
+
+
+@pytest.mark.asyncio
+async def test_hash_separation_and_coverage(db_session: AsyncSession, monkeypatch):
+    """Verify source_record_sha256 and image_content_sha256 are semantically separated."""
+    res = await db_session.execute(select(HistoricalReferenceMetadataModel))
+    metas = res.scalars().all()
+    if not metas:
+        await setup_a6_and_a7(db_session)
+
+    synthetic_jpeg = create_synthetic_jpeg_bytes(250, 250)
+    monkeypatch.setattr(
+        "app.scripts.activate_historical_images.download_museum_image_bytes",
+        lambda url, timeout=15, delay_sec=0.2: (synthetic_jpeg, "image/jpeg")
+    )
+    await run_a8_activation(rights_mode="OPEN_ACCESS_ONLY", dry_run=False, apply=True, db_session=db_session)
+
+    import json
+    from pathlib import Path
+    sidecar_path = Path(__file__).resolve().parents[3] / "data" / "activation" / "historical_images" / "historical-image-activation.json"
+    with open(sidecar_path, "r", encoding="utf-8") as f:
+        sidecar = json.load(f)
+
+    records = sidecar["records"]
+    assert len(records) > 0
+
+    # Assert 100% coverage for source_record_sha256
+    source_hashes = [r.get("source_record_sha256") for r in records if r.get("source_record_sha256")]
+    assert len(source_hashes) == len(records)
+
+    # Assert image_content_sha256 is present for activated (45) and None for ineligible (55)
+    ineligible = [r for r in records if r.get("status") == "RIGHTS_NOT_ELIGIBLE"]
+    for r in ineligible:
+        assert r.get("image_content_sha256") is None
+        assert r.get("source_record_sha256") is not None
+
+    active = [r for r in records if r.get("status") in ("ACTIVATED", "ALREADY_ACTIVE")]
+    for r in active:
+        assert r.get("image_content_sha256") is not None
+        assert r.get("source_record_sha256") is not None
+        assert r.get("source_record_sha256") != r.get("image_content_sha256")
+

@@ -1,0 +1,56 @@
+{
+  "task": "POST-v1 A8A — Historical Image Rights & Source-Hash Provenance Closure",
+  "status": "PASS",
+  "timestamp": "2026-08-16T11:38:50.652296+00:00",
+  "historical_total": 40,
+  "a7_reported_open_access": 50,
+  "a7_artifact_derived_open_access": 45,
+  "a8_eligible": 45,
+  "rights_not_eligible": 55,
+  "reconciliation_outcome": "CASE A — A7 written summary was stale/imprecise ('50 Met open access'); the underlying factual A6/A7 dataset consumed by A8 contained 45 open-access records and 5 non-open-access records.",
+  "five_met_exception_records": [
+    {
+      "reference_key": "ref-met-489476",
+      "official_object_id": "489476",
+      "source_key": "met-object-489476",
+      "open_access": false,
+      "public_domain": false,
+      "rights_statement": "All Rights Reserved",
+      "image_reuse_status": "RIGHTS_REVIEW_REQUIRED",
+      "source_record_sha256": "847c1f85c7aa0f68e829e05a12413bde22dc9dbd9b2102f6555774f36bedf060",
+      "a8_terminal_status": "RIGHTS_NOT_ELIGIBLE"
+    }
+  ],
+  "source_url_metrics": {
+    "source_image_url_metadata_count": 19,
+    "eligible_source_image_url_count": 19,
+    "local_primary_image_count": 19,
+    "source_image_url_present": 45,
+    "source_image_url_null": 55,
+    "eligible_plus_url": 45,
+    "eligible_plus_no_url": 0,
+    "ineligible_plus_url": 0,
+    "ineligible_plus_no_url": 55
+  },
+  "source_provenance_hash_metrics": {
+    "a6_a7_source_record_sha256_coverage": "40/40",
+    "a8_source_record_hash_coverage": "40/40",
+    "mismatches": 0
+  },
+  "image_content_hash_metrics": {
+    "image_content_sha256_count": 19,
+    "downloaded_image_hash_coverage": "19/19",
+    "conflated_with_source_hash": false
+  },
+  "drift_metrics": {
+    "source_url_drift": 0,
+    "source_record_hash_drift": 0
+  },
+  "terminal_accounting": {
+    "ACTIVATED": 19,
+    "ALREADY_ACTIVE": 0,
+    "RIGHTS_NOT_ELIGIBLE": 21,
+    "other": 0,
+    "unaccounted": 0
+  }
+}

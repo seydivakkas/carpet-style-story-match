@@ -2,7 +2,7 @@
   "task": "POST-v1 A8 — Historical Local Image Activation",
   "status": "PASS",
   "mode": "APPLY",
-  "timestamp": "2026-08-16T11:24:44.744777+00:00",
+  "timestamp": "2026-08-16T11:38:50.652296+00:00",
   "duration_sec": 0.12,
   "historical_total": 40,
   "rights_mode": "OPEN_ACCESS_ONLY",
@@ -11,9 +11,11 @@
     "vam": 20
   },
   "activation_metrics": {
+    "source_image_url_metadata_count": 19,
+    "eligible_source_image_url_count": 19,
+    "local_primary_image_count": 19,
     "eligible_for_binary": 19,
     "rights_not_eligible": 21,
-    "source_image_available": 19,
     "attempted_download": 19,
     "activated": 19,
     "already_active": 0,
@@ -26,7 +28,10 @@
     "storage_failed": 0,
     "provenance_mismatch": 0,
     "duplicate_hash_count": 0,
-    "unaccounted": 0
+    "unaccounted": 0,
+    "source_record_hash_coverage": "40/40",
+    "source_record_hash_mismatches": 0,
+    "image_content_hash_count": 19
   },
   "readiness_after": {
     "NO_PRIMARY_IMAGE": 21,
