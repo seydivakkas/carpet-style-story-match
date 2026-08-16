@@ -9,7 +9,7 @@ from app.domain.motif_knowledge.importer import MotifKnowledgeImporter
 from app.domain.motif_knowledge.schemas import CurationImportSchema
 
 
-async def main_async(filepath: str, dry_run: bool):
+async def main_async(filepath: str, dry_run: bool, allow_overwrite: bool):
     if not os.path.exists(filepath):
         print(f"Error: File not found: {filepath}", file=sys.stderr)
         sys.exit(1)
@@ -21,7 +21,7 @@ async def main_async(filepath: str, dry_run: bool):
 
     async with AsyncSessionLocal() as session:
         importer = MotifKnowledgeImporter(session)
-        result = await importer.import_data(schema, dry_run=dry_run)
+        result = await importer.import_data(schema, dry_run=dry_run, allow_overwrite=allow_overwrite)
 
     mode = "DRY RUN" if dry_run else "IMPORTED"
     print(f"[{mode} SUCCESS]")
@@ -36,9 +36,10 @@ def main():
     parser = argparse.ArgumentParser(description="Import curated motif knowledge JSON dataset.")
     parser.add_argument("filepath", help="Path to JSON dataset file")
     parser.add_argument("--dry-run", action="store_true", help="Perform validation without persisting to database")
+    parser.add_argument("--allow-overwrite", action="store_true", help="Allow updating existing DB records")
 
     args = parser.parse_args()
-    asyncio.run(main_async(args.filepath, args.dry_run))
+    asyncio.run(main_async(args.filepath, args.dry_run, args.allow_overwrite))
 
 
 if __name__ == "__main__":

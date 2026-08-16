@@ -6,7 +6,7 @@
       "source_type": "MUSEUM_CATALOG",
       "title": "Oriental Rugs in The Metropolitan Museum of Art",
       "citation_text": "Ellis, Charles Grant. Oriental Rugs in The Metropolitan Museum of Art. New York: The Metropolitan Museum of Art, 1988.",
-      "creator_or_institution": "The Metropolitan Museum of Art",
+      "creator_or_institution": "Charles Grant Ellis / The Metropolitan Museum of Art",
       "publication_year": 1988,
       "url": "https://www.metmuseum.org/art/metpublications/Oriental_Rugs_in_The_Metropolitan_Museum_of_Art",
       "isbn": "0-87099-522-8",
@@ -17,7 +17,7 @@
       "source_type": "ACADEMIC_BOOK",
       "title": "How to Read Islamic Carpets",
       "citation_text": "Denny, Walter B. How to Read Islamic Carpets. New York: The Metropolitan Museum of Art / Yale University Press, 2014.",
-      "creator_or_institution": "Walter B. Denny / The Metropolitan Museum of Art",
+      "creator_or_institution": "Walter B. Denny / The Metropolitan Museum of Art / Yale University Press",
       "publication_year": 2014,
       "url": "https://www.metmuseum.org/art/metpublications/How_to_Read_Islamic_Carpets",
       "isbn": "978-0-300-20809-2",
@@ -38,7 +38,7 @@
       "source_type": "MUSEUM_CATALOG",
       "title": "Guide to the Collection of Carpets, Victoria and Albert Museum",
       "citation_text": "Tattersall, C. E. C. Guide to the Collection of Carpets. London: Victoria and Albert Museum, Department of Textiles, 1931.",
-      "creator_or_institution": "Victoria and Albert Museum",
+      "creator_or_institution": "C. E. C. Tattersall / Victoria and Albert Museum",
       "publication_year": 1931,
       "url": "https://www.vam.ac.uk/collections/carpets",
       "rights_note": "Institutional museum collection catalog publication metadata."
@@ -48,7 +48,7 @@
       "source_type": "INSTITUTIONAL_PUBLICATION",
       "title": "Anadolu Halı ve Kilim Motifleri Semptom ve Sembol Çözümlemeleri",
       "citation_text": "Erbek, Güran. Anadolu Motifleri / Anatolian Motifs. Ankara: T.C. Kültür Bakanlığı Yayınları / Atatürk Kültür Merkezi, 1995.",
-      "creator_or_institution": "T.C. Kültür Bakanlığı / Atatürk Kültür Merkezi",
+      "creator_or_institution": "Güran Erbek / T.C. Kültür Bakanlığı / Atatürk Kültür Merkezi",
       "publication_year": 1995,
       "isbn": "975-17-1582-8",
       "rights_note": "Institutional cultural heritage monograph metadata."
@@ -162,18 +162,23 @@
       "claim_key": "claim-medallion-central-focus",
       "motif_key": "medallion",
       "status": "DOCUMENTED",
-      "claim_text_tr": "Madalyon kompozisyonu, dokuma alanının mimari ve görsel merkezini oluşturur; evrensel düzeni ve odak birliğini temsil eder.",
-      "claim_text_en": "The medallion composition forms the architectural and visual center of the weave field, representing universal order and unity.",
+      "claim_text_tr": "Madalyon kompozisyonu, klasik Doğu ve saray halılarında alanın mimari ve görsel odak merkezini oluşturarak tasarımda simetrik hiyerarşi ve alan düzeni sağlar.",
+      "claim_text_en": "The medallion composition forms the architectural and visual focal center in classical Eastern and court rugs, establishing symmetrical hierarchy.",
       "source_links": [
+        {
+          "source_key": "met-museum-safavid-medallion-carpet-14104",
+          "locator": "Accession 14.40.714",
+          "source_note": "Physical museum exemplar of 16th-century medallion carpet composition."
+        },
         {
           "source_key": "met-museum-oriental-rug-catalog-1988",
           "locator": "p. 42",
-          "source_note": "Central medallion structure analysis."
+          "source_note": "Scholarly catalog entry and architectural medallion analysis for Accession 14.40.714."
         },
         {
           "source_key": "denny-how-to-read-islamic-carpets-2014",
           "locator": "pp. 18-21",
-          "source_note": "Focal hierarchy in classical carpet design."
+          "source_note": "Focal hierarchy and dome ceiling symmetry analysis in classical carpet design."
         }
       ],
       "theme_keys": [
@@ -185,18 +190,18 @@
       "claim_key": "claim-mihrab-prayer-direction",
       "motif_key": "mihrab",
       "status": "DOCUMENTED",
-      "claim_text_tr": "Mihrap motifi, ibadet halılarında kıble yönünü ve kutsal mekana yönelişi simgeleyen mimari niş formudur.",
-      "claim_text_en": "The mihrab motif is an architectural niche form symbolizing directional orientation toward the sacred space.",
+      "claim_text_tr": "Mihrap (niş) motifi, ibadet halılarında cami niş mimarisini yansıtarak mekansal ve dinsel yönelim odağı işlevi görür.",
+      "claim_text_en": "The mihrab motif projects architectural mosque niche iconography, serving a directional function in prayer rugs.",
       "source_links": [
         {
           "source_key": "denny-how-to-read-islamic-carpets-2014",
           "locator": "pp. 54-57",
-          "source_note": "Architectural niche iconography in prayer rugs."
+          "source_note": "Architectural niche iconography and directional function in prayer rugs."
         },
         {
           "source_key": "va-museum-carpet-collection-1931",
           "locator": "p. 15",
-          "source_note": "Prayer rug directional design principles."
+          "source_note": "Prayer rug directional design principles and mosque niche depiction."
         }
       ],
       "theme_keys": [
@@ -208,13 +213,13 @@
       "claim_key": "claim-palmette-floral-composition",
       "motif_key": "palmette",
       "status": "DOCUMENTED",
-      "claim_text_tr": "Palmet motifi, Klasik Doğu dokuma sanatında doğanın bereketini ve sürekli gelişen bitkisel yaşam formlarını simgeler.",
-      "claim_text_en": "The palmette motif symbolizes nature's abundance and evolving botanical life forms in classical Eastern weave art.",
+      "claim_text_tr": "Palmet motifi, Klasik Doğu dokuma geleneğinde palmiye ve nilüfer yapraklarından türetilmiş stilize bitkisel tasarım ögesidir; zemin ve bordür kompozisyonlarında ritmik çiçek düzeni sağlar.",
+      "claim_text_en": "The palmette motif functions as a stylized floral design element derived from palm and lotus leaves, providing rhythmic floral arrangement across field and border.",
       "source_links": [
         {
           "source_key": "met-museum-oriental-rug-catalog-1988",
           "locator": "p. 88",
-          "source_note": "Botanical palmette classifications."
+          "source_note": "Stylized floral palmette classifications derived from palm and lotus motifs."
         }
       ],
       "theme_keys": [
@@ -225,19 +230,20 @@
     {
       "claim_key": "claim-lotus-rebirth",
       "motif_key": "lotus",
-      "status": "DOCUMENTED",
-      "claim_text_tr": "Lotus motifi, Asya ve İslam dokuma geleneklerinde zarafeti, saflığı ve doğanın yenilenme döngüsünü temsil eder.",
-      "claim_text_en": "The lotus motif represents elegance, purity, and nature's cycle of renewal in Asian and Islamic weaving traditions.",
+      "status": "CONTEXTUAL",
+      "claim_text_tr": "Lotus (nilüfer) motifi, Asya görsel geleneklerinden İlhanlı ve Safevi saray dokumalarına geçmiş; kavisli çanak yapılı üslüplaştırılmış Çin lotus çiçeği biçimi olarak halı zeminlerinde yaygınlaşmıştır.",
+      "claim_text_en": "The lotus blossom motif entered Safavid and Ottoman court weaving from Asian traditions, evolving into a stylized curved floral element across field compositions.",
+      "context_note": "Asya/Çin görsel geleneklerinde simgesel değeri bulunmakla birlikte, Klasik İslam halı sanatında tarihsel olarak stilize dekoratif çiçek unsuru olarak benimsenmiştir.",
       "source_links": [
         {
           "source_key": "denny-how-to-read-islamic-carpets-2014",
           "locator": "p. 31",
-          "source_note": "Lotus blossom symbolism and lineage."
+          "source_note": "East Asian lotus blossom adoption in Ilkhanid and Timurid decorative arts."
         },
         {
           "source_key": "erdmann-seven-hundred-years-1970",
           "locator": "p. 112",
-          "source_note": "Cross-cultural floral design transfer."
+          "source_note": "Cross-cultural floral design transfer from China to court rug patterns."
         }
       ],
       "theme_keys": [
@@ -249,18 +255,18 @@
       "claim_key": "claim-cloud-band-asian-influence",
       "motif_key": "cloud-band",
       "status": "DOCUMENTED",
-      "claim_text_tr": "Çin ve Orta Asya dokuma kültüründen Osmanlı ve Safevi saray halılarına geçen bulut kümesi motifi, akıcı doğa güçlerini ve ilahi korumayı simgeler.",
-      "claim_text_en": "The cloud-band motif transferred from East Asian traditions to Ottoman and Safavid court carpets, representing fluid natural forces and divine protection.",
+      "claim_text_tr": "Çin dokuma sanatından Safevi ve Osmanlı saray halılarına geçen bulut kümesi (Çin bulutu) motifi, kompozisyona akıcılık ve dinamizm katan S kavisli şerit düzenlemesidir.",
+      "claim_text_en": "The cloud-band motif transferred from Chinese art to Safavid and Ottoman court carpets, adding fluid ribbon dynamics to the field.",
       "source_links": [
         {
           "source_key": "met-museum-oriental-rug-catalog-1988",
           "locator": "p. 104",
-          "source_note": "East Asian cloud ribbon motifs in court carpets."
+          "source_note": "East Asian cloud ribbon motifs in 16th-century court carpet patterns."
         },
         {
           "source_key": "denny-how-to-read-islamic-carpets-2014",
           "locator": "p. 45",
-          "source_note": "Fluid cloud band ornamentation."
+          "source_note": "Fluid S-curved cloud band ornamentation and visual rhythm."
         }
       ],
       "theme_keys": [
@@ -272,13 +278,13 @@
       "claim_key": "claim-scrolling-vine-continuous-growth",
       "motif_key": "scrolling-vine",
       "status": "DOCUMENTED",
-      "claim_text_tr": "Kıvrımdal (islimi) düzenlemesi, kesintisiz yaşam akışını, sonsuzluğu ve doğanın organik sürekliliğini ifade eder.",
-      "claim_text_en": "The scrolling vine arrangement conveys continuous life flow, infinity, and organic botanical continuity.",
+      "claim_text_tr": "Kıvrımdal (islimi) hatları, kesintisiz dallanan sarmaşık kavisleriyle dokuma zemininde sonsuz tekrar eden organik ritim ve görsel süreklilik sağlar.",
+      "claim_text_en": "Scrolling vine (islimi) stems branch continuously to produce infinite repeat visual continuity across the carpet field.",
       "source_links": [
         {
           "source_key": "denny-how-to-read-islamic-carpets-2014",
           "locator": "pp. 24-26",
-          "source_note": "Undulating vine stems and infinite garden patterns."
+          "source_note": "Undulating vine stems and infinite garden repeat patterns across field."
         }
       ],
       "theme_keys": [
@@ -290,18 +296,18 @@
       "claim_key": "claim-geometric-star-spatial-order",
       "motif_key": "geometric-star",
       "status": "DOCUMENTED",
-      "claim_text_tr": "Sekiz köşeli yıldız motifi, Selçuklu ve Osmanlı geometrik dokuma geleneklerinde kozmik dengeyi ve mekansal uyumu simgeler.",
-      "claim_text_en": "The eight-pointed star motif symbolizes cosmic balance and spatial harmony in Seljuk and Ottoman geometric weaving traditions.",
+      "claim_text_tr": "Sekiz köşeli yıldız motifi, Erken Anadolu ve Selçuklu halı geleneklerinde geometrik ızgara sistemini oluşturan ve alanda düzenli modüler hiyerarşi kuran temel biçimdir.",
+      "claim_text_en": "The eight-pointed star motif forms a foundational modular grid system establishing spatial order in early Anatolian and Seljuk carpets.",
       "source_links": [
         {
           "source_key": "erdmann-seven-hundred-years-1970",
           "locator": "pp. 64-68",
-          "source_note": "Geometric star grid systems in early Anatolian rugs."
+          "source_note": "Geometric star grid modular layout systems in early Anatolian rugs."
         },
         {
           "source_key": "akm-anatolian-motifs-ethnography-1995",
           "locator": "p. 34",
-          "source_note": "Eight-pointed star geometric iconography."
+          "source_note": "Eight-pointed star geometric grid arrangement and spatial order."
         }
       ],
       "theme_keys": [
@@ -320,7 +326,7 @@
         {
           "source_key": "akm-anatolian-motifs-ethnography-1995",
           "locator": "pp. 50-52",
-          "source_note": "Ethnographic regional tree of life symbolism."
+          "source_note": "Ethnographic Anatolian/Caucasian regional tree of life family lineage symbolism."
         }
       ],
       "theme_keys": [
@@ -339,7 +345,7 @@
         {
           "source_key": "akm-anatolian-motifs-ethnography-1995",
           "locator": "pp. 12-14",
-          "source_note": "Ethnographic regional flatweave motif interpretations."
+          "source_note": "Ethnographic regional flatweave motif interpretations of motherhood and fertility."
         }
       ],
       "theme_keys": [
@@ -358,12 +364,12 @@
         {
           "source_key": "akm-anatolian-motifs-ethnography-1995",
           "locator": "pp. 18-20",
-          "source_note": "Ethnographic interpretation: heroism and vitality."
+          "source_note": "Ethnographic interpretation: heroism and vitality symbol."
         },
         {
           "source_key": "erdmann-seven-hundred-years-1970",
           "locator": "p. 82",
-          "source_note": "Structural interpretation: stylized geometric border hook evolution."
+          "source_note": "Structural interpretation: stylized geometric border hook adaptation."
         }
       ],
       "theme_keys": [
@@ -381,7 +387,7 @@
         {
           "source_key": "akm-anatolian-motifs-ethnography-1995",
           "locator": "p. 62",
-          "source_note": "Ethnographic interpretation: purification and bridal preparation."
+          "source_note": "Ethnographic interpretation: purification and bridal preparation symbol."
         },
         {
           "source_key": "va-museum-carpet-collection-1931",
@@ -405,7 +411,7 @@
         {
           "source_key": "erdmann-seven-hundred-years-1970",
           "locator": "p. 90",
-          "source_note": "Geometric corner locking hook structure without symbolic claim."
+          "source_note": "Geometric corner locking hook structure without verified symbolic claim."
         }
       ],
       "theme_keys": []

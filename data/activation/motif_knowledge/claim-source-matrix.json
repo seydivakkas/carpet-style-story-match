@@ -1,0 +1,267 @@
+{
+  "schema_version": "motif-story-curation-v1",
+  "knowledge_version": "motif-story-knowledge-v1",
+  "audit_task": "POST-v1 A4A — Claim ↔ Source Provenance Reconciliation",
+  "claims": [
+    {
+      "claim_key": "claim-medallion-central-focus",
+      "motif_key": "medallion",
+      "status": "DOCUMENTED",
+      "verification_status": "VERIFIED",
+      "sources": [
+        {
+          "source_key": "met-museum-safavid-medallion-carpet-14104",
+          "source_type": "MUSEUM_OBJECT",
+          "locator": "Accession 14.40.714",
+          "evidence_note": "Physical museum exemplar of 16th-century medallion carpet composition."
+        },
+        {
+          "source_key": "met-museum-oriental-rug-catalog-1988",
+          "source_type": "MUSEUM_CATALOG",
+          "locator": "p. 42",
+          "evidence_note": "Scholarly catalog entry and architectural medallion analysis for Accession 14.40.714."
+        },
+        {
+          "source_key": "denny-how-to-read-islamic-carpets-2014",
+          "source_type": "ACADEMIC_BOOK",
+          "locator": "pp. 18-21",
+          "evidence_note": "Focal hierarchy and dome ceiling symmetry analysis in classical carpet design."
+        }
+      ],
+      "theme_keys": [
+        "balance_order",
+        "cultural_heritage"
+      ]
+    },
+    {
+      "claim_key": "claim-mihrab-prayer-direction",
+      "motif_key": "mihrab",
+      "status": "DOCUMENTED",
+      "verification_status": "VERIFIED",
+      "sources": [
+        {
+          "source_key": "denny-how-to-read-islamic-carpets-2014",
+          "source_type": "ACADEMIC_BOOK",
+          "locator": "pp. 54-57",
+          "evidence_note": "Architectural niche iconography and directional function in prayer rugs."
+        },
+        {
+          "source_key": "va-museum-carpet-collection-1931",
+          "source_type": "MUSEUM_CATALOG",
+          "locator": "p. 15",
+          "evidence_note": "Prayer rug directional design principles and mosque niche depiction."
+        }
+      ],
+      "theme_keys": [
+        "journey_discovery",
+        "cultural_heritage"
+      ]
+    },
+    {
+      "claim_key": "claim-palmette-floral-composition",
+      "motif_key": "palmette",
+      "status": "DOCUMENTED",
+      "verification_status": "VERIFIED",
+      "sources": [
+        {
+          "source_key": "met-museum-oriental-rug-catalog-1988",
+          "source_type": "MUSEUM_CATALOG",
+          "locator": "p. 88",
+          "evidence_note": "Stylized floral palmette classifications derived from palm and lotus motifs."
+        }
+      ],
+      "theme_keys": [
+        "nature_growth",
+        "tradition_craft"
+      ]
+    },
+    {
+      "claim_key": "claim-lotus-rebirth",
+      "motif_key": "lotus",
+      "status": "CONTEXTUAL",
+      "verification_status": "DOWNGRADED",
+      "sources": [
+        {
+          "source_key": "denny-how-to-read-islamic-carpets-2014",
+          "source_type": "ACADEMIC_BOOK",
+          "locator": "p. 31",
+          "evidence_note": "East Asian lotus blossom adoption in Ilkhanid and Timurid decorative arts."
+        },
+        {
+          "source_key": "erdmann-seven-hundred-years-1970",
+          "source_type": "ACADEMIC_BOOK",
+          "locator": "p. 112",
+          "evidence_note": "Cross-cultural floral design transfer from China to court rug patterns."
+        }
+      ],
+      "theme_keys": [
+        "renewal_transformation",
+        "nature_growth"
+      ]
+    },
+    {
+      "claim_key": "claim-cloud-band-asian-influence",
+      "motif_key": "cloud-band",
+      "status": "DOCUMENTED",
+      "verification_status": "VERIFIED",
+      "sources": [
+        {
+          "source_key": "met-museum-oriental-rug-catalog-1988",
+          "source_type": "MUSEUM_CATALOG",
+          "locator": "p. 104",
+          "evidence_note": "East Asian cloud ribbon motifs in 16th-century court carpet patterns."
+        },
+        {
+          "source_key": "denny-how-to-read-islamic-carpets-2014",
+          "source_type": "ACADEMIC_BOOK",
+          "locator": "p. 45",
+          "evidence_note": "Fluid S-curved cloud band ornamentation and visual rhythm."
+        }
+      ],
+      "theme_keys": [
+        "continuity_connection",
+        "cultural_heritage"
+      ]
+    },
+    {
+      "claim_key": "claim-scrolling-vine-continuous-growth",
+      "motif_key": "scrolling-vine",
+      "status": "DOCUMENTED",
+      "verification_status": "VERIFIED",
+      "sources": [
+        {
+          "source_key": "denny-how-to-read-islamic-carpets-2014",
+          "source_type": "ACADEMIC_BOOK",
+          "locator": "pp. 24-26",
+          "evidence_note": "Undulating vine stems and infinite garden repeat patterns across field."
+        }
+      ],
+      "theme_keys": [
+        "continuity_connection",
+        "nature_growth"
+      ]
+    },
+    {
+      "claim_key": "claim-geometric-star-spatial-order",
+      "motif_key": "geometric-star",
+      "status": "DOCUMENTED",
+      "verification_status": "VERIFIED",
+      "sources": [
+        {
+          "source_key": "erdmann-seven-hundred-years-1970",
+          "source_type": "ACADEMIC_BOOK",
+          "locator": "pp. 64-68",
+          "evidence_note": "Geometric star grid modular layout systems in early Anatolian rugs."
+        },
+        {
+          "source_key": "akm-anatolian-motifs-ethnography-1995",
+          "source_type": "INSTITUTIONAL_PUBLICATION",
+          "locator": "p. 34",
+          "evidence_note": "Eight-pointed star geometric grid arrangement and spatial order."
+        }
+      ],
+      "theme_keys": [
+        "balance_order",
+        "tradition_craft"
+      ]
+    },
+    {
+      "claim_key": "claim-tree-of-life-anatolian-context",
+      "motif_key": "tree-of-life",
+      "status": "CONTEXTUAL",
+      "verification_status": "VERIFIED",
+      "sources": [
+        {
+          "source_key": "akm-anatolian-motifs-ethnography-1995",
+          "source_type": "INSTITUTIONAL_PUBLICATION",
+          "locator": "pp. 50-52",
+          "evidence_note": "Ethnographic Anatolian/Caucasian regional tree of life family lineage symbolism."
+        }
+      ],
+      "theme_keys": [
+        "belonging_home",
+        "continuity_connection"
+      ]
+    },
+    {
+      "claim_key": "claim-elibelinde-motherhood-regional-context",
+      "motif_key": "elibelinde",
+      "status": "CONTEXTUAL",
+      "verification_status": "VERIFIED",
+      "sources": [
+        {
+          "source_key": "akm-anatolian-motifs-ethnography-1995",
+          "source_type": "INSTITUTIONAL_PUBLICATION",
+          "locator": "pp. 12-14",
+          "evidence_note": "Ethnographic regional flatweave motif interpretations of motherhood and fertility."
+        }
+      ],
+      "theme_keys": [
+        "belonging_home",
+        "renewal_transformation"
+      ]
+    },
+    {
+      "claim_key": "claim-ram-horn-power-vs-abundance",
+      "motif_key": "ram-horn",
+      "status": "CONTESTED",
+      "verification_status": "VERIFIED",
+      "sources": [
+        {
+          "source_key": "akm-anatolian-motifs-ethnography-1995",
+          "source_type": "INSTITUTIONAL_PUBLICATION",
+          "locator": "pp. 18-20",
+          "evidence_note": "Ethnographic interpretation: heroism and vitality symbol."
+        },
+        {
+          "source_key": "erdmann-seven-hundred-years-1970",
+          "source_type": "ACADEMIC_BOOK",
+          "locator": "p. 82",
+          "evidence_note": "Structural interpretation: stylized geometric border hook adaptation."
+        }
+      ],
+      "theme_keys": [
+        "tradition_craft"
+      ]
+    },
+    {
+      "claim_key": "claim-comb-cleanliness-vs-weave-tool",
+      "motif_key": "comb",
+      "status": "CONTESTED",
+      "verification_status": "VERIFIED",
+      "sources": [
+        {
+          "source_key": "akm-anatolian-motifs-ethnography-1995",
+          "source_type": "INSTITUTIONAL_PUBLICATION",
+          "locator": "p. 62",
+          "evidence_note": "Ethnographic interpretation: purification and bridal preparation symbol."
+        },
+        {
+          "source_key": "va-museum-carpet-collection-1931",
+          "source_type": "MUSEUM_CATALOG",
+          "locator": "p. 28",
+          "evidence_note": "Technical interpretation: depiction of weaving loom comb tool (kirkit)."
+        }
+      ],
+      "theme_keys": [
+        "tradition_craft",
+        "belonging_home"
+      ]
+    },
+    {
+      "claim_key": "claim-mystery-hook-unknown",
+      "motif_key": "mystery-hook",
+      "status": "UNKNOWN",
+      "verification_status": "VERIFIED",
+      "sources": [
+        {
+          "source_key": "erdmann-seven-hundred-years-1970",
+          "source_type": "ACADEMIC_BOOK",
+          "locator": "p. 90",
+          "evidence_note": "Geometric corner locking hook structure without verified symbolic claim."
+        }
+      ],
+      "theme_keys": []
+    }
+  ]
+}

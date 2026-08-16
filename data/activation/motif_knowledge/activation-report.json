@@ -1,18 +1,45 @@
 {
-  "activation_target": "POST-v1 A4 — Real Source-Backed Motif Knowledge Activation",
+  "activation_target": "POST-v1 A4A — Claim ↔ Source Provenance Reconciliation",
   "schema_version": "motif-story-curation-v1",
   "knowledge_version": "motif-story-knowledge-v1",
   "dataset_file": "data/activation/motif_knowledge/motif-knowledge.json",
   "provenance_summary": {
-    "sources_activated": 6,
-    "motifs_activated": 13,
-    "claims_activated": 12,
-    "claim_sources_activated": 19,
-    "claim_themes_activated": 21
+    "sources_total": 6,
+    "motifs_total": 13,
+    "claims_total": 12,
+    "claim_source_links": 20,
+    "claim_theme_links": 21
   },
-  "claim_status_breakdown": {
-    "DOCUMENTED": 7,
-    "CONTEXTUAL": 2,
+  "source_inventory_reconciliation": {
+    "sources_reported": 6,
+    "sources_actual": 6,
+    "ellis_resolved": "Charles Grant Ellis (1988), Oriental Rugs in The Metropolitan Museum of Art, ISBN 0-87099-522-8",
+    "museum_object_vs_publication_separated": "PASS (Met Accession 14.40.714 is distinct MUSEUM_OBJECT; Ellis 1988 is distinct MUSEUM_CATALOG)",
+    "source_keys": [
+      "met-museum-oriental-rug-catalog-1988",
+      "denny-how-to-read-islamic-carpets-2014",
+      "erdmann-seven-hundred-years-1970",
+      "va-museum-carpet-collection-1931",
+      "akm-anatolian-motifs-ethnography-1995",
+      "met-museum-safavid-medallion-carpet-14104"
+    ]
+  },
+  "claims_audit_summary": {
+    "total_claims_reviewed": 12,
+    "kept_verified": 11,
+    "downgraded": 1,
+    "downgraded_claims": [
+      {
+        "claim_key": "claim-lotus-rebirth",
+        "previous_status": "DOCUMENTED",
+        "new_status": "CONTEXTUAL",
+        "reason": "Removed unbacked universalized 'purity & rebirth' claim; contextualized to East Asian origin vs Islamic court decorative adoption"
+      }
+    ]
+  },
+  "final_claim_status_breakdown": {
+    "DOCUMENTED": 6,
+    "CONTEXTUAL": 3,
     "CONTESTED": 2,
     "UNKNOWN": 1
   },
