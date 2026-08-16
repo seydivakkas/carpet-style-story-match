@@ -98,7 +98,7 @@ export default function HomePage() {
                 <span className="text-[10px] font-mono text-blue-400 font-bold uppercase tracking-wider">Eksen 3</span>
                 <h3 className="text-lg font-bold text-slate-100">Tarihsel Referans Bağlantısı</h3>
                 <p className="text-xs text-slate-400 leading-relaxed">
-                  Met, V&amp;A, TİEM müzelerinde sergilenen doğrulanmış tarihi dokumalarla Style DNA boyut boyut yakınlık karşılaştırması.
+                  Met ve V&amp;A müzelerinde sergilenen doğrulanmış tarihi dokumalarla Style DNA boyut boyut yakınlık karşılaştırması.
                 </p>
               </div>
               <div className="pt-3 border-t border-slate-800/60 text-xs font-mono text-blue-400">
