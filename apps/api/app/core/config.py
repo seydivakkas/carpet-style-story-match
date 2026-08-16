@@ -58,6 +58,14 @@ class Settings(BaseSettings):
     # Optional S3 / MinIO Storage Configuration
     S3_ENDPOINT_URL: Optional[str] = Field(default=None, description="S3 / MinIO endpoint URL")
     S3_BUCKET_NAME: Optional[str] = Field(default="carpet-assets", description="S3 / MinIO bucket name")
+
+    # VLM / Vision-Language Model Configuration (V2-03)
+    MOTIF_VLM_PROVIDER: str = Field(default="DISABLED", description="Provider mode: DISABLED, LOCAL_VLLM, REMOTE_OPENAI_COMPATIBLE, or TEST_FIXTURE")
+    MOTIF_VLM_BASE_URL: Optional[str] = Field(default=None, description="Server-side VLM endpoint base URL")
+    MOTIF_VLM_MODEL: str = Field(default="Qwen/Qwen2-VL-7B-Instruct", description="VLM model identifier")
+    MOTIF_VLM_API_KEY: Optional[str] = Field(default=None, description="Server-side API key for remote VLM provider")
+    MOTIF_VLM_TIMEOUT_SECONDS: float = Field(default=30.0, description="VLM inference HTTP request timeout in seconds")
+    MOTIF_VLM_MAX_RETRIES: int = Field(default=1, description="Max schema-correction retries on malformed VLM output")
     S3_ACCESS_KEY: Optional[str] = Field(default=None, description="S3 access key")
     S3_SECRET_KEY: Optional[str] = Field(default=None, description="S3 secret key")
     S3_REGION: str = Field(default="us-east-1", description="S3 region")

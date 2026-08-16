@@ -17,11 +17,39 @@ from app.domain.upload_analysis.motif_ontology import (
     VisualCandidateKey,
     DetectionMode,
 )
+from app.domain.upload_analysis.schemas import UploadAnalysisResult
 
 
 class TaxonomyValidationError(ValueError):
     """Raised when taxonomy or ontology validation fails."""
     pass
+
+
+ContractValidationError = TaxonomyValidationError
+
+
+def validate_visual_category_key(key: str) -> bool:
+    """Validate that visual category key exists in canonical taxonomy."""
+    valid_keys = {e.value for e in VisualCategoryKey}
+    if key not in valid_keys:
+        raise TaxonomyValidationError(f"Invalid visual category key: '{key}'. Must be one of {valid_keys}")
+    return True
+
+
+def validate_visual_candidate_key(key: str) -> bool:
+    """Validate that visual candidate key exists in candidate taxonomy."""
+    valid_keys = {e.value for e in VisualCandidateKey}
+    if key not in valid_keys:
+        raise TaxonomyValidationError(f"Invalid visual candidate key: '{key}'. Must be one of {valid_keys}")
+    return True
+
+
+def validate_upload_analysis_result(result: UploadAnalysisResult) -> Dict[str, Any]:
+    """Validate complete UploadAnalysisResult domain contract."""
+    validate_visual_category_key(result.visual_category.category_key)
+    for mc in result.motif_candidates:
+        validate_visual_candidate_key(mc.visual_candidate_key)
+    return {"valid": True, "analysis_id": result.analysis_id}
 
 
 def validate_visual_category_taxonomy() -> Dict[str, Any]:
