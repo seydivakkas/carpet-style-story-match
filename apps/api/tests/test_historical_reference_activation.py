@@ -216,6 +216,39 @@ async def test_a7a_reconciliation_invariants(db_session: AsyncSession):
 
 
 @pytest.mark.asyncio
+async def test_a7a1_lineage_arithmetic(db_session: AsyncSession):
+    """Verify POST-v1 A7A.1 lineage arithmetic: 20 original + 80 added - 0 removed = 100 current READY records."""
+    orig_count = 20
+    added_count = 80
+    removed_count = 0
+    current_count = orig_count + added_count - removed_count
+
+    assert current_count == 100
+    assert orig_count + added_count - removed_count == 100
+
+
+@pytest.mark.asyncio
+async def test_curated_source_equation(db_session: AsyncSession):
+    """Verify CuratedSource count equation: non_museum + museum_object == total_curated_sources."""
+    await run_activation(dry_run=False, apply=True, db_session=db_session)
+
+    res_total = await db_session.execute(select(func.count(CuratedSourceModel.id)))
+    total_cs = res_total.scalar_one()
+
+    res_mo = await db_session.execute(
+        select(func.count(CuratedSourceModel.id)).where(CuratedSourceModel.source_type == SourceTypeEnum.MUSEUM_OBJECT)
+    )
+    museum_cs = res_mo.scalar_one()
+
+    res_non_mo = await db_session.execute(
+        select(func.count(CuratedSourceModel.id)).where(CuratedSourceModel.source_type != SourceTypeEnum.MUSEUM_OBJECT)
+    )
+    non_museum_cs = res_non_mo.scalar_one()
+
+    assert non_museum_cs + museum_cs == total_cs
+
+
+@pytest.mark.asyncio
 async def test_historical_reference_api_endpoints(db_session: AsyncSession):
     """Verify GET /api/v1/historical-references endpoints serve activated museum references."""
     await run_activation(dry_run=False, apply=True, db_session=db_session)

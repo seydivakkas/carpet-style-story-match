@@ -2,7 +2,7 @@
   "task": "POST-v1 A7 — Historical Reference Dataset Activation",
   "status": "PASS",
   "mode": "APPLY",
-  "timestamp": "2026-08-16T10:25:15.488237+00:00",
+  "timestamp": "2026-08-16T10:35:48.572787+00:00",
   "versions": {
     "historical_reference_version": "historical-reference-v1",
     "curation_schema_version": "historical-reference-curation-v1"
