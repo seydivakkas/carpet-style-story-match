@@ -59,7 +59,7 @@ function HistoricalReferencesContent() {
             Tarihsel Referans Koleksiyonu
           </h1>
           <p className="text-slate-400 text-sm mt-1">
-            Dünya müzelerindeki (Met, V&amp;A, TİEM vb.) tarihi dokumaların 9D görsel Style DNA profilleri.
+            Dünya müzelerindeki (The Met, V&amp;A) tarihi dokumaların görsel Style DNA profilleri.
           </p>
         </div>
 
@@ -78,7 +78,7 @@ function HistoricalReferencesContent() {
           <label className="block text-[11px] font-mono text-slate-400 mb-1">Müze / Kurum</label>
           <input
             type="text"
-            placeholder="Met, V&A, TIEM..."
+            placeholder="Met, V&A..."
             value={museum}
             onChange={(e) => setMuseum(e.target.value)}
             className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-blue-500/50"

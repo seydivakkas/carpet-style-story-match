@@ -65,13 +65,32 @@ carpet-style-story-match/
 - Node.js 20+ & npm
 - Python 3.11+
 
-### Running locally
-```bash
-# Start PostgreSQL, API, and Web containers
-make up
+### Local Development Topology (Two-Terminal Startup)
 
-# Run full project verification checks
-make check
+**Terminal 1 (Backend API):**
+```bash
+cd apps/api
+python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+```
+- API Base URL: `http://localhost:8000`
+- Interactive Swagger UI: `http://localhost:8000/docs`
+
+**Terminal 2 (Frontend Web):**
+```bash
+cd apps/web
+npm run dev
+```
+- Web Application URL: `http://localhost:3000` (or `http://localhost:3001` if port 3000 is in use)
+
+---
+
+### Verification Commands
+```bash
+# Run backend test suite
+cd apps/api && python -m pytest tests/ -v
+
+# Run frontend quality checks
+cd apps/web && npm run typecheck && npm run lint && npm run build
 ```
 
 ---

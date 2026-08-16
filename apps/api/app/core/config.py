@@ -34,7 +34,15 @@ class Settings(BaseSettings):
 
     # Security & CORS Configuration
     WEB_ORIGIN: str = Field(default="http://localhost:3000", description="Primary web frontend origin")
-    CORS_ORIGINS: List[str] = Field(default_factory=lambda: ["http://localhost:3000"], description="Allowed CORS origins")
+    CORS_ORIGINS: List[str] = Field(
+        default_factory=lambda: [
+            "http://localhost:3000",
+            "http://localhost:3001",
+            "http://127.0.0.1:3000",
+            "http://127.0.0.1:3001"
+        ],
+        description="Allowed CORS origins"
+    )
     TRUSTED_HOSTS: List[str] = Field(default_factory=lambda: ["localhost", "127.0.0.1", "0.0.0.0", "api", "web", "testserver", "test"], description="Allowed HTTP host headers")
 
     # Image Storage Configuration
