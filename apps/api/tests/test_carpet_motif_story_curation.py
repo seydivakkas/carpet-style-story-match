@@ -315,7 +315,7 @@ async def test_catalog_and_boundary_immutability(db_session: AsyncSession):
         cur = conn.cursor()
         carpets = cur.execute("SELECT COUNT(*) FROM carpets WHERE source_type = 'CATALOG'").fetchone()[0]
         images = cur.execute("SELECT COUNT(*) FROM carpet_images ci JOIN carpets c ON ci.carpet_id = c.id WHERE c.source_type = 'CATALOG' AND ci.is_primary = 1").fetchone()[0]
-        styles = cur.execute("SELECT COUNT(*) FROM carpet_style_profiles").fetchone()[0]
+        styles = cur.execute("SELECT COUNT(*) FROM carpet_style_profiles csp JOIN carpets c ON csp.carpet_id = c.id WHERE c.source_type = 'CATALOG'").fetchone()[0]
         sources = cur.execute("SELECT COUNT(*) FROM curated_sources").fetchone()[0]
         motifs = cur.execute("SELECT COUNT(*) FROM motifs").fetchone()[0]
         claims = cur.execute("SELECT COUNT(*) FROM motif_story_claims").fetchone()[0]
