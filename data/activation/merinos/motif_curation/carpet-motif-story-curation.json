@@ -1,0 +1,220 @@
+{
+  "schema_version": "carpet-catalog-curation-v1",
+  "carpets": [
+    {
+      "sku": "73941 060",
+      "name": "Elegance 73941 060",
+      "collection": "Elegance",
+      "manufacturer": "Merinos",
+      "motifs": [
+        {
+          "motif_key": "medallion",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "curation_note": "GÃ¶rsel incelemede halÄ± zemin merkezinde bÃ¼yÃ¼k dairesel madalyon ve iki ucunda sarkanÃ§ motif formu net biÃ§imde gÃ¶zlemlendi.",
+          "uncertainty_note": null,
+          "sources": [],
+          "story_claim_keys": [
+            {
+              "claim_key": "claim-medallion-central-focus",
+              "applicability_note": "Modern halÄ± tasarÄ±mÄ±nda merkezi odak noktasÄ± oluÅŸturan madalyon formu tarihsel kompozisyon dÃ¼zeniyle gÃ¶rsel uyum gÃ¶stermektedir."
+            }
+          ]
+        },
+        {
+          "motif_key": "scrolling-vine",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "curation_note": "BordÃ¼r ve zemin alanÄ±nda kesintisiz kÄ±vrÄ±mlÄ± sarmaÅŸÄ±k dallarÄ± ve floral arabesk formlar gÃ¶zlemlendi.",
+          "uncertainty_note": null,
+          "sources": [],
+          "story_claim_keys": [
+            {
+              "claim_key": "claim-scrolling-vine-continuous-growth",
+              "applicability_note": "Zemin Ã§evresinde devam eden ritmik sarmaÅŸÄ±k motifi sonsuz tekrar eden organik bÃ¼yÃ¼me temasÄ±nÄ± yansÄ±tmaktadÄ±r."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sku": "72484 062",
+      "name": "Arden 72484 062",
+      "collection": "Arden",
+      "manufacturer": "Merinos",
+      "motifs": [
+        {
+          "motif_key": "geometric-star",
+          "evidence_type": "UNCERTAIN",
+          "curation_note": null,
+          "uncertainty_note": "HalÄ± deseninde iÃ§ iÃ§e geÃ§en geometrik dikdÃ¶rtgen Ã§erÃ§eveler bulunmakla birlikte klasik 8'li veya 16'lÄ± geometrik yÄ±ldÄ±z motifi net biÃ§imde doÄŸrulanamamÄ±ÅŸtÄ±r.",
+          "sources": [],
+          "story_claim_keys": []
+        }
+      ]
+    },
+    {
+      "sku": "73928 060",
+      "name": "Vega 73928 060",
+      "collection": "Vega",
+      "manufacturer": "Merinos",
+      "motifs": [
+        {
+          "motif_key": "geometric-star",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "curation_note": "GÃ¶rsel incelemede modÃ¼ler dikdÃ¶rtgen ve kare geometrik blok parÃ§alanmalarÄ±yla oluÅŸturulmuÅŸ Ã§aÄŸdaÅŸ geometrik dÃ¼zen gÃ¶zlemlendi.",
+          "uncertainty_note": null,
+          "sources": [],
+          "story_claim_keys": [
+            {
+              "claim_key": "claim-geometric-star-spatial-order",
+              "applicability_note": "Ã‡aÄŸdaÅŸ modÃ¼ler geometrik blok yapÄ±sÄ±, geometrik dÃ¼zen ve modÃ¼ler mekan organizasyonu temasÄ±yla gÃ¶rsel paralellik sunar."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sku": "73338 060",
+      "name": "Ritim 73338 060",
+      "collection": "Ritim",
+      "manufacturer": "Merinos",
+      "motifs": [
+        {
+          "motif_key": "geometric-star",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "curation_note": "GÃ¶rsel incelemede zemin boyunca uzanan kesiÅŸen diyagonal Ã§izgilerle oluÅŸturulmuÅŸ geometrik kafes (baklava/eÅŸkenar dÃ¶rtgen) Ã¶rÃ¼ntÃ¼sÃ¼ gÃ¶zlemlendi.",
+          "uncertainty_note": null,
+          "sources": [],
+          "story_claim_keys": [
+            {
+              "claim_key": "claim-geometric-star-spatial-order",
+              "applicability_note": "KesiÅŸen diyagonal Ã§izgilerin oluÅŸturduÄŸu modÃ¼ler geometrik kafes dÃ¼zeni, SelÃ§uklu ve erken dÃ¶nem geometrik dÃ¼zen ilkesini yansÄ±tmaktadÄ±r."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sku": "69799 060",
+      "name": "Premium 69799 060",
+      "collection": "Premium",
+      "manufacturer": "Merinos",
+      "motifs": [
+        {
+          "motif_key": "palmette",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "curation_note": "GÃ¶rsel incelemede zemin kompozisyonunda Ã§ok sayÄ±da stilize palmet Ã§iÃ§eÄŸi ve yaprak konturlarÄ± net olarak gÃ¶rÃ¼ldÃ¼.",
+          "uncertainty_note": null,
+          "sources": [],
+          "story_claim_keys": [
+            {
+              "claim_key": "claim-palmette-floral-composition",
+              "applicability_note": "Zemini kaplayan klasik palmet motifleri, geleneksel saray Ã¼slubu floristik kompozisyon dÃ¼zeni ile doÄŸrudan Ã¶rtÃ¼ÅŸmektedir."
+            }
+          ]
+        },
+        {
+          "motif_key": "scrolling-vine",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "curation_note": "Palmetleri birbirine baÄŸlayan dairesel kesintisiz rumÃ® ve sarmaÅŸÄ±k dallarÄ± zemin genelinde izlendi.",
+          "uncertainty_note": null,
+          "sources": [],
+          "story_claim_keys": [
+            {
+              "claim_key": "claim-scrolling-vine-continuous-growth",
+              "applicability_note": "Palmet Ã¶gelerini birleÅŸtiren ritmik dallar kesintisiz bÃ¼yÃ¼me ve organik devamlÄ±lÄ±k anlatÄ±sÄ±nÄ± destekler."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sku": "54094 260",
+      "name": "Launge 54094 260",
+      "collection": "Launge",
+      "manufacturer": "Merinos",
+      "motifs": [
+        {
+          "motif_key": "geometric-star",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "curation_note": "GÃ¶rsel incelemede tÃ¼m yÃ¼zeyi kaplayan kesiÅŸen geometrik ÅŸerit aÄŸlarÄ± ve modÃ¼ler geometrik kafes formu izlendi.",
+          "uncertainty_note": null,
+          "sources": [],
+          "story_claim_keys": [
+            {
+              "claim_key": "claim-geometric-star-spatial-order",
+              "applicability_note": "Tekrarlayan geometrik kafes strÃ¼ktÃ¼rÃ¼, SelÃ§uklu ve Ä°slam geometrik dÃ¼zen geleneÄŸinin modern dÃ¼zlemsel yorumunu sunmaktadÄ±r."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sku": "91001 020",
+      "name": "Valeria 91001 020",
+      "collection": "Valeria",
+      "manufacturer": "Merinos",
+      "motifs": [
+        {
+          "motif_key": "tree-of-life",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "curation_note": "GÃ¶rsel incelemede terracota zemin Ã¼zerinde dikey sÄ±ralanmÄ±ÅŸ servisel/aÄŸaÃ§ formlu hayat aÄŸacÄ± motifleri belirgin ÅŸekilde tespit edildi.",
+          "uncertainty_note": null,
+          "sources": [],
+          "story_claim_keys": [
+            {
+              "claim_key": "claim-tree-of-life-anatolian-context",
+              "applicability_note": "Dikey eksende tekrarlanan aÄŸaÃ§ formlarÄ± Anadolu ve Kafkas kÃ¶kenli soyaÄŸacÄ±/hayat aÄŸacÄ± baÄŸlamÄ±na gÃ¶rsel referans oluÅŸturmaktadÄ±r."
+            }
+          ]
+        },
+        {
+          "motif_key": "comb",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "curation_note": "Zemin elemanlarÄ±nda ve yan ÅŸeritlerde diÅŸli tarak benzeri geometrik dizilimler incelendi.",
+          "uncertainty_note": null,
+          "sources": [],
+          "story_claim_keys": [
+            {
+              "claim_key": "claim-comb-cleanliness-vs-weave-tool",
+              "applicability_note": "DiÅŸli geometrik kÄ±sÄ±mlar dokuma aracÄ± (kirkit) veya tarak formu tartÄ±ÅŸmasÄ±nÄ± iÃ§ermekte olup contested statÃ¼sÃ¼ korunmaktadÄ±r."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sku": "19770 071",
+      "name": "Rodin 19770 071",
+      "collection": "Rodin",
+      "manufacturer": "Merinos",
+      "motifs": [
+        {
+          "motif_key": "medallion",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "curation_note": "GÃ¶rsel incelemede merkezdeki badem/oval formlu ÅŸemse madalyon ve Ã¼st-alt sarkanÃ§ parÃ§alarÄ± aÃ§Ä±kÃ§a gÃ¶rÃ¼ldÃ¼.",
+          "uncertainty_note": null,
+          "sources": [],
+          "story_claim_keys": [
+            {
+              "claim_key": "claim-medallion-central-focus",
+              "applicability_note": "Merkezi oval madalyon motifi, kompozisyonda ana odak noktasÄ± oluÅŸturarak klasik OsmanlÄ±/Safevi madalyon ÅŸemasÄ±nÄ± modern tarzda sÃ¼rdÃ¼rmektedir."
+            }
+          ]
+        },
+        {
+          "motif_key": "lotus",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "curation_note": "Madalyon Ã§evre bordÃ¼rÃ¼nde ve taÃ§ yaprak sÃ¼slemelerinde stilize lotus/nilÃ¼fer Ã§iÃ§eÄŸi konturlarÄ± izlendi.",
+          "uncertainty_note": null,
+          "sources": [],
+          "story_claim_keys": [
+            {
+              "claim_key": "claim-lotus-rebirth",
+              "applicability_note": "Madalyon etrafÄ±ndaki stilize lotus detaylarÄ± DoÄŸu Asya kÃ¶kenli saray motiflerinin dekoratif aktarÄ±mÄ± baÄŸlamÄ±nda deÄŸerlendirilmiÅŸtir."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

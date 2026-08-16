@@ -1,0 +1,73 @@
+{
+  "activation_target": "POST-v1 A5 — Carpet ↔ Motif / Story Curation",
+  "schema_version": "carpet-catalog-curation-v1",
+  "curation_baseline": {
+    "catalog_total": 232,
+    "image_ready_total": 227,
+    "reviewed_products": 10,
+    "pending_products": 222
+  },
+  "motif_associations": {
+    "total": 12,
+    "by_evidence_type": {
+      "CURATOR_CONFIRMED": 11,
+      "SOURCE_DOCUMENTED": 0,
+      "UNCERTAIN": 1
+    },
+    "products_with_motif_association": 8,
+    "fake_or_generated": 0
+  },
+  "presence_provenance_audit": {
+    "curator_confirmed_with_note": 11,
+    "source_documented_with_source": 0,
+    "uncertain_with_note": 1,
+    "invalid_presence_evidence": 0
+  },
+  "story_associations": {
+    "total": 11,
+    "by_claim_status": {
+      "DOCUMENTED": 8,
+      "CONTEXTUAL": 2,
+      "CONTESTED": 1,
+      "UNKNOWN": 0
+    },
+    "products_with_story_association": 7
+  },
+  "story_invariants_verification": {
+    "automatic_inherited_stories": 0,
+    "uncertain_motif_with_story": 0,
+    "unknown_claim_attached": 0,
+    "contextual_missing_applicability_note": 0,
+    "contested_missing_applicability_note": 0,
+    "wrong_motif_claim_links": 0
+  },
+  "modern_product_safety": {
+    "manufacturer_intent_inferred": false,
+    "historical_attribution_inferred": false,
+    "universal_symbolism_claimed": false,
+    "product_story_framing": "Bu üründe küratöryel olarak tanımlanan görsel motif, kaynaklandırılmış bu anlatı temasını keşfetmek için bir bağlantı sunabilir."
+  },
+  "coverage_telemetry": {
+    "review_coverage": "10 / 227 (4.4%)",
+    "motif_association_coverage": "8 / 232 (3.4%)",
+    "story_association_coverage": "7 / 232 (3.0%)"
+  },
+  "knowledge_baseline": {
+    "sources": 6,
+    "motifs": 13,
+    "claims": 12
+  },
+  "catalog_and_style_dna_baseline": {
+    "catalog_products": 232,
+    "primary_images": 227,
+    "STYLE_DNA_COMPLETE": 224,
+    "STYLE_DNA_PARTIAL": 3,
+    "NO_PRIMARY_IMAGE": 5
+  },
+  "importer_results": {
+    "dry_run": "PASS",
+    "apply": "PASS",
+    "second_import_idempotency": "PASS (0 created)",
+    "conflicts_protected": "PASS"
+  }
+}

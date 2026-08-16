@@ -1,0 +1,269 @@
+{
+  "review_version": "carpet-motif-review-v1",
+  "total_reviewed": 10,
+  "reviews": [
+    {
+      "sku": "73941 060",
+      "carpet_id": "020f4814-03a2-4afa-a62b-24ee538fdf97",
+      "primary_image_id": "f694a8ef-ddae-49ef-a2d3-55bd1b6acd36",
+      "image_sha256": "7e796ced0b1131b82349078571b4cd61d15e543d319a674461cd2cad6dfecdd4",
+      "collection": "Elegance",
+      "review_status": "REVIEWED",
+      "reviewed_at": "2026-08-16T11:45:00Z",
+      "motifs": [
+        {
+          "motif_key": "medallion",
+          "decision": "CONFIRMED",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "note": "GÃ¶rsel incelemede halÄ± zemin merkezinde bÃ¼yÃ¼k dairesel madalyon ve iki ucunda sarkanÃ§ motif formu net biÃ§imde gÃ¶zlemlendi."
+        },
+        {
+          "motif_key": "scrolling-vine",
+          "decision": "CONFIRMED",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "note": "BordÃ¼r ve zemin alanÄ±nda kesintisiz kÄ±vrÄ±mlÄ± sarmaÅŸÄ±k dallarÄ± ve floral arabesk formlar gÃ¶zlemlendi."
+        }
+      ],
+      "stories": [
+        {
+          "motif_key": "medallion",
+          "claim_key": "claim-medallion-central-focus",
+          "decision": "ATTACH",
+          "applicability_note": "Modern halÄ± tasarÄ±mÄ±nda merkezi odak noktasÄ± oluÅŸturan madalyon formu tarihsel kompozisyon dÃ¼zeniyle gÃ¶rsel uyum gÃ¶stermektedir."
+        },
+        {
+          "motif_key": "scrolling-vine",
+          "claim_key": "claim-scrolling-vine-continuous-growth",
+          "decision": "ATTACH",
+          "applicability_note": "Zemin Ã§evresinde devam eden ritmik sarmaÅŸÄ±k motifi sonsuz tekrar eden organik bÃ¼yÃ¼me temasÄ±nÄ± yansÄ±tmaktadÄ±r."
+        }
+      ]
+    },
+    {
+      "sku": "72484 062",
+      "carpet_id": "e788782a-8d3f-4622-b201-c2536fce6141",
+      "primary_image_id": "548d9abd-1789-4af6-b5f3-4f92ef1eb609",
+      "image_sha256": "6ae30bdb37544edfeeb6ab5a264227ada36bc73fc470d5824e546e6f56c5ece5",
+      "collection": "Arden",
+      "review_status": "REVIEWED",
+      "reviewed_at": "2026-08-16T11:45:00Z",
+      "motifs": [
+        {
+          "motif_key": "geometric-star",
+          "decision": "UNCERTAIN",
+          "evidence_type": "UNCERTAIN",
+          "note": "HalÄ± deseninde iÃ§ iÃ§e geÃ§en geometrik dikdÃ¶rtgen Ã§erÃ§eveler bulunmakla birlikte klasik 8'li veya 16'lÄ± geometrik yÄ±ldÄ±z motifi net biÃ§imde doÄŸrulanamamÄ±ÅŸtÄ±r."
+        }
+      ],
+      "stories": []
+    },
+    {
+      "sku": "73928 060",
+      "carpet_id": "3252760c-c948-448b-b4eb-16a8403e2fbb",
+      "primary_image_id": "67ce9c98-9ffa-47e5-bc8c-8eaf35a1ed9b",
+      "image_sha256": "25e6e366f60bc5952ccffa1b6497fa0d151777f9ef135353b6aeaaca6c029523",
+      "collection": "Vega",
+      "review_status": "REVIEWED",
+      "reviewed_at": "2026-08-16T11:45:00Z",
+      "motifs": [
+        {
+          "motif_key": "geometric-star",
+          "decision": "CONFIRMED",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "note": "GÃ¶rsel incelemede modÃ¼ler dikdÃ¶rtgen ve kare geometrik blok parÃ§alanmalarÄ±yla oluÅŸturulmuÅŸ Ã§aÄŸdaÅŸ geometrik dÃ¼zen gÃ¶zlemlendi."
+        }
+      ],
+      "stories": [
+        {
+          "motif_key": "geometric-star",
+          "claim_key": "claim-geometric-star-spatial-order",
+          "decision": "ATTACH",
+          "applicability_note": "Ã‡aÄŸdaÅŸ modÃ¼ler geometrik blok yapÄ±sÄ±, geometrik dÃ¼zen ve modÃ¼ler mekan organizasyonu temasÄ±yla gÃ¶rsel paralellik sunar."
+        }
+      ]
+    },
+    {
+      "sku": "75478 096",
+      "carpet_id": "716ca42f-8156-46e1-8494-ea4ed9612453",
+      "primary_image_id": "9d9dbb35-66b0-4913-b5f1-a692ef4524df",
+      "image_sha256": "518777c0cd9da09b26667562455070bed464e3beda8108a0ecd4ef4ffbb15857",
+      "collection": "Octavia",
+      "review_status": "SKIPPED",
+      "reviewed_at": "2026-08-16T11:45:00Z",
+      "motifs": [],
+      "stories": []
+    },
+    {
+      "sku": "73338 060",
+      "carpet_id": "d39ca37c-21cd-4161-aca8-5d203b23d8ee",
+      "primary_image_id": "3763b867-b482-4c58-acdd-dc20e429970c",
+      "image_sha256": "d28a9c0eba38cdde37e38e8a493a846cc6b4c798428f57fc95e2d72d1cf3369c",
+      "collection": "Ritim",
+      "review_status": "REVIEWED",
+      "reviewed_at": "2026-08-16T11:45:00Z",
+      "motifs": [
+        {
+          "motif_key": "geometric-star",
+          "decision": "CONFIRMED",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "note": "GÃ¶rsel incelemede zemin boyunca uzanan kesiÅŸen diyagonal Ã§izgilerle oluÅŸturulmuÅŸ geometrik kafes (baklava/eÅŸkenar dÃ¶rtgen) Ã¶rÃ¼ntÃ¼sÃ¼ gÃ¶zlemlendi."
+        }
+      ],
+      "stories": [
+        {
+          "motif_key": "geometric-star",
+          "claim_key": "claim-geometric-star-spatial-order",
+          "decision": "ATTACH",
+          "applicability_note": "KesiÅŸen diyagonal Ã§izgilerin oluÅŸturduÄŸu modÃ¼ler geometrik kafes dÃ¼zeni, SelÃ§uklu ve erken dÃ¶nem geometrik dÃ¼zen ilkesini yansÄ±tmaktadÄ±r."
+        }
+      ]
+    },
+    {
+      "sku": "69799 060",
+      "carpet_id": "5b1ab57e-0e4d-4182-b61d-0961708d32eb",
+      "primary_image_id": "bd38ffe1-b6b7-42da-82e7-714d63ee28bc",
+      "image_sha256": "6e73de69c1e479397425673ce8e8cbbf8dbe123a037e7283a5ca3b8d65b58a59",
+      "collection": "Premium",
+      "review_status": "REVIEWED",
+      "reviewed_at": "2026-08-16T11:45:00Z",
+      "motifs": [
+        {
+          "motif_key": "palmette",
+          "decision": "CONFIRMED",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "note": "GÃ¶rsel incelemede zemin kompozisyonunda Ã§ok sayÄ±da stilize palmet Ã§iÃ§eÄŸi ve yaprak konturlarÄ± net olarak gÃ¶rÃ¼ldÃ¼."
+        },
+        {
+          "motif_key": "scrolling-vine",
+          "decision": "CONFIRMED",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "note": "Palmetleri birbirine baÄŸlayan dairesel kesintisiz rumÃ® ve sarmaÅŸÄ±k dallarÄ± zemin genelinde izlendi."
+        }
+      ],
+      "stories": [
+        {
+          "motif_key": "palmette",
+          "claim_key": "claim-palmette-floral-composition",
+          "decision": "ATTACH",
+          "applicability_note": "Zemini kaplayan klasik palmet motifleri, geleneksel saray Ã¼slubu floristik kompozisyon dÃ¼zeni ile doÄŸrudan Ã¶rtÃ¼ÅŸmektedir."
+        },
+        {
+          "motif_key": "scrolling-vine",
+          "claim_key": "claim-scrolling-vine-continuous-growth",
+          "decision": "ATTACH",
+          "applicability_note": "Palmet Ã¶gelerini birleÅŸtiren ritmik dallar kesintisiz bÃ¼yÃ¼me ve organik devamlÄ±lÄ±k anlatÄ±sÄ±nÄ± destekler."
+        }
+      ]
+    },
+    {
+      "sku": "62744 030",
+      "carpet_id": "2069add2-f43a-4136-8237-67a635257a62",
+      "primary_image_id": "aada30c2-f7c2-4411-922c-fabe02326276",
+      "image_sha256": "5299ee25fe84cead359bb2bd4d5651a6dfe5a699a351ed5a0e146a0ba875b5e8",
+      "collection": "Lion",
+      "review_status": "SKIPPED",
+      "reviewed_at": "2026-08-16T11:45:00Z",
+      "motifs": [],
+      "stories": []
+    },
+    {
+      "sku": "54094 260",
+      "carpet_id": "35cc8ec1-3683-42a3-a98f-7b718f3fd291",
+      "primary_image_id": "7616f124-91d4-40f4-a5d0-d6e7959fec5d",
+      "image_sha256": "95e3c4d5a8b897c936dc8e82b0f84642c43103ac7208a48c8d425110e46a026a",
+      "collection": "Launge",
+      "review_status": "REVIEWED",
+      "reviewed_at": "2026-08-16T11:45:00Z",
+      "motifs": [
+        {
+          "motif_key": "geometric-star",
+          "decision": "CONFIRMED",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "note": "GÃ¶rsel incelemede tÃ¼m yÃ¼zeyi kaplayan kesiÅŸen geometrik ÅŸerit aÄŸlarÄ± ve modÃ¼ler geometrik kafes formu izlendi."
+        }
+      ],
+      "stories": [
+        {
+          "motif_key": "geometric-star",
+          "claim_key": "claim-geometric-star-spatial-order",
+          "decision": "ATTACH",
+          "applicability_note": "Tekrarlayan geometrik kafes strÃ¼ktÃ¼rÃ¼, SelÃ§uklu ve Ä°slam geometrik dÃ¼zen geleneÄŸinin modern dÃ¼zlemsel yorumunu sunmaktadÄ±r."
+        }
+      ]
+    },
+    {
+      "sku": "91001 020",
+      "carpet_id": "18730712-aeb5-4bd7-924b-08a035ff3c26",
+      "primary_image_id": "fa8dbde0-d244-4f89-bd0f-1fdf1fa85b59",
+      "image_sha256": "19e90ee313ddb98553394185bf14e46c5aa03fa43c09cd27eaa80278c23acf5b",
+      "collection": "Valeria",
+      "review_status": "REVIEWED",
+      "reviewed_at": "2026-08-16T11:45:00Z",
+      "motifs": [
+        {
+          "motif_key": "tree-of-life",
+          "decision": "CONFIRMED",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "note": "GÃ¶rsel incelemede terracota zemin Ã¼zerinde dikey sÄ±ralanmÄ±ÅŸ servisel/aÄŸaÃ§ formlu hayat aÄŸacÄ± motifleri belirgin ÅŸekilde tespit edildi."
+        },
+        {
+          "motif_key": "comb",
+          "decision": "CONFIRMED",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "note": "Zemin elemanlarÄ±nda ve yan ÅŸeritlerde diÅŸli tarak benzeri geometrik dizilimler incelendi."
+        }
+      ],
+      "stories": [
+        {
+          "motif_key": "tree-of-life",
+          "claim_key": "claim-tree-of-life-anatolian-context",
+          "decision": "ATTACH",
+          "applicability_note": "Dikey eksende tekrarlanan aÄŸaÃ§ formlarÄ± Anadolu ve Kafkas kÃ¶kenli soyaÄŸacÄ±/hayat aÄŸacÄ± baÄŸlamÄ±na gÃ¶rsel referans oluÅŸturmaktadÄ±r."
+        },
+        {
+          "motif_key": "comb",
+          "claim_key": "claim-comb-cleanliness-vs-weave-tool",
+          "decision": "ATTACH",
+          "applicability_note": "DiÅŸli geometrik kÄ±sÄ±mlar dokuma aracÄ± (kirkit) veya tarak formu tartÄ±ÅŸmasÄ±nÄ± iÃ§ermekte olup contested statÃ¼sÃ¼ korunmaktadÄ±r."
+        }
+      ]
+    },
+    {
+      "sku": "19770 071",
+      "carpet_id": "3a1aa198-0ccb-456f-94bd-53cc4683973a",
+      "primary_image_id": "2378633f-8b87-4084-b3d2-efcfcc9c07b7",
+      "image_sha256": "ddb19b0d7df0a88130d3f52aa93115881c5e7e16664802639e40628cc4596587",
+      "collection": "Rodin",
+      "review_status": "REVIEWED",
+      "reviewed_at": "2026-08-16T11:45:00Z",
+      "motifs": [
+        {
+          "motif_key": "medallion",
+          "decision": "CONFIRMED",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "note": "GÃ¶rsel incelemede merkezdeki badem/oval formlu ÅŸemse madalyon ve Ã¼st-alt sarkanÃ§ parÃ§alarÄ± aÃ§Ä±kÃ§a gÃ¶rÃ¼ldÃ¼."
+        },
+        {
+          "motif_key": "lotus",
+          "decision": "CONFIRMED",
+          "evidence_type": "CURATOR_CONFIRMED",
+          "note": "Madalyon Ã§evre bordÃ¼rÃ¼nde ve taÃ§ yaprak sÃ¼slemelerinde stilize lotus/nilÃ¼fer Ã§iÃ§eÄŸi konturlarÄ± izlendi."
+        }
+      ],
+      "stories": [
+        {
+          "motif_key": "medallion",
+          "claim_key": "claim-medallion-central-focus",
+          "decision": "ATTACH",
+          "applicability_note": "Merkezi oval madalyon motifi, kompozisyonda ana odak noktasÄ± oluÅŸturarak klasik OsmanlÄ±/Safevi madalyon ÅŸemasÄ±nÄ± modern tarzda sÃ¼rdÃ¼rmektedir."
+        },
+        {
+          "motif_key": "lotus",
+          "claim_key": "claim-lotus-rebirth",
+          "decision": "ATTACH",
+          "applicability_note": "Madalyon etrafÄ±ndaki stilize lotus detaylarÄ± DoÄŸu Asya kÃ¶kenli saray motiflerinin dekoratif aktarÄ±mÄ± baÄŸlamÄ±nda deÄŸerlendirilmiÅŸtir."
+        }
+      ]
+    }
+  ]
+}
