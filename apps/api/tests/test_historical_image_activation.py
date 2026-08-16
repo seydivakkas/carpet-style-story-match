@@ -278,3 +278,42 @@ async def test_hash_separation_and_coverage(db_session: AsyncSession, monkeypatc
         assert r.get("source_record_sha256") is not None
         assert r.get("source_record_sha256") != r.get("image_content_sha256")
 
+
+@pytest.mark.asyncio
+async def test_terminal_accounting_equation_independence(db_session: AsyncSession, monkeypatch):
+    """Verify each run maintains an independent terminal status equation summing to total_considered."""
+    await setup_a6_and_a7(db_session)
+    synthetic_jpeg = create_synthetic_jpeg_bytes(250, 250)
+    monkeypatch.setattr(
+        "app.scripts.activate_historical_images.download_museum_image_bytes",
+        lambda url, timeout=15, delay_sec=0.2: (synthetic_jpeg, "image/jpeg")
+    )
+
+    # 1. Pilot run
+    pilot_report = await run_a8_activation(rights_mode="OPEN_ACCESS_ONLY", dry_run=False, apply=True, limit=5, db_session=db_session)
+    pilot_m = pilot_report["run_accounting"]["current_run"]
+    assert pilot_m["historical_total_considered"] == 5
+    assert pilot_m["activated"] == 5
+    assert pilot_m["already_active"] == 0
+    assert pilot_m["rights_not_eligible"] == 0
+    assert pilot_m["unaccounted"] == 0
+    assert pilot_m["run_equation_valid"] is True
+
+    # 2. Initial full run
+    full_report = await run_a8_activation(rights_mode="OPEN_ACCESS_ONLY", dry_run=False, apply=True, db_session=db_session)
+    full_m = full_report["run_accounting"]["current_run"]
+    total = full_m["historical_total_considered"]
+    assert full_m["activated"] + full_m["already_active"] + full_m["rights_not_eligible"] + full_m["no_source_image"] + full_m["other_failures"] == total
+    assert full_m["unaccounted"] == 0
+    assert full_m["run_equation_valid"] is True
+
+    # 3. Idempotency run
+    idem_report = await run_a8_activation(rights_mode="OPEN_ACCESS_ONLY", dry_run=False, apply=True, db_session=db_session)
+    idem_m = idem_report["run_accounting"]["current_run"]
+    total_idem = idem_m["historical_total_considered"]
+    assert idem_m["activated"] == 0
+    assert idem_m["already_active"] + idem_m["rights_not_eligible"] + idem_m["no_source_image"] + idem_m["other_failures"] == total_idem
+    assert idem_m["unaccounted"] == 0
+    assert idem_m["run_equation_valid"] is True
+
+

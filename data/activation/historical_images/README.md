@@ -1,7 +1,21 @@
-# POST-v1 A8 / A8A — Historical Local Image Activation & Rights Provenance Closure
+# POST-v1 A8 / A8A / A8A.1 — Historical Local Image Activation & Terminal Accounting Closure
 
 ## Overview
-This directory contains the activated historical local image sidecar dataset, activation report, and A8A rights & source-hash provenance reconciliation report.
+This directory contains the activated historical local image sidecar dataset, activation report, and A8A/A8A.1 terminal accounting & provenance reconciliation reports.
+
+## Run Accounting Models (A8A.1)
+Each execution run maintains an independent terminal status accounting equation (`ACTIVATED + ALREADY_ACTIVE + RIGHTS_NOT_ELIGIBLE + other = total_considered`):
+1. **Pilot Run** (`limit=5`):
+   - `5 ACTIVATED + 0 ALREADY_ACTIVE + 0 RIGHTS_NOT_ELIGIBLE = 5 total` (Unaccounted: 0)
+2. **Initial Full Activation Run** (First full run after pilot):
+   - `40 ACTIVATED + 5 ALREADY_ACTIVE + 55 RIGHTS_NOT_ELIGIBLE = 100 total` (Unaccounted: 0)
+3. **Idempotency Run** (Safe rerun after all 45 images active):
+   - `0 ACTIVATED + 45 ALREADY_ACTIVE + 55 RIGHTS_NOT_ELIGIBLE = 100 total` (Unaccounted: 0)
+4. **Final Terminal Database State**:
+   - Historical References: 100
+   - Historical Primary Images: 45
+   - NO_PRIMARY_IMAGE: 55
+   - STYLE_DNA_MISSING: 45
 
 ## Distinct Metrics & Hashes
 1. **Source Image URL Metrics**:
@@ -12,15 +26,10 @@ This directory contains the activated historical local image sidecar dataset, ac
 
 2. **Hash Disambiguation**:
    - `source_record_sha256`: SHA-256 hash of the normalized A6/A7 museum metadata/provenance snapshot record (Coverage: 100/100).
-   - `image_content_sha256`: SHA-256 hash of the downloaded binary image payload payload (Coverage: 45/45 downloaded; null for 55 non-downloaded).
+   - `image_content_sha256`: SHA-256 hash of the downloaded binary image payload (Coverage: 45/45 downloaded; null for 55 non-downloaded).
    - Note: Source-record snapshot hash != Downloaded image content hash.
-
-## Rights Reconciliation (A8A)
-- **Outcome**: CASE A — A7 summary text reported 50 open-access Met records by approximation, but the factual underlying A6/A7 dataset (`museum-object-sources.json` / `a7-input-snapshot.json`) contained 45 open-access CC0 records and 5 non-open-access "All Rights Reserved" records.
-- **5 Met Exceptions**: Object IDs `489476`, `452575`, `456972`, `450571`, `452370` have `open_access: false`, `rights_statement: "All Rights Reserved"`, `source_image_url: null`.
-- **Terminal Status Accounting**: 45 Eligible (40 ACTIVATED + 5 ALREADY_ACTIVE) + 55 RIGHTS_NOT_ELIGIBLE (5 Met + 50 V&A) = 100 total.
 
 ## Files
 - `historical-image-activation.json`: Ingestion sidecar dataset mapping historical references to storage keys, `source_record_sha256`, and `image_content_sha256`.
-- `activation-report.json`: Execution report, rights telemetry, and readiness distribution.
-- `a7-a8-rights-provenance-reconciliation.json`: A8A closure report detailing 50->45 rights resolution, URL metrics, and hash coverage.
+- `activation-report.json`: Execution report, run accounting telemetry, and readiness distribution.
+- `a7-a8-rights-provenance-reconciliation.json`: A8A/A8A.1 closure report detailing rights resolution, run accounting equations, and hash coverage.
