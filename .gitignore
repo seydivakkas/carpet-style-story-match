@@ -42,6 +42,7 @@ venv.bak/
 # Node dependencies & Next.js
 node_modules/
 .next/
+.next-dev/
 out/
 build/
 .next-env.d.ts

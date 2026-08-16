@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "clean": "node -e \"require('fs').rmSync('.next', {recursive: true, force: true}); require('fs').rmSync('.next-dev', {recursive: true, force: true});\"",
     "lint": "npx eslint .",
     "typecheck": "npx -p typescript tsc --noEmit"
   },
