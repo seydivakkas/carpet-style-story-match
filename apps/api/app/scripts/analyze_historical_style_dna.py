@@ -52,6 +52,7 @@ async def run_historical_batch_analysis(
     resume: bool = True,
     report_path: Optional[str] = None,
     run_manifest_path: Optional[str] = None,
+    db_session: Optional[AsyncSession] = None,
 ) -> Dict[str, Any]:
     run_id = f"hist-run-{int(time.time())}"
     started_at = utc_now_iso()
@@ -71,18 +72,22 @@ async def run_historical_batch_analysis(
             for rec in sidecar_data.get("records", []):
                 sidecar_map[rec.get("reference_key")] = rec
 
-    async with AsyncSessionLocal() as session:
-        # Query historical references join carpet
-        stmt = (
-            select(HistoricalReferenceMetadataModel)
-            .options(selectinload(HistoricalReferenceMetadataModel.carpet))
-            .order_by(HistoricalReferenceMetadataModel.reference_key.asc())
-        )
-        if reference_key_filter:
-            stmt = stmt.where(HistoricalReferenceMetadataModel.reference_key == reference_key_filter)
+    local_session = False
+    if db_session is None:
+        db_session = AsyncSessionLocal()
+        local_session = True
 
-        res = await session.execute(stmt)
-        hist_metas = list(res.scalars().all())
+    # Query historical references join carpet
+    stmt = (
+        select(HistoricalReferenceMetadataModel)
+        .options(selectinload(HistoricalReferenceMetadataModel.carpet))
+        .order_by(HistoricalReferenceMetadataModel.reference_key.asc())
+    )
+    if reference_key_filter:
+        stmt = stmt.where(HistoricalReferenceMetadataModel.reference_key == reference_key_filter)
+
+    res = await db_session.execute(stmt)
+    hist_metas = list(res.scalars().all())
 
     historical_total = len(hist_metas)
 
@@ -93,9 +98,8 @@ async def run_historical_batch_analysis(
         target_metas = hist_metas
 
     # Catalog isolation check before run
-    async with AsyncSessionLocal() as session:
-        cat_carpets_before = (await session.execute(select(func.count(CarpetModel.id)).where(CarpetModel.source_type == CarpetSourceType.CATALOG))).scalar_one()
-        cat_images_before = (await session.execute(select(func.count(CarpetImageModel.id)).join(CarpetModel).where(CarpetModel.source_type == CarpetSourceType.CATALOG))).scalar_one()
+    cat_carpets_before = (await db_session.execute(select(func.count(CarpetModel.id)).where(CarpetModel.source_type == CarpetSourceType.CATALOG))).scalar_one()
+    cat_images_before = (await db_session.execute(select(func.count(CarpetImageModel.id)).join(CarpetModel).where(CarpetModel.source_type == CarpetSourceType.CATALOG))).scalar_one()
 
     print("=" * 60)
     print("HISTORICAL STYLE DNA BATCH ANALYSIS v1")
@@ -145,24 +149,23 @@ async def run_historical_batch_analysis(
         source_record_sha256 = sidecar_rec.get("source_record_sha256")
         sidecar_image_sha256 = sidecar_rec.get("image_content_sha256")
 
-        async with AsyncSessionLocal() as session:
-            img_stmt = select(CarpetImageModel).where(
-                CarpetImageModel.carpet_id == carpet_id,
-                CarpetImageModel.is_primary.is_(True),
-            )
-            img_res = await session.execute(img_stmt)
-            primary_img = img_res.scalar_one_or_none()
+        img_stmt = select(CarpetImageModel).where(
+            CarpetImageModel.carpet_id == carpet_id,
+            CarpetImageModel.is_primary.is_(True),
+        )
+        img_res = await db_session.execute(img_stmt)
+        primary_img = img_res.scalar_one_or_none()
 
-            prof_stmt = (
-                select(CarpetStyleProfileModel)
-                .options(selectinload(CarpetStyleProfileModel.dimensions))
-                .where(
-                    CarpetStyleProfileModel.carpet_id == carpet_id,
-                    CarpetStyleProfileModel.algorithm_version == STYLE_DNA_ALGORITHM_VERSION,
-                )
+        prof_stmt = (
+            select(CarpetStyleProfileModel)
+            .options(selectinload(CarpetStyleProfileModel.dimensions))
+            .where(
+                CarpetStyleProfileModel.carpet_id == carpet_id,
+                CarpetStyleProfileModel.algorithm_version == STYLE_DNA_ALGORITHM_VERSION,
             )
-            prof_res = await session.execute(prof_stmt)
-            existing_prof = prof_res.scalar_one_or_none()
+        )
+        prof_res = await db_session.execute(prof_stmt)
+        existing_prof = prof_res.scalar_one_or_none()
 
         if not primary_img:
             no_primary_count += 1
@@ -268,34 +271,33 @@ async def run_historical_batch_analysis(
         avail_cnt, low_cnt, nav_cnt = 0, 0, 0
 
         try:
-            async with AsyncSessionLocal() as session:
-                service = StyleDNAService(session)
-                profile, is_cached = await service.calculate_and_persist_style_dna(
-                    carpet_id=carpet_id,
-                    image_id=primary_img.id,
-                )
+            service = StyleDNAService(db_session)
+            profile, is_cached = await service.calculate_and_persist_style_dna(
+                carpet_id=carpet_id,
+                image_id=primary_img.id,
+            )
 
-                processed_count += 1
-                status_str = profile.status.value
+            processed_count += 1
+            status_str = profile.status.value
 
-                if profile.status == StyleProfileStatus.COMPLETE:
-                    complete_count += 1
-                elif profile.status == StyleProfileStatus.PARTIAL:
-                    partial_count += 1
-                else:
-                    failed_count += 1
+            if profile.status == StyleProfileStatus.COMPLETE:
+                complete_count += 1
+            elif profile.status == StyleProfileStatus.PARTIAL:
+                partial_count += 1
+            else:
+                failed_count += 1
 
-                avail_cnt = sum(1 for d in profile.dimensions if d.status == StyleDimensionStatus.AVAILABLE)
-                low_cnt = sum(1 for d in profile.dimensions if d.status == StyleDimensionStatus.LOW_CONFIDENCE)
-                nav_cnt = sum(1 for d in profile.dimensions if d.status == StyleDimensionStatus.NOT_AVAILABLE)
+            avail_cnt = sum(1 for d in profile.dimensions if d.status == StyleDimensionStatus.AVAILABLE)
+            low_cnt = sum(1 for d in profile.dimensions if d.status == StyleDimensionStatus.LOW_CONFIDENCE)
+            nav_cnt = sum(1 for d in profile.dimensions if d.status == StyleDimensionStatus.NOT_AVAILABLE)
 
-                for d in profile.dimensions:
-                    dim_label = DIM_KEY_MAP.get(d.dimension_key, d.dimension_key)
-                    if dim_label in dim_availability:
-                        status_name = d.status.value if hasattr(d.status, "value") else str(d.status)
-                        dim_availability[dim_label][status_name] = dim_availability[dim_label].get(status_name, 0) + 1
-                        if d.value is not None and not math.isnan(d.value):
-                            dim_values_list[dim_label].append(d.value)
+            for d in profile.dimensions:
+                dim_label = DIM_KEY_MAP.get(d.dimension_key, d.dimension_key)
+                if dim_label in dim_availability:
+                    status_name = d.status.value if hasattr(d.status, "value") else str(d.status)
+                    dim_availability[dim_label][status_name] = dim_availability[dim_label].get(status_name, 0) + 1
+                    if d.value is not None and not math.isnan(d.value):
+                        dim_values_list[dim_label].append(d.value)
 
         except Exception as e:
             failed_count += 1
@@ -575,6 +577,9 @@ This directory contains the batch run manifest, activation summary report, and R
     assert unaccounted == 0, f"Terminal accounting failed! Unaccounted = {unaccounted}"
     assert range_violations == 0, f"Range violations detected! Count = {range_violations}"
     assert nan_inf_violations == 0, f"NaN / Inf violations detected! Count = {nan_inf_violations}"
+
+    if local_session and db_session:
+        await db_session.close()
 
     print("[STATUS]: PASS")
     return summary_report

@@ -1,0 +1,121 @@
+{
+  "task": "POST-v1 A9A — Historical Style DNA Run Lineage Reconciliation",
+  "reconciliation_timestamp": "2026-08-16T17:38:00+03:00",
+  "algorithm_version": "style-dna-v1.0.0",
+  "classification": "CASE_A_SAME_DB_PILOT_PERSISTENCE",
+  "root_cause_explanation": "Pilot run executed with --apply on production DB (carpet_db.sqlite) and persisted 5 historical Style DNA profiles. Initial full run (--apply --resume) correctly identified those 5 existing profiles as ALREADY_CURRENT and reanalyzed only the remaining 40 open-access historical carpets. Idempotency detection operated with 100% precision.",
+  "pilot_execution": {
+    "environment": "Production Database (carpet_db.sqlite)",
+    "persisted_to_production": true,
+    "pilot_target_count": 5,
+    "pilot_processed": 5,
+    "pilot_already_current": 0,
+    "pilot_no_primary_image": 0,
+    "pilot_failed": 0,
+    "pilot_unaccounted": 0,
+    "equation": "5 + 0 + 0 = 5",
+    "pilot_reference_keys": [
+      "ref-met-13575",
+      "ref-met-13577",
+      "ref-met-13581",
+      "ref-met-13733",
+      "ref-met-13980"
+    ],
+    "pilot_profiles": [
+      {
+        "reference_key": "ref-met-13575",
+        "official_object_id": "13575",
+        "carpet_id": "85b4dd131971427abd67ebd13150c3ce",
+        "primary_image_id": "d8ff4e3cd90142f89b153b4d9542509d",
+        "profile_id": "a8b4b70ea9b94078875c08a1e2f079ea",
+        "algorithm_version": "style-dna-v1.0.0",
+        "persisted": true
+      },
+      {
+        "reference_key": "ref-met-13577",
+        "official_object_id": "13577",
+        "carpet_id": "ee49104f96444aeb90223ec14622b7b7",
+        "primary_image_id": "dc22133476064ece94a345cf4155dc3e",
+        "profile_id": "4d1aa8d54acb464a8909195be1430a9c",
+        "algorithm_version": "style-dna-v1.0.0",
+        "persisted": true
+      },
+      {
+        "reference_key": "ref-met-13581",
+        "official_object_id": "13581",
+        "carpet_id": "3531f2feba474f34babd97c1b187591d",
+        "primary_image_id": "0da4a62d910a4b918415431ae9be3957",
+        "profile_id": "75c66d2543f5461087d2de94a40e498a",
+        "algorithm_version": "style-dna-v1.0.0",
+        "persisted": true
+      },
+      {
+        "reference_key": "ref-met-13733",
+        "official_object_id": "13733",
+        "carpet_id": "5e7246b2117f48858633a5d43e193aa5",
+        "primary_image_id": "817926de5c944583a5300cde21cfa845",
+        "profile_id": "a9735c42313b4312910a813efbeb71cb",
+        "algorithm_version": "style-dna-v1.0.0",
+        "persisted": true
+      },
+      {
+        "reference_key": "ref-met-13980",
+        "official_object_id": "13980",
+        "carpet_id": "0d821ec7dcee475aa8e88f2bba7f612c",
+        "primary_image_id": "3bdd43085f1447d9ac8524b783e9b2b8",
+        "profile_id": "99f3854ff3594fb1ba29592ecc963809",
+        "algorithm_version": "style-dna-v1.0.0",
+        "persisted": true
+      }
+    ]
+  },
+  "initial_full_run_execution": {
+    "historical_total_considered": 100,
+    "profiles_before_full_run": 5,
+    "pending_historical_before_full_run": 40,
+    "no_primary_image_before_full_run": 55,
+    "full_run_processed": 40,
+    "full_run_already_current": 5,
+    "full_run_no_primary_image": 55,
+    "full_run_failed": 0,
+    "full_run_unaccounted": 0,
+    "equation": "40 + 5 + 55 = 100",
+    "profiles_after_full_run": 45
+  },
+  "idempotency_rerun_execution": {
+    "historical_total_considered": 100,
+    "rerun_processed": 0,
+    "rerun_already_current": 45,
+    "rerun_no_primary_image": 55,
+    "rerun_failed": 0,
+    "rerun_unaccounted": 0,
+    "equation": "0 + 45 + 55 = 100"
+  },
+  "final_database_state": {
+    "historical_references_total": 100,
+    "historical_primary_images": 45,
+    "current_historical_profiles": 45,
+    "duplicate_current_profiles": 0,
+    "carpets_with_multiple_profiles": 0,
+    "wrong_image_provenance_count": 0,
+    "wrong_algorithm_version_count": 0,
+    "readiness_distribution": {
+      "NO_PRIMARY_IMAGE": 55,
+      "STYLE_DNA_MISSING": 0,
+      "STYLE_DNA_PARTIAL": 0,
+      "STYLE_DNA_FAILED": 0,
+      "STYLE_DNA_COMPLETE": 45
+    }
+  },
+  "domain_isolation_audit": {
+    "catalog_carpets": 232,
+    "catalog_primary_images": 227,
+    "catalog_style_profiles": 227,
+    "catalog_style_dna_complete": 224,
+    "catalog_style_dna_partial": 3,
+    "catalog_no_primary_image": 5,
+    "carpet_motif_associations": 12,
+    "carpet_story_associations": 11,
+    "historical_connections": 0
+  }
+}
