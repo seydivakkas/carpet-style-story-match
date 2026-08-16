@@ -1,0 +1,83 @@
+{
+  "task": "POST-v1 A7 — Historical Reference Dataset Activation",
+  "status": "PASS",
+  "mode": "APPLY",
+  "timestamp": "2026-08-16T09:48:14.232485+00:00",
+  "versions": {
+    "historical_reference_version": "historical-reference-v1",
+    "curation_schema_version": "historical-reference-curation-v1"
+  },
+  "input": {
+    "a6_ready_candidates": 100,
+    "promoted_candidates": 100,
+    "skipped": 0,
+    "rejected": 0
+  },
+  "historical_domain": {
+    "historical_carpets_before": 0,
+    "historical_carpets_after": 100,
+    "historical_carpets_created": 100,
+    "metadata_before": 0,
+    "metadata_after": 100,
+    "metadata_created": 100,
+    "orphan_metadata": 0,
+    "orphan_historical_carpets": 0
+  },
+  "providers": {
+    "met": 50,
+    "vam": 50
+  },
+  "primary_provenance": {
+    "primary_object_record_links": 100,
+    "references_with_zero_primary": 0,
+    "references_with_multiple_primary": 0,
+    "invalid_primary_source_type": 0,
+    "curated_sources_before": 0,
+    "curated_sources_after": 100,
+    "curated_sources_reused": 100,
+    "curated_sources_created": 100
+  },
+  "rights_and_images": {
+    "source_image_urls": 45,
+    "local_historical_carpet_images": 0,
+    "image_binary_downloads": 0,
+    "rights_distribution": {
+      "CC0 1.0 Universal": 45,
+      "All Rights Reserved": 5,
+      "Victoria and Albert Museum, London / Non-Commercial Educational Reuse": 50
+    }
+  },
+  "a8_planning": {
+    "historical_total": 100,
+    "source_image_url_available": 45,
+    "open_access_true": 45,
+    "rights_review_required": 55,
+    "no_image_source": 55
+  },
+  "isolation": {
+    "catalog_before": 0,
+    "catalog_after": 0,
+    "catalog_delta": 0
+  },
+  "importer_result": {
+    "dry_run": false,
+    "status": "SUCCESS",
+    "imported_count": 100,
+    "skipped_count": 0,
+    "total_count": 100
+  },
+  "field_null_telemetry": {
+    "accession_number": 0,
+    "culture": 45,
+    "period": 99,
+    "dynasty_or_tradition": 100,
+    "date_display": 1,
+    "geography": 11,
+    "medium": 4,
+    "dimensions_text": 2,
+    "department": 50,
+    "credit_line": 27,
+    "source_image_url": 55,
+    "rights_statement": 0
+  }
+}

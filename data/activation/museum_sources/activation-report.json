@@ -2,19 +2,19 @@
   "task": "POST-v1 A6 — Real Museum Source Activation",
   "status": "PASS",
   "mode": "APPLY",
-  "timestamp": "2026-08-16T09:21:54.393004+00:00",
+  "timestamp": "2026-08-16T09:49:44.991684+00:00",
   "discovery": {
     "queries": [
       {
         "provider": "met",
         "query": "carpet",
-        "retrieved_at": "2026-08-16T09:21:51.246126+00:00",
+        "retrieved_at": "2026-08-16T09:49:41.971374+00:00",
         "candidate_count": 10
       },
       {
         "provider": "vam",
         "query": "carpet",
-        "retrieved_at": "2026-08-16T09:21:54.327380+00:00",
+        "retrieved_at": "2026-08-16T09:49:44.962843+00:00",
         "candidate_count": 10
       }
     ],
