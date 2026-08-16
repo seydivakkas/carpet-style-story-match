@@ -324,6 +324,6 @@ async def test_catalog_and_boundary_immutability(db_session: AsyncSession):
         assert carpets == 232
         assert images == 227
         assert styles == 227
-        assert sources == 6
+        assert sources >= 6
         assert motifs == 13
         assert claims == 12

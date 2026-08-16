@@ -1,0 +1,58 @@
+{
+  "task": "POST-v1 A6 — Real Museum Source Activation",
+  "status": "PASS",
+  "mode": "APPLY",
+  "timestamp": "2026-08-16T09:21:54.393004+00:00",
+  "discovery": {
+    "queries": [
+      {
+        "provider": "met",
+        "query": "carpet",
+        "retrieved_at": "2026-08-16T09:21:51.246126+00:00",
+        "candidate_count": 10
+      },
+      {
+        "provider": "vam",
+        "query": "carpet",
+        "retrieved_at": "2026-08-16T09:21:54.327380+00:00",
+        "candidate_count": 10
+      }
+    ],
+    "total_candidate_records": 20,
+    "accepted": 20,
+    "rejected_not_carpet": 0,
+    "review_required": 0,
+    "invalid": 0,
+    "duplicates": 0,
+    "accepted_by_provider": {
+      "met": 10,
+      "vam": 10
+    }
+  },
+  "rights_and_images": {
+    "image_references_available": 9,
+    "open_access_images": 9,
+    "rights_review_required": 1,
+    "images_downloaded": 0,
+    "carpet_images_created": 0
+  },
+  "a7_readiness": {
+    "READY_FOR_HISTORICAL_CURATION": 20,
+    "REVIEW_REQUIRED": 0,
+    "NOT_ELIGIBLE": 0
+  },
+  "database_delta": {
+    "curated_sources_before": 0,
+    "curated_sources_after": 20,
+    "curated_sources_delta": 20,
+    "museum_objects_before": 0,
+    "museum_objects_after": 20,
+    "museum_objects_delta": 20,
+    "sources_created": 20,
+    "sources_unchanged": 0,
+    "source_conflicts": 0,
+    "historical_references_delta": 0,
+    "historical_carpets_delta": 0,
+    "carpet_images_delta": 0
+  }
+}

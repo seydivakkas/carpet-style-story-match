@@ -1,0 +1,29 @@
+{
+  "schema_version": "museum-source-registry-v1",
+  "providers": [
+    {
+      "provider_key": "met",
+      "institution_name": "The Metropolitan Museum of Art",
+      "official_base_url": "https://www.metmuseum.org",
+      "api_reference_url": "https://metmuseum.github.io/",
+      "adapter_class": "MetMuseumSourceAdapter",
+      "access_mode": "OPEN_API",
+      "metadata_usage_note": "Open Access API providing public domain metadata under CC0 1.0 Universal.",
+      "image_usage_note": "Primary images identified as public domain are available for open educational/scholarly reuse.",
+      "retrieved_at": "2026-08-16T12:00:00Z",
+      "enabled": true
+    },
+    {
+      "provider_key": "vam",
+      "institution_name": "Victoria and Albert Museum",
+      "official_base_url": "https://collections.vam.ac.uk",
+      "api_reference_url": "https://developers.vam.ac.uk/",
+      "adapter_class": "VAMuseumSourceAdapter",
+      "access_mode": "OPEN_API",
+      "metadata_usage_note": "Official V&A Collections API v2 providing public collection metadata.",
+      "image_usage_note": "V&A collection image references and IIIF endpoints are subject to non-commercial educational licensing.",
+      "retrieved_at": "2026-08-16T12:00:00Z",
+      "enabled": true
+    }
+  ]
+}
