@@ -13,11 +13,13 @@ import {
   PrimaryImageSummary,
   CarpetStyleProfileRead,
   BrandRead,
-  BrandListResponse
+  BrandListResponse,
+  CatalogFacetsResponse
 } from "../types/api";
 
 export const catalogKeys = {
   all: ["catalog"] as const,
+  facets: () => [...catalogKeys.all, "facets"] as const,
   brands: () => [...catalogKeys.all, "brands"] as const,
   brand: (brandKey: string) => [...catalogKeys.all, "brand", brandKey] as const,
   carpets: (params?: Record<string, unknown>) => [...catalogKeys.all, "carpets", params] as const,
@@ -29,6 +31,13 @@ export const catalogKeys = {
   narrativeAffinities: (assessmentId: string) => [...catalogKeys.all, "narrative-affinities", assessmentId] as const,
   narrativeAffinity: (assessmentId: string, affinityId: string) => [...catalogKeys.all, "narrative-affinity", assessmentId, affinityId] as const
 };
+
+export function useCatalogFacets() {
+  return useQuery({
+    queryKey: catalogKeys.facets(),
+    queryFn: () => apiRequest<CatalogFacetsResponse>("/api/v1/catalog/facets")
+  });
+}
 
 export function useBrands(verifiedOnly: boolean = false) {
   return useQuery({
@@ -90,6 +99,8 @@ export function resolveCarpetImageUrl(carpetId?: string | null, primaryImage?: P
   }
   return null;
 }
+
+export const getCarpetPrimaryImageUrl = resolveCarpetImageUrl;
 
 export function useCarpetStyleDna(carpetId?: string, imageId?: string) {
   return useQuery({
@@ -196,3 +207,5 @@ export function useNarrativeAffinities(assessmentId: string) {
     enabled: Boolean(assessmentId)
   });
 }
+
+

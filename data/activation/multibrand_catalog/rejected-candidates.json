@@ -1,0 +1,15 @@
+{
+  "total_rejected": 2,
+  "rejected_candidates": [
+    {
+      "source_url": "https://www.merinos.com.tr/blog/dekorasyon-tavsiyeleri",
+      "rejection_reason": "NON_PRODUCT_PAGE",
+      "provider_key": "merinos"
+    },
+    {
+      "source_url": "https://www.merinos.com.tr/kurumsal/hakkimizda",
+      "rejection_reason": "NON_PRODUCT_PAGE",
+      "provider_key": "merinos"
+    }
+  ]
+}

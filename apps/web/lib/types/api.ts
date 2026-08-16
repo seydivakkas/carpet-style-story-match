@@ -200,6 +200,20 @@ export interface BrandListResponse {
   brands: BrandRead[];
 }
 
+export interface FacetItem {
+  key: string;
+  label: string;
+  count: number;
+}
+
+export interface CatalogFacetsResponse {
+  brands: FacetItem[];
+  manufacturers: FacetItem[];
+  collections: FacetItem[];
+  materials: FacetItem[];
+  style_tags: FacetItem[];
+}
+
 // --- Catalog Carpets ---
 export interface PrimaryImageSummary {
   image_id: string;

@@ -20,6 +20,8 @@ from app.domain.carpet_catalog.schemas import (
     StyleDnaReadinessEnum,
     BrandRead,
     BrandListResponse,
+    CatalogFacetsResponse,
+    FacetItem,
 )
 from app.domain.common.readiness import derive_style_dna_readiness
 from app.domain.motif_knowledge.schemas import CuratedSourceRead, ClaimSourceRead
@@ -31,6 +33,16 @@ class CarpetCatalogService:
     def __init__(self, session: AsyncSession):
         self.repo = CarpetCatalogRepository(session)
         self.storage = get_image_storage()
+
+    async def get_catalog_facets(self) -> CatalogFacetsResponse:
+        facets_raw = await self.repo.get_catalog_facets()
+        return CatalogFacetsResponse(
+            brands=[FacetItem(key=item[0], label=item[1], count=item[2]) for item in facets_raw.get("brands", [])],
+            manufacturers=[FacetItem(key=item[0], label=item[1], count=item[2]) for item in facets_raw.get("manufacturers", [])],
+            collections=[FacetItem(key=item[0], label=item[1], count=item[2]) for item in facets_raw.get("collections", [])],
+            materials=[FacetItem(key=item[0], label=item[1], count=item[2]) for item in facets_raw.get("materials", [])],
+            style_tags=[FacetItem(key=item[0], label=item[1], count=item[2]) for item in facets_raw.get("style_tags", [])]
+        )
 
     async def list_brands(self, verified_only: bool = False) -> BrandListResponse:
         brands, total_count = await self.repo.list_brands(verified_only=verified_only)

@@ -151,6 +151,43 @@ async def test_catalog_api_brand_key_filter(client: AsyncClient, db_session: Asy
 
 
 @pytest.mark.asyncio
+async def test_catalog_facets_endpoint(client: AsyncClient, db_session: AsyncSession):
+    """Test GET /api/v1/catalog/facets endpoint."""
+    merinos = ManufacturerBrandModel(
+        brand_key="merinos",
+        brand_name="Merinos",
+        brand_website="https://www.merinos.com.tr",
+        is_verified=True
+    )
+    db_session.add(merinos)
+    await db_session.flush()
+
+    carpet = CarpetModel(
+        sku="TEST-FACET-001",
+        name="Merinos Arden Halı",
+        source_type=CarpetSourceType.CATALOG,
+        brand_id=merinos.id,
+        manufacturer="Merinos A.Ş.",
+        collection="Arden",
+        material="Akrilik",
+        style_label="Modern"
+    )
+    db_session.add(carpet)
+    await db_session.commit()
+
+    res = await client.get("/api/v1/catalog/facets")
+    assert res.status_code == 200
+    data = res.json()
+    assert "brands" in data
+    assert "manufacturers" in data
+    assert "collections" in data
+    assert "materials" in data
+    assert "style_tags" in data
+    assert any(b["key"] == "merinos" for b in data["brands"])
+    assert any(c["key"] == "Arden" for c in data["collections"])
+
+
+@pytest.mark.asyncio
 async def test_image_storage_existence_check():
     """Verify ImageStorage.image_exists method."""
     storage = get_image_storage()

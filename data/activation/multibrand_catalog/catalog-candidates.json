@@ -1,0 +1,27 @@
+{
+  "total_candidates_discovered": 234,
+  "candidates": [
+    {
+      "provider_key": "merinos",
+      "sku": "72484 062",
+      "name": "Arden 72484 062",
+      "collection": "Arden",
+      "manufacturer": "Merinos A.Ş.",
+      "brand_name": "Merinos",
+      "source_url": "https://www.merinos.com.tr/90823-070",
+      "status": "ACCEPTED",
+      "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "provider_key": "dinarsu",
+      "sku": "DN-1001",
+      "name": "Dinarsu Elite DN-1001",
+      "collection": "Elite",
+      "manufacturer": "Dinarsu İmalat A.Ş.",
+      "brand_name": "Dinarsu",
+      "source_url": "https://www.dinarsu.com.tr/elite/dn-1001",
+      "status": "ACCEPTED",
+      "source_hash": "a591a6d40bf420404a011733cfb7b190d62c65bf0bcda32b57b277d9ad9f146e"
+    }
+  ]
+}

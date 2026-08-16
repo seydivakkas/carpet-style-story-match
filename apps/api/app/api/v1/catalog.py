@@ -9,10 +9,24 @@ from app.domain.carpet_catalog.schemas import (
     CatalogCarpetDetailRead,
     CarpetMotifAssociationRead,
     CarpetStoryAssociationRead,
+    CatalogFacetsResponse,
 )
 from app.domain.carpet_catalog.service import CarpetCatalogService
 
 router = APIRouter(prefix="/catalog", tags=["carpet-catalog"])
+
+
+@router.get(
+    "/facets",
+    response_model=CatalogFacetsResponse,
+    status_code=status.HTTP_200_OK,
+    summary="Get aggregated catalog filter facets"
+)
+async def get_catalog_facets(
+    db: AsyncSession = Depends(get_db)
+) -> CatalogFacetsResponse:
+    service = CarpetCatalogService(db)
+    return await service.get_catalog_facets()
 
 
 @router.get(

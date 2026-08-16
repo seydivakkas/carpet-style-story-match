@@ -1,0 +1,113 @@
+{
+  "schema_version": "catalog-collection-registry-v1",
+  "updated_at": "2026-08-16T23:00:00Z",
+  "provider_key": "merinos",
+  "manufacturer": "Merinos A.Ş.",
+  "collections": [
+    {
+      "collection_key": "elegance",
+      "display_name": "Elegance",
+      "source_slug": "Elegance",
+      "official_url": "https://www.merinos.com.tr/Elegance",
+      "verification_status": "VERIFIED"
+    },
+    {
+      "collection_key": "arden",
+      "display_name": "Arden",
+      "source_slug": "Arden",
+      "official_url": "https://www.merinos.com.tr/Arden",
+      "verification_status": "VERIFIED"
+    },
+    {
+      "collection_key": "vega",
+      "display_name": "Vega",
+      "source_slug": "Vega",
+      "official_url": "https://www.merinos.com.tr/Vega",
+      "verification_status": "VERIFIED"
+    },
+    {
+      "collection_key": "octavia",
+      "display_name": "Octavia",
+      "source_slug": "Octavia",
+      "official_url": "https://www.merinos.com.tr/Octavia",
+      "verification_status": "VERIFIED"
+    },
+    {
+      "collection_key": "ritim",
+      "display_name": "Ritim",
+      "source_slug": "Ritim",
+      "official_url": "https://www.merinos.com.tr/Ritim",
+      "verification_status": "VERIFIED"
+    },
+    {
+      "collection_key": "havana",
+      "display_name": "Havana",
+      "source_slug": "Havana",
+      "official_url": "https://www.merinos.com.tr/Havana",
+      "verification_status": "VERIFIED"
+    },
+    {
+      "collection_key": "premium",
+      "display_name": "Premium",
+      "source_slug": "Premium",
+      "official_url": "https://www.merinos.com.tr/Premium",
+      "verification_status": "VERIFIED"
+    },
+    {
+      "collection_key": "lion",
+      "display_name": "Lion",
+      "source_slug": "Lion",
+      "official_url": "https://www.merinos.com.tr/Lion",
+      "verification_status": "VERIFIED"
+    },
+    {
+      "collection_key": "toronto",
+      "display_name": "Toronto",
+      "source_slug": "Toronto",
+      "official_url": "https://www.merinos.com.tr/Toronto",
+      "verification_status": "VERIFIED"
+    },
+    {
+      "collection_key": "diyez",
+      "display_name": "Diyez",
+      "source_slug": "Diyez",
+      "official_url": "https://www.merinos.com.tr/Diyez",
+      "verification_status": "VERIFIED"
+    },
+    {
+      "collection_key": "launge",
+      "display_name": "Launge",
+      "source_slug": "Launge",
+      "official_url": "https://www.merinos.com.tr/Launge",
+      "verification_status": "VERIFIED"
+    },
+    {
+      "collection_key": "therapy",
+      "display_name": "Therapy",
+      "source_slug": "Therapy",
+      "official_url": "https://www.merinos.com.tr/Therapy",
+      "verification_status": "VERIFIED"
+    },
+    {
+      "collection_key": "rodin",
+      "display_name": "Rodin",
+      "source_slug": "Rodin",
+      "official_url": "https://www.merinos.com.tr/Rodin",
+      "verification_status": "VERIFIED"
+    },
+    {
+      "collection_key": "recycle",
+      "display_name": "Recycle",
+      "source_slug": "Recycle",
+      "official_url": "https://www.merinos.com.tr/Recycle",
+      "verification_status": "VERIFIED"
+    },
+    {
+      "collection_key": "valeria",
+      "display_name": "Valeria",
+      "source_slug": "valeria",
+      "official_url": "https://www.merinos.com.tr/valeria",
+      "verification_status": "VERIFIED"
+    }
+  ]
+}

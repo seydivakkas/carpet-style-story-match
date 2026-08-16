@@ -1,0 +1,22 @@
+{
+  "activation_timestamp": "2026-08-16T23:00:00Z",
+  "status": "PASS",
+  "merinos_catalog_before": 232,
+  "merinos_catalog_after": 232,
+  "dinarsu_catalog_created": 1,
+  "total_catalog_products": 233,
+  "active_providers": 2,
+  "total_brands": 2,
+  "official_source_only_enforced": true,
+  "marketplace_canonical_records": 0,
+  "source_hashes_generated": true,
+  "conflicts_detected": 0,
+  "review_required_providers": 9,
+  "merinos_db_primary_images": 227,
+  "merinos_ui_image_ready": 227,
+  "true_no_primary_images": 5,
+  "image_load_failed": 0,
+  "url_only_new_brand_refs": 1,
+  "unauthorized_local_images": 0,
+  "vlm_introduced": false
+}

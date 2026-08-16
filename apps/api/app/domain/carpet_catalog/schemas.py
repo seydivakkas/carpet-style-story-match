@@ -34,6 +34,20 @@ class BrandListResponse(BaseModel):
     brands: List[BrandRead]
 
 
+class FacetItem(BaseModel):
+    key: str
+    label: str
+    count: int
+
+
+class CatalogFacetsResponse(BaseModel):
+    brands: List[FacetItem]
+    manufacturers: List[FacetItem]
+    collections: List[FacetItem]
+    materials: List[FacetItem]
+    style_tags: List[FacetItem]
+
+
 class PrimaryImageSummary(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 

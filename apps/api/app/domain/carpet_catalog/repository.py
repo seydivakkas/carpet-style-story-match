@@ -143,6 +143,92 @@ class CarpetCatalogRepository:
         res = await self.session.execute(stmt)
         return res.scalar_one_or_none()
 
+    async def get_catalog_facets(self) -> Dict[str, List[Tuple[str, str, int]]]:
+        """Compute current catalog facet aggregation counts for brands, manufacturers, collections, materials, style_tags."""
+        base_where = [
+            CarpetModel.source_type == CarpetSourceType.CATALOG,
+            CarpetModel.is_active.is_(True)
+        ]
+
+        # Brands
+        brand_stmt = (
+            select(
+                ManufacturerBrandModel.brand_key,
+                ManufacturerBrandModel.brand_name,
+                func.count(CarpetModel.id)
+            )
+            .join(CarpetModel.brand)
+            .where(*base_where)
+            .group_by(ManufacturerBrandModel.brand_key, ManufacturerBrandModel.brand_name)
+            .order_by(func.count(CarpetModel.id).desc())
+        )
+        b_res = await self.session.execute(brand_stmt)
+        brands = [(r[0], r[1], r[2]) for r in b_res.all()]
+
+        # Manufacturers
+        mfg_stmt = (
+            select(
+                CarpetModel.manufacturer,
+                CarpetModel.manufacturer,
+                func.count(CarpetModel.id)
+            )
+            .where(*base_where, CarpetModel.manufacturer.is_not(None))
+            .group_by(CarpetModel.manufacturer)
+            .order_by(func.count(CarpetModel.id).desc())
+        )
+        m_res = await self.session.execute(mfg_stmt)
+        manufacturers = [(r[0], r[1], r[2]) for r in m_res.all()]
+
+        # Collections
+        col_stmt = (
+            select(
+                CarpetModel.collection,
+                CarpetModel.collection,
+                func.count(CarpetModel.id)
+            )
+            .where(*base_where, CarpetModel.collection.is_not(None))
+            .group_by(CarpetModel.collection)
+            .order_by(func.count(CarpetModel.id).desc())
+        )
+        c_res = await self.session.execute(col_stmt)
+        collections = [(r[0], r[1], r[2]) for r in c_res.all()]
+
+        # Materials
+        mat_stmt = (
+            select(
+                CarpetModel.material,
+                CarpetModel.material,
+                func.count(CarpetModel.id)
+            )
+            .where(*base_where, CarpetModel.material.is_not(None))
+            .group_by(CarpetModel.material)
+            .order_by(func.count(CarpetModel.id).desc())
+        )
+        mat_res = await self.session.execute(mat_stmt)
+        materials = [(r[0], r[1], r[2]) for r in mat_res.all()]
+
+        # Style Tags
+        style_stmt = (
+            select(
+                CarpetModel.style_label,
+                CarpetModel.style_label,
+                func.count(CarpetModel.id)
+            )
+            .where(*base_where, CarpetModel.style_label.is_not(None))
+            .group_by(CarpetModel.style_label)
+            .order_by(func.count(CarpetModel.id).desc())
+        )
+        s_res = await self.session.execute(style_stmt)
+        style_tags = [(r[0], r[1], r[2]) for r in s_res.all()]
+
+        return {
+            "brands": brands,
+            "manufacturers": manufacturers,
+            "collections": collections,
+            "materials": materials,
+            "style_tags": style_tags
+        }
+
     async def list_carpet_motif_associations(self, carpet_id: uuid.UUID) -> List[CarpetMotifAssociationModel]:
         stmt = (
             select(CarpetMotifAssociationModel)

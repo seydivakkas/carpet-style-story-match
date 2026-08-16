@@ -1,0 +1,17 @@
+{
+  "snapshot_timestamp": "2026-08-16T23:00:00Z",
+  "active_providers": ["merinos", "dinarsu"],
+  "review_required_providers": [
+    "padisah",
+    "royal_hali",
+    "pierre_cardin_hali",
+    "atlas_hali",
+    "studio_hali",
+    "saray_hali",
+    "sanat_hali",
+    "kasmir_hali",
+    "ipek_mekik_hali"
+  ],
+  "total_providers": 11,
+  "total_verified_brands": 2
+}
