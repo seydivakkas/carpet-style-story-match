@@ -1,0 +1,692 @@
+{
+  "$defs": {
+    "AbstentionReasonCode": {
+      "enum": [
+        "IMAGE_QUALITY_INSUFFICIENT",
+        "CARPET_REGION_UNRESOLVED",
+        "MOTIF_VISUALLY_AMBIGUOUS",
+        "ONTOLOGY_NO_MATCH",
+        "OCCLUDED_REGION",
+        "CROPPED_REGION",
+        "INSUFFICIENT_EVIDENCE",
+        "MODEL_UNAVAILABLE",
+        "OTHER"
+      ],
+      "title": "AbstentionReasonCode",
+      "type": "string"
+    },
+    "AnalysisAbstention": {
+      "additionalProperties": false,
+      "properties": {
+        "scope": {
+          "description": "Scope of abstention e.g. overall, visual_category, motif_candidate",
+          "title": "Scope",
+          "type": "string"
+        },
+        "reason_code": {
+          "$ref": "#/$defs/AbstentionReasonCode"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "related_region": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegionEvidence"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "related_candidate_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Related Candidate Id"
+        }
+      },
+      "required": [
+        "scope",
+        "reason_code",
+        "message"
+      ],
+      "title": "AnalysisAbstention",
+      "type": "object"
+    },
+    "BoundingBox2D": {
+      "additionalProperties": false,
+      "properties": {
+        "x_min": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "X Min",
+          "type": "number"
+        },
+        "y_min": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Y Min",
+          "type": "number"
+        },
+        "x_max": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "X Max",
+          "type": "number"
+        },
+        "y_max": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Y Max",
+          "type": "number"
+        }
+      },
+      "required": [
+        "x_min",
+        "y_min",
+        "x_max",
+        "y_max"
+      ],
+      "title": "BoundingBox2D",
+      "type": "object"
+    },
+    "CanonicalizationStatus": {
+      "enum": [
+        "AVAILABLE",
+        "PARTIAL",
+        "UNAVAILABLE"
+      ],
+      "title": "CanonicalizationStatus",
+      "type": "string"
+    },
+    "CompositionEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "central_focus": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Central Focus"
+        },
+        "border_dominance": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Border Dominance"
+        },
+        "vertical_symmetry": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Vertical Symmetry"
+        },
+        "horizontal_symmetry": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Horizontal Symmetry"
+        },
+        "rotational_structure": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rotational Structure"
+        },
+        "repetition_strength": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Repetition Strength"
+        },
+        "field_organization": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Field Organization"
+        },
+        "evidence_observation_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Observation Ids",
+          "type": "array"
+        }
+      },
+      "title": "CompositionEvidence",
+      "type": "object"
+    },
+    "CoordinateSpace": {
+      "enum": [
+        "ORIGINAL_IMAGE",
+        "CANONICAL_CARPET",
+        "NORMALIZED_CANONICAL"
+      ],
+      "title": "CoordinateSpace",
+      "type": "string"
+    },
+    "ModelProvenance": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_type": {
+          "$ref": "#/$defs/ProviderType",
+          "default": "TEST_FIXTURE"
+        },
+        "model_id": {
+          "title": "Model Id",
+          "type": "string"
+        },
+        "model_version": {
+          "title": "Model Version",
+          "type": "string"
+        },
+        "prompt_version": {
+          "title": "Prompt Version",
+          "type": "string"
+        },
+        "inference_timestamp": {
+          "title": "Inference Timestamp",
+          "type": "string"
+        },
+        "request_hash": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Request Hash"
+        }
+      },
+      "required": [
+        "model_id",
+        "model_version",
+        "prompt_version",
+        "inference_timestamp"
+      ],
+      "title": "ModelProvenance",
+      "type": "object"
+    },
+    "MotifCandidate": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_id": {
+          "title": "Candidate Id",
+          "type": "string"
+        },
+        "visual_candidate_key": {
+          "title": "Visual Candidate Key",
+          "type": "string"
+        },
+        "proposed_canonical_motif_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Proposed Canonical Motif Key"
+        },
+        "confidence": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "region": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegionEvidence"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "visual_evidence": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Visual Evidence",
+          "type": "array"
+        },
+        "status": {
+          "$ref": "#/$defs/MotifCandidateStatus",
+          "default": "AI_CANDIDATE"
+        },
+        "model_provenance": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ModelProvenance"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "abstention_reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Abstention Reason"
+        }
+      },
+      "required": [
+        "candidate_id",
+        "visual_candidate_key",
+        "confidence"
+      ],
+      "title": "MotifCandidate",
+      "type": "object"
+    },
+    "MotifCandidateStatus": {
+      "enum": [
+        "AI_CANDIDATE",
+        "UNMAPPED_MOTIF_CANDIDATE",
+        "ABSTAINED",
+        "CURATOR_CONFIRMED",
+        "UNCERTAIN",
+        "REJECTED"
+      ],
+      "title": "MotifCandidateStatus",
+      "type": "string"
+    },
+    "Point2D": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Y",
+          "type": "number"
+        }
+      },
+      "required": [
+        "x",
+        "y"
+      ],
+      "title": "Point2D",
+      "type": "object"
+    },
+    "Polygon2D": {
+      "additionalProperties": false,
+      "properties": {
+        "points": {
+          "items": {
+            "$ref": "#/$defs/Point2D"
+          },
+          "minItems": 3,
+          "title": "Points",
+          "type": "array"
+        }
+      },
+      "required": [
+        "points"
+      ],
+      "title": "Polygon2D",
+      "type": "object"
+    },
+    "ProviderType": {
+      "enum": [
+        "LOCAL_VLLM",
+        "REMOTE_OPENAI_COMPATIBLE",
+        "TEST_FIXTURE"
+      ],
+      "title": "ProviderType",
+      "type": "string"
+    },
+    "QualityStatus": {
+      "enum": [
+        "PASS",
+        "PARTIAL",
+        "BLOCK",
+        "UNKNOWN"
+      ],
+      "title": "QualityStatus",
+      "type": "string"
+    },
+    "RegionEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "coordinate_space": {
+          "$ref": "#/$defs/CoordinateSpace",
+          "default": "NORMALIZED_CANONICAL"
+        },
+        "bounding_box": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/BoundingBox2D"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "polygon": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Polygon2D"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "region_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Region Label"
+        }
+      },
+      "title": "RegionEvidence",
+      "type": "object"
+    },
+    "SourceKind": {
+      "enum": [
+        "USER_UPLOAD",
+        "CATALOG_IMAGE"
+      ],
+      "title": "SourceKind",
+      "type": "string"
+    },
+    "VisualCategoryResult": {
+      "additionalProperties": false,
+      "properties": {
+        "category_key": {
+          "title": "Category Key",
+          "type": "string"
+        },
+        "confidence": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "evidence_observation_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Observation Ids",
+          "type": "array"
+        },
+        "secondary_categories": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Secondary Categories",
+          "type": "array"
+        },
+        "status": {
+          "default": "CLASSIFIED",
+          "title": "Status",
+          "type": "string"
+        },
+        "abstention_reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Abstention Reason"
+        }
+      },
+      "required": [
+        "category_key",
+        "confidence"
+      ],
+      "title": "VisualCategoryResult",
+      "type": "object"
+    },
+    "VisualObservation": {
+      "additionalProperties": false,
+      "properties": {
+        "observation_id": {
+          "title": "Observation Id",
+          "type": "string"
+        },
+        "observation_type": {
+          "$ref": "#/$defs/VisualObservationType"
+        },
+        "region": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RegionEvidence"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "confidence": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "evidence_features": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Features",
+          "type": "array"
+        },
+        "source": {
+          "default": "vlm_observation",
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "observation_id",
+        "observation_type",
+        "confidence",
+        "description"
+      ],
+      "title": "VisualObservation",
+      "type": "object"
+    },
+    "VisualObservationType": {
+      "enum": [
+        "COLOR",
+        "FORM",
+        "EDGE",
+        "SYMMETRY",
+        "REPETITION",
+        "COMPOSITION",
+        "REGION_STRUCTURE",
+        "SHAPE",
+        "TEXTURE",
+        "FOCAL_STRUCTURE",
+        "OTHER_VISUAL"
+      ],
+      "title": "VisualObservationType",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "upload-analysis-v1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "analysis_id": {
+      "title": "Analysis Id",
+      "type": "string"
+    },
+    "image_asset_id": {
+      "title": "Image Asset Id",
+      "type": "string"
+    },
+    "image_sha256": {
+      "title": "Image Sha256",
+      "type": "string"
+    },
+    "source_kind": {
+      "$ref": "#/$defs/SourceKind",
+      "default": "USER_UPLOAD"
+    },
+    "quality_status": {
+      "$ref": "#/$defs/QualityStatus",
+      "default": "PASS"
+    },
+    "canonicalization_status": {
+      "$ref": "#/$defs/CanonicalizationStatus",
+      "default": "AVAILABLE"
+    },
+    "style_dna_reference": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": "style-dna-v1.0.0",
+      "title": "Style Dna Reference"
+    },
+    "visual_observations": {
+      "items": {
+        "$ref": "#/$defs/VisualObservation"
+      },
+      "title": "Visual Observations",
+      "type": "array"
+    },
+    "visual_category": {
+      "$ref": "#/$defs/VisualCategoryResult"
+    },
+    "composition_evidence": {
+      "$ref": "#/$defs/CompositionEvidence"
+    },
+    "motif_candidates": {
+      "items": {
+        "$ref": "#/$defs/MotifCandidate"
+      },
+      "title": "Motif Candidates",
+      "type": "array"
+    },
+    "abstentions": {
+      "items": {
+        "$ref": "#/$defs/AnalysisAbstention"
+      },
+      "title": "Abstentions",
+      "type": "array"
+    },
+    "provenance": {
+      "$ref": "#/$defs/ModelProvenance"
+    }
+  },
+  "required": [
+    "analysis_id",
+    "image_asset_id",
+    "image_sha256",
+    "visual_category",
+    "composition_evidence",
+    "provenance"
+  ],
+  "title": "UploadAnalysisResultContract",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "upload-analysis-v1.0.0"
+}

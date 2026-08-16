@@ -1,0 +1,324 @@
+{
+  "ontology_version": "motif-ontology-v1.0.0",
+  "total_motifs": 13,
+  "canonical_production_motifs": [
+    "medallion",
+    "mihrab",
+    "palmette",
+    "lotus",
+    "rosette",
+    "cloud-band",
+    "scrolling-vine",
+    "geometric-star",
+    "ram-horn",
+    "tree-of-life",
+    "elibelinde",
+    "comb",
+    "mystery-hook"
+  ],
+  "motifs": [
+    {
+      "canonical_key": "medallion",
+      "display_name_tr": "Madalyon",
+      "display_name_en": "Medallion",
+      "family": "COMPOSITIONAL",
+      "motif_type": "COMPOSITIONAL",
+      "visual_candidate_keys": [
+        "medallion_like",
+        "octagonal_form"
+      ],
+      "visual_definition": "Central radial, circular, oval, or polylobed geometric motif structure",
+      "observable_features": [
+        "radial symmetry",
+        "central placement",
+        "nested borders"
+      ],
+      "ambiguous_with": [
+        "geometric-star",
+        "rosette"
+      ],
+      "detection_mode": "VISUAL_DIRECT",
+      "active": true,
+      "ontology_version": "motif-ontology-v1.0.0"
+    },
+    {
+      "canonical_key": "mihrab",
+      "display_name_tr": "Mihrap / Niş",
+      "display_name_en": "Niche / Mihrab Form",
+      "family": "COMPOSITIONAL",
+      "motif_type": "STRUCTURAL",
+      "visual_candidate_keys": [
+        "niche_like"
+      ],
+      "visual_definition": "Stepped or pointed arch outline at top of central field",
+      "observable_features": [
+        "directional apex",
+        "vertical asymmetry",
+        "arch contour"
+      ],
+      "ambiguous_with": [
+        "stepped-pediment",
+        "gabled-panel"
+      ],
+      "detection_mode": "REVIEW_REQUIRED_SEMANTIC",
+      "active": true,
+      "ontology_version": "motif-ontology-v1.0.0"
+    },
+    {
+      "canonical_key": "palmette",
+      "display_name_tr": "Palmet",
+      "display_name_en": "Palmette",
+      "family": "FLORAL_ORGANIC",
+      "motif_type": "DECORATIVE",
+      "visual_candidate_keys": [
+        "palmette_like"
+      ],
+      "visual_definition": "Fan-like radiating leaf or floral motif structure",
+      "observable_features": [
+        "radiating petals",
+        "curvilinear outline",
+        "stem connection"
+      ],
+      "ambiguous_with": [
+        "lotus",
+        "rosette"
+      ],
+      "detection_mode": "VISUAL_DIRECT",
+      "active": true,
+      "ontology_version": "motif-ontology-v1.0.0"
+    },
+    {
+      "canonical_key": "lotus",
+      "display_name_tr": "Nilüfer / Lotus",
+      "display_name_en": "Lotus Blossom",
+      "family": "FLORAL_ORGANIC",
+      "motif_type": "DECORATIVE",
+      "visual_candidate_keys": [
+        "lotus_like"
+      ],
+      "visual_definition": "Open cup-shaped floral blossom form",
+      "observable_features": [
+        "cup-shaped petals",
+        "layered calyx",
+        "symmetrical bloom"
+      ],
+      "ambiguous_with": [
+        "palmette",
+        "rosette"
+      ],
+      "detection_mode": "VISUAL_DIRECT",
+      "active": true,
+      "ontology_version": "motif-ontology-v1.0.0"
+    },
+    {
+      "canonical_key": "rosette",
+      "display_name_tr": "Rozet",
+      "display_name_en": "Rosette",
+      "family": "FLORAL_ORGANIC",
+      "motif_type": "DECORATIVE",
+      "visual_candidate_keys": [
+        "rosette_like"
+      ],
+      "visual_definition": "Circular stylized floral disc with surrounding petals",
+      "observable_features": [
+        "circular symmetry",
+        "petal ring",
+        "central core"
+      ],
+      "ambiguous_with": [
+        "geometric-star",
+        "medallion"
+      ],
+      "detection_mode": "VISUAL_DIRECT",
+      "active": true,
+      "ontology_version": "motif-ontology-v1.0.0"
+    },
+    {
+      "canonical_key": "cloud-band",
+      "display_name_tr": "Bulut Kümesi / Çin Bulutu",
+      "display_name_en": "Cloud Band",
+      "family": "FLORAL_ORGANIC",
+      "motif_type": "DECORATIVE",
+      "visual_candidate_keys": [
+        "cloud_band_like"
+      ],
+      "visual_definition": "S-shaped or ribbon-like undulating cloud form",
+      "observable_features": [
+        "undulating ribbon",
+        "curved scroll ends",
+        "asymmetric flow"
+      ],
+      "ambiguous_with": [
+        "scrolling-vine",
+        "mystery-hook"
+      ],
+      "detection_mode": "REVIEW_REQUIRED_SEMANTIC",
+      "active": true,
+      "ontology_version": "motif-ontology-v1.0.0"
+    },
+    {
+      "canonical_key": "scrolling-vine",
+      "display_name_tr": "Sarmaşık / Kıvrım Dal",
+      "display_name_en": "Scrolling Vine / Islimi",
+      "family": "FLORAL_ORGANIC",
+      "motif_type": "DECORATIVE",
+      "visual_candidate_keys": [
+        "vine_scroll_like"
+      ],
+      "visual_definition": "Continuous undulating or spiral stem connecting floral forms",
+      "observable_features": [
+        "continuous stem",
+        "spiraling tendrils",
+        "interleaved leaves"
+      ],
+      "ambiguous_with": [
+        "cloud-band",
+        "lattice"
+      ],
+      "detection_mode": "VISUAL_DIRECT",
+      "active": true,
+      "ontology_version": "motif-ontology-v1.0.0"
+    },
+    {
+      "canonical_key": "geometric-star",
+      "display_name_tr": "Geometrik Yıldız",
+      "display_name_en": "Geometric Star",
+      "family": "GEOMETRIC",
+      "motif_type": "DECORATIVE",
+      "visual_candidate_keys": [
+        "star_like",
+        "lozenge_like"
+      ],
+      "visual_definition": "Multi-pointed polygonal star form (8-pointed, 6-pointed, or 12-pointed)",
+      "observable_features": [
+        "angular points",
+        "radial point symmetry",
+        "straight edge facets"
+      ],
+      "ambiguous_with": [
+        "rosette",
+        "medallion"
+      ],
+      "detection_mode": "VISUAL_DIRECT",
+      "active": true,
+      "ontology_version": "motif-ontology-v1.0.0"
+    },
+    {
+      "canonical_key": "ram-horn",
+      "display_name_tr": "Koçboynuzu",
+      "display_name_en": "Horn Form / Ram's Horn",
+      "family": "GEOMETRIC",
+      "motif_type": "DECORATIVE",
+      "visual_candidate_keys": [
+        "horn_like",
+        "hook_like"
+      ],
+      "visual_definition": "Symmetrical outward-curving spiral or hooked horn-like arms",
+      "observable_features": [
+        "paired spiral hooks",
+        "bilateral symmetry",
+        "angular or curved horns"
+      ],
+      "ambiguous_with": [
+        "mystery-hook",
+        "elibelinde"
+      ],
+      "detection_mode": "REVIEW_REQUIRED_SEMANTIC",
+      "active": true,
+      "ontology_version": "motif-ontology-v1.0.0"
+    },
+    {
+      "canonical_key": "tree-of-life",
+      "display_name_tr": "Hayat Ağacı Biçimi",
+      "display_name_en": "Tree-Like Form",
+      "family": "FLORAL_ORGANIC",
+      "motif_type": "STRUCTURAL",
+      "visual_candidate_keys": [
+        "tree_like"
+      ],
+      "visual_definition": "Vertical trunk form with branching lateral motifs",
+      "observable_features": [
+        "central vertical axis",
+        "ascending branches",
+        "top apex"
+      ],
+      "ambiguous_with": [
+        "mihrab",
+        "scrolling-vine"
+      ],
+      "detection_mode": "REVIEW_REQUIRED_SEMANTIC",
+      "active": true,
+      "ontology_version": "motif-ontology-v1.0.0"
+    },
+    {
+      "canonical_key": "elibelinde",
+      "display_name_tr": "Eli Belinde Biçimi",
+      "display_name_en": "Geometric Humanoid Form / Hands on Hips",
+      "family": "FIGURATIVE_LIKE",
+      "motif_type": "DECORATIVE",
+      "visual_candidate_keys": [
+        "human_figure_like_geometric"
+      ],
+      "visual_definition": "Stylized geometric figure with triangular body and lateral bent arm-like projections",
+      "observable_features": [
+        "triangular torso",
+        "lateral arm angles",
+        "head apex"
+      ],
+      "ambiguous_with": [
+        "ram-horn",
+        "geometric-star"
+      ],
+      "detection_mode": "REVIEW_REQUIRED_SEMANTIC",
+      "active": true,
+      "ontology_version": "motif-ontology-v1.0.0"
+    },
+    {
+      "canonical_key": "comb",
+      "display_name_tr": "Tarak Biçimi",
+      "display_name_en": "Comb-Like Form",
+      "family": "GEOMETRIC",
+      "motif_type": "DECORATIVE",
+      "visual_candidate_keys": [
+        "comb_like"
+      ],
+      "visual_definition": "Linear bar with parallel vertical tooth-like projections",
+      "observable_features": [
+        "parallel teeth",
+        "linear base bar",
+        "regular spacing"
+      ],
+      "ambiguous_with": [
+        "fringe-border",
+        "crenellated-line"
+      ],
+      "detection_mode": "VISUAL_DIRECT",
+      "active": true,
+      "ontology_version": "motif-ontology-v1.0.0"
+    },
+    {
+      "canonical_key": "mystery-hook",
+      "display_name_tr": "Çengel / Çengelli Geometri",
+      "display_name_en": "Hook Form / Latch-Hook",
+      "family": "GEOMETRIC",
+      "motif_type": "DECORATIVE",
+      "visual_candidate_keys": [
+        "hook_like",
+        "lozenge_like"
+      ],
+      "visual_definition": "Angular hook projection extending from diamond or medallion perimeter",
+      "observable_features": [
+        "90-degree hook projection",
+        "perimeter attachment",
+        "repeating hook fringe"
+      ],
+      "ambiguous_with": [
+        "ram-horn",
+        "comb"
+      ],
+      "detection_mode": "REVIEW_REQUIRED_SEMANTIC",
+      "active": true,
+      "ontology_version": "motif-ontology-v1.0.0"
+    }
+  ]
+}
