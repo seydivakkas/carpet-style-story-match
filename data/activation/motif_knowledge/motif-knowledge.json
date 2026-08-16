@@ -1,0 +1,414 @@
+{
+  "schema_version": "motif-story-curation-v1",
+  "sources": [
+    {
+      "source_key": "met-museum-oriental-rug-catalog-1988",
+      "source_type": "MUSEUM_CATALOG",
+      "title": "Oriental Rugs in The Metropolitan Museum of Art",
+      "citation_text": "Ellis, Charles Grant. Oriental Rugs in The Metropolitan Museum of Art. New York: The Metropolitan Museum of Art, 1988.",
+      "creator_or_institution": "The Metropolitan Museum of Art",
+      "publication_year": 1988,
+      "url": "https://www.metmuseum.org/art/metpublications/Oriental_Rugs_in_The_Metropolitan_Museum_of_Art",
+      "isbn": "0-87099-522-8",
+      "rights_note": "Public academic catalog citation metadata for educational and reference purposes."
+    },
+    {
+      "source_key": "denny-how-to-read-islamic-carpets-2014",
+      "source_type": "ACADEMIC_BOOK",
+      "title": "How to Read Islamic Carpets",
+      "citation_text": "Denny, Walter B. How to Read Islamic Carpets. New York: The Metropolitan Museum of Art / Yale University Press, 2014.",
+      "creator_or_institution": "Walter B. Denny / The Metropolitan Museum of Art",
+      "publication_year": 2014,
+      "url": "https://www.metmuseum.org/art/metpublications/How_to_Read_Islamic_Carpets",
+      "isbn": "978-0-300-20809-2",
+      "rights_note": "Academic reference text citation metadata."
+    },
+    {
+      "source_key": "erdmann-seven-hundred-years-1970",
+      "source_type": "ACADEMIC_BOOK",
+      "title": "Seven Hundred Years of Oriental Carpets",
+      "citation_text": "Erdmann, Kurt. Seven Hundred Years of Oriental Carpets. Edited by Hanna Erdmann, translated by May H. Beattie and Hildegard Herzog. Berkeley: University of California Press, 1970.",
+      "creator_or_institution": "Kurt Erdmann / University of California Press",
+      "publication_year": 1970,
+      "isbn": "0-520-01816-0",
+      "rights_note": "Academic reference text citation metadata."
+    },
+    {
+      "source_key": "va-museum-carpet-collection-1931",
+      "source_type": "MUSEUM_CATALOG",
+      "title": "Guide to the Collection of Carpets, Victoria and Albert Museum",
+      "citation_text": "Tattersall, C. E. C. Guide to the Collection of Carpets. London: Victoria and Albert Museum, Department of Textiles, 1931.",
+      "creator_or_institution": "Victoria and Albert Museum",
+      "publication_year": 1931,
+      "url": "https://www.vam.ac.uk/collections/carpets",
+      "rights_note": "Institutional museum collection catalog publication metadata."
+    },
+    {
+      "source_key": "akm-anatolian-motifs-ethnography-1995",
+      "source_type": "INSTITUTIONAL_PUBLICATION",
+      "title": "Anadolu Halı ve Kilim Motifleri Semptom ve Sembol Çözümlemeleri",
+      "citation_text": "Erbek, Güran. Anadolu Motifleri / Anatolian Motifs. Ankara: T.C. Kültür Bakanlığı Yayınları / Atatürk Kültür Merkezi, 1995.",
+      "creator_or_institution": "T.C. Kültür Bakanlığı / Atatürk Kültür Merkezi",
+      "publication_year": 1995,
+      "isbn": "975-17-1582-8",
+      "rights_note": "Institutional cultural heritage monograph metadata."
+    },
+    {
+      "source_key": "met-museum-safavid-medallion-carpet-14104",
+      "source_type": "MUSEUM_OBJECT",
+      "title": "Medallion Carpet (Metropolitan Museum Accession 14.40.714)",
+      "citation_text": "The Metropolitan Museum of Art. Medallion Carpet, 16th century, Central Iran / Tabriz. Accession Number: 14.40.714.",
+      "creator_or_institution": "The Metropolitan Museum of Art",
+      "publication_year": 1914,
+      "url": "https://www.metmuseum.org/art/collection/search/446561",
+      "rights_note": "Museum collection object record provenance data."
+    }
+  ],
+  "motifs": [
+    {
+      "motif_key": "medallion",
+      "name_tr": "Madalyon",
+      "name_en": "Medallion",
+      "visual_description_tr": "Halı alanının merkezinde yer alan dairesel, oval veya çokgen konturlu büyük simetrik odak kompozisyonu.",
+      "visual_description_en": "Large symmetrical central focal composition with circular, oval, or polygonal contour."
+    },
+    {
+      "motif_key": "mihrab",
+      "name_tr": "Mihrap / Niş",
+      "name_en": "Mihrab / Niche",
+      "visual_description_tr": "Dikey halı ekseninde tek bir yöne sivrilen kemerli veya üçgen tepelikli niş formu.",
+      "visual_description_en": "Arched or pointed niche form projecting vertically toward a single directional apex."
+    },
+    {
+      "motif_key": "palmette",
+      "name_tr": "Palmet",
+      "name_en": "Palmette",
+      "visual_description_tr": "Yelpaze şeklinde açılan, kavisli taç yapraklı ve simetrik merkezli stilize bitkisel motif.",
+      "visual_description_en": "Stylized floral motif with fan-like radiating curved petals around a central axis."
+    },
+    {
+      "motif_key": "lotus",
+      "name_tr": "Lotus Çiçeği",
+      "name_en": "Lotus Flower",
+      "visual_description_tr": "Katmanlı çanak ve taç yapraklarından oluşan dairesel veya profilden görünüşlü stilize çiçek formu.",
+      "visual_description_en": "Stylized blossom form with layered calyx and petals depicted in profile or plan view."
+    },
+    {
+      "motif_key": "rosette",
+      "name_tr": "Rozet / Gül",
+      "name_en": "Rosette",
+      "visual_description_tr": "Merkezi bir noktadan eşit aralıklarla çevreye yayılan dairesel taç yapraklı küçük motif.",
+      "visual_description_en": "Small circular motif with petals symmetrically arranged around a central core."
+    },
+    {
+      "motif_key": "cloud-band",
+      "name_tr": "Bulut Kümesi / Çin Bulutu",
+      "name_en": "Cloud-Band",
+      "visual_description_tr": "S ve Z şeklinde kıvrılan, kıvrımlı uçlara sahip kurdele veya şerit benzeri akıcı form.",
+      "visual_description_en": "Fluid ribbon-like or band-like form with S and Z shaped undulating spiraled ends."
+    },
+    {
+      "motif_key": "scrolling-vine",
+      "name_tr": "Kıvrımdal / Sarmaşık",
+      "name_en": "Scrolling Vine / Islimi",
+      "visual_description_tr": "Zemin boyunca kesintisiz kavisler çizerek uzayan ve yaprak/çiçeklerle dallanan hat dizisi.",
+      "visual_description_en": "Continuous undulating linear stem branching out with leaves and flowers across the field."
+    },
+    {
+      "motif_key": "geometric-star",
+      "name_tr": "Sekiz Köşeli Yıldız",
+      "name_en": "Eight-Pointed Star",
+      "visual_description_tr": "İki kare veya iki baklavanın 45 derece açıyla üst üste binmesiyle oluşan sekiz kollu simetrik geometrik motif.",
+      "visual_description_en": "Symmetrical geometric motif with eight points formed by overlapping squares or rhombuses."
+    },
+    {
+      "motif_key": "ram-horn",
+      "name_tr": "Koçboynuzu",
+      "name_en": "Ram's Horn",
+      "visual_description_tr": "Merkezden dışa ve geriye doğru helezonik biçimde kıvrılan ikili kanca veya spiral hat formu.",
+      "visual_description_en": "Symmetrical paired hooks or spiral lines curving outward and backward from a central stem."
+    },
+    {
+      "motif_key": "tree-of-life",
+      "name_tr": "Hayat Ağacı",
+      "name_en": "Tree of Life",
+      "visual_description_tr": "Dikey bir ana gövdeden yukarı ve yanlara doğru katlar halinde dallanan dikey eksenli bitki kompozisyonu.",
+      "visual_description_en": "Vertical axial botanical composition branching upward and outward in tiers from a central trunk."
+    },
+    {
+      "motif_key": "elibelinde",
+      "name_tr": "Elibelinde",
+      "name_en": "Hands on Hips",
+      "visual_description_tr": "İki yanında dışa bükük kol benzeri çıkıntılar ve üstünde gövde/baş formu bulunan geometrik insanımsı şekil.",
+      "visual_description_en": "Geometric anthropomorphic shape with outward-curved arm-like side projections and a central torso."
+    },
+    {
+      "motif_key": "comb",
+      "name_tr": "Tarak",
+      "name_en": "Comb",
+      "visual_description_tr": "Düz bir taban çizgisinden paralel dikey dişler şeklinde uzanan 3-5 adet kısa çizgi dizisi.",
+      "visual_description_en": "Linear base with three to five short parallel vertical tines projecting perpendicularly."
+    },
+    {
+      "motif_key": "mystery-hook",
+      "name_tr": "Çengel Motif",
+      "name_en": "Hook Motif",
+      "visual_description_tr": "Geometrik çokgenlerin veya kenar bordürlerinin uçlarından dışa doğru bükülen dik açılı kanca uçları.",
+      "visual_description_en": "Right-angled hook projections extending outward from the vertices of geometric polygons."
+    }
+  ],
+  "claims": [
+    {
+      "claim_key": "claim-medallion-central-focus",
+      "motif_key": "medallion",
+      "status": "DOCUMENTED",
+      "claim_text_tr": "Madalyon kompozisyonu, dokuma alanının mimari ve görsel merkezini oluşturur; evrensel düzeni ve odak birliğini temsil eder.",
+      "claim_text_en": "The medallion composition forms the architectural and visual center of the weave field, representing universal order and unity.",
+      "source_links": [
+        {
+          "source_key": "met-museum-oriental-rug-catalog-1988",
+          "locator": "p. 42",
+          "source_note": "Central medallion structure analysis."
+        },
+        {
+          "source_key": "denny-how-to-read-islamic-carpets-2014",
+          "locator": "pp. 18-21",
+          "source_note": "Focal hierarchy in classical carpet design."
+        }
+      ],
+      "theme_keys": [
+        "balance_order",
+        "cultural_heritage"
+      ]
+    },
+    {
+      "claim_key": "claim-mihrab-prayer-direction",
+      "motif_key": "mihrab",
+      "status": "DOCUMENTED",
+      "claim_text_tr": "Mihrap motifi, ibadet halılarında kıble yönünü ve kutsal mekana yönelişi simgeleyen mimari niş formudur.",
+      "claim_text_en": "The mihrab motif is an architectural niche form symbolizing directional orientation toward the sacred space.",
+      "source_links": [
+        {
+          "source_key": "denny-how-to-read-islamic-carpets-2014",
+          "locator": "pp. 54-57",
+          "source_note": "Architectural niche iconography in prayer rugs."
+        },
+        {
+          "source_key": "va-museum-carpet-collection-1931",
+          "locator": "p. 15",
+          "source_note": "Prayer rug directional design principles."
+        }
+      ],
+      "theme_keys": [
+        "journey_discovery",
+        "cultural_heritage"
+      ]
+    },
+    {
+      "claim_key": "claim-palmette-floral-composition",
+      "motif_key": "palmette",
+      "status": "DOCUMENTED",
+      "claim_text_tr": "Palmet motifi, Klasik Doğu dokuma sanatında doğanın bereketini ve sürekli gelişen bitkisel yaşam formlarını simgeler.",
+      "claim_text_en": "The palmette motif symbolizes nature's abundance and evolving botanical life forms in classical Eastern weave art.",
+      "source_links": [
+        {
+          "source_key": "met-museum-oriental-rug-catalog-1988",
+          "locator": "p. 88",
+          "source_note": "Botanical palmette classifications."
+        }
+      ],
+      "theme_keys": [
+        "nature_growth",
+        "tradition_craft"
+      ]
+    },
+    {
+      "claim_key": "claim-lotus-rebirth",
+      "motif_key": "lotus",
+      "status": "DOCUMENTED",
+      "claim_text_tr": "Lotus motifi, Asya ve İslam dokuma geleneklerinde zarafeti, saflığı ve doğanın yenilenme döngüsünü temsil eder.",
+      "claim_text_en": "The lotus motif represents elegance, purity, and nature's cycle of renewal in Asian and Islamic weaving traditions.",
+      "source_links": [
+        {
+          "source_key": "denny-how-to-read-islamic-carpets-2014",
+          "locator": "p. 31",
+          "source_note": "Lotus blossom symbolism and lineage."
+        },
+        {
+          "source_key": "erdmann-seven-hundred-years-1970",
+          "locator": "p. 112",
+          "source_note": "Cross-cultural floral design transfer."
+        }
+      ],
+      "theme_keys": [
+        "renewal_transformation",
+        "nature_growth"
+      ]
+    },
+    {
+      "claim_key": "claim-cloud-band-asian-influence",
+      "motif_key": "cloud-band",
+      "status": "DOCUMENTED",
+      "claim_text_tr": "Çin ve Orta Asya dokuma kültüründen Osmanlı ve Safevi saray halılarına geçen bulut kümesi motifi, akıcı doğa güçlerini ve ilahi korumayı simgeler.",
+      "claim_text_en": "The cloud-band motif transferred from East Asian traditions to Ottoman and Safavid court carpets, representing fluid natural forces and divine protection.",
+      "source_links": [
+        {
+          "source_key": "met-museum-oriental-rug-catalog-1988",
+          "locator": "p. 104",
+          "source_note": "East Asian cloud ribbon motifs in court carpets."
+        },
+        {
+          "source_key": "denny-how-to-read-islamic-carpets-2014",
+          "locator": "p. 45",
+          "source_note": "Fluid cloud band ornamentation."
+        }
+      ],
+      "theme_keys": [
+        "continuity_connection",
+        "cultural_heritage"
+      ]
+    },
+    {
+      "claim_key": "claim-scrolling-vine-continuous-growth",
+      "motif_key": "scrolling-vine",
+      "status": "DOCUMENTED",
+      "claim_text_tr": "Kıvrımdal (islimi) düzenlemesi, kesintisiz yaşam akışını, sonsuzluğu ve doğanın organik sürekliliğini ifade eder.",
+      "claim_text_en": "The scrolling vine arrangement conveys continuous life flow, infinity, and organic botanical continuity.",
+      "source_links": [
+        {
+          "source_key": "denny-how-to-read-islamic-carpets-2014",
+          "locator": "pp. 24-26",
+          "source_note": "Undulating vine stems and infinite garden patterns."
+        }
+      ],
+      "theme_keys": [
+        "continuity_connection",
+        "nature_growth"
+      ]
+    },
+    {
+      "claim_key": "claim-geometric-star-spatial-order",
+      "motif_key": "geometric-star",
+      "status": "DOCUMENTED",
+      "claim_text_tr": "Sekiz köşeli yıldız motifi, Selçuklu ve Osmanlı geometrik dokuma geleneklerinde kozmik dengeyi ve mekansal uyumu simgeler.",
+      "claim_text_en": "The eight-pointed star motif symbolizes cosmic balance and spatial harmony in Seljuk and Ottoman geometric weaving traditions.",
+      "source_links": [
+        {
+          "source_key": "erdmann-seven-hundred-years-1970",
+          "locator": "pp. 64-68",
+          "source_note": "Geometric star grid systems in early Anatolian rugs."
+        },
+        {
+          "source_key": "akm-anatolian-motifs-ethnography-1995",
+          "locator": "p. 34",
+          "source_note": "Eight-pointed star geometric iconography."
+        }
+      ],
+      "theme_keys": [
+        "balance_order",
+        "tradition_craft"
+      ]
+    },
+    {
+      "claim_key": "claim-tree-of-life-anatolian-context",
+      "motif_key": "tree-of-life",
+      "status": "CONTEXTUAL",
+      "claim_text_tr": "Anadolu ve Kafkas kırsal dokumalarında hayat ağacı motifi, nesiller arası bağları ve köklü aile sürekliliğini simgeler.",
+      "claim_text_en": "In rural Anatolian and Caucasian weaves, the tree of life motif symbolizes intergenerational bonds and family continuity.",
+      "context_note": "Anadolu ve Kafkasya yöresel dokuma geleneklerinde nesiller arası bağ ve soy sürekliliği bağlamında anlamlandırılır.",
+      "source_links": [
+        {
+          "source_key": "akm-anatolian-motifs-ethnography-1995",
+          "locator": "pp. 50-52",
+          "source_note": "Ethnographic regional tree of life symbolism."
+        }
+      ],
+      "theme_keys": [
+        "belonging_home",
+        "continuity_connection"
+      ]
+    },
+    {
+      "claim_key": "claim-elibelinde-motherhood-regional-context",
+      "motif_key": "elibelinde",
+      "status": "CONTEXTUAL",
+      "claim_text_tr": "Anadolu kilim dokuma geleneğinde elibelinde motifi, analık, bereket ve dişil koruyucu gücü ifade eder.",
+      "claim_text_en": "In Anatolian flatweave traditions, the hands-on-hips motif expresses motherhood, fertility, and feminine protective power.",
+      "context_note": "Yalnızca Anadolu göçebe ve yerleşik kilim dokuma kültürü ve etnografik literatür çerçevesinde geçerlidir.",
+      "source_links": [
+        {
+          "source_key": "akm-anatolian-motifs-ethnography-1995",
+          "locator": "pp. 12-14",
+          "source_note": "Ethnographic regional flatweave motif interpretations."
+        }
+      ],
+      "theme_keys": [
+        "belonging_home",
+        "renewal_transformation"
+      ]
+    },
+    {
+      "claim_key": "claim-ram-horn-power-vs-abundance",
+      "motif_key": "ram-horn",
+      "status": "CONTESTED",
+      "claim_text_tr": "Koçboynuzu motifinin temel anlamı konusunda araştırmacılar arasında farklı değerlendirmeler mevcuttur.",
+      "claim_text_en": "Different research interpretations exist regarding the primary symbolic significance of the ram's horn motif.",
+      "contest_note": "Etnografik yayınlarda (Erbek 1995) eril güç ve kahramanlık simgesi olarak yorumlanırken; dokuma tekniği araştırmalarında (Erdmann 1970) geometrik kenar kancalarının stilize üretimi olarak değerlendirilir.",
+      "source_links": [
+        {
+          "source_key": "akm-anatolian-motifs-ethnography-1995",
+          "locator": "pp. 18-20",
+          "source_note": "Ethnographic interpretation: heroism and vitality."
+        },
+        {
+          "source_key": "erdmann-seven-hundred-years-1970",
+          "locator": "p. 82",
+          "source_note": "Structural interpretation: stylized geometric border hook evolution."
+        }
+      ],
+      "theme_keys": [
+        "tradition_craft"
+      ]
+    },
+    {
+      "claim_key": "claim-comb-cleanliness-vs-weave-tool",
+      "motif_key": "comb",
+      "status": "CONTESTED",
+      "claim_text_tr": "Tarak motifinin simgesel değeri konusunda literatürde iki belirgin yaklaşım bulunmaktadır.",
+      "claim_text_en": "Two distinct scholarly perspectives exist regarding the symbolic vs functional value of the comb motif.",
+      "contest_note": "Kültürel etnoloji kaynakları motifi arınma ve evlilik hazırlığı sembolü görürken; tekstil teknolojisi araştırmacıları kirkit/tarak dokuma aletinin doğrudan tasviri olduğunu belirtir.",
+      "source_links": [
+        {
+          "source_key": "akm-anatolian-motifs-ethnography-1995",
+          "locator": "p. 62",
+          "source_note": "Ethnographic interpretation: purification and bridal preparation."
+        },
+        {
+          "source_key": "va-museum-carpet-collection-1931",
+          "locator": "p. 28",
+          "source_note": "Technical interpretation: depiction of weaving loom comb tool (kirkit)."
+        }
+      ],
+      "theme_keys": [
+        "tradition_craft",
+        "belonging_home"
+      ]
+    },
+    {
+      "claim_key": "claim-mystery-hook-unknown",
+      "motif_key": "mystery-hook",
+      "status": "UNKNOWN",
+      "claim_text_tr": null,
+      "claim_text_en": null,
+      "uncertainty_note": "Çengel geometrik motifi için akademik ve müze kaynaklarında doğrulanmış özgün bir simgesel anlatı bulunmamaktadır; dokuma yapısının teknik kenar kilitleme işlevi öne çıkmaktadır.",
+      "source_links": [
+        {
+          "source_key": "erdmann-seven-hundred-years-1970",
+          "locator": "p. 90",
+          "source_note": "Geometric corner locking hook structure without symbolic claim."
+        }
+      ],
+      "theme_keys": []
+    }
+  ]
+}

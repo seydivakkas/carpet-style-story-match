@@ -1,0 +1,42 @@
+{
+  "activation_target": "POST-v1 A4 — Real Source-Backed Motif Knowledge Activation",
+  "schema_version": "motif-story-curation-v1",
+  "knowledge_version": "motif-story-knowledge-v1",
+  "dataset_file": "data/activation/motif_knowledge/motif-knowledge.json",
+  "provenance_summary": {
+    "sources_activated": 6,
+    "motifs_activated": 13,
+    "claims_activated": 12,
+    "claim_sources_activated": 19,
+    "claim_themes_activated": 21
+  },
+  "claim_status_breakdown": {
+    "DOCUMENTED": 7,
+    "CONTEXTUAL": 2,
+    "CONTESTED": 2,
+    "UNKNOWN": 1
+  },
+  "narrative_theme_coverage": {
+    "N1_nature_growth": 3,
+    "N2_belonging_home": 3,
+    "N3_journey_discovery": 1,
+    "N4_continuity_connection": 3,
+    "N5_balance_order": 2,
+    "N6_renewal_transformation": 2,
+    "N7_tradition_craft": 4,
+    "N8_cultural_heritage": 3
+  },
+  "status_invariant_verification": {
+    "DOCUMENTED_requires_ge_1_source": "PASS",
+    "CONTEXTUAL_requires_context_note_and_ge_1_source": "PASS",
+    "CONTESTED_requires_contest_note_and_ge_2_distinct_sources": "PASS",
+    "UNKNOWN_requires_null_claim_text_and_empty_themes": "PASS"
+  },
+  "catalog_immutability_baseline": {
+    "catalog_products": 232,
+    "primary_images": 227,
+    "style_profiles": 227,
+    "carpet_motif_associations": 0,
+    "carpet_story_associations": 0
+  }
+}

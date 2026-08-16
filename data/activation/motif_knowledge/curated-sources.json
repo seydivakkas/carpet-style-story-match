@@ -1,0 +1,64 @@
+[
+  {
+    "source_key": "met-museum-oriental-rug-catalog-1988",
+    "source_type": "MUSEUM_CATALOG",
+    "title": "Oriental Rugs in The Metropolitan Museum of Art",
+    "citation_text": "Ellis, Charles Grant. Oriental Rugs in The Metropolitan Museum of Art. New York: The Metropolitan Museum of Art, 1988.",
+    "creator_or_institution": "The Metropolitan Museum of Art",
+    "publication_year": 1988,
+    "url": "https://www.metmuseum.org/art/metpublications/Oriental_Rugs_in_The_Metropolitan_Museum_of_Art",
+    "isbn": "0-87099-522-8",
+    "rights_note": "Public academic catalog citation metadata for educational and reference purposes."
+  },
+  {
+    "source_key": "denny-how-to-read-islamic-carpets-2014",
+    "source_type": "ACADEMIC_BOOK",
+    "title": "How to Read Islamic Carpets",
+    "citation_text": "Denny, Walter B. How to Read Islamic Carpets. New York: The Metropolitan Museum of Art / Yale University Press, 2014.",
+    "creator_or_institution": "Walter B. Denny / The Metropolitan Museum of Art",
+    "publication_year": 2014,
+    "url": "https://www.metmuseum.org/art/metpublications/How_to_Read_Islamic_Carpets",
+    "isbn": "978-0-300-20809-2",
+    "rights_note": "Academic reference text citation metadata."
+  },
+  {
+    "source_key": "erdmann-seven-hundred-years-1970",
+    "source_type": "ACADEMIC_BOOK",
+    "title": "Seven Hundred Years of Oriental Carpets",
+    "citation_text": "Erdmann, Kurt. Seven Hundred Years of Oriental Carpets. Edited by Hanna Erdmann, translated by May H. Beattie and Hildegard Herzog. Berkeley: University of California Press, 1970.",
+    "creator_or_institution": "Kurt Erdmann / University of California Press",
+    "publication_year": 1970,
+    "isbn": "0-520-01816-0",
+    "rights_note": "Academic reference text citation metadata."
+  },
+  {
+    "source_key": "va-museum-carpet-collection-1931",
+    "source_type": "MUSEUM_CATALOG",
+    "title": "Guide to the Collection of Carpets, Victoria and Albert Museum",
+    "citation_text": "Tattersall, C. E. C. Guide to the Collection of Carpets. London: Victoria and Albert Museum, Department of Textiles, 1931.",
+    "creator_or_institution": "Victoria and Albert Museum",
+    "publication_year": 1931,
+    "url": "https://www.vam.ac.uk/collections/carpets",
+    "rights_note": "Institutional museum collection catalog publication metadata."
+  },
+  {
+    "source_key": "akm-anatolian-motifs-ethnography-1995",
+    "source_type": "INSTITUTIONAL_PUBLICATION",
+    "title": "Anadolu Halı ve Kilim Motifleri Semptom ve Sembol Çözümlemeleri",
+    "citation_text": "Erbek, Güran. Anadolu Motifleri / Anatolian Motifs. Ankara: T.C. Kültür Bakanlığı Yayınları / Atatürk Kültür Merkezi, 1995.",
+    "creator_or_institution": "T.C. Kültür Bakanlığı / Atatürk Kültür Merkezi",
+    "publication_year": 1995,
+    "isbn": "975-17-1582-8",
+    "rights_note": "Institutional cultural heritage monograph metadata."
+  },
+  {
+    "source_key": "met-museum-safavid-medallion-carpet-14104",
+    "source_type": "MUSEUM_OBJECT",
+    "title": "Medallion Carpet (Metropolitan Museum Accession 14.40.714)",
+    "citation_text": "The Metropolitan Museum of Art. Medallion Carpet, 16th century, Central Iran / Tabriz. Accession Number: 14.40.714.",
+    "creator_or_institution": "The Metropolitan Museum of Art",
+    "publication_year": 1914,
+    "url": "https://www.metmuseum.org/art/collection/search/446561",
+    "rights_note": "Museum collection object record provenance data."
+  }
+]
