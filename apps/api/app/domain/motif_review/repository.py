@@ -7,7 +7,7 @@ version verification, idempotency handling, and effective review resolution.
 from typing import List, Optional, Tuple, Dict, Any
 import uuid
 from sqlalchemy.orm import Session
-from sqlalchemy import select, func, desc
+from sqlalchemy import select, func, desc, update
 
 from app.db.models.motif_review import MotifReviewSubjectModel, MotifReviewEventModel
 
@@ -125,9 +125,8 @@ class MotifReviewRepository:
         expected_version: int
     ) -> MotifReviewEventModel:
         """
-        Atomically verify optimistic concurrency token, verify idempotency,
-        verify candidate snapshot hash, increment subject review_version, and append
-        audit event.
+        Atomically verify optimistic concurrency token via SQL compare-and-update, verify idempotency,
+        verify candidate snapshot hash, increment subject review_version, and append audit event.
         """
         # 1. Snapshot hash verification
         if candidate_snapshot_hash != subject.snapshot_hash:
@@ -135,34 +134,47 @@ class MotifReviewRepository:
                 f"Candidate snapshot hash mismatch. Expected {subject.snapshot_hash}, got {candidate_snapshot_hash}"
             )
 
-        # 2. Check Idempotency key
+        # 2. Check Idempotency key BEFORE concurrency reservation
         stmt_idemp = select(MotifReviewEventModel).where(
             MotifReviewEventModel.review_subject_id == subject.id,
             MotifReviewEventModel.idempotency_key == idempotency_key
         )
         existing_event = db.execute(stmt_idemp).scalar_one_or_none()
         if existing_event is not None:
-            # Verify parameter compatibility
+            # Verify full parameter compatibility
             if (existing_event.decision == decision and
                 existing_event.resulting_status == resulting_status and
                 existing_event.selected_canonical_motif_key == selected_canonical_motif_key and
-                existing_event.reviewer_ref == reviewer_ref):
+                existing_event.reason_code == reason_code and
+                existing_event.note == note and
+                existing_event.reviewer_ref == reviewer_ref and
+                existing_event.reviewer_boundary == reviewer_boundary and
+                existing_event.candidate_snapshot_hash == candidate_snapshot_hash):
                 return existing_event
             else:
                 raise ReviewIdempotencyConflictException(
                     f"Idempotency key '{idempotency_key}' reused with conflicting decision payload."
                 )
 
-        # 3. Optimistic Concurrency check
-        if subject.review_version != expected_version:
+        # 3. Atomic Optimistic Concurrency Compare-and-Update (WHERE id = :id AND review_version = :expected_version)
+        stmt_update = (
+            update(MotifReviewSubjectModel)
+            .where(
+                MotifReviewSubjectModel.id == subject.id,
+                MotifReviewSubjectModel.review_version == expected_version
+            )
+            .values(review_version=expected_version + 1)
+        )
+        res = db.execute(stmt_update)
+        if res.rowcount == 0:
             raise ReviewConcurrencyException(
-                f"Concurrency conflict: expected version {expected_version}, current subject version is {subject.review_version}"
+                f"Concurrency conflict: expected version {expected_version}, current subject version mismatch."
             )
 
         # 4. Determine supersedes relation and next version number
         latest_event = MotifReviewRepository.get_effective_event(db, subject.id)
         supersedes_id = latest_event.id if latest_event else None
-        next_version = subject.review_version + 1
+        next_version = expected_version + 1
 
         review_id = f"rev_{uuid.uuid4().hex[:16]}"
         event = MotifReviewEventModel(
@@ -182,13 +194,16 @@ class MotifReviewRepository:
             supersedes_review_id=supersedes_id
         )
 
-        # 5. Atomically update subject version and add event
-        subject.review_version = next_version
-        db.add(event)
-        db.commit()
-        db.refresh(event)
-        db.refresh(subject)
-        return event
+        try:
+            db.add(event)
+            db.commit()
+            db.refresh(event)
+            db.refresh(subject)
+            return event
+        except Exception:
+            db.rollback()
+            db.refresh(subject)
+            raise
 
     @staticmethod
     def get_history(

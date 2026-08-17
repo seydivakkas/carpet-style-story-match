@@ -167,8 +167,7 @@ class MotifReviewEventModel(Base):
     )
     reviewer_boundary: Mapped[str] = mapped_column(
         String(50),
-        nullable=False,
-        default="GATEWAY_TRUSTED"
+        nullable=False
     )
     candidate_snapshot_hash: Mapped[str] = mapped_column(
         String(64),

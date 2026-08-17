@@ -35,3 +35,11 @@ Option 3 was selected. Alembic migration `2026_08_17_016_create_motif_review_per
 
 - **Positive**: Complete audit trail transparency, concurrency protection, idempotency support, and strict data isolation.
 - **Negative**: Additional database table management and schema migration.
+
+## Addendum V2-06A.1 — Reviewer Trust Boundary Hardening & Atomic Concurrency
+
+- **Status**: Approved (2026-08-17)
+- **Decision**: 
+  1. Alembic migration `2026_08_17_017` removes `server_default='GATEWAY_TRUSTED'` from `motif_review_events.reviewer_boundary`. All default trust provenance assignments are removed across ORM models, Pydantic DTOs, and domain services. Missing trust boundary fails closed.
+  2. Optimistic concurrency in `MotifReviewRepository.append_review_event` is upgraded to use an atomic SQL compare-and-update primitive (`UPDATE motif_review_subjects SET review_version = review_version + 1 WHERE id = :id AND review_version = :expected_version`) to guarantee race-free version reservation under concurrent writers.
+

@@ -35,3 +35,16 @@ Append-Only Audit Event Log (motif_review_events)
 ## Snapshot Hashing & Concurrency
 
 Candidate snapshots are serialized to canonical UTF-8 JSON with sorted keys before SHA-256 hashing. Volatile request metadata (timestamps, HTTP headers, reviewer identity) is excluded. During review submission, optimistic concurrency is verified (`expected_version == subject.review_version`), and snapshot hashes are verified to prevent stale candidate reviews.
+
+## Reviewer Trust Provenance & Atomic Concurrency (V2-06A.1 Hardening)
+
+1. **Reviewer Boundary Fail-Closed**:
+   - `reviewer_ref` is audit provenance (who submitted the review), NOT authentication.
+   - `reviewer_boundary` is trust provenance (`GATEWAY_TRUSTED`, `DEVELOPMENT_ADMIN`, `SYSTEM_IMPORT`), NOT user authentication.
+   - Database columns, Pydantic DTOs, and domain services have NO default values for `reviewer_boundary`. Missing trust boundary fails immediately. No boundary is inferred or defaulted to `GATEWAY_TRUSTED` when absent.
+   - `GATEWAY_TRUSTED` may only be injected by verified server-side gateway context. Future client APIs cannot directly specify trusted boundaries.
+2. **Atomic Optimistic Concurrency**:
+   - Concurrency reservation uses an atomic SQL compare-and-update (`UPDATE motif_review_subjects SET review_version = review_version + 1 WHERE id = :id AND review_version = :expected_version`).
+   - If `affected_rows == 0`, a `ReviewConcurrencyException` is raised.
+   - Event insertion occurs within the same database transaction; any failure triggers transaction rollback, preserving `review_version`.
+

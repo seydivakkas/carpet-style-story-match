@@ -192,6 +192,7 @@ def test_confirm_decision_mapping_and_research_eligibility(db_session, sample_st
         selected_canonical_motif_key="geometric-star",
         reason_code=MotifReviewReasonCode.VISUAL_MATCH_CONFIRMED,
         reviewer_ref="curator-01",
+        reviewer_boundary=ReviewerBoundaryEnum.GATEWAY_TRUSTED,
         expected_version=0,
         idempotency_key="idemp-101"
     )
@@ -213,6 +214,7 @@ def test_uncertain_decision_blocks_research(db_session, sample_star_candidate):
         decision=ReviewDecisionEnum.UNCERTAIN,
         reason_code=MotifReviewReasonCode.AMBIGUOUS_WITH_OTHER_MOTIF,
         reviewer_ref="curator-01",
+        reviewer_boundary=ReviewerBoundaryEnum.GATEWAY_TRUSTED,
         expected_version=0,
         idempotency_key="idemp-102"
     )
@@ -231,6 +233,7 @@ def test_reject_decision_blocks_research(db_session, sample_star_candidate):
         decision=ReviewDecisionEnum.REJECT,
         reason_code=MotifReviewReasonCode.NOT_A_MOTIF,
         reviewer_ref="curator-01",
+        reviewer_boundary=ReviewerBoundaryEnum.GATEWAY_TRUSTED,
         expected_version=0,
         idempotency_key="idemp-103"
     )
@@ -253,6 +256,7 @@ def test_unmapped_confirm_requires_explicit_remapping(db_session, sample_unmappe
         decision=ReviewDecisionEnum.CONFIRM,
         selected_canonical_motif_key=None,  # Missing remapped key
         reviewer_ref="curator-01",
+        reviewer_boundary=ReviewerBoundaryEnum.GATEWAY_TRUSTED,
         expected_version=0,
         idempotency_key="idemp-201"
     )
@@ -269,6 +273,7 @@ def test_unmapped_controlled_remapping_success(db_session, sample_unmapped_candi
         decision=ReviewDecisionEnum.CONFIRM,
         selected_canonical_motif_key="mihrab",  # Existing valid ontology key
         reviewer_ref="curator-01",
+        reviewer_boundary=ReviewerBoundaryEnum.GATEWAY_TRUSTED,
         expected_version=0,
         idempotency_key="idemp-202"
     )
@@ -287,6 +292,7 @@ def test_unknown_canonical_motif_key_rejection(db_session, sample_star_candidate
         decision=ReviewDecisionEnum.CONFIRM,
         selected_canonical_motif_key="nonexistent-fantasy-motif",
         reviewer_ref="curator-01",
+        reviewer_boundary=ReviewerBoundaryEnum.GATEWAY_TRUSTED,
         expected_version=0,
         idempotency_key="idemp-203"
     )
@@ -307,6 +313,7 @@ def test_optimistic_concurrency_protection(db_session, sample_star_candidate):
         decision=ReviewDecisionEnum.CONFIRM,
         selected_canonical_motif_key="geometric-star",
         reviewer_ref="curator-01",
+        reviewer_boundary=ReviewerBoundaryEnum.GATEWAY_TRUSTED,
         expected_version=0,
         idempotency_key="idemp-301a"
     )
@@ -316,6 +323,7 @@ def test_optimistic_concurrency_protection(db_session, sample_star_candidate):
     req_stale = MotifReviewDecisionRequest(
         decision=ReviewDecisionEnum.UNCERTAIN,
         reviewer_ref="curator-02",
+        reviewer_boundary=ReviewerBoundaryEnum.GATEWAY_TRUSTED,
         expected_version=0,
         idempotency_key="idemp-301b"
     )
@@ -332,6 +340,7 @@ def test_idempotency_key_handling(db_session, sample_star_candidate):
         decision=ReviewDecisionEnum.CONFIRM,
         selected_canonical_motif_key="geometric-star",
         reviewer_ref="curator-01",
+        reviewer_boundary=ReviewerBoundaryEnum.GATEWAY_TRUSTED,
         expected_version=0,
         idempotency_key="idemp-302"
     )
@@ -353,6 +362,7 @@ def test_idempotency_conflict_detection(db_session, sample_star_candidate):
         decision=ReviewDecisionEnum.CONFIRM,
         selected_canonical_motif_key="geometric-star",
         reviewer_ref="curator-01",
+        reviewer_boundary=ReviewerBoundaryEnum.GATEWAY_TRUSTED,
         expected_version=0,
         idempotency_key="idemp-303"
     )
@@ -361,6 +371,7 @@ def test_idempotency_conflict_detection(db_session, sample_star_candidate):
     req2 = MotifReviewDecisionRequest(
         decision=ReviewDecisionEnum.REJECT,  # Conflicting decision payload
         reviewer_ref="curator-01",
+        reviewer_boundary=ReviewerBoundaryEnum.GATEWAY_TRUSTED,
         expected_version=0,
         idempotency_key="idemp-303"
     )
@@ -378,16 +389,17 @@ def test_append_only_re_review_history_and_supersedes(db_session, sample_star_ca
         decision=ReviewDecisionEnum.CONFIRM,
         selected_canonical_motif_key="geometric-star",
         reviewer_ref="curator-01",
+        reviewer_boundary=ReviewerBoundaryEnum.GATEWAY_TRUSTED,
         expected_version=0,
         idempotency_key="idemp-401a"
     )
     res1 = service.submit_review_decision("analysis-401", "cand-star-001", req1)
-    event1_id = res1.effective_event.review_id
 
     # Event 2: UNCERTAIN
     req2 = MotifReviewDecisionRequest(
         decision=ReviewDecisionEnum.UNCERTAIN,
         reviewer_ref="curator-02",
+        reviewer_boundary=ReviewerBoundaryEnum.GATEWAY_TRUSTED,
         expected_version=1,
         idempotency_key="idemp-401b"
     )
@@ -418,6 +430,7 @@ def test_curator_note_isolation(db_session, sample_star_candidate):
         selected_canonical_motif_key="geometric-star",
         note="Speculative Ottoman influence noted by curator",
         reviewer_ref="curator-01",
+        reviewer_boundary=ReviewerBoundaryEnum.GATEWAY_TRUSTED,
         expected_version=0,
         idempotency_key="idemp-501"
     )
@@ -426,3 +439,143 @@ def test_curator_note_isolation(db_session, sample_star_candidate):
     assert res.effective_event.note == "Speculative Ottoman influence noted by curator"
     # Verify note is not copied to subject or any external domain tables
     assert "Ottoman" not in res.subject.model_dump_json()
+
+
+# ============================================================================
+# 7. V2-06A.1 TRUST BOUNDARY & ATOMIC CONCURRENCY HARDENING TESTS
+# ============================================================================
+
+from pydantic import ValidationError
+from sqlalchemy import inspect
+
+
+def test_missing_reviewer_boundary_rejection():
+    """Verify missing reviewer_boundary in decision request fails Pydantic validation (FAIL CLOSED)."""
+    with pytest.raises(ValidationError) as exc_info:
+        MotifReviewDecisionRequest(
+            decision=ReviewDecisionEnum.CONFIRM,
+            selected_canonical_motif_key="geometric-star",
+            reviewer_ref="curator-01",
+            # reviewer_boundary omitted!
+            expected_version=0,
+            idempotency_key="idemp-missing-boundary"
+        )
+    assert "reviewer_boundary" in str(exc_info.value)
+
+
+def test_db_has_no_reviewer_boundary_default(db_session):
+    """Verify motif_review_events table schema has NO server default for reviewer_boundary."""
+    inspector = inspect(db_session.bind)
+    columns = inspector.get_columns("motif_review_events")
+    boundary_col = next((c for c in columns if c["name"] == "reviewer_boundary"), None)
+
+    assert boundary_col is not None
+    assert boundary_col["nullable"] is False
+    assert boundary_col.get("default") is None
+
+
+def test_atomic_compare_and_update_concurrency(db_session, sample_star_candidate):
+    """Verify atomic SQL compare-and-update prevents race conditions with same expected_version."""
+    service = MotifReviewPersistenceService(db_session)
+    service.register_candidate_subject(sample_star_candidate, "analysis-601")
+    subject_model = MotifReviewRepository.get_subject_by_identity(db_session, "analysis-601", "cand-star-001")
+
+    # Writer A succeeds
+    event_a = MotifReviewRepository.append_review_event(
+        db_session,
+        subject=subject_model,
+        decision="CONFIRM",
+        resulting_status="CURATOR_CONFIRMED",
+        selected_canonical_motif_key="geometric-star",
+        reason_code="VISUAL_MATCH_CONFIRMED",
+        note=None,
+        reviewer_ref="writer-a",
+        reviewer_boundary="GATEWAY_TRUSTED",
+        candidate_snapshot_hash=subject_model.snapshot_hash,
+        idempotency_key="idemp-601a",
+        expected_version=0
+    )
+    assert event_a is not None
+    assert subject_model.review_version == 1
+
+    # Writer B attempting same expected_version 0 MUST fail
+    with pytest.raises(ReviewConcurrencyException):
+        MotifReviewRepository.append_review_event(
+            db_session,
+            subject=subject_model,
+            decision="UNCERTAIN",
+            resulting_status="UNCERTAIN",
+            selected_canonical_motif_key=None,
+            reason_code=None,
+            note=None,
+            reviewer_ref="writer-b",
+            reviewer_boundary="GATEWAY_TRUSTED",
+            candidate_snapshot_hash=subject_model.snapshot_hash,
+            idempotency_key="idemp-601b",
+            expected_version=0
+        )
+
+
+def test_rollback_on_event_insert_failure(db_session, sample_star_candidate):
+    """Verify version reservation rolls back if event insertion fails in same transaction."""
+    service = MotifReviewPersistenceService(db_session)
+    service.register_candidate_subject(sample_star_candidate, "analysis-602")
+    subject_model = MotifReviewRepository.get_subject_by_identity(db_session, "analysis-602", "cand-star-001")
+
+    # Pass invalid decision string (None) that violates NOT NULL database constraint
+    with pytest.raises(Exception):
+        MotifReviewRepository.append_review_event(
+            db_session,
+            subject=subject_model,
+            decision=None,
+            resulting_status="CURATOR_CONFIRMED",
+            selected_canonical_motif_key="geometric-star",
+            reason_code="VISUAL_MATCH_CONFIRMED",
+            note=None,
+            reviewer_ref="curator-01",
+            reviewer_boundary="GATEWAY_TRUSTED",
+            candidate_snapshot_hash=subject_model.snapshot_hash,
+            idempotency_key="idemp-602",
+            expected_version=0
+        )
+
+    db_session.refresh(subject_model)
+    assert subject_model.review_version == 0
+
+
+def test_idempotent_retry_after_version_increment(db_session, sample_star_candidate):
+    """Verify idempotent retry of original event succeeds even after subject review_version advances."""
+    service = MotifReviewPersistenceService(db_session)
+    service.register_candidate_subject(sample_star_candidate, "analysis-701")
+
+    # Review 1
+    req1 = MotifReviewDecisionRequest(
+        decision=ReviewDecisionEnum.CONFIRM,
+        selected_canonical_motif_key="geometric-star",
+        reviewer_ref="curator-01",
+        reviewer_boundary=ReviewerBoundaryEnum.GATEWAY_TRUSTED,
+        expected_version=0,
+        idempotency_key="idemp-701a"
+    )
+    res1 = service.submit_review_decision("analysis-701", "cand-star-001", req1)
+
+    # Review 2 (Advances version to 2)
+    req2 = MotifReviewDecisionRequest(
+        decision=ReviewDecisionEnum.UNCERTAIN,
+        reviewer_ref="curator-02",
+        reviewer_boundary=ReviewerBoundaryEnum.GATEWAY_TRUSTED,
+        expected_version=1,
+        idempotency_key="idemp-701b"
+    )
+    res2 = service.submit_review_decision("analysis-701", "cand-star-001", req2)
+    assert res2.subject.review_version == 2
+
+    # Retry Review 1 with original idempotency_key (idemp-701a)
+    # Expected version in req1 was 0, but subject version is now 2
+    # Idempotency check happens BEFORE concurrency reservation, so it returns original res1 event safely
+    res_retry = service.submit_review_decision("analysis-701", "cand-star-001", req1)
+    history = service.get_history_by_identity("analysis-701", "cand-star-001")
+    assert len(history) == 2
+    assert history[0].review_id == res1.effective_event.review_id
+
+

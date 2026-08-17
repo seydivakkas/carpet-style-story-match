@@ -52,5 +52,13 @@
     "auto_generate_claims": false,
     "auto_generate_story": false,
     "auto_mutate_catalog_associations": false
+  },
+  "trust_boundary_policy": {
+    "required": true,
+    "default_boundary": null,
+    "allow_fail_open_default": false,
+    "allowed_boundaries": ["GATEWAY_TRUSTED", "DEVELOPMENT_ADMIN", "SYSTEM_IMPORT"],
+    "server_owned_provenance": true,
+    "gateway_trusted_requires_verified_gateway_context": true
   }
 }

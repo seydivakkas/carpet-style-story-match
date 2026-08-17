@@ -80,7 +80,7 @@ class MotifReviewDecisionRequest(BaseModel):
     reason_code: Optional[MotifReviewReasonCode] = Field(default=None, description="Controlled non-cultural reason code")
     note: Optional[str] = Field(default=None, max_length=1000, description="Operational curator note (max 1000 chars)")
     reviewer_ref: str = Field(min_length=1, max_length=255, description="Reviewer reference ID or username")
-    reviewer_boundary: ReviewerBoundaryEnum = Field(default=ReviewerBoundaryEnum.GATEWAY_TRUSTED, description="Trust boundary classification")
+    reviewer_boundary: ReviewerBoundaryEnum = Field(description="Trust boundary classification (MUST be explicitly supplied by trusted server context)")
     expected_version: int = Field(ge=0, description="Expected concurrency review_version token of subject")
     idempotency_key: str = Field(min_length=1, max_length=100, description="Unique idempotency key for this review request")
 
