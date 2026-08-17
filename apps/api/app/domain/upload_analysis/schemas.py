@@ -186,6 +186,7 @@ class ModelProvenance(BaseModel):
     prompt_version: str
     inference_timestamp: str
     request_hash: Optional[str] = None
+    prompt_content_sha256: Optional[str] = None
 
 
 class MotifCandidate(BaseModel):

@@ -1,0 +1,383 @@
+{
+  "$defs": {
+    "EvidenceConflict": {
+      "additionalProperties": false,
+      "properties": {
+        "conflict_id": {
+          "title": "Conflict Id",
+          "type": "string"
+        },
+        "subject_motif_key": {
+          "title": "Subject Motif Key",
+          "type": "string"
+        },
+        "evidence_unit_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2,
+          "title": "Evidence Unit Ids",
+          "type": "array"
+        },
+        "conflict_type": {
+          "title": "Conflict Type",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        }
+      },
+      "required": [
+        "conflict_id",
+        "subject_motif_key",
+        "evidence_unit_ids",
+        "conflict_type",
+        "description"
+      ],
+      "title": "EvidenceConflict",
+      "type": "object"
+    },
+    "EvidenceUnit": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "subject_motif_key": {
+          "title": "Subject Motif Key",
+          "type": "string"
+        },
+        "locator": {
+          "description": "Mandatory locator for traceability: e.g. page number, catalog ID, object ID, section heading",
+          "title": "Locator",
+          "type": "string"
+        },
+        "supporting_excerpt": {
+          "description": "Copyright-safe short excerpt, max 300 chars",
+          "title": "Supporting Excerpt",
+          "type": "string"
+        },
+        "normalized_summary": {
+          "title": "Normalized Summary",
+          "type": "string"
+        },
+        "language": {
+          "default": "tr",
+          "title": "Language",
+          "type": "string"
+        },
+        "retrieval_score": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Retrieval Score",
+          "type": "number"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/SourceTier"
+        },
+        "content_hash": {
+          "title": "Content Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "source_id",
+        "subject_motif_key",
+        "locator",
+        "supporting_excerpt",
+        "normalized_summary",
+        "retrieval_score",
+        "source_tier",
+        "content_hash"
+      ],
+      "title": "EvidenceUnit",
+      "type": "object"
+    },
+    "ResearchQueryPlan": {
+      "additionalProperties": false,
+      "properties": {
+        "query_plan_id": {
+          "title": "Query Plan Id",
+          "type": "string"
+        },
+        "query_plan_version": {
+          "default": "cultural-research-query-v1.0.0",
+          "title": "Query Plan Version",
+          "type": "string"
+        },
+        "subject_id": {
+          "title": "Subject Id",
+          "type": "string"
+        },
+        "canonical_motif_key": {
+          "title": "Canonical Motif Key",
+          "type": "string"
+        },
+        "queries": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Queries",
+          "type": "array"
+        },
+        "created_at": {
+          "title": "Created At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "query_plan_id",
+        "subject_id",
+        "canonical_motif_key",
+        "queries",
+        "created_at"
+      ],
+      "title": "ResearchQueryPlan",
+      "type": "object"
+    },
+    "ResearchSourceDocument": {
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "canonical_url": {
+          "title": "Canonical Url",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "institution_or_publisher": {
+          "title": "Institution Or Publisher",
+          "type": "string"
+        },
+        "source_type": {
+          "title": "Source Type",
+          "type": "string"
+        },
+        "source_tier": {
+          "$ref": "#/$defs/SourceTier"
+        },
+        "publication_date": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Publication Date"
+        },
+        "retrieved_at": {
+          "title": "Retrieved At",
+          "type": "string"
+        },
+        "language": {
+          "default": "tr",
+          "title": "Language",
+          "type": "string"
+        },
+        "content_sha256": {
+          "title": "Content Sha256",
+          "type": "string"
+        },
+        "access_status": {
+          "default": "ACCESSIBLE",
+          "title": "Access Status",
+          "type": "string"
+        },
+        "rights_note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": "Educational/Research Fair Use",
+          "title": "Rights Note"
+        },
+        "provenance": {
+          "additionalProperties": true,
+          "title": "Provenance",
+          "type": "object"
+        }
+      },
+      "required": [
+        "source_id",
+        "canonical_url",
+        "title",
+        "institution_or_publisher",
+        "source_type",
+        "source_tier",
+        "retrieved_at",
+        "content_sha256"
+      ],
+      "title": "ResearchSourceDocument",
+      "type": "object"
+    },
+    "ResearchSubject": {
+      "additionalProperties": false,
+      "properties": {
+        "subject_id": {
+          "title": "Subject Id",
+          "type": "string"
+        },
+        "canonical_motif_key": {
+          "title": "Canonical Motif Key",
+          "type": "string"
+        },
+        "verification_status": {
+          "$ref": "#/$defs/ResearchVerificationStatus",
+          "default": "CURATOR_CONFIRMED"
+        },
+        "display_name": {
+          "title": "Display Name",
+          "type": "string"
+        },
+        "ontology_version": {
+          "default": "motif-ontology-v1.0.0",
+          "title": "Ontology Version",
+          "type": "string"
+        },
+        "visual_evidence_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Visual Evidence Ref"
+        },
+        "known_source_context": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Known Source Context"
+        },
+        "created_at": {
+          "title": "Created At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "subject_id",
+        "canonical_motif_key",
+        "display_name",
+        "created_at"
+      ],
+      "title": "ResearchSubject",
+      "type": "object"
+    },
+    "ResearchVerificationStatus": {
+      "enum": [
+        "CURATOR_CONFIRMED",
+        "VERIFIED_CANONICAL",
+        "AI_CANDIDATE",
+        "UNMAPPED_MOTIF_CANDIDATE",
+        "ABSTAINED"
+      ],
+      "title": "ResearchVerificationStatus",
+      "type": "string"
+    },
+    "SourceTier": {
+      "enum": [
+        "TIER_1_PRIMARY_INSTITUTIONAL",
+        "TIER_2_SCHOLARLY",
+        "TIER_3_REPUTABLE_SECONDARY",
+        "REJECTED_SOURCE"
+      ],
+      "title": "SourceTier",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "evidence-pack-v1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "research_run_id": {
+      "title": "Research Run Id",
+      "type": "string"
+    },
+    "subject": {
+      "$ref": "#/$defs/ResearchSubject"
+    },
+    "query_plan": {
+      "$ref": "#/$defs/ResearchQueryPlan"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/ResearchSourceDocument"
+      },
+      "title": "Sources",
+      "type": "array"
+    },
+    "evidence_units": {
+      "items": {
+        "$ref": "#/$defs/EvidenceUnit"
+      },
+      "title": "Evidence Units",
+      "type": "array"
+    },
+    "contradictions": {
+      "items": {
+        "$ref": "#/$defs/EvidenceConflict"
+      },
+      "title": "Contradictions",
+      "type": "array"
+    },
+    "coverage": {
+      "additionalProperties": true,
+      "title": "Coverage",
+      "type": "object"
+    },
+    "provenance": {
+      "additionalProperties": true,
+      "title": "Provenance",
+      "type": "object"
+    },
+    "warnings": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Warnings",
+      "type": "array"
+    }
+  },
+  "required": [
+    "research_run_id",
+    "subject",
+    "query_plan",
+    "coverage",
+    "provenance"
+  ],
+  "title": "EvidencePack",
+  "type": "object"
+}

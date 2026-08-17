@@ -1,0 +1,50 @@
+{
+  "policy_version": "source-quality-policy-v1.0.0",
+  "name": "Cultural Source Quality & Provenance Policy",
+  "tiers": {
+    "TIER_1_PRIMARY_INSTITUTIONAL": {
+      "description": "Museums, government cultural institutions, university archives and collections",
+      "allowed_domains": [
+        "metmuseum.org",
+        "vam.ac.uk",
+        "britishmuseum.org",
+        "louvre.fr",
+        "smb.museum",
+        "ktb.gov.tr",
+        "türkiye.gov.tr",
+        "edu",
+        "gov"
+      ]
+    },
+    "TIER_2_SCHOLARLY": {
+      "description": "Peer-reviewed publications, academic monographs, scholarly catalogues",
+      "allowed_types": [
+        "academic_journal",
+        "monograph",
+        "museum_catalogue",
+        "scholarly_book"
+      ]
+    },
+    "TIER_3_REPUTABLE_SECONDARY": {
+      "description": "Established cultural heritage reference works and encylopedias",
+      "allowed_types": [
+        "cultural_archive",
+        "encyclopedia",
+        "reference_work"
+      ]
+    },
+    "REJECTED_SOURCE": {
+      "description": "Unverified social media, commercial product sites, SEO blogs, unsourced AI articles",
+      "rejected_domains": [
+        "pinterest.com",
+        "instagram.com",
+        "facebook.com",
+        "etsy.com",
+        "ebay.com",
+        "amazon.com",
+        "merinos.com.tr",
+        "dinarsu.com.tr"
+      ]
+    }
+  }
+}

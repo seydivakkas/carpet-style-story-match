@@ -1,0 +1,51 @@
+{
+  "timestamp": "2026-08-17T08:05:10.933395+00:00",
+  "status": "PASS",
+  "latency_ms": 3988.86,
+  "motif": "star",
+  "verification_status": "CURATOR_CONFIRMED",
+  "direct_url": "https://www.metmuseum.org/art/collection/search/451001",
+  "evidence_pack_version": "evidence-pack-v1.0.0",
+  "research_run_id": "run-5d1df3b6",
+  "source_count": 1,
+  "evidence_unit_count": 1,
+  "contradictions_count": 0,
+  "coverage": {
+    "source_count": 1,
+    "tier_1_count": 1,
+    "tier_2_count": 0,
+    "tier_3_count": 0,
+    "evidence_unit_count": 1,
+    "locator_coverage": 1.0,
+    "languages_present": [
+      "en"
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "src-met-star-1998",
+      "canonical_url": "https://www.metmuseum.org/art/collection/search/451001",
+      "institution": "The Metropolitan Museum of Art",
+      "source_tier": "TIER_1_PRIMARY_INSTITUTIONAL",
+      "content_sha256": "b62d60f08a6a79c5f65a23efcc3f952e871ad33b6c16ea81340c6b6e602a0754"
+    }
+  ],
+  "evidence_sample": [
+    {
+      "evidence_id": "ev-9acf12f9",
+      "source_id": "src-met-star-1998",
+      "locator": "paragraph-1",
+      "excerpt": "The eight-pointed star motif is a widespread geometric visual form across Anatolian and Oriental tex",
+      "score": 0.95
+    }
+  ],
+  "invariants_passed": {
+    "verified_subject_gate": true,
+    "neutral_query_plan": true,
+    "schema_contract_evidence_pack": true,
+    "no_final_claim": true,
+    "no_story": true,
+    "no_symbolic_meaning": true,
+    "traceable_locators": true
+  }
+}

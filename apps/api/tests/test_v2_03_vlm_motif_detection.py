@@ -239,6 +239,33 @@ async def test_vlm_rejects_forbidden_cultural_fields():
             await provider.analyze(prep)
 
 
+@pytest.mark.asyncio
+async def test_vlm_rejects_extra_unregistered_fields():
+    raw_bytes = create_dummy_jpeg_bytes()
+    prep = prepare_image_for_vlm(raw_bytes, "image/jpeg")
+    provider = VLLMOpenAICompatibleVisionProvider("http://127.0.0.1:8000/v1", "qwen")
+
+    extra_data = {
+        "choices": [
+            {
+                "message": {
+                    "content": json.dumps({
+                        "visual_category_key": "central_medallion",
+                        "category_confidence": 0.9,
+                        "unregistered_extra_key": "some_value",  # FORBIDDEN by extra=forbid
+                        "motif_candidates": []
+                    })
+                }
+            }
+        ]
+    }
+
+    mock_res = create_mock_response(200, extra_data)
+    with patch("httpx.AsyncClient.post", return_value=mock_res):
+        with pytest.raises(VLMMalformedOutputError):
+            await provider.analyze(prep)
+
+
 # 7. Model cannot confirm motifs
 @pytest.mark.asyncio
 async def test_vlm_cannot_set_curator_confirmed():

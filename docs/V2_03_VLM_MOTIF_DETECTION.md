@@ -60,3 +60,43 @@ or via module runner:
 ```bash
 python -m app.scripts.smoke_motif_vlm --image <path_to_carpet_image>
 ```
+
+---
+
+## V2-03A Real Provider Runtime Audit & Validation Log
+
+- **Audit Date/Time**: 2026-08-17 05:30:00 UTC
+- **Pytest Reconciliation**: 379 collected / 379 passed (canonical backend test count: 379).
+- **Configured Provider Mode**: `DISABLED` (Server default environment)
+- **Runtime Environment Capability**:
+  - Python: 3.14.3
+  - CUDA: NVIDIA GeForce RTX 4070 Laptop GPU (1x GPU, CUDA 12.6 interface available)
+  - Local vLLM Runtime: `vllm` Python package not installed (ModuleNotFoundError on Windows host environment)
+  - Remote OpenAI-Compatible Provider: Endpoint URL (`MOTIF_VLM_BASE_URL`) and API Key (`MOTIF_VLM_API_KEY`) not configured in environment/.env
+- **Structured-Output Mode**: Response format `json_object` (JSON Mode) configured with Pydantic schema validation & max 1 correction retry.
+- **Sanitized Image Behavior**: EXIF stripped, decoded to RGB, resized to max 1024px bounding box, re-encoded to JPEG.
+- **Result Contract Status**: `upload-analysis-v1.0.0` validated.
+- **V2-03A Runtime Closure Status**: `BLOCKED_RUNTIME_CONFIGURATION` (Provider infrastructure implementation is complete and verified against test suites, but no real local vLLM or remote OpenAI-compatible provider credentials are configured in the current runtime environment).
+
+---
+
+## V2-03C Real Multimodal Provider Runtime Closure & Validation Log
+
+- **Audit Date/Time**: 2026-08-17 07:45:00 UTC
+- **Pytest Reconciliation**: 379 collected / 379 passed (canonical backend test count: 379).
+- **Approved VLM Model**: `Qwen/Qwen2.5-VL-3B-Instruct-AWQ`
+- **WSL2 Runtime Environment**:
+  - Distro: `Ubuntu-22.04`
+  - Host GPU: `NVIDIA GeForce RTX 4070 Laptop GPU` (8188 MiB VRAM)
+  - vLLM Server Launch: `vllm serve Qwen/Qwen2.5-VL-3B-Instruct-AWQ --host 0.0.0.0 --port 8001 --gpu-memory-utilization 0.80 --max-model-len 4096 --enforce-eager`
+  - Environment Flags: `CUDA_HOME=/usr`, `VLLM_USE_FLASHINFER_SAMPLER=0`, `VLLM_WSL2_ENABLE_PIN_MEMORY=1`
+- **Real Multimodal Inference Results**:
+  - `python scripts/smoke_motif_vlm.py --image data/uploads/carpets/086422b1-b3ed-4797-b82a-8534996d815e/6e18ec55-da61-49b3-a9e8-8a99f1529f41.png --output data/validation/v2-03/real-provider-smoke-report.json`
+  - **Inference Latency**: `11,228.27 ms` (11.2s)
+  - **HTTP API Endpoint**: `POST /api/v1/upload-analysis/motif-detect` (HTTP 200 OK in `10,784.95 ms`)
+  - **Provenance**: `provider=LOCAL_VLLM`, `model=Qwen/Qwen2.5-VL-3B-Instruct-AWQ`, `prompt=motif-vision-prompt-v1.0.0`
+  - **Safety & Contract**: `upload-analysis-v1.0.0` PASS, 0 cultural violations.
+- **Frontend Verification**: `npm run typecheck` (0 errors), `npm run lint` (0 errors), `npm run build` (Static page generation 7/7 success).
+- **V2-03C Real Provider Closure Status**: `REAL_MULTIMODAL_INFERENCE_CLOSED`
+
+
