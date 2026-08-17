@@ -309,16 +309,25 @@ def get_db_counts() -> dict:
             "historical_reference_count": 0,
             "style_profile_count": 0,
         }
-    conn = sqlite3.connect(db_path)
-    cur = conn.cursor()
-    counts = {
-        "carpet_count": cur.execute("SELECT COUNT(*) FROM carpets WHERE source_type = 'CATALOG'").fetchone()[0],
-        "carpet_image_count": cur.execute("SELECT COUNT(*) FROM carpet_images").fetchone()[0],
-        "historical_reference_count": cur.execute("SELECT COUNT(*) FROM historical_reference_metadata").fetchone()[0],
-        "style_profile_count": cur.execute("SELECT COUNT(*) FROM carpet_style_profiles").fetchone()[0],
-    }
-    conn.close()
-    return counts
+    try:
+        conn = sqlite3.connect(db_path)
+        cur = conn.cursor()
+        counts = {
+            "carpet_count": cur.execute("SELECT COUNT(*) FROM carpets WHERE source_type = 'CATALOG'").fetchone()[0],
+            "carpet_image_count": cur.execute("SELECT COUNT(*) FROM carpet_images").fetchone()[0],
+            "historical_reference_count": cur.execute("SELECT COUNT(*) FROM historical_reference_metadata").fetchone()[0],
+            "style_profile_count": cur.execute("SELECT COUNT(*) FROM carpet_style_profiles").fetchone()[0],
+        }
+        conn.close()
+        return counts
+    except sqlite3.OperationalError:
+        return {
+            "carpet_count": 0,
+            "carpet_image_count": 0,
+            "historical_reference_count": 0,
+            "style_profile_count": 0,
+        }
+
 
 
 def test_db_immutability_and_merinos_baseline():

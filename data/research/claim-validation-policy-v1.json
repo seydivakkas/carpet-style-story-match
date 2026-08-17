@@ -1,0 +1,49 @@
+{
+  "policy_version": "claim-validation-policy-v1.0.0",
+  "policy_name": "Evidence-Bound Cultural Claim Validation Policy",
+  "description": "Defines strict categorical status rules for cultural claims evaluated against EvidencePack evidence units.",
+  "statuses": {
+    "DOCUMENTED": {
+      "definition": "The proposed statement is directly supported by traceable evidence with no unresolved contradictory qualifying evidence.",
+      "rules": [
+        "Must have at least one qualifying EvidenceUnit with relation SUPPORTS.",
+        "Must specify a valid non-empty locator and content hash.",
+        "Must have zero CONTRADICTS relations among qualifying evidence.",
+        "Tier-1 source alone DOES NOT automatically grant DOCUMENTED if content does not support statement."
+      ]
+    },
+    "CONTEXTUAL": {
+      "definition": "Evidence supports the statement only within explicit narrow context (region, period, weaving tradition, museum collection).",
+      "rules": [
+        "Supported by qualifying evidence with CONTEXT_LIMITED_SUPPORT relation or bounded scope.",
+        "Explicit scope limitation MUST be preserved in claim scope and limitations list.",
+        "Forbidden to generalize contextual support into universal claim."
+      ]
+    },
+    "CONTESTED": {
+      "definition": "Qualifying evidence contains materially different or contradictory interpretations.",
+      "rules": [
+        "Qualifying evidence contains both SUPPORTS and CONTRADICTS relations.",
+        "Must retain both sides of evidence without selecting an automatic winner.",
+        "Disagreement must be explicitly logged in limitations and reasoning summary."
+      ]
+    },
+    "UNKNOWN": {
+      "definition": "Available EvidencePack does not contain sufficient qualifying evidence to support a positive claim.",
+      "rules": [
+        "Assigned when no qualifying SUPPORTS or CONTEXT_LIMITED_SUPPORT units exist.",
+        "Valid successful classification.",
+        "Forbidden to transform UNKNOWN into speculative 'probably' statements."
+      ]
+    }
+  },
+  "safety_invariants": [
+    "EVIDENCE != CLAIM",
+    "RETRIEVAL SCORE != TRUTH SCORE",
+    "MODEL CONFIDENCE != HISTORICAL TRUTH",
+    "SOURCE COUNT != CONSENSUS",
+    "TIER 1 != AUTOMATIC DOCUMENTED",
+    "COLOR != CULTURAL MEANING",
+    "VISIBLE COLOR != DYE MATERIAL"
+  ]
+}

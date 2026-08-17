@@ -1,0 +1,37 @@
+{
+  "policy_version": "story-grounding-policy-v1.0.0",
+  "policy_name": "Source-Bound Story Grounding & Traceability Policy",
+  "description": "Defines strict audit rules for presenting validated cultural claims to users as Turkish prose.",
+  "grounding_rules": [
+    {
+      "rule_id": "STORY_CLAIM_TRACEABILITY",
+      "requirement": "Every story section containing factual/cultural text MUST reference at least one valid claim_id from the validated claims input."
+    },
+    {
+      "rule_id": "STORY_CITATION_RESOLVABILITY",
+      "requirement": "Every citation in StoryPresentation MUST resolve to an existing EvidenceUnit and ResearchSourceDocument in the EvidencePack."
+    },
+    {
+      "rule_id": "STORY_STATUS_PRESERVATION",
+      "requirement": "Story prose must strictly preserve the claim status: DOCUMENTED is presented as documented, CONTEXTUAL presents scope bounds, CONTESTED presents all sides, UNKNOWN states evidence is insufficient."
+    },
+    {
+      "rule_id": "NO_UNSOURCED_CLAIMS",
+      "requirement": "Story generator MUST NOT introduce new claims, external citations, or unvalidated statements not present in the validated claims input."
+    },
+    {
+      "rule_id": "NO_ORIGIN_AUTHENTICATION",
+      "requirement": "Story presentation MUST NOT declare carpet origin, dynasty, or age based solely on detected visual motif names."
+    },
+    {
+      "rule_id": "NO_COLOR_DYE_SYMBOLISM_INFERENCE",
+      "requirement": "Visual RGB/Lab colors or color names MUST NOT generate cultural symbolism or dye material claims without separate source evidence."
+    }
+  ],
+  "supported_modes": [
+    "TEMPLATE_ONLY",
+    "LOCAL_OPENAI_COMPATIBLE",
+    "REMOTE_OPENAI_COMPATIBLE"
+  ],
+  "default_mode": "TEMPLATE_ONLY"
+}

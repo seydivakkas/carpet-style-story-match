@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "source-bound-story-v1.schema.json",
+  "title": "StoryPresentation",
+  "type": "object",
+  "required": [
+    "story_id",
+    "subject_id",
+    "canonical_motif_key",
+    "title",
+    "summary",
+    "sections",
+    "claim_ids",
+    "citations",
+    "generator_version",
+    "provenance"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "story_id": { "type": "string" },
+    "subject_id": { "type": "string" },
+    "canonical_motif_key": { "type": "string" },
+    "title": { "type": "string" },
+    "summary": { "type": "string" },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["section_id", "heading", "text", "claim_ids"],
+        "additionalProperties": false,
+        "properties": {
+          "section_id": { "type": "string" },
+          "heading": { "type": "string" },
+          "text": { "type": "string" },
+          "claim_ids": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          },
+          "citation_ids": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "claim_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "citations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["citation_id", "claim_id", "evidence_unit_id", "source_id", "locator", "short_citation"],
+        "additionalProperties": false,
+        "properties": {
+          "citation_id": { "type": "string" },
+          "claim_id": { "type": "string" },
+          "evidence_unit_id": { "type": "string" },
+          "source_id": { "type": "string" },
+          "locator": { "type": "string" },
+          "short_citation": { "type": "string" }
+        }
+      }
+    },
+    "uncertainty_notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "claims_used": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "claims_unused": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "language": { "type": "string", "default": "tr" },
+    "generation_mode": { "type": "string", "default": "TEMPLATE_ONLY" },
+    "generator_version": { "type": "string", "const": "source-bound-story-v1.0.0" },
+    "provenance": { "type": "object" }
+  }
+}

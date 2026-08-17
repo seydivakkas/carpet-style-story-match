@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "cultural-claim-v1.schema.json",
+  "title": "ValidatedCulturalClaim",
+  "type": "object",
+  "required": [
+    "claim_id",
+    "subject_id",
+    "canonical_motif_key",
+    "statement",
+    "status",
+    "reasoning_summary",
+    "validator_version",
+    "provenance"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "claim_id": { "type": "string" },
+    "subject_id": { "type": "string" },
+    "canonical_motif_key": { "type": "string" },
+    "statement": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["DOCUMENTED", "CONTEXTUAL", "CONTESTED", "UNKNOWN"]
+    },
+    "scope": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "region": { "type": ["string", "null"] },
+        "period": { "type": ["string", "null"] },
+        "tradition": { "type": ["string", "null"] },
+        "institutional_context": { "type": ["string", "null"] },
+        "object_context": { "type": ["string", "null"] },
+        "other_scope_note": { "type": ["string", "null"] }
+      }
+    },
+    "evidence_links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["evidence_unit_id", "relation", "source_tier", "locator"],
+        "additionalProperties": false,
+        "properties": {
+          "evidence_unit_id": { "type": "string" },
+          "relation": {
+            "type": "string",
+            "enum": ["SUPPORTS", "CONTEXT_LIMITED_SUPPORT", "CONTRADICTS", "IRRELEVANT"]
+          },
+          "scope_note": { "type": ["string", "null"] },
+          "source_tier": {
+            "type": "string",
+            "enum": ["TIER_1_PRIMARY_INSTITUTIONAL", "TIER_2_SCHOLARLY", "TIER_3_REPUTABLE_SECONDARY", "REJECTED_SOURCE"]
+          },
+          "locator": { "type": "string" }
+        }
+      }
+    },
+    "evidence_unit_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "source_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "reasoning_summary": { "type": "string" },
+    "limitations": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "language": { "type": "string", "default": "tr" },
+    "validator_version": { "type": "string", "const": "cultural-claim-validator-v1.0.0" },
+    "provenance": { "type": "object" }
+  }
+}

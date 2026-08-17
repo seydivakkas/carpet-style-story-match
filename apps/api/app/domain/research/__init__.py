@@ -33,6 +33,26 @@ from app.domain.research.resolver import (
     CANONICAL_MOTIFS,
     APPROVED_MOTIF_ALIASES
 )
+from app.domain.research.claim_models import (
+    CulturalClaimStatus,
+    ClaimRelation,
+    ClaimScope,
+    ClaimEvidenceLink,
+    CulturalClaimCandidate,
+    ValidatedCulturalClaim,
+    CULTURAL_CLAIM_SCHEMA_VERSION,
+    CULTURAL_CLAIM_VALIDATOR_VERSION
+)
+from app.domain.research.story_models import (
+    StoryCitation,
+    StorySection,
+    StoryPresentation,
+    SOURCE_BOUND_STORY_SCHEMA_VERSION,
+    STORY_GROUNDING_POLICY_VERSION
+)
+from app.domain.research.claim_validator import CulturalClaimValidator
+from app.domain.research.story_curator import StoryCuratorProvider, TemplateStoryCurator
+from app.domain.research.story_grounding import StoryGroundingValidator, GroundingValidationResult
 
 __all__ = [
     "SourceTier",
@@ -56,5 +76,25 @@ __all__ = [
     "SourceResearchService",
     "resolve_canonical_motif_subject",
     "CANONICAL_MOTIFS",
-    "APPROVED_MOTIF_ALIASES"
+    "APPROVED_MOTIF_ALIASES",
+    "CulturalClaimStatus",
+    "ClaimRelation",
+    "ClaimScope",
+    "ClaimEvidenceLink",
+    "CulturalClaimCandidate",
+    "ValidatedCulturalClaim",
+    "CULTURAL_CLAIM_SCHEMA_VERSION",
+    "CULTURAL_CLAIM_VALIDATOR_VERSION",
+    "StoryCitation",
+    "StorySection",
+    "StoryPresentation",
+    "SOURCE_BOUND_STORY_SCHEMA_VERSION",
+    "STORY_GROUNDING_POLICY_VERSION",
+    "CulturalClaimValidator",
+    "StoryCuratorProvider",
+    "TemplateStoryCurator",
+    "StoryGroundingValidator",
+    "GroundingValidationResult"
 ]
+
+
