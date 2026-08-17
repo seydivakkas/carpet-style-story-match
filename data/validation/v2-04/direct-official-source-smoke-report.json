@@ -1,0 +1,13 @@
+{
+  "provider": "DIRECT_OFFICIAL_SOURCE",
+  "institution": "The Metropolitan Museum of Art",
+  "canonical_url": "https://www.metmuseum.org/art/collection/search/451001",
+  "http_status": 200,
+  "source_tier": "TIER_1_PRIMARY_INSTITUTIONAL",
+  "content_sha256": "1d6a24b8a9278ba381e54d22487789d802070a75cc80e8d8aaa0fcf670d0b63e",
+  "locator": "paragraph-1",
+  "evidence_unit_count": 1,
+  "evidence_pack_version": "evidence-pack-v1.0.0",
+  "evidence_pack_valid": true,
+  "retrieved_at": "2026-08-17T10:15:10.421807+00:00"
+}

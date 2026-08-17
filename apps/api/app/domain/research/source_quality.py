@@ -32,6 +32,36 @@ TIER_1_DOMAINS = {
 }
 
 
+import ipaddress
+
+FORBIDDEN_IP_PATTERNS = {
+    "127.0.0.1", "0.0.0.0", "localhost", "169.254.169.254"
+}
+
+
+def is_ssrf_safe_url(url: str) -> Tuple[bool, str]:
+    """Validates scheme, host, and IP ranges to prevent SSRF vulnerabilities."""
+    if not url or not isinstance(url, str):
+        return False, "Empty or non-string URL."
+
+    parsed = urlparse(url.lower().strip())
+    if parsed.scheme not in ("http", "https"):
+        return False, f"Prohibited URL scheme '{parsed.scheme}'. Only http and https allowed."
+
+    host = parsed.netloc.split(":")[0].strip()
+    if not host or host in FORBIDDEN_IP_PATTERNS:
+        return False, f"Prohibited loopback/metadata host '{host}'."
+
+    try:
+        ip = ipaddress.ip_address(host)
+        if ip.is_private or ip.is_loopback or ip.is_link_local or ip.is_reserved:
+            return False, f"Prohibited private/reserved IP address '{host}'."
+    except ValueError:
+        pass
+
+    return True, "URL is SSRF safe."
+
+
 class SourceQualityFilter:
     """Evaluates cultural source credibility against source-quality-policy-v1.0.0."""
 
@@ -43,6 +73,12 @@ class SourceQualityFilter:
         source_type: str
     ) -> Tuple[SourceTier, str]:
         """Returns (SourceTier, evaluation_reason)."""
+        # SSRF check for external web schemes
+        if canonical_url.startswith("http://") or canonical_url.startswith("https://"):
+            safe, ssrf_reason = is_ssrf_safe_url(canonical_url)
+            if not safe:
+                return SourceTier.REJECTED_SOURCE, f"SSRF Security Violation: {ssrf_reason}"
+
         parsed = urlparse(canonical_url.lower())
         domain = parsed.netloc.lower()
 
@@ -79,7 +115,7 @@ class SourceQualityFilter:
             return SourceTier.TIER_3_REPUTABLE_SECONDARY, f"Established heritage reference type '{source_type}'."
 
         # Default to Tier 3 if valid URL and non-commercial publisher, else Reject
-        if canonical_url.startswith("http://") or canonical_url.startswith("https://") or canonical_url.startswith("file://") or canonical_url.startswith("curated://"):
+        if canonical_url.startswith("http://") or canonical_url.startswith("https://") or canonical_url.startswith("curated://"):
             return SourceTier.TIER_3_REPUTABLE_SECONDARY, "Secondary cultural reference source."
 
         return SourceTier.REJECTED_SOURCE, "Source fails quality and verification guidelines."

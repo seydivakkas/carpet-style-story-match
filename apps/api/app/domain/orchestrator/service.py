@@ -91,14 +91,9 @@ class CarpetAnalysisOrchestrator:
         # 4. Research Stage (Requires Verified ResearchSubject - DOES NOT AUTO-PROMOTE AI CANDIDATE)
         if "research" in stages:
             if verified_subject_motif:
-                subject = ResearchSubject(
-                    subject_id=f"subj-cli-{verified_subject_motif}",
-                    canonical_motif_key=verified_subject_motif,
-                    verification_status=ResearchVerificationStatus.CURATOR_CONFIRMED,
-                    display_name=verified_subject_motif.replace("_", " ").title(),
-                    created_at=output.get("timestamp", "2026-08-17T11:00:00Z")
-                )
                 try:
+                    from app.domain.research import resolve_canonical_motif_subject
+                    subject = resolve_canonical_motif_subject(verified_subject_motif)
                     pack = await self.research_service.execute_research(subject)
                     output["evidence_pack"] = pack.model_dump()
                 except Exception as e:

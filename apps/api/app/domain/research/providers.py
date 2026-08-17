@@ -130,6 +130,16 @@ class CuratedCorpusResearchProvider(SourceResearchProvider):
                     "text": "The eight-pointed star motif is a widespread geometric visual form across Anatolian and Oriental textiles, representing order and stellar symmetry."
                 }
             ],
+            "geometric-star": [
+                {
+                    "source_id": "src-met-star-1998",
+                    "url": "https://www.metmuseum.org/art/collection/search/451001",
+                    "title": "Geometric Eight-Pointed Star Motif in Anatolian Weavings",
+                    "institution": "The Metropolitan Museum of Art",
+                    "type": "museum_catalogue",
+                    "text": "The eight-pointed star motif is a widespread geometric visual form across Anatolian and Oriental textiles, representing order and stellar symmetry."
+                }
+            ],
             "tree_of_life": [
                 {
                     "source_id": "src-vam-tree-2005",
@@ -193,7 +203,8 @@ class DirectOfficialSourceProvider(SourceResearchProvider):
             return None
 
         try:
-            async with httpx.AsyncClient(timeout=self.timeout_seconds, follow_redirects=True) as client:
+            headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"}
+            async with httpx.AsyncClient(timeout=self.timeout_seconds, follow_redirects=True, headers=headers) as client:
                 res = await client.get(canonical_url)
                 if res.status_code != 200:
                     logger.warning(f"HTTP {res.status_code} fetching URL '{canonical_url}'")

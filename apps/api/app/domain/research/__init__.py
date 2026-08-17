@@ -28,6 +28,12 @@ from app.domain.research.retrieval import EvidenceRetrievalEngine
 from app.domain.research.evidence_pack import EvidencePackBuilder
 from app.domain.research.service import SourceResearchService
 
+from app.domain.research.resolver import (
+    resolve_canonical_motif_subject,
+    CANONICAL_MOTIFS,
+    APPROVED_MOTIF_ALIASES
+)
+
 __all__ = [
     "SourceTier",
     "ResearchVerificationStatus",
@@ -47,5 +53,8 @@ __all__ = [
     "RemoteSearchResearchProvider",
     "EvidenceRetrievalEngine",
     "EvidencePackBuilder",
-    "SourceResearchService"
+    "SourceResearchService",
+    "resolve_canonical_motif_subject",
+    "CANONICAL_MOTIFS",
+    "APPROVED_MOTIF_ALIASES"
 ]
