@@ -265,3 +265,97 @@ async def test_api_evidence_pack_unverified_subject_blocked():
         res = await ac.post("/api/v1/research/evidence-pack", json=payload)
         assert res.status_code == 400
         assert "BLOCKED for unverified candidates" in res.json()["detail"]
+
+
+# 10. Color Observation & Extraction Engine Tests
+def test_color_observation_extraction_and_dye_unknown():
+    import cv2
+    import numpy as np
+    from app.domain.color_analysis import ColorExtractor, ColorObservation, COLOR_OBSERVATION_SCHEMA_VERSION
+
+    # Generate synthetic 50/50 red and blue image
+    img = np.zeros((100, 100, 3), dtype=np.uint8)
+    img[:50, :, 2] = 200  # Red upper half in BGR
+    img[50:, :, 0] = 200  # Blue lower half in BGR
+
+    _, buf = cv2.imencode(".png", img)
+    raw_bytes = buf.tobytes()
+
+    extractor = ColorExtractor(min_k=2, max_k=4)
+    colors = extractor.extract_colors(raw_bytes, k=2)
+
+    assert len(colors) >= 2
+    for c in colors:
+        assert c.analysis_version == COLOR_OBSERVATION_SCHEMA_VERSION
+        assert c.dye_material == "UNKNOWN"  # MANDATORY INVARIANT
+        assert 0.0 <= c.coverage <= 1.0
+        assert len(c.rgb) == 3
+        assert len(c.hsv) == 3
+        assert len(c.lab) == 3
+        assert c.perceptual_label != "unresolved"
+
+
+def test_color_observation_rejects_non_unknown_dye():
+    from app.domain.color_analysis import ColorObservation
+
+    with pytest.raises(ValueError) as exc_info:
+        ColorObservation(
+            color_id="col-1",
+            rgb=[200, 0, 0],
+            hex="#C80000",
+            hsv=[0, 255, 200],
+            lab=[50.0, 180.0, 150.0],
+            coverage=0.5,
+            perceptual_label="warm_red",
+            dye_material="madder"  # FORBIDDEN!
+        )
+    assert "dye_material" in str(exc_info.value) or "Dye material" in str(exc_info.value)
+
+
+def test_color_observation_rejects_symbolism_fields():
+    from app.domain.color_analysis import ColorObservation
+
+    bad_dict = {
+        "color_id": "col-1",
+        "rgb": [0, 0, 200],
+        "hex": "#0000C8",
+        "hsv": [120, 255, 200],
+        "lab": [50.0, 140.0, 75.0],
+        "coverage": 0.5,
+        "perceptual_label": "indigo_like",
+        "symbolism": "protection"  # FORBIDDEN!
+    }
+
+    with pytest.raises(ValueError) as exc_info:
+        ColorObservation.model_validate(bad_dict)
+    assert "Forbidden color symbolism field 'symbolism'" in str(exc_info.value)
+
+
+# 11. Carpet Analysis Orchestrator Tests
+@pytest.mark.asyncio
+async def test_carpet_analysis_orchestrator_pipeline():
+    import cv2
+    import numpy as np
+    from app.domain.orchestrator import CarpetAnalysisOrchestrator
+
+    img = np.zeros((100, 100, 3), dtype=np.uint8)
+    img[:, :] = [100, 150, 200]
+    _, buf = cv2.imencode(".jpeg", img)
+    raw_bytes = buf.tobytes()
+
+    orchestrator = CarpetAnalysisOrchestrator()
+    res = await orchestrator.run_pipeline(
+        raw_bytes=raw_bytes,
+        mime_type="image/jpeg",
+        stages=["visual", "research"],
+        verified_subject_motif="star"
+    )
+
+    assert res["orchestrator_version"] == "carpet-orchestrator-v1.0.0"
+    assert "visual" in res["stages_executed"]
+    assert "research" in res["stages_executed"]
+    assert "style_dna" in res
+    assert "color_observations" in res
+    assert len(res["color_observations"]) > 0
+    assert "evidence_pack" in res
+    assert res["evidence_pack"]["schema_version"] == EVIDENCE_PACK_SCHEMA_VERSION

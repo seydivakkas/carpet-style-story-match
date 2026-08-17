@@ -1,0 +1,88 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "color_id": {
+      "title": "Color Id",
+      "type": "string"
+    },
+    "rgb": {
+      "items": {
+        "type": "integer"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "title": "Rgb",
+      "type": "array"
+    },
+    "hex": {
+      "title": "Hex",
+      "type": "string"
+    },
+    "hsv": {
+      "items": {
+        "type": "integer"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "title": "Hsv",
+      "type": "array"
+    },
+    "lab": {
+      "items": {
+        "type": "number"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "title": "Lab",
+      "type": "array"
+    },
+    "coverage": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Coverage",
+      "type": "number"
+    },
+    "perceptual_label": {
+      "title": "Perceptual Label",
+      "type": "string"
+    },
+    "region_scope": {
+      "default": "CANONICAL_CARPET",
+      "title": "Region Scope",
+      "type": "string"
+    },
+    "method": {
+      "default": "kmeans_cielab_v1",
+      "title": "Method",
+      "type": "string"
+    },
+    "analysis_version": {
+      "default": "color-observation-v1.0.0",
+      "title": "Analysis Version",
+      "type": "string"
+    },
+    "confidence": {
+      "default": 0.9,
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Confidence",
+      "type": "number"
+    },
+    "dye_material": {
+      "default": "UNKNOWN",
+      "title": "Dye Material",
+      "type": "string"
+    }
+  },
+  "required": [
+    "color_id",
+    "rgb",
+    "hex",
+    "hsv",
+    "lab",
+    "coverage",
+    "perceptual_label"
+  ],
+  "title": "ColorObservation",
+  "type": "object"
+}
