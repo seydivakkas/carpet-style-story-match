@@ -1,0 +1,342 @@
+{
+  "$defs": {
+    "MotifReviewEvent": {
+      "additionalProperties": false,
+      "description": "Append-only audit trail record for a single human review decision.",
+      "properties": {
+        "review_id": {
+          "description": "Stable server-assigned public review ID (e.g. rev_...)",
+          "title": "Review Id",
+          "type": "string"
+        },
+        "review_subject_id": {
+          "description": "Parent review subject UUID string",
+          "title": "Review Subject Id",
+          "type": "string"
+        },
+        "decision": {
+          "$ref": "#/$defs/ReviewDecisionEnum",
+          "description": "Human decision"
+        },
+        "resulting_status": {
+          "$ref": "#/$defs/ReviewResultingStatusEnum",
+          "description": "Server-computed trusted status"
+        },
+        "selected_canonical_motif_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Selected canonical motif key if confirmed",
+          "title": "Selected Canonical Motif Key"
+        },
+        "reason_code": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MotifReviewReasonCode"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Controlled reason code"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Curator note",
+          "title": "Note"
+        },
+        "reviewer_ref": {
+          "description": "Reviewer reference",
+          "title": "Reviewer Ref",
+          "type": "string"
+        },
+        "reviewer_boundary": {
+          "$ref": "#/$defs/ReviewerBoundaryEnum",
+          "description": "Reviewer trust boundary"
+        },
+        "candidate_snapshot_hash": {
+          "description": "SHA-256 candidate snapshot hash verified at review time",
+          "title": "Candidate Snapshot Hash",
+          "type": "string"
+        },
+        "idempotency_key": {
+          "description": "Persisted idempotency key",
+          "title": "Idempotency Key",
+          "type": "string"
+        },
+        "version": {
+          "description": "Sequential review event version for subject",
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "supersedes_review_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Prior review event ID superseded if re-reviewed",
+          "title": "Supersedes Review Id"
+        },
+        "created_at": {
+          "description": "Event timestamp",
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "review_id",
+        "review_subject_id",
+        "decision",
+        "resulting_status",
+        "reviewer_ref",
+        "reviewer_boundary",
+        "candidate_snapshot_hash",
+        "idempotency_key",
+        "version",
+        "created_at"
+      ],
+      "title": "MotifReviewEvent",
+      "type": "object"
+    },
+    "MotifReviewReasonCode": {
+      "description": "Controlled visual review reason codes (strictly non-cultural).",
+      "enum": [
+        "VISUAL_MATCH_CONFIRMED",
+        "INSUFFICIENT_VISUAL_EVIDENCE",
+        "AMBIGUOUS_WITH_OTHER_MOTIF",
+        "REGION_INCORRECT",
+        "ONTOLOGY_MAPPING_INCORRECT",
+        "NOT_A_MOTIF",
+        "CROP_OR_OCCLUSION_LIMITATION",
+        "OTHER"
+      ],
+      "title": "MotifReviewReasonCode",
+      "type": "string"
+    },
+    "MotifReviewSubject": {
+      "additionalProperties": false,
+      "description": "Immutable representation of an AI motif candidate snapshot subject.",
+      "properties": {
+        "review_subject_id": {
+          "description": "Stable server-assigned public subject ID (e.g. subj_...)",
+          "title": "Review Subject Id",
+          "type": "string"
+        },
+        "analysis_id": {
+          "description": "User upload analysis ID",
+          "title": "Analysis Id",
+          "type": "string"
+        },
+        "candidate_id": {
+          "description": "AI candidate ID within analysis",
+          "title": "Candidate Id",
+          "type": "string"
+        },
+        "image_asset_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional safe image asset reference",
+          "title": "Image Asset Id"
+        },
+        "visual_candidate_key": {
+          "description": "V2-02 visual candidate key",
+          "title": "Visual Candidate Key",
+          "type": "string"
+        },
+        "proposed_canonical_motif_key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Proposed canonical motif key if mapped",
+          "title": "Proposed Canonical Motif Key"
+        },
+        "original_candidate_status": {
+          "description": "Original AI candidate status (e.g. AI_CANDIDATE)",
+          "title": "Original Candidate Status",
+          "type": "string"
+        },
+        "candidate_confidence": {
+          "description": "Model self-reported confidence",
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Candidate Confidence",
+          "type": "number"
+        },
+        "candidate_snapshot": {
+          "additionalProperties": true,
+          "description": "Canonical reviewed candidate snapshot dictionary",
+          "title": "Candidate Snapshot",
+          "type": "object"
+        },
+        "snapshot_hash": {
+          "description": "SHA-256 hash of candidate snapshot",
+          "maxLength": 64,
+          "minLength": 64,
+          "title": "Snapshot Hash",
+          "type": "string"
+        },
+        "model_provenance": {
+          "additionalProperties": true,
+          "description": "AI model provenance metadata",
+          "title": "Model Provenance",
+          "type": "object"
+        },
+        "ontology_version": {
+          "default": "motif-ontology-v1.0.0",
+          "description": "Motif ontology version",
+          "title": "Ontology Version",
+          "type": "string"
+        },
+        "review_version": {
+          "default": 0,
+          "description": "Optimistic concurrency version token",
+          "minimum": 0,
+          "title": "Review Version",
+          "type": "integer"
+        },
+        "created_at": {
+          "description": "Subject registration timestamp",
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "review_subject_id",
+        "analysis_id",
+        "candidate_id",
+        "visual_candidate_key",
+        "original_candidate_status",
+        "candidate_confidence",
+        "candidate_snapshot",
+        "snapshot_hash",
+        "model_provenance",
+        "created_at"
+      ],
+      "title": "MotifReviewSubject",
+      "type": "object"
+    },
+    "ResearchEligibilityEnum": {
+      "description": "Source research eligibility resulting from human review.",
+      "enum": [
+        "SOURCE_RESEARCH_ALLOWED",
+        "SOURCE_RESEARCH_BLOCKED"
+      ],
+      "title": "ResearchEligibilityEnum",
+      "type": "string"
+    },
+    "ReviewDecisionEnum": {
+      "description": "Allowed human curator decisions.",
+      "enum": [
+        "CONFIRM",
+        "UNCERTAIN",
+        "REJECT"
+      ],
+      "title": "ReviewDecisionEnum",
+      "type": "string"
+    },
+    "ReviewResultingStatusEnum": {
+      "description": "Server-owned resulting trusted candidate status.",
+      "enum": [
+        "CURATOR_CONFIRMED",
+        "UNCERTAIN",
+        "REJECTED"
+      ],
+      "title": "ReviewResultingStatusEnum",
+      "type": "string"
+    },
+    "ReviewerBoundaryEnum": {
+      "description": "Trust boundary classification for reviewer identity provenance.",
+      "enum": [
+        "GATEWAY_TRUSTED",
+        "DEVELOPMENT_ADMIN",
+        "SYSTEM_IMPORT"
+      ],
+      "title": "ReviewerBoundaryEnum",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Effective review state and research eligibility response.",
+  "properties": {
+    "review_version_schema": {
+      "default": "motif-review-v1.0.0",
+      "title": "Review Version Schema",
+      "type": "string"
+    },
+    "subject": {
+      "$ref": "#/$defs/MotifReviewSubject",
+      "description": "Candidate review subject"
+    },
+    "effective_event": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/MotifReviewEvent"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Latest effective review event if reviewed"
+    },
+    "effective_status": {
+      "description": "Effective candidate status (AI_CANDIDATE or resulting status)",
+      "title": "Effective Status",
+      "type": "string"
+    },
+    "research_eligibility": {
+      "$ref": "#/$defs/ResearchEligibilityEnum",
+      "description": "Research eligibility (SOURCE_RESEARCH_ALLOWED or BLOCKED)"
+    },
+    "history_count": {
+      "description": "Total review events in subject audit trail",
+      "minimum": 0,
+      "title": "History Count",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "subject",
+    "effective_status",
+    "research_eligibility",
+    "history_count"
+  ],
+  "title": "MotifReviewResult",
+  "type": "object"
+}

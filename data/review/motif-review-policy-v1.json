@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "policy_version": "motif-review-policy-v1.0.0",
+  "schema_version": "motif-review-v1.0.0",
+  "ontology_version": "motif-ontology-v1.0.0",
+  "description": "Frozen policy governing durable human motif review persistence, status transitions, snapshot hashing, optimistic concurrency, and research eligibility.",
+  "allowed_decisions": ["CONFIRM", "UNCERTAIN", "REJECT"],
+  "decision_mappings": {
+    "CONFIRM": {
+      "resulting_status": "CURATOR_CONFIRMED",
+      "research_eligibility": "SOURCE_RESEARCH_ALLOWED",
+      "selected_canonical_key_required": true
+    },
+    "UNCERTAIN": {
+      "resulting_status": "UNCERTAIN",
+      "research_eligibility": "SOURCE_RESEARCH_BLOCKED",
+      "selected_canonical_key_required": false
+    },
+    "REJECT": {
+      "resulting_status": "REJECTED",
+      "research_eligibility": "SOURCE_RESEARCH_BLOCKED",
+      "selected_canonical_key_required": false
+    }
+  },
+  "unmapped_candidate_policy": {
+    "allow_confirm_without_remap": false,
+    "allowed_remap_source": "motif-ontology-v1.0.0",
+    "unmapped_visual_key": "unmapped_visual_motif"
+  },
+  "snapshot_policy": {
+    "hash_algorithm": "SHA-256",
+    "serialization_format": "canonical_json_utf8_sorted_keys",
+    "forbidden_fields": ["timestamp", "created_at", "http_headers", "request_id", "reviewer_ref", "reviewer_boundary"]
+  },
+  "concurrency_policy": {
+    "concurrency_mechanism": "optimistic_versioning",
+    "token_field": "review_version",
+    "initial_version": 0
+  },
+  "idempotency_policy": {
+    "scope": "subject_level",
+    "key_field": "idempotency_key",
+    "mismatch_behavior": "conflict_error"
+  },
+  "audit_policy": {
+    "storage_mode": "append_only",
+    "fk_delete_behavior": "RESTRICT",
+    "effective_review_resolver": "highest_event_version"
+  },
+  "side_effect_policy": {
+    "auto_execute_research": false,
+    "auto_generate_claims": false,
+    "auto_generate_story": false,
+    "auto_mutate_catalog_associations": false
+  }
+}

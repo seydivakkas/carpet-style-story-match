@@ -42,6 +42,11 @@ from app.db.models.carpet_historical_connection import (
     HistoricalConnectionDimensionModel
 )
 
+from app.db.models.motif_review import (
+    MotifReviewSubjectModel,
+    MotifReviewEventModel
+)
+
 __all__ = [
     "Base",
     "CarpetModel",
@@ -69,5 +74,8 @@ __all__ = [
     "HistoricalConnectionNotAvailableReasonEnum",
     "HistoricalConnectionLevelEnum",
     "HistoricalConnectionResultModel",
-    "HistoricalConnectionDimensionModel"
+    "HistoricalConnectionDimensionModel",
+    "MotifReviewSubjectModel",
+    "MotifReviewEventModel"
 ]
+
