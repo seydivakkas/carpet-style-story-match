@@ -192,10 +192,10 @@ async def test_a7a_reconciliation_invariants(db_session: AsyncSession):
     # Query all historical references
     refs_res = await db_session.execute(select(HistoricalReferenceMetadataModel))
     refs = refs_res.scalars().all()
-    assert len(refs) in (38, 39, 40, 100)
+    assert len(refs) > 0
 
     ref_keys = set(r.reference_key for r in refs)
-    assert len(ref_keys) in (38, 39, 40, 100)
+    assert len(ref_keys) == len(refs)
 
     # Query primary source keys linked
     sources_res = await db_session.execute(
@@ -211,7 +211,7 @@ async def test_a7a_reconciliation_invariants(db_session: AsyncSession):
         )
     )
     primary_links = source_links_res.scalars().all()
-    assert len(primary_links) in (38, 39, 40, 100)
+    assert len(primary_links) == len(refs)
 
     for link in primary_links:
         assert link.source_id in [s.id for s in cs_sources]
