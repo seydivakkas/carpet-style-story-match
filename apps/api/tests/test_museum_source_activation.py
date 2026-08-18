@@ -186,8 +186,8 @@ async def test_idempotent_activation_apply(db_session: AsyncSession, monkeypatch
     monkeypatch.setattr(MetMuseumSourceAdapter, "search_objects", lambda self, query="carpet", limit=20: [])
     monkeypatch.setattr(VAMuseumSourceAdapter, "search_objects", lambda self, query="carpet", limit=20: [])
 
-    res1 = await run_activation(provider_filter="all", limit=10, dry_run=False, apply=True, db_session=db_session)
-    res2 = await run_activation(provider_filter="all", limit=10, dry_run=False, apply=True, db_session=db_session)
+    res1 = await run_activation(provider_filter="all", limit=10, dry_run=False, apply=True, report=False, db_session=db_session)
+    res2 = await run_activation(provider_filter="all", limit=10, dry_run=False, apply=True, report=False, db_session=db_session)
 
     assert res1["status"] == "PASS"
     assert res2["status"] == "PASS"
@@ -201,7 +201,7 @@ async def test_db_isolation_and_zero_delta(db_session: AsyncSession, monkeypatch
     monkeypatch.setattr(MetMuseumSourceAdapter, "search_objects", lambda self, query="carpet", limit=20: [])
     monkeypatch.setattr(VAMuseumSourceAdapter, "search_objects", lambda self, query="carpet", limit=20: [])
 
-    res = await run_activation(provider_filter="all", limit=10, dry_run=False, apply=True, db_session=db_session)
+    res = await run_activation(provider_filter="all", limit=10, dry_run=False, apply=True, report=False, db_session=db_session)
 
     assert res["database_delta"]["historical_references_delta"] == 0
     assert res["database_delta"]["historical_carpets_delta"] == 0
