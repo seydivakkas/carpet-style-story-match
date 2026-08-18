@@ -122,9 +122,76 @@
       "high_mAP50": 0.8384
     }
   },
+  "canonical_benchmark_accounting": {
+    "pytest_wrapper_tests": 1,
+    "internal_benchmark_checks": 57,
+    "passed_checks": 57,
+    "failed_checks": 0,
+    "previous_1_1_cause": "Report previously cited 1 / 1 PASS representing 1 pytest test function (test_validation_benchmark_all_checks_pass) which internally executes the master ValidationBenchmarkRunner suite of 57 checks."
+  },
+  "runtime_telemetry": {
+    "training_memory": {
+      "scope": "ACTUAL_TRAINING_PEAK",
+      "total_device_memory_gib": 8.0,
+      "total_device_memory_gb": 8.59,
+      "detect_training_peak_allocated_gib": 2.085,
+      "detect_training_peak_allocated_gb": 2.239,
+      "detect_training_peak_reserved_gib": 2.416,
+      "detect_training_peak_reserved_gb": 2.594,
+      "obb_training_peak_allocated_gib": 2.181,
+      "obb_training_peak_allocated_gb": 2.342,
+      "obb_training_peak_reserved_gib": 2.455,
+      "obb_training_peak_reserved_gb": 2.636,
+      "ultralytics_reported_detect_gpu_mem_gb": 2.24,
+      "ultralytics_reported_obb_gpu_mem_gb": 2.44,
+      "previous_0_08_gb_classification": "INFERENCE_PEAK_POST_TRAINING_IDLE_MEASUREMENT"
+    },
+    "training_duration": {
+      "detect_duration_seconds": 15.22,
+      "detect_duration_scope": "TRAINER_CORE_LOOP_ONLY",
+      "obb_duration_seconds": 16.85,
+      "obb_duration_scope": "TRAINER_CORE_LOOP_ONLY",
+      "training_images": 1050,
+      "batch_size": 16,
+      "expected_total_iterations": 330,
+      "recorded_detect_iterations": 330,
+      "recorded_obb_iterations": 330,
+      "batch_arithmetic_verification": "PASS"
+    },
+    "inference_latency": {
+      "unit": "PER_IMAGE",
+      "batch_size": 16,
+      "imgsz": 640,
+      "warmup_iterations": 5,
+      "measured_iterations": 50,
+      "cuda_synchronized": true,
+      "detect_gpu": {
+        "mean_ms": 10.68,
+        "median_ms": 10.29,
+        "p95_ms": 13.19
+      },
+      "obb_gpu": {
+        "mean_ms": 12.53,
+        "median_ms": 10.71,
+        "p95_ms": 21.64
+      },
+      "detect_cpu": {
+        "mean_ms": 62.10,
+        "median_ms": 62.19,
+        "p95_ms": 67.88
+      },
+      "obb_cpu": {
+        "mean_ms": 63.49,
+        "median_ms": 63.59,
+        "p95_ms": 67.59
+      }
+    }
+  },
   "inference": {
-    "detect_gpu_ms": 3.8,
-    "obb_gpu_ms": 4.2,
-    "cpu_inference_ms": 16.0
+    "unit": "PER_IMAGE",
+    "detect_gpu_ms": 10.29,
+    "obb_gpu_ms": 10.71,
+    "detect_cpu_ms": 62.19,
+    "obb_cpu_ms": 63.59
   }
 }

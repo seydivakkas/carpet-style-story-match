@@ -60,3 +60,26 @@ Detector outputs produce `DetectorVisualProposal` objects:
 ## 9. Deployment & Future Handoff
 - **Production Status**: `RESEARCH_BASELINE` (zero production runtime integration)
 - **V2-09C Readiness**: Handoff interface ready for future VLM visual verification pipeline.
+
+## 10. Benchmark Accounting & Runtime Telemetry Audit (V2-09B.2)
+- **Canonical Benchmark Accounting**:
+  - **Pytest Wrapper Test Count**: 1 test function (`test_validation_benchmark_all_checks_pass`)
+  - **Canonical ValidationBenchmarkRunner Checks**: 57 / 57 PASS (0 failures)
+  - **Accounting Clarification**: Pytest wrapper count (1) is distinct from canonical internal check count (57).
+- **GPU Memory Telemetry & Scope**:
+  - **Device Total Memory**: 8.0 GiB (8.59 GB decimal)
+  - **Training Peak Allocated**: 2.085 GiB (2.239 GB) for Detect; 2.181 GiB (2.342 GB) for OBB
+  - **Training Peak Reserved**: 2.416 GiB (2.594 GB) for Detect; 2.455 GiB (2.636 GB) for OBB
+  - **Ultralytics Reported GPU_MEM**: 2.24 GB (Detect); 2.44 GB (OBB)
+  - **Previous 0.08 GB Classification**: Re-classified as `INFERENCE_PEAK_POST_TRAINING_IDLE_MEASUREMENT`
+- **Training Duration & Batch Arithmetic**:
+  - **Detect Duration**: 15.22s (`TRAINER_CORE_LOOP_ONLY`)
+  - **OBB Duration**: 16.85s (`TRAINER_CORE_LOOP_ONLY`)
+  - **Batch Iterations**: `ceil(1050 / 16) * 5 = 66 * 5 = 330` total iterations (Verified PASS)
+- **Inference Latency Methodology**:
+  - **Unit**: Per-image latency over 50 iterations with CUDA synchronization (`torch.cuda.synchronize()`)
+  - **Detect GPU**: Mean = 10.68 ms, Median = 10.29 ms, p95 = 13.19 ms
+  - **OBB GPU**: Mean = 12.53 ms, Median = 10.71 ms, p95 = 21.64 ms
+  - **Detect CPU**: Mean = 62.10 ms, Median = 62.19 ms, p95 = 67.88 ms
+  - **OBB CPU**: Mean = 63.49 ms, Median = 63.59 ms, p95 = 67.59 ms
+

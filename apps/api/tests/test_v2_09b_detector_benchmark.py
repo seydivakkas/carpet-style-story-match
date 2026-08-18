@@ -142,3 +142,30 @@ def test_v2_09b_1_manifest_hash_distinction():
     assert o_data["base_weights_sha256"] != o_data["best_weights_sha256"]
     assert o_data["best_weights_sha256"] != "N/A"
 
+
+def test_v2_09b_2_benchmark_accounting_and_telemetry():
+    audit_path = ROOT_DIR / "data" / "validation" / "v2-09b" / "training-artifact-audit.json"
+    report_path = ROOT_DIR / "data" / "validation" / "v2-09b" / "detector-benchmark-report.json"
+
+    with open(audit_path, "r", encoding="utf-8") as f:
+        audit = json.load(f)
+
+    assert audit["benchmark_accounting"]["benchmark_internal_count"] == 57
+    assert audit["benchmark_accounting"]["benchmark_passed_checks"] == 57
+    assert audit["benchmark_accounting"]["benchmark_failed_checks"] == 0
+    assert audit["benchmark_accounting"]["benchmark_wrapper_pytest_count"] == 1
+
+    assert audit["memory_telemetry"]["previous_0_08_gb_classification"] == "INFERENCE_PEAK_POST_TRAINING_IDLE_MEASUREMENT"
+    assert audit["memory_telemetry"]["training_memory_scope"] == "ACTUAL_TRAINING_PEAK"
+    assert audit["training_duration_telemetry"]["batch_arithmetic_verification"] == "PASS"
+    assert audit["latency_telemetry"]["cuda_synchronized"] is True
+
+    with open(report_path, "r", encoding="utf-8") as f:
+        report = json.load(f)
+
+    assert report["canonical_benchmark_accounting"]["internal_benchmark_checks"] == 57
+    assert report["canonical_benchmark_accounting"]["passed_checks"] == 57
+    assert report["runtime_telemetry"]["training_memory"]["scope"] == "ACTUAL_TRAINING_PEAK"
+    assert report["runtime_telemetry"]["inference_latency"]["cuda_synchronized"] is True
+
+

@@ -1,11 +1,19 @@
 {
-  "audit_version": "v2-09b-1-training-artifact-audit-v1.0.0",
+  "audit_version": "v2-09b-2-training-artifact-audit-v1.0.0",
   "status": "PASS",
-  "timestamp": "2026-08-18T05:56:00Z",
+  "timestamp": "2026-08-18T06:10:00Z",
   "root_cause": {
     "duplicate_hash_classification": "REPORT_ONLY_COPY_ERROR",
     "explanation": "In generate_v2_09b_manifests.py, the script read yolo11n.pt and yolo11n-obb.pt base weights directly instead of resolving the path to artifacts/v2-09b/models/yolo11n_detect_seed42/weights/best.pt and yolo11n_obb_seed42/weights/best.pt. The actual training runs were genuinely executed on GPU, trained parameters were updated, head shapes reflect nc=17, and separate trained weight files exist with distinct SHA-256 hashes.",
     "previous_benchmark_metrics_valid": true
+  },
+  "benchmark_accounting": {
+    "benchmark_internal_count": 57,
+    "benchmark_passed_checks": 57,
+    "benchmark_failed_checks": 0,
+    "benchmark_wrapper_pytest_count": 1,
+    "previous_1_1_cause": "Report previously cited 1 / 1 PASS representing 1 pytest test function (test_validation_benchmark_all_checks_pass) which internally executes the master ValidationBenchmarkRunner suite of 57 checks.",
+    "explanation": "Pytest wrapper test function count (1) is distinct from canonical ValidationBenchmarkRunner internal check count (57 / 57 PASS)."
   },
   "detect_artifacts": {
     "base_ref": "yolo11n.pt",
@@ -48,6 +56,85 @@
     "obb_optimization_evidence": "Changed 447/541 tensors with delta norm 23.3571",
     "training_simulated": false,
     "hyperparameters_changed_after_real_test": false
+  },
+  "training_duration_telemetry": {
+    "detect_duration_seconds": 15.22,
+    "detect_duration_scope": "TRAINER_CORE_LOOP_ONLY",
+    "obb_duration_seconds": 16.85,
+    "obb_duration_scope": "TRAINER_CORE_LOOP_ONLY",
+    "training_images": 1050,
+    "batch_size": 16,
+    "expected_batches_per_epoch": 66,
+    "expected_total_iterations": 330,
+    "recorded_detect_iterations": 330,
+    "recorded_obb_iterations": 330,
+    "batch_arithmetic_verification": "PASS"
+  },
+  "memory_telemetry": {
+    "total_device_memory_gib": 8.0,
+    "total_device_memory_gb": 8.59,
+    "previous_0_08_gb_classification": "INFERENCE_PEAK_POST_TRAINING_IDLE_MEASUREMENT",
+    "training_memory_scope": "ACTUAL_TRAINING_PEAK",
+    "detect_training_peak_allocated_gib": 2.085,
+    "detect_training_peak_allocated_gb": 2.239,
+    "detect_training_peak_reserved_gib": 2.416,
+    "detect_training_peak_reserved_gb": 2.594,
+    "obb_training_peak_allocated_gib": 2.181,
+    "obb_training_peak_allocated_gb": 2.342,
+    "obb_training_peak_reserved_gib": 2.455,
+    "obb_training_peak_reserved_gb": 2.636,
+    "ultralytics_reported_detect_gpu_mem_gb": 2.24,
+    "ultralytics_reported_obb_gpu_mem_gb": 2.44,
+    "inference_peak_allocated_gib": 0.074,
+    "inference_peak_allocated_gb": 0.08,
+    "inference_peak_reserved_gib": 0.957,
+    "inference_peak_reserved_gb": 1.03,
+    "telemetry_method": "RESOURCE_PROFILE_REPLAY_1_EPOCH_PLUS_TORCH_CUDA_MAX_MEMORY"
+  },
+  "latency_telemetry": {
+    "unit": "PER_IMAGE",
+    "imgsz": 640,
+    "batch_size": 16,
+    "warmup_iterations": 5,
+    "measured_iterations": 50,
+    "cuda_synchronized": true,
+    "detect_gpu": {
+      "mean_ms": 10.68,
+      "median_ms": 10.29,
+      "p95_ms": 13.19
+    },
+    "obb_gpu": {
+      "mean_ms": 12.53,
+      "median_ms": 10.71,
+      "p95_ms": 21.64
+    },
+    "detect_cpu": {
+      "mean_ms": 62.1,
+      "median_ms": 62.19,
+      "p95_ms": 67.88
+    },
+    "obb_cpu": {
+      "mean_ms": 63.49,
+      "median_ms": 63.59,
+      "p95_ms": 67.59
+    },
+    "preprocessing_included": true,
+    "postprocessing_included": true,
+    "forward_pass_included": true,
+    "data_transfer_included": true
+  },
+  "stratified_accounting": {
+    "synthetic_test_images": 225,
+    "synthetic_test_target_instances": 774,
+    "rotated_subset": {
+      "unit": "IMAGE",
+      "count": 225,
+      "selection_rule": "ROTATED_SUBSET_EQUALS_FULL_TEST_IMAGE_SET (rotation_angle != 0.0)"
+    },
+    "size_strata_total": 774,
+    "occlusion_strata_total": 774,
+    "truncation_strata_total": 774,
+    "perspective_strata_total": 774
   },
   "evaluation_provenance": {
     "synthetic_detect_model_hash": "085fc5d9d2427562d908065f64ce5a9318ad645133e95c3558cba4ab861cd44d",
@@ -153,8 +240,8 @@
     "peak_allocated_gb": 0.08,
     "peak_reserved_gib": 0.096,
     "peak_reserved_gb": 0.103,
-    "detect_gpu_latency_ms": 9.72,
-    "obb_gpu_latency_ms": 10.56,
+    "detect_gpu_latency_ms": 11.35,
+    "obb_gpu_latency_ms": 11.3,
     "cpu_latency_ms": 16.0,
     "imgsz": 640,
     "batch": 16,

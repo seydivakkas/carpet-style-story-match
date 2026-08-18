@@ -1,9 +1,9 @@
 {
   "task": "POST-v1 A9 — Historical Style DNA Batch Analysis",
-  "run_id": "hist-run-1787032717",
+  "run_id": "hist-run-1787033545",
   "algorithm_version": "style-dna-v1.0.0",
-  "started_at": "2026-08-18T05:58:37.003017+00:00",
-  "completed_at": "2026-08-18T05:58:37.005395+00:00",
+  "started_at": "2026-08-18T06:12:25.675927+00:00",
+  "completed_at": "2026-08-18T06:12:25.678583+00:00",
   "mode": "APPLY",
   "historical_total": 0,
   "primary_image_ready": 0,
