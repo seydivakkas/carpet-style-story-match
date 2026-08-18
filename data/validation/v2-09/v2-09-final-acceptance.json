@@ -1,7 +1,7 @@
 {
-  "task": "V2-09 FINAL — Phase Acceptance & Release Closure",
+  "task": "V2-09 FINAL.1 — Phase Acceptance & Release Closure",
   "status": "PASS_V2_09_COMPLETE",
-  "timestamp": "2026-08-18T10:48:00Z",
+  "timestamp": "2026-08-18T11:45:00Z",
   "phase_subtasks": {
     "v2_09a": {
       "name": "Synthetic Motif Dataset & Geometric Oracles",
@@ -29,10 +29,17 @@
     "vlm_calls": 0,
     "db_writes": 0
   },
+  "scientific_interpretation": {
+    "catalog_gt_available": false,
+    "precision_measured": false,
+    "recall_measured": false,
+    "zero_proposal_meaning": "At frozen 0.25 threshold, both streams retained zero proposals across 227 catalog images. Without catalog GT, this does not establish precision or recall."
+  },
   "historical_vlm_accounting": {
     "historical_total_calls": 858,
     "historical_real_test_calls": 474,
-    "new_catalog_vlm_calls": 0
+    "new_catalog_vlm_calls": 0,
+    "new_closure_vlm_calls": 0
   },
   "final_v2_09_status": "COMPLETE"
 }

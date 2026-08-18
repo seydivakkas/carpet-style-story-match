@@ -1,0 +1,153 @@
+{
+  "task": "V2-09 FINAL.1 — Zero-Proposal Validation & Batch Report Integrity Audit",
+  "status": "PASS_BATCH_REPORT_INTEGRITY",
+  "timestamp": "2026-08-18T11:45:00Z",
+  "batch_run_id": "v2-09-final-catalog-20260818",
+  "universe": {
+    "total_catalog_products": 232,
+    "processable_images": 227,
+    "no_primary_image_count": 5,
+    "no_primary_skus": [
+      "73480 070",
+      "74480 070",
+      "74928 062",
+      "74928 957",
+      "75272 060"
+    ]
+  },
+  "zero_proposal_validation": {
+    "detect": {
+      "result_objects": 227,
+      "per_image_records": 227,
+      "successful": 227,
+      "failed": 0,
+      "summed_proposals": 0,
+      "extractor_status": "VERIFIED_OPERATIONAL",
+      "model_task": "detect",
+      "model_names_count": 17,
+      "exact_frozen_key_set": true,
+      "class_id_mapping": "0..16",
+      "diagnostic_smoke_required": true,
+      "diagnostic_smoke_result": {
+        "test_image": "syn_001277.jpg",
+        "raw_boxes_returned": 3,
+        "first_extracted_proposal": {
+          "class_key": "vine_scroll_like",
+          "confidence": 0.9627,
+          "bbox": [
+            389.75,
+            166.91,
+            503.21,
+            276.26
+          ]
+        }
+      }
+    },
+    "obb": {
+      "result_objects": 227,
+      "per_image_records": 227,
+      "successful": 227,
+      "failed": 0,
+      "summed_proposals": 0,
+      "extractor_status": "VERIFIED_OPERATIONAL",
+      "model_task": "obb",
+      "model_names_count": 17,
+      "exact_frozen_key_set": true,
+      "class_id_mapping": "0..16",
+      "diagnostic_smoke_required": true,
+      "diagnostic_smoke_result": {
+        "test_image": "syn_001277.jpg",
+        "raw_obb_returned": 7,
+        "first_extracted_proposal": {
+          "class_key": "niche_like",
+          "confidence": 0.6703,
+          "bbox": [
+            366.05,
+            143.09,
+            511.78,
+            292.49
+          ]
+        }
+      }
+    }
+  },
+  "scientific_interpretation": {
+    "catalog_gt_available": false,
+    "precision_measured": false,
+    "recall_measured": false,
+    "false_positive_count_measured": false,
+    "retained_proposals": 0,
+    "zero_proposal_meaning": "At the frozen 0.25 confidence threshold, both detector streams retained zero proposals across the 227 processable catalog images. Because the catalog batch has no complete motif ground truth, this does not establish precision, recall, false-positive rate, or motif absence.",
+    "domain_shift_warning": "The all-zero retained proposal rate may reflect domain shift between synthetic training data and real commercial catalog imagery, confidence calibration mismatch, limited detector generalization, or genuinely low confidence scores on catalog imagery.",
+    "review_burden_meaning": "Observed automatic candidate-review workload at threshold 0.25 was zero. Zero review burden may come with an unknown/high missed-target burden."
+  },
+  "hash_provenance": {
+    "frozen_key_set_hash": "05751c61fb5f8a6e1d5da2648bbb4a559722a5f6e7919bf2614d9d526371d35b",
+    "frozen_key_set_hash_domain": "SERIALIZED_DICT_SHA256",
+    "class_map_file_bytes_sha256": "ba9c52acfe26fcbacf75a192b2598a15f33c057e9734e82c96831783f0fbd9e4",
+    "class_map_file_bytes_hash_domain": "FILE_BYTES_SHA256",
+    "exact_key_set_equality": true,
+    "manifest_canonical_fingerprint": "43a20da8b6dc2448e04fbda83f4a37b8b0c2cba49fdda1a33b7c62e465d80eaf",
+    "manifest_canonical_hash_domain": "CANONICAL_MANIFEST_FINGERPRINT",
+    "manifest_file_bytes_sha256": "ef261386c22ab045fb65f4797ebd67bf912c165c35999573e1c98c29fa8bbfc3",
+    "manifest_file_bytes_hash_domain": "FILE_BYTES_SHA256",
+    "discrepancy_root_cause": "Distinct SHA-256 domains (in-memory dict key-serialization vs raw formatted file bytes). Both domains are legitimate and verified."
+  },
+  "run_provenance": {
+    "batch_run_id": "v2-09-final-catalog-20260818",
+    "input_manifest_hash": "43a20da8b6dc2448e04fbda83f4a37b8b0c2cba49fdda1a33b7c62e465d80eaf",
+    "detect_result_fingerprint": "106e1fbc0c9955dfd3a956cf819a55e529fcf7ea44527a84c78d339fb92cb425",
+    "obb_result_fingerprint": "6c73d539ff2852327ae67d51ba8dcb7b8be7c7e1bd427ef7d1e76a6e7119538c",
+    "canonical_detect_wall_time_sec": 3.7891,
+    "canonical_obb_wall_time_sec": 3.0683,
+    "previous_telemetry_discrepancy_root_cause": "Initial dry run printed console timings (7.94s/7.82s) before path resolution fix; single final coherent run saved in result artifact records 3.79s/3.07s.",
+    "single_coherent_run": true
+  },
+  "ci_and_environment_accounting": {
+    "backend_collected": 556,
+    "backend_passed": 556,
+    "backend_failed": 0,
+    "backend_skipped": 0,
+    "backend_errors": 0,
+    "pytest_exit_code": 0,
+    "atexit_cleanup_warning": "ENVIRONMENTAL_ATEXIT_CLEANUP_WARNING (Windows pytest-current directory permission warning after 0 exit code)",
+    "frontend_typecheck": "PASS",
+    "frontend_lint": "PASS",
+    "frontend_build": "PASS",
+    "static_generation_output": "Generating static pages (9/9)",
+    "route_table_entries": 17,
+    "canonical_benchmark": "57/57 PASS",
+    "make_check_status": "PASS",
+    "make_check_exit_code": 0
+  },
+  "data_isolation": {
+    "CATALOG": 232,
+    "catalog_primary": 227,
+    "catalog_style_dna": {
+      "COMPLETE": 224,
+      "PARTIAL": 3,
+      "NO_PRIMARY_IMAGE": 5
+    },
+    "HistoricalReference": 100,
+    "historical_primary": 45,
+    "historical_style_dna_COMPLETE": 45,
+    "RIGHTS_INELIGIBLE": 55,
+    "Motifs": 13,
+    "Claims": 12,
+    "CarpetMotifAssociation": 12,
+    "CarpetStoryAssociation": 11,
+    "review_subjects": 0,
+    "review_events": 0,
+    "db_writes": 0
+  },
+  "vlm_accounting": {
+    "historical_total_calls": 858,
+    "historical_real_test_calls": 474,
+    "catalog_calls": 0,
+    "new_closure_calls": 0
+  },
+  "v2_09d_status": {
+    "status": "SKIPPED_NOT_YET_JUSTIFIED",
+    "reason": "QLoRA / Fine-tuning skipped due to Small-VLM output conformance bottleneck and non-reusable REAL_TEST dataset."
+  }
+}
