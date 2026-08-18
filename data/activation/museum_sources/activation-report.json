@@ -2,53 +2,53 @@
   "task": "POST-v1 A6 — Real Museum Source Activation",
   "status": "PASS",
   "mode": "APPLY",
-  "timestamp": "2026-08-18T05:31:53.324868+00:00",
+  "timestamp": "2026-08-18T05:37:32.650323+00:00",
   "discovery": {
     "queries": [
       {
         "provider": "met",
         "query": "carpet",
-        "retrieved_at": "2026-08-18T05:31:43.290238+00:00",
-        "candidate_count": 20
+        "retrieved_at": "2026-08-18T05:37:26.388113+00:00",
+        "candidate_count": 10
       },
       {
         "provider": "vam",
         "query": "carpet",
-        "retrieved_at": "2026-08-18T05:31:52.978681+00:00",
-        "candidate_count": 20
+        "retrieved_at": "2026-08-18T05:37:32.480274+00:00",
+        "candidate_count": 10
       }
     ],
-    "total_candidate_records": 40,
-    "accepted": 40,
+    "total_candidate_records": 20,
+    "accepted": 20,
     "rejected_not_carpet": 0,
     "review_required": 0,
     "invalid": 0,
     "duplicates": 0,
     "accepted_by_provider": {
-      "met": 20,
-      "vam": 20
+      "met": 10,
+      "vam": 10
     }
   },
   "rights_and_images": {
-    "image_references_available": 19,
-    "open_access_images": 19,
+    "image_references_available": 9,
+    "open_access_images": 9,
     "rights_review_required": 1,
     "images_downloaded": 0,
     "carpet_images_created": 0
   },
   "a7_readiness": {
-    "READY_FOR_HISTORICAL_CURATION": 40,
+    "READY_FOR_HISTORICAL_CURATION": 20,
     "REVIEW_REQUIRED": 0,
     "NOT_ELIGIBLE": 0
   },
   "database_delta": {
     "curated_sources_before": 0,
-    "curated_sources_after": 40,
-    "curated_sources_delta": 40,
+    "curated_sources_after": 20,
+    "curated_sources_delta": 20,
     "museum_objects_before": 0,
-    "museum_objects_after": 40,
-    "museum_objects_delta": 40,
-    "sources_created": 40,
+    "museum_objects_after": 20,
+    "museum_objects_delta": 20,
+    "sources_created": 20,
     "sources_unchanged": 0,
     "source_conflicts": 0,
     "historical_references_delta": 0,
