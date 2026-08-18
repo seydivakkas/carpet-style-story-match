@@ -400,10 +400,9 @@ class ProceduralStimulusGenerator:
         
         # Subtle texture background
         np.random.seed(42)
-        bg = np.zeros((H, W, 3), dtype=np.uint8)
-        bg[:] = [30, 80, 60]
-        noise = np.random.randint(-20, 20, (H, W, 3), dtype=np.int16)
-        bg = np.clip(bg.astype(np.int16) + noise, 0, 255).astype(np.uint8)
+        noise = np.random.randint(-20, 20, (H, W, 3), dtype=np.int32)
+        bg_base = np.array([30, 80, 60], dtype=np.int32)
+        bg = np.clip(bg_base + noise, 0, 255).astype(np.uint8)
 
         img = Image.fromarray(bg)
         draw = ImageDraw.Draw(img)
