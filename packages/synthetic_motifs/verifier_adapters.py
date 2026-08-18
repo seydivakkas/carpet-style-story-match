@@ -16,6 +16,7 @@ from PIL import Image
 import jsonschema
 from packages.synthetic_motifs.verifier_compositor import COMPOSITOR_VERSION
 
+import re
 import hashlib
 from dataclasses import dataclass, asdict
 
@@ -23,6 +24,8 @@ FROZEN_PROMPT_HASH = "f8417b314f6ae54245a1e3e6a17fbdeddf5cd8fe98bdf086e784ee4b51
 FROZEN_PNG_HASH = "6c63bd619c3b2aabfdb0511404a2c62a4b38ff962f45c9e73e3a537c4c17d13d"
 EXPECTED_PROPOSAL_ID = "smoke_001"
 EXPECTED_PROPOSED_KEY = "star_like"
+MATERIALIZER_VERSION = "visual-verifier-prompt-materializer-v1.0.0"
+PROPOSAL_ID_REGEX = re.compile(r"^[a-zA-Z0-9_-]{1,64}$")
 
 FROZEN_17_KEYS = {
     "medallion_like",
@@ -52,6 +55,59 @@ FORBIDDEN_CULTURAL_TERMS = {
 
 
 @dataclass(frozen=True)
+class CanonicalVerifierMessage:
+    template_version: str
+    template_sha256: str
+    materializer_version: str
+    proposal_id: str
+    proposed_visual_candidate_key: str
+    materialized_prompt_text: str
+
+    def compute_canonical_hash(self) -> str:
+        return hashlib.sha256(self.materialized_prompt_text.encode("utf-8")).hexdigest()
+
+
+class VisualVerifierPromptMaterializer:
+    """
+    Deterministic prompt materializer (visual-verifier-prompt-materializer-v1.0.0).
+    Safely binds trusted case data into frozen prompt template without changing wording.
+    """
+
+    def __init__(self, template_path: Optional[Path] = None):
+        if template_path is None:
+            template_path = Path(__file__).resolve().parents[2] / "data/vlm/prompts/motif-visual-verifier-prompt-v1.txt"
+        self.template_path = template_path
+        self.template_text = template_path.read_text(encoding="utf-8")
+        self.template_hash = hashlib.sha256(self.template_text.encode("utf-8")).hexdigest()
+        assert self.template_hash == FROZEN_PROMPT_HASH, f"Prompt template hash mismatch: {self.template_hash}"
+
+    def materialize(self, proposal_id: str, proposed_key: str) -> CanonicalVerifierMessage:
+        # 1. Input validation: proposal_id format check
+        if not PROPOSAL_ID_REGEX.match(proposal_id):
+            raise ValueError(f"BLOCKED_INVALID_PROPOSAL_ID: proposal_id '{proposal_id}' violates bounded syntax.")
+
+        # 2. Input validation: proposed_key MUST be in FROZEN_17_KEYS
+        if proposed_key not in FROZEN_17_KEYS:
+            raise ValueError(f"BLOCKED_INVALID_PROPOSED_KEY: key '{proposed_key}' is not in frozen 17 visual candidate keys enum.")
+
+        # 3. Deterministic template placeholder replacement
+        materialized_text = self.template_text.replace("<proposal_id>", proposal_id).replace("<proposed_key>", proposed_key)
+
+        # 4. Check no unresolved required placeholders remain
+        if "<proposal_id>" in materialized_text or "<proposed_key>" in materialized_text:
+            raise ValueError("BLOCKED_UNRESOLVED_PLACEHOLDER: Unresolved template placeholder detected after materialization.")
+
+        return CanonicalVerifierMessage(
+            template_version="motif-visual-verifier-prompt-v1.0.0",
+            template_sha256=self.template_hash,
+            materializer_version=MATERIALIZER_VERSION,
+            proposal_id=proposal_id,
+            proposed_visual_candidate_key=proposed_key,
+            materialized_prompt_text=materialized_text
+        )
+
+
+@dataclass(frozen=True)
 class VerifierRuntimeInputRecord:
     run_id: str
     candidate_id: str
@@ -59,6 +115,8 @@ class VerifierRuntimeInputRecord:
     proposal_id: str
     proposed_visual_candidate_key: str
     prompt_sha256: str
+    materialized_prompt_sha256: str
+    canonical_semantic_payload_hash: str
     png_sha256: str
     generation_policy_sha256: str
     adapter_id: str
@@ -68,10 +126,12 @@ class VerifierRuntimeInputRecord:
     def compute_hash(self) -> str:
         data_str = (
             f"{self.run_id}:{self.candidate_id}:{self.proposal_id}:{self.proposed_visual_candidate_key}:"
-            f"{self.prompt_sha256}:{self.png_sha256}:{self.generation_policy_sha256}:{self.model_revision}:"
+            f"{self.prompt_sha256}:{self.materialized_prompt_sha256}:{self.canonical_semantic_payload_hash}:"
+            f"{self.png_sha256}:{self.generation_policy_sha256}:{self.model_revision}:"
             f"{self.model_snapshot_sha256}"
         )
         return hashlib.sha256(data_str.encode("utf-8")).hexdigest()
+
 
 
 
@@ -262,24 +322,28 @@ class Qwen3VLAdapter(VisualVerifierRuntimeAdapter):
     def verify_smoke(
         self,
         image: Image.Image,
-        prompt_text: str,
-        proposal_id: str = EXPECTED_PROPOSAL_ID,
-        proposed_key: str = EXPECTED_PROPOSED_KEY,
+        canonical_message: CanonicalVerifierMessage,
         png_sha256: str = FROZEN_PNG_HASH,
         input_record: Optional[VerifierRuntimeInputRecord] = None
     ) -> Dict[str, Any]:
-        prompt_sha256 = hashlib.sha256(prompt_text.encode("utf-8")).hexdigest()
-        assert proposal_id == EXPECTED_PROPOSAL_ID, f"proposal_id identity violation: {proposal_id}"
-        assert proposed_key == EXPECTED_PROPOSED_KEY, f"proposed_key identity violation: {proposed_key}"
-        assert prompt_sha256 == FROZEN_PROMPT_HASH, f"prompt_sha256 identity violation: {prompt_sha256}"
-        assert png_sha256 == FROZEN_PNG_HASH, f"png_sha256 identity violation: {png_sha256}"
+        assert canonical_message.template_sha256 == FROZEN_PROMPT_HASH, "Template hash mismatch"
+        assert canonical_message.materializer_version == MATERIALIZER_VERSION, "Materializer version mismatch"
+        assert png_sha256 == FROZEN_PNG_HASH, "PNG hash mismatch"
+
+        materialized_text = canonical_message.materialized_prompt_text
+        assert canonical_message.proposal_id in materialized_text, f"proposal_id '{canonical_message.proposal_id}' missing in materialized prompt"
+        assert canonical_message.proposed_visual_candidate_key in materialized_text, f"proposed_key '{canonical_message.proposed_visual_candidate_key}' missing in materialized prompt"
+        assert "<proposal_id>" not in materialized_text, "Unresolved <proposal_id> placeholder in materialized prompt"
+        assert "<proposed_key>" not in materialized_text, "Unresolved <proposed_key> placeholder in materialized prompt"
+
+        canonical_hash = canonical_message.compute_canonical_hash()
 
         messages = [
             {
                 "role": "user",
                 "content": [
                     {"type": "image", "image": image},
-                    {"type": "text", "text": prompt_text}
+                    {"type": "text", "text": materialized_text}
                 ]
             }
         ]
@@ -324,6 +388,7 @@ class Qwen3VLAdapter(VisualVerifierRuntimeAdapter):
             "peak_reserved_gib": infer_reserved,
             "model_generate_call_count": 1,
             "response_cache_hit": False,
+            "canonical_semantic_payload_hash": canonical_hash,
             "materialized_model_input_sha256": materialized_text_hash,
             "generated_tokens": gen_tokens,
             "first_token_id": first_token_id,
@@ -364,24 +429,28 @@ class SmolVLM2Adapter(VisualVerifierRuntimeAdapter):
     def verify_smoke(
         self,
         image: Image.Image,
-        prompt_text: str,
-        proposal_id: str = EXPECTED_PROPOSAL_ID,
-        proposed_key: str = EXPECTED_PROPOSED_KEY,
+        canonical_message: CanonicalVerifierMessage,
         png_sha256: str = FROZEN_PNG_HASH,
         input_record: Optional[VerifierRuntimeInputRecord] = None
     ) -> Dict[str, Any]:
-        prompt_sha256 = hashlib.sha256(prompt_text.encode("utf-8")).hexdigest()
-        assert proposal_id == EXPECTED_PROPOSAL_ID, f"proposal_id identity violation: {proposal_id}"
-        assert proposed_key == EXPECTED_PROPOSED_KEY, f"proposed_key identity violation: {proposed_key}"
-        assert prompt_sha256 == FROZEN_PROMPT_HASH, f"prompt_sha256 identity violation: {prompt_sha256}"
-        assert png_sha256 == FROZEN_PNG_HASH, f"png_sha256 identity violation: {png_sha256}"
+        assert canonical_message.template_sha256 == FROZEN_PROMPT_HASH, "Template hash mismatch"
+        assert canonical_message.materializer_version == MATERIALIZER_VERSION, "Materializer version mismatch"
+        assert png_sha256 == FROZEN_PNG_HASH, "PNG hash mismatch"
+
+        materialized_text = canonical_message.materialized_prompt_text
+        assert canonical_message.proposal_id in materialized_text, f"proposal_id '{canonical_message.proposal_id}' missing in materialized prompt"
+        assert canonical_message.proposed_visual_candidate_key in materialized_text, f"proposed_key '{canonical_message.proposed_visual_candidate_key}' missing in materialized prompt"
+        assert "<proposal_id>" not in materialized_text, "Unresolved <proposal_id> placeholder in materialized prompt"
+        assert "<proposed_key>" not in materialized_text, "Unresolved <proposed_key> placeholder in materialized prompt"
+
+        canonical_hash = canonical_message.compute_canonical_hash()
 
         messages = [
             {
                 "role": "user",
                 "content": [
                     {"type": "image", "image": image},
-                    {"type": "text", "text": prompt_text}
+                    {"type": "text", "text": materialized_text}
                 ]
             }
         ]
@@ -426,6 +495,7 @@ class SmolVLM2Adapter(VisualVerifierRuntimeAdapter):
             "peak_reserved_gib": infer_reserved,
             "model_generate_call_count": 1,
             "response_cache_hit": False,
+            "canonical_semantic_payload_hash": canonical_hash,
             "materialized_model_input_sha256": materialized_text_hash,
             "generated_tokens": gen_tokens,
             "first_token_id": first_token_id,
@@ -466,24 +536,28 @@ class Qwen2VLAdapter(VisualVerifierRuntimeAdapter):
     def verify_smoke(
         self,
         image: Image.Image,
-        prompt_text: str,
-        proposal_id: str = EXPECTED_PROPOSAL_ID,
-        proposed_key: str = EXPECTED_PROPOSED_KEY,
+        canonical_message: CanonicalVerifierMessage,
         png_sha256: str = FROZEN_PNG_HASH,
         input_record: Optional[VerifierRuntimeInputRecord] = None
     ) -> Dict[str, Any]:
-        prompt_sha256 = hashlib.sha256(prompt_text.encode("utf-8")).hexdigest()
-        assert proposal_id == EXPECTED_PROPOSAL_ID, f"proposal_id identity violation: {proposal_id}"
-        assert proposed_key == EXPECTED_PROPOSED_KEY, f"proposed_key identity violation: {proposed_key}"
-        assert prompt_sha256 == FROZEN_PROMPT_HASH, f"prompt_sha256 identity violation: {prompt_sha256}"
-        assert png_sha256 == FROZEN_PNG_HASH, f"png_sha256 identity violation: {png_sha256}"
+        assert canonical_message.template_sha256 == FROZEN_PROMPT_HASH, "Template hash mismatch"
+        assert canonical_message.materializer_version == MATERIALIZER_VERSION, "Materializer version mismatch"
+        assert png_sha256 == FROZEN_PNG_HASH, "PNG hash mismatch"
+
+        materialized_text = canonical_message.materialized_prompt_text
+        assert canonical_message.proposal_id in materialized_text, f"proposal_id '{canonical_message.proposal_id}' missing in materialized prompt"
+        assert canonical_message.proposed_visual_candidate_key in materialized_text, f"proposed_key '{canonical_message.proposed_visual_candidate_key}' missing in materialized prompt"
+        assert "<proposal_id>" not in materialized_text, "Unresolved <proposal_id> placeholder in materialized prompt"
+        assert "<proposed_key>" not in materialized_text, "Unresolved <proposed_key> placeholder in materialized prompt"
+
+        canonical_hash = canonical_message.compute_canonical_hash()
 
         messages = [
             {
                 "role": "user",
                 "content": [
                     {"type": "image", "image": image},
-                    {"type": "text", "text": prompt_text}
+                    {"type": "text", "text": materialized_text}
                 ]
             }
         ]
@@ -528,6 +602,7 @@ class Qwen2VLAdapter(VisualVerifierRuntimeAdapter):
             "peak_reserved_gib": infer_reserved,
             "model_generate_call_count": 1,
             "response_cache_hit": False,
+            "canonical_semantic_payload_hash": canonical_hash,
             "materialized_model_input_sha256": materialized_text_hash,
             "generated_tokens": gen_tokens,
             "first_token_id": first_token_id,

@@ -69,8 +69,8 @@
       "artifact_status": "DOWNLOADED",
       "size_gib": 8.375,
       "runtime_status": "RUNTIME_READY",
-      "schema_valid": false,
-      "semantic_valid": false
+      "schema_valid": true,
+      "semantic_valid": true
     },
     {
       "candidate_id": "C3",

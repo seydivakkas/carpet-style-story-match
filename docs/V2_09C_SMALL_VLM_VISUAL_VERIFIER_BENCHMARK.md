@@ -86,4 +86,25 @@ Input Image ──► YOLO11n Proposal ──► Deterministic Input Compositor 
   - `model_response_cache`: `false`
   - `old_defective_strings_in_active_prompt`: `false`
 - **Trusted Identity Separation**: Model-emitted proposal IDs and visual candidate keys are treated as untrusted validation fields. Authoritative downstream provenance joins rely strictly on trusted input records (`VerifierRuntimeInputRecord`).
-- **Generation Provenance Artifacts**: Individual execution run artifacts saved under `data/validation/v2-09c/runtime-smoke/<run_id>/<cand_id>.json`. Master report saved to `data/validation/v2-09c/corrected-runtime-smoke-provenance-report.json`.
+## 11. V2-09C.1C — Deterministic Prompt Binding & Benchmark Freeze
+
+### Prompt Materializer & Semantic Identity Binding
+- **Component**: `VisualVerifierPromptMaterializer` (`visual-verifier-prompt-materializer-v1.0.0`).
+- **Prompt Template Hash**: `f8417b314f6ae54245a1e3e6a17fbdeddf5cd8fe98bdf086e784ee4b516ccaac` (UNALTERED).
+- **Materialized Prompt Hash**: `981ebe0cd2d5ff23da160c49c09fcda04e198e36bd62372b8bd600bb50053d84`.
+- **Canonical Semantic Payload Hash**: `981ebe0cd2d5ff23da160c49c09fcda04e198e36bd62372b8bd600bb50053d84`.
+- **Materialization Behavior**:
+  - Replaces `<proposal_id>` with trusted proposal ID (`smoke_001`).
+  - Replaces `<proposed_key>` with trusted visual key (`star_like`).
+  - Enforces pre-inference validation: proposal ID must match `^[a-zA-Z0-9_-]{1,64}$` and proposed key must be one of the frozen 17 visual candidate keys. Non-17 keys (e.g. `geometrized_tulip`) or domain terms (e.g. `elibelinde`) raise `ValueError` prior to model invocation.
+
+### Benchmark Freeze Artifact (`visual-verifier-benchmark-freeze.json`)
+- **Location**: `data/validation/v2-09c/visual-verifier-benchmark-freeze.json`
+- **Schema Hash**: `aa63efd246a867f84ba931900589343fc080f18f6dab2155552bac10d41547f8`
+- **Prompt Template Hash**: `f8417b314f6ae54245a1e3e6a17fbdeddf5cd8fe98bdf086e784ee4b516ccaac`
+- **Compositor Hash**: `6c63bd619c3b2aabfdb0511404a2c62a4b38ff962f45c9e73e3a537c4c17d13d`
+- **Eligible Benchmark Models**: `C1` (`Qwen/Qwen3-VL-2B-Instruct`), `C2` (`SmolVLM2-2.2B-Instruct`), `C3` (`Qwen2-VL-2B-Instruct`)
+- **Excluded Models**: `R0` (`Qwen2.5-VL-3B-Instruct-AWQ` - `RUNTIME_INCOMPATIBLE`)
+- **REAL_TEST VLM Calls**: **0** (REAL_TEST strictly unopened)
+- **Status**: `PASS_WITH_RUNTIME_EXCLUSIONS`
+

@@ -1,0 +1,58 @@
+{
+  "benchmark_contract_version": "v2-09c-benchmark-freeze-v1.0.0",
+  "verifier_version": "visual-verifier-v1.0.0",
+  "schema_hash": "aa63efd246a867f84ba931900589343fc080f18f6dab2155552bac10d41547f8",
+  "prompt_template_version": "motif-visual-verifier-prompt-v1.0.0",
+  "prompt_template_hash": "f8417b314f6ae54245a1e3e6a17fbdeddf5cd8fe98bdf086e784ee4b516ccaac",
+  "materializer_version": "visual-verifier-prompt-materializer-v1.0.0",
+  "canonical_message_contract": "canonical-verifier-message-v1.0.0",
+  "compositor_version": "visual-verifier-input-v1.0.0",
+  "compositor_hash": "6c63bd619c3b2aabfdb0511404a2c62a4b38ff962f45c9e73e3a537c4c17d13d",
+  "generation_policy": {
+    "max_new_tokens": 128,
+    "do_sample": false,
+    "temperature": 0.0
+  },
+  "generation_policy_sha256": "58edebf465f41a52c6a413fbf90ad1d84a08e2b980c132b4d07c015660f283a6",
+  "frozen_17_keys": [
+    "cloud_band_like",
+    "comb_like",
+    "hook_like",
+    "horn_like",
+    "human_figure_like_geometric",
+    "lattice_like",
+    "lotus_like",
+    "lozenge_like",
+    "medallion_like",
+    "niche_like",
+    "octagonal_form",
+    "palmette_like",
+    "rosette_like",
+    "star_like",
+    "tree_like",
+    "unmapped_visual_motif",
+    "vine_scroll_like"
+  ],
+  "frozen_17_keys_hash": "b8ac9a720b0f33cc6ebf13e232cabaa9f69f4a67ecf3b91d235ec4ae47efed54",
+  "semantic_validator_version": "visual-verifier-semantic-validator-v1.0.0",
+  "candidate_models": [
+    "R0",
+    "C1",
+    "C2",
+    "C3"
+  ],
+  "eligible_models": [
+    "C1",
+    "C2",
+    "C3"
+  ],
+  "r0_exclusion_reason": "RUNTIME_INCOMPATIBLE (AWQ INT4 compilation constraint on Py3.14 Windows)",
+  "candidate_snapshot_hashes": {
+    "R0": "e7b623934290c5a4da0ee3c6e1e57bfb6b5abbf2",
+    "C1": "89644892e4d85e24eaac8bacfd4f463576704203",
+    "C2": "482adb537c021c86670beed01cd58990d01e72e4",
+    "C3": "895c3a49bc3fa70a340399125c650a463535e71c"
+  },
+  "real_test_vlm_call_count": 0,
+  "frozen_at": "2026-08-18T07:43:54Z"
+}

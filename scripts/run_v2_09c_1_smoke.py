@@ -29,11 +29,15 @@ from packages.synthetic_motifs.verifier_adapters import (
     Qwen2VLAdapter,
     Qwen25VLAWQAdapter,
     VisualVerificationSemanticValidator,
+    VisualVerifierPromptMaterializer,
+    CanonicalVerifierMessage,
     VerifierRuntimeInputRecord,
     FROZEN_PROMPT_HASH,
     FROZEN_PNG_HASH,
     EXPECTED_PROPOSAL_ID,
-    EXPECTED_PROPOSED_KEY
+    EXPECTED_PROPOSED_KEY,
+    MATERIALIZER_VERSION,
+    FROZEN_17_KEYS
 )
 
 PROMPT_EXPECTED_HASH = "f8417b314f6ae54245a1e3e6a17fbdeddf5cd8fe98bdf086e784ee4b516ccaac"
@@ -75,17 +79,16 @@ def compute_snapshot_manifest_hash(model_path: Path) -> Tuple[str, List[Dict[str
 
 def run_v2_09c_1_smoke():
     print("============================================================")
-    print("V2-09C.1B — Corrected Smoke Execution Provenance Closure")
+    print("V2-09C.1C — Deterministic Prompt Binding & Semantic Identity Closure")
     print("============================================================")
 
     run_start_time = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
-    run_id = f"v2-09c-1b-{int(time.time())}"
+    run_id = f"v2-09c-1c-{int(time.time())}"
 
-    # 1. Prompt Immutability Audit
-    prompt_file = ROOT_DIR / "data/vlm/prompts/motif-visual-verifier-prompt-v1.txt"
-    prompt_text = prompt_file.read_text(encoding="utf-8")
-    prompt_hash = hashlib.sha256(prompt_text.encode("utf-8")).hexdigest()
-    print(f"Prompt SHA-256 before/after: {prompt_hash}")
+    # 1. Prompt Template & Materializer Audit
+    materializer = VisualVerifierPromptMaterializer()
+    prompt_hash = materializer.template_hash
+    print(f"Prompt Template SHA-256 before/after: {prompt_hash}")
     assert prompt_hash == PROMPT_EXPECTED_HASH, f"Prompt hash mismatch: {prompt_hash} != {PROMPT_EXPECTED_HASH}"
 
     # 2. Compositor Golden Image with Frozen 17 Visual Candidate Key "star_like"
@@ -106,6 +109,14 @@ def run_v2_09c_1_smoke():
     golden_img.save(golden_path)
     print(f"Golden Compositor PNG SHA-256: {golden_hash}")
     assert golden_hash == FROZEN_PNG_HASH, f"PNG hash mismatch: {golden_hash} != {FROZEN_PNG_HASH}"
+
+    # Materialize Case Prompt
+    canonical_message = materializer.materialize(proposal_id=proposal_id, proposed_key=proposed_key)
+    mat_prompt_hash = hashlib.sha256(canonical_message.materialized_prompt_text.encode("utf-8")).hexdigest()
+    canonical_hash = canonical_message.compute_canonical_hash()
+
+    print(f"Materialized Prompt SHA-256: {mat_prompt_hash}")
+    print(f"Canonical Semantic Payload SHA-256: {canonical_hash}")
 
     # Trusted Input Context
     verifier_input = {
@@ -141,7 +152,7 @@ def run_v2_09c_1_smoke():
             "revision": "482adb537c021c86670beed01cd58990d01e72e4",
             "quantization": "None",
             "adapter_cls": SmolVLM2Adapter,
-            "prev_raw_output_sha256": "1f4e1f74218eb139f4bf4cb9fbc1bc47c1b48bb11c1ad613a00a12e3db784ca1"
+            "prev_raw_output_sha256": "ee7d24ff96fec6cbab59f71c4c170425b74bfebbb2fa9831dbebeebbeae3d72d"
         },
         "C3": {
             "model_id": "Qwen/Qwen2-VL-2B-Instruct",
@@ -175,6 +186,8 @@ def run_v2_09c_1_smoke():
             proposal_id=proposal_id,
             proposed_visual_candidate_key=proposed_key,
             prompt_sha256=prompt_hash,
+            materialized_prompt_sha256=mat_prompt_hash,
+            canonical_semantic_payload_hash=canonical_hash,
             png_sha256=golden_hash,
             generation_policy_sha256=gen_policy_sha256,
             adapter_id=f"adapter-{cand_id.lower()}-v1.0.0",
@@ -186,9 +199,7 @@ def run_v2_09c_1_smoke():
             load_res = adapter.load()
             smoke_res = adapter.verify_smoke(
                 golden_img,
-                prompt_text,
-                proposal_id=proposal_id,
-                proposed_key=proposed_key,
+                canonical_message=canonical_message,
                 png_sha256=golden_hash,
                 input_record=input_record
             )
@@ -222,6 +233,7 @@ def run_v2_09c_1_smoke():
                 "model_generate_call_count": 1,
                 "response_cache_hit": False,
                 "trusted_input_hash": input_record.compute_hash(),
+                "canonical_semantic_payload_hash": canonical_hash,
                 "materialized_model_input_sha256": smoke_res.get("materialized_model_input_sha256"),
                 "generated_tokens": smoke_res.get("generated_tokens"),
                 "first_token_id": smoke_res.get("first_token_id"),
@@ -270,6 +282,7 @@ def run_v2_09c_1_smoke():
                 "model_generate_call_count": 0,
                 "response_cache_hit": False,
                 "trusted_input_hash": input_record.compute_hash(),
+                "canonical_semantic_payload_hash": canonical_hash,
                 "materialized_model_input_sha256": None,
                 "generated_tokens": 0,
                 "first_token_id": None,
@@ -296,14 +309,17 @@ def run_v2_09c_1_smoke():
 
     # Summary Report
     smoke_report = {
-        "benchmark_phase": "V2-09C.1B",
-        "phase_name": "Corrected Smoke Execution Provenance Closure",
+        "benchmark_phase": "V2-09C.1C",
+        "phase_name": "Deterministic Prompt Binding & Model-Input Semantic Identity Closure",
         "status": "PASS_WITH_RUNTIME_EXCLUSIONS",
         "run_id": run_id,
         "started_at": run_start_time,
         "completed_at": run_end_time,
         "real_test_vlm_call_count": 0,
-        "prompt_sha256": prompt_hash,
+        "prompt_template_sha256": prompt_hash,
+        "materializer_version": MATERIALIZER_VERSION,
+        "materialized_prompt_sha256": mat_prompt_hash,
+        "canonical_semantic_payload_hash": canonical_hash,
         "compositor_golden_sha256": golden_hash,
         "input_dimensions": [672, 448],
         "trusted_input": {
@@ -312,7 +328,10 @@ def run_v2_09c_1_smoke():
         },
         "measured_total_model_size_gib": round(sum(r["size_gib"] for r in reports.values()), 3),
         "audit_findings": {
-            "root_cause_of_repeated_outputs": "Models C1/C2/C3 genuinely regenerated outputs containing 17-001/geometrized_tulip, 1/geometric_rosette, and 1234567890/latchhook_diamond because frozen prompt text (f8417b31) contains a list of 17 candidate keys and JSON placeholders (<proposal_id>, <proposed_key>). Without system prompt template substitution (disallowed under prompt immutability), zero-shot VLMs populated placeholders with keys listed in prompt body.",
+            "prompt_template_immutability": "UNCHANGED (f8417b314f6ae54245a1e3e6a17fbdeddf5cd8fe98bdf086e784ee4b516ccaac)",
+            "materializer_version": MATERIALIZER_VERSION,
+            "deterministic_binding": "PROVEN (<proposal_id> -> smoke_001, <proposed_key> -> star_like)",
+            "unresolved_placeholders": False,
             "stale_response_reuse": False,
             "fixture_response_reuse": False,
             "model_response_cache": False,
@@ -321,15 +340,48 @@ def run_v2_09c_1_smoke():
         "candidates": reports
     }
 
+    # Write materialized prompt smoke report
+    mat_report_path = ROOT_DIR / "data/validation/v2-09c/materialized-prompt-runtime-smoke-report.json"
+    mat_report_path.write_text(json.dumps(smoke_report, indent=2), encoding="utf-8")
+    print(f"\nMaterialized Prompt Report written to {mat_report_path}")
+
     # Write primary provenance report
     prov_report_path = ROOT_DIR / "data/validation/v2-09c/corrected-runtime-smoke-provenance-report.json"
     prov_report_path.write_text(json.dumps(smoke_report, indent=2), encoding="utf-8")
-    print(f"\nProvenance Report written to {prov_report_path}")
+    print(f"Provenance Report written to {prov_report_path}")
 
     # Write active smoke report
     active_report_path = ROOT_DIR / "data/validation/v2-09c/model-download-runtime-smoke-report.json"
     active_report_path.write_text(json.dumps(smoke_report, indent=2), encoding="utf-8")
     print(f"Active Smoke Report written to {active_report_path}")
+
+    # Create Benchmark Freeze Artifact
+    freeze_artifact = {
+        "benchmark_contract_version": "v2-09c-benchmark-freeze-v1.0.0",
+        "verifier_version": "visual-verifier-v1.0.0",
+        "schema_hash": "aa63efd246a867f84ba931900589343fc080f18f6dab2155552bac10d41547f8",
+        "prompt_template_version": "motif-visual-verifier-prompt-v1.0.0",
+        "prompt_template_hash": prompt_hash,
+        "materializer_version": MATERIALIZER_VERSION,
+        "canonical_message_contract": "canonical-verifier-message-v1.0.0",
+        "compositor_version": "visual-verifier-input-v1.0.0",
+        "compositor_hash": golden_hash,
+        "generation_policy": gen_policy,
+        "generation_policy_sha256": gen_policy_sha256,
+        "frozen_17_keys": sorted(list(FROZEN_17_KEYS)),
+        "frozen_17_keys_hash": hashlib.sha256(json.dumps(sorted(list(FROZEN_17_KEYS))).encode("utf-8")).hexdigest(),
+        "semantic_validator_version": "visual-verifier-semantic-validator-v1.0.0",
+        "candidate_models": ["R0", "C1", "C2", "C3"],
+        "eligible_models": ["C1", "C2", "C3"],
+        "r0_exclusion_reason": "RUNTIME_INCOMPATIBLE (AWQ INT4 compilation constraint on Py3.14 Windows)",
+        "candidate_snapshot_hashes": {cid: m["revision"] for cid, m in candidate_meta.items()},
+        "real_test_vlm_call_count": 0,
+        "frozen_at": run_end_time
+    }
+
+    freeze_path = ROOT_DIR / "data/validation/v2-09c/visual-verifier-benchmark-freeze.json"
+    freeze_path.write_text(json.dumps(freeze_artifact, indent=2), encoding="utf-8")
+    print(f"Benchmark Freeze Artifact written to {freeze_path}")
 
     # Update Candidate Registry JSON
     cand_reg_path = ROOT_DIR / "data/vlm/v2-09c-model-candidates-v1.json"
@@ -348,7 +400,7 @@ def run_v2_09c_1_smoke():
     cand_reg_path.write_text(json.dumps(cand_reg, indent=2), encoding="utf-8")
 
     print("============================================================")
-    print("V2-09C.1B Smoke Provenance Complete! Status: PASS_WITH_RUNTIME_EXCLUSIONS")
+    print("V2-09C.1C Prompt Binding & Freeze Complete! Status: PASS_WITH_RUNTIME_EXCLUSIONS")
     print("============================================================")
 
 
