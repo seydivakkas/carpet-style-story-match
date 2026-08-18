@@ -363,7 +363,7 @@ async def test_api_endpoints_success(real_db_session):
 
 
 @pytest.mark.asyncio
-async def test_real_data_smoke_run_and_artifact_generation(real_db_session):
+async def test_real_data_smoke_run_and_artifact_generation(real_db_session, tmp_path):
     """Runs a real visual retrieval query against DB baseline, measures latency, generates smoke report artifact."""
     query = VisualRetrievalQuery(
         style_dna=SAMPLE_9D_VECTOR_A,
@@ -410,9 +410,7 @@ async def test_real_data_smoke_run_and_artifact_generation(real_db_session):
         "historical_top_5": [m.model_dump() for m in response.historical_matches],
     }
 
-    report_dir = Path(__file__).resolve().parents[3] / "data" / "validation" / "v2-07"
-    report_dir.mkdir(parents=True, exist_ok=True)
-    report_path = report_dir / "visual-retrieval-smoke-report.json"
+    report_path = tmp_path / "visual-retrieval-smoke-report.json"
 
     with open(report_path, "w", encoding="utf-8") as f:
         json.dump(smoke_report, f, indent=2, ensure_ascii=False)

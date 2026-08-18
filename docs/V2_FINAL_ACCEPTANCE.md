@@ -62,9 +62,9 @@ With the successful completion of V2-10, **V2 development is officially COMPLETE
 12. **CONTRACT-12 (Source Quality Policy)**: `PASS`
     - Commercial manufacturer domains (Merinos/Dinarsu) assigned `REJECTED_SOURCE` for cultural evidence. Institutional TIER_1/TIER_2 required.
 13. **CONTRACT-13 (Offline & Optional Runtime Decoupling)**: `PASS`
-    - System boots 100% offline without GPU, CUDA, or external LLM API dependencies.
+    - Core deterministic acceptance requires no external model network dependency. System boots without GPU, CUDA, or external LLM API dependencies.
 14. **CONTRACT-14 (Research Detector Domain Gap)**: `PASS_WITH_DOCUMENTED_LIMITATION`
-    - YOLO11n Detect and OBB baselines yielded 0 proposals at 0.25 threshold on catalog images due to domain gap. Retained as research-only baselines; 0 detectors selected for production.
+    - Both frozen detectors retained zero proposals at confidence 0.25 on the catalog batch. This is consistent with the documented synthetic-to-real generalization/calibration limitation, but the catalog has no complete GT and therefore no unique causal explanation is established. Retained as research-only baselines; 0 detectors selected for production.
 15. **CONTRACT-15 (Research Small-VLM Benchmark & Conformance Bottleneck)**: `PASS_WITH_DOCUMENTED_LIMITATION`
     - Small-VLMs C1, C2, C3 evaluated on REAL_TEST. Conformance limitation documented; 0 Small-VLMs selected for production verifier.
 16. **CONTRACT-16 (Database Isolation & Immutability)**: `PASS`

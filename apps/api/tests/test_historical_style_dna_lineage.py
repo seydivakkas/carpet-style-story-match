@@ -23,7 +23,7 @@ from app.scripts.activate_historical_images import run_activation
 
 
 @pytest.mark.asyncio
-async def test_lineage_same_db_pilot_continuity(db_session: AsyncSession, monkeypatch):
+async def test_lineage_same_db_pilot_continuity(db_session: AsyncSession, monkeypatch, tmp_path):
     """Verify Case A: 5 pilot profiles persisted -> full run skips them as ALREADY_CURRENT."""
     await setup_a6_and_a7(db_session)
     synthetic_jpeg = create_synthetic_jpeg_bytes(200, 200)
@@ -33,10 +33,10 @@ async def test_lineage_same_db_pilot_continuity(db_session: AsyncSession, monkey
         lambda url, timeout=15, delay_sec=0.2: (synthetic_jpeg, "image/jpeg")
     )
 
-    await run_activation(rights_mode="OPEN_ACCESS_ONLY", dry_run=False, apply=True, db_session=db_session)
+    await run_activation(rights_mode="OPEN_ACCESS_ONLY", dry_run=False, apply=True, db_session=db_session, report=False)
 
-    test_rep = Path(__file__).resolve().parents[3] / "data" / "activation" / "historical_style_dna" / "test-lineage-report.json"
-    test_man = Path(__file__).resolve().parents[3] / "data" / "activation" / "historical_style_dna" / "test-lineage-manifest.json"
+    test_rep = tmp_path / "test-lineage-report.json"
+    test_man = tmp_path / "test-lineage-manifest.json"
 
     # Step 1: Pilot run (5 items) in test DB session
     pilot_report = await run_historical_batch_analysis(
@@ -68,7 +68,7 @@ async def test_lineage_same_db_pilot_continuity(db_session: AsyncSession, monkey
 
 
 @pytest.mark.asyncio
-async def test_lineage_final_idempotency_state(db_session: AsyncSession, monkeypatch):
+async def test_lineage_final_idempotency_state(db_session: AsyncSession, monkeypatch, tmp_path):
     """Verify rerun against complete state evaluates 0 processed, all ready as already_current, and 0 unaccounted."""
     await setup_a6_and_a7(db_session)
     synthetic_jpeg = create_synthetic_jpeg_bytes(200, 200)
@@ -78,10 +78,10 @@ async def test_lineage_final_idempotency_state(db_session: AsyncSession, monkeyp
         lambda url, timeout=15, delay_sec=0.2: (synthetic_jpeg, "image/jpeg")
     )
 
-    await run_activation(rights_mode="OPEN_ACCESS_ONLY", dry_run=False, apply=True, db_session=db_session)
+    await run_activation(rights_mode="OPEN_ACCESS_ONLY", dry_run=False, apply=True, db_session=db_session, report=False)
 
-    test_rep = Path(__file__).resolve().parents[3] / "data" / "activation" / "historical_style_dna" / "test-lineage-report.json"
-    test_man = Path(__file__).resolve().parents[3] / "data" / "activation" / "historical_style_dna" / "test-lineage-manifest.json"
+    test_rep = tmp_path / "test-lineage-report.json"
+    test_man = tmp_path / "test-lineage-manifest.json"
 
     # Step 1: Full run in test DB session
     report1 = await run_historical_batch_analysis(

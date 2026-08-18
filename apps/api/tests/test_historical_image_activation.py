@@ -35,7 +35,7 @@ def create_synthetic_jpeg_bytes(width: int = 200, height: int = 200, color=(180,
 
 async def setup_a6_and_a7(db_session: AsyncSession):
     """Seed test database with full 100 A7 historical references."""
-    await run_a7_activation(dry_run=False, apply=True, db_session=db_session)
+    await run_a7_activation(dry_run=False, apply=True, db_session=db_session, report=False)
 
 
 @pytest.mark.asyncio

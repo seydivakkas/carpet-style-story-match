@@ -20,7 +20,7 @@ from tests.test_historical_image_activation import setup_a6_and_a7, create_synth
 
 
 @pytest.mark.asyncio
-async def test_historical_selection_isolation(db_session: AsyncSession):
+async def test_historical_selection_isolation(db_session: AsyncSession, tmp_path):
     """Verify A9 batch analysis selects strictly HISTORICAL carpets and ignores CATALOG / USER_UPLOAD."""
     cat_res_before = await db_session.execute(select(func.count(CarpetModel.id)).where(CarpetModel.source_type == CarpetSourceType.CATALOG))
     cat_count_before = cat_res_before.scalar_one()
@@ -29,8 +29,8 @@ async def test_historical_selection_isolation(db_session: AsyncSession):
     conn_count_before = conn_res_before.scalar_one()
 
     # Run A9 batch analysis
-    test_rep = Path(__file__).resolve().parents[3] / "data" / "activation" / "historical_style_dna" / "test-report.json"
-    test_man = Path(__file__).resolve().parents[3] / "data" / "activation" / "historical_style_dna" / "test-manifest.json"
+    test_rep = tmp_path / "test-report.json"
+    test_man = tmp_path / "test-manifest.json"
     report = await run_historical_batch_analysis(apply=True, resume=True, report_path=str(test_rep), run_manifest_path=str(test_man))
 
     cat_res_after = await db_session.execute(select(func.count(CarpetModel.id)).where(CarpetModel.source_type == CarpetSourceType.CATALOG))
@@ -72,10 +72,10 @@ async def test_no_primary_image_preserved(db_session: AsyncSession):
 
 
 @pytest.mark.asyncio
-async def test_idempotency_second_run_skips_current(db_session: AsyncSession):
+async def test_idempotency_second_run_skips_current(db_session: AsyncSession, tmp_path):
     """Verify rerun skips already current historical profiles."""
-    test_rep = Path(__file__).resolve().parents[3] / "data" / "activation" / "historical_style_dna" / "test-report.json"
-    test_man = Path(__file__).resolve().parents[3] / "data" / "activation" / "historical_style_dna" / "test-manifest.json"
+    test_rep = tmp_path / "test-report.json"
+    test_man = tmp_path / "test-manifest.json"
     report1 = await run_historical_batch_analysis(apply=True, resume=True, report_path=str(test_rep), run_manifest_path=str(test_man))
     report2 = await run_historical_batch_analysis(apply=True, resume=True, report_path=str(test_rep), run_manifest_path=str(test_man))
 

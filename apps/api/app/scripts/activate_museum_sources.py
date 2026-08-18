@@ -244,6 +244,7 @@ async def run_activation(
     dry_run: bool = True,
     apply: bool = False,
     report: bool = True,
+    output_dir: Optional[Path] = None,
     db_session: Optional[AsyncSession] = None
 ) -> Dict[str, Any]:
     """Run Museum Source Activation pipeline."""
@@ -403,27 +404,7 @@ async def run_activation(
         rights_review_req_count = sum(1 for r in normalized_records if r.rights.image_reuse_status == "RIGHTS_REVIEW_REQUIRED")
         ready_for_a7_count = sum(1 for r in normalized_records if r.a7_readiness == A7ReadinessEnum.READY_FOR_HISTORICAL_CURATION)
 
-        object_dataset_path = DATA_DIR / "museum-object-sources.json"
-        rejected_candidates_path = DATA_DIR / "rejected-candidates.json"
-        report_path = DATA_DIR / "activation-report.json"
-        readme_path = DATA_DIR / "README.md"
-        matrix_path = DOCS_DIR / "museum-source-matrix.md"
-
-        # 1. Write museum-object-sources.json
-        object_dataset_payload = {
-            "dataset_version": "museum-object-sources-v1",
-            "retrieved_at": datetime.now(timezone.utc).isoformat(),
-            "record_count": len(normalized_records),
-            "sources": [r.model_dump() for r in normalized_records]
-        }
-        with open(object_dataset_path, "w", encoding="utf-8") as f:
-            json.dump(object_dataset_payload, f, indent=2, ensure_ascii=False)
-
-        # 2. Write rejected-candidates.json
-        with open(rejected_candidates_path, "w", encoding="utf-8") as f:
-            json.dump(rejected_candidates, f, indent=2, ensure_ascii=False)
-
-        # 3. Write activation-report.json
+        # 3. Build activation-report payload
         report_payload = {
             "task": "POST-v1 A6 — Real Museum Source Activation",
             "status": "PASS",
@@ -466,11 +447,35 @@ async def run_activation(
                 "carpet_images_delta": carpet_images_after - carpet_images_before
             }
         }
-        with open(report_path, "w", encoding="utf-8") as f:
-            json.dump(report_payload, f, indent=2, ensure_ascii=False)
 
-        # 4. Write README.md
-        readme_content = """# POST-v1 A6 — Museum Source Activation Pipeline
+        if report:
+            target_dir = output_dir if output_dir else DATA_DIR
+            object_dataset_path = target_dir / "museum-object-sources.json"
+            rejected_candidates_path = target_dir / "rejected-candidates.json"
+            report_path = target_dir / "activation-report.json"
+            readme_path = target_dir / "README.md"
+            matrix_path = DOCS_DIR / "museum-source-matrix.md"
+
+            # 1. Write museum-object-sources.json
+            object_dataset_payload = {
+                "dataset_version": "museum-object-sources-v1",
+                "retrieved_at": datetime.now(timezone.utc).isoformat(),
+                "record_count": len(normalized_records),
+                "sources": [r.model_dump() for r in normalized_records]
+            }
+            with open(object_dataset_path, "w", encoding="utf-8") as f:
+                json.dump(object_dataset_payload, f, indent=2, ensure_ascii=False)
+
+            # 2. Write rejected-candidates.json
+            with open(rejected_candidates_path, "w", encoding="utf-8") as f:
+                json.dump(rejected_candidates, f, indent=2, ensure_ascii=False)
+
+            # 3. Write activation-report.json
+            with open(report_path, "w", encoding="utf-8") as f:
+                json.dump(report_payload, f, indent=2, ensure_ascii=False)
+
+            # 4. Write README.md
+            readme_content = """# POST-v1 A6 — Museum Source Activation Pipeline
 
 ## Overview
 This directory contains the official object-level museum source registry, normalized object dataset, and activation reports for POST-v1 A6.
@@ -490,11 +495,11 @@ This directory contains the official object-level museum source registry, normal
 - `rejected-candidates.json`: Provenance log of rejected non-carpet search results.
 - `activation-report.json`: Execution metrics and database delta summary.
 """
-        with open(readme_path, "w", encoding="utf-8") as f:
-            f.write(readme_content)
+            with open(readme_path, "w", encoding="utf-8") as f:
+                f.write(readme_content)
 
-        # 5. Write docs/museum-source-matrix.md
-        matrix_content = """# Museum Source Matrix
+            # 5. Write docs/museum-source-matrix.md
+            matrix_content = """# Museum Source Matrix
 
 Official institutional collection providers integrated into the Carpet Style & Story Match platform.
 
@@ -504,8 +509,8 @@ Official institutional collection providers integrated into the Carpet Style & S
 | `vam` | Victoria and Albert Museum | https://collections.vam.ac.uk | `systemNumber` (e.g. `O54321`) | Collections API v2 (JSON) | IIIF / Framemark URL | Non-Commercial Educational | READY | Educational licensing |
 
 """
-        with open(matrix_path, "w", encoding="utf-8") as f:
-            f.write(matrix_content)
+            with open(matrix_path, "w", encoding="utf-8") as f:
+                f.write(matrix_content)
 
         return report_payload
 

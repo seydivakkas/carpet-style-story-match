@@ -1,0 +1,101 @@
+{
+  "task": "V2-10A — Final Release Evidence & Isolation Closure",
+  "status": "PASS",
+  "isolation_status": "ISOLATED_PASS",
+  "canonical_data_mutations": 0,
+  "commit": "29c1a6b5db131b001f4154c4fd44ed3e5c1712a5",
+  "timestamp": "2026-08-18T14:23:35Z",
+  "python_version": "Python 3.14.3",
+  "node_version": "v24.14.0",
+  "git_branch": "master",
+  "test_isolation_audit": {
+    "data_dir_diff_before_tests": 0,
+    "data_dir_diff_after_tests": 0,
+    "data_activation_diff": 0,
+    "data_validation_diff": 0,
+    "focused_activation_diff_exit_code": 0,
+    "full_suite_activation_diff_exit_code": 0,
+    "test_suite_status": "PASS",
+    "test_suite_duration_sec": 237.95
+  },
+  "api_boot_audit": {
+    "api_boot_without_research_models": "PASS",
+    "status": "PASS"
+  },
+  "make_check_audit": {
+    "make_available": false,
+    "execution_mode": "MAKE_CHECK_EQUIVALENT",
+    "make_check_exit_code": 0,
+    "subcommands": {
+      "backend-test": {
+        "command": "cd apps/api && python -m pytest tests/ -v",
+        "exit_code": 0,
+        "collected_tests": 567,
+        "passed_tests": 567,
+        "failed_tests": 0,
+        "status": "PASS"
+      },
+      "frontend-lint": {
+        "command": "cd apps/web && npm run lint",
+        "exit_code": 0,
+        "status": "PASS"
+      },
+      "frontend-typecheck": {
+        "command": "cd apps/web && npm run typecheck",
+        "exit_code": 0,
+        "status": "PASS"
+      },
+      "frontend-build": {
+        "command": "cd apps/web && npm run build",
+        "exit_code": 0,
+        "status": "PASS"
+      }
+    }
+  },
+  "test_baseline_provenance": {
+    "pre_v2_10_collected": 567,
+    "post_v2_10_collected": 567,
+    "v2_09_accepted_closure": 556,
+    "delta_explanation": "In V2-09 FINAL.1, 3 unit tests were added in test_v2_09_full_catalog_batch.py (556 -> 559). In V2-10, 8 unit tests were added in test_v2_10_final_e2e_acceptance.py (559 -> 567). All 567 tests pass cleanly.",
+    "reconciliation_classification": [
+      "TESTS_ADDED_IN_V2_09_FINAL_1",
+      "TESTS_ADDED_IN_V2_10"
+    ]
+  },
+  "validation_benchmark_audit": {
+    "total_checks": 57,
+    "passed_checks": 57,
+    "failed_checks": 0,
+    "overall_status": "PASS"
+  },
+  "alembic_schema_audit": {
+    "alembic_current_revision": "2026_08_17_017",
+    "alembic_heads_revision": "2026_08_17_017",
+    "head_count": 1,
+    "is_single_head": true
+  },
+  "disposable_migration_audit": {
+    "disposable_db_type": "SQLite (temporary file)",
+    "migration_path": "base -> 2026_08_17_017",
+    "status": "PASS",
+    "disposable_db_deleted": true
+  },
+  "boundary_invariants": {
+    "v2_complete": true,
+    "v2_11_created": false,
+    "v2_09d_created": false,
+    "qlora_run": false,
+    "vlm_finetuned": false,
+    "detectors_retrained": false,
+    "research_vlm_selected_for_production": false,
+    "detector_selected_for_production": false,
+    "thresholds_tuned": false,
+    "real_test_reused_for_optimization": false,
+    "cultural_claims_invented": false,
+    "personality_scores_created": false,
+    "overall_recommendation_score_created": false,
+    "new_vlm_calls": 0,
+    "new_detector_inference": 0,
+    "new_real_test_calls": 0
+  }
+}
