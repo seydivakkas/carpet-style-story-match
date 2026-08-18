@@ -1,6 +1,6 @@
 {
   "task": "V2-09C.2 \u2014 Frozen Small-VLM Visual Verifier Benchmark Execution",
-  "status": "PASS_BENCHMARK_COMPLETE",
+  "status": "PASS_RESULT_CLOSURE",
   "generated_at": "2026-08-18T09:14:34Z",
   "benchmark_run_id": "v2-09c-2-1787040461",
   "contract": {
@@ -576,5 +576,18 @@
       "status": "NOT_EVALUATED_RUNTIME_EXCLUDED",
       "exclusion_reason": "RUNTIME_INCOMPATIBLE (AWQ INT4 compilation constraint on Py3.14 Windows)"
     }
+  },
+  "scientific_interpretation": {
+    "dominant_limitation": "OUTPUT_CONFORMANCE_DOMINANT_LIMITATION",
+    "structured_decoding_proven_solution": false,
+    "qlora_status": "NOT_YET_JUSTIFIED",
+    "real_test_reusable_for_tuning": false,
+    "pareto_observations": [
+      "C2 exhibited the highest observed schema validity (34.38% synthetic, 23.85% real GT).",
+      "C3 achieved higher real controlled selective accuracy (84.62%) than C1 (75.0%) and C2 (76.92%), but on a smaller support (13/109 cases vs 26/109 for C2).",
+      "C2 demonstrated positive Detect precision lift (+16.67% from 0.0833 to 0.25) with zero measured recall loss at the frozen 12-proposal operating point.",
+      "C1 exhibited the lowest model load peak memory (3.994 GiB).",
+      "C2 had the lowest measured mean inference latency (3.444s vs 4.855s for C1 and 5.290s for C3)."
+    ]
   }
 }

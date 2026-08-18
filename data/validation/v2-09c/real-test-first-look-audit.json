@@ -18,6 +18,8 @@
     "C3": "2026-08-18T08:59:43Z"
   },
   "post_open_modifications": "NONE",
+  "post_benchmark_new_vlm_calls": 0,
+  "post_benchmark_tuning": false,
   "manifest_hashes": {
     "synthetic_controlled": "ff2c4ae5536ee6dc3dfe497e826973c59de307f9addde47bcb7a7a7f6dbcdeac",
     "real_gt_controlled": "283d86bf848dee3fd7f981622995ac542b35d8dede65c5b9bcea065fc1c7e0f8",

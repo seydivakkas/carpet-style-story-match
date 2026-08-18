@@ -1,0 +1,339 @@
+{
+  "task": "V2-09C.2A — Benchmark Result Accounting & No-Ranking Scientific Closure",
+  "status": "PASS_RESULT_CLOSURE",
+  "audited_at": "2026-08-18T13:08:00Z",
+  "benchmark_run_id": "v2-09c-2-1787040461",
+  "inference_accounting": {
+    "new_vlm_calls": 0,
+    "new_real_test_vlm_calls": 0,
+    "historical_total_vlm_calls": 858,
+    "historical_real_test_vlm_calls": 474,
+    "generate_calls_total": 858,
+    "technical_retries": 0,
+    "response_cache_hits": 0,
+    "per_candidate_cases": {
+      "C1": 286,
+      "C2": 286,
+      "C3": 286
+    },
+    "case_ids_identical_across_candidates": true
+  },
+  "no_ranking_verification": {
+    "ranking_assigned": false,
+    "prohibited_keys_absent": true,
+    "comparison_style": "PARETO_MULTI_METRIC_OBSERVATIONS"
+  },
+  "synthetic_controlled_composition": {
+    "total_cases": 128,
+    "correct_proposals": 85,
+    "wrong_key_proposals": 17,
+    "hard_negatives": 20,
+    "background_negatives": 6,
+    "composition_sum_valid": true
+  },
+  "denominator_and_decision_checks": {
+    "C1": {
+      "synthetic_controlled": {
+        "total": 128,
+        "ACCEPT": 5,
+        "REJECT": 0,
+        "ABSTAIN": 0,
+        "INVALID_OUTPUT": 123,
+        "decision_sum": 128,
+        "schema_valid": 7,
+        "schema_invalid": 121,
+        "schema_sum": 128,
+        "semantic_valid": 5,
+        "semantic_invalid": 123,
+        "semantic_sum": 128,
+        "coverage_numerator": 5,
+        "coverage_denominator": 128,
+        "coverage": 0.0391,
+        "selective_accuracy_numerator": 4,
+        "selective_accuracy_denominator": 5,
+        "selective_accuracy": 0.8
+      },
+      "real_gt_controlled": {
+        "total": 109,
+        "ACCEPT": 4,
+        "REJECT": 0,
+        "ABSTAIN": 0,
+        "INVALID_OUTPUT": 105,
+        "decision_sum": 109,
+        "schema_valid": 15,
+        "schema_invalid": 94,
+        "schema_sum": 109,
+        "semantic_valid": 4,
+        "semantic_invalid": 105,
+        "semantic_sum": 109,
+        "coverage_numerator": 4,
+        "coverage_denominator": 109,
+        "coverage": 0.0367,
+        "selective_accuracy_numerator": 3,
+        "selective_accuracy_denominator": 4,
+        "selective_accuracy": 0.75
+      },
+      "detector_detect_pipeline": {
+        "total": 12,
+        "accepted": 0,
+        "rejected": 0,
+        "abstained": 0,
+        "invalid_output": 12,
+        "decision_sum": 12
+      },
+      "detector_obb_pipeline": {
+        "total": 37,
+        "accepted": 0,
+        "rejected": 0,
+        "abstained": 0,
+        "invalid_output": 37,
+        "decision_sum": 37
+      }
+    },
+    "C2": {
+      "synthetic_controlled": {
+        "total": 128,
+        "ACCEPT": 43,
+        "REJECT": 0,
+        "ABSTAIN": 0,
+        "INVALID_OUTPUT": 85,
+        "decision_sum": 128,
+        "schema_valid": 44,
+        "schema_invalid": 84,
+        "schema_sum": 128,
+        "semantic_valid": 43,
+        "semantic_invalid": 85,
+        "semantic_sum": 128,
+        "coverage_numerator": 43,
+        "coverage_denominator": 128,
+        "coverage": 0.3359,
+        "selective_accuracy_numerator": 31,
+        "selective_accuracy_denominator": 43,
+        "selective_accuracy": 0.7209
+      },
+      "real_gt_controlled": {
+        "total": 109,
+        "ACCEPT": 26,
+        "REJECT": 0,
+        "ABSTAIN": 0,
+        "INVALID_OUTPUT": 83,
+        "decision_sum": 109,
+        "schema_valid": 26,
+        "schema_invalid": 83,
+        "schema_sum": 109,
+        "semantic_valid": 26,
+        "semantic_invalid": 83,
+        "semantic_sum": 109,
+        "coverage_numerator": 26,
+        "coverage_denominator": 109,
+        "coverage": 0.2385,
+        "selective_accuracy_numerator": 20,
+        "selective_accuracy_denominator": 26,
+        "selective_accuracy": 0.7692
+      },
+      "detector_detect_pipeline": {
+        "total": 12,
+        "accepted": 4,
+        "rejected": 0,
+        "abstained": 0,
+        "invalid_output": 8,
+        "decision_sum": 12
+      },
+      "detector_obb_pipeline": {
+        "total": 37,
+        "accepted": 25,
+        "rejected": 0,
+        "abstained": 0,
+        "invalid_output": 12,
+        "decision_sum": 37
+      }
+    },
+    "C3": {
+      "synthetic_controlled": {
+        "total": 128,
+        "ACCEPT": 30,
+        "REJECT": 0,
+        "ABSTAIN": 0,
+        "INVALID_OUTPUT": 98,
+        "decision_sum": 128,
+        "schema_valid": 34,
+        "schema_invalid": 94,
+        "schema_sum": 128,
+        "semantic_valid": 30,
+        "semantic_invalid": 98,
+        "semantic_sum": 128,
+        "coverage_numerator": 30,
+        "coverage_denominator": 128,
+        "coverage": 0.2344,
+        "selective_accuracy_numerator": 19,
+        "selective_accuracy_denominator": 30,
+        "selective_accuracy": 0.6333
+      },
+      "real_gt_controlled": {
+        "total": 109,
+        "ACCEPT": 13,
+        "REJECT": 0,
+        "ABSTAIN": 0,
+        "INVALID_OUTPUT": 96,
+        "decision_sum": 109,
+        "schema_valid": 14,
+        "schema_invalid": 95,
+        "schema_sum": 109,
+        "semantic_valid": 13,
+        "semantic_invalid": 96,
+        "semantic_sum": 109,
+        "coverage_numerator": 13,
+        "coverage_denominator": 109,
+        "coverage": 0.1193,
+        "selective_accuracy_numerator": 11,
+        "selective_accuracy_denominator": 13,
+        "selective_accuracy": 0.8462
+      },
+      "detector_detect_pipeline": {
+        "total": 12,
+        "accepted": 0,
+        "rejected": 0,
+        "abstained": 0,
+        "invalid_output": 12,
+        "decision_sum": 12
+      },
+      "detector_obb_pipeline": {
+        "total": 37,
+        "accepted": 7,
+        "rejected": 0,
+        "abstained": 0,
+        "invalid_output": 30,
+        "decision_sum": 37
+      }
+    }
+  },
+  "hard_negative_accounting": {
+    "cases_per_candidate": 20,
+    "families_count": 5,
+    "cases_per_family": 4,
+    "rejection_counts": {
+      "C1": 0,
+      "C2": 0,
+      "C3": 0
+    },
+    "rejection_rates": {
+      "C1": 0.0,
+      "C2": 0.0,
+      "C3": 0.0
+    },
+    "interpretation": "None of the evaluated zero-shot candidates demonstrated reliable explicit hard-negative rejection under the frozen verifier contract."
+  },
+  "pipeline_confusion_matrices": {
+    "detect_baseline": {
+      "proposals": 12,
+      "tp": 1,
+      "fp": 11,
+      "fn": 91,
+      "precision": 0.0833,
+      "recall": 0.0109,
+      "fp_per_image": 0.3143
+    },
+    "detect_verified": {
+      "C1": {
+        "accepted_proposals": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 92,
+        "precision": 0.0,
+        "recall": 0.0,
+        "fp_per_image": 0.0,
+        "precision_lift": -0.0833,
+        "recall_cost": 0.0109,
+        "fp_per_image_change": -0.3143,
+        "zero_accepted_precision_convention": "0.0 (frozen evaluator convention)"
+      },
+      "C2": {
+        "accepted_proposals": 4,
+        "tp": 1,
+        "fp": 3,
+        "fn": 91,
+        "precision": 0.25,
+        "recall": 0.0109,
+        "fp_per_image": 0.0857,
+        "precision_lift": 0.1667,
+        "recall_cost": 0.0,
+        "fp_per_image_change": -0.2286
+      },
+      "C3": {
+        "accepted_proposals": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 92,
+        "precision": 0.0,
+        "recall": 0.0,
+        "fp_per_image": 0.0,
+        "precision_lift": -0.0833,
+        "recall_cost": 0.0109,
+        "fp_per_image_change": -0.3143,
+        "zero_accepted_precision_convention": "0.0 (frozen evaluator convention)"
+      }
+    },
+    "obb_baseline": {
+      "proposals": 37,
+      "tp": 0,
+      "fp": 37,
+      "fn": 92,
+      "precision": 0.0,
+      "recall": 0.0,
+      "fp_per_image": 1.0571
+    },
+    "obb_verified": {
+      "C1": {
+        "accepted_proposals": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 92,
+        "precision": 0.0,
+        "recall": 0.0,
+        "fp_per_image": 0.0,
+        "precision_lift": 0.0,
+        "recall_cost": 0.0,
+        "fp_per_image_change": -1.0571,
+        "zero_accepted_precision_convention": "0.0 (frozen evaluator convention)"
+      },
+      "C2": {
+        "accepted_proposals": 25,
+        "tp": 0,
+        "fp": 25,
+        "fn": 92,
+        "precision": 0.0,
+        "recall": 0.0,
+        "fp_per_image": 0.7143,
+        "precision_lift": 0.0,
+        "recall_cost": 0.0,
+        "fp_per_image_change": -0.3428
+      },
+      "C3": {
+        "accepted_proposals": 7,
+        "tp": 0,
+        "fp": 7,
+        "fn": 92,
+        "precision": 0.0,
+        "recall": 0.0,
+        "fp_per_image": 0.2,
+        "precision_lift": 0.0,
+        "recall_cost": 0.0,
+        "fp_per_image_change": -0.8571
+      }
+    }
+  },
+  "scientific_interpretation": {
+    "dominant_limitation": "OUTPUT_CONFORMANCE_DOMINANT_LIMITATION",
+    "structured_decoding_proven_solution": false,
+    "structured_decoding_status": "Constrained decoding is a plausible future experiment because schema validity was low, corresponding to high structured-output non-compliance.",
+    "qlora_status": "NOT_YET_JUSTIFIED",
+    "real_test_reusable_for_tuning": false,
+    "pareto_observations": [
+      "C2 exhibited the highest observed schema validity (34.38% synthetic, 23.85% real GT).",
+      "C3 achieved higher real controlled selective accuracy (84.62%) than C1 (75.0%) and C2 (76.92%), but on a smaller support (13/109 cases vs 26/109 for C2).",
+      "C2 demonstrated positive Detect precision lift (+16.67% from 0.0833 to 0.25) with zero measured recall loss at the frozen 12-proposal operating point.",
+      "C1 exhibited the lowest model load peak memory (3.994 GiB).",
+      "C2 had the lowest measured mean inference latency (3.444s vs 4.855s for C1 and 5.290s for C3)."
+    ]
+  }
+}

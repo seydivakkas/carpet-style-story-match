@@ -108,17 +108,20 @@ Input Image ──► YOLO11n Proposal ──► Deterministic Input Compositor 
 - **REAL_TEST VLM Calls**: **0** (REAL_TEST strictly unopened)
 - **Status**: `PASS_WITH_RUNTIME_EXCLUSIONS`
 
-## 12. V2-09C.2 — Frozen Small-VLM Visual Verifier Benchmark Execution Results
+## 12. V2-09C.2 / V2-09C.2A — Frozen Small-VLM Visual Verifier Benchmark Execution & Result Accounting
 
-### First-Look Audit Boundary
+### First-Look Audit Boundary & Zero New Calls
 - **REAL_TEST Opened At**: `2026-08-18T08:18:27Z`
 - **First Evaluated Model**: Candidate `C1`
 - **First-Look Audit Artifact**: `data/validation/v2-09c/real-test-first-look-audit.json`
+- **Scientific Accounting Audit**: `data/validation/v2-09c/benchmark-result-accounting-audit.json`
 - **Pre-Run Freeze Verification**: `PASS`
 - **Post-Open Modifications**: `NONE`
-- **REAL_TEST VLM Call Count**: **474** (158 real test cases * 3 eligible candidates)
+- **Historical REAL_TEST VLM Call Count**: **474** (158 real test cases * 3 eligible candidates)
+- **Post-Benchmark New VLM Calls**: **0** (No new inference executed in V2-09C.2A)
+- **Post-Benchmark Tuning**: `false` (REAL_TEST strictly preserved as frozen test boundary)
 
-### Manifest Case Counts & Hashing
+### Manifest Case Counts & Denominators
 | Benchmark Layer | Case Count | Manifest Hash (SHA-256) |
 |---|---|---|
 | **Layer A: Synthetic Controlled Verification** | 128 | `ff2c4ae5536ee6dc3dfe497e826973c59de307f9addde47bcb7a7a7f6dbcdeac` |
@@ -127,7 +130,7 @@ Input Image ──► YOLO11n Proposal ──► Deterministic Input Compositor 
 | **Layer C2: Detector Proposals (YOLO11n OBB)** | 37 | `25e1a14ecfa2a5d08e92d6a30e94d2c60af1448629ec793b96e603a7620d18d9` |
 | **Total Cases Per Candidate** | **286** | -- |
 
-### Comprehensive Candidate Comparison Matrix
+### Comprehensive Multi-Metric Comparison Matrix (No Ranking Assigned)
 
 | Metric / Evaluation Dimension | C1: Qwen3-VL-2B-Instruct | C2: SmolVLM2-2.2B-Instruct | C3: Qwen2-VL-2B-Instruct | R0: Qwen2.5-VL-3B-AWQ |
 |---|---|---|---|---|
@@ -137,34 +140,50 @@ Input Image ──► YOLO11n Proposal ──► Deterministic Input Compositor 
 | **Peak Infer Memory (Alloc / Res)** | 4.186 GiB / 4.209 GiB | 4.633 GiB / 4.727 GiB | 4.269 GiB / 4.312 GiB | N/A |
 | **Layer A: Schema Valid Rate** | 5.47% (7/128) | 34.38% (44/128) | 26.56% (34/128) | N/A |
 | **Layer A: Semantic Valid Rate** | 3.91% (5/128) | 33.59% (43/128) | 23.44% (30/128) | N/A |
-| **Layer A: Selective Accuracy** | 80.0% (4/5) | 72.09% (31/43) | 63.33% (19/30) | N/A |
-| **Layer A: Correct-Key Accuracy** | 100.0% | 88.57% | 95.00% | N/A |
+| **Layer A: Coverage** | 3.91% (5/128) | 33.59% (43/128) | 23.44% (30/128) | N/A |
+| **Layer A: Selective Accuracy** | 80.0% (4/5 support) | 72.09% (31/43 support) | 63.33% (19/30 support) | N/A |
+| **Layer A: Correct-Key Accuracy** | 100.0% (4/4) | 88.57% (31/35) | 95.00% (19/20) | N/A |
 | **Layer A: False Accept Rate** | 3.85% (1/26) | 30.77% (8/26) | 38.46% (10/26) | N/A |
 | **Layer A: Hard-Negative Rejection** | 0.0% (0/20) | 0.0% (0/20) | 0.0% (0/20) | N/A |
 | **Layer B: Schema Valid Rate** | 13.76% (15/109) | 23.85% (26/109) | 12.84% (14/109) | N/A |
 | **Layer B: Semantic Valid Rate** | 3.67% (4/109) | 23.85% (26/109) | 11.93% (13/109) | N/A |
-| **Layer B: Selective Accuracy** | 75.0% (3/4) | 76.92% (20/26) | 84.62% (11/13) | N/A |
-| **Layer C1 (Detect): Precision Lift** | -8.33% (0.0833 -> 0.0) | +16.67% (0.0833 -> 0.25) | -8.33% (0.0833 -> 0.0) | N/A |
-| **Layer C1 (Detect): Recall Cost** | 1.09% (0.0109 -> 0.0) | 0.00% (0.0109 -> 0.0109) | 1.09% (0.0109 -> 0.0) | N/A |
-| **Layer C1 (Detect): FP / Image Δ** | -0.3143 (0.3143 -> 0.0) | -0.2286 (0.3143 -> 0.0857) | -0.3143 (0.3143 -> 0.0) | N/A |
-| **Layer C2 (OBB): FP / Image Δ** | -1.0571 (1.0571 -> 0.0) | -0.3428 (1.0571 -> 0.7143) | -0.8571 (1.0571 -> 0.2000) | N/A |
+| **Layer B: Coverage** | 3.67% (4/109) | 23.85% (26/109) | 11.93% (13/109) | N/A |
+| **Layer B: Selective Accuracy** | 75.0% (3/4 support) | 76.92% (20/26 support) | 84.62% (11/13 support) | N/A |
+| **Layer C1 (Detect): Precision (Before -> After)** | 0.0833 -> 0.0000 | 0.0833 -> 0.2500 | 0.0833 -> 0.0000 | N/A |
+| **Layer C1 (Detect): Precision Lift** | -0.0833 (-8.33%) | +0.1667 (+16.67%) | -0.0833 (-8.33%) | N/A |
+| **Layer C1 (Detect): Recall (Before -> After)** | 0.0109 -> 0.0000 | 0.0109 -> 0.0109 | 0.0109 -> 0.0000 | N/A |
+| **Layer C1 (Detect): Recall Cost** | 0.0109 (1.09%) | 0.0000 (0.0%) | 0.0109 (1.09%) | N/A |
+| **Layer C1 (Detect): FP / Image (Before -> After)** | 0.3143 -> 0.0000 | 0.3143 -> 0.0857 | 0.3143 -> 0.0000 | N/A |
+| **Layer C2 (OBB): Precision (Before -> After)** | 0.0000 -> 0.0000 | 0.0000 -> 0.0000 | 0.0000 -> 0.0000 | N/A |
+| **Layer C2 (OBB): Precision Lift** | 0.0000 (0.0%) | 0.0000 (0.0%) | 0.0000 (0.0%) | N/A |
+| **Layer C2 (OBB): Recall (Before -> After)** | 0.0000 -> 0.0000 | 0.0000 -> 0.0000 | 0.0000 -> 0.0000 | N/A |
+| **Layer C2 (OBB): Recall Cost** | 0.0000 (0.0%) | 0.0000 (0.0%) | 0.0000 (0.0%) | N/A |
+| **Layer C2 (OBB): FP / Image (Before -> After)** | 1.0571 -> 0.0000 | 1.0571 -> 0.7143 | 1.0571 -> 0.2000 | N/A |
+| **Layer C2 (OBB): FP / Image Δ** | -1.0571 | -0.3428 | -0.8571 | N/A |
 
-### Scientific Findings & Final Candidate Ranking
-1. **Zero-Shot Small VLMs Cannot Act as Unconstrained Structured Verifiers Without Constrained Decoding / Grammar Enforcement**:
-   - Zero-shot 2B-scale VLMs without logit-bias grammar constraints output invalid JSON schemas or hallucinated text fields in 65% to 96% of cases under zero-temperature greedy sampling.
-   - **Candidate C2 (`SmolVLM2-2.2B-Instruct`)** achieved highest schema validity (34.38% Layer A, 23.85% Layer B) and provided the only positive precision lift (+16.67% on YOLO11n Detect proposals) with zero recall cost (0.0%).
-   - **Candidate C1 (`Qwen3-VL-2B-Instruct`)** exhibited high conservatism (94.5% invalid output / non-compliance), but achieved 100% correct-key accuracy on accepted cases.
-   - **Candidate C3 (`Qwen2-VL-2B-Instruct`)** achieved moderate valid rates but suffered higher false-accept rates on hard-negative synthetic cases (38.46%).
-2. **Final Candidate Ranking**:
-   - **Rank 1**: `C2` (`SmolVLM2-2.2B-Instruct`) — Highest schema adherence and precision lift without recall penalty.
-   - **Rank 2**: `C3` (`Qwen2-VL-2B-Instruct`) — Moderate valid rate, fast generation.
-   - **Rank 3**: `C1` (`Qwen3-VL-2B-Instruct`) — Ultra-conservative schema adherence under unconstrained prompt.
-   - **Excluded**: `R0` (`Qwen2.5-VL-3B-Instruct-AWQ`) — Windows Py3.14 AWQ compilation constraint.
+### Scientific Findings & Pareto Observations (No Ranking Assigned)
+1. **Structured Output Non-Compliance**:
+   Schema validity was low, corresponding to high structured-output non-compliance (65.62% to 94.53% invalid schema outputs across candidates under zero-shot greedy decoding).
+2. **Hard-Negative Limitation**:
+   None of the evaluated zero-shot candidates demonstrated reliable explicit hard-negative rejection under the frozen verifier contract (0/20 explicit rejection across C1, C2, and C3).
+3. **Pareto-Style Multi-Metric Observations**:
+   - **C2 (`SmolVLM2-2.2B-Instruct`)** exhibited the highest observed schema validity (34.38% synthetic, 23.85% real GT).
+   - **C3 (`Qwen2-VL-2B-Instruct`)** achieved higher real controlled selective accuracy (84.62%) than C1 (75.0%) and C2 (76.92%), but on a smaller support (13/109 valid non-abstained cases vs 26/109 for C2).
+   - **C2** demonstrated positive Detect precision lift (+16.67% from 0.0833 to 0.25) with zero measured recall loss at the frozen 12-proposal operating point.
+   - **C1 (`Qwen3-VL-2B-Instruct`)** exhibited the lowest model load peak memory (3.994 GiB).
+   - **C2** had the lowest measured mean inference latency (3.444s vs 4.855s for C1 and 5.290s for C3).
+4. **Dominant Limitation & Future Experiments**:
+   - Dominant limitation category: `OUTPUT_CONFORMANCE_DOMINANT_LIMITATION`.
+   - Constrained decoding is a plausible future experiment because schema validity was low, corresponding to high structured-output non-compliance.
+   - QLoRA fine-tuning status: `NOT_YET_JUSTIFIED`.
+   - REAL_TEST boundary strictly frozen: REAL_TEST cannot be used for iterative prompt or grammar optimization.
 
 ### Final Task Closure Status
-**STATUS**: `PASS_BENCHMARK_COMPLETE`
+**STATUS**: `PASS_RESULT_CLOSURE`
 - Result artifact: `data/validation/v2-09c/small-vlm-benchmark-result-v1.json`
-- Audit artifact: `data/validation/v2-09c/real-test-first-look-audit.json`
+- Audit artifact: `data/validation/v2-09c/benchmark-result-accounting-audit.json`
+- First-look audit: `data/validation/v2-09c/real-test-first-look-audit.json`
 - Freeze definition: `data/validation/v2-09c/visual-verifier-benchmark-freeze.json`
+
 
 
