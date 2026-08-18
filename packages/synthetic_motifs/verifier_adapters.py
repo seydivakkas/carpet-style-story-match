@@ -54,6 +54,9 @@ FORBIDDEN_CULTURAL_TERMS = {
 }
 
 
+CANONICAL_MESSAGE_CONTRACT = "canonical-verifier-message-v1.0.0"
+
+
 @dataclass(frozen=True)
 class CanonicalVerifierMessage:
     template_version: str
@@ -63,8 +66,22 @@ class CanonicalVerifierMessage:
     proposed_visual_candidate_key: str
     materialized_prompt_text: str
 
+    def to_canonical_dict(self) -> Dict[str, Any]:
+        materialized_prompt_sha256 = hashlib.sha256(self.materialized_prompt_text.encode("utf-8")).hexdigest()
+        return {
+            "contract_version": CANONICAL_MESSAGE_CONTRACT,
+            "materializer_version": self.materializer_version,
+            "materialized_prompt_sha256": materialized_prompt_sha256,
+            "proposal_id": self.proposal_id,
+            "proposed_visual_candidate_key": self.proposed_visual_candidate_key,
+            "template_sha256": self.template_sha256,
+            "template_version": self.template_version
+        }
+
     def compute_canonical_hash(self) -> str:
-        return hashlib.sha256(self.materialized_prompt_text.encode("utf-8")).hexdigest()
+        payload_bytes = json.dumps(self.to_canonical_dict(), sort_keys=True, separators=(",", ":")).encode("utf-8")
+        domain_prefix = f"{CANONICAL_MESSAGE_CONTRACT}\x00".encode("utf-8")
+        return hashlib.sha256(domain_prefix + payload_bytes).hexdigest()
 
 
 class VisualVerifierPromptMaterializer:

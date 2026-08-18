@@ -455,3 +455,52 @@ def test_v2_09c_1c_benchmark_freeze_artifact():
     assert len(freeze["frozen_17_keys"]) == 17
     assert freeze["eligible_models"] == ["C1", "C2", "C3"]
 
+
+def test_v2_09c_1d_canonical_hash_domain_separation():
+    """Verify materialized prompt SHA and canonical message SHA are distinct and cover proposal identity."""
+    from packages.synthetic_motifs.verifier_adapters import VisualVerifierPromptMaterializer
+    materializer = VisualVerifierPromptMaterializer()
+    msg = materializer.materialize(proposal_id="smoke_001", proposed_key="star_like")
+
+    prompt_sha = hashlib.sha256(msg.materialized_prompt_text.encode("utf-8")).hexdigest()
+    canonical_hash = msg.compute_canonical_hash()
+
+    assert prompt_sha != canonical_hash, "Prompt SHA and Canonical Message SHA must be distinct domain-separated hashes"
+
+    # Changing proposal_id changes canonical hash
+    msg_prop = materializer.materialize(proposal_id="smoke_002", proposed_key="star_like")
+    assert msg_prop.compute_canonical_hash() != canonical_hash
+
+    # Changing proposed_key changes canonical hash
+    msg_key = materializer.materialize(proposal_id="smoke_001", proposed_key="niche_like")
+    assert msg_key.compute_canonical_hash() != canonical_hash
+
+
+def test_v2_09c_1d_second_case_verification():
+    """Verify second-case (case_002 / octagonal_form) changes prompt SHA & canonical SHA while keeping template SHA unchanged."""
+    from packages.synthetic_motifs.verifier_adapters import VisualVerifierPromptMaterializer
+    materializer = VisualVerifierPromptMaterializer()
+    case1 = materializer.materialize(proposal_id="smoke_001", proposed_key="star_like")
+    case2 = materializer.materialize(proposal_id="case_002", proposed_key="octagonal_form")
+
+    assert case1.template_sha256 == case2.template_sha256 == "f8417b314f6ae54245a1e3e6a17fbdeddf5cd8fe98bdf086e784ee4b516ccaac"
+    assert case1.materialized_prompt_text != case2.materialized_prompt_text
+    assert case1.compute_canonical_hash() != case2.compute_canonical_hash()
+
+
+def test_v2_09c_1d_pre_real_test_audit_artifact():
+    """Verify pre-real-test-freeze-audit.json contents and status PASS_REAL_TEST_GATE_READY."""
+    audit_path = ROOT_DIR / "data/validation/v2-09c/pre-real-test-freeze-audit.json"
+    assert audit_path.exists(), "Pre-REAL_TEST freeze audit artifact missing"
+    audit = json.loads(audit_path.read_text(encoding="utf-8"))
+
+    assert audit["benchmark_phase"] == "V2-09C.1D"
+    assert audit["status"] == "PASS_REAL_TEST_GATE_READY"
+    assert audit["real_test_vlm_call_count"] == 0
+    assert audit["hash_domain_audit"]["equal_hash_root_cause"] == "C. CANONICAL_HASH_ONLY_HASHES_PROMPT_TEXT"
+    assert audit["hash_domain_audit"]["accidental_alias_fixed"] is True
+    assert audit["second_case_verification"]["prompt_template_unchanged"] is True
+    assert audit["second_case_verification"]["materialized_prompt_changed"] is True
+    assert audit["second_case_verification"]["canonical_hash_changed"] is True
+
+

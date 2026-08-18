@@ -1,0 +1,48 @@
+{
+  "candidate_id": "C1",
+  "model_id": "Qwen/Qwen3-VL-2B-Instruct",
+  "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+  "downloaded": true,
+  "size_gib": 3.974,
+  "snapshot_manifest_sha256": "ccc27a55974c4e0072ba449dc4163a35b5fa9a498410c9831341bdc7c60d227c",
+  "weight_shards": [
+    {
+      "name": "model.safetensors",
+      "size_bytes": 4255140312,
+      "sha256": "7de1838c87a5349b016c26a1c3f7d2bc400a3d485f95ef39a7059ffd734977a0"
+    }
+  ],
+  "quantization": "None",
+  "loaded_dtype": "bfloat16",
+  "runtime_status": "RUNTIME_READY",
+  "load_seconds": 3.34,
+  "gpu_load_peak_allocated_gib": 3.963,
+  "inference_seconds": 5.35,
+  "gpu_infer_peak_allocated_gib": 4.165,
+  "gpu_infer_peak_reserved_gib": 4.18,
+  "model_generate_call_count": 1,
+  "response_cache_hit": false,
+  "trusted_input_hash": "7a238c32401ea2aabefc2d202e08ae65223204c8db6a794bbbfb334605eaae28",
+  "canonical_semantic_payload_hash": "265876c4e671d7ddbc80108e8ca6b8fe905ebb8916e9069166367458f1709c8a",
+  "materialized_model_input_sha256": "1fe30f0a5936e593c0ab16a00dfc1e24fd52d859a1de31ca2a6fd5d2ca785b2c",
+  "generated_tokens": 120,
+  "first_token_id": 73594,
+  "last_token_id": 151645,
+  "token_sequence_sha256": "836faf373bb4af0cf1a25392d36d513f6c7faaa770cd3d70bc347fa6a04d6082",
+  "raw_output": "```json\n{\n  \"schema_version\": \"visual-verifier-v1.0.0\",\n  \"proposal_id\": \"smoke_001\",\n  \"decision\": \"REJECT\",\n  \"proposed_visual_candidate_key\": \"star_like\",\n  \"verified_visual_candidate_key\": \"none\",\n  \"visual_evidence\": \"A red rectangle with a green outline on a dark red background.\",\n  \"abstention_reason\": \"The highlighted region does not contain a motif matching the proposed key. It is a simple rectangle with no discernible pattern or form.\"\n}\n```",
+  "raw_output_sha256": "d85b1d9c20cbfaed248620147729d2a92aae48f758ccf2bb266ddf406d7b5f7d",
+  "previous_raw_output_sha256": "3cb0132b13bf1eebbc55d5b78f44ff53039d91f2bece1b6d1aa1a3fbdc80d885",
+  "same_raw_output_as_previous": false,
+  "schema_valid": false,
+  "semantic_valid": false,
+  "semantic_reasons": [
+    "SCHEMA_INVALID_OR_NOT_DICT",
+    "SCHEMA_ERROR: 'none' is not one of ['medallion_like', 'niche_like', 'star_like', 'rosette_like', 'palmette_like', 'lotus_like', 'vine_scroll_like', 'cloud_band_like', 'tree_like', 'horn_like', 'human_figure_like_geometric', 'comb_like', 'hook_like', 'lattice_like', 'lozenge_like', 'octagonal_form', 'unmapped_visual_motif', None]\n\nFailed validating 'enum' in schema['properties']['verified_visual_candidate_key']:\n    {'type': ['string', 'null'],\n     'enum': ['medallion_like',\n              'niche_like',\n              'star_like',\n              'rosette_like',\n              'palmette_like',\n              'lotus_like',\n              'vine_scroll_like',\n              'cloud_band_like',\n              'tree_like',\n              'horn_like',\n              'human_figure_like_geometric',\n              'comb_like',\n              'hook_like',\n              'lattice_like',\n              'lozenge_like',\n              'octagonal_form',\n              'unmapped_visual_motif',\n              None]}\n\nOn instance['verified_visual_candidate_key']:\n    'none'"
+  ],
+  "proposal_id_preserved": true,
+  "proposed_key_preserved": true,
+  "decision": null,
+  "verified_visual_candidate_key": null,
+  "post_unload_allocated_gib": 0.009,
+  "dependency_delta": "None"
+}

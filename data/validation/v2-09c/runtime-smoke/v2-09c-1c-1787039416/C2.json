@@ -1,0 +1,50 @@
+{
+  "candidate_id": "C2",
+  "model_id": "HuggingFaceTB/SmolVLM2-2.2B-Instruct",
+  "revision": "482adb537c021c86670beed01cd58990d01e72e4",
+  "downloaded": true,
+  "size_gib": 8.375,
+  "snapshot_manifest_sha256": "f7568e5a761aa064db58bb09f8a4e4e4a8124993f0939c6d73c794ef9162fcdd",
+  "weight_shards": [
+    {
+      "name": "model-00001-of-00002.safetensors",
+      "size_bytes": 4959390584,
+      "sha256": "7c88a90e78f567460b2369a0369cc4dafbfda5607c9cb090b30fa4437b0282f2"
+    },
+    {
+      "name": "model-00002-of-00002.safetensors",
+      "size_bytes": 4027833472,
+      "sha256": "cf3d0958a8240f71054a6812038f2a6bfbe2e5124573a3b363f6b120c9a52657"
+    }
+  ],
+  "quantization": "None",
+  "loaded_dtype": "bfloat16",
+  "runtime_status": "RUNTIME_READY",
+  "load_seconds": 3.6,
+  "gpu_load_peak_allocated_gib": 4.195,
+  "inference_seconds": 3.26,
+  "gpu_infer_peak_allocated_gib": 4.611,
+  "gpu_infer_peak_reserved_gib": 4.668,
+  "model_generate_call_count": 1,
+  "response_cache_hit": false,
+  "trusted_input_hash": "c16737ec6ddbd66cdb83ce0505d9ab37798942252df5dcffcec8b38d7fc890ca",
+  "canonical_semantic_payload_hash": "265876c4e671d7ddbc80108e8ca6b8fe905ebb8916e9069166367458f1709c8a",
+  "materialized_model_input_sha256": "fb0de0cd749a51d408af54728c361d29e976fa68e3c257b0b8d5c9900725546c",
+  "generated_tokens": 112,
+  "first_token_id": 1662,
+  "last_token_id": 49279,
+  "token_sequence_sha256": "cd5ce4596316ebd3041d9c509c990883dd24b6feac4a7e18a641f408af0e7ca8",
+  "raw_output": "{\n  \"schema_version\": \"visual-verifier-v1.0.0\",\n  \"proposal_id\": \"smoke_001\",\n  \"decision\": \"ACCEPT\",\n  \"proposed_visual_candidate_key\": \"star_like\",\n  \"verified_visual_candidate_key\": \"star_like\",\n  \"visual_evidence\": \"A green-outlined rectangle with a red background, which is a star-like shape.\",\n  \"abstention_reason\": null\n}",
+  "raw_output_sha256": "be3a5be4c908e76d2b8f2b88b23c43b15b86c0eedf17e99c3ec08e5135972f1a",
+  "previous_raw_output_sha256": "ee7d24ff96fec6cbab59f71c4c170425b74bfebbb2fa9831dbebeebbeae3d72d",
+  "same_raw_output_as_previous": false,
+  "schema_valid": true,
+  "semantic_valid": true,
+  "semantic_reasons": [],
+  "proposal_id_preserved": true,
+  "proposed_key_preserved": true,
+  "decision": "ACCEPT",
+  "verified_visual_candidate_key": "star_like",
+  "post_unload_allocated_gib": 0.009,
+  "dependency_delta": "num2words==0.5.14"
+}

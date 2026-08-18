@@ -1,0 +1,53 @@
+{
+  "candidate_id": "C3",
+  "model_id": "Qwen/Qwen2-VL-2B-Instruct",
+  "revision": "895c3a49bc3fa70a340399125c650a463535e71c",
+  "downloaded": true,
+  "size_gib": 4.125,
+  "snapshot_manifest_sha256": "5ddb0cedc195ecf4b7f401804855f3d7e8e5349ce970e769ac2e6d7e619e8e4a",
+  "weight_shards": [
+    {
+      "name": "model-00001-of-00002.safetensors",
+      "size_bytes": 3988609112,
+      "sha256": "994ac2b03f97de8bc647d0fe5eba2e4b632b3e28dc03574c29bdfc36cf47e1b9"
+    },
+    {
+      "name": "model-00002-of-00002.safetensors",
+      "size_bytes": 429441656,
+      "sha256": "92540d8353c8d226a589a3b179bdb33851c970ee2cc2ac7ba035f79425e7b833"
+    }
+  ],
+  "quantization": "None",
+  "loaded_dtype": "bfloat16",
+  "runtime_status": "RUNTIME_READY",
+  "load_seconds": 3.38,
+  "gpu_load_peak_allocated_gib": 4.124,
+  "inference_seconds": 5.16,
+  "gpu_infer_peak_allocated_gib": 4.247,
+  "gpu_infer_peak_reserved_gib": 4.291,
+  "model_generate_call_count": 1,
+  "response_cache_hit": false,
+  "trusted_input_hash": "a604e07de06c3ce727f7188ce8691c66d4822da1dbf3d8c48605172709d8de69",
+  "canonical_semantic_payload_hash": "265876c4e671d7ddbc80108e8ca6b8fe905ebb8916e9069166367458f1709c8a",
+  "materialized_model_input_sha256": "5a0da01b719de0580c26e2e585a604fcc73e7c5b472d81d8b89aae1b56474f77",
+  "generated_tokens": 128,
+  "first_token_id": 515,
+  "last_token_id": 151645,
+  "token_sequence_sha256": "6ed935ed074e21593c8e9edc4fb543a7624329da4e82a5eddf8a4db16fd39509",
+  "raw_output": "{\n  \"schema_version\": \"visual-verifier-v1.0.0\",\n  \"proposal_id\": \"smoke_001\",\n  \"decision\": \"ACCEPT\",\n  \"proposed_visual_candidate_key\": \"star_like\",\n  \"verified_visual_candidate_key\": \"star_medallion_composite\",\n  \"visual_evidence\": \"The highlighted region contains a star-like motif that matches the proposed key 'star_medallion_composite'. The visual evidence includes the star shape and the overall design, which is characteristic of the star_medallion_composite key.\",\n  \"abstention_reason\": null\n}",
+  "raw_output_sha256": "08e726002b4a2f529e20bacc0d851dbb570825ea154445c644a1c235ba461314",
+  "previous_raw_output_sha256": "4b54784a0d9b4b0eb10edefc102a0a2df33246ebc6292d354b5dfd46aa9fa6ef",
+  "same_raw_output_as_previous": false,
+  "schema_valid": false,
+  "semantic_valid": false,
+  "semantic_reasons": [
+    "SCHEMA_INVALID_OR_NOT_DICT",
+    "SCHEMA_ERROR: \"The highlighted region contains a star-like motif that matches the proposed key 'star_medallion_composite'. The visual evidence includes the star shape and the overall design, which is characteristic of the star_medallion_composite key.\" is too long\n\nFailed validating 'maxLength' in schema['properties']['visual_evidence']:\n    {'type': 'string',\n     'maxLength': 200,\n     'description': 'Short bounded visual-only description of observed '\n                    'geometry and feature points'}\n\nOn instance['visual_evidence']:\n    ('The highlighted region contains a star-like motif that matches the '\n     \"proposed key 'star_medallion_composite'. The visual evidence \"\n     'includes the star shape and the overall design, which is '\n     'characteristic of the star_medallion_composite key.')"
+  ],
+  "proposal_id_preserved": true,
+  "proposed_key_preserved": true,
+  "decision": null,
+  "verified_visual_candidate_key": null,
+  "post_unload_allocated_gib": 0.009,
+  "dependency_delta": "None"
+}

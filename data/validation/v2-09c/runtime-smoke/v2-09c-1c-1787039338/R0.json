@@ -1,0 +1,47 @@
+{
+  "candidate_id": "R0",
+  "model_id": "Qwen/Qwen2.5-VL-3B-Instruct-AWQ",
+  "revision": "e7b623934290c5a4da0ee3c6e1e57bfb6b5abbf2",
+  "downloaded": true,
+  "size_gib": 3.183,
+  "snapshot_manifest_sha256": "97824d4a1d48e483f08fc020b75c4e2dc52de8e2d262000821e9b6ff55de8685",
+  "weight_shards": [
+    {
+      "name": "model.safetensors",
+      "size_bytes": 3401785760,
+      "sha256": "72014d68fe47d4974e21fcab0cabef2e90de711f9fb1a179c5fa1400e71672d7"
+    }
+  ],
+  "quantization": "AWQ_INT4",
+  "loaded_dtype": "N/A",
+  "runtime_status": "RUNTIME_INCOMPATIBLE",
+  "error": "Loading Qwen2.5-VL-3B-Instruct-AWQ requires gptqmodel/autoawq build tools which are not supported in current Python 3.14 Windows environment.",
+  "load_seconds": null,
+  "gpu_load_peak_allocated_gib": null,
+  "inference_seconds": null,
+  "gpu_infer_peak_allocated_gib": null,
+  "gpu_infer_peak_reserved_gib": null,
+  "model_generate_call_count": 0,
+  "response_cache_hit": false,
+  "trusted_input_hash": "419eadcdd86c631d1d12b428ea843dd271044ecb8c7cf69a256488ba0509a212",
+  "canonical_semantic_payload_hash": "265876c4e671d7ddbc80108e8ca6b8fe905ebb8916e9069166367458f1709c8a",
+  "materialized_model_input_sha256": null,
+  "generated_tokens": 0,
+  "first_token_id": null,
+  "last_token_id": null,
+  "token_sequence_sha256": "",
+  "raw_output": null,
+  "raw_output_sha256": null,
+  "previous_raw_output_sha256": null,
+  "same_raw_output_as_previous": false,
+  "schema_valid": false,
+  "semantic_valid": false,
+  "semantic_reasons": [
+    "RUNTIME_INCOMPATIBLE"
+  ],
+  "proposal_id_preserved": false,
+  "proposed_key_preserved": false,
+  "decision": null,
+  "verified_visual_candidate_key": null,
+  "dependency_delta": "autoawq / gptqmodel build required (failed on Py3.14 Windows)"
+}
