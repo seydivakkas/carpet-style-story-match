@@ -1,0 +1,98 @@
+{
+  "task": "V2-09C.2B — Final CI & Acceptance Closure",
+  "status": "PASS_V2_09C_COMPLETE",
+  "timestamp": "2026-08-18T10:29:00Z",
+  "scientific_benchmark_status": "PASS_BENCHMARK_COMPLETE",
+  "historical_inference_accounting": {
+    "historical_total_calls": 858,
+    "historical_real_test_calls": 474,
+    "new_model_generate_calls": 0,
+    "new_real_test_calls": 0
+  },
+  "pytest_accounting": {
+    "collection_command": "python -m pytest tests/ --collect-only -q",
+    "collected": 550,
+    "collection_errors": 0,
+    "execution_command": "python -m pytest tests/ -q -rs",
+    "passed": 547,
+    "failed": 0,
+    "skipped": 3,
+    "errors": 0,
+    "xfailed": 0,
+    "xpassed": 0,
+    "deselected": 0,
+    "accounting_reconciled": true,
+    "previous_missing_three_root_cause": "REPORT_COPY_ERROR (narrative typed 544 passed instead of 547 passed out of 550 collected; 547 + 3 = 550)"
+  },
+  "skips": [
+    {
+      "node_id": "apps/api/tests/test_carpet_motif_story_curation.py:324",
+      "reason": "Baseline SQLite carpet.db is not initialized in current test environment."
+    },
+    {
+      "node_id": "apps/api/tests/test_external_datasets.py:338",
+      "reason": "Baseline SQLite carpet.db is not initialized in current test environment."
+    },
+    {
+      "node_id": "apps/api/tests/test_motif_knowledge_activation.py:214",
+      "reason": "Baseline SQLite carpet.db is not initialized in current test environment."
+    }
+  ],
+  "focused_tests": {
+    "collected": 42,
+    "passed": 42,
+    "failed": 0,
+    "skipped": 0
+  },
+  "frontend": {
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "build": "PASS"
+  },
+  "canonical_benchmark": {
+    "passed": 57,
+    "total": 57,
+    "status": "PASS"
+  },
+  "make_check": {
+    "status": "PASS (executed component targets backend-test, frontend-lint, frontend-typecheck, frontend-build)"
+  },
+  "scientific_conclusion": {
+    "benchmark_result_changed": false,
+    "candidate_ranking": "NONE",
+    "dominant_limitation": "OUTPUT_CONFORMANCE_DOMINANT_LIMITATION",
+    "structured_decoding": "plausible hypothesis but untested",
+    "qlora_status": "NOT_YET_JUSTIFIED",
+    "real_test_reusable_for_tuning": false
+  },
+  "data_isolation": {
+    "catalog_total": 232,
+    "catalog_primary": 227,
+    "catalog_style_dna": {
+      "complete": 224,
+      "partial": 3,
+      "no_primary_image": 5
+    },
+    "historical_references": 100,
+    "historical_primary": 45,
+    "historical_style_dna_complete": 45,
+    "rights_ineligible": 55,
+    "motifs": 13,
+    "claims": 12,
+    "carpet_motif_associations": 12,
+    "carpet_story_associations": 11,
+    "review_subjects": 0,
+    "review_events": 0,
+    "db_writes": 0
+  },
+  "migration": "NONE",
+  "alembic_head": "2026_08_17_017",
+  "git_state": {
+    "benchmark_raw_outputs_modified": false,
+    "prompt_modified": false,
+    "models_added": false,
+    "weights_tracked": false,
+    "working_tree_clean": true
+  },
+  "final_v2_09c_status": "COMPLETE"
+}
