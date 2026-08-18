@@ -1,0 +1,50 @@
+{
+  "plan_version": "v2-09c-download-plan-v1.0.0",
+  "status": "DOWNLOADED",
+  "timestamp": "2026-08-18T06:35:00Z",
+  "available_free_disk_gb": 195.0,
+  "estimated_total_download_gb": 15.1,
+  "storage_preflight": "PASS_FITS_DISK",
+  "gpu_preflight": "LIKELY_FITS_SEQUENTIAL_LOADING",
+  "downloads_executed": true,
+  "proposed_models_for_approval": [
+    {
+      "candidate_id": "R0",
+      "model_id": "Qwen/Qwen2.5-VL-3B-Instruct-AWQ",
+      "intended_role": "REFERENCE_VISUAL_VERIFIER",
+      "license_status": "LICENSE_IDENTIFIED_APACHE2",
+      "manual_gate": false,
+      "estimated_size_gb": 2.2,
+      "expected_runtime": "Transformers"
+    },
+    {
+      "candidate_id": "C1",
+      "model_id": "Qwen/Qwen3-VL-2B-Instruct",
+      "intended_role": "NEW_CANDIDATE_PRIMARY",
+      "license_status": "LICENSE_IDENTIFIED_APACHE2",
+      "manual_gate": false,
+      "estimated_size_gb": 4.2,
+      "expected_runtime": "Transformers"
+    },
+    {
+      "candidate_id": "C2",
+      "model_id": "HuggingFaceTB/SmolVLM2-2.2B-Instruct",
+      "intended_role": "NEW_CANDIDATE_PRIMARY",
+      "license_status": "LICENSE_IDENTIFIED_APACHE2",
+      "manual_gate": false,
+      "estimated_size_gb": 4.5,
+      "expected_runtime": "Transformers"
+    },
+    {
+      "candidate_id": "C3",
+      "model_id": "Qwen/Qwen2-VL-2B-Instruct",
+      "intended_role": "OPTIONAL_LEGACY_COMPARATOR",
+      "license_status": "LICENSE_IDENTIFIED_APACHE2",
+      "manual_gate": false,
+      "estimated_size_gb": 4.2,
+      "expected_runtime": "Transformers"
+    }
+  ],
+  "paligemma_included": false,
+  "next_action": "AWAITING_USER_MODEL_DOWNLOAD_APPROVAL"
+}

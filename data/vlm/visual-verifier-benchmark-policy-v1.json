@@ -1,0 +1,50 @@
+{
+  "policy_version": "visual-verifier-benchmark-policy-v1.0.0",
+  "status": "FROZEN_PREFLIGHT",
+  "timestamp": "2026-08-18T06:35:00Z",
+  "scientific_question": "Can a small visual-language verifier reduce false positives and visual-class mistakes from detector proposals without creating an unacceptable recall loss?",
+  "pipeline_scope": "VISUAL_VERIFICATION_ONLY",
+  "candidate_set": [
+    "Qwen/Qwen2.5-VL-3B-Instruct-AWQ",
+    "Qwen/Qwen3-VL-2B-Instruct",
+    "HuggingFaceTB/SmolVLM2-2.2B-Instruct",
+    "Qwen/Qwen2-VL-2B-Instruct"
+  ],
+  "excluded_candidates": [
+    "google/paligemma-3b-pt-224 (MANUAL_LICENSE_GATE)",
+    "SmolVLM2-500M / 256M (EFFICIENCY_ABLATION)"
+  ],
+  "evaluation_layers": [
+    "SYNTHETIC_CONTROLLED_VERIFICATION",
+    "REAL_GT_CONTROLLED_VERIFICATION",
+    "ACTUAL_DETECTOR_PROPOSAL_VERIFICATION"
+  ],
+  "prompt_freeze_rule": "Prompt wording, JSON schema, input compositor policy, generation settings must be frozen before REAL_TEST evaluation.",
+  "real_test_rule": "REAL_TEST (real-motif-benchmark-v1.0.0) must NOT guide prompt design or download selection after opening.",
+  "detector_streams": [
+    "YOLO11n Detect (yolo11n_detect_seed42/best.pt)",
+    "YOLO11n OBB (yolo11n_obb_seed42/best.pt)"
+  ],
+  "metrics": {
+    "schema_validity": "schema_valid_count / total_cases",
+    "coverage": "non_abstained_cases / total_cases",
+    "selective_accuracy": "correct_decisions / non_abstained_cases",
+    "correct_key_accuracy": "correct_key_cases / accepted_cases",
+    "false_accept_rate": "false_accepts / negative_proposals",
+    "false_reject_rate": "false_rejects / positive_proposals",
+    "hard_negative_rejection_rate": "rejected_hard_negatives / hard_negative_proposals",
+    "precision_lift": "verified_precision - detector_precision",
+    "recall_cost": "detector_recall - verified_recall",
+    "invalid_output_handling": "INVALID_OUTPUT tracked as schema failure (never silently converted to ABSTAIN)"
+  },
+  "resource_policy": {
+    "vram_limit_gib": 8.0,
+    "sequential_loading": true,
+    "cuda_synchronization": true
+  },
+  "safety_rules": [
+    "VLM output NEVER creates CURATOR_CONFIRMED status",
+    "VLM output NEVER contains cultural, historical, or symbolic claims",
+    "VLM output NEVER performs personality profiling or commercial recommendation"
+  ]
+}

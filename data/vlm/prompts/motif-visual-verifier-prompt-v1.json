@@ -1,0 +1,10 @@
+{
+  "prompt_version": "motif-visual-verifier-prompt-v1.0.0",
+  "timestamp": "2026-08-18T06:35:00Z",
+  "sha256": "f8417b314f6ae54245a1e3e6a17fbdeddf5cd8fe98bdf086e784ee4b516ccaac",
+  "prompt_file": "motif-visual-verifier-prompt-v1.txt",
+  "model_neutral": true,
+  "chain_of_thought": false,
+  "cultural_reasoning": false,
+  "allowed_keys_count": 17
+}

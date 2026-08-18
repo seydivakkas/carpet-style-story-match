@@ -1,0 +1,43 @@
+{
+  "schema_version": "v2-09c-runtime-environment-v1.0.0",
+  "base_environment": {
+    "python_version": "3.14.3",
+    "pytorch_version": "2.11.0+cu126",
+    "cuda_version": "12.6",
+    "gpu_device": "NVIDIA GeForce RTX 4070 Laptop GPU",
+    "gpu_total_vram_gib": 8.00,
+    "transformers_version": "5.6.2",
+    "accelerate_version": "1.14.0",
+    "bitsandbytes_version": "0.50.0"
+  },
+  "isolated_environment": {
+    "is_isolated": false,
+    "environment_name": "backend-default"
+  },
+  "dependency_changes": [
+    {
+      "package": "num2words",
+      "version": "0.5.14",
+      "status": "INSTALLED",
+      "reason": "Required by SmolVLM2 (C2) processor for text normalization."
+    },
+    {
+      "package": "qwen-vl-utils",
+      "version": "N/A",
+      "status": "NOT_INSTALLED",
+      "reason": "Not required for single PNG verifier input with AutoProcessor chat template."
+    },
+    {
+      "package": "flash-attn",
+      "version": "N/A",
+      "status": "NOT_INSTALLED",
+      "reason": "PyTorch native SDPA attention used; FlashAttention not required for smoke."
+    },
+    {
+      "package": "gptqmodel / autoawq",
+      "version": "N/A",
+      "status": "BUILD_FAILED",
+      "reason": "C extension wheel compilation for AWQ failed on Python 3.14 Windows environment. R0 marked RUNTIME_INCOMPATIBLE."
+    }
+  ]
+}

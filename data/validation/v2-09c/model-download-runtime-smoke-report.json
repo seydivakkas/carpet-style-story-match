@@ -1,0 +1,145 @@
+{
+  "benchmark_phase": "V2-09C.1",
+  "phase_name": "Model Download & Sequential Runtime Smoke",
+  "status": "PASS_WITH_RUNTIME_EXCLUSIONS",
+  "real_test_vlm_call_count": 0,
+  "prompt_sha256": "f8417b314f6ae54245a1e3e6a17fbdeddf5cd8fe98bdf086e784ee4b516ccaac",
+  "compositor_golden_sha256": "6c63bd619c3b2aabfdb0511404a2c62a4b38ff962f45c9e73e3a537c4c17d13d",
+  "input_dimensions": [
+    672,
+    448
+  ],
+  "measured_total_model_size_gib": 19.657,
+  "candidates": {
+    "R0": {
+      "candidate_id": "R0",
+      "model_id": "Qwen/Qwen2.5-VL-3B-Instruct-AWQ",
+      "revision": "e7b623934290c5a4da0ee3c6e1e57bfb6b5abbf2",
+      "downloaded": true,
+      "size_gib": 3.183,
+      "snapshot_manifest_sha256": "97824d4a1d48e483f08fc020b75c4e2dc52de8e2d262000821e9b6ff55de8685",
+      "weight_shards": [
+        {
+          "name": "model.safetensors",
+          "size_bytes": 3401785760,
+          "sha256": "72014d68fe47d4974e21fcab0cabef2e90de711f9fb1a179c5fa1400e71672d7"
+        }
+      ],
+      "quantization": "AWQ_INT4",
+      "loaded_dtype": "N/A",
+      "runtime_status": "RUNTIME_INCOMPATIBLE",
+      "error": "Loading Qwen2.5-VL-3B-Instruct-AWQ requires gptqmodel/autoawq build tools which are not supported in current Python 3.14 Windows environment.",
+      "load_seconds": null,
+      "gpu_load_peak_allocated_gib": null,
+      "inference_seconds": null,
+      "gpu_infer_peak_allocated_gib": null,
+      "gpu_infer_peak_reserved_gib": null,
+      "generated_tokens": 0,
+      "raw_output": null,
+      "parsed_output": null,
+      "schema_valid": false,
+      "decision": null,
+      "dependency_delta": "autoawq / gptqmodel build required (failed on Py3.14 Windows)"
+    },
+    "C1": {
+      "candidate_id": "C1",
+      "model_id": "Qwen/Qwen3-VL-2B-Instruct",
+      "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+      "downloaded": true,
+      "size_gib": 3.974,
+      "snapshot_manifest_sha256": "ccc27a55974c4e0072ba449dc4163a35b5fa9a498410c9831341bdc7c60d227c",
+      "weight_shards": [
+        {
+          "name": "model.safetensors",
+          "size_bytes": 4255140312,
+          "sha256": "7de1838c87a5349b016c26a1c3f7d2bc400a3d485f95ef39a7059ffd734977a0"
+        }
+      ],
+      "quantization": "None",
+      "loaded_dtype": "bfloat16",
+      "runtime_status": "RUNTIME_READY",
+      "load_seconds": 3.51,
+      "gpu_load_peak_allocated_gib": 3.963,
+      "inference_seconds": 5.2,
+      "gpu_infer_peak_allocated_gib": 4.164,
+      "gpu_infer_peak_reserved_gib": 4.189,
+      "generated_tokens": 120,
+      "raw_output": "```json\n{\n  \"schema_version\": \"visual-verifier-v1.0.0\",\n  \"proposal_id\": \"17-001\",\n  \"decision\": \"REJECT\",\n  \"proposed_visual_candidate_key\": \"geometrized_tulip\",\n  \"verified_visual_candidate_key\": \"geometrized_tulip\",\n  \"visual_evidence\": \"A green-outlined rectangle and a larger red rectangle on a dark red background. No visible floral or geometric pattern matching the proposed key.\",\n  \"abstention_reason\": null\n}\n```",
+      "parsed_output": "{\n  \"schema_version\": \"visual-verifier-v1.0.0\",\n  \"proposal_id\": \"17-001\",\n  \"decision\": \"REJECT\",\n  \"proposed_visual_candidate_key\": \"geometrized_tulip\",\n  \"verified_visual_candidate_key\": \"geometrized_tulip\",\n  \"visual_evidence\": \"A green-outlined rectangle and a larger red rectangle on a dark red background. No visible floral or geometric pattern matching the proposed key.\",\n  \"abstention_reason\": null\n}",
+      "schema_valid": true,
+      "decision": "REJECT",
+      "post_unload_allocated_gib": 0.009,
+      "dependency_delta": "None"
+    },
+    "C2": {
+      "candidate_id": "C2",
+      "model_id": "HuggingFaceTB/SmolVLM2-2.2B-Instruct",
+      "revision": "482adb537c021c86670beed01cd58990d01e72e4",
+      "downloaded": true,
+      "size_gib": 8.375,
+      "snapshot_manifest_sha256": "f7568e5a761aa064db58bb09f8a4e4e4a8124993f0939c6d73c794ef9162fcdd",
+      "weight_shards": [
+        {
+          "name": "model-00001-of-00002.safetensors",
+          "size_bytes": 4959390584,
+          "sha256": "7c88a90e78f567460b2369a0369cc4dafbfda5607c9cb090b30fa4437b0282f2"
+        },
+        {
+          "name": "model-00002-of-00002.safetensors",
+          "size_bytes": 4027833472,
+          "sha256": "cf3d0958a8240f71054a6812038f2a6bfbe2e5124573a3b363f6b120c9a52657"
+        }
+      ],
+      "quantization": "None",
+      "loaded_dtype": "bfloat16",
+      "runtime_status": "RUNTIME_READY",
+      "load_seconds": 3.36,
+      "gpu_load_peak_allocated_gib": 4.195,
+      "inference_seconds": 3.08,
+      "gpu_infer_peak_allocated_gib": 4.61,
+      "gpu_infer_peak_reserved_gib": 4.668,
+      "generated_tokens": 106,
+      "raw_output": "{\n  \"schema_version\": \"visual-verifier-v1.0.0\",\n  \"proposal_id\": \"1\",\n  \"decision\": \"ACCEPT\",\n  \"proposed_visual_candidate_key\": \"geometric_rosette\",\n  \"verified_visual_candidate_key\": \"geometric_rosette\",\n  \"visual_evidence\": \"A green-outlined red rectangle with a red background.\",\n  \"abstention_reason\": null\n}",
+      "parsed_output": "{\n  \"schema_version\": \"visual-verifier-v1.0.0\",\n  \"proposal_id\": \"1\",\n  \"decision\": \"ACCEPT\",\n  \"proposed_visual_candidate_key\": \"geometric_rosette\",\n  \"verified_visual_candidate_key\": \"geometric_rosette\",\n  \"visual_evidence\": \"A green-outlined red rectangle with a red background.\",\n  \"abstention_reason\": null\n}",
+      "schema_valid": true,
+      "decision": "ACCEPT",
+      "post_unload_allocated_gib": 0.009,
+      "dependency_delta": "num2words==0.5.14"
+    },
+    "C3": {
+      "candidate_id": "C3",
+      "model_id": "Qwen/Qwen2-VL-2B-Instruct",
+      "revision": "895c3a49bc3fa70a340399125c650a463535e71c",
+      "downloaded": true,
+      "size_gib": 4.125,
+      "snapshot_manifest_sha256": "5ddb0cedc195ecf4b7f401804855f3d7e8e5349ce970e769ac2e6d7e619e8e4a",
+      "weight_shards": [
+        {
+          "name": "model-00001-of-00002.safetensors",
+          "size_bytes": 3988609112,
+          "sha256": "994ac2b03f97de8bc647d0fe5eba2e4b632b3e28dc03574c29bdfc36cf47e1b9"
+        },
+        {
+          "name": "model-00002-of-00002.safetensors",
+          "size_bytes": 429441656,
+          "sha256": "92540d8353c8d226a589a3b179bdb33851c970ee2cc2ac7ba035f79425e7b833"
+        }
+      ],
+      "quantization": "None",
+      "loaded_dtype": "bfloat16",
+      "runtime_status": "RUNTIME_READY",
+      "load_seconds": 3.54,
+      "gpu_load_peak_allocated_gib": 4.124,
+      "inference_seconds": 4.19,
+      "gpu_infer_peak_allocated_gib": 4.247,
+      "gpu_infer_peak_reserved_gib": 4.289,
+      "generated_tokens": 107,
+      "raw_output": "{\n  \"schema_version\": \"visual-verifier-v1.0.0\",\n  \"proposal_id\": \"1234567890\",\n  \"decision\": \"ACCEPT\",\n  \"proposed_visual_candidate_key\": \"latchhook_diamond\",\n  \"verified_visual_candidate_key\": \"latchhook_diamond\",\n  \"visual_evidence\": \"The highlighted region contains a latchhook diamond motif, which is visually consistent with the proposed key.\",\n  \"abstention_reason\": null\n}",
+      "parsed_output": "{\n  \"schema_version\": \"visual-verifier-v1.0.0\",\n  \"proposal_id\": \"1234567890\",\n  \"decision\": \"ACCEPT\",\n  \"proposed_visual_candidate_key\": \"latchhook_diamond\",\n  \"verified_visual_candidate_key\": \"latchhook_diamond\",\n  \"visual_evidence\": \"The highlighted region contains a latchhook diamond motif, which is visually consistent with the proposed key.\",\n  \"abstention_reason\": null\n}",
+      "schema_valid": true,
+      "decision": "ACCEPT",
+      "post_unload_allocated_gib": 0.009,
+      "dependency_delta": "None"
+    }
+  }
+}

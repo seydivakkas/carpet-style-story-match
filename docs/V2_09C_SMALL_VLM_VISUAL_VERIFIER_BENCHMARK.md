@@ -46,13 +46,34 @@ Input Image ──► YOLO11n Proposal ──► Deterministic Input Compositor 
 2. **Real GT Controlled Verification**: Evaluated on 35 real images / 92 GT instances (`real-motif-benchmark-v1.0.0`).
 3. **Actual Detector Proposal Verification**: Evaluated on proposals output by frozen YOLO11n Detect and OBB checkpoints.
 
-## 8. Primary Metrics
-- `schema_valid_rate`
-- `coverage` = non_abstained_cases / total_cases
-- `selective_accuracy` = correct_decisions / non_abstained_cases
-- `hard_negative_rejection_rate`
-- `precision_lift` = verified_precision - detector_precision
-- `recall_cost` = detector_recall - verified_recall
+## 8. V2-09C.1 — Model Download & Sequential Runtime Smoke Results
 
-## 9. Next Steps (V2-09C.1)
-Execution of V2-09C.1 benchmark requires explicit user approval of the model download plan (`data/vlm/v2-09c-download-plan-v1.json`).
+### Download Provenance & Artifact Hashes
+- **Download Approval**: Approved for R0, C1, C2, C3.
+- **Downloaded Repositories**: 4 / 4
+- **Measured Total Storage**: 19.656 GB (Free disk remaining: > 175 GB)
+- **REAL_TEST VLM Calls**: **0** (REAL_TEST strictly unopened)
+
+| Candidate | Model Repository ID | HF Revision SHA | Snapshot Manifest SHA-256 | Size (GiB) | Weight Shards | Runtime Status | Dtype |
+|---|---|---|---|---|---|---|---|
+| **R0** | `Qwen/Qwen2.5-VL-3B-Instruct-AWQ` | `e7b623934290c5a4da0ee3c6e1e57bfb6b5abbf2` | `97824d4a1d48e483f08fc020b75c4e2dc52de8e2d262000821e9b6ff55de8685` | 3.183 | 1 (`model.safetensors`) | `RUNTIME_INCOMPATIBLE` | N/A |
+| **C1** | `Qwen/Qwen3-VL-2B-Instruct` | `89644892e4d85e24eaac8bacfd4f463576704203` | `ccc27a55974c4e0072ba449dc4163a35b5fa9a498410c9831341bdc7c60d227c` | 3.974 | 1 (`model.safetensors`) | `RUNTIME_READY` | `bfloat16` |
+| **C2** | `HuggingFaceTB/SmolVLM2-2.2B-Instruct` | `482adb537c021c86670beed01cd58990d01e72e4` | `f7568e5a761aa064db58bb09f8a4e4e4a8124993f0939c6d73c794ef9162fcdd` | 8.375 | 2 (`model-00001..2`) | `RUNTIME_READY` | `bfloat16` |
+| **C3** | `Qwen/Qwen2-VL-2B-Instruct` | `895c3a49bc3fa70a340399125c650a463535e71c` | `5ddb0cedc195ecf4b7f401804855f3d7e8e5349ce970e769ac2e6d7e619e8e4a` | 4.125 | 2 (`model-00001..2`) | `RUNTIME_READY` | `bfloat16` |
+
+### Sequential Runtime Smoke Telemetry
+
+- **Golden Compositor Input**: `data/validation/v2-09c/golden_smoke_input.png` (SHA-256: `6c63bd619c3b2aabfdb0511404a2c62a4b38ff962f45c9e73e3a537c4c17d13d`)
+- **Prompt Hash**: `data/vlm/prompts/motif-visual-verifier-prompt-v1.txt` (SHA-256: `f8417b314f6ae54245a1e3e6a17fbdeddf5cd8fe98bdf086e784ee4b516ccaac`)
+
+| Candidate | Load Time (s) | Load Peak Alloc (GiB) | Infer Time (s) | Infer Peak Alloc (GiB) | Infer Peak Reserved (GiB) | Gen Tokens | Schema Valid | Status |
+|---|---|---|---|---|---|---|---|---|
+| **R0** | N/A | N/A | N/A | N/A | N/A | 0 | `False` | `RUNTIME_INCOMPATIBLE` (AWQ C-extension build failed on Py3.14 Windows) |
+| **C1** | 4.40 | 3.963 | 5.73 | 4.164 | 4.189 | 120 | `True` | `RUNTIME_READY` |
+| **C2** | 3.19 | 4.195 | 3.24 | 4.610 | 4.672 | 106 | `True` | `RUNTIME_READY` (Requires `num2words==0.5.14`) |
+| **C3** | 4.70 | 4.124 | 4.62 | 4.247 | 4.287 | 107 | `True` | `RUNTIME_READY` |
+
+## 9. V2-09C.1 Final Acceptance Status
+**STATUS**: `PASS_WITH_RUNTIME_EXCLUSIONS`
+- Candidates C1, C2, C3 are fully `RUNTIME_READY` and schema compliant (`visual-verifier-v1.schema.json`).
+- Candidate R0 is excluded (`RUNTIME_INCOMPATIBLE`) due to Python 3.14 AWQ compilation constraints.

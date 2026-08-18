@@ -102,12 +102,18 @@ data/synthetic/datasets/
 !data/review/**
 !data/validation/
 !data/validation/**
+!data/vlm/
+!data/vlm/**
+data/vlm/models/
 data/external_datasets/raw/
 data/external_datasets/cache/
 data/datasets/real-motif-benchmark-v1/images/
+# Weights & Cache
 artifacts/
 runs/
 *.pt
+*.safetensors
+data/vlm/models/
 kaggle.json
 uploads/
 
