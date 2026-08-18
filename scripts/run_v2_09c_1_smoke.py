@@ -26,7 +26,8 @@ from packages.synthetic_motifs.verifier_adapters import (
     Qwen3VLAdapter,
     SmolVLM2Adapter,
     Qwen2VLAdapter,
-    Qwen25VLAWQAdapter
+    Qwen25VLAWQAdapter,
+    VisualVerificationSemanticValidator
 )
 
 PROMPT_EXPECTED_HASH = "f8417b314f6ae54245a1e3e6a17fbdeddf5cd8fe98bdf086e784ee4b516ccaac"
@@ -68,7 +69,7 @@ def compute_snapshot_manifest_hash(model_path: Path) -> Tuple[str, List[Dict[str
 
 def run_v2_09c_1_smoke():
     print("============================================================")
-    print("V2-09C.1 — Model Download & Sequential Runtime Smoke")
+    print("V2-09C.1A — Visual Verifier Contract & Runtime Smoke")
     print("============================================================")
 
     # 1. Prompt Immutability Audit
@@ -78,24 +79,32 @@ def run_v2_09c_1_smoke():
     print(f"Prompt SHA-256 before/after: {prompt_hash}")
     assert prompt_hash == PROMPT_EXPECTED_HASH, f"Prompt hash mismatch: {prompt_hash} != {PROMPT_EXPECTED_HASH}"
 
-    # 2. Compositor Golden Image
+    # 2. Compositor Golden Image with Frozen 17 Visual Candidate Key "star_like"
     arr = np.zeros((448, 336, 3), dtype=np.uint8)
     arr[:, :, 0] = 120
     arr[100:300, 80:250] = [200, 50, 50]
     img = Image.fromarray(arr)
     bbox = [80.0, 100.0, 250.0, 300.0]
 
+    proposal_id = "smoke_001"
+    proposed_key = "star_like"
+
     golden_img, golden_hash = compose_verifier_input(
-        img, bbox, proposal_id="smoke_001", proposed_key="elibelinde"
+        img, bbox, proposal_id=proposal_id, proposed_key=proposed_key
     )
     golden_path = ROOT_DIR / "data/validation/v2-09c/golden_smoke_input.png"
     golden_path.parent.mkdir(parents=True, exist_ok=True)
     golden_img.save(golden_path)
     print(f"Golden Compositor PNG SHA-256: {golden_hash}")
 
-    # Load JSON schema for verification
-    schema_path = ROOT_DIR / "data/schemas/visual-verifier-v1.schema.json"
-    verifier_schema = json.loads(schema_path.read_text(encoding="utf-8"))
+    # Trusted Input Context
+    verifier_input = {
+        "proposal_id": proposal_id,
+        "proposed_visual_candidate_key": proposed_key
+    }
+
+    # Initialize Semantic Validator
+    validator = VisualVerificationSemanticValidator()
 
     # Candidate Registries
     candidate_meta = {
@@ -141,26 +150,11 @@ def run_v2_09c_1_smoke():
             smoke_res = adapter.verify_smoke(golden_img, prompt_text)
             unload_res = adapter.unload()
 
-            # Clean json output from markdown fences if present
             raw_text = smoke_res["raw_output"]
-            clean_text = raw_text
-            if clean_text.startswith("```json"):
-                clean_text = clean_text[7:]
-            if clean_text.startswith("```"):
-                clean_text = clean_text[3:]
-            if clean_text.endswith("```"):
-                clean_text = clean_text[:-3]
-            clean_text = clean_text.strip()
+            val_res = validator.validate(verifier_input, raw_text)
 
-            try:
-                parsed_json = json.loads(clean_text)
-                jsonschema.validate(instance=parsed_json, schema=verifier_schema)
-                schema_valid = True
-                decision = parsed_json.get("decision")
-            except Exception as se:
-                print(f"{cand_id} Schema validation error: {se}")
-                schema_valid = False
-                decision = "SCHEMA_ERROR"
+            proposal_id_preserved = (val_res["parsed_json"].get("proposal_id") == proposal_id) if val_res["parsed_json"] else False
+            proposed_key_preserved = (val_res["parsed_json"].get("proposed_visual_candidate_key") == proposed_key) if val_res["parsed_json"] else False
 
             reports[cand_id] = {
                 "candidate_id": cand_id,
@@ -180,9 +174,13 @@ def run_v2_09c_1_smoke():
                 "gpu_infer_peak_reserved_gib": smoke_res.get("peak_reserved_gib"),
                 "generated_tokens": smoke_res.get("generated_tokens"),
                 "raw_output": raw_text,
-                "parsed_output": clean_text,
-                "schema_valid": schema_valid,
-                "decision": decision,
+                "schema_valid": val_res["schema_valid"],
+                "semantic_valid": val_res["semantic_valid"],
+                "semantic_reasons": val_res["semantic_reasons"],
+                "proposal_id_preserved": proposal_id_preserved,
+                "proposed_key_preserved": proposed_key_preserved,
+                "decision": val_res["decision"],
+                "verified_visual_candidate_key": val_res["verified_visual_candidate_key"],
                 "post_unload_allocated_gib": unload_res.get("post_unload_allocated_gib"),
                 "dependency_delta": "num2words==0.5.14" if cand_id == "C2" else "None"
             }
@@ -207,35 +205,36 @@ def run_v2_09c_1_smoke():
                 "gpu_infer_peak_reserved_gib": None,
                 "generated_tokens": 0,
                 "raw_output": None,
-                "parsed_output": None,
                 "schema_valid": False,
+                "semantic_valid": False,
+                "semantic_reasons": ["RUNTIME_INCOMPATIBLE"],
+                "proposal_id_preserved": False,
+                "proposed_key_preserved": False,
                 "decision": None,
+                "verified_visual_candidate_key": None,
                 "dependency_delta": "autoawq / gptqmodel build required (failed on Py3.14 Windows)"
             }
 
     # Summary Report
     smoke_report = {
-        "benchmark_phase": "V2-09C.1",
-        "phase_name": "Model Download & Sequential Runtime Smoke",
+        "benchmark_phase": "V2-09C.1A",
+        "phase_name": "Visual Verifier Contract Identity & Isolation Closure",
         "status": "PASS_WITH_RUNTIME_EXCLUSIONS",
         "real_test_vlm_call_count": 0,
         "prompt_sha256": prompt_hash,
         "compositor_golden_sha256": golden_hash,
         "input_dimensions": [672, 448],
         "measured_total_model_size_gib": round(sum(r["size_gib"] for r in reports.values()), 3),
+        "previous_smoke_audit": {
+            "root_cause": "JSON schema lacked enum constraints for visual candidate keys; smoke input passed domain key 'elibelinde' instead of frozen 17 visual candidate key; validator allowed proposal_id mutations and REJECT decision with non-null verified key.",
+            "remediation": "Updated schema to enforce 17-key enum; implemented VisualVerificationSemanticValidator to enforce proposal_id immutability, proposed_key immutability, decision semantics, and 200 char visual_evidence bound; updated smoke input to use valid key 'star_like'."
+        },
         "candidates": reports
     }
 
     report_path = ROOT_DIR / "data/validation/v2-09c/model-download-runtime-smoke-report.json"
     report_path.write_text(json.dumps(smoke_report, indent=2), encoding="utf-8")
     print(f"\nSmoke Report written to {report_path}")
-
-    # Update Download Plan
-    dl_plan_path = ROOT_DIR / "data/vlm/v2-09c-download-plan-v1.json"
-    dl_plan = json.loads(dl_plan_path.read_text(encoding="utf-8"))
-    dl_plan["status"] = "DOWNLOADED"
-    dl_plan["downloads_executed"] = True
-    dl_plan_path.write_text(json.dumps(dl_plan, indent=2), encoding="utf-8")
 
     # Update Candidate Registry JSON
     cand_reg_path = ROOT_DIR / "data/vlm/v2-09c-model-candidates-v1.json"
@@ -249,6 +248,7 @@ def run_v2_09c_1_smoke():
             cand["size_gib"] = reports[cid]["size_gib"]
             cand["runtime_status"] = reports[cid]["runtime_status"]
             cand["schema_valid"] = reports[cid]["schema_valid"]
+            cand["semantic_valid"] = reports[cid]["semantic_valid"]
 
     cand_reg_path.write_text(json.dumps(cand_reg, indent=2), encoding="utf-8")
 

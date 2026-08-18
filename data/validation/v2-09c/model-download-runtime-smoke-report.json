@@ -1,6 +1,6 @@
 {
-  "benchmark_phase": "V2-09C.1",
-  "phase_name": "Model Download & Sequential Runtime Smoke",
+  "benchmark_phase": "V2-09C.1A",
+  "phase_name": "Visual Verifier Contract Identity & Isolation Closure",
   "status": "PASS_WITH_RUNTIME_EXCLUSIONS",
   "real_test_vlm_call_count": 0,
   "prompt_sha256": "f8417b314f6ae54245a1e3e6a17fbdeddf5cd8fe98bdf086e784ee4b516ccaac",
@@ -10,6 +10,10 @@
     448
   ],
   "measured_total_model_size_gib": 19.657,
+  "previous_smoke_audit": {
+    "root_cause": "JSON schema lacked enum constraints for visual candidate keys; smoke input passed domain key 'elibelinde' instead of frozen 17 visual candidate key; validator allowed proposal_id mutations and REJECT decision with non-null verified key.",
+    "remediation": "Updated schema to enforce 17-key enum; implemented VisualVerificationSemanticValidator to enforce proposal_id immutability, proposed_key immutability, decision semantics, and 200 char visual_evidence bound; updated smoke input to use valid key 'star_like'."
+  },
   "candidates": {
     "R0": {
       "candidate_id": "R0",
@@ -36,9 +40,15 @@
       "gpu_infer_peak_reserved_gib": null,
       "generated_tokens": 0,
       "raw_output": null,
-      "parsed_output": null,
       "schema_valid": false,
+      "semantic_valid": false,
+      "semantic_reasons": [
+        "RUNTIME_INCOMPATIBLE"
+      ],
+      "proposal_id_preserved": false,
+      "proposed_key_preserved": false,
       "decision": null,
+      "verified_visual_candidate_key": null,
       "dependency_delta": "autoawq / gptqmodel build required (failed on Py3.14 Windows)"
     },
     "C1": {
@@ -58,16 +68,22 @@
       "quantization": "None",
       "loaded_dtype": "bfloat16",
       "runtime_status": "RUNTIME_READY",
-      "load_seconds": 3.51,
+      "load_seconds": 3.54,
       "gpu_load_peak_allocated_gib": 3.963,
-      "inference_seconds": 5.2,
+      "inference_seconds": 5.14,
       "gpu_infer_peak_allocated_gib": 4.164,
-      "gpu_infer_peak_reserved_gib": 4.189,
+      "gpu_infer_peak_reserved_gib": 4.18,
       "generated_tokens": 120,
       "raw_output": "```json\n{\n  \"schema_version\": \"visual-verifier-v1.0.0\",\n  \"proposal_id\": \"17-001\",\n  \"decision\": \"REJECT\",\n  \"proposed_visual_candidate_key\": \"geometrized_tulip\",\n  \"verified_visual_candidate_key\": \"geometrized_tulip\",\n  \"visual_evidence\": \"A green-outlined rectangle and a larger red rectangle on a dark red background. No visible floral or geometric pattern matching the proposed key.\",\n  \"abstention_reason\": null\n}\n```",
-      "parsed_output": "{\n  \"schema_version\": \"visual-verifier-v1.0.0\",\n  \"proposal_id\": \"17-001\",\n  \"decision\": \"REJECT\",\n  \"proposed_visual_candidate_key\": \"geometrized_tulip\",\n  \"verified_visual_candidate_key\": \"geometrized_tulip\",\n  \"visual_evidence\": \"A green-outlined rectangle and a larger red rectangle on a dark red background. No visible floral or geometric pattern matching the proposed key.\",\n  \"abstention_reason\": null\n}",
-      "schema_valid": true,
-      "decision": "REJECT",
+      "schema_valid": false,
+      "semantic_valid": false,
+      "semantic_reasons": [
+        "SCHEMA_INVALID_OR_NOT_DICT"
+      ],
+      "proposal_id_preserved": false,
+      "proposed_key_preserved": false,
+      "decision": null,
+      "verified_visual_candidate_key": null,
       "post_unload_allocated_gib": 0.009,
       "dependency_delta": "None"
     },
@@ -93,16 +109,22 @@
       "quantization": "None",
       "loaded_dtype": "bfloat16",
       "runtime_status": "RUNTIME_READY",
-      "load_seconds": 3.36,
+      "load_seconds": 3.44,
       "gpu_load_peak_allocated_gib": 4.195,
-      "inference_seconds": 3.08,
+      "inference_seconds": 3.22,
       "gpu_infer_peak_allocated_gib": 4.61,
       "gpu_infer_peak_reserved_gib": 4.668,
       "generated_tokens": 106,
       "raw_output": "{\n  \"schema_version\": \"visual-verifier-v1.0.0\",\n  \"proposal_id\": \"1\",\n  \"decision\": \"ACCEPT\",\n  \"proposed_visual_candidate_key\": \"geometric_rosette\",\n  \"verified_visual_candidate_key\": \"geometric_rosette\",\n  \"visual_evidence\": \"A green-outlined red rectangle with a red background.\",\n  \"abstention_reason\": null\n}",
-      "parsed_output": "{\n  \"schema_version\": \"visual-verifier-v1.0.0\",\n  \"proposal_id\": \"1\",\n  \"decision\": \"ACCEPT\",\n  \"proposed_visual_candidate_key\": \"geometric_rosette\",\n  \"verified_visual_candidate_key\": \"geometric_rosette\",\n  \"visual_evidence\": \"A green-outlined red rectangle with a red background.\",\n  \"abstention_reason\": null\n}",
-      "schema_valid": true,
-      "decision": "ACCEPT",
+      "schema_valid": false,
+      "semantic_valid": false,
+      "semantic_reasons": [
+        "SCHEMA_INVALID_OR_NOT_DICT"
+      ],
+      "proposal_id_preserved": false,
+      "proposed_key_preserved": false,
+      "decision": null,
+      "verified_visual_candidate_key": null,
       "post_unload_allocated_gib": 0.009,
       "dependency_delta": "num2words==0.5.14"
     },
@@ -128,16 +150,22 @@
       "quantization": "None",
       "loaded_dtype": "bfloat16",
       "runtime_status": "RUNTIME_READY",
-      "load_seconds": 3.54,
-      "gpu_load_peak_allocated_gib": 4.124,
-      "inference_seconds": 4.19,
-      "gpu_infer_peak_allocated_gib": 4.247,
+      "load_seconds": 3.61,
+      "gpu_load_peak_allocated_gib": 4.123,
+      "inference_seconds": 4.37,
+      "gpu_infer_peak_allocated_gib": 4.246,
       "gpu_infer_peak_reserved_gib": 4.289,
       "generated_tokens": 107,
       "raw_output": "{\n  \"schema_version\": \"visual-verifier-v1.0.0\",\n  \"proposal_id\": \"1234567890\",\n  \"decision\": \"ACCEPT\",\n  \"proposed_visual_candidate_key\": \"latchhook_diamond\",\n  \"verified_visual_candidate_key\": \"latchhook_diamond\",\n  \"visual_evidence\": \"The highlighted region contains a latchhook diamond motif, which is visually consistent with the proposed key.\",\n  \"abstention_reason\": null\n}",
-      "parsed_output": "{\n  \"schema_version\": \"visual-verifier-v1.0.0\",\n  \"proposal_id\": \"1234567890\",\n  \"decision\": \"ACCEPT\",\n  \"proposed_visual_candidate_key\": \"latchhook_diamond\",\n  \"verified_visual_candidate_key\": \"latchhook_diamond\",\n  \"visual_evidence\": \"The highlighted region contains a latchhook diamond motif, which is visually consistent with the proposed key.\",\n  \"abstention_reason\": null\n}",
-      "schema_valid": true,
-      "decision": "ACCEPT",
+      "schema_valid": false,
+      "semantic_valid": false,
+      "semantic_reasons": [
+        "SCHEMA_INVALID_OR_NOT_DICT"
+      ],
+      "proposal_id_preserved": false,
+      "proposed_key_preserved": false,
+      "decision": null,
+      "verified_visual_candidate_key": null,
       "post_unload_allocated_gib": 0.009,
       "dependency_delta": "None"
     }

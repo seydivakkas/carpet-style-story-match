@@ -23,7 +23,8 @@
       "artifact_status": "DOWNLOADED",
       "size_gib": 3.183,
       "runtime_status": "RUNTIME_INCOMPATIBLE",
-      "schema_valid": false
+      "schema_valid": false,
+      "semantic_valid": false
     },
     {
       "candidate_id": "C1",
@@ -45,7 +46,8 @@
       "artifact_status": "DOWNLOADED",
       "size_gib": 3.974,
       "runtime_status": "RUNTIME_READY",
-      "schema_valid": true
+      "schema_valid": false,
+      "semantic_valid": false
     },
     {
       "candidate_id": "C2",
@@ -67,7 +69,8 @@
       "artifact_status": "DOWNLOADED",
       "size_gib": 8.375,
       "runtime_status": "RUNTIME_READY",
-      "schema_valid": true
+      "schema_valid": false,
+      "semantic_valid": false
     },
     {
       "candidate_id": "C3",
@@ -89,7 +92,8 @@
       "artifact_status": "DOWNLOADED",
       "size_gib": 4.125,
       "runtime_status": "RUNTIME_READY",
-      "schema_valid": true
+      "schema_valid": false,
+      "semantic_valid": false
     }
   ],
   "excluded_candidates": [

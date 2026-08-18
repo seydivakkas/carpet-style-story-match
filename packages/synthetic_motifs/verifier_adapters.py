@@ -13,7 +13,156 @@ from pathlib import Path
 from typing import Dict, Any, Tuple, Optional
 from PIL import Image
 
+import jsonschema
 from packages.synthetic_motifs.verifier_compositor import COMPOSITOR_VERSION
+
+FROZEN_17_KEYS = {
+    "medallion_like",
+    "niche_like",
+    "star_like",
+    "rosette_like",
+    "palmette_like",
+    "lotus_like",
+    "vine_scroll_like",
+    "cloud_band_like",
+    "tree_like",
+    "horn_like",
+    "human_figure_like_geometric",
+    "comb_like",
+    "hook_like",
+    "lattice_like",
+    "lozenge_like",
+    "octagonal_form",
+    "unmapped_visual_motif"
+}
+
+FORBIDDEN_CULTURAL_TERMS = {
+    "culture", "origin", "dynasty", "period", "religion",
+    "meaning", "symbolism", "story", "authenticity", "personality",
+    "curator_confirmed", "elibelinde", "mihrab", "tree-of-life", "ram-horn"
+}
+
+
+class VisualVerificationSemanticValidator:
+    """
+    Validates model output against frozen V2-09C verifier identity,
+    provenance immutability, decision semantics, and 17-key registry rules.
+    """
+
+    def __init__(self, schema_path: Optional[Path] = None):
+        if schema_path is None:
+            schema_path = Path(__file__).resolve().parents[2] / "data/schemas/visual-verifier-v1.schema.json"
+        self.schema_path = schema_path
+        if schema_path.exists():
+            self.schema = json.loads(schema_path.read_text(encoding="utf-8"))
+        else:
+            self.schema = None
+
+    def validate(self, verifier_input: Dict[str, Any], raw_output_text: str) -> Dict[str, Any]:
+        clean_text = raw_output_text.strip()
+        if clean_text.startswith("```json"):
+            clean_text = clean_text[7:]
+        if clean_text.startswith("```"):
+            clean_text = clean_text[3:]
+        if clean_text.endswith("```"):
+            clean_text = clean_text[:-3]
+        clean_text = clean_text.strip()
+
+        schema_valid = False
+        parsed_json = None
+        schema_errors = []
+
+        try:
+            parsed_json = json.loads(clean_text)
+            if self.schema:
+                jsonschema.validate(instance=parsed_json, schema=self.schema)
+            schema_valid = True
+        except Exception as e:
+            schema_errors.append(str(e))
+
+        semantic_valid = False
+        semantic_reasons = []
+
+        if not schema_valid or not isinstance(parsed_json, dict):
+            semantic_reasons.append("SCHEMA_INVALID_OR_NOT_DICT")
+            for err in schema_errors:
+                semantic_reasons.append(f"SCHEMA_ERROR: {err}")
+            return {
+                "schema_valid": False,
+                "semantic_valid": False,
+                "parsed_json": parsed_json,
+                "schema_errors": schema_errors,
+                "semantic_reasons": semantic_reasons,
+                "decision": None,
+                "verified_visual_candidate_key": None
+            }
+
+        # 1. Proposal ID Immutability
+        input_proposal_id = str(verifier_input.get("proposal_id", ""))
+        output_proposal_id = str(parsed_json.get("proposal_id", ""))
+        if output_proposal_id != input_proposal_id:
+            semantic_reasons.append(f"PROPOSAL_ID_MUTATED: expected '{input_proposal_id}', got '{output_proposal_id}'")
+
+        # 2. Proposed Key Immutability & Registry
+        input_proposed_key = str(verifier_input.get("proposed_visual_candidate_key", ""))
+        output_proposed_key = str(parsed_json.get("proposed_visual_candidate_key", ""))
+        if output_proposed_key != input_proposed_key:
+            semantic_reasons.append(f"PROPOSED_KEY_MUTATED: expected '{input_proposed_key}', got '{output_proposed_key}'")
+
+        if input_proposed_key not in FROZEN_17_KEYS:
+            semantic_reasons.append(f"INPUT_PROPOSED_KEY_NOT_IN_17_REGISTRY: '{input_proposed_key}'")
+
+        if output_proposed_key not in FROZEN_17_KEYS:
+            semantic_reasons.append(f"OUTPUT_PROPOSED_KEY_NOT_IN_17_REGISTRY: '{output_proposed_key}'")
+
+        # 3. Decision & Verified Key Semantics
+        decision = parsed_json.get("decision")
+        verified_key = parsed_json.get("verified_visual_candidate_key")
+        abstention_reason = parsed_json.get("abstention_reason")
+
+        if decision == "ACCEPT":
+            if verified_key is None or verified_key not in FROZEN_17_KEYS:
+                semantic_reasons.append(f"ACCEPT_REQUIRES_VALID_VERIFIED_KEY: got '{verified_key}'")
+            if abstention_reason is not None and str(abstention_reason).strip() != "":
+                semantic_reasons.append("ACCEPT_REQUIRES_NULL_ABSTENTION_REASON")
+
+        elif decision == "REJECT":
+            if verified_key is not None:
+                semantic_reasons.append(f"REJECT_REQUIRES_NULL_VERIFIED_KEY: got '{verified_key}'")
+            if abstention_reason is not None and str(abstention_reason).strip() != "":
+                semantic_reasons.append("REJECT_REQUIRES_NULL_ABSTENTION_REASON")
+
+        elif decision == "ABSTAIN":
+            if verified_key is not None:
+                semantic_reasons.append(f"ABSTAIN_REQUIRES_NULL_VERIFIED_KEY: got '{verified_key}'")
+            if abstention_reason is None or str(abstention_reason).strip() == "":
+                semantic_reasons.append("ABSTAIN_REQUIRES_NON_EMPTY_ABSTENTION_REASON")
+
+        else:
+            semantic_reasons.append(f"INVALID_DECISION_TOKEN: '{decision}'")
+
+        # 4. Visual Evidence Length
+        visual_evidence = str(parsed_json.get("visual_evidence", ""))
+        if len(visual_evidence) > 200:
+            semantic_reasons.append(f"VISUAL_EVIDENCE_EXCEEDS_200_CHARS: len={len(visual_evidence)}")
+
+        # 5. Cultural Safety
+        json_str_lower = json.dumps(parsed_json).lower()
+        for term in FORBIDDEN_CULTURAL_TERMS:
+            if term in json_str_lower:
+                semantic_reasons.append(f"FORBIDDEN_CULTURAL_OR_DOMAIN_TERM_PRESENT: '{term}'")
+
+        semantic_valid = (len(semantic_reasons) == 0)
+
+        return {
+            "schema_valid": schema_valid,
+            "semantic_valid": semantic_valid,
+            "parsed_json": parsed_json,
+            "schema_errors": schema_errors,
+            "semantic_reasons": semantic_reasons,
+            "decision": decision,
+            "verified_visual_candidate_key": verified_key
+        }
 
 
 class VisualVerifierRuntimeAdapter:

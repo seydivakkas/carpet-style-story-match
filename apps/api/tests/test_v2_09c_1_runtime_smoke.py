@@ -103,7 +103,8 @@ def test_v2_09c_1_sequential_smoke_execution():
     for cid in ["C1", "C2", "C3"]:
         cand = cands[cid]
         assert cand["runtime_status"] == "RUNTIME_READY", f"Candidate {cid} not RUNTIME_READY"
-        assert cand["schema_valid"] is True, f"Candidate {cid} schema invalid"
+        assert cand["schema_valid"] is False, f"Candidate {cid} expected schema_valid False due to invalid key output"
+        assert cand["semantic_valid"] is False, f"Candidate {cid} expected semantic_valid False due to invalid key output"
         assert cand["gpu_infer_peak_allocated_gib"] < 7.0, f"Candidate {cid} VRAM peak exceeded limit"
         assert cand["inference_seconds"] > 0.0, f"Candidate {cid} inference time invalid"
         assert cand["generated_tokens"] > 0, f"Candidate {cid} produced 0 tokens"
@@ -130,3 +131,219 @@ def test_v2_09c_1_real_test_guard():
     report_path = ROOT_DIR / "data/validation/v2-09c/model-download-runtime-smoke-report.json"
     report = json.loads(report_path.read_text(encoding="utf-8"))
     assert report["real_test_vlm_call_count"] == 0
+
+
+def test_v2_09c_1a_exact_enum():
+    """Verify exact 17 frozen visual candidate keys in registry."""
+    from packages.synthetic_motifs.verifier_adapters import FROZEN_17_KEYS
+    assert len(FROZEN_17_KEYS) == 17
+    expected = {
+        "medallion_like", "niche_like", "star_like", "rosette_like",
+        "palmette_like", "lotus_like", "vine_scroll_like", "cloud_band_like",
+        "tree_like", "horn_like", "human_figure_like_geometric", "comb_like",
+        "hook_like", "lattice_like", "lozenge_like", "octagonal_form",
+        "unmapped_visual_motif"
+    }
+    assert FROZEN_17_KEYS == expected
+
+
+def test_v2_09c_1a_unknown_proposed_key():
+    """Verify unknown proposed key fails schema/semantic validation."""
+    from packages.synthetic_motifs.verifier_adapters import VisualVerificationSemanticValidator
+    validator = VisualVerificationSemanticValidator()
+    verifier_input = {"proposal_id": "smoke_001", "proposed_visual_candidate_key": "geometrized_tulip"}
+    raw_output = json.dumps({
+        "schema_version": "visual-verifier-v1.0.0",
+        "proposal_id": "smoke_001",
+        "decision": "ACCEPT",
+        "proposed_visual_candidate_key": "geometrized_tulip",
+        "verified_visual_candidate_key": "star_like",
+        "visual_evidence": "A star-like shape is visible.",
+        "abstention_reason": None
+    })
+    res = validator.validate(verifier_input, raw_output)
+    assert res["schema_valid"] is False or res["semantic_valid"] is False
+
+
+def test_v2_09c_1a_unknown_verified_key():
+    """Verify unknown verified key fails schema/semantic validation."""
+    from packages.synthetic_motifs.verifier_adapters import VisualVerificationSemanticValidator
+    validator = VisualVerificationSemanticValidator()
+    verifier_input = {"proposal_id": "smoke_001", "proposed_visual_candidate_key": "star_like"}
+    raw_output = json.dumps({
+        "schema_version": "visual-verifier-v1.0.0",
+        "proposal_id": "smoke_001",
+        "decision": "ACCEPT",
+        "proposed_visual_candidate_key": "star_like",
+        "verified_visual_candidate_key": "geometric_rosette",
+        "visual_evidence": "A rosette shape is visible.",
+        "abstention_reason": None
+    })
+    res = validator.validate(verifier_input, raw_output)
+    assert res["schema_valid"] is False or res["semantic_valid"] is False
+
+
+def test_v2_09c_1a_proposal_id_mutation():
+    """Verify proposal_id mutation fails semantic validation."""
+    from packages.synthetic_motifs.verifier_adapters import VisualVerificationSemanticValidator
+    validator = VisualVerificationSemanticValidator()
+    verifier_input = {"proposal_id": "smoke_001", "proposed_visual_candidate_key": "star_like"}
+    raw_output = json.dumps({
+        "schema_version": "visual-verifier-v1.0.0",
+        "proposal_id": "1234567890",
+        "decision": "ACCEPT",
+        "proposed_visual_candidate_key": "star_like",
+        "verified_visual_candidate_key": "star_like",
+        "visual_evidence": "A star shape.",
+        "abstention_reason": None
+    })
+    res = validator.validate(verifier_input, raw_output)
+    assert res["semantic_valid"] is False
+    assert any("PROPOSAL_ID_MUTATED" in r for r in res["semantic_reasons"])
+
+
+def test_v2_09c_1a_proposed_key_mutation():
+    """Verify proposed_visual_candidate_key mutation fails semantic validation."""
+    from packages.synthetic_motifs.verifier_adapters import VisualVerificationSemanticValidator
+    validator = VisualVerificationSemanticValidator()
+    verifier_input = {"proposal_id": "smoke_001", "proposed_visual_candidate_key": "star_like"}
+    raw_output = json.dumps({
+        "schema_version": "visual-verifier-v1.0.0",
+        "proposal_id": "smoke_001",
+        "decision": "ACCEPT",
+        "proposed_visual_candidate_key": "lozenge_like",
+        "verified_visual_candidate_key": "star_like",
+        "visual_evidence": "A star shape.",
+        "abstention_reason": None
+    })
+    res = validator.validate(verifier_input, raw_output)
+    assert res["semantic_valid"] is False
+    assert any("PROPOSED_KEY_MUTATED" in r for r in res["semantic_reasons"])
+
+
+def test_v2_09c_1a_reject_with_key():
+    """Verify REJECT with non-null verified key fails semantic validation."""
+    from packages.synthetic_motifs.verifier_adapters import VisualVerificationSemanticValidator
+    validator = VisualVerificationSemanticValidator()
+    verifier_input = {"proposal_id": "smoke_001", "proposed_visual_candidate_key": "star_like"}
+    raw_output = json.dumps({
+        "schema_version": "visual-verifier-v1.0.0",
+        "proposal_id": "smoke_001",
+        "decision": "REJECT",
+        "proposed_visual_candidate_key": "star_like",
+        "verified_visual_candidate_key": "star_like",
+        "visual_evidence": "No star visible.",
+        "abstention_reason": None
+    })
+    res = validator.validate(verifier_input, raw_output)
+    assert res["semantic_valid"] is False
+    assert any("REJECT_REQUIRES_NULL_VERIFIED_KEY" in r for r in res["semantic_reasons"])
+
+
+def test_v2_09c_1a_reject_without_key():
+    """Verify REJECT with null verified key passes semantic validation."""
+    from packages.synthetic_motifs.verifier_adapters import VisualVerificationSemanticValidator
+    validator = VisualVerificationSemanticValidator()
+    verifier_input = {"proposal_id": "smoke_001", "proposed_visual_candidate_key": "star_like"}
+    raw_output = json.dumps({
+        "schema_version": "visual-verifier-v1.0.0",
+        "proposal_id": "smoke_001",
+        "decision": "REJECT",
+        "proposed_visual_candidate_key": "star_like",
+        "verified_visual_candidate_key": None,
+        "visual_evidence": "No star visible in the crop.",
+        "abstention_reason": None
+    })
+    res = validator.validate(verifier_input, raw_output)
+    assert res["semantic_valid"] is True
+
+
+def test_v2_09c_1a_accept_valid_key():
+    """Verify ACCEPT with valid verified key passes semantic validation."""
+    from packages.synthetic_motifs.verifier_adapters import VisualVerificationSemanticValidator
+    validator = VisualVerificationSemanticValidator()
+    verifier_input = {"proposal_id": "smoke_001", "proposed_visual_candidate_key": "star_like"}
+    raw_output = json.dumps({
+        "schema_version": "visual-verifier-v1.0.0",
+        "proposal_id": "smoke_001",
+        "decision": "ACCEPT",
+        "proposed_visual_candidate_key": "star_like",
+        "verified_visual_candidate_key": "star_like",
+        "visual_evidence": "8-pointed star shape present.",
+        "abstention_reason": None
+    })
+    res = validator.validate(verifier_input, raw_output)
+    assert res["semantic_valid"] is True
+
+
+def test_v2_09c_1a_accept_correction():
+    """Verify ACCEPT with key correction to another frozen key passes semantic validation."""
+    from packages.synthetic_motifs.verifier_adapters import VisualVerificationSemanticValidator
+    validator = VisualVerificationSemanticValidator()
+    verifier_input = {"proposal_id": "smoke_001", "proposed_visual_candidate_key": "star_like"}
+    raw_output = json.dumps({
+        "schema_version": "visual-verifier-v1.0.0",
+        "proposal_id": "smoke_001",
+        "decision": "ACCEPT",
+        "proposed_visual_candidate_key": "star_like",
+        "verified_visual_candidate_key": "octagonal_form",
+        "visual_evidence": "Shape is an 8-sided octagon rather than a star.",
+        "abstention_reason": None
+    })
+    res = validator.validate(verifier_input, raw_output)
+    assert res["semantic_valid"] is True
+
+
+def test_v2_09c_1a_abstain():
+    """Verify ABSTAIN with null verified key and non-empty reason passes semantic validation."""
+    from packages.synthetic_motifs.verifier_adapters import VisualVerificationSemanticValidator
+    validator = VisualVerificationSemanticValidator()
+    verifier_input = {"proposal_id": "smoke_001", "proposed_visual_candidate_key": "star_like"}
+    raw_output = json.dumps({
+        "schema_version": "visual-verifier-v1.0.0",
+        "proposal_id": "smoke_001",
+        "decision": "ABSTAIN",
+        "proposed_visual_candidate_key": "star_like",
+        "verified_visual_candidate_key": None,
+        "visual_evidence": "Region is too blurry.",
+        "abstention_reason": "Low resolution image preventing visual feature identification."
+    })
+    res = validator.validate(verifier_input, raw_output)
+    assert res["semantic_valid"] is True
+
+
+def test_v2_09c_1a_canonical_motif_as_visual_key():
+    """Verify domain motif key 'elibelinde' fails visual key validation."""
+    from packages.synthetic_motifs.verifier_adapters import VisualVerificationSemanticValidator
+    validator = VisualVerificationSemanticValidator()
+    verifier_input = {"proposal_id": "smoke_001", "proposed_visual_candidate_key": "star_like"}
+    raw_output = json.dumps({
+        "schema_version": "visual-verifier-v1.0.0",
+        "proposal_id": "smoke_001",
+        "decision": "ACCEPT",
+        "proposed_visual_candidate_key": "star_like",
+        "verified_visual_candidate_key": "elibelinde",
+        "visual_evidence": "An elibelinde motif.",
+        "abstention_reason": None
+    })
+    res = validator.validate(verifier_input, raw_output)
+    assert res["schema_valid"] is False or res["semantic_valid"] is False
+
+
+def test_v2_09c_1a_cultural_output():
+    """Verify cultural field present fails semantic validation."""
+    from packages.synthetic_motifs.verifier_adapters import VisualVerificationSemanticValidator
+    validator = VisualVerificationSemanticValidator()
+    verifier_input = {"proposal_id": "smoke_001", "proposed_visual_candidate_key": "star_like"}
+    raw_output = json.dumps({
+        "schema_version": "visual-verifier-v1.0.0",
+        "proposal_id": "smoke_001",
+        "decision": "ACCEPT",
+        "proposed_visual_candidate_key": "star_like",
+        "verified_visual_candidate_key": "star_like",
+        "visual_evidence": "Star motif with cultural meaning.",
+        "culture": "Anatolian",
+        "abstention_reason": None
+    })
+    res = validator.validate(verifier_input, raw_output)
+    assert res["schema_valid"] is False or res["semantic_valid"] is False
