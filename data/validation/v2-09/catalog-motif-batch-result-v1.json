@@ -1,0 +1,165 @@
+{
+  "dataset_version": "catalog-motif-research-batch-v1.0.0",
+  "batch_run_id": "v2-09-final-catalog-20260818",
+  "input_manifest_hash": "43a20da8b6dc2448e04fbda83f4a37b8b0c2cba49fdda1a33b7c62e465d80eaf",
+  "universe": {
+    "total_catalog_products": 232,
+    "processable_images": 227,
+    "no_primary_image_count": 5,
+    "no_primary_skus": [
+      "73480 070",
+      "74480 070",
+      "74928 062",
+      "74928 957",
+      "75272 060"
+    ]
+  },
+  "streams": {
+    "detect": {
+      "attempted": 227,
+      "successful": 227,
+      "failed": 0,
+      "technical_retries": 0,
+      "total_proposals": 0,
+      "zero_proposal_images": 227,
+      "any_proposal_images": 0,
+      "zero_proposal_rate": 1.0,
+      "any_proposal_rate": 0.0,
+      "proposals_per_image": {
+        "mean": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0
+      },
+      "confidence_metrics": {
+        "min": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "latency_metrics": {
+        "unit": "PER_IMAGE",
+        "mean_sec": 0.0165,
+        "median_sec": 0.0125,
+        "p95_sec": 0.015
+      },
+      "class_distribution": {
+        "cloud_band_like": 0,
+        "comb_like": 0,
+        "hook_like": 0,
+        "horn_like": 0,
+        "human_figure_like_geometric": 0,
+        "lattice_like": 0,
+        "lotus_like": 0,
+        "lozenge_like": 0,
+        "medallion_like": 0,
+        "niche_like": 0,
+        "octagonal_form": 0,
+        "palmette_like": 0,
+        "rosette_like": 0,
+        "star_like": 0,
+        "tree_like": 0,
+        "unmapped_visual_motif": 0,
+        "vine_scroll_like": 0
+      },
+      "review_burden_buckets": {
+        "0": 227,
+        "1": 0,
+        "2-5": 0,
+        "6-10": 0,
+        ">10": 0
+      },
+      "model_hash": "085fc5d9d2427562d908065f64ce5a9318ad645133e95c3558cba4ab861cd44d",
+      "threshold": 0.25,
+      "model_load_sec": 0.048,
+      "batch_wall_time_sec": 3.7891
+    },
+    "obb": {
+      "attempted": 227,
+      "successful": 227,
+      "failed": 0,
+      "technical_retries": 0,
+      "total_proposals": 0,
+      "zero_proposal_images": 227,
+      "any_proposal_images": 0,
+      "zero_proposal_rate": 1.0,
+      "any_proposal_rate": 0.0,
+      "proposals_per_image": {
+        "mean": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0
+      },
+      "confidence_metrics": {
+        "min": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "latency_metrics": {
+        "unit": "PER_IMAGE",
+        "mean_sec": 0.0134,
+        "median_sec": 0.0127,
+        "p95_sec": 0.0147
+      },
+      "class_distribution": {
+        "cloud_band_like": 0,
+        "comb_like": 0,
+        "hook_like": 0,
+        "horn_like": 0,
+        "human_figure_like_geometric": 0,
+        "lattice_like": 0,
+        "lotus_like": 0,
+        "lozenge_like": 0,
+        "medallion_like": 0,
+        "niche_like": 0,
+        "octagonal_form": 0,
+        "palmette_like": 0,
+        "rosette_like": 0,
+        "star_like": 0,
+        "tree_like": 0,
+        "unmapped_visual_motif": 0,
+        "vine_scroll_like": 0
+      },
+      "review_burden_buckets": {
+        "0": 227,
+        "1": 0,
+        "2-5": 0,
+        "6-10": 0,
+        ">10": 0
+      },
+      "model_hash": "f0ddfd1ef6cbd4a5cab366b0172e65d25d941710f90d865264b666ac41056f21",
+      "threshold": 0.25,
+      "model_load_sec": 0.065,
+      "batch_wall_time_sec": 3.0683
+    }
+  },
+  "fingerprints": {
+    "detect_result_fingerprint": "106e1fbc0c9955dfd3a956cf819a55e529fcf7ea44527a84c78d339fb92cb425",
+    "obb_result_fingerprint": "6c73d539ff2852327ae67d51ba8dcb7b8be7c7e1bd427ef7d1e76a6e7119538c"
+  },
+  "historical_vlm_accounting": {
+    "historical_total_calls": 858,
+    "historical_real_test_calls": 474,
+    "full_catalog_vlm_calls": 0,
+    "new_vlm_calls": 0
+  },
+  "production_impact": {
+    "production_db_writes": 0,
+    "cultural_claims_generated": 0,
+    "stories_generated": 0,
+    "auto_human_confirmations": 0,
+    "vlm_verifier_selected": null
+  },
+  "scientific_interpretation": {
+    "detector_proposals_equal_verified_motifs": false,
+    "proposal_distribution_equals_true_prevalence": false,
+    "catalog_accuracy_measured": false,
+    "single_detector_winner_assigned": false,
+    "vlm_production_verifier_selected": false,
+    "hard_negative_rejection_reliability": "UNVERIFIED",
+    "v2_09d_status": "SKIPPED_NOT_YET_JUSTIFIED"
+  }
+}

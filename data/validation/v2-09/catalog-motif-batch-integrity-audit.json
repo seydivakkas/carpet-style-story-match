@@ -1,0 +1,96 @@
+{
+  "task": "V2-09 FINAL — Catalog Motif Batch Integrity Audit",
+  "status": "PASS_BATCH_INTEGRITY",
+  "batch_run_id": "v2-09-final-catalog-20260818",
+  "input_manifest_hash": "43a20da8b6dc2448e04fbda83f4a37b8b0c2cba49fdda1a33b7c62e465d80eaf",
+  "detect_result_fingerprint": "106e1fbc0c9955dfd3a956cf819a55e529fcf7ea44527a84c78d339fb92cb425",
+  "obb_result_fingerprint": "6c73d539ff2852327ae67d51ba8dcb7b8be7c7e1bd427ef7d1e76a6e7119538c",
+  "checks": [
+    {
+      "check": "TOTAL_CATALOG_PRODUCT_COUNT_IS_232",
+      "status": "PASS",
+      "value": 232
+    },
+    {
+      "check": "PROCESSABLE_IMAGE_COUNT_IS_227",
+      "status": "PASS",
+      "value": 227
+    },
+    {
+      "check": "NO_PRIMARY_IMAGE_COUNT_IS_5",
+      "status": "PASS",
+      "value": 5
+    },
+    {
+      "check": "NO_PRIMARY_IMAGE_SKUS_EXACT_MATCH",
+      "status": "PASS",
+      "value": [
+        "73480 070",
+        "74480 070",
+        "74928 062",
+        "74928 957",
+        "75272 060"
+      ]
+    },
+    {
+      "check": "DETECT_HASH_FROZEN",
+      "status": "PASS",
+      "value": "085fc5d9d2427562d908065f64ce5a9318ad645133e95c3558cba4ab861cd44d"
+    },
+    {
+      "check": "OBB_HASH_FROZEN",
+      "status": "PASS",
+      "value": "f0ddfd1ef6cbd4a5cab366b0172e65d25d941710f90d865264b666ac41056f21"
+    },
+    {
+      "check": "CONFIDENCE_THRESHOLD_FROZEN_0.25",
+      "status": "PASS",
+      "value": 0.25
+    },
+    {
+      "check": "DETECT_SUCCESSFUL_227_OF_227",
+      "status": "PASS",
+      "value": "227/227"
+    },
+    {
+      "check": "OBB_SUCCESSFUL_227_OF_227",
+      "status": "PASS",
+      "value": "227/227"
+    },
+    {
+      "check": "PROCESSED_IMAGE_SET_IDENTICAL_BOTH_STREAMS",
+      "status": "PASS",
+      "value": true
+    },
+    {
+      "check": "ALL_PROPOSAL_KEYS_IN_17_KEY_REGISTRY",
+      "status": "PASS",
+      "value": true
+    },
+    {
+      "check": "REAL_TEST_IMAGE_OVERLAP_COUNT",
+      "status": "PASS",
+      "value": 0
+    },
+    {
+      "check": "FULL_CATALOG_VLM_CALLS_IS_0",
+      "status": "PASS",
+      "value": 0
+    },
+    {
+      "check": "PRODUCTION_DB_WRITES_IS_0",
+      "status": "PASS",
+      "value": 0
+    },
+    {
+      "check": "NO_SINGLE_DETECTOR_WINNER",
+      "status": "PASS",
+      "value": true
+    },
+    {
+      "check": "NO_VLM_PRODUCTION_SELECTION",
+      "status": "PASS",
+      "value": true
+    }
+  ]
+}
