@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VisualVerificationResult",
+  "description": "Schema for deterministic small-VLM visual proposal verifier output in V2-09C",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "proposal_id",
+    "decision",
+    "proposed_visual_candidate_key",
+    "verified_visual_candidate_key",
+    "visual_evidence"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "visual-verifier-v1.0.0"
+    },
+    "proposal_id": {
+      "type": "string"
+    },
+    "decision": {
+      "type": "string",
+      "enum": ["ACCEPT", "REJECT", "ABSTAIN"]
+    },
+    "proposed_visual_candidate_key": {
+      "type": "string",
+      "enum": [
+        "eight_pointed_star",
+        "geometric_rosette",
+        "stepped_polygon_medallion",
+        "latchhook_diamond",
+        "serrated_leaf",
+        "stylized_carnation",
+        "geometrized_tulip",
+        "tree_of_life_branching",
+        "comb_form",
+        "hands_on_hips_form",
+        "running_water_meander",
+        "hooked_lozenge",
+        "ram_horn_spiral",
+        "cross_star_variant",
+        "hexagonal_motif",
+        "star_medallion_composite",
+        "border_guard_stripe_element"
+      ]
+    },
+    "verified_visual_candidate_key": {
+      "type": ["string", "null"],
+      "enum": [
+        "eight_pointed_star",
+        "geometric_rosette",
+        "stepped_polygon_medallion",
+        "latchhook_diamond",
+        "serrated_leaf",
+        "stylized_carnation",
+        "geometrized_tulip",
+        "tree_of_life_branching",
+        "comb_form",
+        "hands_on_hips_form",
+        "running_water_meander",
+        "hooked_lozenge",
+        "ram_horn_spiral",
+        "cross_star_variant",
+        "hexagonal_motif",
+        "star_medallion_composite",
+        "border_guard_stripe_element",
+        null
+      ]
+    },
+    "visual_evidence": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Short bounded visual-only description of observed geometry and feature points"
+    },
+    "abstention_reason": {
+      "type": ["string", "null"],
+      "description": "Reason for abstention if decision is ABSTAIN"
+    },
+    "model_provenance": {
+      "type": ["string", "null"],
+      "description": "Model ID or candidate ID generating the verification decision"
+    }
+  }
+}
