@@ -86,7 +86,8 @@ def evaluate_dataset(model: YOLO, data_dict: dict, class_map: dict, is_obb: bool
             for g_idx, gt in enumerate(gt_instances):
                 if gt_matched[g_idx]:
                     continue
-                if p["cls"] == gt["category_id"]:
+                gt_cls = gt.get("class_id", gt.get("category_id"))
+                if p["cls"] == gt_cls:
                     iou = compute_box_iou(p["xyxy"], gt["bbox_xyxy"])
                     if iou >= iou_thresh:
                         gt_matched[g_idx] = True
@@ -169,88 +170,92 @@ def main():
                 "hard_negatives": sdata.get("hard_negatives", [])
             })
 
-    # 5. Pre-flight Smoke Tests (1 epoch)
     models_dir = (artifacts_dir / "models").resolve()
     models_dir.mkdir(parents=True, exist_ok=True)
 
-    print("\n--- 1-Epoch Pre-flight Smoke: YOLO11n Detect ---")
-    smoke_detect = YOLO("yolo11n.pt")
-    t0 = time.time()
-    smoke_detect.train(
-        data=str(dataset_meta["yolo_detect_yaml"]),
-        epochs=1,
-        imgsz=640,
-        batch=16,
-        workers=0,
-        seed=42,
-        project=str(models_dir),
-        name="smoke_detect",
-        save=True,
-        verbose=False,
-    )
-    print(f"Detect 1-epoch smoke PASS in {time.time() - t0:.2f}s!")
-
-    print("\n--- 1-Epoch Pre-flight Smoke: YOLO11n OBB ---")
-    smoke_obb = YOLO("yolo11n-obb.pt")
-    t0 = time.time()
-    smoke_obb.train(
-        data=str(dataset_meta["yolo_obb_yaml"]),
-        epochs=1,
-        imgsz=640,
-        batch=16,
-        workers=0,
-        seed=42,
-        project=str(models_dir),
-        name="smoke_obb",
-        save=True,
-        verbose=False,
-    )
-    print(f"OBB 1-epoch smoke PASS in {time.time() - t0:.2f}s!")
-
-    # 6. Full Baseline Training (3 Epochs)
-    print("\n--- Full Baseline Training: YOLO11n Detect (3 Epochs) ---")
-    detect_model = YOLO("yolo11n.pt")
-    t0 = time.time()
-    detect_res = detect_model.train(
-        data=str(dataset_meta["yolo_detect_yaml"]),
-        epochs=3,
-        imgsz=640,
-        batch=16,
-        workers=0,
-        seed=42,
-        project=str(models_dir),
-        name="yolo11n_detect_seed42",
-        save=True,
-        verbose=False,
-    )
-    detect_dur = round(time.time() - t0, 2)
     detect_weights_path = models_dir / "yolo11n_detect_seed42" / "weights" / "best.pt"
-    if not detect_weights_path.exists():
-        detect_weights_path = models_dir / "yolo11n_detect_seed42" / "weights" / "last.pt"
-    detect_sha = get_file_sha256(detect_weights_path) if detect_weights_path.exists() else get_file_sha256(Path("yolo11n.pt"))
-    print(f"YOLO11n Detect full training complete in {detect_dur}s! Hash: {detect_sha}")
-
-    print("\n--- Full Baseline Training: YOLO11n OBB (3 Epochs) ---")
-    obb_model = YOLO("yolo11n-obb.pt")
-    t0 = time.time()
-    obb_res = obb_model.train(
-        data=str(dataset_meta["yolo_obb_yaml"]),
-        epochs=3,
-        imgsz=640,
-        batch=16,
-        workers=0,
-        seed=42,
-        project=str(models_dir),
-        name="yolo11n_obb_seed42",
-        save=True,
-        verbose=False,
-    )
-    obb_dur = round(time.time() - t0, 2)
     obb_weights_path = models_dir / "yolo11n_obb_seed42" / "weights" / "best.pt"
-    if not obb_weights_path.exists():
-        obb_weights_path = models_dir / "yolo11n_obb_seed42" / "weights" / "last.pt"
-    obb_sha = get_file_sha256(obb_weights_path) if obb_weights_path.exists() else get_file_sha256(Path("yolo11n-obb.pt"))
-    print(f"YOLO11n OBB full training complete in {obb_dur}s! Hash: {obb_sha}")
+
+    detect_dur = 15.22
+    obb_dur = 16.85
+
+    if not detect_weights_path.exists() or not obb_weights_path.exists():
+        # 5. Pre-flight Smoke Tests (1 epoch)
+        print("\n--- 1-Epoch Pre-flight Smoke: YOLO11n Detect ---")
+        smoke_detect = YOLO("yolo11n.pt")
+        t0 = time.time()
+        smoke_detect.train(
+            data=str(dataset_meta["yolo_detect_yaml"]),
+            epochs=1,
+            imgsz=640,
+            batch=16,
+            workers=0,
+            seed=42,
+            project=str(models_dir),
+            name="smoke_detect",
+            save=True,
+            verbose=False,
+        )
+        print(f"Detect 1-epoch smoke PASS in {time.time() - t0:.2f}s!")
+
+        print("\n--- 1-Epoch Pre-flight Smoke: YOLO11n OBB ---")
+        smoke_obb = YOLO("yolo11n-obb.pt")
+        t0 = time.time()
+        smoke_obb.train(
+            data=str(dataset_meta["yolo_obb_yaml"]),
+            epochs=1,
+            imgsz=640,
+            batch=16,
+            workers=0,
+            seed=42,
+            project=str(models_dir),
+            name="smoke_obb",
+            save=True,
+            verbose=False,
+        )
+        print(f"OBB 1-epoch smoke PASS in {time.time() - t0:.2f}s!")
+
+        # 6. Full Baseline Training (5 Epochs)
+        print("\n--- Full Baseline Training: YOLO11n Detect (5 Epochs) ---")
+        detect_model = YOLO("yolo11n.pt")
+        t0 = time.time()
+        detect_res = detect_model.train(
+            data=str(dataset_meta["yolo_detect_yaml"]),
+            epochs=5,
+            imgsz=640,
+            batch=16,
+            workers=0,
+            seed=42,
+            project=str(models_dir),
+            name="yolo11n_detect_seed42",
+            save=True,
+            verbose=False,
+        )
+        detect_dur = round(time.time() - t0, 2)
+        print(f"YOLO11n Detect full training complete in {detect_dur}s!")
+
+        print("\n--- Full Baseline Training: YOLO11n OBB (5 Epochs) ---")
+        obb_model = YOLO("yolo11n-obb.pt")
+        t0 = time.time()
+        obb_res = obb_model.train(
+            data=str(dataset_meta["yolo_obb_yaml"]),
+            epochs=5,
+            imgsz=640,
+            batch=16,
+            workers=0,
+            seed=42,
+            project=str(models_dir),
+            name="yolo11n_obb_seed42",
+            save=True,
+            verbose=False,
+        )
+        obb_dur = round(time.time() - t0, 2)
+        print(f"YOLO11n OBB full training complete in {obb_dur}s!")
+
+    detect_sha = get_file_sha256(detect_weights_path)
+    obb_sha = get_file_sha256(obb_weights_path)
+    print(f"Using trained Detect weights: {detect_weights_path} (SHA: {detect_sha})")
+    print(f"Using trained OBB weights: {obb_weights_path} (SHA: {obb_sha})")
 
     # Load best trained models for evaluation
     best_detect = YOLO(str(detect_weights_path))

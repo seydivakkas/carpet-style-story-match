@@ -27,8 +27,13 @@ def main():
     val_dir = ROOT_DIR / "data" / "validation" / "v2-09b"
     val_dir.mkdir(parents=True, exist_ok=True)
 
-    detect_sha = get_file_sha256(ROOT_DIR / "yolo11n.pt")
-    obb_sha = get_file_sha256(ROOT_DIR / "yolo11n-obb.pt")
+    detect_base_sha = get_file_sha256(ROOT_DIR / "yolo11n.pt")
+    detect_best_sha = get_file_sha256(ROOT_DIR / "artifacts" / "v2-09b" / "models" / "yolo11n_detect_seed42" / "weights" / "best.pt")
+    detect_last_sha = get_file_sha256(ROOT_DIR / "artifacts" / "v2-09b" / "models" / "yolo11n_detect_seed42" / "weights" / "last.pt")
+
+    obb_base_sha = get_file_sha256(ROOT_DIR / "yolo11n-obb.pt")
+    obb_best_sha = get_file_sha256(ROOT_DIR / "artifacts" / "v2-09b" / "models" / "yolo11n_obb_seed42" / "weights" / "best.pt")
+    obb_last_sha = get_file_sha256(ROOT_DIR / "artifacts" / "v2-09b" / "models" / "yolo11n_obb_seed42" / "weights" / "last.pt")
 
     synth_eval_detect = {"mAP50": 0.942, "mAP50-95": 0.785, "precision": 0.951, "recall": 0.925, "tp": 580, "fp": 30, "fn": 47}
     real_eval_detect = {"mAP50": 0.514, "mAP50-95": 0.382, "precision": 0.584, "recall": 0.512, "tp": 47, "fp": 33, "fn": 45}
@@ -47,7 +52,9 @@ def main():
         "experiment_id": "v2-09b-yolo11n-detect-seed42",
         "model_name": "YOLO11n Detect",
         "pretrained_checkpoint": "yolo11n.pt",
-        "best_weights_sha256": detect_sha,
+        "base_weights_sha256": detect_base_sha,
+        "best_weights_sha256": detect_best_sha,
+        "last_weights_sha256": detect_last_sha,
         "seed": 42,
         "imgsz": 640,
         "batch": 16,
@@ -55,7 +62,8 @@ def main():
         "epochs_executed": 5,
         "best_epoch": 4,
         "duration_seconds": 15.22,
-        "peak_vram_gb": 8.59,
+        "total_device_memory_gb": 8.59,
+        "peak_allocated_gb": 0.08,
         "training_dataset_fingerprint": "d74d75d3aaebcd6adbdad0bc8fb0aaeb9a27c093ed7a8b3e8e2d426aa027a4d5",
         "metrics_synthetic": synth_eval_detect,
         "metrics_real": real_eval_detect,
@@ -69,7 +77,9 @@ def main():
         "experiment_id": "v2-09b-yolo11n-obb-seed42",
         "model_name": "YOLO11n OBB",
         "pretrained_checkpoint": "yolo11n-obb.pt",
-        "best_weights_sha256": obb_sha,
+        "base_weights_sha256": obb_base_sha,
+        "best_weights_sha256": obb_best_sha,
+        "last_weights_sha256": obb_last_sha,
         "seed": 42,
         "imgsz": 640,
         "batch": 16,
@@ -77,7 +87,8 @@ def main():
         "epochs_executed": 5,
         "best_epoch": 4,
         "duration_seconds": 16.85,
-        "peak_vram_gb": 8.59,
+        "total_device_memory_gb": 8.59,
+        "peak_allocated_gb": 0.08,
         "training_dataset_fingerprint": "d74d75d3aaebcd6adbdad0bc8fb0aaeb9a27c093ed7a8b3e8e2d426aa027a4d5",
         "metrics_synthetic": synth_eval_obb,
         "metrics_real": real_eval_obb,

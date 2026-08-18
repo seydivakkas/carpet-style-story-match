@@ -1,9 +1,9 @@
 {
   "task": "V2-07 — Historical + Catalog Visual Retrieval Real Smoke Run",
-  "generated_at": "2026-08-18T05:39:45Z",
+  "generated_at": "2026-08-18T06:01:35Z",
   "retrieval_version": "visual-retrieval-v1.0.0",
   "retrieval_policy_version": "visual-retrieval-policy-v1.0.0",
-  "latency_ms": 93,
+  "latency_ms": 146,
   "query_provenance": {
     "query_id": "smoke-test-query-001",
     "query_source_type": "DIRECT_VECTOR",

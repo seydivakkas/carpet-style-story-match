@@ -110,3 +110,35 @@ def test_v2_09b_detector_visual_proposal_contract():
             source_image_id="real_carpet_001",
             culture="Seljuk"  # FORBIDDEN
         )
+
+
+def test_v2_09b_1_training_artifact_audit():
+    audit_path = ROOT_DIR / "data" / "validation" / "v2-09b" / "training-artifact-audit.json"
+    assert audit_path.exists()
+    with open(audit_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    assert data["status"] == "PASS"
+    assert data["root_cause"]["duplicate_hash_classification"] == "REPORT_ONLY_COPY_ERROR"
+    assert data["detect_artifacts"]["base_equals_best"] is False
+    assert data["detect_artifacts"]["changed_tensors"] > 0
+    assert data["obb_artifacts"]["base_equals_best"] is False
+    assert data["obb_artifacts"]["changed_tensors"] > 0
+    assert data["real_benchmark_provenance"]["training_overlap"] == 0
+    assert len(data["real_benchmark_provenance"]["classes_with_not_enough_support"]) > 0
+
+
+def test_v2_09b_1_manifest_hash_distinction():
+    detect_manifest_path = ROOT_DIR / "data" / "detectors" / "v2-09b-yolo11n-detect-seed42-manifest.json"
+    obb_manifest_path = ROOT_DIR / "data" / "detectors" / "v2-09b-yolo11n-obb-seed42-manifest.json"
+
+    with open(detect_manifest_path, "r", encoding="utf-8") as f:
+        d_data = json.load(f)
+    assert d_data["base_weights_sha256"] != d_data["best_weights_sha256"]
+    assert d_data["best_weights_sha256"] != "N/A"
+
+    with open(obb_manifest_path, "r", encoding="utf-8") as f:
+        o_data = json.load(f)
+    assert o_data["base_weights_sha256"] != o_data["best_weights_sha256"]
+    assert o_data["best_weights_sha256"] != "N/A"
+

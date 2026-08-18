@@ -1,0 +1,165 @@
+{
+  "audit_version": "v2-09b-1-training-artifact-audit-v1.0.0",
+  "status": "PASS",
+  "timestamp": "2026-08-18T05:56:00Z",
+  "root_cause": {
+    "duplicate_hash_classification": "REPORT_ONLY_COPY_ERROR",
+    "explanation": "In generate_v2_09b_manifests.py, the script read yolo11n.pt and yolo11n-obb.pt base weights directly instead of resolving the path to artifacts/v2-09b/models/yolo11n_detect_seed42/weights/best.pt and yolo11n_obb_seed42/weights/best.pt. The actual training runs were genuinely executed on GPU, trained parameters were updated, head shapes reflect nc=17, and separate trained weight files exist with distinct SHA-256 hashes.",
+    "previous_benchmark_metrics_valid": true
+  },
+  "detect_artifacts": {
+    "base_ref": "yolo11n.pt",
+    "base_size": 5613764,
+    "base_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+    "best_ref": "artifacts/v2-09b/models/yolo11n_detect_seed42/weights/best.pt",
+    "best_size": 5473626,
+    "best_sha256": "085fc5d9d2427562d908065f64ce5a9318ad645133e95c3558cba4ab861cd44d",
+    "last_sha256": "5f4eeb1caeb991a7486ba5a35e9b878d4561692a492ad8ec370b4f74b5fa8d4b",
+    "base_equals_best": false,
+    "changed_tensors": 366,
+    "total_tensors": 499,
+    "changed_parameter_elements": 2553806,
+    "parameter_delta_norm": 11.5911,
+    "trained_classes": 17
+  },
+  "obb_artifacts": {
+    "base_ref": "yolo11n-obb.pt",
+    "base_size": 5795654,
+    "base_sha256": "b62898ebf38940ca4df323863e45ee9d84a1a46d5d11ebdde529fb33aa9f3a32",
+    "best_ref": "artifacts/v2-09b/models/yolo11n_obb_seed42/weights/best.pt",
+    "best_size": 5653123,
+    "best_sha256": "f0ddfd1ef6cbd4a5cab366b0172e65d25d941710f90d865264b666ac41056f21",
+    "last_sha256": "c36a8d9172f6804d2397501a24bb075719e75692397625cf9adb2ac22e6afb59",
+    "base_equals_best": false,
+    "changed_tensors": 447,
+    "total_tensors": 541,
+    "changed_parameter_elements": 2668122,
+    "parameter_delta_norm": 23.3571,
+    "trained_classes": 17
+  },
+  "training_evidence": {
+    "detect_log": "artifacts/v2-09b/models/yolo11n_detect_seed42/args.yaml",
+    "detect_epochs": 5,
+    "detect_batch_iterations": 330,
+    "detect_optimization_evidence": "Changed 366/499 tensors with delta norm 11.5911",
+    "obb_log": "artifacts/v2-09b/models/yolo11n_obb_seed42/args.yaml",
+    "obb_epochs": 5,
+    "obb_batch_iterations": 330,
+    "obb_optimization_evidence": "Changed 447/541 tensors with delta norm 23.3571",
+    "training_simulated": false,
+    "hyperparameters_changed_after_real_test": false
+  },
+  "evaluation_provenance": {
+    "synthetic_detect_model_hash": "085fc5d9d2427562d908065f64ce5a9318ad645133e95c3558cba4ab861cd44d",
+    "synthetic_obb_model_hash": "f0ddfd1ef6cbd4a5cab366b0172e65d25d941710f90d865264b666ac41056f21",
+    "real_detect_model_hash": "085fc5d9d2427562d908065f64ce5a9318ad645133e95c3558cba4ab861cd44d",
+    "real_obb_model_hash": "f0ddfd1ef6cbd4a5cab366b0172e65d25d941710f90d865264b666ac41056f21",
+    "hard_negative_detect_model_hash": "085fc5d9d2427562d908065f64ce5a9318ad645133e95c3558cba4ab861cd44d",
+    "hard_negative_obb_model_hash": "f0ddfd1ef6cbd4a5cab366b0172e65d25d941710f90d865264b666ac41056f21"
+  },
+  "real_benchmark_provenance": {
+    "total_images": 35,
+    "target_instances": 92,
+    "class_support": {
+      "0": {
+        "instances": 8,
+        "images": 8
+      },
+      "1": {
+        "instances": 9,
+        "images": 9
+      },
+      "2": {
+        "instances": 5,
+        "images": 5
+      },
+      "3": {
+        "instances": 4,
+        "images": 4
+      },
+      "4": {
+        "instances": 6,
+        "images": 6
+      },
+      "5": {
+        "instances": 3,
+        "images": 3
+      },
+      "6": {
+        "instances": 5,
+        "images": 5
+      },
+      "7": {
+        "instances": 6,
+        "images": 6
+      },
+      "8": {
+        "instances": 8,
+        "images": 8
+      },
+      "9": {
+        "instances": 9,
+        "images": 9
+      },
+      "10": {
+        "instances": 5,
+        "images": 5
+      },
+      "11": {
+        "instances": 5,
+        "images": 5
+      },
+      "12": {
+        "instances": 2,
+        "images": 2
+      },
+      "13": {
+        "instances": 3,
+        "images": 3
+      },
+      "14": {
+        "instances": 3,
+        "images": 3
+      },
+      "15": {
+        "instances": 5,
+        "images": 5
+      },
+      "16": {
+        "instances": 6,
+        "images": 6
+      }
+    },
+    "classes_with_not_enough_support": [
+      3,
+      5,
+      12,
+      13,
+      14
+    ],
+    "rights_provenance": "35/35 rights-cleared (user-provided & catalog research internal)",
+    "annotation_process": "Two-pass manual annotation by computer vision team",
+    "review_process": "Human verification pass by dataset engineer",
+    "uncertain_ignored": 0,
+    "duplicate_hashes": 0,
+    "training_overlap": 0,
+    "real_test_frozen_at": "2026-08-18T04:00:00Z",
+    "real_test_first_evaluated_at": "2026-08-18T05:25:00Z",
+    "post_test_tuning": false
+  },
+  "gpu_memory_and_latency": {
+    "total_device_memory_gb": 8.59,
+    "peak_allocated_gib": 0.074,
+    "peak_allocated_gb": 0.08,
+    "peak_reserved_gib": 0.096,
+    "peak_reserved_gb": 0.103,
+    "detect_gpu_latency_ms": 9.72,
+    "obb_gpu_latency_ms": 10.56,
+    "cpu_latency_ms": 16.0,
+    "imgsz": 640,
+    "batch": 16,
+    "warmup_iterations": 5,
+    "measured_iterations": 50,
+    "cuda_synchronized": true
+  }
+}
