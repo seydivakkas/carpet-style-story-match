@@ -1,0 +1,580 @@
+{
+  "task": "V2-09C.2 \u2014 Frozen Small-VLM Visual Verifier Benchmark Execution",
+  "status": "PASS_BENCHMARK_COMPLETE",
+  "generated_at": "2026-08-18T09:14:34Z",
+  "benchmark_run_id": "v2-09c-2-1787040461",
+  "contract": {
+    "verifier_version": "visual-verifier-v1.0.0",
+    "prompt_template_version": "motif-visual-verifier-prompt-v1.0.0",
+    "prompt_template_sha256": "f8417b314f6ae54245a1e3e6a17fbdeddf5cd8fe98bdf086e784ee4b516ccaac",
+    "schema_hash": "aa63efd246a867f84ba931900589343fc080f18f6dab2155552bac10d41547f8",
+    "compositor_hash": "6c63bd619c3b2aabfdb0511404a2c62a4b38ff962f45c9e73e3a537c4c17d13d",
+    "materializer_version": "visual-verifier-prompt-materializer-v1.0.0",
+    "canonical_message_contract": "canonical-verifier-message-v1.0.0",
+    "generation_policy_sha256": "58edebf465f41a52c6a413fbf90ad1d84a08e2b980c132b4d07c015660f283a6",
+    "proposal_threshold": 0.25,
+    "real_test_opened_at": "2026-08-18T08:18:27Z",
+    "real_test_vlm_call_count": 474
+  },
+  "manifest_summary": {
+    "synthetic_controlled_cases": 128,
+    "real_gt_controlled_cases": 109,
+    "real_detector_detect_cases": 12,
+    "real_detector_obb_cases": 37
+  },
+  "candidates": {
+    "C1": {
+      "candidate_id": "C1",
+      "candidate_name": "Qwen3-VL-2B-Instruct",
+      "snapshot_hash": "ccc27a55974c4e0072ba449dc4163a35b5fa9a498410c9831341bdc7c60d227c",
+      "load_telemetry": {
+        "load_seconds": 3.46,
+        "peak_allocated_gib": 3.994,
+        "dtype": "bfloat16",
+        "device": "cuda:0"
+      },
+      "resource_telemetry": {
+        "wall_clock_seconds": 1406.87,
+        "peak_allocated_gib": 4.186,
+        "peak_reserved_gib": 4.209,
+        "mean_latency_seconds": 4.855,
+        "median_latency_seconds": 4.849,
+        "p95_latency_seconds": 5.547,
+        "mean_generated_tokens": 114.2,
+        "p95_generated_tokens": 128.0
+      },
+      "synthetic_controlled": {
+        "total_cases": 128,
+        "schema_valid_count": 7,
+        "schema_valid_rate": 0.0547,
+        "semantic_valid_count": 5,
+        "semantic_valid_rate": 0.0391,
+        "coverage": 0.0391,
+        "selective_accuracy": 0.8,
+        "correct_key_accuracy": 1.0,
+        "false_accept_rate": 0.0385,
+        "false_reject_rate": 0.0,
+        "hard_negative_rejection_rate": 0.0,
+        "per_family_hard_negatives": {
+          "generic_branching_form": {
+            "cases": 4,
+            "ACCEPT": 0,
+            "REJECT": 0,
+            "ABSTAIN": 0,
+            "INVALID_OUTPUT": 4,
+            "false_accept_rate": 0.0,
+            "accepted_key_distribution": {}
+          },
+          "isolated_lozenge_pattern": {
+            "cases": 4,
+            "ACCEPT": 0,
+            "REJECT": 0,
+            "ABSTAIN": 0,
+            "INVALID_OUTPUT": 4,
+            "false_accept_rate": 0.0,
+            "accepted_key_distribution": {}
+          },
+          "octagonal_radial_variant": {
+            "cases": 4,
+            "ACCEPT": 1,
+            "REJECT": 0,
+            "ABSTAIN": 0,
+            "INVALID_OUTPUT": 3,
+            "false_accept_rate": 0.25,
+            "accepted_key_distribution": {
+              "octagonal_form": 1
+            }
+          },
+          "radial_ornament_nonrosette": {
+            "cases": 4,
+            "ACCEPT": 0,
+            "REJECT": 0,
+            "ABSTAIN": 0,
+            "INVALID_OUTPUT": 4,
+            "false_accept_rate": 0.0,
+            "accepted_key_distribution": {}
+          },
+          "radial_polygon_nonstar": {
+            "cases": 4,
+            "ACCEPT": 0,
+            "REJECT": 0,
+            "ABSTAIN": 0,
+            "INVALID_OUTPUT": 4,
+            "false_accept_rate": 0.0,
+            "accepted_key_distribution": {}
+          }
+        },
+        "correction_metrics": {
+          "attempts": 0,
+          "correct": 0,
+          "incorrect": 0,
+          "accuracy": "NOT_DEFINED"
+        },
+        "decisions_breakdown": {
+          "ACCEPT": 5,
+          "REJECT": 0,
+          "ABSTAIN": 0,
+          "INVALID_OUTPUT": 123
+        }
+      },
+      "real_gt_controlled": {
+        "total_cases": 109,
+        "schema_valid_count": 15,
+        "schema_valid_rate": 0.1376,
+        "semantic_valid_count": 4,
+        "semantic_valid_rate": 0.0367,
+        "coverage": 0.0367,
+        "selective_accuracy": 0.75,
+        "correct_key_accuracy": 0.75,
+        "false_accept_rate": "NOT_DEFINED",
+        "false_reject_rate": 0.0,
+        "hard_negative_rejection_rate": "NOT_DEFINED",
+        "per_family_hard_negatives": {},
+        "correction_metrics": {
+          "attempts": 0,
+          "correct": 0,
+          "incorrect": 0,
+          "accuracy": "NOT_DEFINED"
+        },
+        "decisions_breakdown": {
+          "ACCEPT": 4,
+          "REJECT": 0,
+          "ABSTAIN": 0,
+          "INVALID_OUTPUT": 105
+        }
+      },
+      "detector_detect_pipeline": {
+        "detector_baseline": {
+          "proposals": 12,
+          "tp": 1,
+          "fp": 11,
+          "fn": 91,
+          "precision": 0.0833,
+          "recall": 0.0109,
+          "fp_per_image": 0.3143
+        },
+        "verified_pipeline": {
+          "accepted_proposals": 0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 92,
+          "precision": 0.0,
+          "recall": 0.0,
+          "fp_per_image": 0.0
+        },
+        "precision_lift": -0.0833,
+        "recall_cost": 0.0109,
+        "fp_per_image_change": -0.3143,
+        "fractions": {
+          "accepted": 0,
+          "rejected": 0,
+          "abstained": 0,
+          "invalid_output": 12
+        }
+      },
+      "detector_obb_pipeline": {
+        "detector_baseline": {
+          "proposals": 37,
+          "tp": 0,
+          "fp": 37,
+          "fn": 92,
+          "precision": 0.0,
+          "recall": 0.0,
+          "fp_per_image": 1.0571
+        },
+        "verified_pipeline": {
+          "accepted_proposals": 0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 92,
+          "precision": 0.0,
+          "recall": 0.0,
+          "fp_per_image": 0.0
+        },
+        "precision_lift": 0.0,
+        "recall_cost": 0.0,
+        "fp_per_image_change": -1.0571,
+        "fractions": {
+          "accepted": 0,
+          "rejected": 0,
+          "abstained": 0,
+          "invalid_output": 37
+        }
+      },
+      "raw_case_results_count": 286
+    },
+    "C2": {
+      "candidate_id": "C2",
+      "candidate_name": "SmolVLM2-2.2B-Instruct",
+      "snapshot_hash": "f7568e5a761aa064db58bb09f8a4e4e4a8124993f0939c6d73c794ef9162fcdd",
+      "load_telemetry": {
+        "load_seconds": 5.84,
+        "peak_allocated_gib": 4.217,
+        "dtype": "bfloat16",
+        "device": "cuda:0"
+      },
+      "resource_telemetry": {
+        "wall_clock_seconds": 1049.75,
+        "peak_allocated_gib": 4.633,
+        "peak_reserved_gib": 4.727,
+        "mean_latency_seconds": 3.444,
+        "median_latency_seconds": 3.461,
+        "p95_latency_seconds": 3.858,
+        "mean_generated_tokens": 121.3,
+        "p95_generated_tokens": 128.0
+      },
+      "synthetic_controlled": {
+        "total_cases": 128,
+        "schema_valid_count": 44,
+        "schema_valid_rate": 0.3438,
+        "semantic_valid_count": 43,
+        "semantic_valid_rate": 0.3359,
+        "coverage": 0.3359,
+        "selective_accuracy": 0.7209,
+        "correct_key_accuracy": 0.8857,
+        "false_accept_rate": 0.3077,
+        "false_reject_rate": 0.0,
+        "hard_negative_rejection_rate": 0.0,
+        "per_family_hard_negatives": {
+          "generic_branching_form": {
+            "cases": 4,
+            "ACCEPT": 0,
+            "REJECT": 0,
+            "ABSTAIN": 0,
+            "INVALID_OUTPUT": 4,
+            "false_accept_rate": 0.0,
+            "accepted_key_distribution": {}
+          },
+          "isolated_lozenge_pattern": {
+            "cases": 4,
+            "ACCEPT": 1,
+            "REJECT": 0,
+            "ABSTAIN": 0,
+            "INVALID_OUTPUT": 3,
+            "false_accept_rate": 0.25,
+            "accepted_key_distribution": {
+              "lozenge_like": 1
+            }
+          },
+          "octagonal_radial_variant": {
+            "cases": 4,
+            "ACCEPT": 0,
+            "REJECT": 0,
+            "ABSTAIN": 0,
+            "INVALID_OUTPUT": 4,
+            "false_accept_rate": 0.0,
+            "accepted_key_distribution": {}
+          },
+          "radial_ornament_nonrosette": {
+            "cases": 4,
+            "ACCEPT": 0,
+            "REJECT": 0,
+            "ABSTAIN": 0,
+            "INVALID_OUTPUT": 4,
+            "false_accept_rate": 0.0,
+            "accepted_key_distribution": {}
+          },
+          "radial_polygon_nonstar": {
+            "cases": 4,
+            "ACCEPT": 4,
+            "REJECT": 0,
+            "ABSTAIN": 0,
+            "INVALID_OUTPUT": 0,
+            "false_accept_rate": 1.0,
+            "accepted_key_distribution": {
+              "star_like": 4
+            }
+          }
+        },
+        "correction_metrics": {
+          "attempts": 0,
+          "correct": 0,
+          "incorrect": 0,
+          "accuracy": "NOT_DEFINED"
+        },
+        "decisions_breakdown": {
+          "ACCEPT": 43,
+          "REJECT": 0,
+          "ABSTAIN": 0,
+          "INVALID_OUTPUT": 85
+        }
+      },
+      "real_gt_controlled": {
+        "total_cases": 109,
+        "schema_valid_count": 26,
+        "schema_valid_rate": 0.2385,
+        "semantic_valid_count": 26,
+        "semantic_valid_rate": 0.2385,
+        "coverage": 0.2385,
+        "selective_accuracy": 0.7692,
+        "correct_key_accuracy": 0.7692,
+        "false_accept_rate": "NOT_DEFINED",
+        "false_reject_rate": 0.0,
+        "hard_negative_rejection_rate": "NOT_DEFINED",
+        "per_family_hard_negatives": {},
+        "correction_metrics": {
+          "attempts": 0,
+          "correct": 0,
+          "incorrect": 0,
+          "accuracy": "NOT_DEFINED"
+        },
+        "decisions_breakdown": {
+          "ACCEPT": 26,
+          "REJECT": 0,
+          "ABSTAIN": 0,
+          "INVALID_OUTPUT": 83
+        }
+      },
+      "detector_detect_pipeline": {
+        "detector_baseline": {
+          "proposals": 12,
+          "tp": 1,
+          "fp": 11,
+          "fn": 91,
+          "precision": 0.0833,
+          "recall": 0.0109,
+          "fp_per_image": 0.3143
+        },
+        "verified_pipeline": {
+          "accepted_proposals": 4,
+          "tp": 1,
+          "fp": 3,
+          "fn": 91,
+          "precision": 0.25,
+          "recall": 0.0109,
+          "fp_per_image": 0.0857
+        },
+        "precision_lift": 0.1667,
+        "recall_cost": 0.0,
+        "fp_per_image_change": -0.2286,
+        "fractions": {
+          "accepted": 4,
+          "rejected": 0,
+          "abstained": 0,
+          "invalid_output": 8
+        }
+      },
+      "detector_obb_pipeline": {
+        "detector_baseline": {
+          "proposals": 37,
+          "tp": 0,
+          "fp": 37,
+          "fn": 92,
+          "precision": 0.0,
+          "recall": 0.0,
+          "fp_per_image": 1.0571
+        },
+        "verified_pipeline": {
+          "accepted_proposals": 25,
+          "tp": 0,
+          "fp": 25,
+          "fn": 92,
+          "precision": 0.0,
+          "recall": 0.0,
+          "fp_per_image": 0.7143
+        },
+        "precision_lift": 0.0,
+        "recall_cost": 0.0,
+        "fp_per_image_change": -0.3428,
+        "fractions": {
+          "accepted": 25,
+          "rejected": 0,
+          "abstained": 0,
+          "invalid_output": 12
+        }
+      },
+      "raw_case_results_count": 286
+    },
+    "C3": {
+      "candidate_id": "C3",
+      "candidate_name": "Qwen2-VL-2B-Instruct",
+      "snapshot_hash": "5ddb0cedc195ecf4b7f401804855f3d7e8e5349ce970e769ac2e6d7e619e8e4a",
+      "load_telemetry": {
+        "load_seconds": 5.08,
+        "peak_allocated_gib": 4.147,
+        "dtype": "bfloat16",
+        "device": "cuda:0"
+      },
+      "resource_telemetry": {
+        "wall_clock_seconds": 1532.05,
+        "peak_allocated_gib": 4.269,
+        "peak_reserved_gib": 4.312,
+        "mean_latency_seconds": 5.29,
+        "median_latency_seconds": 5.026,
+        "p95_latency_seconds": 6.273,
+        "mean_generated_tokens": 117.6,
+        "p95_generated_tokens": 128.0
+      },
+      "synthetic_controlled": {
+        "total_cases": 128,
+        "schema_valid_count": 34,
+        "schema_valid_rate": 0.2656,
+        "semantic_valid_count": 30,
+        "semantic_valid_rate": 0.2344,
+        "coverage": 0.2344,
+        "selective_accuracy": 0.6333,
+        "correct_key_accuracy": 0.95,
+        "false_accept_rate": 0.3846,
+        "false_reject_rate": 0.0,
+        "hard_negative_rejection_rate": 0.0,
+        "per_family_hard_negatives": {
+          "generic_branching_form": {
+            "cases": 4,
+            "ACCEPT": 0,
+            "REJECT": 0,
+            "ABSTAIN": 0,
+            "INVALID_OUTPUT": 4,
+            "false_accept_rate": 0.0,
+            "accepted_key_distribution": {}
+          },
+          "isolated_lozenge_pattern": {
+            "cases": 4,
+            "ACCEPT": 2,
+            "REJECT": 0,
+            "ABSTAIN": 0,
+            "INVALID_OUTPUT": 2,
+            "false_accept_rate": 0.5,
+            "accepted_key_distribution": {
+              "lozenge_like": 2
+            }
+          },
+          "octagonal_radial_variant": {
+            "cases": 4,
+            "ACCEPT": 3,
+            "REJECT": 0,
+            "ABSTAIN": 0,
+            "INVALID_OUTPUT": 1,
+            "false_accept_rate": 0.75,
+            "accepted_key_distribution": {
+              "octagonal_form": 3
+            }
+          },
+          "radial_ornament_nonrosette": {
+            "cases": 4,
+            "ACCEPT": 4,
+            "REJECT": 0,
+            "ABSTAIN": 0,
+            "INVALID_OUTPUT": 0,
+            "false_accept_rate": 1.0,
+            "accepted_key_distribution": {
+              "rosette_like": 4
+            }
+          },
+          "radial_polygon_nonstar": {
+            "cases": 4,
+            "ACCEPT": 0,
+            "REJECT": 0,
+            "ABSTAIN": 0,
+            "INVALID_OUTPUT": 4,
+            "false_accept_rate": 0.0,
+            "accepted_key_distribution": {}
+          }
+        },
+        "correction_metrics": {
+          "attempts": 0,
+          "correct": 0,
+          "incorrect": 0,
+          "accuracy": "NOT_DEFINED"
+        },
+        "decisions_breakdown": {
+          "ACCEPT": 30,
+          "REJECT": 0,
+          "ABSTAIN": 0,
+          "INVALID_OUTPUT": 98
+        }
+      },
+      "real_gt_controlled": {
+        "total_cases": 109,
+        "schema_valid_count": 14,
+        "schema_valid_rate": 0.1284,
+        "semantic_valid_count": 13,
+        "semantic_valid_rate": 0.1193,
+        "coverage": 0.1193,
+        "selective_accuracy": 0.8462,
+        "correct_key_accuracy": 0.8462,
+        "false_accept_rate": "NOT_DEFINED",
+        "false_reject_rate": 0.0,
+        "hard_negative_rejection_rate": "NOT_DEFINED",
+        "per_family_hard_negatives": {},
+        "correction_metrics": {
+          "attempts": 0,
+          "correct": 0,
+          "incorrect": 0,
+          "accuracy": "NOT_DEFINED"
+        },
+        "decisions_breakdown": {
+          "ACCEPT": 13,
+          "REJECT": 0,
+          "ABSTAIN": 0,
+          "INVALID_OUTPUT": 96
+        }
+      },
+      "detector_detect_pipeline": {
+        "detector_baseline": {
+          "proposals": 12,
+          "tp": 1,
+          "fp": 11,
+          "fn": 91,
+          "precision": 0.0833,
+          "recall": 0.0109,
+          "fp_per_image": 0.3143
+        },
+        "verified_pipeline": {
+          "accepted_proposals": 0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 92,
+          "precision": 0.0,
+          "recall": 0.0,
+          "fp_per_image": 0.0
+        },
+        "precision_lift": -0.0833,
+        "recall_cost": 0.0109,
+        "fp_per_image_change": -0.3143,
+        "fractions": {
+          "accepted": 0,
+          "rejected": 0,
+          "abstained": 0,
+          "invalid_output": 12
+        }
+      },
+      "detector_obb_pipeline": {
+        "detector_baseline": {
+          "proposals": 37,
+          "tp": 0,
+          "fp": 37,
+          "fn": 92,
+          "precision": 0.0,
+          "recall": 0.0,
+          "fp_per_image": 1.0571
+        },
+        "verified_pipeline": {
+          "accepted_proposals": 7,
+          "tp": 0,
+          "fp": 7,
+          "fn": 92,
+          "precision": 0.0,
+          "recall": 0.0,
+          "fp_per_image": 0.2
+        },
+        "precision_lift": 0.0,
+        "recall_cost": 0.0,
+        "fp_per_image_change": -0.8571,
+        "fractions": {
+          "accepted": 7,
+          "rejected": 0,
+          "abstained": 0,
+          "invalid_output": 30
+        }
+      },
+      "raw_case_results_count": 286
+    },
+    "R0": {
+      "candidate_id": "R0",
+      "candidate_name": "Qwen2.5-VL-3B-Instruct-AWQ",
+      "snapshot_hash": "97824d4a1d48e483f08fc020b75c4e2dc52de8e2d262000821e9b6ff55de8685",
+      "status": "NOT_EVALUATED_RUNTIME_EXCLUDED",
+      "exclusion_reason": "RUNTIME_INCOMPATIBLE (AWQ INT4 compilation constraint on Py3.14 Windows)"
+    }
+  }
+}

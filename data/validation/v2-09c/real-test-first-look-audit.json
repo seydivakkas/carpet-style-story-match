@@ -1,0 +1,27 @@
+{
+  "benchmark_phase": "V2-09C.2",
+  "phase_name": "Frozen Small-VLM Benchmark Execution",
+  "benchmark_run_id": "v2-09c-2-1787040461",
+  "pre_run_freeze_verification": "PASS",
+  "config_hash": "98bf23c5b740a8ab84534059a7a11dd2bfc9f72ce549535622699b332ae845e8",
+  "prompt_template_sha256": "f8417b314f6ae54245a1e3e6a17fbdeddf5cd8fe98bdf086e784ee4b516ccaac",
+  "schema_hash": "aa63efd246a867f84ba931900589343fc080f18f6dab2155552bac10d41547f8",
+  "compositor_hash": "6c63bd619c3b2aabfdb0511404a2c62a4b38ff962f45c9e73e3a537c4c17d13d",
+  "generation_policy_sha256": "58edebf465f41a52c6a413fbf90ad1d84a08e2b980c132b4d07c015660f283a6",
+  "frozen_17_keys_hash": "b8ac9a720b0f33cc6ebf13e232cabaa9f69f4a67ecf3b91d235ec4ae47efed54",
+  "proposal_threshold": 0.25,
+  "real_test_opened_at": "2026-08-18T08:18:27Z",
+  "real_test_first_evaluated_model": "C1",
+  "candidate_first_look_timestamps": {
+    "C1": "2026-08-18T08:18:27Z",
+    "C2": "2026-08-18T08:39:08Z",
+    "C3": "2026-08-18T08:59:43Z"
+  },
+  "post_open_modifications": "NONE",
+  "manifest_hashes": {
+    "synthetic_controlled": "ff2c4ae5536ee6dc3dfe497e826973c59de307f9addde47bcb7a7a7f6dbcdeac",
+    "real_gt_controlled": "283d86bf848dee3fd7f981622995ac542b35d8dede65c5b9bcea065fc1c7e0f8",
+    "real_detector_detect": "fae53fe08ece778b4a821e291f08f8b38df60904f9a8b07d275fece7554598ee",
+    "real_detector_obb": "25e1a14ecfa2a5d08e92d6a30e94d2c60af1448629ec793b96e603a7620d18d9"
+  }
+}

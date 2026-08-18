@@ -286,7 +286,10 @@ class VisualVerifierRuntimeAdapter:
     def load(self) -> Dict[str, Any]:
         raise NotImplementedError
 
-    def verify_smoke(self, image: Image.Image, prompt_text: str) -> Dict[str, Any]:
+    def verify_case(self, image: Image.Image, canonical_message: CanonicalVerifierMessage, input_record: Optional[VerifierRuntimeInputRecord] = None) -> Dict[str, Any]:
+        raise NotImplementedError
+
+    def verify_smoke(self, image: Image.Image, canonical_message: CanonicalVerifierMessage, png_sha256: str = FROZEN_PNG_HASH, input_record: Optional[VerifierRuntimeInputRecord] = None) -> Dict[str, Any]:
         raise NotImplementedError
 
     def unload(self) -> Dict[str, Any]:
@@ -336,16 +339,14 @@ class Qwen3VLAdapter(VisualVerifierRuntimeAdapter):
             "device": str(next(self.model.parameters()).device)
         }
 
-    def verify_smoke(
+    def verify_case(
         self,
         image: Image.Image,
         canonical_message: CanonicalVerifierMessage,
-        png_sha256: str = FROZEN_PNG_HASH,
         input_record: Optional[VerifierRuntimeInputRecord] = None
     ) -> Dict[str, Any]:
         assert canonical_message.template_sha256 == FROZEN_PROMPT_HASH, "Template hash mismatch"
         assert canonical_message.materializer_version == MATERIALIZER_VERSION, "Materializer version mismatch"
-        assert png_sha256 == FROZEN_PNG_HASH, "PNG hash mismatch"
 
         materialized_text = canonical_message.materialized_prompt_text
         assert canonical_message.proposal_id in materialized_text, f"proposal_id '{canonical_message.proposal_id}' missing in materialized prompt"
@@ -384,7 +385,7 @@ class Qwen3VLAdapter(VisualVerifierRuntimeAdapter):
         t0 = time.perf_counter()
         with torch.no_grad():
             output_ids = self.model.generate(**inputs, max_new_tokens=128, do_sample=False)
-        dur = round(time.perf_counter() - t0, 2)
+        dur = round(time.perf_counter() - t0, 3)
 
         infer_alloc = round(torch.cuda.max_memory_allocated() / (1024**3), 3) if torch.cuda.is_available() else 0.0
         infer_reserved = round(torch.cuda.max_memory_reserved() / (1024**3), 3) if torch.cuda.is_available() else 0.0
@@ -415,6 +416,16 @@ class Qwen3VLAdapter(VisualVerifierRuntimeAdapter):
             "raw_output_sha256": raw_output_sha256,
             "trusted_input_hash": input_record.compute_hash() if input_record else None
         }
+
+    def verify_smoke(
+        self,
+        image: Image.Image,
+        canonical_message: CanonicalVerifierMessage,
+        png_sha256: str = FROZEN_PNG_HASH,
+        input_record: Optional[VerifierRuntimeInputRecord] = None
+    ) -> Dict[str, Any]:
+        assert png_sha256 == FROZEN_PNG_HASH, "PNG hash mismatch"
+        return self.verify_case(image=image, canonical_message=canonical_message, input_record=input_record)
 
 
 class SmolVLM2Adapter(VisualVerifierRuntimeAdapter):
@@ -443,16 +454,14 @@ class SmolVLM2Adapter(VisualVerifierRuntimeAdapter):
             "device": str(next(self.model.parameters()).device)
         }
 
-    def verify_smoke(
+    def verify_case(
         self,
         image: Image.Image,
         canonical_message: CanonicalVerifierMessage,
-        png_sha256: str = FROZEN_PNG_HASH,
         input_record: Optional[VerifierRuntimeInputRecord] = None
     ) -> Dict[str, Any]:
         assert canonical_message.template_sha256 == FROZEN_PROMPT_HASH, "Template hash mismatch"
         assert canonical_message.materializer_version == MATERIALIZER_VERSION, "Materializer version mismatch"
-        assert png_sha256 == FROZEN_PNG_HASH, "PNG hash mismatch"
 
         materialized_text = canonical_message.materialized_prompt_text
         assert canonical_message.proposal_id in materialized_text, f"proposal_id '{canonical_message.proposal_id}' missing in materialized prompt"
@@ -491,7 +500,7 @@ class SmolVLM2Adapter(VisualVerifierRuntimeAdapter):
         t0 = time.perf_counter()
         with torch.no_grad():
             output_ids = self.model.generate(**inputs, max_new_tokens=128, do_sample=False)
-        dur = round(time.perf_counter() - t0, 2)
+        dur = round(time.perf_counter() - t0, 3)
 
         infer_alloc = round(torch.cuda.max_memory_allocated() / (1024**3), 3) if torch.cuda.is_available() else 0.0
         infer_reserved = round(torch.cuda.max_memory_reserved() / (1024**3), 3) if torch.cuda.is_available() else 0.0
@@ -522,6 +531,16 @@ class SmolVLM2Adapter(VisualVerifierRuntimeAdapter):
             "raw_output_sha256": raw_output_sha256,
             "trusted_input_hash": input_record.compute_hash() if input_record else None
         }
+
+    def verify_smoke(
+        self,
+        image: Image.Image,
+        canonical_message: CanonicalVerifierMessage,
+        png_sha256: str = FROZEN_PNG_HASH,
+        input_record: Optional[VerifierRuntimeInputRecord] = None
+    ) -> Dict[str, Any]:
+        assert png_sha256 == FROZEN_PNG_HASH, "PNG hash mismatch"
+        return self.verify_case(image=image, canonical_message=canonical_message, input_record=input_record)
 
 
 class Qwen2VLAdapter(VisualVerifierRuntimeAdapter):
@@ -550,16 +569,14 @@ class Qwen2VLAdapter(VisualVerifierRuntimeAdapter):
             "device": str(next(self.model.parameters()).device)
         }
 
-    def verify_smoke(
+    def verify_case(
         self,
         image: Image.Image,
         canonical_message: CanonicalVerifierMessage,
-        png_sha256: str = FROZEN_PNG_HASH,
         input_record: Optional[VerifierRuntimeInputRecord] = None
     ) -> Dict[str, Any]:
         assert canonical_message.template_sha256 == FROZEN_PROMPT_HASH, "Template hash mismatch"
         assert canonical_message.materializer_version == MATERIALIZER_VERSION, "Materializer version mismatch"
-        assert png_sha256 == FROZEN_PNG_HASH, "PNG hash mismatch"
 
         materialized_text = canonical_message.materialized_prompt_text
         assert canonical_message.proposal_id in materialized_text, f"proposal_id '{canonical_message.proposal_id}' missing in materialized prompt"
@@ -598,7 +615,7 @@ class Qwen2VLAdapter(VisualVerifierRuntimeAdapter):
         t0 = time.perf_counter()
         with torch.no_grad():
             output_ids = self.model.generate(**inputs, max_new_tokens=128, do_sample=False)
-        dur = round(time.perf_counter() - t0, 2)
+        dur = round(time.perf_counter() - t0, 3)
 
         infer_alloc = round(torch.cuda.max_memory_allocated() / (1024**3), 3) if torch.cuda.is_available() else 0.0
         infer_reserved = round(torch.cuda.max_memory_reserved() / (1024**3), 3) if torch.cuda.is_available() else 0.0
@@ -630,6 +647,16 @@ class Qwen2VLAdapter(VisualVerifierRuntimeAdapter):
             "trusted_input_hash": input_record.compute_hash() if input_record else None
         }
 
+    def verify_smoke(
+        self,
+        image: Image.Image,
+        canonical_message: CanonicalVerifierMessage,
+        png_sha256: str = FROZEN_PNG_HASH,
+        input_record: Optional[VerifierRuntimeInputRecord] = None
+    ) -> Dict[str, Any]:
+        assert png_sha256 == FROZEN_PNG_HASH, "PNG hash mismatch"
+        return self.verify_case(image=image, canonical_message=canonical_message, input_record=input_record)
+
 
 class Qwen25VLAWQAdapter(VisualVerifierRuntimeAdapter):
     """Adapter for Qwen2.5-VL-3B-Instruct-AWQ (R0)."""
@@ -639,6 +666,9 @@ class Qwen25VLAWQAdapter(VisualVerifierRuntimeAdapter):
             "Loading Qwen2.5-VL-3B-Instruct-AWQ requires gptqmodel/autoawq build tools "
             "which are not supported in current Python 3.14 Windows environment."
         )
+
+    def verify_case(self, image: Image.Image, canonical_message: CanonicalVerifierMessage, input_record: Optional[VerifierRuntimeInputRecord] = None) -> Dict[str, Any]:
+        raise NotImplementedError
 
     def verify_smoke(self, image: Image.Image, prompt_text: str) -> Dict[str, Any]:
         raise NotImplementedError
