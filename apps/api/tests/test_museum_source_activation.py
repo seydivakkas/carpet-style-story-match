@@ -180,8 +180,12 @@ def test_rights_metadata_separation():
 
 
 @pytest.mark.asyncio
-async def test_idempotent_activation_apply(db_session: AsyncSession):
+async def test_idempotent_activation_apply(db_session: AsyncSession, monkeypatch):
     """Verify running museum source activation twice in apply mode is idempotent."""
+    # Force search_objects to return [] so both runs use identical offline candidates
+    monkeypatch.setattr(MetMuseumSourceAdapter, "search_objects", lambda self, query="carpet", limit=20: [])
+    monkeypatch.setattr(VAMuseumSourceAdapter, "search_objects", lambda self, query="carpet", limit=20: [])
+
     res1 = await run_activation(provider_filter="all", limit=10, dry_run=False, apply=True, db_session=db_session)
     res2 = await run_activation(provider_filter="all", limit=10, dry_run=False, apply=True, db_session=db_session)
 
@@ -192,8 +196,11 @@ async def test_idempotent_activation_apply(db_session: AsyncSession):
 
 
 @pytest.mark.asyncio
-async def test_db_isolation_and_zero_delta(db_session: AsyncSession):
+async def test_db_isolation_and_zero_delta(db_session: AsyncSession, monkeypatch):
     """Verify A6 creates CuratedSource records but 0 HistoricalReference, 0 Carpet, 0 CarpetImage rows."""
+    monkeypatch.setattr(MetMuseumSourceAdapter, "search_objects", lambda self, query="carpet", limit=20: [])
+    monkeypatch.setattr(VAMuseumSourceAdapter, "search_objects", lambda self, query="carpet", limit=20: [])
+
     res = await run_activation(provider_filter="all", limit=10, dry_run=False, apply=True, db_session=db_session)
 
     assert res["database_delta"]["historical_references_delta"] == 0
