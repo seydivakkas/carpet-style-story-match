@@ -1,0 +1,82 @@
+{
+  "artifact_type": "unified-result-smoke-report",
+  "version": "1.0.0",
+  "generated_at": "2026-08-17T13:48:30Z",
+  "analysis_id": "fdb64c03-29e5-4038-b9dc-75e111b3521e",
+  "unified_result_version": "unified-upload-result-v1.0.0",
+  "presentation_policy_version": "unified-upload-result-policy-v1.0.0",
+  "narrative_theme_registry": {
+    "canonical_version": "narrative-affinity-v1.0.0",
+    "frozen_theme_count": 8,
+    "canonical_keys": [
+      "nature_growth",
+      "belonging_home",
+      "journey_discovery",
+      "continuity_connection",
+      "balance_order",
+      "renewal_transformation",
+      "tradition_craft",
+      "cultural_heritage"
+    ],
+    "thematic_affinity_optional": true,
+    "user_preference_driven_only": true
+  },
+  "five_card_states_verified": {
+    "card_1_visual_character": "READY",
+    "card_2_motifs": "WAITING_FOR_REVIEW",
+    "card_3_cultural_context": "WAITING_FOR_REVIEW",
+    "card_4_motif_story": "WAITING_FOR_REVIEW",
+    "card_5_historical_connections": "READY"
+  },
+  "source_artifact_availability": {
+    "style_dna": true,
+    "color_observation": true,
+    "motif_candidate": true,
+    "motif_review": false,
+    "evidence_pack": false,
+    "validated_claims": false,
+    "source_bound_story": false,
+    "thematic_affinity": false
+  },
+  "corpus_provenance": {
+    "catalog_corpus_fingerprint": "93a1fb743856754f32ca22ede5409f1c1b9a0054d92fed47c8d78185b10563e8",
+    "historical_corpus_fingerprint": "d24d63b050261c4a57c94f0df48c2438461cd00da70c53e123436d852d613e4e",
+    "catalog_top_ids": [
+      "43458ceb-c3b8-46d6-b7a3-399862fe4ae2",
+      "4c777786-3720-4356-855f-4c10869c414a",
+      "d4b52924-cd40-45b4-8d2a-1cfe6103e00e",
+      "d9bbd321-8e0b-4223-ae8c-0714eba6e3a2",
+      "3c995719-5ac9-4896-93dd-c8dc5c1e186d"
+    ],
+    "historical_top_ids": [
+      "e5ff8397-6dc2-437e-92fc-409136b5223a",
+      "7faf64d4-332e-4ca5-ae7f-f130c4a9c5e2",
+      "e132e942-98c6-444a-a55a-076878c67cf9",
+      "e163669d-a505-4417-a9ae-7de150e50e71",
+      "5c3a2b6c-d895-4a18-9de5-5c4e72de254c"
+    ]
+  },
+  "invariants_passed": {
+    "zero_model_calls_on_get": true,
+    "zero_research_calls_on_get": true,
+    "zero_db_mutations_on_get": true,
+    "no_composite_scores": true,
+    "no_reviewer_leakage": true,
+    "no_client_forged_state": true,
+    "mandatory_historical_disclaimer_present": true,
+    "strict_extra_forbid": true,
+    "catalog_nested_under_card_1": true
+  },
+  "runtime_execution": {
+    "model_call_count": 0,
+    "research_network_call_count": 0,
+    "db_mutation_count": 0,
+    "assembly_latency_ms": 429.04
+  },
+  "test_summary": {
+    "total_focused_tests": 26,
+    "passed": 26,
+    "failed": 0
+  },
+  "acceptance_status": "CLOSED"
+}

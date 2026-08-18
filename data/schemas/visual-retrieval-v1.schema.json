@@ -1,0 +1,123 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VisualRetrievalV1Schema",
+  "description": "JSON Schema definition for 9D Style DNA Visual Retrieval Query and Response v1.0.0",
+  "type": "object",
+  "definitions": {
+    "QuerySourceType": {
+      "type": "string",
+      "enum": ["USER_UPLOAD", "CATALOG_IMAGE", "HISTORICAL_REFERENCE", "DIRECT_VECTOR"]
+    },
+    "StyleDimensionKey": {
+      "type": "string",
+      "enum": [
+        "color_energy",
+        "color_diversity",
+        "contrast",
+        "warmth",
+        "visual_complexity",
+        "structural_order",
+        "rhythm_repetition",
+        "focal_strength",
+        "form_language"
+      ]
+    },
+    "StyleDimensionDelta": {
+      "type": "object",
+      "required": ["dimension_key", "query_value", "candidate_value", "absolute_delta", "normalized_delta"],
+      "additionalProperties": false,
+      "properties": {
+        "dimension_key": { "type": "string" },
+        "query_value": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "candidate_value": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "absolute_delta": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "normalized_delta": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+      }
+    },
+    "CatalogVisualMatch": {
+      "type": "object",
+      "required": [
+        "rank",
+        "catalog_id",
+        "sku",
+        "brand",
+        "product_name",
+        "visual_proximity_score",
+        "style_dimension_deltas",
+        "closest_dimensions",
+        "largest_differences",
+        "style_dna_version",
+        "source_metadata_provenance"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "rank": { "type": "integer", "minimum": 1 },
+        "catalog_id": { "type": "string" },
+        "sku": { "type": "string" },
+        "brand": { "type": "string" },
+        "collection": { "type": ["string", "null"] },
+        "product_name": { "type": "string" },
+        "primary_image_url": { "type": ["string", "null"] },
+        "visual_proximity_score": { "type": "number", "minimum": 0.0, "maximum": 100.0 },
+        "style_dimension_deltas": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/StyleDimensionDelta" }
+        },
+        "closest_dimensions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "largest_differences": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "style_dna_version": { "type": "string", "const": "style-dna-v1.0.0" },
+        "source_metadata_provenance": { "type": "object" }
+      }
+    },
+    "HistoricalVisualMatch": {
+      "type": "object",
+      "required": [
+        "rank",
+        "historical_reference_id",
+        "reference_key",
+        "institution",
+        "object_title",
+        "museum_metadata",
+        "visual_proximity_score",
+        "style_dimension_deltas",
+        "closest_dimensions",
+        "largest_differences",
+        "style_dna_version",
+        "metadata_provenance"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "rank": { "type": "integer", "minimum": 1 },
+        "historical_reference_id": { "type": "string" },
+        "reference_key": { "type": "string" },
+        "institution": { "type": "string" },
+        "object_title": { "type": "string" },
+        "museum_object_id": { "type": ["string", "null"] },
+        "canonical_source_url": { "type": ["string", "null"] },
+        "primary_image_url": { "type": ["string", "null"] },
+        "museum_metadata": { "type": "object" },
+        "visual_proximity_score": { "type": "number", "minimum": 0.0, "maximum": 100.0 },
+        "style_dimension_deltas": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/StyleDimensionDelta" }
+        },
+        "closest_dimensions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "largest_differences": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "style_dna_version": { "type": "string", "const": "style-dna-v1.0.0" },
+        "metadata_provenance": { "type": "object" }
+      }
+    }
+  }
+}

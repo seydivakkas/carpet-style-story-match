@@ -1,0 +1,172 @@
+# Implementation Plan — V2-09A Procedural Motif Dataset Foundation
+
+Build a deterministic procedural synthetic-data foundation (`packages/synthetic_motifs/`) for visual motif detection research. This includes parametric vector primitives, composition graphs, exact geometric ground truth (bbox, polygon, OBB, raster mask), domain randomization (geometric, photometric, imaging, material, occlusion), multi-format exporters (canonical JSON, COCO, YOLO detect, YOLO OBB, YOLO segment), CLI tools, validation suite, and governance policies.
+
+## User Review Required
+
+> [!IMPORTANT]
+> **Frozen Core Invariants**:
+> - **Visual Labels Only**: Labels are strictly `VisualCandidateKey` enum keys (`star_like`, `niche_like`, `tree_like`, etc.). Zero cultural claims, symbolism, dynasties, historical periods, or personality attributes.
+> - **Synthetic GT != Real-World Accuracy**: Procedural shapes represent synthetic visual geometry ground truth for detection evaluation; they do not establish historical authenticity.
+> - **No Model Downloads & No Training**: V2-09A develops dataset generation and validation infrastructure only. Zero model weights downloaded, zero YOLO training, zero database mutations.
+> - **Offline & Reproducible**: Fully deterministic given master seed, generator version, and scene specifications.
+
+## Proposed Architecture & Structure
+
+```
+packages/
+└── synthetic_motifs/
+    ├── __init__.py
+    ├── registry.py             # SyntheticMotifRegistry & 17 VisualCandidateKey definitions
+    ├── geometry.py             # Vector primitives, Point, Polygon, BBox, OBB, Homography, Clipping
+    ├── primitives/
+    │   ├── __init__.py
+    │   ├── geometric.py        # Star, Octagon, Lozenge, Rosette, Comb, Hook, Lattice
+    │   ├── organic.py          # Palmette, Lotus, VineScroll, CloudBand, Tree, Horn, HumanFigure
+    │   └── unmapped.py         # Controlled abstract glyphs / unmapped visual forms
+    ├── renderers/
+    │   ├── __init__.py
+    │   └── base.py             # Vector-to-raster instance rendering and mask generation
+    ├── composer.py             # CarpetComposer: background, borders, central, corners, lattices
+    ├── transforms.py           # Geometric transforms (perspective, rotation, scale, crop)
+    ├── randomization.py        # Photometric, imaging noise, fiber textures, occluders
+    ├── annotations.py          # SyntheticMotifInstanceGT, SyntheticCarpetSample, Provenance DTOs
+    ├── exporters/
+    │   ├── __init__.py
+    │   ├── canonical_json.py   # Source-of-truth JSON format
+    │   ├── coco.py             # COCO 1.0 format
+    │   ├── yolo_detect.py      # YOLO normalized [class_id, xc, yc, w, h]
+    │   ├── yolo_obb.py         # YOLO normalized 8-point OBB [class_id, x1, y1, ... x4, y4]
+    │   └── yolo_segment.py     # YOLO normalized polygon segmentation
+    ├── manifest.py             # SyntheticMotifDatasetManifest & scene signature / leakage checks
+    ├── validation.py           # Oracle integrity tests (mask/bbox/OBB/homography consistency)
+    └── cli.py                  # CLI commands: generate, validate-dataset, dry-run
+```
+
+## Proposed Changes
+
+### 1. Schemas & Governance Policies (`data/`)
+
+#### [NEW] [synthetic-motif-sample-v1.schema.json](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/data/schemas/synthetic-motif-sample-v1.schema.json)
+- JSON schema validating single synthetic sample format with instances, polygons, bboxes, OBBs, scene specs, and transform provenance.
+
+#### [NEW] [synthetic-motif-dataset-manifest-v1.schema.json](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/data/schemas/synthetic-motif-dataset-manifest-v1.schema.json)
+- JSON schema validating dataset manifest format with split counts, class frequencies, randomization settings, and integrity hashes.
+
+#### [NEW] [motif-generator-registry-v1.json](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/data/synthetic/motif-generator-registry-v1.json)
+- Canonical registry metadata for `synthetic-motif-registry-v1.0.0` detailing all 17 visual candidate keys, parameter ranges, and geometry families.
+
+#### [NEW] [visual-candidate-class-map-v1.json](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/data/synthetic/visual-candidate-class-map-v1.json)
+- Immutable mapping between integer `class_id` (0..16) and `visual_candidate_key`.
+
+#### [NEW] [domain-randomization-policy-v1.json](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/data/synthetic/domain-randomization-policy-v1.json)
+- Frozen parameter distributions for geometric, photometric, imaging, texture, and occlusion randomization layers.
+
+#### [NEW] [synthetic-motif-dataset-policy-v1.json](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/data/synthetic/synthetic-motif-dataset-policy-v1.json)
+- Policy defining deterministic train/val/test splits, visibility thresholds (visible_fraction < 0.20 -> IGNORE), leakage prevention via scene signatures, and negative sample quotas.
+
+---
+
+### 2. Synthetic Motifs Package (`packages/synthetic_motifs/`)
+
+#### [NEW] [packages/synthetic_motifs/registry.py](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/packages/synthetic_motifs/registry.py)
+- Defines `MotifRegistryEntry` and `SyntheticMotifRegistry` mapping all 17 `VisualCandidateKey` items to renderer classes and parameter schemas.
+
+#### [NEW] [packages/synthetic_motifs/geometry.py](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/packages/synthetic_motifs/geometry.py)
+- Vector mathematics: 2D Points, Polygons, BoundingBox (pixel & normalized), Oriented Bounding Box (4-corner minimum-area rectangle), 3x3 Homography projection, Sutherland-Hodgman convex polygon clipping.
+
+#### [NEW] [packages/synthetic_motifs/primitives/](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/packages/synthetic_motifs/primitives/)
+- Parametric vector generators:
+  - `geometric.py`: Star (n-points, inner/outer radius), Octagon (stepped/regular), Lozenge (rhombus/diamond), Rosette (multi-petal circular), Comb (spine & teeth), Hook (latch-hook polyline), Lattice (rhombus grid).
+  - `organic.py`: Palmette (radiating lobes & calyx), Lotus (pointed cup petals), VineScroll (sinuous spiral), CloudBand (undulating ribbon loop), Tree (branching trunk & stylized foliage), Horn (opposing spiral horns), HumanFigure (geometric stick torso/limbs/head).
+  - `unmapped.py`: Abstract geometric glyphs for `unmapped_visual_motif`.
+
+#### [NEW] [packages/synthetic_motifs/renderers/](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/packages/synthetic_motifs/renderers/)
+- High-precision vector rasterization, instance mask generation, and alpha composition onto canvas.
+
+#### [NEW] [packages/synthetic_motifs/composer.py](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/packages/synthetic_motifs/composer.py)
+- `CarpetComposer`: Assembles full synthetic carpet scenes (background field, outer/inner borders, central medallion/niche, corner spandrels, repeating field motifs, lattice grids, and negative/distractor scenes). Tracks instance IDs, z-order, and scene graph.
+
+#### [NEW] [packages/synthetic_motifs/transforms.py](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/packages/synthetic_motifs/transforms.py)
+- Homography perspective warping, rotation, scaling, translation, canvas clipping, and corresponding exact vector annotation transformation.
+
+#### [NEW] [packages/synthetic_motifs/randomization.py](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/packages/synthetic_motifs/randomization.py)
+- Deterministic photometric adjustments (brightness, contrast, gamma, color tint), imaging degradation (blur, noise, JPEG artifacts), procedural fiber textures, and neutral occluders.
+
+#### [NEW] [packages/synthetic_motifs/annotations.py](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/packages/synthetic_motifs/annotations.py)
+- Pydantic DTOs for `SyntheticMotifInstanceGT`, `SyntheticCarpetSample`, `TransformProvenance`, `VisibilityState`.
+
+#### [NEW] [packages/synthetic_motifs/exporters/](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/packages/synthetic_motifs/exporters/)
+- Exporters for Canonical JSON, COCO format, YOLO Detect (`.txt`), YOLO OBB (`.txt`), and YOLO Segment (`.txt`).
+
+#### [NEW] [packages/synthetic_motifs/manifest.py](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/packages/synthetic_motifs/manifest.py)
+- Manifest generator computing master seed, sample counts, class distributions, scene signatures, sha256 checksums, and cross-split leakage verification.
+
+#### [NEW] [packages/synthetic_motifs/validation.py](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/packages/synthetic_motifs/validation.py)
+- Ground-truth oracle checks: mask-vs-bbox containment, polygon-mask IoU consistency, OBB tightness, perspective point validation, photometric annotation invariance, and leakage auditing.
+
+#### [NEW] [packages/synthetic_motifs/cli.py](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/packages/synthetic_motifs/cli.py)
+- CLI entrypoints for `generate`, `validate-dataset`, and `--dry-run`.
+
+---
+
+### 3. Tests & Documentation
+
+#### [NEW] [apps/api/tests/test_v2_09a_synthetic_motifs.py](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/apps/api/tests/test_v2_09a_synthetic_motifs.py)
+- Comprehensive test suite covering:
+  - Registry completeness (all 17 visual candidate keys)
+  - Geometric oracle integrity (bbox/mask/polygon/OBB consistency)
+  - Perspective transformation point propagation
+  - Photometric invariance (annotations untouched by brightness/contrast/JPEG)
+  - Occlusion & crop visibility semantics (full vs visible geometry, visible_fraction)
+  - Negative samples & hard negative generation
+  - Multi-format exports (Canonical JSON, COCO, YOLO Detect, YOLO OBB, YOLO Segment)
+  - Determinism & seed variation
+  - Split assignment & cross-split leakage prevention
+  - Cultural safety check (forbidden semantic fields check)
+  - Zero database mutation & real data isolation
+
+#### [NEW] [docs/V2_09A_PROCEDURAL_MOTIF_DATASET.md](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/docs/V2_09A_PROCEDURAL_MOTIF_DATASET.md)
+- Complete architectural specification, mathematical formulas for vector primitives, domain randomization details, export specifications, and licensing gates.
+
+#### [NEW] [data/validation/v2-09a/synthetic-dataset-validation-report.json](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/data/validation/v2-09a/synthetic-dataset-validation-report.json)
+- Validation report generated from running the acceptance dataset generator and oracle checks.
+
+---
+
+## Verification Plan
+
+### Automated Tests
+1. **Focused V2-09A Suite**:
+   ```bash
+   cd apps/api
+   python -m pytest tests/test_v2_09a_synthetic_motifs.py -v
+   ```
+2. **Full Backend Test Suite**:
+   ```bash
+   cd apps/api
+   python -m pytest tests/ -q -rs
+   ```
+3. **Frontend Verification**:
+   ```bash
+   cd apps/web
+   npm run typecheck
+   npm run lint
+   npm run build
+   ```
+4. **Validation Benchmark & Make Check**:
+   ```bash
+   python apps/api/scratch/check_db_inventory.py
+   make check
+   ```
+
+### Manual / CLI Verification
+1. **Dry-Run CLI**:
+   ```bash
+   python -m packages.synthetic_motifs.cli generate --samples 200 --seed 42 --dry-run
+   ```
+2. **Generate Acceptance Dataset & Validate**:
+   ```bash
+   python -m packages.synthetic_motifs.cli generate --samples 200 --seed 42 --output data/synthetic/acceptance_samples
+   python -m packages.synthetic_motifs.cli validate-dataset --dataset-path data/synthetic/acceptance_samples
+   ```

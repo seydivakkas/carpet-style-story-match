@@ -1,0 +1,24 @@
+{
+  "class_map_version": "visual-candidate-class-map-v1.0.0",
+  "description": "Immutable deterministic mapping between integer class IDs and frozen visual candidate keys.",
+  "total_classes": 17,
+  "classes": [
+    {"class_id": 0, "visual_candidate_key": "cloud_band_like"},
+    {"class_id": 1, "visual_candidate_key": "comb_like"},
+    {"class_id": 2, "visual_candidate_key": "hook_like"},
+    {"class_id": 3, "visual_candidate_key": "horn_like"},
+    {"class_id": 4, "visual_candidate_key": "human_figure_like_geometric"},
+    {"class_id": 5, "visual_candidate_key": "lattice_like"},
+    {"class_id": 6, "visual_candidate_key": "lotus_like"},
+    {"class_id": 7, "visual_candidate_key": "lozenge_like"},
+    {"class_id": 8, "visual_candidate_key": "medallion_like"},
+    {"class_id": 9, "visual_candidate_key": "niche_like"},
+    {"class_id": 10, "visual_candidate_key": "octagonal_form"},
+    {"class_id": 11, "visual_candidate_key": "palmette_like"},
+    {"class_id": 12, "visual_candidate_key": "rosette_like"},
+    {"class_id": 13, "visual_candidate_key": "star_like"},
+    {"class_id": 14, "visual_candidate_key": "tree_like"},
+    {"class_id": 15, "visual_candidate_key": "unmapped_visual_motif"},
+    {"class_id": 16, "visual_candidate_key": "vine_scroll_like"}
+  ]
+}

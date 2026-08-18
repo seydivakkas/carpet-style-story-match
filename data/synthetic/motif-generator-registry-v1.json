@@ -1,0 +1,280 @@
+{
+  "registry_version": "synthetic-motif-registry-v1.0.0",
+  "description": "Deterministic parametric vector motif generator registry for visual candidate shapes.",
+  "motifs": [
+    {
+      "visual_candidate_key": "medallion_like",
+      "renderer_key": "MedallionRenderer",
+      "geometry_family": "composition_radial",
+      "supports_rotation": true,
+      "supports_repetition": true,
+      "supports_polygon_gt": true,
+      "supports_obb_gt": true,
+      "minimum_scale": 0.15,
+      "maximum_scale": 0.85,
+      "parameter_schema": {
+        "lobe_count": {"type": "integer", "min": 4, "max": 16, "default": 8},
+        "pointedness": {"type": "number", "min": 0.0, "max": 0.8, "default": 0.4},
+        "aspect_ratio": {"type": "number", "min": 0.6, "max": 1.4, "default": 1.0},
+        "pendant_style": {"type": "string", "enum": ["none", "diamond", "arrow", "fleurette"], "default": "diamond"}
+      }
+    },
+    {
+      "visual_candidate_key": "niche_like",
+      "renderer_key": "NicheRenderer",
+      "geometry_family": "architectural_arch",
+      "supports_rotation": false,
+      "supports_repetition": true,
+      "supports_polygon_gt": true,
+      "supports_obb_gt": true,
+      "minimum_scale": 0.25,
+      "maximum_scale": 0.90,
+      "parameter_schema": {
+        "arch_type": {"type": "string", "enum": ["pointed", "stepped", "cusped", "horseshoe"], "default": "pointed"},
+        "steepness": {"type": "number", "min": 0.2, "max": 0.8, "default": 0.5},
+        "column_width": {"type": "number", "min": 0.05, "max": 0.25, "default": 0.12},
+        "spandrel_fill": {"type": "boolean", "default": true}
+      }
+    },
+    {
+      "visual_candidate_key": "star_like",
+      "renderer_key": "StarRenderer",
+      "geometry_family": "geometric_radial",
+      "supports_rotation": true,
+      "supports_repetition": true,
+      "supports_polygon_gt": true,
+      "supports_obb_gt": true,
+      "minimum_scale": 0.08,
+      "maximum_scale": 0.60,
+      "parameter_schema": {
+        "points": {"type": "integer", "enum": [6, 8, 12, 16], "default": 8},
+        "inner_radius_ratio": {"type": "number", "min": 0.3, "max": 0.7, "default": 0.5},
+        "stepped_edges": {"type": "boolean", "default": false}
+      }
+    },
+    {
+      "visual_candidate_key": "rosette_like",
+      "renderer_key": "RosetteRenderer",
+      "geometry_family": "organic_radial",
+      "supports_rotation": true,
+      "supports_repetition": true,
+      "supports_polygon_gt": true,
+      "supports_obb_gt": true,
+      "minimum_scale": 0.08,
+      "maximum_scale": 0.50,
+      "parameter_schema": {
+        "petal_count": {"type": "integer", "min": 4, "max": 16, "default": 8},
+        "petal_roundness": {"type": "number", "min": 0.3, "max": 0.9, "default": 0.6},
+        "core_radius_ratio": {"type": "number", "min": 0.15, "max": 0.45, "default": 0.25}
+      }
+    },
+    {
+      "visual_candidate_key": "palmette_like",
+      "renderer_key": "PalmetteRenderer",
+      "geometry_family": "organic_fan",
+      "supports_rotation": true,
+      "supports_repetition": true,
+      "supports_polygon_gt": true,
+      "supports_obb_gt": true,
+      "minimum_scale": 0.10,
+      "maximum_scale": 0.60,
+      "parameter_schema": {
+        "lobe_count": {"type": "integer", "min": 3, "max": 9, "default": 5},
+        "flare_angle": {"type": "number", "min": 45.0, "max": 120.0, "default": 80.0},
+        "calyx_type": {"type": "string", "enum": ["simple", "scrolled", "pointed"], "default": "simple"}
+      }
+    },
+    {
+      "visual_candidate_key": "lotus_like",
+      "renderer_key": "LotusRenderer",
+      "geometry_family": "organic_cup",
+      "supports_rotation": true,
+      "supports_repetition": true,
+      "supports_polygon_gt": true,
+      "supports_obb_gt": true,
+      "minimum_scale": 0.08,
+      "maximum_scale": 0.50,
+      "parameter_schema": {
+        "tier_count": {"type": "integer", "min": 2, "max": 4, "default": 3},
+        "cup_spread": {"type": "number", "min": 0.4, "max": 0.9, "default": 0.65},
+        "pointedness": {"type": "number", "min": 0.3, "max": 0.8, "default": 0.5}
+      }
+    },
+    {
+      "visual_candidate_key": "vine_scroll_like",
+      "renderer_key": "VineScrollRenderer",
+      "geometry_family": "organic_scroll",
+      "supports_rotation": true,
+      "supports_repetition": true,
+      "supports_polygon_gt": true,
+      "supports_obb_gt": true,
+      "minimum_scale": 0.10,
+      "maximum_scale": 0.70,
+      "parameter_schema": {
+        "spiral_turns": {"type": "number", "min": 0.5, "max": 2.0, "default": 1.25},
+        "leaf_density": {"type": "integer", "min": 2, "max": 8, "default": 4},
+        "stroke_width": {"type": "number", "min": 0.02, "max": 0.10, "default": 0.04}
+      }
+    },
+    {
+      "visual_candidate_key": "cloud_band_like",
+      "renderer_key": "CloudBandRenderer",
+      "geometry_family": "organic_ribbon",
+      "supports_rotation": true,
+      "supports_repetition": true,
+      "supports_polygon_gt": true,
+      "supports_obb_gt": true,
+      "minimum_scale": 0.12,
+      "maximum_scale": 0.65,
+      "parameter_schema": {
+        "undulation_count": {"type": "integer", "min": 2, "max": 6, "default": 3},
+        "curl_radius": {"type": "number", "min": 0.1, "max": 0.4, "default": 0.25},
+        "ribbon_thickness": {"type": "number", "min": 0.04, "max": 0.15, "default": 0.08}
+      }
+    },
+    {
+      "visual_candidate_key": "tree_like",
+      "renderer_key": "TreeRenderer",
+      "geometry_family": "organic_branching",
+      "supports_rotation": true,
+      "supports_repetition": true,
+      "supports_polygon_gt": true,
+      "supports_obb_gt": true,
+      "minimum_scale": 0.15,
+      "maximum_scale": 0.80,
+      "parameter_schema": {
+        "branch_pairs": {"type": "integer", "min": 2, "max": 7, "default": 4},
+        "branch_angle": {"type": "number", "min": 25.0, "max": 65.0, "default": 45.0},
+        "crown_style": {"type": "string", "enum": ["cypress_tapered", "spreading", "chevron"], "default": "cypress_tapered"}
+      }
+    },
+    {
+      "visual_candidate_key": "horn_like",
+      "renderer_key": "HornRenderer",
+      "geometry_family": "geometric_curvilinear",
+      "supports_rotation": true,
+      "supports_repetition": true,
+      "supports_polygon_gt": true,
+      "supports_obb_gt": true,
+      "minimum_scale": 0.08,
+      "maximum_scale": 0.50,
+      "parameter_schema": {
+        "curl_direction": {"type": "string", "enum": ["opposing_outward", "inward_clasping"], "default": "opposing_outward"},
+        "spiral_depth": {"type": "number", "min": 0.4, "max": 1.2, "default": 0.8},
+        "stem_height": {"type": "number", "min": 0.1, "max": 0.5, "default": 0.3}
+      }
+    },
+    {
+      "visual_candidate_key": "human_figure_like_geometric",
+      "renderer_key": "HumanFigureRenderer",
+      "geometry_family": "geometric_stylized_figurative",
+      "supports_rotation": true,
+      "supports_repetition": true,
+      "supports_polygon_gt": true,
+      "supports_obb_gt": true,
+      "minimum_scale": 0.10,
+      "maximum_scale": 0.55,
+      "parameter_schema": {
+        "arm_pose": {"type": "string", "enum": ["horizontal_cross", "hands_on_hips", "upraised_v"], "default": "hands_on_hips"},
+        "skirt_style": {"type": "string", "enum": ["triangular", "stepped", "slit"], "default": "triangular"},
+        "head_form": {"type": "string", "enum": ["diamond", "circle", "square"], "default": "diamond"}
+      }
+    },
+    {
+      "visual_candidate_key": "comb_like",
+      "renderer_key": "CombRenderer",
+      "geometry_family": "geometric_linear",
+      "supports_rotation": true,
+      "supports_repetition": true,
+      "supports_polygon_gt": true,
+      "supports_obb_gt": true,
+      "minimum_scale": 0.06,
+      "maximum_scale": 0.40,
+      "parameter_schema": {
+        "tooth_count": {"type": "integer", "min": 3, "max": 9, "default": 5},
+        "spine_thickness": {"type": "number", "min": 0.1, "max": 0.35, "default": 0.2},
+        "tooth_spacing": {"type": "number", "min": 0.05, "max": 0.25, "default": 0.15}
+      }
+    },
+    {
+      "visual_candidate_key": "hook_like",
+      "renderer_key": "HookRenderer",
+      "geometry_family": "geometric_polyline",
+      "supports_rotation": true,
+      "supports_repetition": true,
+      "supports_polygon_gt": true,
+      "supports_obb_gt": true,
+      "minimum_scale": 0.05,
+      "maximum_scale": 0.40,
+      "parameter_schema": {
+        "hook_steps": {"type": "integer", "min": 1, "max": 4, "default": 2},
+        "orientation": {"type": "string", "enum": ["cw", "ccw", "double_ended"], "default": "cw"},
+        "thickness": {"type": "number", "min": 0.05, "max": 0.25, "default": 0.15}
+      }
+    },
+    {
+      "visual_candidate_key": "lattice_like",
+      "renderer_key": "LatticeRenderer",
+      "geometry_family": "composition_grid",
+      "supports_rotation": true,
+      "supports_repetition": true,
+      "supports_polygon_gt": true,
+      "supports_obb_gt": true,
+      "minimum_scale": 0.20,
+      "maximum_scale": 0.90,
+      "parameter_schema": {
+        "cell_rows": {"type": "integer", "min": 2, "max": 6, "default": 3},
+        "cell_cols": {"type": "integer", "min": 2, "max": 6, "default": 3},
+        "cell_shape": {"type": "string", "enum": ["diamond", "hexagonal", "lozenge"], "default": "diamond"},
+        "strut_width": {"type": "number", "min": 0.02, "max": 0.08, "default": 0.04}
+      }
+    },
+    {
+      "visual_candidate_key": "lozenge_like",
+      "renderer_key": "LozengeRenderer",
+      "geometry_family": "geometric_polygon",
+      "supports_rotation": true,
+      "supports_repetition": true,
+      "supports_polygon_gt": true,
+      "supports_obb_gt": true,
+      "minimum_scale": 0.08,
+      "maximum_scale": 0.60,
+      "parameter_schema": {
+        "stepped_levels": {"type": "integer", "min": 0, "max": 4, "default": 1},
+        "aspect_ratio": {"type": "number", "min": 0.5, "max": 2.0, "default": 1.2},
+        "concentric_rings": {"type": "integer", "min": 1, "max": 3, "default": 2}
+      }
+    },
+    {
+      "visual_candidate_key": "octagonal_form",
+      "renderer_key": "OctagonRenderer",
+      "geometry_family": "geometric_polygon",
+      "supports_rotation": true,
+      "supports_repetition": true,
+      "supports_polygon_gt": true,
+      "supports_obb_gt": true,
+      "minimum_scale": 0.10,
+      "maximum_scale": 0.70,
+      "parameter_schema": {
+        "step_style": {"type": "string", "enum": ["regular", "stepped_corners", "gul_lobed"], "default": "regular"},
+        "inner_quartering": {"type": "boolean", "default": true},
+        "aspect_ratio": {"type": "number", "min": 0.7, "max": 1.3, "default": 1.0}
+      }
+    },
+    {
+      "visual_candidate_key": "unmapped_visual_motif",
+      "renderer_key": "UnmappedMotifRenderer",
+      "geometry_family": "abstract_glyph",
+      "supports_rotation": true,
+      "supports_repetition": true,
+      "supports_polygon_gt": true,
+      "supports_obb_gt": true,
+      "minimum_scale": 0.06,
+      "maximum_scale": 0.45,
+      "parameter_schema": {
+        "glyph_seed": {"type": "integer", "min": 0, "max": 1000, "default": 1},
+        "complexity": {"type": "integer", "min": 3, "max": 8, "default": 5}
+      }
+    }
+  ]
+}

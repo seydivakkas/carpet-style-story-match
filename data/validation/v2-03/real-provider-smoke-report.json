@@ -1,0 +1,65 @@
+{
+  "schema_version": "upload-analysis-v1.0.0",
+  "analysis_id": "an-cc88b1c5",
+  "image_asset_id": "asset-cc88b1c5",
+  "image_sha256": "1e52f209005c62031c81ca351f493e71467b00a24d6183b94bafb6b91ddeebac",
+  "source_kind": "USER_UPLOAD",
+  "quality_status": "PASS",
+  "canonicalization_status": "AVAILABLE",
+  "style_dna_reference": "style-dna-v1.0.0",
+  "visual_observations": [
+    {
+      "observation_id": "obs-1",
+      "observation_type": "OTHER_VISUAL",
+      "region": null,
+      "confidence": 0.9,
+      "description": "The image appears to be a carpet with a complex design.",
+      "evidence_features": [
+        "complex design"
+      ],
+      "source": "vlm_observation"
+    }
+  ],
+  "visual_category": {
+    "category_key": "unknown",
+    "confidence": 0.85,
+    "evidence_observation_ids": [],
+    "secondary_categories": [],
+    "status": "UNKNOWN",
+    "abstention_reason": null
+  },
+  "composition_evidence": {
+    "central_focus": 0.9,
+    "border_dominance": 0.8,
+    "vertical_symmetry": 0.9,
+    "horizontal_symmetry": 0.7,
+    "rotational_structure": null,
+    "repetition_strength": null,
+    "field_organization": null,
+    "evidence_observation_ids": []
+  },
+  "motif_candidates": [
+    {
+      "candidate_id": "mc-1",
+      "visual_candidate_key": "unmapped_visual_motif",
+      "proposed_canonical_motif_key": null,
+      "confidence": 0.85,
+      "region": null,
+      "visual_evidence": [
+        "unmapped visual motifs"
+      ],
+      "status": "UNMAPPED_MOTIF_CANDIDATE",
+      "model_provenance": null,
+      "abstention_reason": null
+    }
+  ],
+  "abstentions": [],
+  "provenance": {
+    "provider_type": "LOCAL_VLLM",
+    "model_id": "Qwen/Qwen2.5-VL-3B-Instruct-AWQ",
+    "model_version": "1.0.0",
+    "prompt_version": "motif-vision-prompt-v1.0.0",
+    "inference_timestamp": "2026-08-16T23:55:00Z",
+    "request_hash": "cc88b1c561b8ad93"
+  }
+}

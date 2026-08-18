@@ -1,0 +1,997 @@
+{
+  "task": "V2-07 — Historical + Catalog Visual Retrieval Real Smoke Run",
+  "generated_at": "2026-08-18T05:07:47Z",
+  "retrieval_version": "visual-retrieval-v1.0.0",
+  "retrieval_policy_version": "visual-retrieval-policy-v1.0.0",
+  "latency_ms": 209,
+  "query_provenance": {
+    "query_id": "smoke-test-query-001",
+    "query_source_type": "DIRECT_VECTOR",
+    "style_dna_version": "style-dna-v1.0.0",
+    "exclude_id": null
+  },
+  "catalog_corpus_accounting": {
+    "total_records": 232,
+    "eligible_records": 224,
+    "excluded_partial": 3,
+    "excluded_missing_primary_image": 5,
+    "excluded_missing_style_dna": 0,
+    "corpus_fingerprint": "93a1fb743856754f32ca22ede5409f1c1b9a0054d92fed47c8d78185b10563e8"
+  },
+  "historical_corpus_accounting": {
+    "total_records": 100,
+    "eligible_records": 45,
+    "excluded_missing_primary_image": 55,
+    "excluded_missing_style_dna": 0,
+    "corpus_fingerprint": "d24d63b050261c4a57c94f0df48c2438461cd00da70c53e123436d852d613e4e"
+  },
+  "catalog_top_5": [
+    {
+      "rank": 1,
+      "catalog_id": "244429b8-b21c-4575-93e0-5de228563066",
+      "sku": "33261 030",
+      "brand": "Merinos",
+      "collection": "Therapy",
+      "product_name": "Therapy 33261 030",
+      "primary_image_url": "/api/v1/carpets/244429b8-b21c-4575-93e0-5de228563066/primary-image",
+      "visual_proximity_score": 68.88,
+      "style_dimension_deltas": [
+        {
+          "dimension_key": "color_energy",
+          "query_value": 0.65,
+          "candidate_value": 0.0651,
+          "absolute_delta": 0.5849,
+          "normalized_delta": 0.5849
+        },
+        {
+          "dimension_key": "color_diversity",
+          "query_value": 0.45,
+          "candidate_value": 0.3885,
+          "absolute_delta": 0.0615,
+          "normalized_delta": 0.0615
+        },
+        {
+          "dimension_key": "contrast",
+          "query_value": 0.8,
+          "candidate_value": 0.6137,
+          "absolute_delta": 0.1863,
+          "normalized_delta": 0.1863
+        },
+        {
+          "dimension_key": "warmth",
+          "query_value": 0.7,
+          "candidate_value": 0.5,
+          "absolute_delta": 0.2,
+          "normalized_delta": 0.2
+        },
+        {
+          "dimension_key": "visual_complexity",
+          "query_value": 0.5,
+          "candidate_value": 0.6866,
+          "absolute_delta": 0.1866,
+          "normalized_delta": 0.1866
+        },
+        {
+          "dimension_key": "structural_order",
+          "query_value": 0.85,
+          "candidate_value": 0.8456,
+          "absolute_delta": 0.0044,
+          "normalized_delta": 0.0044
+        },
+        {
+          "dimension_key": "rhythm_repetition",
+          "query_value": 0.6,
+          "candidate_value": 0.6613,
+          "absolute_delta": 0.0613,
+          "normalized_delta": 0.0613
+        },
+        {
+          "dimension_key": "focal_strength",
+          "query_value": 0.75,
+          "candidate_value": 0.1113,
+          "absolute_delta": 0.6387,
+          "normalized_delta": 0.6387
+        },
+        {
+          "dimension_key": "form_language",
+          "query_value": 0.65,
+          "candidate_value": 0.7184,
+          "absolute_delta": 0.0684,
+          "normalized_delta": 0.0684
+        }
+      ],
+      "closest_dimensions": [
+        "structural_order",
+        "rhythm_repetition",
+        "color_diversity"
+      ],
+      "largest_differences": [
+        "focal_strength",
+        "color_energy"
+      ],
+      "style_dna_version": "style-dna-v1.0.0",
+      "source_metadata_provenance": {
+        "source_type": "CATALOG",
+        "sku": "33261 030",
+        "brand": "Merinos",
+        "metadata_assertion": "OFFICIAL_CATALOG_METADATA"
+      }
+    },
+    {
+      "rank": 2,
+      "catalog_id": "7aa77a4b-46d7-4c29-adaf-26c7b0353935",
+      "sku": "77772 071",
+      "brand": "Merinos",
+      "collection": "Rodin",
+      "product_name": "Rodin 77772 071",
+      "primary_image_url": "/api/v1/carpets/7aa77a4b-46d7-4c29-adaf-26c7b0353935/primary-image",
+      "visual_proximity_score": 67.52,
+      "style_dimension_deltas": [
+        {
+          "dimension_key": "color_energy",
+          "query_value": 0.65,
+          "candidate_value": 0.1422,
+          "absolute_delta": 0.5078,
+          "normalized_delta": 0.5078
+        },
+        {
+          "dimension_key": "color_diversity",
+          "query_value": 0.45,
+          "candidate_value": 0.4321,
+          "absolute_delta": 0.0179,
+          "normalized_delta": 0.0179
+        },
+        {
+          "dimension_key": "contrast",
+          "query_value": 0.8,
+          "candidate_value": 0.3754,
+          "absolute_delta": 0.4246,
+          "normalized_delta": 0.4246
+        },
+        {
+          "dimension_key": "warmth",
+          "query_value": 0.7,
+          "candidate_value": 0.7641,
+          "absolute_delta": 0.0641,
+          "normalized_delta": 0.0641
+        },
+        {
+          "dimension_key": "visual_complexity",
+          "query_value": 0.5,
+          "candidate_value": 0.5409,
+          "absolute_delta": 0.0409,
+          "normalized_delta": 0.0409
+        },
+        {
+          "dimension_key": "structural_order",
+          "query_value": 0.85,
+          "candidate_value": 0.8216,
+          "absolute_delta": 0.0284,
+          "normalized_delta": 0.0284
+        },
+        {
+          "dimension_key": "rhythm_repetition",
+          "query_value": 0.6,
+          "candidate_value": 0.9201,
+          "absolute_delta": 0.3201,
+          "normalized_delta": 0.3201
+        },
+        {
+          "dimension_key": "focal_strength",
+          "query_value": 0.75,
+          "candidate_value": 0.1253,
+          "absolute_delta": 0.6247,
+          "normalized_delta": 0.6247
+        },
+        {
+          "dimension_key": "form_language",
+          "query_value": 0.65,
+          "candidate_value": 0.5407,
+          "absolute_delta": 0.1093,
+          "normalized_delta": 0.1093
+        }
+      ],
+      "closest_dimensions": [
+        "color_diversity",
+        "structural_order",
+        "visual_complexity"
+      ],
+      "largest_differences": [
+        "focal_strength",
+        "color_energy"
+      ],
+      "style_dna_version": "style-dna-v1.0.0",
+      "source_metadata_provenance": {
+        "source_type": "CATALOG",
+        "sku": "77772 071",
+        "brand": "Merinos",
+        "metadata_assertion": "OFFICIAL_CATALOG_METADATA"
+      }
+    },
+    {
+      "rank": 3,
+      "catalog_id": "18730712-aeb5-4bd7-924b-08a035ff3c26",
+      "sku": "91001 020",
+      "brand": "Merinos",
+      "collection": "Valeria",
+      "product_name": "Valeria 91001 020",
+      "primary_image_url": "/api/v1/carpets/18730712-aeb5-4bd7-924b-08a035ff3c26/primary-image",
+      "visual_proximity_score": 67.37,
+      "style_dimension_deltas": [
+        {
+          "dimension_key": "color_energy",
+          "query_value": 0.65,
+          "candidate_value": 0.2959,
+          "absolute_delta": 0.3541,
+          "normalized_delta": 0.3541
+        },
+        {
+          "dimension_key": "color_diversity",
+          "query_value": 0.45,
+          "candidate_value": 0.416,
+          "absolute_delta": 0.034,
+          "normalized_delta": 0.034
+        },
+        {
+          "dimension_key": "contrast",
+          "query_value": 0.8,
+          "candidate_value": 0.51,
+          "absolute_delta": 0.29,
+          "normalized_delta": 0.29
+        },
+        {
+          "dimension_key": "warmth",
+          "query_value": 0.7,
+          "candidate_value": 0.7624,
+          "absolute_delta": 0.0624,
+          "normalized_delta": 0.0624
+        },
+        {
+          "dimension_key": "visual_complexity",
+          "query_value": 0.5,
+          "candidate_value": 0.9526,
+          "absolute_delta": 0.4526,
+          "normalized_delta": 0.4526
+        },
+        {
+          "dimension_key": "structural_order",
+          "query_value": 0.85,
+          "candidate_value": 0.7433,
+          "absolute_delta": 0.1067,
+          "normalized_delta": 0.1067
+        },
+        {
+          "dimension_key": "rhythm_repetition",
+          "query_value": 0.6,
+          "candidate_value": 0.7225,
+          "absolute_delta": 0.1225,
+          "normalized_delta": 0.1225
+        },
+        {
+          "dimension_key": "focal_strength",
+          "query_value": 0.75,
+          "candidate_value": 0.0824,
+          "absolute_delta": 0.6676,
+          "normalized_delta": 0.6676
+        },
+        {
+          "dimension_key": "form_language",
+          "query_value": 0.65,
+          "candidate_value": 0.3915,
+          "absolute_delta": 0.2585,
+          "normalized_delta": 0.2585
+        }
+      ],
+      "closest_dimensions": [
+        "color_diversity",
+        "warmth",
+        "structural_order"
+      ],
+      "largest_differences": [
+        "focal_strength",
+        "visual_complexity"
+      ],
+      "style_dna_version": "style-dna-v1.0.0",
+      "source_metadata_provenance": {
+        "source_type": "CATALOG",
+        "sku": "91001 020",
+        "brand": "Merinos",
+        "metadata_assertion": "OFFICIAL_CATALOG_METADATA"
+      }
+    },
+    {
+      "rank": 4,
+      "catalog_id": "56afba52-5d39-4e9e-b7ce-4a67be42170a",
+      "sku": "60900 070",
+      "brand": "Merinos",
+      "collection": "Rodin",
+      "product_name": "Rodin 60900 070",
+      "primary_image_url": "/api/v1/carpets/56afba52-5d39-4e9e-b7ce-4a67be42170a/primary-image",
+      "visual_proximity_score": 66.75,
+      "style_dimension_deltas": [
+        {
+          "dimension_key": "color_energy",
+          "query_value": 0.65,
+          "candidate_value": 0.1028,
+          "absolute_delta": 0.5472,
+          "normalized_delta": 0.5472
+        },
+        {
+          "dimension_key": "color_diversity",
+          "query_value": 0.45,
+          "candidate_value": 0.3333,
+          "absolute_delta": 0.1167,
+          "normalized_delta": 0.1167
+        },
+        {
+          "dimension_key": "contrast",
+          "query_value": 0.8,
+          "candidate_value": 0.3648,
+          "absolute_delta": 0.4352,
+          "normalized_delta": 0.4352
+        },
+        {
+          "dimension_key": "warmth",
+          "query_value": 0.7,
+          "candidate_value": 0.7845,
+          "absolute_delta": 0.0845,
+          "normalized_delta": 0.0845
+        },
+        {
+          "dimension_key": "visual_complexity",
+          "query_value": 0.5,
+          "candidate_value": 0.5532,
+          "absolute_delta": 0.0532,
+          "normalized_delta": 0.0532
+        },
+        {
+          "dimension_key": "structural_order",
+          "query_value": 0.85,
+          "candidate_value": 0.955,
+          "absolute_delta": 0.105,
+          "normalized_delta": 0.105
+        },
+        {
+          "dimension_key": "rhythm_repetition",
+          "query_value": 0.6,
+          "candidate_value": 0.8923,
+          "absolute_delta": 0.2923,
+          "normalized_delta": 0.2923
+        },
+        {
+          "dimension_key": "focal_strength",
+          "query_value": 0.75,
+          "candidate_value": 0.1331,
+          "absolute_delta": 0.6169,
+          "normalized_delta": 0.6169
+        },
+        {
+          "dimension_key": "form_language",
+          "query_value": 0.65,
+          "candidate_value": 0.5739,
+          "absolute_delta": 0.0761,
+          "normalized_delta": 0.0761
+        }
+      ],
+      "closest_dimensions": [
+        "visual_complexity",
+        "form_language",
+        "warmth"
+      ],
+      "largest_differences": [
+        "focal_strength",
+        "color_energy"
+      ],
+      "style_dna_version": "style-dna-v1.0.0",
+      "source_metadata_provenance": {
+        "source_type": "CATALOG",
+        "sku": "60900 070",
+        "brand": "Merinos",
+        "metadata_assertion": "OFFICIAL_CATALOG_METADATA"
+      }
+    },
+    {
+      "rank": 5,
+      "catalog_id": "380adf53-4f26-4ac7-8030-8e2e8c280087",
+      "sku": "34675 090",
+      "brand": "Merinos",
+      "collection": "Rodin",
+      "product_name": "Rodin 34675 090",
+      "primary_image_url": "/api/v1/carpets/380adf53-4f26-4ac7-8030-8e2e8c280087/primary-image",
+      "visual_proximity_score": 66.63,
+      "style_dimension_deltas": [
+        {
+          "dimension_key": "color_energy",
+          "query_value": 0.65,
+          "candidate_value": 0.1179,
+          "absolute_delta": 0.5321,
+          "normalized_delta": 0.5321
+        },
+        {
+          "dimension_key": "color_diversity",
+          "query_value": 0.45,
+          "candidate_value": 0.4914,
+          "absolute_delta": 0.0414,
+          "normalized_delta": 0.0414
+        },
+        {
+          "dimension_key": "contrast",
+          "query_value": 0.8,
+          "candidate_value": 0.6125,
+          "absolute_delta": 0.1875,
+          "normalized_delta": 0.1875
+        },
+        {
+          "dimension_key": "warmth",
+          "query_value": 0.7,
+          "candidate_value": 0.6723,
+          "absolute_delta": 0.0277,
+          "normalized_delta": 0.0277
+        },
+        {
+          "dimension_key": "visual_complexity",
+          "query_value": 0.5,
+          "candidate_value": 0.8365,
+          "absolute_delta": 0.3365,
+          "normalized_delta": 0.3365
+        },
+        {
+          "dimension_key": "structural_order",
+          "query_value": 0.85,
+          "candidate_value": 0.8556,
+          "absolute_delta": 0.0056,
+          "normalized_delta": 0.0056
+        },
+        {
+          "dimension_key": "rhythm_repetition",
+          "query_value": 0.6,
+          "candidate_value": 1.0,
+          "absolute_delta": 0.4,
+          "normalized_delta": 0.4
+        },
+        {
+          "dimension_key": "focal_strength",
+          "query_value": 0.75,
+          "candidate_value": 0.1113,
+          "absolute_delta": 0.6387,
+          "normalized_delta": 0.6387
+        },
+        {
+          "dimension_key": "form_language",
+          "query_value": 0.65,
+          "candidate_value": 0.6388,
+          "absolute_delta": 0.0112,
+          "normalized_delta": 0.0112
+        }
+      ],
+      "closest_dimensions": [
+        "structural_order",
+        "form_language",
+        "warmth"
+      ],
+      "largest_differences": [
+        "focal_strength",
+        "color_energy"
+      ],
+      "style_dna_version": "style-dna-v1.0.0",
+      "source_metadata_provenance": {
+        "source_type": "CATALOG",
+        "sku": "34675 090",
+        "brand": "Merinos",
+        "metadata_assertion": "OFFICIAL_CATALOG_METADATA"
+      }
+    }
+  ],
+  "historical_top_5": [
+    {
+      "rank": 1,
+      "historical_reference_id": "98408804-97ea-411a-8cad-00627fa55bd5",
+      "reference_key": "ref-met-451062",
+      "institution": "The Metropolitan Museum of Art",
+      "object_title": "Carpet",
+      "museum_object_id": "451062",
+      "canonical_source_url": "https://www.metmuseum.org/art/collection/search/451062",
+      "primary_image_url": "/api/v1/carpets/aaf5d430-f976-4710-828a-b5e64bd3c2f6/primary-image",
+      "museum_metadata": {
+        "reference_key": "ref-met-451062",
+        "institution": "The Metropolitan Museum of Art",
+        "object_title": "Carpet",
+        "museum_object_id": "451062",
+        "date_or_period": "late 16th–early 17th century",
+        "origin_culture": null,
+        "origin_geography": "Iran",
+        "medium_materials": "Silk, metal wrapped thread; tapestry weave"
+      },
+      "visual_proximity_score": 71.4,
+      "style_dimension_deltas": [
+        {
+          "dimension_key": "color_energy",
+          "query_value": 0.65,
+          "candidate_value": 0.4461,
+          "absolute_delta": 0.2039,
+          "normalized_delta": 0.2039
+        },
+        {
+          "dimension_key": "color_diversity",
+          "query_value": 0.45,
+          "candidate_value": 0.4871,
+          "absolute_delta": 0.0371,
+          "normalized_delta": 0.0371
+        },
+        {
+          "dimension_key": "contrast",
+          "query_value": 0.8,
+          "candidate_value": 0.5229,
+          "absolute_delta": 0.2771,
+          "normalized_delta": 0.2771
+        },
+        {
+          "dimension_key": "warmth",
+          "query_value": 0.7,
+          "candidate_value": 0.682,
+          "absolute_delta": 0.018,
+          "normalized_delta": 0.018
+        },
+        {
+          "dimension_key": "visual_complexity",
+          "query_value": 0.5,
+          "candidate_value": 0.9027,
+          "absolute_delta": 0.4027,
+          "normalized_delta": 0.4027
+        },
+        {
+          "dimension_key": "structural_order",
+          "query_value": 0.85,
+          "candidate_value": 0.7573,
+          "absolute_delta": 0.0927,
+          "normalized_delta": 0.0927
+        },
+        {
+          "dimension_key": "rhythm_repetition",
+          "query_value": 0.6,
+          "candidate_value": 0.729,
+          "absolute_delta": 0.129,
+          "normalized_delta": 0.129
+        },
+        {
+          "dimension_key": "focal_strength",
+          "query_value": 0.75,
+          "candidate_value": 0.1004,
+          "absolute_delta": 0.6496,
+          "normalized_delta": 0.6496
+        },
+        {
+          "dimension_key": "form_language",
+          "query_value": 0.65,
+          "candidate_value": 0.7312,
+          "absolute_delta": 0.0812,
+          "normalized_delta": 0.0812
+        }
+      ],
+      "closest_dimensions": [
+        "warmth",
+        "color_diversity",
+        "form_language"
+      ],
+      "largest_differences": [
+        "focal_strength",
+        "visual_complexity"
+      ],
+      "style_dna_version": "style-dna-v1.0.0",
+      "metadata_provenance": {
+        "source_type": "HISTORICAL_MUSEUM_REFERENCE",
+        "holding_institution": "The Metropolitan Museum of Art",
+        "metadata_assertion": "SOURCE_DOCUMENTED_MUSEUM_METADATA",
+        "reference_key": "ref-met-451062"
+      }
+    },
+    {
+      "rank": 2,
+      "historical_reference_id": "e163669d-a505-4417-a9ae-7de150e50e71",
+      "reference_key": "ref-met-451470",
+      "institution": "The Metropolitan Museum of Art",
+      "object_title": "Silk Kashan Carpet",
+      "museum_object_id": "451470",
+      "canonical_source_url": "https://www.metmuseum.org/art/collection/search/451470",
+      "primary_image_url": "/api/v1/carpets/90dea6ab-9d8e-4499-83ed-635af2ff233b/primary-image",
+      "museum_metadata": {
+        "reference_key": "ref-met-451470",
+        "institution": "The Metropolitan Museum of Art",
+        "object_title": "Silk Kashan Carpet",
+        "museum_object_id": "451470",
+        "date_or_period": "16th century",
+        "origin_culture": null,
+        "origin_geography": "Iran",
+        "medium_materials": "Silk (warp, weft and pile); asymmetrically knotted pile"
+      },
+      "visual_proximity_score": 71.07,
+      "style_dimension_deltas": [
+        {
+          "dimension_key": "color_energy",
+          "query_value": 0.65,
+          "candidate_value": 0.6605,
+          "absolute_delta": 0.0105,
+          "normalized_delta": 0.0105
+        },
+        {
+          "dimension_key": "color_diversity",
+          "query_value": 0.45,
+          "candidate_value": 0.6602,
+          "absolute_delta": 0.2102,
+          "normalized_delta": 0.2102
+        },
+        {
+          "dimension_key": "contrast",
+          "query_value": 0.8,
+          "candidate_value": 0.52,
+          "absolute_delta": 0.28,
+          "normalized_delta": 0.28
+        },
+        {
+          "dimension_key": "warmth",
+          "query_value": 0.7,
+          "candidate_value": 0.7393,
+          "absolute_delta": 0.0393,
+          "normalized_delta": 0.0393
+        },
+        {
+          "dimension_key": "visual_complexity",
+          "query_value": 0.5,
+          "candidate_value": 0.9168,
+          "absolute_delta": 0.4168,
+          "normalized_delta": 0.4168
+        },
+        {
+          "dimension_key": "structural_order",
+          "query_value": 0.85,
+          "candidate_value": 0.6931,
+          "absolute_delta": 0.1569,
+          "normalized_delta": 0.1569
+        },
+        {
+          "dimension_key": "rhythm_repetition",
+          "query_value": 0.6,
+          "candidate_value": 0.5855,
+          "absolute_delta": 0.0145,
+          "normalized_delta": 0.0145
+        },
+        {
+          "dimension_key": "focal_strength",
+          "query_value": 0.75,
+          "candidate_value": 0.1019,
+          "absolute_delta": 0.6481,
+          "normalized_delta": 0.6481
+        },
+        {
+          "dimension_key": "form_language",
+          "query_value": 0.65,
+          "candidate_value": 0.5481,
+          "absolute_delta": 0.1019,
+          "normalized_delta": 0.1019
+        }
+      ],
+      "closest_dimensions": [
+        "color_energy",
+        "rhythm_repetition",
+        "warmth"
+      ],
+      "largest_differences": [
+        "focal_strength",
+        "visual_complexity"
+      ],
+      "style_dna_version": "style-dna-v1.0.0",
+      "metadata_provenance": {
+        "source_type": "HISTORICAL_MUSEUM_REFERENCE",
+        "holding_institution": "The Metropolitan Museum of Art",
+        "metadata_assertion": "SOURCE_DOCUMENTED_MUSEUM_METADATA",
+        "reference_key": "ref-met-451470"
+      }
+    },
+    {
+      "rank": 3,
+      "historical_reference_id": "ae110607-8678-4e8b-bd64-c94079cb4861",
+      "reference_key": "ref-met-446642",
+      "institution": "The Metropolitan Museum of Art",
+      "object_title": "Silk Animal Carpet",
+      "museum_object_id": "446642",
+      "canonical_source_url": "https://www.metmuseum.org/art/collection/search/446642",
+      "primary_image_url": "/api/v1/carpets/63d181f6-9a42-4b2a-80b5-2f884619e741/primary-image",
+      "museum_metadata": {
+        "reference_key": "ref-met-446642",
+        "institution": "The Metropolitan Museum of Art",
+        "object_title": "Silk Animal Carpet",
+        "museum_object_id": "446642",
+        "date_or_period": "second half 16th century",
+        "origin_culture": null,
+        "origin_geography": "Iran",
+        "medium_materials": "Silk (warp, weft, and pile); asymmetrically knotted pile"
+      },
+      "visual_proximity_score": 70.96,
+      "style_dimension_deltas": [
+        {
+          "dimension_key": "color_energy",
+          "query_value": 0.65,
+          "candidate_value": 0.5664,
+          "absolute_delta": 0.0836,
+          "normalized_delta": 0.0836
+        },
+        {
+          "dimension_key": "color_diversity",
+          "query_value": 0.45,
+          "candidate_value": 0.616,
+          "absolute_delta": 0.166,
+          "normalized_delta": 0.166
+        },
+        {
+          "dimension_key": "contrast",
+          "query_value": 0.8,
+          "candidate_value": 0.5861,
+          "absolute_delta": 0.2139,
+          "normalized_delta": 0.2139
+        },
+        {
+          "dimension_key": "warmth",
+          "query_value": 0.7,
+          "candidate_value": 0.7445,
+          "absolute_delta": 0.0445,
+          "normalized_delta": 0.0445
+        },
+        {
+          "dimension_key": "visual_complexity",
+          "query_value": 0.5,
+          "candidate_value": 0.9247,
+          "absolute_delta": 0.4247,
+          "normalized_delta": 0.4247
+        },
+        {
+          "dimension_key": "structural_order",
+          "query_value": 0.85,
+          "candidate_value": 0.6441,
+          "absolute_delta": 0.2059,
+          "normalized_delta": 0.2059
+        },
+        {
+          "dimension_key": "rhythm_repetition",
+          "query_value": 0.6,
+          "candidate_value": 0.7574,
+          "absolute_delta": 0.1574,
+          "normalized_delta": 0.1574
+        },
+        {
+          "dimension_key": "focal_strength",
+          "query_value": 0.75,
+          "candidate_value": 0.1,
+          "absolute_delta": 0.65,
+          "normalized_delta": 0.65
+        },
+        {
+          "dimension_key": "form_language",
+          "query_value": 0.65,
+          "candidate_value": 0.5684,
+          "absolute_delta": 0.0816,
+          "normalized_delta": 0.0816
+        }
+      ],
+      "closest_dimensions": [
+        "warmth",
+        "form_language",
+        "color_energy"
+      ],
+      "largest_differences": [
+        "focal_strength",
+        "visual_complexity"
+      ],
+      "style_dna_version": "style-dna-v1.0.0",
+      "metadata_provenance": {
+        "source_type": "HISTORICAL_MUSEUM_REFERENCE",
+        "holding_institution": "The Metropolitan Museum of Art",
+        "metadata_assertion": "SOURCE_DOCUMENTED_MUSEUM_METADATA",
+        "reference_key": "ref-met-446642"
+      }
+    },
+    {
+      "rank": 4,
+      "historical_reference_id": "32a7ed53-bac8-4b0a-9128-2af3626a4c80",
+      "reference_key": "ref-met-928622",
+      "institution": "The Metropolitan Museum of Art",
+      "object_title": "Carpet",
+      "museum_object_id": "928622",
+      "canonical_source_url": "https://www.metmuseum.org/art/collection/search/928622",
+      "primary_image_url": "/api/v1/carpets/d7dcc9e2-fab3-40cd-90d9-85abb01b0f56/primary-image",
+      "museum_metadata": {
+        "reference_key": "ref-met-928622",
+        "institution": "The Metropolitan Museum of Art",
+        "object_title": "Carpet",
+        "museum_object_id": "928622",
+        "date_or_period": "ca. 1765",
+        "origin_culture": null,
+        "origin_geography": null,
+        "medium_materials": "Wool; knotted pile"
+      },
+      "visual_proximity_score": 70.6,
+      "style_dimension_deltas": [
+        {
+          "dimension_key": "color_energy",
+          "query_value": 0.65,
+          "candidate_value": 0.4559,
+          "absolute_delta": 0.1941,
+          "normalized_delta": 0.1941
+        },
+        {
+          "dimension_key": "color_diversity",
+          "query_value": 0.45,
+          "candidate_value": 0.5165,
+          "absolute_delta": 0.0665,
+          "normalized_delta": 0.0665
+        },
+        {
+          "dimension_key": "contrast",
+          "query_value": 0.8,
+          "candidate_value": 0.6824,
+          "absolute_delta": 0.1176,
+          "normalized_delta": 0.1176
+        },
+        {
+          "dimension_key": "warmth",
+          "query_value": 0.7,
+          "candidate_value": 0.8203,
+          "absolute_delta": 0.1203,
+          "normalized_delta": 0.1203
+        },
+        {
+          "dimension_key": "visual_complexity",
+          "query_value": 0.5,
+          "candidate_value": 0.8829,
+          "absolute_delta": 0.3829,
+          "normalized_delta": 0.3829
+        },
+        {
+          "dimension_key": "structural_order",
+          "query_value": 0.85,
+          "candidate_value": 0.7325,
+          "absolute_delta": 0.1175,
+          "normalized_delta": 0.1175
+        },
+        {
+          "dimension_key": "rhythm_repetition",
+          "query_value": 0.6,
+          "candidate_value": 1.0,
+          "absolute_delta": 0.4,
+          "normalized_delta": 0.4
+        },
+        {
+          "dimension_key": "focal_strength",
+          "query_value": 0.75,
+          "candidate_value": 0.1286,
+          "absolute_delta": 0.6214,
+          "normalized_delta": 0.6214
+        },
+        {
+          "dimension_key": "form_language",
+          "query_value": 0.65,
+          "candidate_value": 0.6216,
+          "absolute_delta": 0.0284,
+          "normalized_delta": 0.0284
+        }
+      ],
+      "closest_dimensions": [
+        "form_language",
+        "color_diversity",
+        "structural_order"
+      ],
+      "largest_differences": [
+        "focal_strength",
+        "rhythm_repetition"
+      ],
+      "style_dna_version": "style-dna-v1.0.0",
+      "metadata_provenance": {
+        "source_type": "HISTORICAL_MUSEUM_REFERENCE",
+        "holding_institution": "The Metropolitan Museum of Art",
+        "metadata_assertion": "SOURCE_DOCUMENTED_MUSEUM_METADATA",
+        "reference_key": "ref-met-928622"
+      }
+    },
+    {
+      "rank": 5,
+      "historical_reference_id": "f2b097c6-9737-47ce-a486-137a1a0d5568",
+      "reference_key": "ref-met-206502",
+      "institution": "The Metropolitan Museum of Art",
+      "object_title": "Carpet (tapis)",
+      "museum_object_id": "206502",
+      "canonical_source_url": "https://www.metmuseum.org/art/collection/search/206502",
+      "primary_image_url": "/api/v1/carpets/b2c5725a-21bd-4d34-8a0b-dd22b8ecc7a5/primary-image",
+      "museum_metadata": {
+        "reference_key": "ref-met-206502",
+        "institution": "The Metropolitan Museum of Art",
+        "object_title": "Carpet (tapis)",
+        "museum_object_id": "206502",
+        "date_or_period": "third quarter 17th century",
+        "origin_culture": null,
+        "origin_geography": null,
+        "medium_materials": "Knotted and cut wool pile, woven with about 90 knots per square inch"
+      },
+      "visual_proximity_score": 70.51,
+      "style_dimension_deltas": [
+        {
+          "dimension_key": "color_energy",
+          "query_value": 0.65,
+          "candidate_value": 0.4057,
+          "absolute_delta": 0.2443,
+          "normalized_delta": 0.2443
+        },
+        {
+          "dimension_key": "color_diversity",
+          "query_value": 0.45,
+          "candidate_value": 0.5078,
+          "absolute_delta": 0.0578,
+          "normalized_delta": 0.0578
+        },
+        {
+          "dimension_key": "contrast",
+          "query_value": 0.8,
+          "candidate_value": 0.5504,
+          "absolute_delta": 0.2496,
+          "normalized_delta": 0.2496
+        },
+        {
+          "dimension_key": "warmth",
+          "query_value": 0.7,
+          "candidate_value": 0.7092,
+          "absolute_delta": 0.0092,
+          "normalized_delta": 0.0092
+        },
+        {
+          "dimension_key": "visual_complexity",
+          "query_value": 0.5,
+          "candidate_value": 0.921,
+          "absolute_delta": 0.421,
+          "normalized_delta": 0.421
+        },
+        {
+          "dimension_key": "structural_order",
+          "query_value": 0.85,
+          "candidate_value": 0.7533,
+          "absolute_delta": 0.0967,
+          "normalized_delta": 0.0967
+        },
+        {
+          "dimension_key": "rhythm_repetition",
+          "query_value": 0.6,
+          "candidate_value": 0.8065,
+          "absolute_delta": 0.2065,
+          "normalized_delta": 0.2065
+        },
+        {
+          "dimension_key": "focal_strength",
+          "query_value": 0.75,
+          "candidate_value": 0.0967,
+          "absolute_delta": 0.6533,
+          "normalized_delta": 0.6533
+        },
+        {
+          "dimension_key": "form_language",
+          "query_value": 0.65,
+          "candidate_value": 0.6134,
+          "absolute_delta": 0.0366,
+          "normalized_delta": 0.0366
+        }
+      ],
+      "closest_dimensions": [
+        "warmth",
+        "form_language",
+        "color_diversity"
+      ],
+      "largest_differences": [
+        "focal_strength",
+        "visual_complexity"
+      ],
+      "style_dna_version": "style-dna-v1.0.0",
+      "metadata_provenance": {
+        "source_type": "HISTORICAL_MUSEUM_REFERENCE",
+        "holding_institution": "The Metropolitan Museum of Art",
+        "metadata_assertion": "SOURCE_DOCUMENTED_MUSEUM_METADATA",
+        "reference_key": "ref-met-206502"
+      }
+    }
+  ]
+}

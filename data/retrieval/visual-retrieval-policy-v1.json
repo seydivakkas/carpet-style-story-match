@@ -1,0 +1,76 @@
+{
+  "policy_version": "visual-retrieval-policy-v1.0.0",
+  "algorithm_version": "style-dna-v1.0.0",
+  "retrieval_version": "visual-retrieval-v1.0.0",
+  "dimensions": [
+    "D1 color_energy",
+    "D2 color_diversity",
+    "D3 contrast",
+    "D4 warmth",
+    "D5 visual_complexity",
+    "D6 structural_order",
+    "D7 rhythm_repetition",
+    "D8 focal_strength",
+    "D9 form_language"
+  ],
+  "dimension_numeric_range": [0.0, 1.0],
+  "distance_method": "normalized_weighted_euclidean",
+  "distance_equation": "d_norm = sqrt( sum(w_i * (q_i - c_i)^2) / sum(w_i) )",
+  "distance_range": [0.0, 1.0],
+  "equal_weight_policy": "FROZEN_UNIFORM_WEIGHTS_1.0_NO_USER_PREFERENCE_WEIGHTING",
+  "weights": {
+    "color_energy": 1.0,
+    "color_diversity": 1.0,
+    "contrast": 1.0,
+    "warmth": 1.0,
+    "visual_complexity": 1.0,
+    "structural_order": 1.0,
+    "rhythm_repetition": 1.0,
+    "focal_strength": 1.0,
+    "form_language": 1.0
+  },
+  "score_transformation": {
+    "formula": "visual_proximity_score = round(100.0 * (1.0 - d_norm), 2)",
+    "score_range": [0.00, 100.00],
+    "identical_vector_score": 100.0,
+    "opposite_extrema_score": 0.0,
+    "midpoint_distance_0_5_score": 50.0,
+    "ranking_sort_key": "unrounded_d_norm_ASC"
+  },
+  "eligibility": {
+    "catalog": {
+      "source_type": "CATALOG",
+      "required_status": "COMPLETE",
+      "required_image": "is_primary == True",
+      "total_records": 232,
+      "eligible_records": 224,
+      "excluded_partial": 3,
+      "excluded_missing_primary_image": 5
+    },
+    "historical": {
+      "source_type": "HISTORICAL",
+      "required_status": "COMPLETE",
+      "required_image": "is_primary == True",
+      "total_records": 100,
+      "eligible_records": 45,
+      "rights_access_ineligible": 55,
+      "genuinely_missing_image": 0,
+      "missing_style_dna": 0
+    }
+  },
+  "tie_break": {
+    "primary": "unrounded_d_norm_ASC",
+    "catalog_secondary": "sku_ASC, catalog_id_ASC",
+    "historical_secondary": "reference_key_ASC, historical_reference_id_ASC"
+  },
+  "corpus_isolation": "separate_ranked_lists_never_merged",
+  "forbidden_interpretations": [
+    "VISUAL_RETRIEVAL_IS_NOT_AUTHENTICATION",
+    "VISUAL_RETRIEVAL_IS_NOT_ORIGIN_CLASSIFICATION",
+    "VISUAL_RETRIEVAL_IS_NOT_PERIOD_CLASSIFICATION",
+    "VISUAL_RETRIEVAL_IS_NOT_CULTURAL_IDENTITY",
+    "VISUAL_RETRIEVAL_IS_NOT_PRODUCT_RECOMMENDATION",
+    "PROXIMITY_SCORE_IS_NOT_CONFIDENCE",
+    "PROXIMITY_SCORE_IS_NOT_AUTHENTICITY"
+  ]
+}

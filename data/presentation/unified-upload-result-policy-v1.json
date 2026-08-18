@@ -1,0 +1,65 @@
+{
+  "policy_version": "unified-upload-result-policy-v1.0.0",
+  "schema_version": "unified-upload-result-v1.0.0",
+  "cards": [
+    {
+      "card_id": "card_1_visual_character",
+      "turkish_title": "Görsel Karakter",
+      "icon": "Palette",
+      "subsections": ["style_dna_9d", "color_palette", "composition", "catalog_visual_matches"]
+    },
+    {
+      "card_id": "card_2_motifs",
+      "turkish_title": "Motifler",
+      "icon": "Shapes",
+      "subsections": ["ai_candidates", "bounding_overlays", "controlled_status_badges", "curator_confirmation"]
+    },
+    {
+      "card_id": "card_3_cultural_context",
+      "turkish_title": "Kültürel Bağlam",
+      "icon": "BookOpen",
+      "subsections": ["validated_claims", "claim_statuses", "institutional_excerpt_drawer"]
+    },
+    {
+      "card_id": "card_4_motif_story",
+      "turkish_title": "Motif Hikâyeleri",
+      "icon": "Sparkles",
+      "subsections": ["source_bound_story", "citation_links", "thematic_affinity"]
+    },
+    {
+      "card_id": "card_5_historical_connections",
+      "turkish_title": "Tarihsel Bağlantılar",
+      "icon": "Compass",
+      "subsections": ["visual_historical_matches", "mandatory_disclaimer", "museum_metadata"]
+    }
+  ],
+  "card_states": [
+    "READY",
+    "PARTIAL",
+    "WAITING_FOR_REVIEW",
+    "WAITING_FOR_RESEARCH",
+    "NOT_AVAILABLE",
+    "BLOCKED_BY_QUALITY",
+    "ERROR"
+  ],
+  "source_badges": {
+    "visual_character": "Görsel inceleme sonucu",
+    "ai_motif_candidate": "Görsel inceleme sonucu",
+    "confirmed_motif": "Küratöryel doğrulama",
+    "cultural_claim": "Kaynaklandırılmış bilgi",
+    "motif_story": "Kaynaklandırılmış anlatı",
+    "historical_reference": "Görsel yakınlık + müze kaynak metadata'sı"
+  },
+  "mandatory_disclaimers": {
+    "historical_connections": "Görsel yakınlık tarihsel köken, dönem veya özgünlük doğrulaması değildir."
+  },
+  "forbidden_semantics": [
+    "NO_OVERALL_SCORE",
+    "NO_PERSONALITY_PROFILING",
+    "NO_CULTURAL_SCORE",
+    "NO_AUTOMATIC_RESEARCH_ON_RENDER",
+    "NO_AUTOMATIC_REVIEW_PROMOTION",
+    "NO_CLIENT_SIDE_REVIEW_BYPASS",
+    "NO_RECOMMENDATION_ENGINE_REBRANDING"
+  ]
+}

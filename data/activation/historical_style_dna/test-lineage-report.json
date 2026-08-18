@@ -1,0 +1,205 @@
+{
+  "task": "POST-v1 A9 — Historical Style DNA Batch Analysis",
+  "run_id": "hist-run-1787029413",
+  "algorithm_version": "style-dna-v1.0.0",
+  "started_at": "2026-08-18T05:03:33.977322+00:00",
+  "completed_at": "2026-08-18T05:03:34.104532+00:00",
+  "mode": "APPLY",
+  "historical_total": 40,
+  "primary_image_ready": 19,
+  "no_primary_image": 21,
+  "already_current": 19,
+  "stale": 0,
+  "pending": 0,
+  "processed": 0,
+  "style_dna_complete": 0,
+  "style_dna_partial": 19,
+  "style_dna_failed": 0,
+  "provenance_mismatches": 0,
+  "unaccounted": 0,
+  "range_violations": 0,
+  "nan_inf_violations": 0,
+  "run_accounting": {
+    "current_run": {
+      "historical_total_considered": 40,
+      "processed": 0,
+      "already_current": 19,
+      "no_primary_image": 21,
+      "failed": 0,
+      "unaccounted": 0,
+      "run_equation_valid": true
+    },
+    "pilot_run_baseline": {
+      "historical_total_considered": 5,
+      "processed": 5,
+      "already_current": 0,
+      "no_primary_image": 0,
+      "failed": 0,
+      "unaccounted": 0,
+      "equation": "5 + 0 + 0 = 5"
+    },
+    "initial_full_run_baseline": {
+      "historical_total_considered": 100,
+      "processed": 40,
+      "already_current": 5,
+      "no_primary_image": 55,
+      "failed": 0,
+      "unaccounted": 0,
+      "equation": "40 + 5 + 55 = 100"
+    },
+    "idempotency_run_baseline": {
+      "historical_total_considered": 100,
+      "processed": 0,
+      "already_current": 45,
+      "no_primary_image": 55,
+      "failed": 0,
+      "unaccounted": 0,
+      "equation": "0 + 45 + 55 = 100"
+    }
+  },
+  "readiness_distribution_after": {
+    "NO_PRIMARY_IMAGE": 21,
+    "STYLE_DNA_MISSING": 0,
+    "STYLE_DNA_COMPLETE": 0,
+    "STYLE_DNA_PARTIAL": 19,
+    "STYLE_DNA_FAILED": 0
+  },
+  "isolation_metrics": {
+    "catalog_carpets_before": 0,
+    "catalog_carpets_after": 0,
+    "catalog_images_before": 0,
+    "catalog_images_after": 0,
+    "historical_connections_created": 0,
+    "catalog_delta": 0
+  },
+  "dimension_availability": {
+    "D1 color_energy": {
+      "AVAILABLE": 19,
+      "LOW_CONFIDENCE": 0,
+      "NOT_AVAILABLE": 0,
+      "FAILED": 0
+    },
+    "D2 color_diversity": {
+      "AVAILABLE": 19,
+      "LOW_CONFIDENCE": 0,
+      "NOT_AVAILABLE": 0,
+      "FAILED": 0
+    },
+    "D3 contrast": {
+      "AVAILABLE": 19,
+      "LOW_CONFIDENCE": 0,
+      "NOT_AVAILABLE": 0,
+      "FAILED": 0
+    },
+    "D4 warmth": {
+      "AVAILABLE": 19,
+      "LOW_CONFIDENCE": 0,
+      "NOT_AVAILABLE": 0,
+      "FAILED": 0
+    },
+    "D5 visual_complexity": {
+      "AVAILABLE": 19,
+      "LOW_CONFIDENCE": 0,
+      "NOT_AVAILABLE": 0,
+      "FAILED": 0
+    },
+    "D6 structural_order": {
+      "AVAILABLE": 19,
+      "LOW_CONFIDENCE": 0,
+      "NOT_AVAILABLE": 0,
+      "FAILED": 0
+    },
+    "D7 rhythm_repetition": {
+      "AVAILABLE": 19,
+      "LOW_CONFIDENCE": 0,
+      "NOT_AVAILABLE": 0,
+      "FAILED": 0
+    },
+    "D8 focal_strength": {
+      "AVAILABLE": 19,
+      "LOW_CONFIDENCE": 0,
+      "NOT_AVAILABLE": 0,
+      "FAILED": 0
+    },
+    "D9 form_language": {
+      "AVAILABLE": 0,
+      "LOW_CONFIDENCE": 0,
+      "NOT_AVAILABLE": 19,
+      "FAILED": 0
+    }
+  },
+  "dimension_statistics": {
+    "D1 color_energy": {
+      "count": 19,
+      "min": 0.3801,
+      "max": 0.3801,
+      "mean": 0.3801,
+      "std": 0.0,
+      "collapse_warning": true
+    },
+    "D2 color_diversity": {
+      "count": 19,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "collapse_warning": true
+    },
+    "D3 contrast": {
+      "count": 19,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "collapse_warning": true
+    },
+    "D4 warmth": {
+      "count": 19,
+      "min": 0.75,
+      "max": 0.75,
+      "mean": 0.75,
+      "std": 0.0,
+      "collapse_warning": true
+    },
+    "D5 visual_complexity": {
+      "count": 19,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "collapse_warning": true
+    },
+    "D6 structural_order": {
+      "count": 19,
+      "min": 0.9985,
+      "max": 0.9985,
+      "mean": 0.9985,
+      "std": 0.0,
+      "collapse_warning": true
+    },
+    "D7 rhythm_repetition": {
+      "count": 19,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "collapse_warning": true
+    },
+    "D8 focal_strength": {
+      "count": 19,
+      "min": 0.6,
+      "max": 0.6,
+      "mean": 0.6,
+      "std": 0.0,
+      "collapse_warning": true
+    },
+    "D9 form_language": {
+      "count": 0,
+      "min": null,
+      "max": null,
+      "mean": null,
+      "std": null,
+      "collapse_warning": false
+    }
+  }
+}

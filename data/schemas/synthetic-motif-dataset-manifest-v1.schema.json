@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://carpet-style-story-match.org/schemas/synthetic-motif-dataset-manifest-v1.json",
+  "title": "SyntheticMotifDatasetManifest",
+  "description": "Dataset-level manifest specifying version metadata, master seed, sample counts, class distributions, split allocations, and leakage integrity.",
+  "type": "object",
+  "required": [
+    "dataset_version",
+    "generator_version",
+    "registry_version",
+    "created_at",
+    "master_seed",
+    "total_samples",
+    "split_counts",
+    "class_counts",
+    "negative_samples_count",
+    "annotation_formats",
+    "manifest_sha256"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "dataset_version": {
+      "type": "string",
+      "enum": ["synthetic-motif-dataset-v1.0.0"]
+    },
+    "generator_version": {
+      "type": "string",
+      "enum": ["procedural-motif-generator-v1.0.0"]
+    },
+    "registry_version": {
+      "type": "string",
+      "enum": ["synthetic-motif-registry-v1.0.0"]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 UTC timestamp of dataset generation."
+    },
+    "master_seed": {
+      "type": "integer",
+      "description": "Master seed from which sample seeds and splits are deterministically derived."
+    },
+    "total_samples": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "split_counts": {
+      "type": "object",
+      "required": ["train", "validation", "test"],
+      "additionalProperties": false,
+      "properties": {
+        "train": { "type": "integer", "minimum": 0 },
+        "validation": { "type": "integer", "minimum": 0 },
+        "test": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "class_counts": {
+      "type": "object",
+      "description": "Total instance count per visual candidate key across the dataset.",
+      "additionalProperties": { "type": "integer", "minimum": 0 }
+    },
+    "negative_samples_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of samples containing zero target motif instances."
+    },
+    "annotation_formats": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Exported annotation formats (e.g. canonical_json, coco, yolo_detect, yolo_obb, yolo_segment)."
+    },
+    "randomization_policy_version": {
+      "type": "string",
+      "default": "domain-randomization-policy-v1.0.0"
+    },
+    "cross_split_leakage_detected": {
+      "type": "boolean",
+      "default": false
+    },
+    "manifest_sha256": {
+      "type": "string",
+      "description": "SHA-256 hash of canonical dataset sample list."
+    },
+    "samples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["sample_id", "split", "instance_count", "scene_signature", "sample_json_ref"],
+        "properties": {
+          "sample_id": { "type": "string" },
+          "split": { "type": "string", "enum": ["train", "validation", "test"] },
+          "instance_count": { "type": "integer" },
+          "scene_signature": { "type": "string" },
+          "sample_json_ref": { "type": "string" }
+        }
+      }
+    }
+  }
+}

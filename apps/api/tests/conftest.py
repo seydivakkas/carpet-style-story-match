@@ -4,12 +4,21 @@ Telif Hakkı (c) 2026 Seydi Eryılmaz (@seydivakkas)
 
 Pytest Root Test Configuration & Fixtures.
 """
+import sys
+from pathlib import Path
+
+# Ensure root repository and packages/ are in Python path
+REPO_ROOT = Path(__file__).resolve().parents[3]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
 import pytest
 from typing import AsyncGenerator
 from httpx import AsyncClient, ASGITransport
 from sqlalchemy import event
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.pool import StaticPool
+
 
 import app.db.session as db_session_module
 from app.core.config import settings

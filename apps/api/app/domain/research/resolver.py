@@ -104,3 +104,36 @@ def resolve_canonical_motif_subject(
         },
         created_at=datetime.now(timezone.utc).isoformat()
     )
+
+
+def resolve_research_subject_from_review(
+    review_subject_id: str,
+    db: Any
+) -> ResearchSubject:
+    """
+    Resolves a ResearchSubject from a persisted MotifReviewSubject by evaluating its effective human review state.
+    
+    Returns trusted ResearchSubject if effective status == CURATOR_CONFIRMED.
+    Raises ValueError("BLOCKED") if pending, UNCERTAIN, or REJECTED.
+    """
+    from app.domain.motif_review.repository import MotifReviewRepository
+    subject_model = MotifReviewRepository.get_subject_by_public_id(db, review_subject_id)
+    if subject_model is None:
+        raise KeyError(f"Review subject '{review_subject_id}' not found.")
+
+    latest_event = MotifReviewRepository.get_effective_event(db, subject_model.id)
+    if latest_event is None or latest_event.resulting_status != "CURATOR_CONFIRMED":
+        status_str = latest_event.resulting_status if latest_event else "PENDING"
+        raise ValueError(
+            f"BLOCKED: Review subject '{review_subject_id}' is not CURATOR_CONFIRMED (status={status_str})."
+        )
+
+    canonical_key = latest_event.selected_canonical_motif_key or subject_model.proposed_canonical_motif_key
+    if not canonical_key:
+        raise ValueError(f"BLOCKED: Confirmed review subject '{review_subject_id}' missing canonical motif key.")
+
+    return resolve_canonical_motif_subject(
+        motif_input=canonical_key,
+        caller_verification_status=ResearchVerificationStatus.CURATOR_CONFIRMED
+    )
+

@@ -48,3 +48,18 @@ Candidate snapshots are serialized to canonical UTF-8 JSON with sorted keys befo
    - If `affected_rows == 0`, a `ReviewConcurrencyException` is raised.
    - Event insertion occurs within the same database transaction; any failure triggers transaction rollback, preserving `review_version`.
 
+## Review API Security Boundary & Curator UI (V2-06B / V2-06B.1 Hardening)
+
+1. **Access Modes**:
+   - `DISABLED`: Default mode. Rejects all `/api/v1/reviews/motif-candidates` requests with HTTP 403 `REVIEW_ACCESS_DISABLED`.
+   - `DEVELOPMENT_ADMIN`: Enabled in non-production environments (`APP_ENV != production`). Requires explicit non-empty `MOTIF_REVIEW_DEVELOPMENT_REVIEWER_REF` server configuration (no fallback default). Rejects if `MOTIF_REVIEW_DEVELOPMENT_REVIEWER_REF` is missing or in `APP_ENV=production`.
+   - `GATEWAY_TRUSTED`: Requires a verified server-side gateway context on `request.state`. Arbitrary client headers (`X-Reviewer-Ref`, `X-User`, `X-Curator`, `X-Forwarded-User`) do NOT satisfy this mode and are rejected with HTTP 403 `REVIEW_ACCESS_DISABLED`.
+2. **Client Request Body Boundaries**:
+   - `MotifReviewDecisionClientBody` has `extra="forbid"`. Client requests containing `reviewer_ref`, `reviewer_boundary`, or `resulting_status` in HTTP bodies or query parameters are rejected with HTTP 422 `UNPROCESSABLE_ENTITY`.
+3. **Safe Image Resolution**:
+   - Image assets are resolved strictly via server-owned `image_asset_id` against `./data/uploads`.
+   - Path traversal attempts (`../`, absolute paths) are neutralized via `Path(image_asset_id).name` and `target_path.is_relative_to(upload_root)` checks.
+4. **Curator UI (`/reviews/motifs`)**:
+   - Displays required disclaimer banner: *"Bu işlem motifin görsel eşleşmesini doğrular; kültürel anlam, köken, dönem veya özgünlük doğrulaması yapmaz."*
+   - Displays `Geliştirme inceleme modu` badge in `DEVELOPMENT_ADMIN` mode.
+   - Handles `REVIEW_ACCESS_DISABLED` with a controlled access-disabled notice.

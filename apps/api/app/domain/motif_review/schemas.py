@@ -115,3 +115,70 @@ class MotifReviewResult(BaseModel):
     effective_status: str = Field(description="Effective candidate status (AI_CANDIDATE or resulting status)")
     research_eligibility: ResearchEligibilityEnum = Field(description="Research eligibility (SOURCE_RESEARCH_ALLOWED or BLOCKED)")
     history_count: int = Field(ge=0, description="Total review events in subject audit trail")
+
+
+class MotifReviewDecisionClientBody(BaseModel):
+    """Client decision request body for POST /api/v1/reviews/motif-candidates/{id}/decision."""
+    model_config = ConfigDict(extra="forbid")
+
+    decision: ReviewDecisionEnum = Field(description="Curator decision: CONFIRM, UNCERTAIN, or REJECT")
+    selected_canonical_motif_key: Optional[str] = Field(default=None, description="Canonical motif key (required for CONFIRM)")
+    reason_code: Optional[MotifReviewReasonCode] = Field(default=None, description="Controlled non-cultural reason code")
+    note: Optional[str] = Field(default=None, max_length=1000, description="Operational curator note (max 1000 chars)")
+    expected_version: int = Field(ge=0, description="Expected concurrency review_version token of subject")
+
+
+class MotifReviewQueueItemResponse(BaseModel):
+    """Summary item representation for curator review queue API."""
+    model_config = ConfigDict(extra="forbid")
+
+    review_subject_id: str
+    analysis_id: str
+    candidate_id: str
+    visual_candidate_key: str
+    proposed_canonical_motif_key: Optional[str] = None
+    original_candidate_status: str
+    candidate_confidence: float
+    created_at: datetime
+    effective_status: str
+    review_version: int
+    research_eligibility: ResearchEligibilityEnum
+    image_url: Optional[str] = None
+
+
+class MotifReviewQueuePaginatedResponse(BaseModel):
+    """Paginated response for review queue API."""
+    model_config = ConfigDict(extra="forbid")
+
+    items: List[MotifReviewQueueItemResponse]
+    total_count: int
+    limit: int
+    offset: int
+    status_filter: Optional[str] = None
+
+
+class MotifReviewDetailResponse(BaseModel):
+    """Full detail representation for candidate review screen."""
+    model_config = ConfigDict(extra="forbid")
+
+    review_subject_id: str
+    analysis_id: str
+    candidate_id: str
+    visual_candidate_key: str
+    proposed_canonical_motif_key: Optional[str] = None
+    original_candidate_status: str
+    candidate_confidence: float
+    candidate_region: Dict[str, Any]
+    visual_evidence: List[str]
+    model_provenance: Dict[str, Any]
+    snapshot_hash: str
+    ontology_version: str
+    review_version: int
+    created_at: datetime
+    effective_status: str
+    research_eligibility: ResearchEligibilityEnum
+    history_count: int
+    effective_event: Optional[MotifReviewEvent] = None
+    image_url: Optional[str] = None
+    image_available: bool = False
+

@@ -1,0 +1,253 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://carpet-style-story-match.org/schemas/synthetic-motif-sample-v1.json",
+  "title": "SyntheticMotifSample",
+  "description": "Deterministic synthetic carpet image sample with instance-level geometric ground truth and transform provenance.",
+  "type": "object",
+  "required": [
+    "sample_id",
+    "seed",
+    "image_width",
+    "image_height",
+    "image_ref",
+    "generator_version",
+    "registry_version",
+    "scene_signature",
+    "instances"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "sample_id": {
+      "type": "string",
+      "description": "Unique identifier for the synthetic sample (e.g. syn_000001 or UUID)."
+    },
+    "seed": {
+      "type": "integer",
+      "description": "Deterministic RNG seed used to generate this sample."
+    },
+    "split": {
+      "type": "string",
+      "enum": ["train", "validation", "test"],
+      "description": "Assigned dataset split."
+    },
+    "image_width": {
+      "type": "integer",
+      "minimum": 64,
+      "description": "Width of generated image in pixels."
+    },
+    "image_height": {
+      "type": "integer",
+      "minimum": 64,
+      "description": "Height of generated image in pixels."
+    },
+    "image_ref": {
+      "type": "string",
+      "description": "Relative file path to the generated image file."
+    },
+    "mask_ref": {
+      "type": ["string", "null"],
+      "description": "Optional relative file path to composite instance mask."
+    },
+    "generator_version": {
+      "type": "string",
+      "enum": ["procedural-motif-generator-v1.0.0"]
+    },
+    "registry_version": {
+      "type": "string",
+      "enum": ["synthetic-motif-registry-v1.0.0"]
+    },
+    "scene_signature": {
+      "type": "string",
+      "description": "Deterministic hash of the scene geometry and parameters before photometric randomization."
+    },
+    "scene_spec": {
+      "type": "object",
+      "description": "Metadata describing the compositional layout and parameters.",
+      "additionalProperties": true
+    },
+    "randomization_profile": {
+      "type": "object",
+      "description": "Recorded parameters for geometric and photometric augmentations applied to this sample.",
+      "additionalProperties": true
+    },
+    "artifact_hashes": {
+      "type": "object",
+      "description": "Cryptographic hashes of generated artifacts (image, masks, annotations).",
+      "additionalProperties": { "type": "string" }
+    },
+    "instances": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/SyntheticMotifInstanceGT"
+      }
+    },
+    "hard_negatives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "hard_negative_id",
+          "hard_negative_key",
+          "near_target_keys"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hard_negative_id": { "type": "string" },
+          "hard_negative_key": { "type": "string" },
+          "near_target_keys": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "bbox_xyxy": {
+            "type": ["array", "null"],
+            "items": { "type": "number" }
+          },
+          "polygon": {
+            "type": ["array", "null"]
+          },
+          "render_parameters": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "SyntheticMotifInstanceGT": {
+      "type": "object",
+      "required": [
+        "instance_id",
+        "visual_candidate_key",
+        "bbox_xyxy",
+        "bbox_normalized",
+        "polygon",
+        "obb",
+        "visible_fraction",
+        "is_truncated",
+        "is_occluded",
+        "ignore"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "instance_id": {
+          "type": "string",
+          "description": "Unique immutable identifier for this motif instance in the sample."
+        },
+        "visual_candidate_key": {
+          "type": "string",
+          "enum": [
+            "medallion_like",
+            "niche_like",
+            "star_like",
+            "rosette_like",
+            "palmette_like",
+            "lotus_like",
+            "vine_scroll_like",
+            "cloud_band_like",
+            "tree_like",
+            "horn_like",
+            "human_figure_like_geometric",
+            "comb_like",
+            "hook_like",
+            "lattice_like",
+            "lozenge_like",
+            "octagonal_form",
+            "unmapped_visual_motif"
+          ]
+        },
+        "bbox_xyxy": {
+          "type": "array",
+          "items": { "type": "number" },
+          "minItems": 4,
+          "maxItems": 4,
+          "description": "Axis-aligned bounding box [xmin, ymin, xmax, ymax] in pixel coordinates."
+        },
+        "bbox_normalized": {
+          "type": "array",
+          "items": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+          "minItems": 4,
+          "maxItems": 4,
+          "description": "Axis-aligned bounding box [xmin, ymin, xmax, ymax] normalized to [0, 1]."
+        },
+        "polygon": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": { "type": "number" },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "minItems": 3,
+          "description": "Transformed visible 2D polygon vertices [[x1, y1], [x2, y2], ...]."
+        },
+        "obb": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": { "type": "number" },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "minItems": 4,
+          "maxItems": 4,
+          "description": "Oriented Bounding Box 4-corner vertices [[x1, y1], [x2, y2], [x3, y3], [x4, y4]] in pixel coordinates."
+        },
+        "obb_normalized": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "minItems": 4,
+          "maxItems": 4,
+          "description": "Oriented Bounding Box 4-corner vertices normalized to [0, 1]."
+        },
+        "mask_ref": {
+          "type": ["string", "null"],
+          "description": "Optional reference to instance raster mask file."
+        },
+        "full_geometry": {
+          "type": ["array", "null"],
+          "items": {
+            "type": "array",
+            "items": { "type": "number" },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "description": "Original polygon before occlusion or crop."
+        },
+        "visible_fraction": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Ratio of visible area to total area (1.0 = fully visible)."
+        },
+        "is_truncated": {
+          "type": "boolean",
+          "description": "True if motif is partially cut off by image canvas boundary."
+        },
+        "is_occluded": {
+          "type": "boolean",
+          "description": "True if motif is partially occluded by another foreground object or occluder."
+        },
+        "ignore": {
+          "type": "boolean",
+          "description": "True if instance visibility falls below configured threshold and should be ignored during evaluation."
+        },
+        "render_parameters": {
+          "type": "object",
+          "description": "Exact primitive generation parameters used.",
+          "additionalProperties": true
+        },
+        "transform_provenance": {
+          "type": "object",
+          "description": "Recorded translation, scale, rotation, homography transform matrix.",
+          "additionalProperties": true
+        }
+      }
+    }
+  }
+}

@@ -1,8 +1,8 @@
 {
   "task": "POST-v1 A8A.1 — Historical Image Terminal Accounting Closure",
   "status": "PASS",
-  "timestamp": "2026-08-16T13:36:33.109170+00:00",
-  "historical_total": 20,
+  "timestamp": "2026-08-18T05:03:33.360943+00:00",
+  "historical_total": 40,
   "a7_reported_open_access": 50,
   "a7_artifact_derived_open_access": 45,
   "a8_eligible": 45,
@@ -51,18 +51,18 @@
     }
   },
   "final_database_state": {
-    "historical_references": 20,
-    "historical_primary_images": 9,
-    "without_primary": 11,
-    "STYLE_DNA_MISSING": 9,
-    "NO_PRIMARY_IMAGE": 11,
+    "historical_references": 40,
+    "historical_primary_images": 19,
+    "without_primary": 21,
+    "STYLE_DNA_MISSING": 19,
+    "NO_PRIMARY_IMAGE": 21,
     "historical_style_dna_profiles_created": 0,
     "historical_connections_created": 0
   },
   "source_url_metrics": {
-    "source_image_url_metadata_count": 9,
-    "eligible_source_image_url_count": 9,
-    "local_primary_image_count": 9,
+    "source_image_url_metadata_count": 19,
+    "eligible_source_image_url_count": 19,
+    "local_primary_image_count": 19,
     "source_image_url_present": 45,
     "source_image_url_null": 55,
     "eligible_plus_url": 45,
@@ -71,13 +71,13 @@
     "ineligible_plus_no_url": 55
   },
   "source_provenance_hash_metrics": {
-    "a6_a7_source_record_sha256_coverage": "20/20",
-    "a8_source_record_hash_coverage": "20/20",
+    "a6_a7_source_record_sha256_coverage": "40/40",
+    "a8_source_record_hash_coverage": "40/40",
     "mismatches": 0
   },
   "image_content_hash_metrics": {
-    "image_content_sha256_count": 9,
-    "downloaded_image_hash_coverage": "9/9",
+    "image_content_sha256_count": 19,
+    "downloaded_image_hash_coverage": "19/19",
     "conflated_with_source_hash": false
   },
   "drift_metrics": {
@@ -85,9 +85,9 @@
     "source_record_hash_drift": 0
   },
   "terminal_accounting": {
-    "ACTIVATED": 0,
-    "ALREADY_ACTIVE": 9,
-    "RIGHTS_NOT_ELIGIBLE": 11,
+    "ACTIVATED": 19,
+    "ALREADY_ACTIVE": 0,
+    "RIGHTS_NOT_ELIGIBLE": 21,
     "other": 0,
     "unaccounted": 0
   }

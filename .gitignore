@@ -82,10 +82,31 @@ data/*
 !data/external_datasets/README.md
 !data/external_datasets/manifests/
 !data/external_datasets/reports/
+!data/schemas/
+!data/schemas/**
+!data/synthetic/
+!data/synthetic/**
+data/synthetic/acceptance_samples/
+data/synthetic/datasets/
+!data/presentation/
+!data/presentation/**
+!data/taxonomies/
+!data/taxonomies/**
+!data/catalog_sources/
+!data/catalog_sources/**
+!data/research/
+!data/research/**
+!data/retrieval/
+!data/retrieval/**
+!data/review/
+!data/review/**
+!data/validation/
+!data/validation/**
 data/external_datasets/raw/
 data/external_datasets/cache/
 kaggle.json
 uploads/
+
 
 # Database
 *.sqlite

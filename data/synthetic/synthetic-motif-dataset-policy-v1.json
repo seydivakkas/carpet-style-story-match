@@ -1,0 +1,62 @@
+{
+  "policy_version": "synthetic-motif-dataset-policy-v1.0.0",
+  "description": "Governance and engineering rules for procedural synthetic motif datasets.",
+  "splits": {
+    "train_ratio": 0.70,
+    "validation_ratio": 0.15,
+    "test_ratio": 0.15,
+    "assignment_strategy": "deterministic_hash_modulo"
+  },
+  "visibility_and_ignore_rules": {
+    "min_visible_fraction_threshold": 0.20,
+    "ignore_policy": "mark_ignore_flag_true_retain_geometry",
+    "min_pixel_area": 64.0
+  },
+  "leakage_controls": {
+    "scene_signature_required": true,
+    "cross_split_duplicate_policy": "REJECT",
+    "hash_components": [
+      "scene_layout_type",
+      "motif_classes_present",
+      "canonical_positions",
+      "canonical_scales",
+      "canonical_rotations"
+    ]
+  },
+  "negative_samples": {
+    "target_negative_fraction": 0.10,
+    "negative_modes": [
+      "empty_background_field_with_borders",
+      "abstract_geometric_distractor_grid",
+      "textured_fiber_field_only",
+      "controlled_hard_negative_background_structures"
+    ]
+  },
+  "controlled_hard_negatives": {
+    "definition": "Visual structures geometric/appearance-near to target classes rendered into background pixels without positive target GT labels.",
+    "hard_negative_families_supported": [
+      "radial_polygon_nonstar",
+      "radial_ornament_nonrosette",
+      "isolated_lozenge_pattern",
+      "octagonal_radial_variant",
+      "generic_branching_form"
+    ],
+    "export_behavior": "Rendered to image pixels; omitted from positive COCO, YOLO Detect, YOLO OBB, YOLO Segment annotation rows.",
+    "provenance_recorded_in_canonical_json": true,
+    "scene_signature_participation": true,
+    "positive_label_leak_threshold": 0
+  },
+  "annotation_formats_supported": [
+    "canonical_json",
+    "coco",
+    "yolo_detect",
+    "yolo_obb",
+    "yolo_segment"
+  ],
+  "governance_invariants": {
+    "labels_restricted_to_visual_candidate_keys": true,
+    "cultural_claims_forbidden": true,
+    "real_corpus_isolation": true,
+    "offline_reproducibility": true
+  }
+}

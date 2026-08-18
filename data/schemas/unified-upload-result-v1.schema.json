@@ -1,0 +1,320 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://carpet-style-story-match.org/schemas/unified-upload-result-v1.schema.json",
+  "title": "UnifiedUploadResultV1",
+  "description": "Unified 5-card presentation contract for user uploaded carpet analysis (V2-08).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "analysis_id",
+    "visual_character",
+    "motifs",
+    "cultural_context",
+    "motif_story",
+    "historical_connections",
+    "provenance",
+    "warnings"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "unified-upload-result-v1.0.0"
+    },
+    "analysis_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "image_meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["original_sha256", "primary_image_url"],
+      "properties": {
+        "original_sha256": { "type": "string" },
+        "prepared_sha256": { "type": "string" },
+        "original_width": { "type": "integer" },
+        "original_height": { "type": "integer" },
+        "primary_image_url": { "type": "string" }
+      }
+    },
+    "visual_character": {
+      "type": "object",
+      "description": "Card 1 — Görsel Karakter",
+      "additionalProperties": false,
+      "required": ["state", "dimensions", "palette", "catalog_matches"],
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": ["READY", "PARTIAL", "BLOCKED_BY_QUALITY", "NOT_AVAILABLE", "ERROR"]
+        },
+        "style_dna_version": { "type": "string" },
+        "dimensions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "color_energy",
+            "color_diversity",
+            "contrast",
+            "warmth",
+            "visual_complexity",
+            "structural_order",
+            "rhythm_repetition",
+            "focal_strength",
+            "form_language"
+          ],
+          "properties": {
+            "color_energy": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "color_diversity": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "contrast": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "warmth": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "visual_complexity": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "structural_order": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "rhythm_repetition": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "focal_strength": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "form_language": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+          }
+        },
+        "palette": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["label", "coverage_percentage"],
+            "properties": {
+              "label": { "type": "string" },
+              "hex_code": { "type": ["string", "null"] },
+              "coverage_percentage": { "type": "number" },
+              "turkish_description": { "type": "string" }
+            }
+          }
+        },
+        "composition": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "catalog_matches": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["rank", "catalog_id", "sku", "product_name", "visual_proximity_score"],
+            "properties": {
+              "rank": { "type": "integer" },
+              "catalog_id": { "type": "string" },
+              "sku": { "type": "string" },
+              "brand": { "type": ["string", "null"] },
+              "collection": { "type": ["string", "null"] },
+              "product_name": { "type": "string" },
+              "primary_image_url": { "type": ["string", "null"] },
+              "visual_proximity_score": { "type": "number" },
+              "closest_dimensions": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "motifs": {
+      "type": "object",
+      "description": "Card 2 — Motifler",
+      "additionalProperties": false,
+      "required": ["state", "candidates", "review_summary"],
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": ["READY", "WAITING_FOR_REVIEW", "PARTIAL", "NOT_AVAILABLE", "ERROR"]
+        },
+        "candidates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["candidate_id", "visual_descriptor", "ai_confidence", "status"],
+            "properties": {
+              "candidate_id": { "type": "string" },
+              "visual_descriptor": { "type": "string" },
+              "turkish_label": { "type": "string" },
+              "ai_confidence": { "type": "number" },
+              "bounding_box": { "type": ["array", "null"], "items": { "type": "number" } },
+              "status": {
+                "type": "string",
+                "enum": ["AI_CANDIDATE", "WAITING_FOR_REVIEW", "CURATOR_CONFIRMED", "UNCERTAIN", "REJECTED"]
+              },
+              "confirmed_canonical_motif_key": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "review_summary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["total_candidates", "confirmed_count", "pending_count", "uncertain_count", "rejected_count"],
+          "properties": {
+            "total_candidates": { "type": "integer" },
+            "confirmed_count": { "type": "integer" },
+            "pending_count": { "type": "integer" },
+            "uncertain_count": { "type": "integer" },
+            "rejected_count": { "type": "integer" }
+          }
+        }
+      }
+    },
+    "cultural_context": {
+      "type": "object",
+      "description": "Card 3 — Kültürel Bağlam",
+      "additionalProperties": false,
+      "required": ["state", "claims"],
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": ["READY", "WAITING_FOR_REVIEW", "WAITING_FOR_RESEARCH", "NOT_AVAILABLE", "ERROR"]
+        },
+        "user_message": { "type": ["string", "null"] },
+        "claims": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["claim_id", "status", "statement_tr", "sources"],
+            "properties": {
+              "claim_id": { "type": "string" },
+              "status": {
+                "type": "string",
+                "enum": ["DOCUMENTED", "CONTEXTUAL", "CONTESTED", "UNKNOWN"]
+              },
+              "statement_tr": { "type": "string" },
+              "scope": { "type": ["string", "null"] },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["institution", "title", "locator"],
+                  "properties": {
+                    "institution": { "type": "string" },
+                    "title": { "type": "string" },
+                    "locator": { "type": "string" },
+                    "excerpt": { "type": ["string", "null"] },
+                    "canonical_url": { "type": ["string", "null"] }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "motif_story": {
+      "type": "object",
+      "description": "Card 4 — Motif Hikâyeleri",
+      "additionalProperties": false,
+      "required": ["state"],
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": ["READY", "WAITING_FOR_REVIEW", "WAITING_FOR_RESEARCH", "NOT_AVAILABLE", "ERROR"]
+        },
+        "user_message": { "type": ["string", "null"] },
+        "story": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": ["title", "summary", "sections"],
+          "properties": {
+            "title": { "type": "string" },
+            "summary": { "type": "string" },
+            "sections": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["heading", "content", "citations"],
+                "properties": {
+                  "heading": { "type": "string" },
+                  "content": { "type": "string" },
+                  "citations": { "type": "array", "items": { "type": "string" } },
+                  "is_contested": { "type": "boolean" }
+                }
+              }
+            }
+          }
+        },
+        "thematic_affinity": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": ["matched_themes", "affinity_description"],
+          "properties": {
+            "matched_themes": { "type": "array", "items": { "type": "string" } },
+            "affinity_description": { "type": "string" }
+          }
+        }
+      }
+    },
+    "historical_connections": {
+      "type": "object",
+      "description": "Card 5 — Tarihsel Bağlantılar",
+      "additionalProperties": false,
+      "required": ["state", "disclaimer", "matches"],
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": ["READY", "NOT_AVAILABLE", "ERROR"]
+        },
+        "disclaimer": {
+          "type": "string",
+          "const": "Görsel yakınlık tarihsel köken, dönem veya özgünlük doğrulaması değildir."
+        },
+        "matches": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "rank",
+              "historical_reference_id",
+              "reference_key",
+              "institution",
+              "object_title",
+              "visual_proximity_score"
+            ],
+            "properties": {
+              "rank": { "type": "integer" },
+              "historical_reference_id": { "type": "string" },
+              "reference_key": { "type": "string" },
+              "institution": { "type": "string" },
+              "object_title": { "type": "string" },
+              "museum_object_id": { "type": ["string", "null"] },
+              "canonical_source_url": { "type": ["string", "null"] },
+              "primary_image_url": { "type": ["string", "null"] },
+              "date_or_period": { "type": ["string", "null"] },
+              "origin_culture": { "type": ["string", "null"] },
+              "origin_geography": { "type": ["string", "null"] },
+              "medium_materials": { "type": ["string", "null"] },
+              "visual_proximity_score": { "type": "number" },
+              "closest_dimensions": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["analysis_contract_version", "style_dna_version", "visual_retrieval_version"],
+      "properties": {
+        "analysis_contract_version": { "type": "string" },
+        "style_dna_version": { "type": "string" },
+        "color_version": { "type": "string" },
+        "vlm_provider_version": { "type": "string" },
+        "review_version": { "type": "string" },
+        "evidence_version": { "type": "string" },
+        "claim_version": { "type": "string" },
+        "story_version": { "type": "string" },
+        "visual_retrieval_version": { "type": "string" },
+        "catalog_corpus_fingerprint": { "type": "string" },
+        "historical_corpus_fingerprint": { "type": "string" }
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

@@ -83,6 +83,30 @@ export default function Header({ assessmentId }: HeaderProps) {
             <Compass className="w-3.5 h-3.5" />
             <span>Tarihsel Referanslar</span>
           </Link>
+
+          <Link
+            href="/analysis/new"
+            className={`px-3 py-1.5 rounded-lg transition-colors flex items-center space-x-1.5 ${
+              pathname.startsWith("/analysis")
+                ? "bg-amber-500/20 text-amber-300 border border-amber-500/30 font-semibold"
+                : "text-slate-400 hover:text-slate-200 hover:bg-slate-900/60"
+            }`}
+          >
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Halı Yükle &amp; Analiz</span>
+          </Link>
+
+          <Link
+            href="/reviews/motifs"
+            className={`px-3 py-1.5 rounded-lg transition-colors flex items-center space-x-1.5 ${
+              pathname.startsWith("/reviews")
+                ? "bg-purple-500/20 text-purple-300 border border-purple-500/30 font-semibold"
+                : "text-slate-400 hover:text-slate-200 hover:bg-slate-900/60"
+            }`}
+          >
+            <ShieldCheck className="w-3.5 h-3.5" />
+            <span>Motif İnceleme</span>
+          </Link>
         </nav>
 
         {/* Assessment Status Badge if active */}

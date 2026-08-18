@@ -14,6 +14,9 @@ from app.api.v1.brands import router as brands_router
 from app.api.v1.taxonomies import router as taxonomies_router
 from app.api.v1.upload_analysis import router as upload_analysis_router
 from app.api.v1.research import router as research_router
+from app.api.v1.motif_review import router as motif_review_router
+from app.api.v1.visual_retrieval import router as visual_retrieval_router
+from app.api.v1.result_experience import router as result_experience_router
 
 api_v1_router = APIRouter(prefix="/api/v1")
 api_v1_router.include_router(health_router)
@@ -31,3 +34,8 @@ api_v1_router.include_router(historical_connection_router)
 api_v1_router.include_router(taxonomies_router)
 api_v1_router.include_router(upload_analysis_router)
 api_v1_router.include_router(research_router)
+api_v1_router.include_router(motif_review_router)
+api_v1_router.include_router(visual_retrieval_router)
+api_v1_router.include_router(result_experience_router)
+
+

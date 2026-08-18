@@ -75,6 +75,10 @@ class Settings(BaseSettings):
     RATE_LIMIT_PER_MINUTE: int = Field(default=120, description="Max requests per minute per IP for sensitive endpoints")
     ENABLE_RATE_LIMITER_IN_TEST: bool = Field(default=False, description="Flag to explicitly enable rate limiter in test mode")
 
+    # Human Motif Review Access & Governance Configuration (V2-06B)
+    MOTIF_REVIEW_ACCESS_MODE: str = Field(default="DISABLED", description="Review access mode: DISABLED, DEVELOPMENT_ADMIN, or GATEWAY_TRUSTED")
+    MOTIF_REVIEW_DEVELOPMENT_REVIEWER_REF: Optional[str] = Field(default=None, description="Server-configured reviewer identity for DEVELOPMENT_ADMIN mode. Must be explicitly set when MOTIF_REVIEW_ACCESS_MODE=DEVELOPMENT_ADMIN.")
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
@@ -91,6 +95,10 @@ class Settings(BaseSettings):
 
         if self.DEBUG:
             raise ValueError("Production configuration violation: DEBUG must be False in production mode.")
+
+        if self.MOTIF_REVIEW_ACCESS_MODE.upper() == "DEVELOPMENT_ADMIN":
+            raise ValueError("Production configuration violation: MOTIF_REVIEW_ACCESS_MODE cannot be DEVELOPMENT_ADMIN in production mode.")
+
 
         if "sqlite" in self.DATABASE_URL.lower():
             raise ValueError("Production configuration violation: SQLite database is forbidden in production mode. Use PostgreSQL.")
