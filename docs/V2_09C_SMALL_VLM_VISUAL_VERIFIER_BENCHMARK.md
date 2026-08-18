@@ -75,5 +75,15 @@ Input Image ──► YOLO11n Proposal ──► Deterministic Input Compositor 
 
 ## 9. V2-09C.1 Final Acceptance Status
 **STATUS**: `PASS_WITH_RUNTIME_EXCLUSIONS`
-- Candidates C1, C2, C3 are fully `RUNTIME_READY` and schema compliant (`visual-verifier-v1.schema.json`).
+- Candidates C1, C2, C3 are fully `RUNTIME_READY`.
 - Candidate R0 is excluded (`RUNTIME_INCOMPATIBLE`) due to Python 3.14 AWQ compilation constraints.
+
+## 10. V2-09C.1B — Corrected Smoke Execution Provenance & Identity Audit
+- **Root Cause Audit**: Models C1/C2/C3 genuinely regenerated outputs containing `17-001`/`geometrized_tulip`, `1`/`geometric_rosette`, and `1234567890`/`latchhook_diamond` because the frozen prompt text (`f8417b31...`) contains a list of 17 candidate keys and JSON placeholders (`<proposal_id>`, `<proposed_key>`). Without system prompt template substitution (disallowed under prompt immutability), zero-shot VLMs populated placeholders with keys listed in the prompt body.
+- **Provenance Verification**:
+  - `stale_response_reuse`: `false`
+  - `fixture_response_reuse`: `false`
+  - `model_response_cache`: `false`
+  - `old_defective_strings_in_active_prompt`: `false`
+- **Trusted Identity Separation**: Model-emitted proposal IDs and visual candidate keys are treated as untrusted validation fields. Authoritative downstream provenance joins rely strictly on trusted input records (`VerifierRuntimeInputRecord`).
+- **Generation Provenance Artifacts**: Individual execution run artifacts saved under `data/validation/v2-09c/runtime-smoke/<run_id>/<cand_id>.json`. Master report saved to `data/validation/v2-09c/corrected-runtime-smoke-provenance-report.json`.

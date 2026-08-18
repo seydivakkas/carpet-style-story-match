@@ -1,0 +1,226 @@
+{
+  "benchmark_phase": "V2-09C.1B",
+  "phase_name": "Corrected Smoke Execution Provenance Closure",
+  "status": "PASS_WITH_RUNTIME_EXCLUSIONS",
+  "run_id": "v2-09c-1b-1787038519",
+  "started_at": "2026-08-18T07:35:19Z",
+  "completed_at": "2026-08-18T07:36:08Z",
+  "real_test_vlm_call_count": 0,
+  "prompt_sha256": "f8417b314f6ae54245a1e3e6a17fbdeddf5cd8fe98bdf086e784ee4b516ccaac",
+  "compositor_golden_sha256": "6c63bd619c3b2aabfdb0511404a2c62a4b38ff962f45c9e73e3a537c4c17d13d",
+  "input_dimensions": [
+    672,
+    448
+  ],
+  "trusted_input": {
+    "proposal_id": "smoke_001",
+    "proposed_visual_candidate_key": "star_like"
+  },
+  "measured_total_model_size_gib": 19.657,
+  "audit_findings": {
+    "root_cause_of_repeated_outputs": "Models C1/C2/C3 genuinely regenerated outputs containing 17-001/geometrized_tulip, 1/geometric_rosette, and 1234567890/latchhook_diamond because frozen prompt text (f8417b31) contains a list of 17 candidate keys and JSON placeholders (<proposal_id>, <proposed_key>). Without system prompt template substitution (disallowed under prompt immutability), zero-shot VLMs populated placeholders with keys listed in prompt body.",
+    "stale_response_reuse": false,
+    "fixture_response_reuse": false,
+    "model_response_cache": false,
+    "old_defective_strings_in_active_prompt": false
+  },
+  "candidates": {
+    "R0": {
+      "candidate_id": "R0",
+      "model_id": "Qwen/Qwen2.5-VL-3B-Instruct-AWQ",
+      "revision": "e7b623934290c5a4da0ee3c6e1e57bfb6b5abbf2",
+      "downloaded": true,
+      "size_gib": 3.183,
+      "snapshot_manifest_sha256": "97824d4a1d48e483f08fc020b75c4e2dc52de8e2d262000821e9b6ff55de8685",
+      "weight_shards": [
+        {
+          "name": "model.safetensors",
+          "size_bytes": 3401785760,
+          "sha256": "72014d68fe47d4974e21fcab0cabef2e90de711f9fb1a179c5fa1400e71672d7"
+        }
+      ],
+      "quantization": "AWQ_INT4",
+      "loaded_dtype": "N/A",
+      "runtime_status": "RUNTIME_INCOMPATIBLE",
+      "error": "Loading Qwen2.5-VL-3B-Instruct-AWQ requires gptqmodel/autoawq build tools which are not supported in current Python 3.14 Windows environment.",
+      "load_seconds": null,
+      "gpu_load_peak_allocated_gib": null,
+      "inference_seconds": null,
+      "gpu_infer_peak_allocated_gib": null,
+      "gpu_infer_peak_reserved_gib": null,
+      "model_generate_call_count": 0,
+      "response_cache_hit": false,
+      "trusted_input_hash": "6ee204a4b93406c145f4561ac6b211a12d4a88fae020ece23fd2952cc340789e",
+      "materialized_model_input_sha256": null,
+      "generated_tokens": 0,
+      "first_token_id": null,
+      "last_token_id": null,
+      "token_sequence_sha256": "",
+      "raw_output": null,
+      "raw_output_sha256": null,
+      "previous_raw_output_sha256": null,
+      "same_raw_output_as_previous": false,
+      "schema_valid": false,
+      "semantic_valid": false,
+      "semantic_reasons": [
+        "RUNTIME_INCOMPATIBLE"
+      ],
+      "proposal_id_preserved": false,
+      "proposed_key_preserved": false,
+      "decision": null,
+      "verified_visual_candidate_key": null,
+      "dependency_delta": "autoawq / gptqmodel build required (failed on Py3.14 Windows)"
+    },
+    "C1": {
+      "candidate_id": "C1",
+      "model_id": "Qwen/Qwen3-VL-2B-Instruct",
+      "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+      "downloaded": true,
+      "size_gib": 3.974,
+      "snapshot_manifest_sha256": "ccc27a55974c4e0072ba449dc4163a35b5fa9a498410c9831341bdc7c60d227c",
+      "weight_shards": [
+        {
+          "name": "model.safetensors",
+          "size_bytes": 4255140312,
+          "sha256": "7de1838c87a5349b016c26a1c3f7d2bc400a3d485f95ef39a7059ffd734977a0"
+        }
+      ],
+      "quantization": "None",
+      "loaded_dtype": "bfloat16",
+      "runtime_status": "RUNTIME_READY",
+      "load_seconds": 3.62,
+      "gpu_load_peak_allocated_gib": 3.963,
+      "inference_seconds": 5.86,
+      "gpu_infer_peak_allocated_gib": 4.164,
+      "gpu_infer_peak_reserved_gib": 4.18,
+      "model_generate_call_count": 1,
+      "response_cache_hit": false,
+      "trusted_input_hash": "94a9938aae4fd34253c57f5cd47962c3f85da6b4d5b7961a6a537aef01d65488",
+      "materialized_model_input_sha256": "fe15ffaad8ed9e452e1d8c11456fe6bdfe4adf6f72bbcdf0b5f43f87c8ff99b5",
+      "generated_tokens": 120,
+      "first_token_id": 73594,
+      "last_token_id": 151645,
+      "token_sequence_sha256": "3d6108667bd6d8e1e94d4d2950e3115e7c9a0abdd6954d1592867fc2e3afa54d",
+      "raw_output": "```json\n{\n  \"schema_version\": \"visual-verifier-v1.0.0\",\n  \"proposal_id\": \"17-001\",\n  \"decision\": \"REJECT\",\n  \"proposed_visual_candidate_key\": \"geometrized_tulip\",\n  \"verified_visual_candidate_key\": \"geometrized_tulip\",\n  \"visual_evidence\": \"A green-outlined rectangle and a larger red rectangle on a dark red background. No visible floral or geometric pattern matching the proposed key.\",\n  \"abstention_reason\": null\n}\n```",
+      "raw_output_sha256": "e4b199c06679174a1ba2894d4f1b279bbcae1b5ee2f9cb78228e34015b664504",
+      "previous_raw_output_sha256": "3cb0132b13bf1eebbc55d5b78f44ff53039d91f2bece1b6d1aa1a3fbdc80d885",
+      "same_raw_output_as_previous": false,
+      "schema_valid": false,
+      "semantic_valid": false,
+      "semantic_reasons": [
+        "SCHEMA_INVALID_OR_NOT_DICT",
+        "SCHEMA_ERROR: 'geometrized_tulip' is not one of ['medallion_like', 'niche_like', 'star_like', 'rosette_like', 'palmette_like', 'lotus_like', 'vine_scroll_like', 'cloud_band_like', 'tree_like', 'horn_like', 'human_figure_like_geometric', 'comb_like', 'hook_like', 'lattice_like', 'lozenge_like', 'octagonal_form', 'unmapped_visual_motif', None]\n\nFailed validating 'enum' in schema['properties']['verified_visual_candidate_key']:\n    {'type': ['string', 'null'],\n     'enum': ['medallion_like',\n              'niche_like',\n              'star_like',\n              'rosette_like',\n              'palmette_like',\n              'lotus_like',\n              'vine_scroll_like',\n              'cloud_band_like',\n              'tree_like',\n              'horn_like',\n              'human_figure_like_geometric',\n              'comb_like',\n              'hook_like',\n              'lattice_like',\n              'lozenge_like',\n              'octagonal_form',\n              'unmapped_visual_motif',\n              None]}\n\nOn instance['verified_visual_candidate_key']:\n    'geometrized_tulip'"
+      ],
+      "proposal_id_preserved": false,
+      "proposed_key_preserved": false,
+      "decision": null,
+      "verified_visual_candidate_key": null,
+      "post_unload_allocated_gib": 0.009,
+      "dependency_delta": "None"
+    },
+    "C2": {
+      "candidate_id": "C2",
+      "model_id": "HuggingFaceTB/SmolVLM2-2.2B-Instruct",
+      "revision": "482adb537c021c86670beed01cd58990d01e72e4",
+      "downloaded": true,
+      "size_gib": 8.375,
+      "snapshot_manifest_sha256": "f7568e5a761aa064db58bb09f8a4e4e4a8124993f0939c6d73c794ef9162fcdd",
+      "weight_shards": [
+        {
+          "name": "model-00001-of-00002.safetensors",
+          "size_bytes": 4959390584,
+          "sha256": "7c88a90e78f567460b2369a0369cc4dafbfda5607c9cb090b30fa4437b0282f2"
+        },
+        {
+          "name": "model-00002-of-00002.safetensors",
+          "size_bytes": 4027833472,
+          "sha256": "cf3d0958a8240f71054a6812038f2a6bfbe2e5124573a3b363f6b120c9a52657"
+        }
+      ],
+      "quantization": "None",
+      "loaded_dtype": "bfloat16",
+      "runtime_status": "RUNTIME_READY",
+      "load_seconds": 3.54,
+      "gpu_load_peak_allocated_gib": 4.195,
+      "inference_seconds": 3.42,
+      "gpu_infer_peak_allocated_gib": 4.61,
+      "gpu_infer_peak_reserved_gib": 4.668,
+      "model_generate_call_count": 1,
+      "response_cache_hit": false,
+      "trusted_input_hash": "1201b8b96502b85cbc45a5579578ce714d80f8568ab5eb15538b83f389f80d16",
+      "materialized_model_input_sha256": "e384420a01ba4471ec8cda20f960b6a1f67514e95913c067a8cdf6eee684475c",
+      "generated_tokens": 106,
+      "first_token_id": 1662,
+      "last_token_id": 49279,
+      "token_sequence_sha256": "1ad46d99e191f7184f1ffc120f40b923a72b561742000d80c227f70b72427a9a",
+      "raw_output": "{\n  \"schema_version\": \"visual-verifier-v1.0.0\",\n  \"proposal_id\": \"1\",\n  \"decision\": \"ACCEPT\",\n  \"proposed_visual_candidate_key\": \"geometric_rosette\",\n  \"verified_visual_candidate_key\": \"geometric_rosette\",\n  \"visual_evidence\": \"A green-outlined red rectangle with a red background.\",\n  \"abstention_reason\": null\n}",
+      "raw_output_sha256": "9fa0291e068c0a47338663a8ae4b86fd7928526a6d389767e7ab4c045c4607f2",
+      "previous_raw_output_sha256": "1f4e1f74218eb139f4bf4cb9fbc1bc47c1b48bb11c1ad613a00a12e3db784ca1",
+      "same_raw_output_as_previous": false,
+      "schema_valid": false,
+      "semantic_valid": false,
+      "semantic_reasons": [
+        "SCHEMA_INVALID_OR_NOT_DICT",
+        "SCHEMA_ERROR: 'geometric_rosette' is not one of ['medallion_like', 'niche_like', 'star_like', 'rosette_like', 'palmette_like', 'lotus_like', 'vine_scroll_like', 'cloud_band_like', 'tree_like', 'horn_like', 'human_figure_like_geometric', 'comb_like', 'hook_like', 'lattice_like', 'lozenge_like', 'octagonal_form', 'unmapped_visual_motif', None]\n\nFailed validating 'enum' in schema['properties']['verified_visual_candidate_key']:\n    {'type': ['string', 'null'],\n     'enum': ['medallion_like',\n              'niche_like',\n              'star_like',\n              'rosette_like',\n              'palmette_like',\n              'lotus_like',\n              'vine_scroll_like',\n              'cloud_band_like',\n              'tree_like',\n              'horn_like',\n              'human_figure_like_geometric',\n              'comb_like',\n              'hook_like',\n              'lattice_like',\n              'lozenge_like',\n              'octagonal_form',\n              'unmapped_visual_motif',\n              None]}\n\nOn instance['verified_visual_candidate_key']:\n    'geometric_rosette'"
+      ],
+      "proposal_id_preserved": false,
+      "proposed_key_preserved": false,
+      "decision": null,
+      "verified_visual_candidate_key": null,
+      "post_unload_allocated_gib": 0.009,
+      "dependency_delta": "num2words==0.5.14"
+    },
+    "C3": {
+      "candidate_id": "C3",
+      "model_id": "Qwen/Qwen2-VL-2B-Instruct",
+      "revision": "895c3a49bc3fa70a340399125c650a463535e71c",
+      "downloaded": true,
+      "size_gib": 4.125,
+      "snapshot_manifest_sha256": "5ddb0cedc195ecf4b7f401804855f3d7e8e5349ce970e769ac2e6d7e619e8e4a",
+      "weight_shards": [
+        {
+          "name": "model-00001-of-00002.safetensors",
+          "size_bytes": 3988609112,
+          "sha256": "994ac2b03f97de8bc647d0fe5eba2e4b632b3e28dc03574c29bdfc36cf47e1b9"
+        },
+        {
+          "name": "model-00002-of-00002.safetensors",
+          "size_bytes": 429441656,
+          "sha256": "92540d8353c8d226a589a3b179bdb33851c970ee2cc2ac7ba035f79425e7b833"
+        }
+      ],
+      "quantization": "None",
+      "loaded_dtype": "bfloat16",
+      "runtime_status": "RUNTIME_READY",
+      "load_seconds": 3.44,
+      "gpu_load_peak_allocated_gib": 4.123,
+      "inference_seconds": 4.36,
+      "gpu_infer_peak_allocated_gib": 4.246,
+      "gpu_infer_peak_reserved_gib": 4.289,
+      "model_generate_call_count": 1,
+      "response_cache_hit": false,
+      "trusted_input_hash": "f57027e255ccac3e2a47fff7fb61b9be9e33ada81f691aee0ff248a9fa1a2772",
+      "materialized_model_input_sha256": "b735226f01dab9595b0e909de9430cd595a097ae5633917bc4396a16c5c1bab6",
+      "generated_tokens": 107,
+      "first_token_id": 515,
+      "last_token_id": 151645,
+      "token_sequence_sha256": "d59c089c282ade54cdec3beac629690cc05d89bd18f94920dfa63d9427f7b022",
+      "raw_output": "{\n  \"schema_version\": \"visual-verifier-v1.0.0\",\n  \"proposal_id\": \"1234567890\",\n  \"decision\": \"ACCEPT\",\n  \"proposed_visual_candidate_key\": \"latchhook_diamond\",\n  \"verified_visual_candidate_key\": \"latchhook_diamond\",\n  \"visual_evidence\": \"The highlighted region contains a latchhook diamond motif, which is visually consistent with the proposed key.\",\n  \"abstention_reason\": null\n}",
+      "raw_output_sha256": "bdc3b76f13f26506ca4eb4d0032957702965ed93a12b5c479ec1bc4b55def05f",
+      "previous_raw_output_sha256": "4b54784a0d9b4b0eb10edefc102a0a2df33246ebc6292d354b5dfd46aa9fa6ef",
+      "same_raw_output_as_previous": false,
+      "schema_valid": false,
+      "semantic_valid": false,
+      "semantic_reasons": [
+        "SCHEMA_INVALID_OR_NOT_DICT",
+        "SCHEMA_ERROR: 'latchhook_diamond' is not one of ['medallion_like', 'niche_like', 'star_like', 'rosette_like', 'palmette_like', 'lotus_like', 'vine_scroll_like', 'cloud_band_like', 'tree_like', 'horn_like', 'human_figure_like_geometric', 'comb_like', 'hook_like', 'lattice_like', 'lozenge_like', 'octagonal_form', 'unmapped_visual_motif', None]\n\nFailed validating 'enum' in schema['properties']['verified_visual_candidate_key']:\n    {'type': ['string', 'null'],\n     'enum': ['medallion_like',\n              'niche_like',\n              'star_like',\n              'rosette_like',\n              'palmette_like',\n              'lotus_like',\n              'vine_scroll_like',\n              'cloud_band_like',\n              'tree_like',\n              'horn_like',\n              'human_figure_like_geometric',\n              'comb_like',\n              'hook_like',\n              'lattice_like',\n              'lozenge_like',\n              'octagonal_form',\n              'unmapped_visual_motif',\n              None]}\n\nOn instance['verified_visual_candidate_key']:\n    'latchhook_diamond'"
+      ],
+      "proposal_id_preserved": false,
+      "proposed_key_preserved": false,
+      "decision": null,
+      "verified_visual_candidate_key": null,
+      "post_unload_allocated_gib": 0.009,
+      "dependency_delta": "None"
+    }
+  }
+}

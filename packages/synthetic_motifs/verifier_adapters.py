@@ -16,6 +16,14 @@ from PIL import Image
 import jsonschema
 from packages.synthetic_motifs.verifier_compositor import COMPOSITOR_VERSION
 
+import hashlib
+from dataclasses import dataclass, asdict
+
+FROZEN_PROMPT_HASH = "f8417b314f6ae54245a1e3e6a17fbdeddf5cd8fe98bdf086e784ee4b516ccaac"
+FROZEN_PNG_HASH = "6c63bd619c3b2aabfdb0511404a2c62a4b38ff962f45c9e73e3a537c4c17d13d"
+EXPECTED_PROPOSAL_ID = "smoke_001"
+EXPECTED_PROPOSED_KEY = "star_like"
+
 FROZEN_17_KEYS = {
     "medallion_like",
     "niche_like",
@@ -41,6 +49,30 @@ FORBIDDEN_CULTURAL_TERMS = {
     "meaning", "symbolism", "story", "authenticity", "personality",
     "curator_confirmed", "elibelinde", "mihrab", "tree-of-life", "ram-horn"
 }
+
+
+@dataclass(frozen=True)
+class VerifierRuntimeInputRecord:
+    run_id: str
+    candidate_id: str
+    started_at: str
+    proposal_id: str
+    proposed_visual_candidate_key: str
+    prompt_sha256: str
+    png_sha256: str
+    generation_policy_sha256: str
+    adapter_id: str
+    model_revision: str
+    model_snapshot_sha256: str
+
+    def compute_hash(self) -> str:
+        data_str = (
+            f"{self.run_id}:{self.candidate_id}:{self.proposal_id}:{self.proposed_visual_candidate_key}:"
+            f"{self.prompt_sha256}:{self.png_sha256}:{self.generation_policy_sha256}:{self.model_revision}:"
+            f"{self.model_snapshot_sha256}"
+        )
+        return hashlib.sha256(data_str.encode("utf-8")).hexdigest()
+
 
 
 class VisualVerificationSemanticValidator:
@@ -227,7 +259,21 @@ class Qwen3VLAdapter(VisualVerifierRuntimeAdapter):
             "device": str(next(self.model.parameters()).device)
         }
 
-    def verify_smoke(self, image: Image.Image, prompt_text: str) -> Dict[str, Any]:
+    def verify_smoke(
+        self,
+        image: Image.Image,
+        prompt_text: str,
+        proposal_id: str = EXPECTED_PROPOSAL_ID,
+        proposed_key: str = EXPECTED_PROPOSED_KEY,
+        png_sha256: str = FROZEN_PNG_HASH,
+        input_record: Optional[VerifierRuntimeInputRecord] = None
+    ) -> Dict[str, Any]:
+        prompt_sha256 = hashlib.sha256(prompt_text.encode("utf-8")).hexdigest()
+        assert proposal_id == EXPECTED_PROPOSAL_ID, f"proposal_id identity violation: {proposal_id}"
+        assert proposed_key == EXPECTED_PROPOSED_KEY, f"proposed_key identity violation: {proposed_key}"
+        assert prompt_sha256 == FROZEN_PROMPT_HASH, f"prompt_sha256 identity violation: {prompt_sha256}"
+        assert png_sha256 == FROZEN_PNG_HASH, f"png_sha256 identity violation: {png_sha256}"
+
         messages = [
             {
                 "role": "user",
@@ -237,6 +283,13 @@ class Qwen3VLAdapter(VisualVerifierRuntimeAdapter):
                 ]
             }
         ]
+        raw_prompt_formatted = self.processor.apply_chat_template(
+            messages,
+            add_generation_prompt=True,
+            tokenize=False
+        )
+        materialized_text_hash = hashlib.sha256(raw_prompt_formatted.encode("utf-8")).hexdigest()
+
         inputs = self.processor.apply_chat_template(
             messages,
             add_generation_prompt=True,
@@ -258,14 +311,27 @@ class Qwen3VLAdapter(VisualVerifierRuntimeAdapter):
         input_len = inputs["input_ids"].shape[1]
         gen_ids = output_ids[0][input_len:]
         gen_tokens = len(gen_ids)
+        first_token_id = int(gen_ids[0].item()) if gen_tokens > 0 else None
+        last_token_id = int(gen_ids[-1].item()) if gen_tokens > 0 else None
+        token_seq_sha256 = hashlib.sha256(gen_ids.cpu().numpy().tobytes()).hexdigest() if gen_tokens > 0 else ""
+
         raw_text = self.processor.decode(gen_ids, skip_special_tokens=True).strip()
+        raw_output_sha256 = hashlib.sha256(raw_text.encode("utf-8")).hexdigest()
 
         return {
             "inference_seconds": dur,
             "peak_allocated_gib": infer_alloc,
             "peak_reserved_gib": infer_reserved,
+            "model_generate_call_count": 1,
+            "response_cache_hit": False,
+            "materialized_model_input_sha256": materialized_text_hash,
             "generated_tokens": gen_tokens,
-            "raw_output": raw_text
+            "first_token_id": first_token_id,
+            "last_token_id": last_token_id,
+            "token_sequence_sha256": token_seq_sha256,
+            "raw_output": raw_text,
+            "raw_output_sha256": raw_output_sha256,
+            "trusted_input_hash": input_record.compute_hash() if input_record else None
         }
 
 
@@ -295,7 +361,21 @@ class SmolVLM2Adapter(VisualVerifierRuntimeAdapter):
             "device": str(next(self.model.parameters()).device)
         }
 
-    def verify_smoke(self, image: Image.Image, prompt_text: str) -> Dict[str, Any]:
+    def verify_smoke(
+        self,
+        image: Image.Image,
+        prompt_text: str,
+        proposal_id: str = EXPECTED_PROPOSAL_ID,
+        proposed_key: str = EXPECTED_PROPOSED_KEY,
+        png_sha256: str = FROZEN_PNG_HASH,
+        input_record: Optional[VerifierRuntimeInputRecord] = None
+    ) -> Dict[str, Any]:
+        prompt_sha256 = hashlib.sha256(prompt_text.encode("utf-8")).hexdigest()
+        assert proposal_id == EXPECTED_PROPOSAL_ID, f"proposal_id identity violation: {proposal_id}"
+        assert proposed_key == EXPECTED_PROPOSED_KEY, f"proposed_key identity violation: {proposed_key}"
+        assert prompt_sha256 == FROZEN_PROMPT_HASH, f"prompt_sha256 identity violation: {prompt_sha256}"
+        assert png_sha256 == FROZEN_PNG_HASH, f"png_sha256 identity violation: {png_sha256}"
+
         messages = [
             {
                 "role": "user",
@@ -305,6 +385,13 @@ class SmolVLM2Adapter(VisualVerifierRuntimeAdapter):
                 ]
             }
         ]
+        raw_prompt_formatted = self.processor.apply_chat_template(
+            messages,
+            add_generation_prompt=True,
+            tokenize=False
+        )
+        materialized_text_hash = hashlib.sha256(raw_prompt_formatted.encode("utf-8")).hexdigest()
+
         inputs = self.processor.apply_chat_template(
             messages,
             add_generation_prompt=True,
@@ -326,14 +413,27 @@ class SmolVLM2Adapter(VisualVerifierRuntimeAdapter):
         input_len = inputs["input_ids"].shape[1]
         gen_ids = output_ids[0][input_len:]
         gen_tokens = len(gen_ids)
+        first_token_id = int(gen_ids[0].item()) if gen_tokens > 0 else None
+        last_token_id = int(gen_ids[-1].item()) if gen_tokens > 0 else None
+        token_seq_sha256 = hashlib.sha256(gen_ids.cpu().numpy().tobytes()).hexdigest() if gen_tokens > 0 else ""
+
         raw_text = self.processor.decode(gen_ids, skip_special_tokens=True).strip()
+        raw_output_sha256 = hashlib.sha256(raw_text.encode("utf-8")).hexdigest()
 
         return {
             "inference_seconds": dur,
             "peak_allocated_gib": infer_alloc,
             "peak_reserved_gib": infer_reserved,
+            "model_generate_call_count": 1,
+            "response_cache_hit": False,
+            "materialized_model_input_sha256": materialized_text_hash,
             "generated_tokens": gen_tokens,
-            "raw_output": raw_text
+            "first_token_id": first_token_id,
+            "last_token_id": last_token_id,
+            "token_sequence_sha256": token_seq_sha256,
+            "raw_output": raw_text,
+            "raw_output_sha256": raw_output_sha256,
+            "trusted_input_hash": input_record.compute_hash() if input_record else None
         }
 
 
@@ -363,7 +463,21 @@ class Qwen2VLAdapter(VisualVerifierRuntimeAdapter):
             "device": str(next(self.model.parameters()).device)
         }
 
-    def verify_smoke(self, image: Image.Image, prompt_text: str) -> Dict[str, Any]:
+    def verify_smoke(
+        self,
+        image: Image.Image,
+        prompt_text: str,
+        proposal_id: str = EXPECTED_PROPOSAL_ID,
+        proposed_key: str = EXPECTED_PROPOSED_KEY,
+        png_sha256: str = FROZEN_PNG_HASH,
+        input_record: Optional[VerifierRuntimeInputRecord] = None
+    ) -> Dict[str, Any]:
+        prompt_sha256 = hashlib.sha256(prompt_text.encode("utf-8")).hexdigest()
+        assert proposal_id == EXPECTED_PROPOSAL_ID, f"proposal_id identity violation: {proposal_id}"
+        assert proposed_key == EXPECTED_PROPOSED_KEY, f"proposed_key identity violation: {proposed_key}"
+        assert prompt_sha256 == FROZEN_PROMPT_HASH, f"prompt_sha256 identity violation: {prompt_sha256}"
+        assert png_sha256 == FROZEN_PNG_HASH, f"png_sha256 identity violation: {png_sha256}"
+
         messages = [
             {
                 "role": "user",
@@ -373,6 +487,13 @@ class Qwen2VLAdapter(VisualVerifierRuntimeAdapter):
                 ]
             }
         ]
+        raw_prompt_formatted = self.processor.apply_chat_template(
+            messages,
+            add_generation_prompt=True,
+            tokenize=False
+        )
+        materialized_text_hash = hashlib.sha256(raw_prompt_formatted.encode("utf-8")).hexdigest()
+
         inputs = self.processor.apply_chat_template(
             messages,
             add_generation_prompt=True,
@@ -394,14 +515,27 @@ class Qwen2VLAdapter(VisualVerifierRuntimeAdapter):
         input_len = inputs["input_ids"].shape[1]
         gen_ids = output_ids[0][input_len:]
         gen_tokens = len(gen_ids)
+        first_token_id = int(gen_ids[0].item()) if gen_tokens > 0 else None
+        last_token_id = int(gen_ids[-1].item()) if gen_tokens > 0 else None
+        token_seq_sha256 = hashlib.sha256(gen_ids.cpu().numpy().tobytes()).hexdigest() if gen_tokens > 0 else ""
+
         raw_text = self.processor.decode(gen_ids, skip_special_tokens=True).strip()
+        raw_output_sha256 = hashlib.sha256(raw_text.encode("utf-8")).hexdigest()
 
         return {
             "inference_seconds": dur,
             "peak_allocated_gib": infer_alloc,
             "peak_reserved_gib": infer_reserved,
+            "model_generate_call_count": 1,
+            "response_cache_hit": False,
+            "materialized_model_input_sha256": materialized_text_hash,
             "generated_tokens": gen_tokens,
-            "raw_output": raw_text
+            "first_token_id": first_token_id,
+            "last_token_id": last_token_id,
+            "token_sequence_sha256": token_seq_sha256,
+            "raw_output": raw_text,
+            "raw_output_sha256": raw_output_sha256,
+            "trusted_input_hash": input_record.compute_hash() if input_record else None
         }
 
 

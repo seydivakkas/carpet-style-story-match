@@ -1,0 +1,52 @@
+{
+  "candidate_id": "C2",
+  "model_id": "HuggingFaceTB/SmolVLM2-2.2B-Instruct",
+  "revision": "482adb537c021c86670beed01cd58990d01e72e4",
+  "downloaded": true,
+  "size_gib": 8.375,
+  "snapshot_manifest_sha256": "f7568e5a761aa064db58bb09f8a4e4e4a8124993f0939c6d73c794ef9162fcdd",
+  "weight_shards": [
+    {
+      "name": "model-00001-of-00002.safetensors",
+      "size_bytes": 4959390584,
+      "sha256": "7c88a90e78f567460b2369a0369cc4dafbfda5607c9cb090b30fa4437b0282f2"
+    },
+    {
+      "name": "model-00002-of-00002.safetensors",
+      "size_bytes": 4027833472,
+      "sha256": "cf3d0958a8240f71054a6812038f2a6bfbe2e5124573a3b363f6b120c9a52657"
+    }
+  ],
+  "quantization": "None",
+  "loaded_dtype": "bfloat16",
+  "runtime_status": "RUNTIME_READY",
+  "load_seconds": 3.54,
+  "gpu_load_peak_allocated_gib": 4.195,
+  "inference_seconds": 3.42,
+  "gpu_infer_peak_allocated_gib": 4.61,
+  "gpu_infer_peak_reserved_gib": 4.668,
+  "model_generate_call_count": 1,
+  "response_cache_hit": false,
+  "trusted_input_hash": "1201b8b96502b85cbc45a5579578ce714d80f8568ab5eb15538b83f389f80d16",
+  "materialized_model_input_sha256": "e384420a01ba4471ec8cda20f960b6a1f67514e95913c067a8cdf6eee684475c",
+  "generated_tokens": 106,
+  "first_token_id": 1662,
+  "last_token_id": 49279,
+  "token_sequence_sha256": "1ad46d99e191f7184f1ffc120f40b923a72b561742000d80c227f70b72427a9a",
+  "raw_output": "{\n  \"schema_version\": \"visual-verifier-v1.0.0\",\n  \"proposal_id\": \"1\",\n  \"decision\": \"ACCEPT\",\n  \"proposed_visual_candidate_key\": \"geometric_rosette\",\n  \"verified_visual_candidate_key\": \"geometric_rosette\",\n  \"visual_evidence\": \"A green-outlined red rectangle with a red background.\",\n  \"abstention_reason\": null\n}",
+  "raw_output_sha256": "9fa0291e068c0a47338663a8ae4b86fd7928526a6d389767e7ab4c045c4607f2",
+  "previous_raw_output_sha256": "1f4e1f74218eb139f4bf4cb9fbc1bc47c1b48bb11c1ad613a00a12e3db784ca1",
+  "same_raw_output_as_previous": false,
+  "schema_valid": false,
+  "semantic_valid": false,
+  "semantic_reasons": [
+    "SCHEMA_INVALID_OR_NOT_DICT",
+    "SCHEMA_ERROR: 'geometric_rosette' is not one of ['medallion_like', 'niche_like', 'star_like', 'rosette_like', 'palmette_like', 'lotus_like', 'vine_scroll_like', 'cloud_band_like', 'tree_like', 'horn_like', 'human_figure_like_geometric', 'comb_like', 'hook_like', 'lattice_like', 'lozenge_like', 'octagonal_form', 'unmapped_visual_motif', None]\n\nFailed validating 'enum' in schema['properties']['verified_visual_candidate_key']:\n    {'type': ['string', 'null'],\n     'enum': ['medallion_like',\n              'niche_like',\n              'star_like',\n              'rosette_like',\n              'palmette_like',\n              'lotus_like',\n              'vine_scroll_like',\n              'cloud_band_like',\n              'tree_like',\n              'horn_like',\n              'human_figure_like_geometric',\n              'comb_like',\n              'hook_like',\n              'lattice_like',\n              'lozenge_like',\n              'octagonal_form',\n              'unmapped_visual_motif',\n              None]}\n\nOn instance['verified_visual_candidate_key']:\n    'geometric_rosette'"
+  ],
+  "proposal_id_preserved": false,
+  "proposed_key_preserved": false,
+  "decision": null,
+  "verified_visual_candidate_key": null,
+  "post_unload_allocated_gib": 0.009,
+  "dependency_delta": "num2words==0.5.14"
+}

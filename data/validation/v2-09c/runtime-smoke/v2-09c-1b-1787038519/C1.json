@@ -1,0 +1,47 @@
+{
+  "candidate_id": "C1",
+  "model_id": "Qwen/Qwen3-VL-2B-Instruct",
+  "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
+  "downloaded": true,
+  "size_gib": 3.974,
+  "snapshot_manifest_sha256": "ccc27a55974c4e0072ba449dc4163a35b5fa9a498410c9831341bdc7c60d227c",
+  "weight_shards": [
+    {
+      "name": "model.safetensors",
+      "size_bytes": 4255140312,
+      "sha256": "7de1838c87a5349b016c26a1c3f7d2bc400a3d485f95ef39a7059ffd734977a0"
+    }
+  ],
+  "quantization": "None",
+  "loaded_dtype": "bfloat16",
+  "runtime_status": "RUNTIME_READY",
+  "load_seconds": 3.62,
+  "gpu_load_peak_allocated_gib": 3.963,
+  "inference_seconds": 5.86,
+  "gpu_infer_peak_allocated_gib": 4.164,
+  "gpu_infer_peak_reserved_gib": 4.18,
+  "model_generate_call_count": 1,
+  "response_cache_hit": false,
+  "trusted_input_hash": "94a9938aae4fd34253c57f5cd47962c3f85da6b4d5b7961a6a537aef01d65488",
+  "materialized_model_input_sha256": "fe15ffaad8ed9e452e1d8c11456fe6bdfe4adf6f72bbcdf0b5f43f87c8ff99b5",
+  "generated_tokens": 120,
+  "first_token_id": 73594,
+  "last_token_id": 151645,
+  "token_sequence_sha256": "3d6108667bd6d8e1e94d4d2950e3115e7c9a0abdd6954d1592867fc2e3afa54d",
+  "raw_output": "```json\n{\n  \"schema_version\": \"visual-verifier-v1.0.0\",\n  \"proposal_id\": \"17-001\",\n  \"decision\": \"REJECT\",\n  \"proposed_visual_candidate_key\": \"geometrized_tulip\",\n  \"verified_visual_candidate_key\": \"geometrized_tulip\",\n  \"visual_evidence\": \"A green-outlined rectangle and a larger red rectangle on a dark red background. No visible floral or geometric pattern matching the proposed key.\",\n  \"abstention_reason\": null\n}\n```",
+  "raw_output_sha256": "e4b199c06679174a1ba2894d4f1b279bbcae1b5ee2f9cb78228e34015b664504",
+  "previous_raw_output_sha256": "3cb0132b13bf1eebbc55d5b78f44ff53039d91f2bece1b6d1aa1a3fbdc80d885",
+  "same_raw_output_as_previous": false,
+  "schema_valid": false,
+  "semantic_valid": false,
+  "semantic_reasons": [
+    "SCHEMA_INVALID_OR_NOT_DICT",
+    "SCHEMA_ERROR: 'geometrized_tulip' is not one of ['medallion_like', 'niche_like', 'star_like', 'rosette_like', 'palmette_like', 'lotus_like', 'vine_scroll_like', 'cloud_band_like', 'tree_like', 'horn_like', 'human_figure_like_geometric', 'comb_like', 'hook_like', 'lattice_like', 'lozenge_like', 'octagonal_form', 'unmapped_visual_motif', None]\n\nFailed validating 'enum' in schema['properties']['verified_visual_candidate_key']:\n    {'type': ['string', 'null'],\n     'enum': ['medallion_like',\n              'niche_like',\n              'star_like',\n              'rosette_like',\n              'palmette_like',\n              'lotus_like',\n              'vine_scroll_like',\n              'cloud_band_like',\n              'tree_like',\n              'horn_like',\n              'human_figure_like_geometric',\n              'comb_like',\n              'hook_like',\n              'lattice_like',\n              'lozenge_like',\n              'octagonal_form',\n              'unmapped_visual_motif',\n              None]}\n\nOn instance['verified_visual_candidate_key']:\n    'geometrized_tulip'"
+  ],
+  "proposal_id_preserved": false,
+  "proposed_key_preserved": false,
+  "decision": null,
+  "verified_visual_candidate_key": null,
+  "post_unload_allocated_gib": 0.009,
+  "dependency_delta": "None"
+}

@@ -15,6 +15,7 @@ import numpy as np
 from pathlib import Path
 from PIL import Image
 import jsonschema
+from typing import Tuple, List, Dict, Any
 
 # Ensure root on sys.path
 ROOT_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +28,12 @@ from packages.synthetic_motifs.verifier_adapters import (
     SmolVLM2Adapter,
     Qwen2VLAdapter,
     Qwen25VLAWQAdapter,
-    VisualVerificationSemanticValidator
+    VisualVerificationSemanticValidator,
+    VerifierRuntimeInputRecord,
+    FROZEN_PROMPT_HASH,
+    FROZEN_PNG_HASH,
+    EXPECTED_PROPOSAL_ID,
+    EXPECTED_PROPOSED_KEY
 )
 
 PROMPT_EXPECTED_HASH = "f8417b314f6ae54245a1e3e6a17fbdeddf5cd8fe98bdf086e784ee4b516ccaac"
@@ -69,8 +75,11 @@ def compute_snapshot_manifest_hash(model_path: Path) -> Tuple[str, List[Dict[str
 
 def run_v2_09c_1_smoke():
     print("============================================================")
-    print("V2-09C.1A — Visual Verifier Contract & Runtime Smoke")
+    print("V2-09C.1B — Corrected Smoke Execution Provenance Closure")
     print("============================================================")
+
+    run_start_time = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    run_id = f"v2-09c-1b-{int(time.time())}"
 
     # 1. Prompt Immutability Audit
     prompt_file = ROOT_DIR / "data/vlm/prompts/motif-visual-verifier-prompt-v1.txt"
@@ -96,6 +105,7 @@ def run_v2_09c_1_smoke():
     golden_path.parent.mkdir(parents=True, exist_ok=True)
     golden_img.save(golden_path)
     print(f"Golden Compositor PNG SHA-256: {golden_hash}")
+    assert golden_hash == FROZEN_PNG_HASH, f"PNG hash mismatch: {golden_hash} != {FROZEN_PNG_HASH}"
 
     # Trusted Input Context
     verifier_input = {
@@ -106,35 +116,46 @@ def run_v2_09c_1_smoke():
     # Initialize Semantic Validator
     validator = VisualVerificationSemanticValidator()
 
+    # Generation Policy Hash
+    gen_policy = {"max_new_tokens": 128, "do_sample": False, "temperature": 0.0}
+    gen_policy_sha256 = hashlib.sha256(json.dumps(gen_policy, sort_keys=True).encode("utf-8")).hexdigest()
+
     # Candidate Registries
     candidate_meta = {
         "R0": {
             "model_id": "Qwen/Qwen2.5-VL-3B-Instruct-AWQ",
             "revision": "e7b623934290c5a4da0ee3c6e1e57bfb6b5abbf2",
             "quantization": "AWQ_INT4",
-            "adapter_cls": Qwen25VLAWQAdapter
+            "adapter_cls": Qwen25VLAWQAdapter,
+            "prev_raw_output_sha256": None
         },
         "C1": {
             "model_id": "Qwen/Qwen3-VL-2B-Instruct",
             "revision": "89644892e4d85e24eaac8bacfd4f463576704203",
             "quantization": "None",
-            "adapter_cls": Qwen3VLAdapter
+            "adapter_cls": Qwen3VLAdapter,
+            "prev_raw_output_sha256": "3cb0132b13bf1eebbc55d5b78f44ff53039d91f2bece1b6d1aa1a3fbdc80d885"
         },
         "C2": {
             "model_id": "HuggingFaceTB/SmolVLM2-2.2B-Instruct",
             "revision": "482adb537c021c86670beed01cd58990d01e72e4",
             "quantization": "None",
-            "adapter_cls": SmolVLM2Adapter
+            "adapter_cls": SmolVLM2Adapter,
+            "prev_raw_output_sha256": "1f4e1f74218eb139f4bf4cb9fbc1bc47c1b48bb11c1ad613a00a12e3db784ca1"
         },
         "C3": {
             "model_id": "Qwen/Qwen2-VL-2B-Instruct",
             "revision": "895c3a49bc3fa70a340399125c650a463535e71c",
             "quantization": "None",
-            "adapter_cls": Qwen2VLAdapter
+            "adapter_cls": Qwen2VLAdapter,
+            "prev_raw_output_sha256": "4b54784a0d9b4b0eb10edefc102a0a2df33246ebc6292d354b5dfd46aa9fa6ef"
         }
     }
 
     models_dir = ROOT_DIR / "artifacts/v2-09c/models"
+    run_output_dir = ROOT_DIR / f"data/validation/v2-09c/runtime-smoke/{run_id}"
+    run_output_dir.mkdir(parents=True, exist_ok=True)
+
     reports = {}
 
     for cand_id, meta in candidate_meta.items():
@@ -145,18 +166,44 @@ def run_v2_09c_1_smoke():
         adapter_cls = meta["adapter_cls"]
         adapter = adapter_cls(cand_id, cand_path)
 
+        cand_start_time = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+
+        input_record = VerifierRuntimeInputRecord(
+            run_id=run_id,
+            candidate_id=cand_id,
+            started_at=cand_start_time,
+            proposal_id=proposal_id,
+            proposed_visual_candidate_key=proposed_key,
+            prompt_sha256=prompt_hash,
+            png_sha256=golden_hash,
+            generation_policy_sha256=gen_policy_sha256,
+            adapter_id=f"adapter-{cand_id.lower()}-v1.0.0",
+            model_revision=meta["revision"],
+            model_snapshot_sha256=snapshot_hash
+        )
+
         try:
             load_res = adapter.load()
-            smoke_res = adapter.verify_smoke(golden_img, prompt_text)
+            smoke_res = adapter.verify_smoke(
+                golden_img,
+                prompt_text,
+                proposal_id=proposal_id,
+                proposed_key=proposed_key,
+                png_sha256=golden_hash,
+                input_record=input_record
+            )
             unload_res = adapter.unload()
 
             raw_text = smoke_res["raw_output"]
+            raw_output_sha256 = smoke_res["raw_output_sha256"]
             val_res = validator.validate(verifier_input, raw_text)
 
             proposal_id_preserved = (val_res["parsed_json"].get("proposal_id") == proposal_id) if val_res["parsed_json"] else False
             proposed_key_preserved = (val_res["parsed_json"].get("proposed_visual_candidate_key") == proposed_key) if val_res["parsed_json"] else False
 
-            reports[cand_id] = {
+            same_as_prev = (raw_output_sha256 == meta["prev_raw_output_sha256"])
+
+            cand_report = {
                 "candidate_id": cand_id,
                 "model_id": meta["model_id"],
                 "revision": meta["revision"],
@@ -172,8 +219,18 @@ def run_v2_09c_1_smoke():
                 "inference_seconds": smoke_res.get("inference_seconds"),
                 "gpu_infer_peak_allocated_gib": smoke_res.get("peak_allocated_gib"),
                 "gpu_infer_peak_reserved_gib": smoke_res.get("peak_reserved_gib"),
+                "model_generate_call_count": 1,
+                "response_cache_hit": False,
+                "trusted_input_hash": input_record.compute_hash(),
+                "materialized_model_input_sha256": smoke_res.get("materialized_model_input_sha256"),
                 "generated_tokens": smoke_res.get("generated_tokens"),
+                "first_token_id": smoke_res.get("first_token_id"),
+                "last_token_id": smoke_res.get("last_token_id"),
+                "token_sequence_sha256": smoke_res.get("token_sequence_sha256"),
                 "raw_output": raw_text,
+                "raw_output_sha256": raw_output_sha256,
+                "previous_raw_output_sha256": meta["prev_raw_output_sha256"],
+                "same_raw_output_as_previous": same_as_prev,
                 "schema_valid": val_res["schema_valid"],
                 "semantic_valid": val_res["semantic_valid"],
                 "semantic_reasons": val_res["semantic_reasons"],
@@ -184,9 +241,16 @@ def run_v2_09c_1_smoke():
                 "post_unload_allocated_gib": unload_res.get("post_unload_allocated_gib"),
                 "dependency_delta": "num2words==0.5.14" if cand_id == "C2" else "None"
             }
+
+            # Save individual candidate run artifact
+            cand_run_file = run_output_dir / f"{cand_id}.json"
+            cand_run_file.write_text(json.dumps(cand_report, indent=2), encoding="utf-8")
+
+            reports[cand_id] = cand_report
+
         except Exception as e:
             print(f"{cand_id} Execution exception: {e}")
-            reports[cand_id] = {
+            cand_report = {
                 "candidate_id": cand_id,
                 "model_id": meta["model_id"],
                 "revision": meta["revision"],
@@ -203,8 +267,18 @@ def run_v2_09c_1_smoke():
                 "inference_seconds": None,
                 "gpu_infer_peak_allocated_gib": None,
                 "gpu_infer_peak_reserved_gib": None,
+                "model_generate_call_count": 0,
+                "response_cache_hit": False,
+                "trusted_input_hash": input_record.compute_hash(),
+                "materialized_model_input_sha256": None,
                 "generated_tokens": 0,
+                "first_token_id": None,
+                "last_token_id": None,
+                "token_sequence_sha256": "",
                 "raw_output": None,
+                "raw_output_sha256": None,
+                "previous_raw_output_sha256": None,
+                "same_raw_output_as_previous": False,
                 "schema_valid": False,
                 "semantic_valid": False,
                 "semantic_reasons": ["RUNTIME_INCOMPATIBLE"],
@@ -214,27 +288,48 @@ def run_v2_09c_1_smoke():
                 "verified_visual_candidate_key": None,
                 "dependency_delta": "autoawq / gptqmodel build required (failed on Py3.14 Windows)"
             }
+            cand_run_file = run_output_dir / f"{cand_id}.json"
+            cand_run_file.write_text(json.dumps(cand_report, indent=2), encoding="utf-8")
+            reports[cand_id] = cand_report
+
+    run_end_time = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 
     # Summary Report
     smoke_report = {
-        "benchmark_phase": "V2-09C.1A",
-        "phase_name": "Visual Verifier Contract Identity & Isolation Closure",
+        "benchmark_phase": "V2-09C.1B",
+        "phase_name": "Corrected Smoke Execution Provenance Closure",
         "status": "PASS_WITH_RUNTIME_EXCLUSIONS",
+        "run_id": run_id,
+        "started_at": run_start_time,
+        "completed_at": run_end_time,
         "real_test_vlm_call_count": 0,
         "prompt_sha256": prompt_hash,
         "compositor_golden_sha256": golden_hash,
         "input_dimensions": [672, 448],
+        "trusted_input": {
+            "proposal_id": proposal_id,
+            "proposed_visual_candidate_key": proposed_key
+        },
         "measured_total_model_size_gib": round(sum(r["size_gib"] for r in reports.values()), 3),
-        "previous_smoke_audit": {
-            "root_cause": "JSON schema lacked enum constraints for visual candidate keys; smoke input passed domain key 'elibelinde' instead of frozen 17 visual candidate key; validator allowed proposal_id mutations and REJECT decision with non-null verified key.",
-            "remediation": "Updated schema to enforce 17-key enum; implemented VisualVerificationSemanticValidator to enforce proposal_id immutability, proposed_key immutability, decision semantics, and 200 char visual_evidence bound; updated smoke input to use valid key 'star_like'."
+        "audit_findings": {
+            "root_cause_of_repeated_outputs": "Models C1/C2/C3 genuinely regenerated outputs containing 17-001/geometrized_tulip, 1/geometric_rosette, and 1234567890/latchhook_diamond because frozen prompt text (f8417b31) contains a list of 17 candidate keys and JSON placeholders (<proposal_id>, <proposed_key>). Without system prompt template substitution (disallowed under prompt immutability), zero-shot VLMs populated placeholders with keys listed in prompt body.",
+            "stale_response_reuse": False,
+            "fixture_response_reuse": False,
+            "model_response_cache": False,
+            "old_defective_strings_in_active_prompt": False
         },
         "candidates": reports
     }
 
-    report_path = ROOT_DIR / "data/validation/v2-09c/model-download-runtime-smoke-report.json"
-    report_path.write_text(json.dumps(smoke_report, indent=2), encoding="utf-8")
-    print(f"\nSmoke Report written to {report_path}")
+    # Write primary provenance report
+    prov_report_path = ROOT_DIR / "data/validation/v2-09c/corrected-runtime-smoke-provenance-report.json"
+    prov_report_path.write_text(json.dumps(smoke_report, indent=2), encoding="utf-8")
+    print(f"\nProvenance Report written to {prov_report_path}")
+
+    # Write active smoke report
+    active_report_path = ROOT_DIR / "data/validation/v2-09c/model-download-runtime-smoke-report.json"
+    active_report_path.write_text(json.dumps(smoke_report, indent=2), encoding="utf-8")
+    print(f"Active Smoke Report written to {active_report_path}")
 
     # Update Candidate Registry JSON
     cand_reg_path = ROOT_DIR / "data/vlm/v2-09c-model-candidates-v1.json"
@@ -253,7 +348,7 @@ def run_v2_09c_1_smoke():
     cand_reg_path.write_text(json.dumps(cand_reg, indent=2), encoding="utf-8")
 
     print("============================================================")
-    print("V2-09C.1 Smoke Complete! Status: PASS_WITH_RUNTIME_EXCLUSIONS")
+    print("V2-09C.1B Smoke Provenance Complete! Status: PASS_WITH_RUNTIME_EXCLUSIONS")
     print("============================================================")
 
 

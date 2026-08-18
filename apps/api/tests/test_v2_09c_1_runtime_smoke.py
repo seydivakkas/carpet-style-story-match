@@ -133,6 +133,56 @@ def test_v2_09c_1_real_test_guard():
     assert report["real_test_vlm_call_count"] == 0
 
 
+def test_v2_09c_1b_verifier_runtime_input_record():
+    """Verify VerifierRuntimeInputRecord hashing and trusted input identity fields."""
+    from packages.synthetic_motifs.verifier_adapters import VerifierRuntimeInputRecord
+    record = VerifierRuntimeInputRecord(
+        run_id="v2-09c-1b-test",
+        candidate_id="C1",
+        started_at="2026-08-18T10:00:00Z",
+        proposal_id="smoke_001",
+        proposed_visual_candidate_key="star_like",
+        prompt_sha256="f8417b314f6ae54245a1e3e6a17fbdeddf5cd8fe98bdf086e784ee4b516ccaac",
+        png_sha256="6c63bd619c3b2aabfdb0511404a2c62a4b38ff962f45c9e73e3a537c4c17d13d",
+        generation_policy_sha256="gen_policy_test_hash",
+        adapter_id="adapter-c1-v1.0.0",
+        model_revision="89644892e4d85e24eaac8bacfd4f463576704203",
+        model_snapshot_sha256="snapshot_test_hash"
+    )
+    assert record.proposal_id == "smoke_001"
+    assert record.proposed_visual_candidate_key == "star_like"
+    assert len(record.compute_hash()) == 64
+
+
+def test_v2_09c_1b_corrected_provenance_report():
+    """Verify V2-09C.1B provenance report structure, audit findings, and call counts."""
+    report_path = ROOT_DIR / "data/validation/v2-09c/corrected-runtime-smoke-provenance-report.json"
+    assert report_path.exists(), "Provenance report missing"
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+
+    assert report["benchmark_phase"] == "V2-09C.1B"
+    assert report["status"] == "PASS_WITH_RUNTIME_EXCLUSIONS"
+    assert report["real_test_vlm_call_count"] == 0
+    assert report["trusted_input"]["proposal_id"] == "smoke_001"
+    assert report["trusted_input"]["proposed_visual_candidate_key"] == "star_like"
+
+    findings = report["audit_findings"]
+    assert findings["stale_response_reuse"] is False
+    assert findings["fixture_response_reuse"] is False
+    assert findings["model_response_cache"] is False
+
+    cands = report["candidates"]
+    for cid in ["C1", "C2", "C3"]:
+        cand = cands[cid]
+        assert cand["model_generate_call_count"] == 1
+        assert cand["response_cache_hit"] is False
+        assert cand["trusted_input_hash"] is not None
+        assert cand["materialized_model_input_sha256"] is not None
+        assert cand["raw_output_sha256"] is not None
+        assert cand["token_sequence_sha256"] != ""
+        assert cand["same_raw_output_as_previous"] in [True, False]
+
+
 def test_v2_09c_1a_exact_enum():
     """Verify exact 17 frozen visual candidate keys in registry."""
     from packages.synthetic_motifs.verifier_adapters import FROZEN_17_KEYS

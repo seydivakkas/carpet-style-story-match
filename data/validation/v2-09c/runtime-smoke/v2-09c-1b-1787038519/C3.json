@@ -1,0 +1,52 @@
+{
+  "candidate_id": "C3",
+  "model_id": "Qwen/Qwen2-VL-2B-Instruct",
+  "revision": "895c3a49bc3fa70a340399125c650a463535e71c",
+  "downloaded": true,
+  "size_gib": 4.125,
+  "snapshot_manifest_sha256": "5ddb0cedc195ecf4b7f401804855f3d7e8e5349ce970e769ac2e6d7e619e8e4a",
+  "weight_shards": [
+    {
+      "name": "model-00001-of-00002.safetensors",
+      "size_bytes": 3988609112,
+      "sha256": "994ac2b03f97de8bc647d0fe5eba2e4b632b3e28dc03574c29bdfc36cf47e1b9"
+    },
+    {
+      "name": "model-00002-of-00002.safetensors",
+      "size_bytes": 429441656,
+      "sha256": "92540d8353c8d226a589a3b179bdb33851c970ee2cc2ac7ba035f79425e7b833"
+    }
+  ],
+  "quantization": "None",
+  "loaded_dtype": "bfloat16",
+  "runtime_status": "RUNTIME_READY",
+  "load_seconds": 3.44,
+  "gpu_load_peak_allocated_gib": 4.123,
+  "inference_seconds": 4.36,
+  "gpu_infer_peak_allocated_gib": 4.246,
+  "gpu_infer_peak_reserved_gib": 4.289,
+  "model_generate_call_count": 1,
+  "response_cache_hit": false,
+  "trusted_input_hash": "f57027e255ccac3e2a47fff7fb61b9be9e33ada81f691aee0ff248a9fa1a2772",
+  "materialized_model_input_sha256": "b735226f01dab9595b0e909de9430cd595a097ae5633917bc4396a16c5c1bab6",
+  "generated_tokens": 107,
+  "first_token_id": 515,
+  "last_token_id": 151645,
+  "token_sequence_sha256": "d59c089c282ade54cdec3beac629690cc05d89bd18f94920dfa63d9427f7b022",
+  "raw_output": "{\n  \"schema_version\": \"visual-verifier-v1.0.0\",\n  \"proposal_id\": \"1234567890\",\n  \"decision\": \"ACCEPT\",\n  \"proposed_visual_candidate_key\": \"latchhook_diamond\",\n  \"verified_visual_candidate_key\": \"latchhook_diamond\",\n  \"visual_evidence\": \"The highlighted region contains a latchhook diamond motif, which is visually consistent with the proposed key.\",\n  \"abstention_reason\": null\n}",
+  "raw_output_sha256": "bdc3b76f13f26506ca4eb4d0032957702965ed93a12b5c479ec1bc4b55def05f",
+  "previous_raw_output_sha256": "4b54784a0d9b4b0eb10edefc102a0a2df33246ebc6292d354b5dfd46aa9fa6ef",
+  "same_raw_output_as_previous": false,
+  "schema_valid": false,
+  "semantic_valid": false,
+  "semantic_reasons": [
+    "SCHEMA_INVALID_OR_NOT_DICT",
+    "SCHEMA_ERROR: 'latchhook_diamond' is not one of ['medallion_like', 'niche_like', 'star_like', 'rosette_like', 'palmette_like', 'lotus_like', 'vine_scroll_like', 'cloud_band_like', 'tree_like', 'horn_like', 'human_figure_like_geometric', 'comb_like', 'hook_like', 'lattice_like', 'lozenge_like', 'octagonal_form', 'unmapped_visual_motif', None]\n\nFailed validating 'enum' in schema['properties']['verified_visual_candidate_key']:\n    {'type': ['string', 'null'],\n     'enum': ['medallion_like',\n              'niche_like',\n              'star_like',\n              'rosette_like',\n              'palmette_like',\n              'lotus_like',\n              'vine_scroll_like',\n              'cloud_band_like',\n              'tree_like',\n              'horn_like',\n              'human_figure_like_geometric',\n              'comb_like',\n              'hook_like',\n              'lattice_like',\n              'lozenge_like',\n              'octagonal_form',\n              'unmapped_visual_motif',\n              None]}\n\nOn instance['verified_visual_candidate_key']:\n    'latchhook_diamond'"
+  ],
+  "proposal_id_preserved": false,
+  "proposed_key_preserved": false,
+  "decision": null,
+  "verified_visual_candidate_key": null,
+  "post_unload_allocated_gib": 0.009,
+  "dependency_delta": "None"
+}
