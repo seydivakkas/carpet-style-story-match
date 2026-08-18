@@ -1,0 +1,112 @@
+"""
+V2-09B Detector Baseline & Real-vs-Synthetic Benchmark Tests.
+
+ÖZEL LİSANS — TÜM HAKLAR SAKLIDIR
+Telif Hakkı (c) 2026 Seydi Eryılmaz (@seydivakkas)
+"""
+
+import json
+from pathlib import Path
+import pytest
+from pydantic import ValidationError
+from packages.synthetic_motifs.proposal import DetectorVisualProposal
+
+ROOT_DIR = Path(__file__).resolve().parents[3]
+
+
+def test_v2_09b_ultralytics_license_review_artifact():
+    path = ROOT_DIR / "data" / "detectors" / "ultralytics-license-review-v1.json"
+    assert path.exists()
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    assert data["license_status"] == "RESEARCH_EVALUATION_ONLY"
+    assert data["research_evaluation_allowed_by_project_policy"] is True
+    assert data["production_approved"] is False
+
+
+def test_v2_09b_detector_baseline_policy_artifact():
+    path = ROOT_DIR / "data" / "detectors" / "detector-baseline-policy-v1.json"
+    assert path.exists()
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    assert data["policy_version"] == "detector-baseline-policy-v1.0.0"
+    assert "YOLO11n Detect (yolo11n.pt)" in data["frozen_models"]
+    assert "YOLO11n OBB (yolo11n-obb.pt)" in data["frozen_models"]
+    assert data["training_parameters"]["seed"] == 42
+    assert data["training_parameters"]["imgsz"] == 640
+
+
+def test_v2_09b_real_motif_benchmark_manifest():
+    path = ROOT_DIR / "data" / "datasets" / "real-motif-benchmark-v1" / "manifest.json"
+    assert path.exists()
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    assert data["benchmark_version"] == "real-motif-benchmark-v1.0.0"
+    assert data["split"] == "REAL_TEST"
+    assert data["total_images"] >= 30
+    assert data["rights_cleared_count"] == data["total_images"]
+    
+    # Check no duplicate hashes
+    hashes = [img["sha256"] for img in data["images"]]
+    assert len(hashes) == len(set(hashes))
+
+
+def test_v2_09b_experiment_manifests_exist():
+    detect_path = ROOT_DIR / "data" / "detectors" / "v2-09b-yolo11n-detect-seed42-manifest.json"
+    obb_path = ROOT_DIR / "data" / "detectors" / "v2-09b-yolo11n-obb-seed42-manifest.json"
+
+    assert detect_path.exists()
+    assert obb_path.exists()
+
+    with open(detect_path, "r", encoding="utf-8") as f:
+        d_data = json.load(f)
+    assert d_data["experiment_id"] == "v2-09b-yolo11n-detect-seed42"
+    assert "metrics_synthetic" in d_data
+    assert "metrics_real" in d_data
+    assert "domain_gap_mAP50" in d_data
+
+    with open(obb_path, "r", encoding="utf-8") as f:
+        o_data = json.load(f)
+    assert o_data["experiment_id"] == "v2-09b-yolo11n-obb-seed42"
+    assert "metrics_synthetic" in o_data
+    assert "metrics_real" in o_data
+    assert "domain_gap_mAP50" in o_data
+
+
+def test_v2_09b_benchmark_report_and_domain_gap():
+    path = ROOT_DIR / "data" / "validation" / "v2-09b" / "detector-benchmark-report.json"
+    assert path.exists()
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    assert data["status"] == "PASS"
+    assert "domain_gap" in data
+    assert data["domain_gap"]["detect_mAP50_gap"] > 0.0
+    assert data["domain_gap"]["obb_mAP50_gap"] > 0.0
+    assert data["hard_negatives"]["positive_label_leakage"] == 0
+
+
+def test_v2_09b_detector_visual_proposal_contract():
+    proposal = DetectorVisualProposal(
+        proposal_id="prop_0001",
+        visual_candidate_key="star_like",
+        confidence=0.88,
+        bbox=[10.0, 20.0, 100.0, 120.0],
+        model_id="YOLO11n Detect",
+        experiment_id="v2-09b-yolo11n-detect-seed42",
+        source_image_id="real_carpet_001"
+    )
+    assert proposal.status == "AI_CANDIDATE"
+    assert proposal.visual_candidate_key == "star_like"
+
+    # Verify extra cultural fields are forbidden
+    with pytest.raises(ValidationError):
+        DetectorVisualProposal(
+            proposal_id="prop_0002",
+            visual_candidate_key="star_like",
+            confidence=0.88,
+            bbox=[10.0, 20.0, 100.0, 120.0],
+            model_id="YOLO11n Detect",
+            experiment_id="v2-09b-yolo11n-detect-seed42",
+            source_image_id="real_carpet_001",
+            culture="Seljuk"  # FORBIDDEN
+        )

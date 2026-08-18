@@ -104,9 +104,12 @@ data/synthetic/datasets/
 !data/validation/**
 data/external_datasets/raw/
 data/external_datasets/cache/
+data/datasets/real-motif-benchmark-v1/images/
+artifacts/
+runs/
+*.pt
 kaggle.json
 uploads/
-
 
 # Database
 *.sqlite

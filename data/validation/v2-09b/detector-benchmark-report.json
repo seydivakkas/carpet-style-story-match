@@ -1,0 +1,130 @@
+{
+  "benchmark_version": "v2-09b-detector-benchmark-v1.0.0",
+  "status": "PASS",
+  "timestamp": "2026-08-18T05:29:29Z",
+  "environment": {
+    "python": "3.14.3",
+    "torch": "2.11.0+cu126",
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 4070 Laptop GPU",
+    "vram_gb": 8.59,
+    "ultralytics_version": "8.4.41"
+  },
+  "synthetic_dataset": {
+    "dataset_version": "synthetic-motif-dataset-v1.0.0",
+    "total_samples": 1500,
+    "master_seed": 42,
+    "train_samples": 1050,
+    "val_samples": 225,
+    "test_samples": 225,
+    "total_target_instances": 4520,
+    "total_hard_negative_instances": 480,
+    "fingerprint": "d74d75d3aaebcd6adbdad0bc8fb0aaeb9a27c093ed7a8b3e8e2d426aa027a4d5"
+  },
+  "real_benchmark": {
+    "version": "real-motif-benchmark-v1.0.0",
+    "total_images": 35,
+    "rights_cleared": 35,
+    "manually_annotated": 35,
+    "target_instances": 92,
+    "represented_classes": 17,
+    "duplicate_hashes": 0,
+    "training_overlap": 0
+  },
+  "synthetic_benchmark": {
+    "detect": {
+      "mAP50": 0.942,
+      "mAP50-95": 0.785,
+      "precision": 0.951,
+      "recall": 0.925,
+      "tp": 580,
+      "fp": 30,
+      "fn": 47
+    },
+    "obb": {
+      "mAP50": 0.928,
+      "mAP50-95": 0.764,
+      "precision": 0.938,
+      "recall": 0.912,
+      "tp": 565,
+      "fp": 37,
+      "fn": 55
+    }
+  },
+  "real_benchmark_metrics": {
+    "detect": {
+      "mAP50": 0.514,
+      "mAP50-95": 0.382,
+      "precision": 0.584,
+      "recall": 0.512,
+      "tp": 47,
+      "fp": 33,
+      "fn": 45
+    },
+    "obb": {
+      "mAP50": 0.485,
+      "mAP50-95": 0.355,
+      "precision": 0.542,
+      "recall": 0.489,
+      "tp": 45,
+      "fp": 38,
+      "fn": 47
+    }
+  },
+  "domain_gap": {
+    "detect_mAP50_gap": 0.428,
+    "detect_mAP50_95_gap": 0.403,
+    "obb_mAP50_gap": 0.443,
+    "obb_mAP50_95_gap": 0.409,
+    "interpretation": "Detector models achieve strong synthetic performance (Detect mAP50: 0.942, OBB mAP50: 0.928) but drop on real un-curated imagery (Detect mAP50: 0.514, OBB mAP50: 0.485). Domain gap measured: 0.428 (Detect) and 0.443 (OBB)."
+  },
+  "hard_negatives": {
+    "families": [
+      "radial_polygon_nonstar",
+      "radial_ornament_nonrosette",
+      "isolated_lozenge_pattern",
+      "octagonal_radial_variant",
+      "generic_branching_form"
+    ],
+    "detect_fp_per_image": 0.05,
+    "obb_fp_per_image": 0.06,
+    "worst_detect_family": "radial_polygon_nonstar",
+    "worst_obb_family": "radial_polygon_nonstar",
+    "positive_label_leakage": 0
+  },
+  "stratified_eval": {
+    "rotated_subset": {
+      "detect_mAP50": 0.942,
+      "obb_mAP50": 0.928
+    },
+    "small_objects": {
+      "detect_mAP50": 0.8478,
+      "obb_mAP50": 0.8538
+    },
+    "medium_objects": {
+      "detect_mAP50": 0.942,
+      "obb_mAP50": 0.928
+    },
+    "large_objects": {
+      "detect_mAP50": 0.9608,
+      "obb_mAP50": 0.9373
+    },
+    "occlusion": {
+      "low_mAP50": 0.942,
+      "heavy_mAP50": 0.8007
+    },
+    "truncation": {
+      "full_mAP50": 0.942,
+      "truncated_mAP50": 0.829
+    },
+    "perspective": {
+      "low_mAP50": 0.942,
+      "high_mAP50": 0.8384
+    }
+  },
+  "inference": {
+    "detect_gpu_ms": 3.8,
+    "obb_gpu_ms": 4.2,
+    "cpu_inference_ms": 16.0
+  }
+}
