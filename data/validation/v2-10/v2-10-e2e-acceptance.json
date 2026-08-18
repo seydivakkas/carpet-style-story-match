@@ -1,0 +1,65 @@
+{
+  "schema_version": "v2-10-e2e-acceptance-v1.0.0",
+  "task": "V2-10 — FINAL V2 END-TO-END ACCEPTANCE",
+  "status": "PASS_V2_COMPLETE_WITH_DOCUMENTED_LIMITATIONS",
+  "timestamp": "2026-08-18T12:24:03Z",
+  "git_commit": "502b1de9c7001fa2ff27b2be9acc8a86689a2201",
+  "acceptance_scenarios": {
+    "scenario_a_unreviewed_upload": "PASS",
+    "scenario_b_reviewed_source_bound": "PASS",
+    "scenario_c_retrieval_and_security": "PASS"
+  },
+  "contract_acceptance_summary": {
+    "total_contracts": 16,
+    "passed": 14,
+    "passed_with_documented_limitations": 2,
+    "blocked": 0
+  },
+  "canonical_data_baseline": {
+    "commercial_catalog_products": 232,
+    "primary_catalog_images": 227,
+    "catalog_style_dna": {
+      "complete": 224,
+      "partial": 3,
+      "no_primary": 5
+    },
+    "historical_references": {
+      "total": 100,
+      "eligible_primary_images": 45,
+      "eligible_complete_style_dna": 45,
+      "rights_ineligible": 55
+    },
+    "ontology_and_curation": {
+      "motifs": 13,
+      "claims": 12,
+      "motif_associations": 12,
+      "story_associations": 11
+    },
+    "review_queue": {
+      "review_subjects": 0,
+      "review_events": 0
+    }
+  },
+  "research_model_status": {
+    "yolo11n_detect": "RESEARCH_BASELINE",
+    "yolo11n_obb": "RESEARCH_BASELINE",
+    "qwen3_vl_2b": "RESEARCH_CANDIDATE",
+    "smolvlm2_2_2b": "RESEARCH_CANDIDATE",
+    "qwen2_vl_2b": "RESEARCH_CANDIDATE",
+    "qwen2_5_vl_3b_awq": "RUNTIME_EXCLUDED",
+    "production_approved_models": []
+  },
+  "data_isolation": {
+    "persistent_db_writes_during_acceptance": 0,
+    "unreviewed_upload_db_writes": 0,
+    "retrieval_db_writes": 0
+  },
+  "performance_benchmarks": {
+    "upload_analysis_latency_ms": 12.4,
+    "unified_get_latency_ms": 4.2,
+    "catalog_retrieval_latency_ms": 3.8,
+    "historical_retrieval_latency_ms": 2.9,
+    "review_operation_latency_ms": 8.1,
+    "claim_and_story_assembly_latency_ms": 6.5
+  }
+}

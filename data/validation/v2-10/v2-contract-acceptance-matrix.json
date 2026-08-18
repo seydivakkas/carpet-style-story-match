@@ -1,0 +1,139 @@
+{
+  "matrix_version": "v2-contract-matrix-v1.0.0",
+  "total_contracts": 16,
+  "summary": {
+    "passed": 14,
+    "passed_with_documented_limitations": 2,
+    "blocked": 0
+  },
+  "contracts": [
+    {
+      "contract_id": "CONTRACT-01",
+      "name": "Five-Card Unified Result Architecture",
+      "description": "Exactly 5 top-level presentation cards (visual_character, motifs, cultural_context, motif_story, historical_connections). Zero 6th cards or overall recommendation scores.",
+      "status": "PASS",
+      "evidence": "UnifiedUploadResult DTO schema enforces extra='forbid' with 5 cards verified in test_v2_10_five_card_contract_strictness_no_sixth_card",
+      "blocking": true
+    },
+    {
+      "contract_id": "CONTRACT-02",
+      "name": "Three Distinct Product Layers",
+      "description": "Visual Style Match, Narrative Affinity, and Historical Connection kept strictly separate; never collapsed into a single master or personality score.",
+      "status": "PASS",
+      "evidence": "Decoupled domain services in app/domain/stylematch, app/domain/narrative_affinity, app/domain/historical_connection",
+      "blocking": true
+    },
+    {
+      "contract_id": "CONTRACT-03",
+      "name": "Style DNA 9D Order & Range",
+      "description": "Exact 9 dimensions in canonical frozen order D1..D9 with normalized values in [0, 1].",
+      "status": "PASS",
+      "evidence": "StyleDNAEngine returns CANONICAL_9D_KEYS in order, verified in test_v2_10_style_dna_9d_order_and_range",
+      "blocking": true
+    },
+    {
+      "contract_id": "CONTRACT-04",
+      "name": "Visual-Only Observation Boundaries",
+      "description": "Pixel analysis produces visual attributes only (no dye material, symbolism, or cultural claims; dye material = UNKNOWN).",
+      "status": "PASS",
+      "evidence": "Upload analysis pipeline produces color/composition observations without physical or cultural assertions",
+      "blocking": true
+    },
+    {
+      "contract_id": "CONTRACT-05",
+      "name": "Unreviewed Motif & Cultural Abstention",
+      "description": "Unreviewed user uploads yield WAITING_FOR_REVIEW / UNKNOWN states for motifs, cultural_context, and motif_story without fabricated narratives.",
+      "status": "PASS",
+      "evidence": "ResultExperienceService returns WAITING_FOR_REVIEW for unreviewed uploads (Scenario A)",
+      "blocking": true
+    },
+    {
+      "contract_id": "CONTRACT-06",
+      "name": "Reviewer Authorization & CAS Version Protection",
+      "description": "Review operations fail-closed without reviewer headers; stale review_version concurrent edits rejected; idempotency key prevents duplicate events.",
+      "status": "PASS",
+      "evidence": "MotifReviewService and review routes enforce authorization headers, CAS version, and idempotency",
+      "blocking": true
+    },
+    {
+      "contract_id": "CONTRACT-07",
+      "name": "Source-Bound Evidence & Claim Validator",
+      "description": "EvidencePack traces to source ID/tier/locator/hash; Claim status strictly in {DOCUMENTED, CONTEXTUAL, CONTESTED, UNKNOWN}; zero numeric cultural truth scores.",
+      "status": "PASS",
+      "evidence": "CulturalClaimValidator assigns categorical statuses only, verified in test_v2_10_claim_validator_and_story_provenance",
+      "blocking": true
+    },
+    {
+      "contract_id": "CONTRACT-08",
+      "name": "Source-Bound Story Generation & Status Preservation",
+      "description": "Story presentation traces to validated claim/evidence IDs; CONTESTED claims remain CONTESTED; UNKNOWN produces zero hallucinated story.",
+      "status": "PASS",
+      "evidence": "TemplateStoryCurator generates source-bound prose with citation locators",
+      "blocking": true
+    },
+    {
+      "contract_id": "CONTRACT-09",
+      "name": "Narrative Affinity Theme Taxonomy",
+      "description": "Exact 8 frozen narrative themes N1..N8; narrative profile is not framed as psychological or personality trait.",
+      "status": "PASS",
+      "evidence": "CANONICAL_NARRATIVE_THEMES list of 8 themes verified in test_v2_10_narrative_affinity_theme_taxonomy_8_themes",
+      "blocking": true
+    },
+    {
+      "contract_id": "CONTRACT-10",
+      "name": "Visual Retrieval Equation & Pool Invariants",
+      "description": "Frozen 9D weighted distance equation; Catalog pool = 224 COMPLETE; Historical pool = 45 eligible, 55 RIGHTS_INELIGIBLE excluded from visual display.",
+      "status": "PASS",
+      "evidence": "VisualRetrievalService enforces pool filtering and corpus fingerprints, verified in test_v2_10_visual_retrieval_equation_and_pool_invariants",
+      "blocking": true
+    },
+    {
+      "contract_id": "CONTRACT-11",
+      "name": "Security & Private Asset Protection",
+      "description": "Protected review image routes require authorization; path traversal and symlink escapes blocked; EXIF preserved; SSRF guards active.",
+      "status": "PASS",
+      "evidence": "is_ssrf_safe_url, image path validation, and authorization dependencies active across API endpoints",
+      "blocking": true
+    },
+    {
+      "contract_id": "CONTRACT-12",
+      "name": "Source Quality Policy",
+      "description": "Commercial catalog manufacturer domains (Merinos/Dinarsu) assigned REJECTED_SOURCE for cultural evidence; TIER_1 / TIER_2 required.",
+      "status": "PASS",
+      "evidence": "SourceQualityFilter evaluates commercial domains as REJECTED_SOURCE, verified in test_v2_10_source_quality_policy_commercial_rejection",
+      "blocking": true
+    },
+    {
+      "contract_id": "CONTRACT-13",
+      "name": "Offline & Optional Runtime Decoupling",
+      "description": "FastAPI boots without GPU, CUDA, or LLM requirements; missing API keys produce disabled state without silent remote fallback.",
+      "status": "PASS",
+      "evidence": "App boots cleanly in CPU-only offline mode; TemplateStoryCurator operates 100% offline",
+      "blocking": true
+    },
+    {
+      "contract_id": "CONTRACT-14",
+      "name": "Research Detector Domain Gap & Zero Catalog Proposals",
+      "description": "YOLO11n Detect & OBB research baselines at 0.25 threshold yielded 0 proposals on 227 commercial catalog images; retained as research-only baselines.",
+      "status": "PASS_WITH_DOCUMENTED_LIMITATION",
+      "evidence": "Catalog motif batch run completed in V2-09 FINAL.1 with documented domain gap limitation; 0 detectors selected as production-approved",
+      "blocking": false
+    },
+    {
+      "contract_id": "CONTRACT-15",
+      "name": "Research Small-VLM Benchmark & Conformance Bottleneck",
+      "description": "Small-VLMs C1, C2, C3 evaluated on REAL_TEST; json_repair conformance bottleneck documented; 0 Small-VLMs selected for production verifier.",
+      "status": "PASS_WITH_DOCUMENTED_LIMITATION",
+      "evidence": "V2-09C benchmark complete with documented JSON schema conformance limitation; 0 VLM verifiers selected for production",
+      "blocking": false
+    },
+    {
+      "contract_id": "CONTRACT-16",
+      "name": "Database Isolation & Immutability",
+      "description": "Canonical database tables remain 100% unmutated; 0 persistent canonical DB writes during acceptance and retrieval tests.",
+      "status": "PASS",
+      "evidence": "Verified zero database mutations during all V2-10 acceptance test executions",
+      "blocking": true
+    }
+  ]
+}
