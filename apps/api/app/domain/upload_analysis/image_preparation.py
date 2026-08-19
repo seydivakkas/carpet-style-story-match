@@ -32,6 +32,19 @@ class ImageValidationError(ValueError):
 ALLOWED_MIME_TYPES = {"image/jpeg", "image/png", "image/webp"}
 
 
+def sniff_image_mime_type(raw_bytes: bytes) -> Optional[str]:
+    """Inspect first 12 bytes of payload to verify valid image magic bytes signature."""
+    if len(raw_bytes) < 12:
+        return None
+    if raw_bytes[:3] == b"\xff\xd8\xff":
+        return "image/jpeg"
+    if raw_bytes[:8] == b"\x89PNG\r\n\x1a\n":
+        return "image/png"
+    if raw_bytes[:4] == b"RIFF" and raw_bytes[8:12] == b"WEBP":
+        return "image/webp"
+    return None
+
+
 def prepare_image_for_vlm(
     raw_bytes: bytes,
     mime_type: str,
@@ -45,6 +58,11 @@ def prepare_image_for_vlm(
     if mime_type.lower() not in ALLOWED_MIME_TYPES:
         raise ImageValidationError(f"Unsupported MIME type '{mime_type}'. Allowed: {ALLOWED_MIME_TYPES}")
 
+    # Sniff binary magic bytes signature (magic bytes mismatch check)
+    sniffed_mime = sniff_image_mime_type(raw_bytes)
+    if not sniffed_mime or sniffed_mime not in ALLOWED_MIME_TYPES:
+        raise ImageValidationError("Invalid image binary signature (magic bytes mismatch).")
+
     # Compute original hash
     original_hash = hashlib.sha256(raw_bytes).hexdigest()
 
@@ -52,6 +70,8 @@ def prepare_image_for_vlm(
     try:
         image = Image.open(io.BytesIO(raw_bytes))
         image.verify()  # Validate header/structure
+    except (Image.DecompressionBombError, Image.DecompressionBombWarning) as e:
+        raise ImageValidationError(f"Image pixel count exceeds maximum allowed limit: {e}")
     except Exception as e:
         raise ImageValidationError(f"Corrupted or invalid image payload: {e}")
 
@@ -59,6 +79,9 @@ def prepare_image_for_vlm(
     try:
         image = Image.open(io.BytesIO(raw_bytes))
         orig_w, orig_h = image.size
+
+        if (Image.MAX_IMAGE_PIXELS is not None) and (orig_w * orig_h > Image.MAX_IMAGE_PIXELS):
+            raise ImageValidationError("Image pixel count exceeds maximum allowed limit.")
 
         # Fix EXIF orientation if present
         try:
@@ -99,5 +122,9 @@ def prepare_image_for_vlm(
             mime_type="image/jpeg",
             image_bytes=prepared_bytes
         )
+    except (Image.DecompressionBombError, Image.DecompressionBombWarning) as e:
+        raise ImageValidationError(f"Image pixel count exceeds maximum allowed limit: {e}")
+    except ImageValidationError:
+        raise
     except Exception as e:
         raise ImageValidationError(f"Failed to sanitize and encode image for VLM: {e}")

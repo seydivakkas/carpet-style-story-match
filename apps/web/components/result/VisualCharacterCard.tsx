@@ -13,6 +13,7 @@ import {
 
 interface Props {
   data: VisualCharacterCardData;
+  primaryImageUrl?: string;
 }
 
 const DIMENSION_CONFIG: Record<

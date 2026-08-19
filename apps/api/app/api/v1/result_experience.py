@@ -74,26 +74,8 @@ async def get_unified_result_by_id(
     if record and record.unified_result:
         return UnifiedUploadResult.model_validate(record.unified_result)
 
-    # Fallback for synthetic / unpersisted IDs in unit test suites
-    from app.domain.result_experience.service import UnifiedUploadResultService
-    sample_bytes = b"DUMMY_IMAGE_BYTES"
-    sample_vlm_proposal = {
-        "status": "SUCCESS",
-        "candidates": [
-            {
-                "candidate_id": "cand-001",
-                "visual_descriptor": "tree_like",
-                "confidence": 0.88,
-                "bounding_box": [0.2, 0.3, 0.7, 0.8]
-            }
-        ]
-    }
-    assembler = UnifiedUploadResultService(db=db)
-    return await assembler.assemble_result_from_bytes(
-        raw_bytes=sample_bytes,
-        analysis_id=analysis_id,
-        mime_type="image/jpeg",
-        primary_image_url=f"/api/v1/upload-analysis/{analysis_id}/image",
-        precomputed_vlm_analysis=sample_vlm_proposal
+    raise HTTPException(
+        status_code=status.HTTP_404_NOT_FOUND,
+        detail="Analysis result not found"
     )
 

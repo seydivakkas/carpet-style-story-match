@@ -18,6 +18,11 @@ import app.db.models  # noqa: F401
 from app.api.v1.router import api_v1_router
 
 
+from PIL import Image
+
+Image.MAX_IMAGE_PIXELS = settings.MAX_IMAGE_PIXELS
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Lifespan context manager for startup and shutdown events."""

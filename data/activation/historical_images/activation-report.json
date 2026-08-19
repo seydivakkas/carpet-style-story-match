@@ -2,8 +2,8 @@
   "task": "POST-v1 A8 — Historical Local Image Activation",
   "status": "PASS",
   "mode": "APPLY",
-  "timestamp": "2026-08-19T12:01:47.119028+00:00",
-  "duration_sec": 0.06,
+  "timestamp": "2026-08-19T12:27:44.788717+00:00",
+  "duration_sec": 0.05,
   "historical_total": 20,
   "rights_mode": "OPEN_ACCESS_ONLY",
   "provider_counts": {

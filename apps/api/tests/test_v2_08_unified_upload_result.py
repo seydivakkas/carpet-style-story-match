@@ -522,7 +522,13 @@ def test_v2_08_client_forged_state_rejection():
 
 def test_v2_08_zero_model_on_get():
     """19. GET /unified-result executes 0 VLM / AI model inferences."""
-    aid = str(uuid.uuid4())
+    post_res = client.post(
+        "/api/v1/upload-analysis/unified-result",
+        files={"file": ("test.jpg", create_dummy_jpeg_bytes(), "image/jpeg")}
+    )
+    assert post_res.status_code == 200
+    aid = post_res.json()["analysis_id"]
+
     with patch("app.domain.upload_analysis.service.analyze_user_upload_image") as mock_vlm:
         res = client.get(f"/api/v1/upload-analysis/{aid}/unified-result")
         assert res.status_code == 200
@@ -531,7 +537,13 @@ def test_v2_08_zero_model_on_get():
 
 def test_v2_08_zero_research_network_on_get():
     """20. GET /unified-result executes 0 external research network calls."""
-    aid = str(uuid.uuid4())
+    post_res = client.post(
+        "/api/v1/upload-analysis/unified-result",
+        files={"file": ("test.jpg", create_dummy_jpeg_bytes(), "image/jpeg")}
+    )
+    assert post_res.status_code == 200
+    aid = post_res.json()["analysis_id"]
+
     with patch("httpx.AsyncClient.get") as mock_http:
         res = client.get(f"/api/v1/upload-analysis/{aid}/unified-result")
         assert res.status_code == 200
@@ -541,7 +553,13 @@ def test_v2_08_zero_research_network_on_get():
 @pytest.mark.asyncio
 async def test_v2_08_zero_db_mutation_on_get():
     """21. GET /unified-result causes zero database mutations."""
-    aid = str(uuid.uuid4())
+    post_res = client.post(
+        "/api/v1/upload-analysis/unified-result",
+        files={"file": ("test.jpg", create_dummy_jpeg_bytes(), "image/jpeg")}
+    )
+    assert post_res.status_code == 200
+    aid = post_res.json()["analysis_id"]
+
     async with AsyncSessionLocal() as session:
         subjs_before = (await session.execute(select(func.count(MotifReviewSubjectModel.id)))).scalar()
         events_before = (await session.execute(select(func.count(MotifReviewEventModel.id)))).scalar()
@@ -562,6 +580,14 @@ async def test_v2_08_zero_db_mutation_on_get():
     assert events_before == events_after
     assert carpets_before == carpets_after
     assert hist_before == hist_after
+
+
+def test_v2_08_get_nonexistent_returns_404():
+    """GET /unified-result with non-existent UUID returns HTTP 404."""
+    random_aid = str(uuid.uuid4())
+    res = client.get(f"/api/v1/upload-analysis/{random_aid}/unified-result")
+    assert res.status_code == 404
+    assert res.json()["detail"] == "Analysis result not found"
 
 
 @pytest.mark.asyncio
@@ -708,6 +734,34 @@ async def test_v2_08_thematic_affinity_optional_and_absent_by_default():
         precomputed_thematic_affinity=None,  # Absent by default
     )
     assert res.motif_story.thematic_affinity is None
+
+
+def test_v2_08_mime_sniffing_rejects_plain_text():
+    """29. Plain text file with fake image/jpeg Content-Type is rejected by magic bytes sniffing."""
+    plain_text_bytes = b"Hello world! This is plain text, not a valid JPEG or PNG image binary."
+    res = client.post(
+        "/api/v1/upload-analysis/unified-result",
+        files={"file": ("fake.jpg", plain_text_bytes, "image/jpeg")}
+    )
+    assert res.status_code == 200
+    data = res.json()
+    assert data["visual_character"]["state"] == "BLOCKED_BY_QUALITY"
+    assert "Görüntü kalitesi düşük olduğu için analiz engellendi." in data["warnings"]
+
+
+def test_v2_08_decompression_bomb_rejection():
+    """30. Image exceeding MAX_IMAGE_PIXELS is rejected as BLOCKED_BY_QUALITY without 500 error."""
+    raw_img = create_dummy_jpeg_bytes(width=50, height=50)  # 2500 pixels
+    with patch("PIL.Image.MAX_IMAGE_PIXELS", 100):  # Set limit to 100 pixels
+        res = client.post(
+            "/api/v1/upload-analysis/unified-result",
+            files={"file": ("bomb.jpg", raw_img, "image/jpeg")}
+        )
+        assert res.status_code == 200
+        data = res.json()
+        assert data["visual_character"]["state"] == "BLOCKED_BY_QUALITY"
+        assert "Görüntü kalitesi düşük olduğu için analiz engellendi." in data["warnings"]
+
 
 
 @pytest.mark.asyncio
