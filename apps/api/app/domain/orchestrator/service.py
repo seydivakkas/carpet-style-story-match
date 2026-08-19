@@ -8,9 +8,11 @@ Image Storage -> Style DNA -> Color -> VLM -> Visual Retrieval -> Cultural Claim
 """
 import uuid
 import logging
+import asyncio
 from typing import Dict, Any, List, Optional
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+from starlette.concurrency import run_in_threadpool
 
 from app.core.config import Settings
 from app.db.models.upload_analysis import UploadAnalysisModel, UploadAnalysisStatusEnum
@@ -128,8 +130,28 @@ class UnifiedAnalysisOrchestrator:
         self.db.add(analysis_record)
         await self.db.commit()
 
-        # 3. 9D Style DNA Engine & Color Analysis
-        dna_status, dna_dims = self.style_engine.analyze(raw_bytes)
+        # 3. Parallel Execution: Style DNA (threadpool), Color Analysis (threadpool), VLM Inference (async I/O)
+        provider_type_str = self.settings.MOTIF_VLM_PROVIDER.upper()
+        vlm_provider = get_vlm_provider(self.settings)
+
+        async def _run_vlm():
+            if vlm_provider and provider_type_str != "DISABLED":
+                return await vlm_provider.analyze(prepared)
+            return None
+
+        results = await asyncio.gather(
+            run_in_threadpool(self.style_engine.analyze, raw_bytes),
+            run_in_threadpool(self.color_service.analyze_colors, raw_bytes),
+            _run_vlm(),
+            return_exceptions=True
+        )
+
+        dna_res, color_res, vlm_res = results[0], results[1], results[2]
+
+        # Handle Style DNA result
+        if isinstance(dna_res, Exception):
+            raise dna_res
+        dna_status, dna_dims = dna_res
         dna_dims_dict = {}
         for d in dna_dims:
             if isinstance(d, dict) and "key" in d:
@@ -137,7 +159,10 @@ class UnifiedAnalysisOrchestrator:
                 v = d.get("value")
                 dna_dims_dict[k] = float(v) if v is not None else 0.5
 
-        color_obs = self.color_service.analyze_colors(raw_bytes)
+        # Handle Color Analysis result
+        if isinstance(color_res, Exception):
+            raise color_res
+        color_obs = color_res
         palette_items = [
             ColorItem(
                 label=c.perceptual_label,
@@ -148,35 +173,32 @@ class UnifiedAnalysisOrchestrator:
             for c in color_obs
         ]
 
-        # 4. Real VLM Provider Inference
+        # Handle VLM Inference result
         vlm_candidates_raw: List[Dict[str, Any]] = []
         vlm_warnings: List[str] = []
-        provider_type_str = self.settings.MOTIF_VLM_PROVIDER.upper()
 
-        vlm_provider = get_vlm_provider(self.settings)
-        if vlm_provider and provider_type_str != "DISABLED":
-            try:
-                analysis_out = await vlm_provider.analyze(prepared)
-                for mc in analysis_out.motif_candidates:
-                    vlm_candidates_raw.append({
-                        "candidate_id": mc.candidate_id,
-                        "visual_descriptor": mc.visual_candidate_key,
-                        "proposed_canonical_motif_key": mc.proposed_canonical_motif_key,
-                        "confidence": mc.confidence,
-                        "bounding_box": [
-                            mc.region.bounding_box.x_min,
-                            mc.region.bounding_box.y_min,
-                            mc.region.bounding_box.x_max,
-                            mc.region.bounding_box.y_max
-                        ] if mc.region and mc.region.bounding_box else None
-                    })
-                provider_type_str = analysis_out.provenance.provider_type
-            except VLMProviderError as e:
-                logger.warning(f"VLM Provider error during orchestration: {e}")
-                vlm_warnings.append(f"MOTIF_ANALYSIS_UNAVAILABLE: {e}")
-            except Exception as e:
-                logger.warning(f"Unexpected VLM error: {e}")
-                vlm_warnings.append(f"MOTIF_ANALYSIS_UNAVAILABLE: {type(e).__name__}")
+        if isinstance(vlm_res, Exception):
+            if isinstance(vlm_res, VLMProviderError):
+                logger.warning(f"VLM Provider error during orchestration: {vlm_res}")
+                vlm_warnings.append(f"MOTIF_ANALYSIS_UNAVAILABLE: {vlm_res}")
+            else:
+                logger.warning(f"Unexpected VLM error: {vlm_res}")
+                vlm_warnings.append(f"MOTIF_ANALYSIS_UNAVAILABLE: {type(vlm_res).__name__}")
+        elif vlm_res is not None:
+            for mc in vlm_res.motif_candidates:
+                vlm_candidates_raw.append({
+                    "candidate_id": mc.candidate_id,
+                    "visual_descriptor": mc.visual_candidate_key,
+                    "proposed_canonical_motif_key": mc.proposed_canonical_motif_key,
+                    "confidence": mc.confidence,
+                    "bounding_box": [
+                        mc.region.bounding_box.x_min,
+                        mc.region.bounding_box.y_min,
+                        mc.region.bounding_box.x_max,
+                        mc.region.bounding_box.y_max
+                    ] if mc.region and mc.region.bounding_box else None
+                })
+            provider_type_str = vlm_res.provenance.provider_type
         else:
             vlm_warnings.append("MOTIF_ANALYSIS_UNAVAILABLE: VLM provider is disabled in configuration.")
 
