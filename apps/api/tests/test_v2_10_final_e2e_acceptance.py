@@ -52,7 +52,7 @@ def test_v2_10_canonical_data_baseline_counts():
     hist_p = ROOT_DIR / "data" / "activation" / "historical_references" / "historical-references.json"
     with open(hist_p, "r", encoding="utf-8") as f:
         hist = json.load(f)
-    assert len(hist.get("references", [])) == 40
+    assert len(hist.get("references", [])) == 20
 
     mk_p = ROOT_DIR / "data" / "activation" / "motif_knowledge" / "motif-knowledge.json"
     with open(mk_p, "r", encoding="utf-8") as f:

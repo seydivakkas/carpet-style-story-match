@@ -2,20 +2,20 @@
   "task": "POST-v1 A8 — Historical Local Image Activation",
   "status": "PASS",
   "mode": "APPLY",
-  "timestamp": "2026-08-18T06:37:57.526225+00:00",
-  "duration_sec": 0.11,
-  "historical_total": 40,
+  "timestamp": "2026-08-19T12:01:47.119028+00:00",
+  "duration_sec": 0.06,
+  "historical_total": 20,
   "rights_mode": "OPEN_ACCESS_ONLY",
   "provider_counts": {
-    "met": 20,
-    "vam": 20
+    "met": 10,
+    "vam": 10
   },
   "run_accounting": {
     "current_run": {
-      "historical_total_considered": 40,
-      "activated": 19,
+      "historical_total_considered": 20,
+      "activated": 9,
       "already_active": 0,
-      "rights_not_eligible": 21,
+      "rights_not_eligible": 11,
       "no_source_image": 0,
       "other_failures": 0,
       "unaccounted": 0,
@@ -50,13 +50,13 @@
     }
   },
   "activation_metrics": {
-    "source_image_url_metadata_count": 19,
-    "eligible_source_image_url_count": 19,
-    "local_primary_image_count": 19,
-    "eligible_for_binary": 19,
-    "rights_not_eligible": 21,
-    "attempted_download": 19,
-    "activated": 19,
+    "source_image_url_metadata_count": 9,
+    "eligible_source_image_url_count": 9,
+    "local_primary_image_count": 9,
+    "eligible_for_binary": 9,
+    "rights_not_eligible": 11,
+    "attempted_download": 9,
+    "activated": 9,
     "already_active": 0,
     "no_source_image": 0,
     "source_unavailable": 0,
@@ -68,13 +68,13 @@
     "provenance_mismatch": 0,
     "duplicate_hash_count": 0,
     "unaccounted": 0,
-    "source_record_hash_coverage": "40/40",
+    "source_record_hash_coverage": "20/20",
     "source_record_hash_mismatches": 0,
-    "image_content_hash_count": 19
+    "image_content_hash_count": 9
   },
   "readiness_after": {
-    "NO_PRIMARY_IMAGE": 21,
-    "STYLE_DNA_MISSING": 19,
+    "NO_PRIMARY_IMAGE": 11,
+    "STYLE_DNA_MISSING": 9,
     "STYLE_DNA_PARTIAL": 0,
     "STYLE_DNA_COMPLETE": 0,
     "historical_style_dna_profiles_created": 0,
@@ -88,6 +88,6 @@
     "catalog_delta": 0
   },
   "format_distribution": {
-    "image/jpeg": 19
+    "image/jpeg": 9
   }
 }

@@ -4,9 +4,12 @@ User Upload Visual Analysis & Motif Detection API Endpoints (V2-03).
 Provides real backend VLM inference capabilities over user uploaded carpet images.
 Strictly validates visual contracts, handles provider statuses, and guarantees zero cultural claims.
 """
+import uuid
 from fastapi import APIRouter, File, UploadFile, status, HTTPException, Depends
 from typing import Dict, Any
+from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.db.session import get_db
 from app.core.config import Settings
 from app.domain.upload_analysis.schemas import UploadAnalysisResult
 from app.domain.upload_analysis.image_preparation import ImageValidationError
@@ -103,3 +106,39 @@ async def detect_motifs(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Unexpected error during visual inference: {e}"
         )
+
+
+@router.get(
+    "/{analysis_id}/image",
+    status_code=status.HTTP_200_OK,
+    summary="Get Binary Image Content of Uploaded Analysis Run"
+)
+async def get_analysis_image(
+    analysis_id: uuid.UUID,
+    db: AsyncSession = Depends(get_db)
+):
+    from fastapi.responses import Response
+    from sqlalchemy import select
+    from app.db.models.upload_analysis import UploadAnalysisModel
+    from app.domain.images.storage import LocalImageStorage
+
+    stmt = select(UploadAnalysisModel).where(UploadAnalysisModel.id == analysis_id)
+    res = await db.execute(stmt)
+    record = res.scalar_one_or_none()
+
+    if not record or not record.image_path:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Image for analysis '{analysis_id}' not found."
+        )
+
+    storage = LocalImageStorage()
+    try:
+        image_bytes = storage.get_image_bytes(record.image_path)
+        return Response(content=image_bytes, media_type=record.mime_type or "image/jpeg")
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Image file content unavailable: {e}"
+        )
+

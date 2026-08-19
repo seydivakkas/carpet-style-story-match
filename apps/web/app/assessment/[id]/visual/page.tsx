@@ -44,11 +44,20 @@ export default function VisualPreferencesPage({ params }: { params: Promise<{ id
   const [selectedChoices, setSelectedChoices] = useState<Record<string, VisualChoiceEnum>>({});
 
   // Auto start visual phase if not already started
+  const { mutate: startVisualMutate, isPending: isStartPending, isError: isStartError, isSuccess: isStartSuccess } = startVisual;
+
   useEffect(() => {
-    if (assessment && assessment.status === "TEXT_COMPLETE" && (!presentations || presentations.length === 0)) {
-      startVisual.mutate();
+    if (
+      assessment &&
+      assessment.status === "TEXT_COMPLETE" &&
+      (!presentations || presentations.length === 0) &&
+      !isStartPending &&
+      !isStartError &&
+      !isStartSuccess
+    ) {
+      startVisualMutate();
     }
-  }, [assessment, presentations, startVisual]);
+  }, [assessment, presentations, isStartPending, isStartError, isStartSuccess, startVisualMutate]);
 
   // Hydrate existing choices
   useEffect(() => {

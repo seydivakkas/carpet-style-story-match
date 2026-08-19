@@ -13,7 +13,8 @@ from fastapi.responses import JSONResponse
 from app.core.config import settings
 from app.core.logging import logger
 from app.core.middleware import CorrelationIDMiddleware, SecurityHeadersMiddleware, RateLimiterMiddleware
-from app.db.session import dispose_db_engine
+from app.db.session import engine, Base, dispose_db_engine
+import app.db.models  # noqa: F401
 from app.api.v1.router import api_v1_router
 
 
@@ -21,6 +22,8 @@ from app.api.v1.router import api_v1_router
 async def lifespan(app: FastAPI):
     """Lifespan context manager for startup and shutdown events."""
     logger.info(f"Starting Carpet Style & Story Match API in {settings.APP_ENV} mode")
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
     yield
     logger.info("Shutting down API. Disposing database engine...")
     await dispose_db_engine()
@@ -60,6 +63,17 @@ app.add_middleware(RateLimiterMiddleware)
 
 # Include API v1 Router
 app.include_router(api_v1_router)
+
+
+@app.get("/", summary="Root API Info")
+async def root():
+    return {
+        "status": "ok",
+        "service": "Carpet Style & Story Match API",
+        "web_ui": settings.WEB_ORIGIN,
+        "docs_url": "/docs" if settings.APP_ENV != "production" else None
+    }
+
 
 
 # Global exception handler to prevent traceback leakage in 500 responses

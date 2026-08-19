@@ -97,7 +97,10 @@ export default function UnifiedUploadResultPage({ result }: Props) {
 
         {/* 5 Primary Semantic Cards */}
         <section className="space-y-12">
-          <VisualCharacterCard data={result.visual_character} />
+          <VisualCharacterCard
+            data={result.visual_character}
+            primaryImageUrl={result.image_meta.primary_image_url}
+          />
           <MotifCard data={result.motifs} />
           <CulturalContextCard data={result.cultural_context} />
           <MotifStoryCard data={result.motif_story} />

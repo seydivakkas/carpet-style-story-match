@@ -66,7 +66,7 @@ const DIMENSION_CONFIG: Record<
   },
 };
 
-export default function VisualCharacterCard({ data }: Props) {
+export default function VisualCharacterCard({ data, primaryImageUrl }: Props) {
   if (data.state === "BLOCKED_BY_QUALITY") {
     return (
       <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 space-y-4">
@@ -96,16 +96,26 @@ export default function VisualCharacterCard({ data }: Props) {
     };
   });
 
+  const fullImageUrl = primaryImageUrl
+    ? (primaryImageUrl.startsWith("http") ? primaryImageUrl : `http://localhost:8000${primaryImageUrl}`)
+    : null;
+
   return (
     <div id="card-1-visual-character" className="bg-slate-900/70 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-8 shadow-xl">
       {/* Header Badge & Title */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-6">
-        <div className="flex items-center space-x-3">
-          <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-2xl">
-            <Palette className="w-6 h-6 text-amber-400" />
-          </div>
-          <div>
-            <div className="inline-flex items-center space-x-2 px-2.5 py-0.5 bg-amber-500/10 border border-amber-500/30 rounded-full text-[11px] font-mono text-amber-300 mb-1">
+        <div className="flex items-center space-x-4">
+          {fullImageUrl && (
+            <div className="relative w-20 h-28 rounded-2xl overflow-hidden border-2 border-amber-500/40 shadow-lg flex-shrink-0 bg-slate-950">
+              <img
+                src={fullImageUrl}
+                alt="Yüklenen Halı Görseli"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
+          <div className="space-y-1">
+            <div className="inline-flex items-center space-x-2 px-2.5 py-0.5 bg-amber-500/10 border border-amber-500/30 rounded-full text-[11px] font-mono text-amber-300">
               <Sparkles className="w-3 h-3" />
               <span>Görsel İnceleme Sonucu</span>
             </div>
@@ -113,7 +123,7 @@ export default function VisualCharacterCard({ data }: Props) {
           </div>
         </div>
 
-        <div className="text-xs font-mono text-slate-400 bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800">
+        <div className="text-xs font-mono text-slate-400 bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800 self-start sm:self-auto">
           Stil Sürümü: <span className="text-amber-300 font-semibold">{data.style_dna_version}</span>
         </div>
       </div>

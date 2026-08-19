@@ -23,6 +23,8 @@ from app.db.models.carpet_story_association import (
     MotifEvidenceTypeEnum
 )
 
+from app.db.models.upload_analysis import UploadAnalysisModel, UploadAnalysisStatusEnum
+
 __all__ = [
     "CarpetModel",
     "CarpetSourceType",
@@ -55,4 +57,6 @@ __all__ = [
     "CarpetMotifAssociationSourceModel",
     "CarpetStoryAssociationModel",
     "MotifEvidenceTypeEnum",
+    "UploadAnalysisModel",
+    "UploadAnalysisStatusEnum",
 ]
