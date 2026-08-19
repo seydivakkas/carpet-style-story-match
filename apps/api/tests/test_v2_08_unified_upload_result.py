@@ -91,7 +91,7 @@ async def test_v2_08_catalog_nested_under_card_1():
 
 @pytest.mark.asyncio
 async def test_v2_08_new_upload_gating():
-    """4. Verify gating state when motif candidate is unreviewed (WAITING_FOR_REVIEW)."""
+    """4. Verify gating state when motif candidate is low confidence / unreviewed (WAITING_FOR_REVIEW)."""
     raw_img = create_dummy_jpeg_bytes()
     vlm_proposal = {
         "status": "SUCCESS",
@@ -99,7 +99,7 @@ async def test_v2_08_new_upload_gating():
             {
                 "candidate_id": "cand-001",
                 "visual_descriptor": "tree_like",
-                "confidence": 0.85,
+                "confidence": 0.70,
             }
         ],
     }
@@ -108,10 +108,11 @@ async def test_v2_08_new_upload_gating():
     res = await service.assemble_result_from_bytes(
         raw_bytes=raw_img,
         precomputed_vlm_analysis=vlm_proposal,
-        review_resolutions={},  # Unreviewed -> PENDING
+        review_resolutions={},  # Unreviewed low conf -> AI_CANDIDATE
     )
 
     assert res.visual_character.state == ResultSectionState.READY
+    assert res.motifs.candidates[0].status == "AI_CANDIDATE"
     assert res.motifs.state == ResultSectionState.WAITING_FOR_REVIEW
     assert res.cultural_context.state == ResultSectionState.WAITING_FOR_REVIEW
     assert "insan incelemesinden geçmesi gerekiyor" in res.cultural_context.user_message
@@ -121,7 +122,7 @@ async def test_v2_08_new_upload_gating():
 
 @pytest.mark.asyncio
 async def test_v2_08_high_confidence_gating():
-    """5. High AI confidence (0.999) without human review does NOT unlock cultural context."""
+    """5. High AI confidence (0.999) gets status AUTO_CONFIRMED and unlocks knowledge lookup."""
     raw_img = create_dummy_jpeg_bytes()
     vlm_proposal = {
         "status": "SUCCESS",
@@ -138,11 +139,13 @@ async def test_v2_08_high_confidence_gating():
     res = await service.assemble_result_from_bytes(
         raw_bytes=raw_img,
         precomputed_vlm_analysis=vlm_proposal,
-        review_resolutions={},  # No curator review
+        review_resolutions={},  # High conf -> AUTO_CONFIRMED
     )
 
-    assert res.cultural_context.state == ResultSectionState.WAITING_FOR_REVIEW
-    assert res.motif_story.state == ResultSectionState.WAITING_FOR_REVIEW
+    assert res.motifs.candidates[0].status == "AUTO_CONFIRMED"
+    assert res.motifs.review_summary.confirmed_count == 1
+    assert res.cultural_context.state == ResultSectionState.WAITING_FOR_RESEARCH
+    assert res.motif_story.state == ResultSectionState.WAITING_FOR_RESEARCH
 
 
 @pytest.mark.asyncio

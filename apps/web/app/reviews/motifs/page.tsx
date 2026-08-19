@@ -99,11 +99,18 @@ export default function CuratorMotifReviewPage() {
 
   const getStatusBadge = (statusStr: string) => {
     switch (statusStr) {
+      case "AUTO_CONFIRMED":
+        return (
+          <span className="inline-flex items-center space-x-1 px-2 py-0.5 bg-blue-500/20 text-blue-300 border border-blue-500/30 rounded-md text-[11px] font-medium">
+            <CheckCircle2 className="w-3 h-3" />
+            <span>Otomatik Doğrulandı</span>
+          </span>
+        );
       case "CURATOR_CONFIRMED":
         return (
           <span className="inline-flex items-center space-x-1 px-2 py-0.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-md text-[11px] font-medium">
             <CheckCircle2 className="w-3 h-3" />
-            <span>Doğrulandı</span>
+            <span>Küratör Onaylı</span>
           </span>
         );
       case "UNCERTAIN":
@@ -122,9 +129,9 @@ export default function CuratorMotifReviewPage() {
         );
       default:
         return (
-          <span className="inline-flex items-center space-x-1 px-2 py-0.5 bg-blue-500/20 text-blue-300 border border-blue-500/30 rounded-md text-[11px] font-medium">
+          <span className="inline-flex items-center space-x-1 px-2 py-0.5 bg-purple-500/20 text-purple-300 border border-purple-500/30 rounded-md text-[11px] font-medium">
             <Sparkles className="w-3 h-3" />
-            <span>Bekliyor</span>
+            <span>İnceleme Bekliyor</span>
           </span>
         );
     }

@@ -10,11 +10,18 @@ interface Props {
 export default function MotifCard({ data }: Props) {
   const getStatusBadge = (status: string) => {
     switch (status) {
+      case "AUTO_CONFIRMED":
+        return (
+          <span className="inline-flex items-center space-x-1.5 px-2.5 py-1 bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold rounded-lg">
+            <CheckCircle2 className="w-3.5 h-3.5" />
+            <span>Otomatik Doğrulandı</span>
+          </span>
+        );
       case "CURATOR_CONFIRMED":
         return (
           <span className="inline-flex items-center space-x-1.5 px-2.5 py-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold rounded-lg">
             <CheckCircle2 className="w-3.5 h-3.5" />
-            <span>Küratöryel Doğrulama</span>
+            <span>Küratör Onaylı</span>
           </span>
         );
       case "UNCERTAIN":
@@ -37,7 +44,7 @@ export default function MotifCard({ data }: Props) {
         return (
           <span className="inline-flex items-center space-x-1.5 px-2.5 py-1 bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-semibold rounded-lg">
             <Clock className="w-3.5 h-3.5" />
-            <span>İnsan İncelemesi Bekleniyor</span>
+            <span>İnceleme Bekliyor</span>
           </span>
         );
     }

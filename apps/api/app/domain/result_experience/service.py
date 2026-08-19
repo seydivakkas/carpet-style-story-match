@@ -192,13 +192,22 @@ class UnifiedUploadResultService:
             except Exception as e:
                 logger.warning(f"Visual retrieval error in result assembly: {e}")
 
+        # Derive composition dynamically from real Style DNA 9D dimensions as proxy:
+        # central_focus <- D8 (focal_strength), symmetry <- D6 (structural_order).
+        # Note: focal_strength and structural_order act as real-valued visual proxies for central_focus and symmetry.
+        comp_dict: Dict[str, Any] = {}
+        if "focal_strength" in dna_dims_dict:
+            comp_dict["central_focus"] = dna_dims_dict["focal_strength"]
+        if "structural_order" in dna_dims_dict:
+            comp_dict["symmetry"] = dna_dims_dict["structural_order"]
+
         # Assemble Card 1 (Görsel Karakter)
         card1 = VisualCharacterCard(
             state=ResultSectionState.READY,
             style_dna_version="style-dna-v1.0.0",
             dimensions=dna_dims_dict,
             palette=palette_items,
-            composition={"central_focus": 0.75, "symmetry": 0.85},
+            composition=comp_dict,
             catalog_matches=catalog_matches,
         )
 
@@ -255,8 +264,12 @@ class UnifiedUploadResultService:
                 status_str = "REJECTED"
                 rejected_count += 1
             else:
-                status_str = "AI_CANDIDATE"
-                pending_count += 1
+                if conf >= 0.85:
+                    status_str = "AUTO_CONFIRMED"
+                    confirmed_count += 1
+                else:
+                    status_str = "AI_CANDIDATE"
+                    pending_count += 1
 
             candidates_list.append(
                 MotifCandidateItem(

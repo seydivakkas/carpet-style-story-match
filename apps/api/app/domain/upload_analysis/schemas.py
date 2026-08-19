@@ -81,6 +81,7 @@ class VisualObservationType(str, Enum):
 
 class MotifCandidateStatus(str, Enum):
     AI_CANDIDATE = "AI_CANDIDATE"
+    AUTO_CONFIRMED = "AUTO_CONFIRMED"
     UNMAPPED_MOTIF_CANDIDATE = "UNMAPPED_MOTIF_CANDIDATE"
     ABSTAINED = "ABSTAINED"
     # Reserved future review outcomes (cannot be emitted by model directly):

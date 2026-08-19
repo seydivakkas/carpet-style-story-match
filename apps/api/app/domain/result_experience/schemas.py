@@ -72,7 +72,7 @@ class MotifCandidateItem(BaseResultModel):
     turkish_label: str
     ai_confidence: float
     bounding_box: Optional[List[float]] = None
-    status: str  # AI_CANDIDATE | WAITING_FOR_REVIEW | CURATOR_CONFIRMED | UNCERTAIN | REJECTED
+    status: str  # AI_CANDIDATE | WAITING_FOR_REVIEW | AUTO_CONFIRMED | CURATOR_CONFIRMED | UNCERTAIN | REJECTED
     confirmed_canonical_motif_key: Optional[str] = None
 
 

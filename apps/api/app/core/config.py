@@ -55,6 +55,9 @@ class Settings(BaseSettings):
     MAX_IMAGE_HEIGHT: int = Field(default=12000, description="Maximum allowed image height")
     MAX_IMAGE_PIXELS: int = Field(default=80_000_000, description="Maximum allowed total pixel count")
 
+    # Visual Retrieval Configuration
+    RETRIEVAL_MIN_PROXIMITY_PCT: float = Field(default=30.0, description="Minimum visual proximity percentage threshold for retrieval matches")
+
     # Optional S3 / MinIO Storage Configuration
     S3_ENDPOINT_URL: Optional[str] = Field(default=None, description="S3 / MinIO endpoint URL")
     S3_BUCKET_NAME: Optional[str] = Field(default="carpet-assets", description="S3 / MinIO bucket name")

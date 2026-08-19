@@ -9,6 +9,8 @@ from sqlalchemy.orm import Session
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
+import logging
+
 from app.domain.visual_retrieval.models import (
     CANONICAL_STYLE_DNA_VERSION,
     CANONICAL_RETRIEVAL_VERSION,
@@ -26,13 +28,23 @@ from app.domain.visual_retrieval.corpus import (
     HistoricalVisualCorpusProvider,
 )
 
+logger = logging.getLogger(__name__)
+
 
 class VisualRetrievalService:
     """Orchestrates 9D Style DNA visual proximity retrieval for catalog and historical corpora."""
 
-    def __init__(self, db: Union[AsyncSession, Session]):
+    def __init__(self, db: Union[AsyncSession, Session], min_proximity_pct: Optional[float] = None):
         self.db = db
         self.is_async = isinstance(db, AsyncSession)
+        if min_proximity_pct is not None:
+            self.min_proximity_pct = float(min_proximity_pct)
+        else:
+            try:
+                from app.core.config import settings
+                self.min_proximity_pct = float(getattr(settings, "RETRIEVAL_MIN_PROXIMITY_PCT", 30.0))
+            except Exception:
+                self.min_proximity_pct = 30.0
 
     async def retrieve_catalog_async(
         self,
@@ -154,8 +166,14 @@ class VisualRetrievalService:
         # Sort descending by score, ascending by SKU, ascending by catalog_id
         scored.sort(key=lambda item: (-item[0], item[1], item[2]))
 
+        # Filter below threshold BEFORE top-k slicing
+        eligible_scored = [item for item in scored if item[0] >= self.min_proximity_pct]
+        filtered_count = len(scored) - len(eligible_scored)
+        if filtered_count > 0:
+            logger.info("retrieval.filtered_below_threshold count=%d threshold=%.1f", filtered_count, self.min_proximity_pct)
+
         results: List[CatalogVisualMatch] = []
-        for idx, (score, _, _, cand, _, deltas, closest, largest) in enumerate(scored[:top_k], 1):
+        for idx, (score, _, _, cand, _, deltas, closest, largest) in enumerate(eligible_scored[:top_k], 1):
             match = CatalogVisualMatch(
                 rank=idx,
                 catalog_id=cand.catalog_id,
@@ -194,8 +212,14 @@ class VisualRetrievalService:
 
         scored.sort(key=lambda item: (-item[0], item[1], item[2]))
 
+        # Filter below threshold BEFORE top-k slicing
+        eligible_scored = [item for item in scored if item[0] >= self.min_proximity_pct]
+        filtered_count = len(scored) - len(eligible_scored)
+        if filtered_count > 0:
+            logger.info("retrieval.filtered_below_threshold count=%d threshold=%.1f", filtered_count, self.min_proximity_pct)
+
         results: List[HistoricalVisualMatch] = []
-        for idx, (score, _, _, cand, _, deltas, closest, largest) in enumerate(scored[:top_k], 1):
+        for idx, (score, _, _, cand, _, deltas, closest, largest) in enumerate(eligible_scored[:top_k], 1):
             match = HistoricalVisualMatch(
                 rank=idx,
                 historical_reference_id=cand.historical_reference_id,

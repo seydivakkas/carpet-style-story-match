@@ -150,11 +150,18 @@ export default function MotifReviewPanel({ detail, history, onRefresh }: MotifRe
 
   const getStatusBadge = (statusStr: string) => {
     switch (statusStr) {
+      case "AUTO_CONFIRMED":
+        return (
+          <span className="inline-flex items-center space-x-1 px-2.5 py-1 bg-blue-500/20 text-blue-300 border border-blue-500/40 rounded-full text-xs font-semibold">
+            <CheckCircle2 className="w-3.5 h-3.5" />
+            <span>Otomatik Doğrulandı</span>
+          </span>
+        );
       case "CURATOR_CONFIRMED":
         return (
           <span className="inline-flex items-center space-x-1 px-2.5 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 rounded-full text-xs font-semibold">
             <CheckCircle2 className="w-3.5 h-3.5" />
-            <span>Doğrulandı</span>
+            <span>Küratör Onaylı</span>
           </span>
         );
       case "UNCERTAIN":
@@ -173,7 +180,7 @@ export default function MotifReviewPanel({ detail, history, onRefresh }: MotifRe
         );
       default:
         return (
-          <span className="inline-flex items-center space-x-1 px-2.5 py-1 bg-blue-500/20 text-blue-300 border border-blue-500/40 rounded-full text-xs font-semibold">
+          <span className="inline-flex items-center space-x-1 px-2.5 py-1 bg-purple-500/20 text-purple-300 border border-purple-500/40 rounded-full text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5" />
             <span>İnceleme Bekliyor</span>
           </span>
