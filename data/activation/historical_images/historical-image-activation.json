@@ -2,7 +2,7 @@
   "dataset_type": "historical-image-activation-sidecar",
   "rights_mode": "OPEN_ACCESS_ONLY",
   "dry_run": false,
-  "timestamp": "2026-08-19T14:15:55.635076+00:00",
+  "timestamp": "2026-08-20T13:59:47.522832+00:00",
   "processed_records_count": 20,
   "records": [
     {
@@ -11,8 +11,8 @@
       "object_identifier": "13577",
       "source_key": "met-object-13577",
       "source_record_sha256": "8c1afe147a773c9d63cb775e92ad8aa2a6f81cef8bab4a4bb130d89c3a1836cd",
-      "carpet_id": "245f586e-561c-48b9-a6cf-adfc1c64d32d",
-      "image_id": "40015e81-3296-4f99-91b0-40dec8f9ee6a",
+      "carpet_id": "6c65f5e0-b7dc-4961-ac82-c7a82e2f5e0d",
+      "image_id": "2602c859-9644-4a95-a168-803caab8b1e2",
       "source_image_url": "https://images.metmuseum.org/CRDImages/ad/original/TP632.jpg",
       "image_content_sha256": "8a1e5994d02a47f103dfd05ee74be3b0e2e1fcf4c7e91e6675ee40ae01ced6b9",
       "rights_mode": "OPEN_ACCESS_ONLY",
@@ -21,7 +21,7 @@
       "width_px": 200,
       "height_px": 200,
       "content_type": "image/jpeg",
-      "activated_at": "2026-08-19T14:15:55.458088+00:00"
+      "activated_at": "2026-08-20T13:59:47.469268+00:00"
     },
     {
       "reference_key": "ref-met-206492",
@@ -29,8 +29,8 @@
       "object_identifier": "206492",
       "source_key": "met-object-206492",
       "source_record_sha256": "892706c677ada44d61e5a9265286fa850fe9ae23e44feafc38401d9349cbbdf3",
-      "carpet_id": "d81a7919-6aba-4f55-a2b0-88716da28b1d",
-      "image_id": "e51638fb-9cc8-4c87-93bd-ac9f6b8f03f0",
+      "carpet_id": "362eee87-234c-4b9d-aaa8-e75a27caafba",
+      "image_id": "451cdab8-b11f-4c36-8cf5-e9ef3be9d3d5",
       "source_image_url": "https://images.metmuseum.org/CRDImages/es/original/SF1976_155_102.jpg",
       "image_content_sha256": "8a1e5994d02a47f103dfd05ee74be3b0e2e1fcf4c7e91e6675ee40ae01ced6b9",
       "rights_mode": "OPEN_ACCESS_ONLY",
@@ -39,7 +39,7 @@
       "width_px": 200,
       "height_px": 200,
       "content_type": "image/jpeg",
-      "activated_at": "2026-08-19T14:15:55.480385+00:00"
+      "activated_at": "2026-08-20T13:59:47.475663+00:00"
     },
     {
       "reference_key": "ref-met-206501",
@@ -47,8 +47,8 @@
       "object_identifier": "206501",
       "source_key": "met-object-206501",
       "source_record_sha256": "dcdf7aa6fe80ae0f6dcffbba4f44af00cd3edbd1951077c050efa7d1816a360d",
-      "carpet_id": "44110701-85ad-45da-92f9-3f8d2b3c2af1",
-      "image_id": "7a9ec215-5394-45b8-b78c-2be5ef66332e",
+      "carpet_id": "110a4fd0-ba9c-4b29-90b6-35e6809d16b7",
+      "image_id": "d09504a2-034f-4a74-ab2f-58b64cddcf48",
       "source_image_url": "https://images.metmuseum.org/CRDImages/es/original/DP155131.jpg",
       "image_content_sha256": "8a1e5994d02a47f103dfd05ee74be3b0e2e1fcf4c7e91e6675ee40ae01ced6b9",
       "rights_mode": "OPEN_ACCESS_ONLY",
@@ -57,7 +57,7 @@
       "width_px": 200,
       "height_px": 200,
       "content_type": "image/jpeg",
-      "activated_at": "2026-08-19T14:15:55.505913+00:00"
+      "activated_at": "2026-08-20T13:59:47.482850+00:00"
     },
     {
       "reference_key": "ref-met-445995",
@@ -65,8 +65,8 @@
       "object_identifier": "445995",
       "source_key": "met-object-445995",
       "source_record_sha256": "7743b64b26f465da64575fb6233113b2fe169b91cd0909f039c00f5ed633a596",
-      "carpet_id": "9cc30f5b-b268-48ee-99cb-f258181c99b6",
-      "image_id": "442b4451-c8f7-42ca-9b6e-12cc59e952e2",
+      "carpet_id": "87c6bc9f-1b7e-4477-8ad9-1e6eb6dfcf0d",
+      "image_id": "9d757d45-8189-419d-9509-9e4d126870d0",
       "source_image_url": "https://images.metmuseum.org/CRDImages/is/original/SC152659.jpg",
       "image_content_sha256": "8a1e5994d02a47f103dfd05ee74be3b0e2e1fcf4c7e91e6675ee40ae01ced6b9",
       "rights_mode": "OPEN_ACCESS_ONLY",
@@ -75,7 +75,7 @@
       "width_px": 200,
       "height_px": 200,
       "content_type": "image/jpeg",
-      "activated_at": "2026-08-19T14:15:55.528064+00:00"
+      "activated_at": "2026-08-20T13:59:47.489092+00:00"
     },
     {
       "reference_key": "ref-met-450506",
@@ -83,8 +83,8 @@
       "object_identifier": "450506",
       "source_key": "met-object-450506",
       "source_record_sha256": "fdde0c947dcd8948c16f63b3129f28c01500f6e21b88d9a94c5f355124063977",
-      "carpet_id": "3bde7e23-7221-4485-a4e8-4c77f82e97ab",
-      "image_id": "235719fe-d792-4909-921d-67773adb888d",
+      "carpet_id": "7f852e51-0fa1-4c47-8a34-f81a1862e2ab",
+      "image_id": "68614f45-c6fa-4878-876c-f559ef28cc12",
       "source_image_url": "https://images.metmuseum.org/CRDImages/is/original/DP-14133-001.jpg",
       "image_content_sha256": "8a1e5994d02a47f103dfd05ee74be3b0e2e1fcf4c7e91e6675ee40ae01ced6b9",
       "rights_mode": "OPEN_ACCESS_ONLY",
@@ -93,7 +93,7 @@
       "width_px": 200,
       "height_px": 200,
       "content_type": "image/jpeg",
-      "activated_at": "2026-08-19T14:15:55.553512+00:00"
+      "activated_at": "2026-08-20T13:59:47.496136+00:00"
     },
     {
       "reference_key": "ref-met-451062",
@@ -101,8 +101,8 @@
       "object_identifier": "451062",
       "source_key": "met-object-451062",
       "source_record_sha256": "593113fc276314ee734346207f912a6db6b718b020a8d01aa88db27508adbca0",
-      "carpet_id": "b6941aeb-b3b8-4256-844f-85132ae07d6d",
-      "image_id": "d9fd1750-bfb4-4969-b5c5-34f10d91e836",
+      "carpet_id": "91a7d91e-c6eb-4f25-9d81-614f977d83ba",
+      "image_id": "c148fad4-5429-4eee-a60a-e2e47a11dc24",
       "source_image_url": "https://images.metmuseum.org/CRDImages/is/original/DP-14132-001.jpg",
       "image_content_sha256": "8a1e5994d02a47f103dfd05ee74be3b0e2e1fcf4c7e91e6675ee40ae01ced6b9",
       "rights_mode": "OPEN_ACCESS_ONLY",
@@ -111,7 +111,7 @@
       "width_px": 200,
       "height_px": 200,
       "content_type": "image/jpeg",
-      "activated_at": "2026-08-19T14:15:55.574059+00:00"
+      "activated_at": "2026-08-20T13:59:47.502849+00:00"
     },
     {
       "reference_key": "ref-met-452100",
@@ -119,8 +119,8 @@
       "object_identifier": "452100",
       "source_key": "met-object-452100",
       "source_record_sha256": "ddc9dd2e153ce37ced434a5a201b36ba8a9b86e9f7538a486c74a34ccbdfea99",
-      "carpet_id": "518d1317-a067-4fac-b3a6-ecaea270d8af",
-      "image_id": "a8a4eb04-711b-4fc9-ba97-2f55d631fce5",
+      "carpet_id": "60e20298-08c9-4811-99a1-197a43c82b7f",
+      "image_id": "4823fce0-9bbf-4630-8885-908764ed6ca5",
       "source_image_url": "https://images.metmuseum.org/CRDImages/is/original/DP219415.jpg",
       "image_content_sha256": "8a1e5994d02a47f103dfd05ee74be3b0e2e1fcf4c7e91e6675ee40ae01ced6b9",
       "rights_mode": "OPEN_ACCESS_ONLY",
@@ -129,7 +129,7 @@
       "width_px": 200,
       "height_px": 200,
       "content_type": "image/jpeg",
-      "activated_at": "2026-08-19T14:15:55.594299+00:00"
+      "activated_at": "2026-08-20T13:59:47.509372+00:00"
     },
     {
       "reference_key": "ref-met-452581",
@@ -137,8 +137,8 @@
       "object_identifier": "452581",
       "source_key": "met-object-452581",
       "source_record_sha256": "0f132b59aabf2353973ca3cf6f0631acdc581eb0893a93618f213316508b7f85",
-      "carpet_id": "db9a066b-f832-4d8f-a04e-7619e1fc2614",
-      "image_id": "b232a5ed-9060-4965-90e9-4d5c9c91f544",
+      "carpet_id": "d9ff4c80-a23a-4256-afa7-0677932f7866",
+      "image_id": "24230b71-8970-4718-9bb7-484a7278b950",
       "source_image_url": "https://images.metmuseum.org/CRDImages/is/original/DT5467.jpg",
       "image_content_sha256": "8a1e5994d02a47f103dfd05ee74be3b0e2e1fcf4c7e91e6675ee40ae01ced6b9",
       "rights_mode": "OPEN_ACCESS_ONLY",
@@ -147,7 +147,7 @@
       "width_px": 200,
       "height_px": 200,
       "content_type": "image/jpeg",
-      "activated_at": "2026-08-19T14:15:55.614581+00:00"
+      "activated_at": "2026-08-20T13:59:47.516761+00:00"
     },
     {
       "reference_key": "ref-met-489476",
@@ -155,7 +155,7 @@
       "object_identifier": "489476",
       "source_key": "met-object-489476",
       "source_record_sha256": "847c1f85c7aa0f68e829e05a12413bde22dc9dbd9b2102f6555774f36bedf060",
-      "carpet_id": "d108099c-e05e-47ac-866f-c6f702b25449",
+      "carpet_id": "69123486-5d5b-4d36-a5f6-4f586b64b888",
       "source_image_url": null,
       "image_content_sha256": null,
       "rights_mode": "OPEN_ACCESS_ONLY",
@@ -169,8 +169,8 @@
       "object_identifier": "928622",
       "source_key": "met-object-928622",
       "source_record_sha256": "da2ad26a3ef55a6ce66e2c78e1034f0981f7e8da5f148ad9d421ba17a17a6f1e",
-      "carpet_id": "db7fe6da-7c8c-416d-af49-669e190624f6",
-      "image_id": "c0d6184e-96bb-405f-b266-dabb5d6e6c1c",
+      "carpet_id": "24ec3084-a11a-492d-aa1e-5a1915119d7d",
+      "image_id": "b99caf3d-74ca-435f-a0ea-59578afa96a2",
       "source_image_url": "https://images.metmuseum.org/CRDImages/es/original/DP-45246-001.jpg",
       "image_content_sha256": "8a1e5994d02a47f103dfd05ee74be3b0e2e1fcf4c7e91e6675ee40ae01ced6b9",
       "rights_mode": "OPEN_ACCESS_ONLY",
@@ -179,7 +179,7 @@
       "width_px": 200,
       "height_px": 200,
       "content_type": "image/jpeg",
-      "activated_at": "2026-08-19T14:15:55.634889+00:00"
+      "activated_at": "2026-08-20T13:59:47.522777+00:00"
     },
     {
       "reference_key": "ref-vam-O108864",
@@ -187,7 +187,7 @@
       "object_identifier": "O108864",
       "source_key": "vam-object-O108864",
       "source_record_sha256": "0dd52451f02771bdb92965d5eb5a6bff06cb3d0457ea35d1ef774e0de433fec7",
-      "carpet_id": "b7a863e7-d29b-4d66-8232-394e6f336250",
+      "carpet_id": "6d9cc8ad-4ed3-411a-832d-37f987dd5fd8",
       "source_image_url": null,
       "image_content_sha256": null,
       "rights_mode": "OPEN_ACCESS_ONLY",
@@ -201,7 +201,7 @@
       "object_identifier": "O351498",
       "source_key": "vam-object-O351498",
       "source_record_sha256": "2d61fd3521611e021b6fbefcd2f771601cbad398e900c061b36f62a59117dbb2",
-      "carpet_id": "32cc05a4-04c7-473c-9d17-40d98aabd0db",
+      "carpet_id": "5478b5a9-7ea5-45b1-ba57-e999a38f929b",
       "source_image_url": null,
       "image_content_sha256": null,
       "rights_mode": "OPEN_ACCESS_ONLY",
@@ -215,7 +215,7 @@
       "object_identifier": "O353010",
       "source_key": "vam-object-O353010",
       "source_record_sha256": "5980c6cbaf6bd65575cfeaeb2544f8d88cef61ac56415bf0d827d21a58b61085",
-      "carpet_id": "9b9e7d8b-ef8b-48f9-9e87-7a9c58728623",
+      "carpet_id": "badf4d93-789f-4bb2-8b48-e7a2ef679105",
       "source_image_url": null,
       "image_content_sha256": null,
       "rights_mode": "OPEN_ACCESS_ONLY",
@@ -229,7 +229,7 @@
       "object_identifier": "O354109",
       "source_key": "vam-object-O354109",
       "source_record_sha256": "076c89d6fabe649125874b84d5af293fd9c0e254a880f4dc5d670f8af220e15c",
-      "carpet_id": "5568b019-bed3-4721-abdf-723a40411970",
+      "carpet_id": "c3ba442d-3598-462a-9b9d-e8d8838f2d79",
       "source_image_url": null,
       "image_content_sha256": null,
       "rights_mode": "OPEN_ACCESS_ONLY",
@@ -243,7 +243,7 @@
       "object_identifier": "O366101",
       "source_key": "vam-object-O366101",
       "source_record_sha256": "0beb0ec3ce90467e58dc77e51c315c266fbf0ebfb56fd8432cc3c6699961e6d9",
-      "carpet_id": "1dd98ccd-06c5-4c58-bf7d-f4bb48655101",
+      "carpet_id": "7b85e4b8-ba39-4340-b2d8-33df607cfbde",
       "source_image_url": null,
       "image_content_sha256": null,
       "rights_mode": "OPEN_ACCESS_ONLY",
@@ -257,7 +257,7 @@
       "object_identifier": "O54294",
       "source_key": "vam-object-O54294",
       "source_record_sha256": "1bd592a560a7002a8834e8d752bbba4d23856e4cd8dda326505cc691618cc6c4",
-      "carpet_id": "56b9bb27-48ed-4f72-853b-707cdfdca672",
+      "carpet_id": "aff91294-0a60-4e38-a03d-2206ad38a370",
       "source_image_url": null,
       "image_content_sha256": null,
       "rights_mode": "OPEN_ACCESS_ONLY",
@@ -271,7 +271,7 @@
       "object_identifier": "O54307",
       "source_key": "vam-object-O54307",
       "source_record_sha256": "ff08c276db1c1d80dbe23804a523236fde3299507a2e6b08339d80322a1698ca",
-      "carpet_id": "ecad7ad1-e167-4d07-95b2-f5d7cc90d887",
+      "carpet_id": "0fc9665b-ba41-4ba5-9787-c48e747b74f2",
       "source_image_url": null,
       "image_content_sha256": null,
       "rights_mode": "OPEN_ACCESS_ONLY",
@@ -285,7 +285,7 @@
       "object_identifier": "O85114",
       "source_key": "vam-object-O85114",
       "source_record_sha256": "881b1f7b49e22f232e663a16508590b310da97d468abbbb936393f6ae9c4a795",
-      "carpet_id": "ba3eeb25-72fb-40b1-9543-00bbb145d8ba",
+      "carpet_id": "4cbd9ebd-2ebb-4f96-8a48-3e15b9912389",
       "source_image_url": null,
       "image_content_sha256": null,
       "rights_mode": "OPEN_ACCESS_ONLY",
@@ -299,7 +299,7 @@
       "object_identifier": "O85144",
       "source_key": "vam-object-O85144",
       "source_record_sha256": "9be26f30fee4e05687eea3efdfd86c95dc805cb1afe24105219bfc5e43e895e1",
-      "carpet_id": "448056d9-57b9-46bf-9072-c01d96e69463",
+      "carpet_id": "92a83adb-3e8a-48a9-8493-2a885117810b",
       "source_image_url": null,
       "image_content_sha256": null,
       "rights_mode": "OPEN_ACCESS_ONLY",
@@ -313,7 +313,7 @@
       "object_identifier": "O85243",
       "source_key": "vam-object-O85243",
       "source_record_sha256": "81bd11043e2d95c68338bf13e93e9515f7687c988eb3b1335a2fab55e883e93d",
-      "carpet_id": "fb54ac94-6b28-4331-a756-1272d2aa450e",
+      "carpet_id": "752b94f3-68f7-4219-9bd5-3ecaa9516dfa",
       "source_image_url": null,
       "image_content_sha256": null,
       "rights_mode": "OPEN_ACCESS_ONLY",
