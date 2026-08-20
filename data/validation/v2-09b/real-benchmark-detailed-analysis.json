@@ -1,0 +1,292 @@
+{
+  "total_yolo_detections": 45,
+  "total_dropped_by_cv": 37,
+  "dropped_by_class": {
+    "cloud_band_like": 0,
+    "comb_like": 0,
+    "hook_like": 0,
+    "horn_like": 0,
+    "human_figure_like_geometric": 0,
+    "lattice_like": 0,
+    "lotus_like": 0,
+    "lozenge_like": 0,
+    "medallion_like": 0,
+    "niche_like": 0,
+    "octagonal_form": 0,
+    "palmette_like": 0,
+    "rosette_like": 0,
+    "star_like": 0,
+    "tree_like": 37,
+    "unmapped_visual_motif": 0,
+    "vine_scroll_like": 0
+  },
+  "tree_raw_count": 37,
+  "tree_dropped_count": 37,
+  "tree_kept_count": 0,
+  "class_stats": {
+    "cloud_band_like": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "support": 0,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "comb_like": {
+      "tp": 0,
+      "fp": 5,
+      "fn": 6,
+      "support": 6,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "hook_like": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 3,
+      "support": 3,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "horn_like": {
+      "tp": 0,
+      "fp": 2,
+      "fn": 5,
+      "support": 5,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "human_figure_like_geometric": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 5,
+      "support": 5,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "lattice_like": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 6,
+      "support": 6,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "lotus_like": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "support": 0,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "lozenge_like": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 5,
+      "support": 5,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "medallion_like": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "support": 0,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "niche_like": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "support": 4,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "octagonal_form": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "support": 0,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "palmette_like": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "support": 0,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "rosette_like": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 9,
+      "support": 9,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "star_like": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 8,
+      "support": 8,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "tree_like": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 6,
+      "support": 6,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "unmapped_visual_motif": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 32,
+      "support": 32,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "vine_scroll_like": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 3,
+      "support": 3,
+      "precision": 0.0,
+      "recall": 0.0
+    }
+  },
+  "top_confusions": [
+    [
+      "rosette_like -> comb_like",
+      1
+    ]
+  ],
+  "failures": [
+    {
+      "img": "real_carpet_001.jpg",
+      "gt": "star_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanl\u0131\u015f Negatif / Ka\u00e7\u0131r\u0131ld\u0131 (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_001.jpg",
+      "gt": "rosette_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanl\u0131\u015f Negatif / Ka\u00e7\u0131r\u0131ld\u0131 (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_002.jpg",
+      "gt": "rosette_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanl\u0131\u015f Negatif / Ka\u00e7\u0131r\u0131ld\u0131 (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_002.jpg",
+      "gt": "lozenge_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanl\u0131\u015f Negatif / Ka\u00e7\u0131r\u0131ld\u0131 (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_004.jpg",
+      "gt": "niche_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanl\u0131\u015f Negatif / Ka\u00e7\u0131r\u0131ld\u0131 (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_004.jpg",
+      "gt": "tree_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanl\u0131\u015f Negatif / Ka\u00e7\u0131r\u0131ld\u0131 (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_007.jpg",
+      "gt": "horn_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanl\u0131\u015f Negatif / Ka\u00e7\u0131r\u0131ld\u0131 (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_007.jpg",
+      "gt": "comb_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanl\u0131\u015f Negatif / Ka\u00e7\u0131r\u0131ld\u0131 (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_011.jpg",
+      "gt": "human_figure_like_geometric",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanl\u0131\u015f Negatif / Ka\u00e7\u0131r\u0131ld\u0131 (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_011.jpg",
+      "gt": "unmapped_visual_motif",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanl\u0131\u015f Negatif / Ka\u00e7\u0131r\u0131ld\u0131 (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_019.jpg",
+      "gt": "rosette_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanl\u0131\u015f Negatif / Ka\u00e7\u0131r\u0131ld\u0131 (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_019.jpg",
+      "gt": "lozenge_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanl\u0131\u015f Negatif / Ka\u00e7\u0131r\u0131ld\u0131 (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_020.jpg",
+      "gt": "lozenge_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanl\u0131\u015f Negatif / Ka\u00e7\u0131r\u0131ld\u0131 (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_020.jpg",
+      "gt": "niche_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanl\u0131\u015f Negatif / Ka\u00e7\u0131r\u0131ld\u0131 (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_031.jpg",
+      "gt": "vine_scroll_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanl\u0131\u015f Negatif / Ka\u00e7\u0131r\u0131ld\u0131 (False Negative)",
+      "iou": 0.0
+    }
+  ]
+}

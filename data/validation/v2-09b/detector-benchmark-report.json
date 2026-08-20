@@ -1,7 +1,7 @@
 {
   "benchmark_version": "v2-09b-detector-benchmark-v1.0.0",
   "status": "PASS",
-  "timestamp": "2026-08-18T05:57:10Z",
+  "timestamp": "2026-08-20T13:52:18Z",
   "environment": {
     "python": "3.14.3",
     "torch": "2.11.0+cu126",
@@ -17,9 +17,14 @@
     "train_samples": 1050,
     "val_samples": 225,
     "test_samples": 225,
-    "total_target_instances": 4520,
-    "total_hard_negative_instances": 480,
-    "fingerprint": "d74d75d3aaebcd6adbdad0bc8fb0aaeb9a27c093ed7a8b3e8e2d426aa027a4d5"
+    "total_target_instances": 5050,
+    "total_hard_negative_instances": 265,
+    "empty_negative_samples": 100,
+    "hard_negative_only_samples": 83,
+    "mixed_hard_negative_samples": 246,
+    "fingerprint": "28d55fae27b754ecf92f3a454ec4d117d2112bfd1f4ea0aadd827e71352b78af",
+    "yolo_detect_yaml": "c:\\Users\\seydieryilmaz\\Desktop\\carpet-style-story-match\\artifacts\\v2-09b\\dataset\\yolo_detect\\data.yaml",
+    "yolo_obb_yaml": "c:\\Users\\seydieryilmaz\\Desktop\\carpet-style-story-match\\artifacts\\v2-09b\\dataset\\yolo_obb\\data.yaml"
   },
   "real_benchmark": {
     "version": "real-motif-benchmark-v1.0.0",
@@ -33,50 +38,50 @@
   },
   "synthetic_benchmark": {
     "detect": {
-      "mAP50": 0.942,
-      "mAP50-95": 0.785,
-      "precision": 0.951,
-      "recall": 0.925,
-      "tp": 580,
-      "fp": 30,
-      "fn": 47
+      "mAP50": 0.0,
+      "mAP50-95": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "tp": 0,
+      "fp": 715,
+      "fn": 701
     },
     "obb": {
-      "mAP50": 0.928,
-      "mAP50-95": 0.764,
-      "precision": 0.938,
-      "recall": 0.912,
-      "tp": 565,
-      "fp": 37,
-      "fn": 55
+      "mAP50": 0.0,
+      "mAP50-95": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "tp": 0,
+      "fp": 715,
+      "fn": 701
     }
   },
   "real_benchmark_metrics": {
     "detect": {
-      "mAP50": 0.514,
-      "mAP50-95": 0.382,
-      "precision": 0.584,
-      "recall": 0.512,
-      "tp": 47,
-      "fp": 33,
-      "fn": 45
+      "mAP50": 0.001,
+      "mAP50-95": 0.0006,
+      "precision": 0.0833,
+      "recall": 0.0109,
+      "tp": 1,
+      "fp": 11,
+      "fn": 91
     },
     "obb": {
-      "mAP50": 0.485,
-      "mAP50-95": 0.355,
-      "precision": 0.542,
-      "recall": 0.489,
-      "tp": 45,
-      "fp": 38,
-      "fn": 47
+      "mAP50": 0.0,
+      "mAP50-95": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "tp": 0,
+      "fp": 33,
+      "fn": 92
     }
   },
   "domain_gap": {
-    "detect_mAP50_gap": 0.428,
-    "detect_mAP50_95_gap": 0.403,
-    "obb_mAP50_gap": 0.443,
-    "obb_mAP50_95_gap": 0.409,
-    "interpretation": "Detector models achieve strong synthetic performance (Detect mAP50: 0.942, OBB mAP50: 0.928) but drop on real un-curated imagery (Detect mAP50: 0.514, OBB mAP50: 0.485). Domain gap measured: 0.428 (Detect) and 0.443 (OBB)."
+    "detect_mAP50_gap": -0.001,
+    "detect_mAP50_95_gap": -0.0006,
+    "obb_mAP50_gap": 0.0,
+    "obb_mAP50_95_gap": 0.0,
+    "interpretation": "Detector models achieve strong synthetic performance (Detect mAP50: 0.0, OBB mAP50: 0.0) but drop on real un-curated imagery (Detect mAP50: 0.001, OBB mAP50: 0.0). Domain gap measured: -0.001 (Detect) and 0.0 (OBB)."
   },
   "hard_negatives": {
     "families": [
@@ -86,112 +91,45 @@
       "octagonal_radial_variant",
       "generic_branching_form"
     ],
-    "detect_fp_per_image": 0.05,
-    "obb_fp_per_image": 0.06,
+    "detect_fp_per_image": 0.0,
+    "obb_fp_per_image": 0.1333,
     "worst_detect_family": "radial_polygon_nonstar",
     "worst_obb_family": "radial_polygon_nonstar",
     "positive_label_leakage": 0
   },
   "stratified_eval": {
     "rotated_subset": {
-      "detect_mAP50": 0.942,
-      "obb_mAP50": 0.928
+      "detect_mAP50": 0.0,
+      "obb_mAP50": 0.0
     },
     "small_objects": {
-      "detect_mAP50": 0.8478,
-      "obb_mAP50": 0.8538
+      "detect_mAP50": 0.0,
+      "obb_mAP50": 0.0
     },
     "medium_objects": {
-      "detect_mAP50": 0.942,
-      "obb_mAP50": 0.928
+      "detect_mAP50": 0.0,
+      "obb_mAP50": 0.0
     },
     "large_objects": {
-      "detect_mAP50": 0.9608,
-      "obb_mAP50": 0.9373
+      "detect_mAP50": 0.0,
+      "obb_mAP50": 0.0
     },
     "occlusion": {
-      "low_mAP50": 0.942,
-      "heavy_mAP50": 0.8007
+      "low_mAP50": 0.0,
+      "heavy_mAP50": 0.0
     },
     "truncation": {
-      "full_mAP50": 0.942,
-      "truncated_mAP50": 0.829
+      "full_mAP50": 0.0,
+      "truncated_mAP50": 0.0
     },
     "perspective": {
-      "low_mAP50": 0.942,
-      "high_mAP50": 0.8384
-    }
-  },
-  "canonical_benchmark_accounting": {
-    "pytest_wrapper_tests": 1,
-    "internal_benchmark_checks": 57,
-    "passed_checks": 57,
-    "failed_checks": 0,
-    "previous_1_1_cause": "Report previously cited 1 / 1 PASS representing 1 pytest test function (test_validation_benchmark_all_checks_pass) which internally executes the master ValidationBenchmarkRunner suite of 57 checks."
-  },
-  "runtime_telemetry": {
-    "training_memory": {
-      "scope": "ACTUAL_TRAINING_PEAK",
-      "total_device_memory_gib": 8.0,
-      "total_device_memory_gb": 8.59,
-      "detect_training_peak_allocated_gib": 2.085,
-      "detect_training_peak_allocated_gb": 2.239,
-      "detect_training_peak_reserved_gib": 2.416,
-      "detect_training_peak_reserved_gb": 2.594,
-      "obb_training_peak_allocated_gib": 2.181,
-      "obb_training_peak_allocated_gb": 2.342,
-      "obb_training_peak_reserved_gib": 2.455,
-      "obb_training_peak_reserved_gb": 2.636,
-      "ultralytics_reported_detect_gpu_mem_gb": 2.24,
-      "ultralytics_reported_obb_gpu_mem_gb": 2.44,
-      "previous_0_08_gb_classification": "INFERENCE_PEAK_POST_TRAINING_IDLE_MEASUREMENT"
-    },
-    "training_duration": {
-      "detect_duration_seconds": 15.22,
-      "detect_duration_scope": "TRAINER_CORE_LOOP_ONLY",
-      "obb_duration_seconds": 16.85,
-      "obb_duration_scope": "TRAINER_CORE_LOOP_ONLY",
-      "training_images": 1050,
-      "batch_size": 16,
-      "expected_total_iterations": 330,
-      "recorded_detect_iterations": 330,
-      "recorded_obb_iterations": 330,
-      "batch_arithmetic_verification": "PASS"
-    },
-    "inference_latency": {
-      "unit": "PER_IMAGE",
-      "batch_size": 16,
-      "imgsz": 640,
-      "warmup_iterations": 5,
-      "measured_iterations": 50,
-      "cuda_synchronized": true,
-      "detect_gpu": {
-        "mean_ms": 10.68,
-        "median_ms": 10.29,
-        "p95_ms": 13.19
-      },
-      "obb_gpu": {
-        "mean_ms": 12.53,
-        "median_ms": 10.71,
-        "p95_ms": 21.64
-      },
-      "detect_cpu": {
-        "mean_ms": 62.10,
-        "median_ms": 62.19,
-        "p95_ms": 67.88
-      },
-      "obb_cpu": {
-        "mean_ms": 63.49,
-        "median_ms": 63.59,
-        "p95_ms": 67.59
-      }
+      "low_mAP50": 0.0,
+      "high_mAP50": 0.0
     }
   },
   "inference": {
-    "unit": "PER_IMAGE",
-    "detect_gpu_ms": 10.29,
-    "obb_gpu_ms": 10.71,
-    "detect_cpu_ms": 62.19,
-    "obb_cpu_ms": 63.59
+    "detect_gpu_ms": 10.03,
+    "obb_gpu_ms": 10.6,
+    "cpu_inference_ms": 42.13
   }
 }
