@@ -17,6 +17,7 @@ from starlette.concurrency import run_in_threadpool
 from app.core.config import Settings
 from app.db.models.upload_analysis import UploadAnalysisModel, UploadAnalysisStatusEnum
 from app.db.models.motif_knowledge import MotifModel, MotifStoryClaimModel
+from app.db.models.motif_review import MotifReviewSubjectModel
 from app.domain.images.storage import LocalImageStorage
 from app.domain.styledna.engine import StyleDNAEngine
 from app.domain.color_analysis.service import ColorAnalysisService
@@ -69,14 +70,19 @@ TURKISH_CANDIDATE_LABEL_MAP = {
     "star_like": "Yıldız benzeri biçim",
     "hook_like": "Çengel benzeri biçim",
     "comb_like": "Tarak benzeri biçim",
+    "horn_like": "Koçboynuzu benzeri biçim",
     "ram_horn_like": "Koçboynuzu benzeri biçim",
     "hand_like": "El/Parmak benzeri biçim",
     "bird_like": "Kuş benzeri biçim",
     "dragon_like": "Ejder benzeri biçim",
     "floral_rosette_like": "Rozet çiçek benzeri biçim",
+    "rosette_like": "Rozet çiçek benzeri biçim",
     "medallion_like": "Madalyon benzeri biçim",
-    "running_water_like": "Akar su benzeri bordür biçimi",
+    "running_water_like": "Akar su / Kıvrımdal biçimi",
+    "vine_scroll_like": "Kıvrımdal / İslimi biçimi",
     "palmette_like": "Palmet benzeri biçim",
+    "lotus_like": "Lotus / Nilüfer biçimi",
+    "cloud_band_like": "Bulut kümesi biçimi",
     "human_figure_like_geometric": "Geometrik insan figürü benzeri biçim",
 }
 
@@ -115,19 +121,49 @@ class UnifiedAnalysisOrchestrator:
                 original_sha256="invalid_hash",
                 primary_image_url=f"/api/v1/upload-analysis/{aid}/image",
             )
-            return self._build_quality_blocked_result(aid, img_meta)
+            blocked_res = self._build_quality_blocked_result(aid, img_meta)
+
+            stmt = select(UploadAnalysisModel).where(UploadAnalysisModel.id == aid)
+            res = await self.db.execute(stmt)
+            record = res.scalar_one_or_none()
+            if not record:
+                record = UploadAnalysisModel(
+                    id=aid,
+                    original_sha256="invalid_hash",
+                    quality_status="FAIL",
+                    status=UploadAnalysisStatusEnum.BLOCKED_BY_QUALITY,
+                    unified_result=blocked_res.model_dump(mode="json")
+                )
+                self.db.add(record)
+            else:
+                record.quality_status = "FAIL"
+                record.status = UploadAnalysisStatusEnum.BLOCKED_BY_QUALITY
+                record.unified_result = blocked_res.model_dump(mode="json")
+            await self.db.commit()
+            return blocked_res
 
         # 2. Create DB Record (PROCESSING)
-        analysis_record = UploadAnalysisModel(
-            id=aid,
-            original_sha256=prepared.original_sha256,
-            prepared_sha256=prepared.prepared_sha256,
-            image_path=storage_key,
-            mime_type=mime_type,
-            quality_status="PASS",
-            status=UploadAnalysisStatusEnum.PROCESSING
-        )
-        self.db.add(analysis_record)
+        stmt = select(UploadAnalysisModel).where(UploadAnalysisModel.id == aid)
+        res = await self.db.execute(stmt)
+        analysis_record = res.scalar_one_or_none()
+        if not analysis_record:
+            analysis_record = UploadAnalysisModel(
+                id=aid,
+                original_sha256=prepared.original_sha256,
+                prepared_sha256=prepared.prepared_sha256,
+                image_path=storage_key,
+                mime_type=mime_type,
+                quality_status="PASS",
+                status=UploadAnalysisStatusEnum.PROCESSING
+            )
+            self.db.add(analysis_record)
+        else:
+            analysis_record.original_sha256 = prepared.original_sha256
+            analysis_record.prepared_sha256 = prepared.prepared_sha256
+            analysis_record.image_path = storage_key
+            analysis_record.mime_type = mime_type
+            analysis_record.quality_status = "PASS"
+            analysis_record.status = UploadAnalysisStatusEnum.PROCESSING
         await self.db.commit()
 
         # 3. Parallel Execution: Style DNA (threadpool), Color Analysis (threadpool), VLM Inference (async I/O)
@@ -345,6 +381,40 @@ class UnifiedAnalysisOrchestrator:
             review_summary=review_sum,
         )
 
+        # Register in Review Subjects for Curator Review panel if db is available
+        if self.db and vlm_candidates_raw:
+            try:
+                import hashlib
+                for cand in vlm_candidates_raw:
+                    cid = cand.get("candidate_id")
+                    if not cid:
+                        continue
+                    stmt_ex = select(MotifReviewSubjectModel).where(
+                        MotifReviewSubjectModel.analysis_id == str(aid),
+                        MotifReviewSubjectModel.candidate_id == cid,
+                    )
+                    ex_res = await self.db.execute(stmt_ex)
+                    if not ex_res.scalar_one_or_none():
+                        snap_hash = hashlib.sha256(f"{aid}:{cid}:{cand.get('visual_descriptor')}".encode()).hexdigest()
+                        new_subj = MotifReviewSubjectModel(
+                            review_subject_id=f"rev-{str(aid)[:8]}-{cid}",
+                            analysis_id=str(aid),
+                            candidate_id=cid,
+                            visual_candidate_key=cand.get("visual_descriptor", "unknown"),
+                            proposed_canonical_motif_key=cand.get("proposed_canonical_motif_key"),
+                            original_candidate_status="AI_CANDIDATE",
+                            candidate_confidence=float(cand.get("confidence", 0.8)),
+                            candidate_snapshot=cand,
+                            snapshot_hash=snap_hash,
+                            model_provenance={"provider_type": provider_type_str},
+                            ontology_version="motif-ontology-v1.0.0",
+                            review_version=0
+                        )
+                        self.db.add(new_subj)
+                await self.db.commit()
+            except Exception as e:
+                logger.warning(f"Failed to auto-register review subjects: {e}")
+
         # Assemble Card 3 (Kültürel Bağlam) & Card 4 (Motif Hikâyeleri) via Knowledge DB
         card3_claims: List[CulturalClaimItem] = []
         card3_state = ResultSectionState.WAITING_FOR_REVIEW
@@ -353,54 +423,154 @@ class UnifiedAnalysisOrchestrator:
         card4_story: Optional[SourceBoundStoryItem] = None
         card4_state = ResultSectionState.WAITING_FOR_REVIEW
         card4_msg: Optional[str] = "Kültürel anlatı sunulmadan önce motif eşleşmesinin insan incelemesinden geçmesi gerekiyor."
+        thematic_affinity_item: Optional[ThematicAffinityItem] = None
 
-        if high_confidence_motifs:
+        TURKISH_MOTIF_NAMES = {
+            "medallion": "Madalyon",
+            "tree-of-life": "Hayat Ağacı",
+            "tree_of_life": "Hayat Ağacı",
+            "geometric-star": "Sekiz Köşeli Yıldız",
+            "geometric_star": "Sekiz Köşeli Yıldız",
+            "mihrab": "Mihrap (Niş)",
+            "palmette": "Palmet",
+            "lotus": "Lotus (Nilüfer)",
+            "cloud-band": "Çin Bulutu (Bulut Kancası)",
+            "cloud_band": "Çin Bulutu (Bulut Kancası)",
+            "scrolling-vine": "Kıvrımdal (İslimi)",
+            "scrolling_vine": "Kıvrımdal (İslimi)",
+            "elibelinde": "Elibelinde",
+            "ram-horn": "Koçboynuzu",
+            "ram_horn": "Koçboynuzu",
+            "comb": "Tarak",
+            "mystery-hook": "Çengel",
+        }
+
+        THEMATIC_AFFINITY_MAP = {
+            "tree-of-life": (["Doğa & Büyüme", "Süreklilik & Bağ", "Kültürel Miras"], "Hayat ağacı motifi, nesiller arası bağ, soy sürekliliği ve köklenme temasını görselleştirir."),
+            "medallion": (["Denge & Düzen", "Gelenek & Zanaat", "Kültürel Miras"], "Merkezi madalyon mimarisi, simetri hiyerarşisi ve klasik saray dokuma düzenini temsil eder."),
+            "geometric-star": (["Denge & Düzen", "Kültürel Miras", "Gelenek & Zanaat"], "Sekiz köşeli geometrik yıldız, erken dönem modüler alan düzeni ve kozmolojik dengeyi yansıtır."),
+            "mihrab": (["Aidiyet & Yuva", "Denge & Düzen", "Gelenek & Zanaat"], "Mihrap niş formu, mekânsal aidiyet ve mimari yönelim odağını simgeler."),
+            "palmette": (["Doğa & Büyüme", "Yenilenme & Dönüşüm", "Gelenek & Zanaat"], "Palmet ve lotus yaprakları, stilize bitkisel akış ve doğadaki organik ritmi ifade eder."),
+            "lotus": (["Doğa & Büyüme", "Yenilenme & Dönüşüm"], "Lotus motifi, klasik Doğu sanatında yenilenme ve stilize çiçek zarafetini taşır."),
+            "scrolling-vine": (["Doğa & Büyüme", "Süreklilik & Bağ", "Denge & Düzen"], "Kıvrımdal hatları, sonsuz devam eden organik ritim ve görsel akıcılık sağlar."),
+            "elibelinde": (["Aidiyet & Yuva", "Süreklilik & Bağ", "Gelenek & Zanaat"], "Elibelinde figürü, Anadolu dokuma geleneğinde analık, bereket ve yuva koruyuculuğunu simgeler."),
+            "ram-horn": (["Gelenek & Zanaat", "Kültürel Miras"], "Koçboynuzu motifi, geleneksel el sanatlarında güç, bereket ve stilize geometrik formu temsil eder."),
+            "comb": (["Gelenek & Zanaat", "Aidiyet & Yuva"], "Tarak motifi, dokuma zanaatının aracı ve arınma sembolizmi bağlamında yer alır."),
+        }
+
+        # Query knowledge claims for any candidate with a proposed canonical motif key
+        motifs_to_lookup = list(high_confidence_motifs)
+        if not motifs_to_lookup:
+            for c in candidates_list:
+                if c.confirmed_canonical_motif_key:
+                    motifs_to_lookup.append(c.confirmed_canonical_motif_key)
+                elif c.visual_descriptor:
+                    motifs_to_lookup.append(c.visual_descriptor)
+
+        if motifs_to_lookup:
             try:
                 knowledge_service = MotifKnowledgeService(self.db)
-                for motif_key in high_confidence_motifs:
-                    claims_res = await knowledge_service.list_claims(motif_id_or_key=motif_key)
-                    if claims_res.claims:
+                story_sections: List[StorySectionItem] = []
+                all_matched_themes: List[str] = []
+                affinity_descriptions: List[str] = []
+
+                for motif_key in motifs_to_lookup:
+                    norm_keys = [motif_key, motif_key.replace('_', '-'), motif_key.replace('-', '_')]
+                    claims_res = None
+                    for nk in norm_keys:
+                        claims_res = await knowledge_service.list_claims(motif_id_or_key=nk)
+                        if claims_res and claims_res.claims:
+                            break
+
+                    if claims_res and claims_res.claims:
                         card3_state = ResultSectionState.READY
                         card3_msg = None
+                        tr_name = TURKISH_MOTIF_NAMES.get(motif_key, motif_key.replace('-', ' ').title())
+
                         for c in claims_res.claims:
+                            claim_sources: List[ClaimSourceItem] = []
+                            for cs in c.sources:
+                                inst = getattr(cs.source, "creator_or_institution", None) or getattr(cs.source, "title", "Müze Kaynağı")
+                                tit = getattr(cs.source, "title", "Akademik Kaynak")
+                                loc = getattr(cs, "locator", "") or ""
+                                exc = getattr(cs, "source_note", None) or getattr(cs.source, "citation_text", "")
+                                curl = getattr(cs.source, "url", None)
+                                claim_sources.append(
+                                    ClaimSourceItem(
+                                        institution=inst,
+                                        title=tit,
+                                        locator=loc,
+                                        excerpt=exc,
+                                        canonical_url=curl
+                                    )
+                                )
+
                             card3_claims.append(
                                 CulturalClaimItem(
                                     claim_id=str(c.id),
                                     status=c.status.value if hasattr(c.status, "value") else str(c.status),
-                                    statement_tr=c.claim_text_tr,
-                                    scope="Müzebilimsel Hakikat Matrisi",
-                                    sources=[
-                                        ClaimSourceItem(
-                                            institution=cs.source.institution_name,
-                                            title=cs.source.title,
-                                            locator=cs.locator or "",
-                                            excerpt=cs.source_note,
-                                            canonical_url=cs.source.canonical_url
-                                        )
-                                        for cs in c.sources
-                                    ]
+                                    statement_tr=c.claim_text_tr or f"{tr_name} motifi dokuma geleneğinde belgelenmiştir.",
+                                    scope="Müzebilimsel ve Etnografik Hakikat Matrisi",
+                                    sources=claim_sources
                                 )
                             )
 
-                        # Build Card 4 Story from DB claims
-                        if not card4_story and claims_res.claims:
-                            first_claim = claims_res.claims[0]
-                            card4_state = ResultSectionState.READY
-                            card4_msg = None
-                            card4_story = SourceBoundStoryItem(
-                                title=f"{motif_key.title()} Motifinin Anlatısal ve Kültürel Kökleri",
-                                summary=first_claim.claim_text_tr,
-                                sections=[
-                                    StorySectionItem(
-                                        heading="Geleneksel Kökler ve Sembolizm",
-                                        content=first_claim.claim_text_tr,
-                                        citations=[s.source.title for s in first_claim.sources],
-                                        is_contested=bool(first_claim.contest_note)
-                                    )
-                                ]
+                            # Build Story Sections
+                            citations_list = [cs.source.title for cs in c.sources if hasattr(cs, "source") and hasattr(cs.source, "title")]
+                            story_sections.append(
+                                StorySectionItem(
+                                    heading=f"{tr_name} Motifinin Kültürel ve Sanatsal Kökleri",
+                                    content=c.claim_text_tr or "",
+                                    citations=citations_list,
+                                    is_contested=bool(c.contest_note or (hasattr(c.status, "value") and c.status.value == "CONTESTED"))
+                                )
                             )
+                            if c.context_note:
+                                story_sections.append(
+                                    StorySectionItem(
+                                        heading=f"{tr_name} için Bölgesel ve Bağlamsal Notlar",
+                                        content=c.context_note,
+                                        citations=citations_list,
+                                        is_contested=False
+                                    )
+                                )
+                            if c.contest_note:
+                                story_sections.append(
+                                    StorySectionItem(
+                                        heading=f"{tr_name} Hakkındaki Akademik Tartışmalar",
+                                        content=c.contest_note,
+                                        citations=citations_list,
+                                        is_contested=True
+                                    )
+                                )
+
+                        # Match Thematic Affinity
+                        norm_k = motif_key.replace('_', '-')
+                        if norm_k in THEMATIC_AFFINITY_MAP:
+                            themes, aff_desc = THEMATIC_AFFINITY_MAP[norm_k]
+                            for t in themes:
+                                if t not in all_matched_themes:
+                                    all_matched_themes.append(t)
+                            affinity_descriptions.append(aff_desc)
+
+                if story_sections:
+                    card4_state = ResultSectionState.READY
+                    card4_msg = None
+                    primary_motif_name = TURKISH_MOTIF_NAMES.get(motifs_to_lookup[0], motifs_to_lookup[0].replace('-', ' ').title())
+                    card4_story = SourceBoundStoryItem(
+                        title=f"{primary_motif_name} ve Dokuma Geleneğindeki Anlatısal Kökleri",
+                        summary=story_sections[0].content,
+                        sections=story_sections
+                    )
+
+                if all_matched_themes:
+                    thematic_affinity_item = ThematicAffinityItem(
+                        matched_themes=all_matched_themes,
+                        affinity_description=" ".join(affinity_descriptions)
+                    )
+
             except Exception as e:
-                logger.warning(f"Motif knowledge lookup failed in orchestrator: {e}")
+                logger.warning(f"Motif knowledge lookup failed in orchestrator: {e}", exc_info=True)
 
         card3 = CulturalContextCard(
             state=card3_state,
@@ -412,7 +582,7 @@ class UnifiedAnalysisOrchestrator:
             state=card4_state,
             user_message=card4_msg,
             story=card4_story,
-            thematic_affinity=None,
+            thematic_affinity=thematic_affinity_item,
         )
 
         # Assemble Card 5 (Tarihsel Bağlantılar)

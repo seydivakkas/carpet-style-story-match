@@ -142,3 +142,65 @@ async def get_analysis_image(
             detail=f"Image file content unavailable: {e}"
         )
 
+
+@router.delete(
+    "/{analysis_id}",
+    status_code=status.HTTP_200_OK,
+    summary="Delete Uploaded Carpet Analysis and Associated Review Records"
+)
+async def delete_analysis_record(
+    analysis_id: uuid.UUID,
+    db: AsyncSession = Depends(get_db)
+) -> Dict[str, Any]:
+    import os
+    import logging
+    from sqlalchemy import select, delete
+    from app.db.models.upload_analysis import UploadAnalysisModel
+    from app.db.models.motif_review import MotifReviewSubjectModel, MotifReviewEventModel
+    from app.domain.images.storage import LocalImageStorage
+
+    logger = logging.getLogger(__name__)
+
+    # 1. Find analysis record
+    stmt = select(UploadAnalysisModel).where(UploadAnalysisModel.id == analysis_id)
+    res = await db.execute(stmt)
+    record = res.scalar_one_or_none()
+
+    if record and record.image_path:
+        try:
+            storage = LocalImageStorage()
+            full_path = os.path.join(storage.base_dir, record.image_path)
+            if os.path.exists(full_path):
+                os.remove(full_path)
+        except Exception as e:
+            logger.warning(f"Could not delete image file for {analysis_id}: {e}")
+
+    # 2. Find and delete review subjects & events
+    aid_str = str(analysis_id)
+    stmt_subj = select(MotifReviewSubjectModel).where(
+        MotifReviewSubjectModel.analysis_id == aid_str
+    )
+    res_subj = await db.execute(stmt_subj)
+    subjects = res_subj.scalars().all()
+
+    for subj in subjects:
+        await db.execute(
+            delete(MotifReviewEventModel).where(
+                MotifReviewEventModel.review_subject_id == subj.id
+            )
+        )
+        await db.delete(subj)
+
+    if record:
+        await db.delete(record)
+
+    await db.commit()
+
+    return {
+        "status": "success",
+        "message": f"Analysis {analysis_id} and all related review records deleted successfully.",
+        "analysis_id": str(analysis_id)
+    }
+
+
+

@@ -15,6 +15,8 @@ from app.domain.upload_analysis.vlm_provider import (
     VLLMOpenAICompatibleVisionProvider,
     RemoteOpenAICompatibleVisionProvider,
     FixtureVisionProvider,
+    LocalCVVisionProvider,
+    HybridVisionProvider,
     VLMProviderError,
     ProviderType
 )
@@ -30,31 +32,48 @@ def get_vlm_provider(settings: Settings) -> Optional[MotifVisionProvider]:
     if mode == "DISABLED":
         return None
 
+    if mode in ("LOCAL_CV", "CV_PATTERN"):
+        return LocalCVVisionProvider()
+
+    if mode == "HYBRID":
+        base_vlm = None
+        if settings.MOTIF_VLM_BASE_URL:
+            base_vlm = VLLMOpenAICompatibleVisionProvider(
+                base_url=settings.MOTIF_VLM_BASE_URL,
+                model_id=settings.MOTIF_VLM_MODEL,
+                timeout_seconds=settings.MOTIF_VLM_TIMEOUT_SECONDS,
+                max_retries=settings.MOTIF_VLM_MAX_RETRIES
+            )
+        return HybridVisionProvider(vlm_provider=base_vlm)
+
     if mode == "LOCAL_VLLM":
         if not settings.MOTIF_VLM_BASE_URL:
-            raise VLMProviderError("MOTIF_VLM_BASE_URL is required for LOCAL_VLLM mode.")
-        return VLLMOpenAICompatibleVisionProvider(
+            return LocalCVVisionProvider()
+        base_vlm = VLLMOpenAICompatibleVisionProvider(
             base_url=settings.MOTIF_VLM_BASE_URL,
             model_id=settings.MOTIF_VLM_MODEL,
             timeout_seconds=settings.MOTIF_VLM_TIMEOUT_SECONDS,
             max_retries=settings.MOTIF_VLM_MAX_RETRIES
         )
+        return HybridVisionProvider(vlm_provider=base_vlm)
 
     if mode == "REMOTE_OPENAI_COMPATIBLE":
         if not settings.MOTIF_VLM_BASE_URL:
-            raise VLMProviderError("MOTIF_VLM_BASE_URL is required for REMOTE_OPENAI_COMPATIBLE mode.")
-        return RemoteOpenAICompatibleVisionProvider(
+            return LocalCVVisionProvider()
+        base_vlm = RemoteOpenAICompatibleVisionProvider(
             base_url=settings.MOTIF_VLM_BASE_URL,
             model_id=settings.MOTIF_VLM_MODEL,
             api_key=settings.MOTIF_VLM_API_KEY,
             timeout_seconds=settings.MOTIF_VLM_TIMEOUT_SECONDS,
             max_retries=settings.MOTIF_VLM_MAX_RETRIES
         )
+        return HybridVisionProvider(vlm_provider=base_vlm)
 
     if mode == "TEST_FIXTURE":
         return FixtureVisionProvider()
 
-    raise VLMProviderError(f"Unknown VLM provider mode: '{mode}'")
+    # Fallback to intelligent local CV provider rather than crashing
+    return LocalCVVisionProvider()
 
 
 async def get_vlm_provider_status(settings: Settings) -> Dict[str, Any]:
@@ -75,9 +94,12 @@ async def get_vlm_provider_status(settings: Settings) -> Dict[str, Any]:
     reachable = False
     message = "Provider configured."
 
-    if mode == "TEST_FIXTURE":
+    if mode in ("TEST_FIXTURE", "LOCAL_CV", "CV_PATTERN"):
         reachable = True
-        message = "Test fixture provider active."
+        message = "Local visual motif detector provider active."
+    elif mode == "HYBRID":
+        reachable = True
+        message = "Hybrid provider active (Local CV + VLM fallback)."
     elif configured and settings.MOTIF_VLM_BASE_URL:
         # Reachability ping check
         try:
@@ -91,12 +113,14 @@ async def get_vlm_provider_status(settings: Settings) -> Dict[str, Any]:
         except Exception as e:
             message = f"VLM endpoint unreachable: {type(e).__name__}"
 
+    inference_enabled = (mode in ("TEST_FIXTURE", "LOCAL_CV", "CV_PATTERN", "HYBRID")) or (configured and reachable)
+
     return {
         "provider_type": mode,
-        "configured": configured,
+        "configured": True if mode in ("LOCAL_CV", "HYBRID", "TEST_FIXTURE") else configured,
         "reachable": reachable,
         "model_id": settings.MOTIF_VLM_MODEL,
-        "inference_enabled": configured and (mode == "TEST_FIXTURE" or reachable),
+        "inference_enabled": inference_enabled,
         "message": message
     }
 

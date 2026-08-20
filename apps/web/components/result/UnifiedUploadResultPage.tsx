@@ -9,7 +9,7 @@ import MotifCard from "./MotifCard";
 import CulturalContextCard from "./CulturalContextCard";
 import MotifStoryCard from "./MotifStoryCard";
 import HistoricalConnectionsCard from "./HistoricalConnectionsCard";
-import { Sparkles, Layers, Shapes, BookOpen, Compass, ShieldCheck, ChevronDown, ChevronUp, Code2 } from "lucide-react";
+import { Sparkles, Layers, Shapes, BookOpen, Compass, ShieldCheck, ChevronDown, ChevronUp, Code2, AlertTriangle } from "lucide-react";
 
 interface Props {
   result: UnifiedUploadResult;
@@ -101,6 +101,14 @@ export default function UnifiedUploadResultPage({ result }: Props) {
             data={result.visual_character}
             primaryImageUrl={result.image_meta.primary_image_url}
           />
+          {(result.provenance?.vlm_provider_version === "TEST_FIXTURE" ||
+            result.provenance?.vlm_provider_version === "DISABLED" ||
+            result.warnings?.some((w) => w.includes("MOTIF_ANALYSIS_UNAVAILABLE"))) && (
+            <div className="flex items-center space-x-2.5 px-4 py-3 bg-amber-950/40 border border-amber-500/30 rounded-2xl text-amber-300 text-xs font-semibold shadow-lg">
+              <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" />
+              <span>Demo verisi — canlı VLM bağlantısı yok</span>
+            </div>
+          )}
           <MotifCard data={result.motifs} />
           <CulturalContextCard data={result.cultural_context} />
           <MotifStoryCard data={result.motif_story} />

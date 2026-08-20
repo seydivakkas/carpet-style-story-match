@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { MotifCardData } from "@/lib/result-experience-api";
-import { Shapes, ShieldCheck, Clock, CheckCircle2, AlertTriangle, XCircle, Info } from "lucide-react";
+import { Shapes, ShieldCheck, Clock, CheckCircle2, AlertTriangle, XCircle, Info, ArrowUpRight } from "lucide-react";
 
 interface Props {
   data: MotifCardData;
@@ -81,14 +82,24 @@ export default function MotifCard({ data }: Props) {
 
       {/* State Notification if Waiting for Review */}
       {data.state === "WAITING_FOR_REVIEW" && (
-        <div className="bg-purple-500/10 border border-purple-500/30 rounded-2xl p-4 flex items-start space-x-3 text-xs text-purple-200">
-          <Clock className="w-5 h-5 text-purple-400 flex-shrink-0 mt-0.5" />
-          <div>
-            <span className="font-bold block text-sm text-purple-300 mb-1">İnsan İncelemesi Bekleniyor</span>
-            <span>
-              Yapay zeka görsel motif adaylarını tespit etti. Kültürel bağlam ve hikâye kilitlerinin açılması için uzman küratör incelemesi beklenmektedir.
-            </span>
+        <div className="bg-purple-500/10 border border-purple-500/30 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-purple-200">
+          <div className="flex items-start space-x-3">
+            <Clock className="w-5 h-5 text-purple-400 flex-shrink-0 mt-0.5" />
+            <div>
+              <span className="font-bold block text-sm text-purple-300 mb-0.5">İnsan İncelemesi Bekleniyor</span>
+              <span className="text-slate-300 leading-relaxed">
+                Yapay zeka görsel motif adaylarını tespit etti. Kültürel bağlam ve hikâye kilitlerini açmak için aday motifleri inceleme panelinde onaylayabilirsiniz.
+              </span>
+            </div>
           </div>
+          <Link
+            href="/reviews/motifs"
+            className="inline-flex items-center space-x-1.5 px-4 py-2 bg-purple-500 hover:bg-purple-400 text-slate-950 font-bold rounded-xl text-xs transition-colors shrink-0 shadow-md"
+          >
+            <ShieldCheck className="w-4 h-4" />
+            <span>Küratör Onayına Git</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
       )}
 

@@ -529,7 +529,7 @@ def test_v2_08_zero_model_on_get():
         "/api/v1/upload-analysis/unified-result",
         files={"file": ("test.jpg", create_dummy_jpeg_bytes(), "image/jpeg")}
     )
-    assert post_res.status_code == 200
+    assert post_res.status_code == 202
     aid = post_res.json()["analysis_id"]
 
     with patch("app.domain.upload_analysis.service.analyze_user_upload_image") as mock_vlm:
@@ -544,7 +544,7 @@ def test_v2_08_zero_research_network_on_get():
         "/api/v1/upload-analysis/unified-result",
         files={"file": ("test.jpg", create_dummy_jpeg_bytes(), "image/jpeg")}
     )
-    assert post_res.status_code == 200
+    assert post_res.status_code == 202
     aid = post_res.json()["analysis_id"]
 
     with patch("httpx.AsyncClient.get") as mock_http:
@@ -560,7 +560,7 @@ async def test_v2_08_zero_db_mutation_on_get():
         "/api/v1/upload-analysis/unified-result",
         files={"file": ("test.jpg", create_dummy_jpeg_bytes(), "image/jpeg")}
     )
-    assert post_res.status_code == 200
+    assert post_res.status_code == 202
     aid = post_res.json()["analysis_id"]
 
     async with AsyncSessionLocal() as session:
@@ -633,17 +633,17 @@ def test_v2_08_no_composite_score():
 
 
 def test_v2_08_api_endpoint_post_upload():
-    """24. POST /unified-result accepts valid image file and returns 5-card result."""
+    """24. POST /unified-result accepts valid image file and returns 202 Accepted with poll URL."""
     img_bytes = create_dummy_jpeg_bytes()
     res = client.post(
         "/api/v1/upload-analysis/unified-result",
         files={"file": ("test.jpg", img_bytes, "image/jpeg")},
     )
-    assert res.status_code == 200
+    assert res.status_code == 202
     data = res.json()
-    assert data["schema_version"] == "unified-upload-result-v1.0.0"
-    assert data["visual_character"]["state"] == "READY"
-    assert len(data["visual_character"]["dimensions"]) == 9
+    assert "analysis_id" in data
+    assert data["status"] == "PROCESSING"
+    assert "poll_url" in data
 
 
 def test_v2_08_catalog_semantics_visual_only():
@@ -740,28 +740,36 @@ async def test_v2_08_thematic_affinity_optional_and_absent_by_default():
 
 
 def test_v2_08_mime_sniffing_rejects_plain_text():
-    """29. Plain text file with fake image/jpeg Content-Type is rejected by magic bytes sniffing."""
+    """29. Plain text file with fake image/jpeg Content-Type is accepted as 202 and processed as BLOCKED_BY_QUALITY."""
     plain_text_bytes = b"Hello world! This is plain text, not a valid JPEG or PNG image binary."
     res = client.post(
         "/api/v1/upload-analysis/unified-result",
         files={"file": ("fake.jpg", plain_text_bytes, "image/jpeg")}
     )
-    assert res.status_code == 200
-    data = res.json()
+    assert res.status_code == 202
+    aid = res.json()["analysis_id"]
+
+    get_res = client.get(f"/api/v1/upload-analysis/{aid}/unified-result")
+    assert get_res.status_code == 200
+    data = get_res.json()
     assert data["visual_character"]["state"] == "BLOCKED_BY_QUALITY"
     assert "Görüntü kalitesi düşük olduğu için analiz engellendi." in data["warnings"]
 
 
 def test_v2_08_decompression_bomb_rejection():
-    """30. Image exceeding MAX_IMAGE_PIXELS is rejected as BLOCKED_BY_QUALITY without 500 error."""
+    """30. Image exceeding MAX_IMAGE_PIXELS is accepted as 202 and processed as BLOCKED_BY_QUALITY without 500 error."""
     raw_img = create_dummy_jpeg_bytes(width=50, height=50)  # 2500 pixels
     with patch("PIL.Image.MAX_IMAGE_PIXELS", 100):  # Set limit to 100 pixels
         res = client.post(
             "/api/v1/upload-analysis/unified-result",
             files={"file": ("bomb.jpg", raw_img, "image/jpeg")}
         )
-        assert res.status_code == 200
-        data = res.json()
+        assert res.status_code == 202
+        aid = res.json()["analysis_id"]
+
+        get_res = client.get(f"/api/v1/upload-analysis/{aid}/unified-result")
+        assert get_res.status_code == 200
+        data = get_res.json()
         assert data["visual_character"]["state"] == "BLOCKED_BY_QUALITY"
         assert "Görüntü kalitesi düşük olduğu için analiz engellendi." in data["warnings"]
 

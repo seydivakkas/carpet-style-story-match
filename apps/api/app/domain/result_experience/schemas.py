@@ -190,3 +190,15 @@ class UnifiedUploadResult(BaseResultModel):
     historical_connections: HistoricalConnectionsCard
     provenance: ResultProvenance
     warnings: List[str] = Field(default_factory=list)
+
+
+class AcceptedAnalysisResponse(BaseResultModel):
+    analysis_id: uuid.UUID
+    status: str = "PROCESSING"
+    poll_url: str
+
+
+class AnalysisStatusResponse(BaseResultModel):
+    analysis_id: uuid.UUID
+    status: str
+    error: Optional[str] = None

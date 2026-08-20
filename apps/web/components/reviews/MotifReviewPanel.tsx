@@ -9,6 +9,7 @@ import {
   submitMotifReviewDecision,
   ReviewApiError
 } from "@/lib/api/motif_review";
+import Link from "next/link";
 import {
   CheckCircle2,
   HelpCircle,
@@ -20,7 +21,9 @@ import {
   Sparkles,
   ShieldAlert,
   ShieldCheck,
-  Eye
+  Eye,
+  ArrowUpRight,
+  ArrowLeft
 } from "lucide-react";
 
 export const CANONICAL_MOTIF_OPTIONS = [
@@ -205,6 +208,18 @@ export default function MotifReviewPanel({ detail, history, onRefresh }: MotifRe
         </div>
 
         <div className="flex items-center space-x-2">
+          {detail.analysis_id && (
+            <Link
+              href={`/analysis/${detail.analysis_id}`}
+              className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded-xl text-xs font-semibold transition-all shadow-sm"
+              title="Bu halının 5 kartlı analiz sonucuna dön"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <span>Analiz Raporuna Git</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-amber-400" />
+            </Link>
+          )}
+
           <button
             onClick={() => setShowHistoryModal(true)}
             className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 rounded-xl text-xs font-medium transition-colors"
@@ -345,9 +360,20 @@ export default function MotifReviewPanel({ detail, history, onRefresh }: MotifRe
 
             {/* Success Message */}
             {successMessage && (
-              <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-xs text-emerald-300 font-semibold flex items-center space-x-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>{successMessage}</span>
+              <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-xs text-emerald-300 font-semibold flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <span>{successMessage}</span>
+                </div>
+                {detail.analysis_id && (
+                  <Link
+                    href={`/analysis/${detail.analysis_id}`}
+                    className="inline-flex items-center space-x-1 px-3 py-1 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-lg font-bold text-xs transition-colors self-start sm:self-auto"
+                  >
+                    <span>Analizi Görüntüle</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </Link>
+                )}
               </div>
             )}
 

@@ -63,6 +63,8 @@ class ProviderType(str, Enum):
     LOCAL_VLLM = "LOCAL_VLLM"
     REMOTE_OPENAI_COMPATIBLE = "REMOTE_OPENAI_COMPATIBLE"
     TEST_FIXTURE = "TEST_FIXTURE"
+    LOCAL_CV = "LOCAL_CV"
+    HYBRID = "HYBRID"
 
 
 class VisualObservationType(str, Enum):

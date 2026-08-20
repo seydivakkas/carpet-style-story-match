@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { MotifStoryCardData } from "@/lib/result-experience-api";
-import { Sparkles, ShieldCheck, Clock, BookOpen, AlertTriangle, Compass } from "lucide-react";
+import { Sparkles, ShieldCheck, Clock, BookOpen, AlertTriangle, Compass, ArrowUpRight } from "lucide-react";
 
 interface Props {
   data: MotifStoryCardData;
@@ -28,14 +29,24 @@ export default function MotifStoryCard({ data }: Props) {
 
       {/* Gated States Handling */}
       {data.state === "WAITING_FOR_REVIEW" && (
-        <div className="bg-purple-500/10 border border-purple-500/30 rounded-2xl p-5 flex items-start space-x-4 text-xs text-purple-200">
-          <Clock className="w-6 h-6 text-purple-400 flex-shrink-0 mt-0.5" />
-          <div className="space-y-1">
-            <h3 className="font-bold text-sm text-purple-300">İnsan İncelemesi Bekleniyor</h3>
-            <p className="leading-relaxed">
-              {data.user_message || "Kültürel anlatı sunulmadan önce motif eşleşmesinin insan incelemesinden geçmesi gerekiyor."}
-            </p>
+        <div className="bg-purple-500/10 border border-purple-500/30 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-purple-200">
+          <div className="flex items-start space-x-4">
+            <Clock className="w-6 h-6 text-purple-400 flex-shrink-0 mt-0.5" />
+            <div className="space-y-1">
+              <h3 className="font-bold text-sm text-purple-300">İnsan İncelemesi Bekleniyor</h3>
+              <p className="leading-relaxed text-slate-300">
+                {data.user_message || "Kültürel anlatı sunulmadan önce motif eşleşmesinin insan incelemesinden geçmesi gerekiyor."}
+              </p>
+            </div>
           </div>
+          <Link
+            href="/reviews/motifs"
+            className="inline-flex items-center space-x-1.5 px-4 py-2 bg-purple-500 hover:bg-purple-400 text-slate-950 font-bold rounded-xl text-xs transition-colors shrink-0 shadow-md"
+          >
+            <ShieldCheck className="w-4 h-4" />
+            <span>Motif İnceleme Paneline Git</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
       )}
 

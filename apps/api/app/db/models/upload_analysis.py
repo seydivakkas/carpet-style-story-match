@@ -13,9 +13,9 @@ from sqlalchemy import (
     Text,
     DateTime,
     Enum as SQLEnum,
-    JSON
+    JSON,
+    Uuid
 )
-from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
 from app.db.session import Base
 
@@ -31,7 +31,7 @@ class UploadAnalysisModel(Base):
     __tablename__ = "upload_analyses"
 
     id: Mapped[uuid.UUID] = mapped_column(
-        UUID(as_uuid=True),
+        Uuid(as_uuid=True),
         primary_key=True,
         default=uuid.uuid4
     )
@@ -80,6 +80,10 @@ class UploadAnalysisModel(Base):
     )
     unified_result: Mapped[Optional[Dict[str, Any]]] = mapped_column(
         JSON,
+        nullable=True
+    )
+    error: Mapped[Optional[str]] = mapped_column(
+        Text,
         nullable=True
     )
 

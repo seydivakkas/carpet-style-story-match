@@ -13,7 +13,9 @@ from fastapi.responses import JSONResponse
 from app.core.config import settings
 from app.core.logging import logger
 from app.core.middleware import CorrelationIDMiddleware, SecurityHeadersMiddleware, RateLimiterMiddleware
-from app.db.session import engine, Base, dispose_db_engine
+from sqlalchemy import select
+from app.db.session import engine, Base, dispose_db_engine, AsyncSessionLocal
+from app.db.models.upload_analysis import UploadAnalysisModel, UploadAnalysisStatusEnum
 import app.db.models  # noqa: F401
 from app.api.v1.router import api_v1_router
 
@@ -23,12 +25,34 @@ from PIL import Image
 Image.MAX_IMAGE_PIXELS = settings.MAX_IMAGE_PIXELS
 
 
+async def reap_stale_processing_analyses(db: Optional[AsyncSession] = None):
+    """Reaps any stale analyses left in PROCESSING status during server restart."""
+    if db is not None:
+        await _do_reap_stale(db)
+    else:
+        async with AsyncSessionLocal() as bg_db:
+            await _do_reap_stale(bg_db)
+
+
+async def _do_reap_stale(db: AsyncSession):
+    stmt = select(UploadAnalysisModel).where(UploadAnalysisModel.status == UploadAnalysisStatusEnum.PROCESSING)
+    res = await db.execute(stmt)
+    stale_records = res.scalars().all()
+    for record in stale_records:
+        record.status = UploadAnalysisStatusEnum.FAILED
+        record.error = "server_restarted"
+    if stale_records:
+        await db.commit()
+        logger.warning(f"Reaped {len(stale_records)} stale PROCESSING analysis records on server startup.")
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Lifespan context manager for startup and shutdown events."""
     logger.info(f"Starting Carpet Style & Story Match API in {settings.APP_ENV} mode")
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+    await reap_stale_processing_analyses()
     yield
     logger.info("Shutting down API. Disposing database engine...")
     await dispose_db_engine()

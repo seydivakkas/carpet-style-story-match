@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, use } from "react";
-import { fetchUnifiedResultById, UnifiedUploadResult } from "@/lib/result-experience-api";
+import { fetchAnalysisStatus, fetchUnifiedResultById, UnifiedUploadResult } from "@/lib/result-experience-api";
 import UnifiedUploadResultPage from "@/components/result/UnifiedUploadResultPage";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -18,38 +18,114 @@ export default function AnalysisResultPage({ params }: PageProps) {
 
   const [result, setResult] = useState<UnifiedUploadResult | null>(null);
   const [loading, setLoading] = useState(true);
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function loadResult() {
+    let isCancelled = false;
+    let timerId: NodeJS.Timeout | null = null;
+
+    const startTime = Date.now();
+    timerId = setInterval(() => {
+      setElapsedSeconds(Math.floor((Date.now() - startTime) / 1000));
+    }, 1000);
+
+    async function poll() {
       try {
         setLoading(true);
         setError(null);
-        const data = await fetchUnifiedResultById(analysisId);
-        setResult(data);
-      } catch (err: unknown) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError("Analiz sonucu yüklenirken beklenmeyen bir hata oluştu.");
+
+        while (!isCancelled) {
+          try {
+            const statusRes = await fetchAnalysisStatus(analysisId);
+            if (isCancelled) break;
+
+            if (statusRes.status === "COMPLETED" || statusRes.status === "BLOCKED_BY_QUALITY") {
+              const resData = await fetchUnifiedResultById(analysisId);
+              if (!isCancelled) {
+                setResult(resData);
+                setLoading(false);
+
+                // Ensure stored in recent analyses
+                try {
+                  const newEntry = {
+                    id: analysisId,
+                    fileName: "Halı Analiz Raporu",
+                    timestamp: new Date().toISOString()
+                  };
+                  const existing = JSON.parse(localStorage.getItem("carpet_recent_analyses") || "[]");
+                  const updated = [newEntry, ...existing.filter((x: any) => x.id !== analysisId)].slice(0, 10);
+                  localStorage.setItem("carpet_recent_analyses", JSON.stringify(updated));
+                } catch {
+                  // ignore storage error
+                }
+              }
+              return;
+            }
+
+            if (statusRes.status === "FAILED") {
+              if (!isCancelled) {
+                setError(statusRes.error || "Analiz işlemi sırasında sunucu hatası oluştu.");
+                setLoading(false);
+              }
+              return;
+            }
+          } catch (fetchErr: unknown) {
+            if (fetchErr instanceof Error && fetchErr.message === "NOT_FOUND") {
+              if (!isCancelled) {
+                setError("Analiz kaydı bulunamadı.");
+                setLoading(false);
+              }
+              return;
+            }
+          }
+
+          if (Date.now() - startTime >= 90000) {
+            if (!isCancelled) {
+              setError("Analiz süresi zaman aşımına uğradı (90 saniye).");
+              setLoading(false);
+            }
+            return;
+          }
+
+          await new Promise((resolve) => setTimeout(resolve, 1500));
         }
-      } finally {
-        setLoading(false);
+      } catch (err: unknown) {
+        if (!isCancelled) {
+          if (err instanceof Error) {
+            setError(err.message);
+          } else {
+            setError("Analiz süreci takip edilirken beklenmeyen bir hata oluştu.");
+          }
+          setLoading(false);
+        }
       }
     }
 
     if (analysisId) {
-      loadResult();
+      poll();
     }
+
+    return () => {
+      isCancelled = true;
+      if (timerId) clearInterval(timerId);
+    };
   }, [analysisId]);
 
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between">
         <Header />
-        <main className="flex-1 flex flex-col items-center justify-center p-8 space-y-4">
-          <Loader2 className="w-10 h-10 text-amber-400 animate-spin" />
-          <p className="text-sm font-mono text-slate-400">Analiz sonucu yükleniyor ({analysisId.slice(0, 8)}...)</p>
+        <main className="flex-1 flex flex-col items-center justify-center p-8 space-y-6">
+          <div className="p-4 bg-amber-500/10 border border-amber-500/30 rounded-2xl text-amber-400">
+            <Loader2 className="w-10 h-10 animate-spin mx-auto" />
+          </div>
+          <div className="text-center space-y-2">
+            <h2 className="text-xl font-extrabold text-white">Analiz Sürüyor…</h2>
+            <p className="text-xs font-mono text-slate-400">
+              9D Style DNA, Renk Analizi ve Motif Tespiti çalıştırılıyor ({elapsedSeconds} saniye)
+            </p>
+          </div>
         </main>
         <Footer />
       </div>

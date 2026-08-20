@@ -79,19 +79,25 @@ async def get_review_queue(
             }
         )
 
-    sync_db = db.sync_session
-    service = MotifReviewPersistenceService(sync_db)
+    def _fetch_queue(sync_session):
+        srv = MotifReviewPersistenceService(sync_session)
+        stmt = select(MotifReviewSubjectModel).order_by(MotifReviewSubjectModel.created_at.asc())
+        subjects = list(sync_session.execute(stmt).scalars().all())
+        results = []
+        for s in subjects:
+            try:
+                eff = srv.get_effective_result_by_identity(s.analysis_id, s.candidate_id)
+                results.append((s, eff))
+            except Exception:
+                pass
+        return results
 
-    # 1. Fetch all subjects ordered by created_at ASC
-    stmt = select(MotifReviewSubjectModel).order_by(MotifReviewSubjectModel.created_at.asc())
-    result = await db.execute(stmt)
-    all_subjects = list(result.scalars().all())
+    subject_data = await db.run_sync(_fetch_queue)
 
     # 2. Filter subjects by effective status in memory
     filtered_items: List[MotifReviewQueueItemResponse] = []
 
-    for subj_model in all_subjects:
-        res = service.get_effective_result_by_identity(subj_model.analysis_id, subj_model.candidate_id)
+    for subj_model, res in subject_data:
         effective_stat = res.effective_status  # AI_CANDIDATE / UNMAPPED_MOTIF_CANDIDATE, CURATOR_CONFIRMED, UNCERTAIN, REJECTED
 
         # Map filter categories
@@ -149,8 +155,15 @@ async def get_review_detail(
     db: AsyncSession = Depends(get_db)
 ) -> MotifReviewDetailResponse:
     """Returns candidate region evidence, visual observations, provenance, and effective review state."""
-    sync_db = db.sync_session
-    subject_model = MotifReviewRepository.get_subject_by_public_id(sync_db, review_subject_id)
+    def _fetch_detail(sync_session):
+        subject_model = MotifReviewRepository.get_subject_by_public_id(sync_session, review_subject_id)
+        if subject_model is None:
+            return None, None
+        service = MotifReviewPersistenceService(sync_session)
+        res = service.get_effective_result_by_identity(subject_model.analysis_id, subject_model.candidate_id)
+        return subject_model, res
+
+    subject_model, res = await db.run_sync(_fetch_detail)
     if subject_model is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -160,11 +173,9 @@ async def get_review_detail(
             }
         )
 
-    service = MotifReviewPersistenceService(sync_db)
-    res = service.get_effective_result_by_identity(subject_model.analysis_id, subject_model.candidate_id)
     img_url, img_avail = _resolve_protected_image_url(subject_model.review_subject_id, subject_model.image_asset_id)
 
-    snapshot = subject_model.candidate_snapshot
+    snapshot = subject_model.candidate_snapshot or {}
     region = snapshot.get("region", {})
     visual_evidence = snapshot.get("visual_evidence", [])
 
@@ -178,7 +189,7 @@ async def get_review_detail(
         candidate_confidence=subject_model.candidate_confidence,
         candidate_region=region,
         visual_evidence=visual_evidence,
-        model_provenance=subject_model.model_provenance,
+        model_provenance=subject_model.model_provenance or {},
         snapshot_hash=subject_model.snapshot_hash,
         ontology_version=subject_model.ontology_version,
         review_version=subject_model.review_version,
@@ -204,13 +215,11 @@ async def get_review_image(
 ) -> FileResponse:
     """
     Returns the protected candidate preview image asset.
-    
-    Authorizes access via ReviewerContext dependency. Obtains image_asset_id
-    strictly from server-persisted MotifReviewSubjectModel (no client path override).
-    Enforces filesystem containment and MIME media type validation.
     """
-    sync_db = db.sync_session
-    subject_model = MotifReviewRepository.get_subject_by_public_id(sync_db, review_subject_id)
+    def _fetch_img_subject(sync_session):
+        return MotifReviewRepository.get_subject_by_public_id(sync_session, review_subject_id)
+
+    subject_model = await db.run_sync(_fetch_img_subject)
     if subject_model is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -230,7 +239,6 @@ async def get_review_image(
             }
         )
 
-    # File resolution & storage containment check
     safe_filename = Path(image_asset_id).name
     if not safe_filename or safe_filename in (".", ".."):
         raise HTTPException(
@@ -266,7 +274,6 @@ async def get_review_image(
             }
         )
 
-    # Media Type Validation (Images ONLY)
     ext = target_path.suffix.lower()
     mime_map = {
         ".jpg": "image/jpeg",
@@ -302,8 +309,15 @@ async def get_review_history(
     db: AsyncSession = Depends(get_db)
 ) -> List[MotifReviewEvent]:
     """Returns chronological audit history for a review subject."""
-    sync_db = db.sync_session
-    subject_model = MotifReviewRepository.get_subject_by_public_id(sync_db, review_subject_id)
+    def _fetch_history(sync_session):
+        subject_model = MotifReviewRepository.get_subject_by_public_id(sync_session, review_subject_id)
+        if subject_model is None:
+            return None, None
+        service = MotifReviewPersistenceService(sync_session)
+        events = service.get_history_by_identity(subject_model.analysis_id, subject_model.candidate_id)
+        return subject_model, events
+
+    subject_model, events = await db.run_sync(_fetch_history)
     if subject_model is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -313,9 +327,7 @@ async def get_review_history(
             }
         )
 
-    service = MotifReviewPersistenceService(sync_db)
-    events = service.get_history_by_identity(subject_model.analysis_id, subject_model.candidate_id)
-    return events
+    return events or []
 
 
 @router.post(
@@ -333,22 +345,7 @@ async def submit_review_decision_endpoint(
 ) -> MotifReviewResult:
     """
     Submits a curator review decision (CONFIRM, UNCERTAIN, or REJECT).
-    
-    Uses server-owned reviewer context (reviewer_ref, reviewer_boundary) and enforces
-    optimistic concurrency (expected_version) and idempotency.
     """
-    sync_db = db.sync_session
-    subject_model = MotifReviewRepository.get_subject_by_public_id(sync_db, review_subject_id)
-    if subject_model is None:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail={
-                "code": "REVIEW_SUBJECT_NOT_FOUND",
-                "message": f"Review subject '{review_subject_id}' not found."
-            }
-        )
-
-    # Construct strict server-side domain request with server-owned reviewer context
     domain_req = MotifReviewDecisionRequest(
         decision=body.decision,
         selected_canonical_motif_key=body.selected_canonical_motif_key,
@@ -360,13 +357,27 @@ async def submit_review_decision_endpoint(
         idempotency_key=idempotency_key
     )
 
-    service = MotifReviewPersistenceService(sync_db)
-    try:
-        result = service.submit_review_decision(
+    def _submit(sync_session):
+        subject_model = MotifReviewRepository.get_subject_by_public_id(sync_session, review_subject_id)
+        if subject_model is None:
+            return None
+        service = MotifReviewPersistenceService(sync_session)
+        return service.submit_review_decision(
             analysis_id=subject_model.analysis_id,
             candidate_id=subject_model.candidate_id,
             request=domain_req
         )
+
+    try:
+        result = await db.run_sync(_submit)
+        if result is None:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail={
+                    "code": "REVIEW_SUBJECT_NOT_FOUND",
+                    "message": f"Review subject '{review_subject_id}' not found."
+                }
+            )
         return result
     except ReviewConcurrencyException as rce:
         raise HTTPException(
@@ -408,6 +419,8 @@ async def submit_review_decision_endpoint(
                 "message": str(ucme)
             }
         )
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
