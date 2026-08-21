@@ -92,7 +92,10 @@ async def get_review_queue(
                 pass
         return results
 
-    subject_data = await db.run_sync(_fetch_queue)
+    if hasattr(db, "run_sync"):
+        subject_data = await db.run_sync(_fetch_queue)
+    else:
+        subject_data = _fetch_queue(db)
 
     # 2. Filter subjects by effective status in memory
     filtered_items: List[MotifReviewQueueItemResponse] = []

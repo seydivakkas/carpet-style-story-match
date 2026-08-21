@@ -49,25 +49,23 @@ def get_vlm_provider(settings: Settings) -> Optional[MotifVisionProvider]:
     if mode == "LOCAL_VLLM":
         if not settings.MOTIF_VLM_BASE_URL:
             return LocalCVVisionProvider()
-        base_vlm = VLLMOpenAICompatibleVisionProvider(
+        return VLLMOpenAICompatibleVisionProvider(
             base_url=settings.MOTIF_VLM_BASE_URL,
             model_id=settings.MOTIF_VLM_MODEL,
             timeout_seconds=settings.MOTIF_VLM_TIMEOUT_SECONDS,
             max_retries=settings.MOTIF_VLM_MAX_RETRIES
         )
-        return HybridVisionProvider(vlm_provider=base_vlm)
 
     if mode == "REMOTE_OPENAI_COMPATIBLE":
         if not settings.MOTIF_VLM_BASE_URL:
             return LocalCVVisionProvider()
-        base_vlm = RemoteOpenAICompatibleVisionProvider(
+        return RemoteOpenAICompatibleVisionProvider(
             base_url=settings.MOTIF_VLM_BASE_URL,
             model_id=settings.MOTIF_VLM_MODEL,
             api_key=settings.MOTIF_VLM_API_KEY,
             timeout_seconds=settings.MOTIF_VLM_TIMEOUT_SECONDS,
             max_retries=settings.MOTIF_VLM_MAX_RETRIES
         )
-        return HybridVisionProvider(vlm_provider=base_vlm)
 
     if mode == "TEST_FIXTURE":
         return FixtureVisionProvider()

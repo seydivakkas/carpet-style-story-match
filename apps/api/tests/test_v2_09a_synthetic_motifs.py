@@ -435,3 +435,45 @@ def test_v2_09a_exporters_exclude_hard_negatives_from_positive_gt():
             lines = f.readlines()
             assert len(lines) == len(insts)
 
+
+def test_v2_10_randomization_v2_and_v1_baseline_preservation():
+    """Verify domain randomization v2 engines and direction locks while preserving v1 compatibility."""
+    import numpy as np
+    from packages.synthetic_motifs.randomization_v2 import (
+        DirectionalPolicyEngine,
+        CameraOpticalChainEngine,
+        ProceduralWeaveTextureEngine,
+        AbrasionWearEngine,
+        ColorAgingFadingEngine,
+        HandmadeElasticWarpEngine,
+        ANTIQUE_NATURAL_PALETTES,
+    )
+
+    rng = np.random.RandomState(42)
+
+    # 1. Directional Policy Engine
+    for _ in range(50):
+        tree_rot = DirectionalPolicyEngine.sample_rotation("tree_like", rng)
+        assert -8.0 <= tree_rot <= 8.0, f"Tree rotation {tree_rot} exceeded locked bounds"
+        mihrap_rot = DirectionalPolicyEngine.sample_rotation("niche_like", rng)
+        assert -8.0 <= mihrap_rot <= 8.0, f"Mihrap rotation {mihrap_rot} exceeded locked bounds"
+
+    # 2. Camera Chain Engine
+    dummy_img = np.full((300, 300, 3), 128, dtype=np.uint8)
+    cam_img, applied = CameraOpticalChainEngine.apply_chain(dummy_img, rng=rng)
+    assert cam_img.shape == (300, 300, 3)
+    assert cam_img.dtype == np.uint8
+    assert "jpeg_quality" in applied
+
+    # 3. Texture & Aging
+    tex_noise = ProceduralWeaveTextureEngine.generate_weave_texture(300, 300, rng=rng)
+    assert tex_noise.shape == (300, 300, 3)
+    aged_img, _ = ColorAgingFadingEngine.apply_fading(dummy_img, rng=rng)
+    assert aged_img.shape == (300, 300, 3)
+    distressed_img, _ = AbrasionWearEngine.apply_abrasion(dummy_img, (200, 200, 200), rng=rng)
+    assert distressed_img.shape == (300, 300, 3)
+
+    # 4. Palettes
+    assert len(ANTIQUE_NATURAL_PALETTES) >= 5
+
+

@@ -53,7 +53,38 @@ def sync_db_session():
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine, expire_on_commit=False)
     session = Session()
+
+    class MockAsyncSession:
+        def __init__(self, s):
+            self.sync_session = s
+        async def execute(self, stmt):
+            res = self.sync_session.execute(stmt)
+            class ScalarResult:
+                def scalars(self):
+                    class Scalars:
+                        def all(self):
+                            return res.scalars().all()
+                        def first(self):
+                            return res.scalars().first()
+                    return Scalars()
+                def scalar_one_or_none(self):
+                    return res.scalar_one_or_none()
+            return ScalarResult()
+        async def run_sync(self, fn, *args, **kwargs):
+            return fn(self.sync_session, *args, **kwargs)
+        async def commit(self):
+            self.sync_session.commit()
+        async def rollback(self):
+            self.sync_session.rollback()
+        def add(self, obj):
+            self.sync_session.add(obj)
+
+    async def _mock_get_db():
+        yield MockAsyncSession(session)
+
+    app.dependency_overrides[get_db] = _mock_get_db
     yield session
+    app.dependency_overrides.pop(get_db, None)
     session.close()
 
 
@@ -260,6 +291,8 @@ async def test_protected_image_delivery(sync_db_session):
                                 return res.scalars().all()
                         return Scalars()
                 return ScalarResult()
+            async def run_sync(self, fn, *args, **kwargs):
+                return fn(self.sync_session, *args, **kwargs)
         yield MockAsyncSession(sync_db_session)
 
     app.dependency_overrides[get_db] = _mock_get_db
@@ -326,6 +359,8 @@ async def test_review_decision_flow_and_history(sync_db_session):
                                 return res.scalars().all()
                         return Scalars()
                 return ScalarResult()
+            async def run_sync(self, fn, *args, **kwargs):
+                return fn(self.sync_session, *args, **kwargs)
         yield MockAsyncSession(sync_db_session)
 
     app.dependency_overrides[get_db] = _mock_get_db

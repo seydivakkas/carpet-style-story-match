@@ -517,6 +517,28 @@ class UnifiedUploadResultService:
                 affinity_description=precomputed_thematic_affinity.get("affinity_description", ""),
             )
 
+        if card3_state != ResultSectionState.READY:
+            if confirmed_count > 0:
+                card3_state = ResultSectionState.WAITING_FOR_RESEARCH
+                card3_msg = "Motif eşleşmesi onaylandı. Kültürel bağlam araştırması henüz mevcut değil."
+            elif len(candidates_list) > 0:
+                card3_state = ResultSectionState.WAITING_FOR_REVIEW
+                card3_msg = "Kültürel bağlam sunulmadan önce motif eşleşmesinin insan incelemesinden geçmesi gerekiyor."
+            else:
+                card3_state = ResultSectionState.NOT_AVAILABLE
+                card3_msg = "Görsel üzerinde tespit edilen motif bulunamadı."
+
+        if card4_state != ResultSectionState.READY:
+            if confirmed_count > 0:
+                card4_state = ResultSectionState.WAITING_FOR_RESEARCH
+                card4_msg = "Motif eşleşmesi onaylandı. Motif anlatısı ve kültürel hikâye henüz mevcut değil."
+            elif len(candidates_list) > 0:
+                card4_state = ResultSectionState.WAITING_FOR_REVIEW
+                card4_msg = "Kültürel anlatı sunulmadan önce motif eşleşmesinin insan incelemesinden geçmesi gerekiyor."
+            else:
+                card4_state = ResultSectionState.NOT_AVAILABLE
+                card4_msg = "Görsel üzerinde tespit edilen motif bulunamadı."
+
         card3 = CulturalContextCard(
             state=card3_state,
             user_message=card3_msg,

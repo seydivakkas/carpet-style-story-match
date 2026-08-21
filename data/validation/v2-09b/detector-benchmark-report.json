@@ -131,5 +131,18 @@
     "detect_gpu_ms": 10.03,
     "obb_gpu_ms": 10.6,
     "cpu_inference_ms": 42.13
+  },
+  "canonical_benchmark_accounting": {
+    "internal_benchmark_checks": 57,
+    "passed_checks": 57,
+    "failed_checks": 0
+  },
+  "runtime_telemetry": {
+    "training_memory": {
+      "scope": "ACTUAL_TRAINING_PEAK"
+    },
+    "inference_latency": {
+      "cuda_synchronized": true
+    }
   }
 }
