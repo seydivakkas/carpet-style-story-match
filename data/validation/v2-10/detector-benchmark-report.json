@@ -1,0 +1,66 @@
+{
+  "benchmark_version": "v2-10-detector-benchmark-v1.0.0",
+  "status": "PASS",
+  "timestamp": "2026-08-21T13:33:16Z",
+  "weights_path": "artifacts\\v2-10\\models\\yolo11n_detect_seed42\\weights\\best.pt",
+  "weights_sha256": "985f9925cac0bdc9b6f7b9afb71e8091b4627e1e401adde1bf2deacc2519b22c",
+  "environment": {
+    "python": "3.14.3",
+    "torch": "2.11.0+cu126",
+    "cuda_available": true,
+    "gpu": "NVIDIA GeForce RTX 4070 Laptop GPU",
+    "vram_gb": 8.59,
+    "ultralytics_version": "8.4.41"
+  },
+  "real_benchmark": {
+    "version": "real-motif-benchmark-v1.0.0",
+    "total_images": 35,
+    "target_instances": 92,
+    "represented_classes": 17
+  },
+  "synthetic_benchmark": {
+    "detect": {
+      "mAP50": 1.0,
+      "mAP50-95": 0.7899,
+      "precision": 0.9886,
+      "recall": 0.9756,
+      "tp": 2081,
+      "fp": 24,
+      "fn": 52
+    },
+    "obb": {
+      "mAP50": 0.2547,
+      "mAP50-95": 0.1457,
+      "precision": 0.6123,
+      "recall": 0.3962,
+      "tp": 845,
+      "fp": 535,
+      "fn": 1288
+    }
+  },
+  "real_benchmark_metrics": {
+    "detect": {
+      "mAP50": 0.0,
+      "mAP50-95": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "tp": 0,
+      "fp": 254,
+      "fn": 92
+    },
+    "obb": {
+      "mAP50": 0.0,
+      "mAP50-95": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "tp": 0,
+      "fp": 33,
+      "fn": 92
+    }
+  },
+  "domain_gap": {
+    "detect_mAP50_gap": 1.0,
+    "detect_mAP50_95_gap": 0.7899,
+    "interpretation": "Detect model achieved synthetic mAP50: 1.0, real mAP50: 0.0. Domain gap: 1.0."
+  }
+}

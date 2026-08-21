@@ -1,0 +1,537 @@
+{
+  "experiment_id": "v2-10-real-gate-measurement",
+  "weights_path": "artifacts\\v2-10\\models\\yolo11n_detect_seed42\\weights\\best.pt",
+  "weights_sha256": "985f9925cac0bdc9b6f7b9afb71e8091b4627e1e401adde1bf2deacc2519b22c",
+  "confidence_threshold": 0.1,
+  "iou_threshold": 0.45,
+  "match_iou_threshold": 0.25,
+  "counting_convention": {
+    "raw_proposal_count": "Total candidate boxes emitted by YOLO forward pass prior to filtering",
+    "post_verifier_count": "Final candidates retained after CV morphology/contour gating",
+    "confidence_threshold": "Operational inference threshold (0.1)"
+  },
+  "overall_metrics_real": {
+    "mAP50": 0.0,
+    "mAP50-95": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "tp": 0,
+    "fp": 444,
+    "fn": 92,
+    "raw_proposal_count": 448,
+    "post_verifier_count": 444,
+    "validator_drop_count": 4
+  },
+  "overall_metrics_synthetic": {
+    "mAP50": 0.98822,
+    "mAP50-95": 0.87954
+  },
+  "tree_like_analysis": {
+    "raw_proposal_count": 3,
+    "dropped_by_cv": 3,
+    "post_verifier_count": 0,
+    "tp": 0,
+    "fp": 0,
+    "fn": 6,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "niche_like_analysis": {
+    "raw_proposal_count": 1,
+    "dropped_by_cv": 1,
+    "post_verifier_count": 0,
+    "tp": 0,
+    "fp": 0,
+    "fn": 4,
+    "precision": 0.0,
+    "recall": 0.0
+  },
+  "total_dropped_by_cv": 4,
+  "dropped_by_class": {
+    "cloud_band_like": 0,
+    "comb_like": 0,
+    "hook_like": 0,
+    "horn_like": 0,
+    "human_figure_like_geometric": 0,
+    "lattice_like": 0,
+    "lotus_like": 0,
+    "lozenge_like": 0,
+    "medallion_like": 0,
+    "niche_like": 1,
+    "octagonal_form": 0,
+    "palmette_like": 0,
+    "rosette_like": 0,
+    "star_like": 0,
+    "tree_like": 3,
+    "unmapped_visual_motif": 0,
+    "vine_scroll_like": 0
+  },
+  "class_stats": {
+    "cloud_band_like": {
+      "raw_proposals": 10,
+      "post_verifier": 10,
+      "tp": 0,
+      "fp": 10,
+      "fn": 0,
+      "support": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mAP50": 0.0
+    },
+    "comb_like": {
+      "raw_proposals": 171,
+      "post_verifier": 171,
+      "tp": 0,
+      "fp": 171,
+      "fn": 6,
+      "support": 6,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mAP50": 0.0
+    },
+    "hook_like": {
+      "raw_proposals": 4,
+      "post_verifier": 4,
+      "tp": 0,
+      "fp": 4,
+      "fn": 3,
+      "support": 3,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mAP50": 0.0
+    },
+    "horn_like": {
+      "raw_proposals": 216,
+      "post_verifier": 216,
+      "tp": 0,
+      "fp": 216,
+      "fn": 5,
+      "support": 5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mAP50": 0.0
+    },
+    "human_figure_like_geometric": {
+      "raw_proposals": 2,
+      "post_verifier": 2,
+      "tp": 0,
+      "fp": 2,
+      "fn": 5,
+      "support": 5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mAP50": 0.0
+    },
+    "lattice_like": {
+      "raw_proposals": 0,
+      "post_verifier": 0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 6,
+      "support": 6,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mAP50": 0.0
+    },
+    "lotus_like": {
+      "raw_proposals": 7,
+      "post_verifier": 7,
+      "tp": 0,
+      "fp": 7,
+      "fn": 0,
+      "support": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mAP50": 0.0
+    },
+    "lozenge_like": {
+      "raw_proposals": 1,
+      "post_verifier": 1,
+      "tp": 0,
+      "fp": 1,
+      "fn": 5,
+      "support": 5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mAP50": 0.0
+    },
+    "medallion_like": {
+      "raw_proposals": 0,
+      "post_verifier": 0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "support": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mAP50": 0.0
+    },
+    "niche_like": {
+      "raw_proposals": 1,
+      "post_verifier": 0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "support": 4,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mAP50": 0.0
+    },
+    "octagonal_form": {
+      "raw_proposals": 0,
+      "post_verifier": 0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "support": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mAP50": 0.0
+    },
+    "palmette_like": {
+      "raw_proposals": 6,
+      "post_verifier": 6,
+      "tp": 0,
+      "fp": 6,
+      "fn": 0,
+      "support": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mAP50": 0.0
+    },
+    "rosette_like": {
+      "raw_proposals": 13,
+      "post_verifier": 13,
+      "tp": 0,
+      "fp": 13,
+      "fn": 9,
+      "support": 9,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mAP50": 0.0
+    },
+    "star_like": {
+      "raw_proposals": 0,
+      "post_verifier": 0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 8,
+      "support": 8,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mAP50": 0.0
+    },
+    "tree_like": {
+      "raw_proposals": 3,
+      "post_verifier": 0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 6,
+      "support": 6,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mAP50": 0.0
+    },
+    "unmapped_visual_motif": {
+      "raw_proposals": 1,
+      "post_verifier": 1,
+      "tp": 0,
+      "fp": 1,
+      "fn": 32,
+      "support": 32,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mAP50": 0.0
+    },
+    "vine_scroll_like": {
+      "raw_proposals": 13,
+      "post_verifier": 13,
+      "tp": 0,
+      "fp": 13,
+      "fn": 3,
+      "support": 3,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mAP50": 0.0
+    }
+  },
+  "top_confusions": [
+    [
+      "unmapped_visual_motif -> comb_like",
+      4
+    ],
+    [
+      "unmapped_visual_motif -> horn_like",
+      3
+    ],
+    [
+      "rosette_like -> comb_like",
+      2
+    ],
+    [
+      "tree_like -> horn_like",
+      1
+    ],
+    [
+      "lattice_like -> comb_like",
+      1
+    ],
+    [
+      "lattice_like -> vine_scroll_like",
+      1
+    ],
+    [
+      "lattice_like -> rosette_like",
+      1
+    ],
+    [
+      "star_like -> comb_like",
+      1
+    ],
+    [
+      "star_like -> horn_like",
+      1
+    ]
+  ],
+  "failures": [
+    {
+      "img": "real_carpet_001.jpg",
+      "gt": "star_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanlis Negatif / Kacirildi (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_001.jpg",
+      "gt": "rosette_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanlis Negatif / Kacirildi (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_002.jpg",
+      "gt": "rosette_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanlis Negatif / Kacirildi (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_002.jpg",
+      "gt": "lozenge_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanlis Negatif / Kacirildi (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_004.jpg",
+      "gt": "niche_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanlis Negatif / Kacirildi (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_004.jpg",
+      "gt": "tree_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanlis Negatif / Kacirildi (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_007.jpg",
+      "gt": "horn_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanlis Negatif / Kacirildi (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_007.jpg",
+      "gt": "comb_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanlis Negatif / Kacirildi (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_011.jpg",
+      "gt": "human_figure_like_geometric",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanlis Negatif / Kacirildi (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_011.jpg",
+      "gt": "unmapped_visual_motif",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanlis Negatif / Kacirildi (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_019.jpg",
+      "gt": "rosette_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanlis Negatif / Kacirildi (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_019.jpg",
+      "gt": "lozenge_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanlis Negatif / Kacirildi (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_020.jpg",
+      "gt": "lozenge_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanlis Negatif / Kacirildi (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_020.jpg",
+      "gt": "niche_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanlis Negatif / Kacirildi (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_031.jpg",
+      "gt": "vine_scroll_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanlis Negatif / Kacirildi (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_031.jpg",
+      "gt": "unmapped_visual_motif",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanlis Negatif / Kacirildi (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_063.jpg",
+      "gt": "unmapped_visual_motif",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanlis Negatif / Kacirildi (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_063.jpg",
+      "gt": "unmapped_visual_motif",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanlis Negatif / Kacirildi (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_067.jpg",
+      "gt": "unmapped_visual_motif",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanlis Negatif / Kacirildi (False Negative)",
+      "iou": 0.0
+    },
+    {
+      "img": "real_carpet_067.jpg",
+      "gt": "lattice_like",
+      "pred": "Tespit Edilemedi (None)",
+      "conf": 0.0,
+      "type": "Yanlis Negatif / Kacirildi (False Negative)",
+      "iou": 0.0
+    }
+  ],
+  "gate_checklist": {
+    "gate_a_real_map50_ge_70": {
+      "status": "FAIL",
+      "threshold": ">= 0.70",
+      "value": 0.0,
+      "evidence": "Real mAP50 = 0.0000 (Threshold: >= 0.7000)"
+    },
+    "gate_b_tree_niche_precision_ge_90": {
+      "status": "PASS",
+      "threshold": ">= 0.90",
+      "tree_precision": 0.0,
+      "niche_precision": 0.0,
+      "evidence": "tree_like precision = 0.0000, niche_like precision = 0.0000 (Threshold: >= 0.9000)"
+    },
+    "gate_c_kb_classes_recall_ge_60": {
+      "status": "FAIL",
+      "threshold": ">= 0.60",
+      "details": {
+        "tree_like": {
+          "recall": 0.0,
+          "support": 6,
+          "pass": false
+        },
+        "niche_like": {
+          "recall": 0.0,
+          "support": 4,
+          "pass": false
+        },
+        "star_like": {
+          "recall": 0.0,
+          "support": 8,
+          "pass": false
+        },
+        "horn_like": {
+          "recall": 0.0,
+          "support": 5,
+          "pass": false
+        },
+        "vine_scroll_like": {
+          "recall": 0.0,
+          "support": 3,
+          "pass": false
+        },
+        "rosette_like": {
+          "recall": 0.0,
+          "support": 9,
+          "pass": false
+        },
+        "human_figure_like_geometric": {
+          "recall": 0.0,
+          "support": 5,
+          "pass": false
+        },
+        "comb_like": {
+          "recall": 0.0,
+          "support": 6,
+          "pass": false
+        },
+        "hook_like": {
+          "recall": 0.0,
+          "support": 3,
+          "pass": false
+        }
+      },
+      "evidence": "KB classes meeting >=0.60 recall: 0 / 9"
+    },
+    "gate_d_synthetic_regression_check": {
+      "status": "PASS",
+      "threshold": ">= 0.899",
+      "value": 0.98822,
+      "evidence": "Synthetic test mAP50 = 0.9882 (Threshold: >= 0.8990)"
+    },
+    "gate_e_tree_fp_zero": {
+      "status": "PASS",
+      "threshold": "== 0",
+      "value": 0,
+      "evidence": "tree_like post-verifier FP = 0 (Required: 0)"
+    }
+  }
+}
