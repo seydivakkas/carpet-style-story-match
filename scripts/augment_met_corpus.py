@@ -1,5 +1,10 @@
 """
-Met Museum Corpus Augmentation and License Segregation Script for Y6.5.
+Met Museum Corpus Augmentation and License Segregation Script for Y6.5 (Fast & Parallel).
+Fetches CC0 public domain carpet/rug/kilim images from Met Open Access API,
+ensures Met share >= 25% of real_corpus_v1 (target 180 Met images -> 26.5% Met share),
+segregates licenses into training_safe (CC0) vs review_needed (NC),
+and updates metadata.jsonl & corpus_manifest.json.
+
 Author: Seydi Eryilmaz (@seydivakkas)
 Copyright (c) 2026 Seydi Eryilmaz - All Rights Reserved
 """
@@ -22,7 +27,7 @@ IMAGES_DIR = CORPUS_DIR / "images"
 METADATA_FILE = CORPUS_DIR / "metadata.jsonl"
 MANIFEST_FILE = CORPUS_DIR / "corpus_manifest.json"
 
-TARGET_MET_TOTAL = 180  # Target ~180 Met images out of ~680 total = ~26.5% (>25% target)
+TARGET_MET_TOTAL = 180  # 180 Met + 499 V&A = 679 total -> 26.51% Met share (Target >= 25%)
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
@@ -46,6 +51,7 @@ def load_holdout_blacklist() -> set:
     dirs_to_check = [
         ROOT_DIR / "data" / "datasets" / "real-motif-benchmark-v1" / "images",
         ROOT_DIR / "scratch" / "curation_images",
+        ROOT_DIR / "apps" / "api" / "data" / "uploads" / "carpets",
     ]
     for d in dirs_to_check:
         if d.exists():
@@ -55,52 +61,37 @@ def load_holdout_blacklist() -> set:
                         blacklist.add(compute_file_sha256(f))
                     except Exception:
                         pass
+    print(f"Loaded {len(blacklist)} unique holdout SHA256 hashes into blacklist.")
     return blacklist
 
 
+def fetch_json(url, timeout=10):
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    except Exception as e:
+        print(f"Error fetching {url}: {e}")
+        return None
+
+
 def fetch_all_met_candidates():
-    search_urls = [
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Textiles&hasImages=true&isPublicDomain=true&q=carpet",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Textiles&hasImages=true&isPublicDomain=true&q=rug",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Textiles&hasImages=true&isPublicDomain=true&q=prayer",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Textiles&hasImages=true&isPublicDomain=true&q=Islamic",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Textiles&hasImages=true&isPublicDomain=true&q=Turkish",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Textiles&hasImages=true&isPublicDomain=true&q=Persian",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Textiles&hasImages=true&isPublicDomain=true&q=Anatolian",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Textiles&hasImages=true&isPublicDomain=true&q=Caucasian",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Textiles&hasImages=true&isPublicDomain=true&q=Ottoman",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Textiles&hasImages=true&isPublicDomain=true&q=Safavid",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Textiles&hasImages=true&isPublicDomain=true&q=Mamluk",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Textiles&hasImages=true&isPublicDomain=true&q=tapestry",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Textiles&hasImages=true&isPublicDomain=true&q=weaving",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?medium=Textiles&hasImages=true&isPublicDomain=true&q=cushion",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?title=true&hasImages=true&isPublicDomain=true&q=carpet",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?title=true&hasImages=true&isPublicDomain=true&q=rug",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?title=true&hasImages=true&isPublicDomain=true&q=kilim",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&isPublicDomain=true&q=ushak",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&isPublicDomain=true&q=oushak",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&isPublicDomain=true&q=ladik",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&isPublicDomain=true&q=hereke",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&isPublicDomain=true&q=bergama",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&isPublicDomain=true&q=ghiordes",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&isPublicDomain=true&q=holbein",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&isPublicDomain=true&q=lotto",
-        "https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&isPublicDomain=true&q=prayer%20rug",
+    query_list = [
+        "carpet", "rug", "kilim", "prayer rug", "ushak", "oushak", "ladik", "hereke",
+        "bergama", "ghiordes", "gordes", "holbein", "lotto", "flatweave", "sumak",
+        "soumak", "shirvan", "kazak", "karabagh", "daghestan", "khorasan", "tabriz",
+        "kashan", "isfahan", "herat", "tapestry", "weaving"
     ]
 
     all_oids = set()
-    print("Querying Met Museum Open Access API across rich queries...")
-    for u in search_urls:
-        try:
-            req = urllib.request.Request(u, headers={"User-Agent": USER_AGENT})
-            with urllib.request.urlopen(req, timeout=12) as resp:
-                data = json.loads(resp.read().decode("utf-8"))
-                oids = data.get("objectIDs") or []
-                for oid in oids:
-                    all_oids.add(oid)
-            time.sleep(0.05)
-        except Exception as e:
-            print(f"Error querying {u}: {e}")
+    print("Querying Met Museum Open Access API across carpet/rug queries...")
+    for q in query_list:
+        url = f"https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&isPublicDomain=true&q={urllib.parse.quote(q)}"
+        data = fetch_json(url)
+        if data:
+            oids = data.get("objectIDs") or []
+            for oid in oids:
+                all_oids.add(oid)
 
     print(f"Total distinct candidate Met objectIDs discovered: {len(all_oids)}")
     return sorted(list(all_oids))
@@ -108,57 +99,53 @@ def fetch_all_met_candidates():
 
 def get_met_object_detail(oid: int):
     url = f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{oid}"
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(req, timeout=12) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-            if not data.get("isPublicDomain"):
-                return None
-            img_url = data.get("primaryImage")
-            if not img_url or not img_url.startswith("http"):
-                return None
-
-            title = (data.get("title") or "").lower()
-            obj_name = (data.get("objectName") or "").lower()
-            medium = (data.get("medium") or "").lower()
-            dept = (data.get("department") or "").lower()
-            classification = (data.get("classification") or "").lower()
-
-            combined = f"{title} {obj_name} {medium} {dept} {classification}"
-
-            # Exclude non-textiles
-            exclude_terms = ["folio", "manuscript", "paper", "stonepaste", "ceramic", "bowl", "coin", "sword", "armor", "painting on canvas", "oil on canvas", "drawing", "print", "photograph", "tile", "pottery", "glass"]
-            if any(ex in combined for ex in exclude_terms):
-                return None
-
-            # Must match textile / carpet / weaving
-            include_terms = ["carpet", "rug", "kilim", "textile", "tapestry", "weaving", "wool", "silk", "pile", "knot", "velvet", "embroidery", "cushion", "hanging", "panel", "cover"]
-            if not any(inc in combined for inc in include_terms):
-                return None
-
-            return {
-                "institution": "Metropolitan Museum of Art",
-                "institution_code": "MET",
-                "object_id": str(oid),
-                "accession_number": data.get("accessionNumber") or str(oid),
-                "title": data.get("title") or f"Met Object {oid}",
-                "culture": data.get("culture") or data.get("period") or "Islamic / Near Eastern / European",
-                "period": data.get("period") or data.get("objectDate") or "",
-                "object_date": data.get("objectDate") or "",
-                "image_url": img_url,
-                "source_url": data.get("objectURL") or f"https://www.metmuseum.org/art/collection/search/{oid}",
-                "license": "CC0 1.0 Universal (Public Domain)",
-                "rights_statement": "Public Domain / CC0 Open Access",
-            }
-    except Exception:
+    data = fetch_json(url)
+    if not data or not data.get("isPublicDomain"):
         return None
+
+    img_url = data.get("primaryImage")
+    if not img_url or not img_url.startswith("http"):
+        return None
+
+    title = (data.get("title") or "").lower()
+    obj_name = (data.get("objectName") or "").lower()
+    medium = (data.get("medium") or "").lower()
+    dept = (data.get("department") or "").lower()
+    classification = (data.get("classification") or "").lower()
+
+    combined = f"{title} {obj_name} {medium} {dept} {classification}"
+
+    # Exclude non-textiles
+    exclude_terms = ["folio", "manuscript", "paper", "stonepaste", "ceramic", "bowl", "coin", "sword", "armor", "painting on canvas", "oil on canvas", "drawing", "print", "photograph", "tile", "pottery", "glass", "sculpture", "statue", "furniture"]
+    if any(ex in combined for ex in exclude_terms):
+        return None
+
+    # Must match textile / carpet / weaving
+    include_terms = ["carpet", "rug", "kilim", "textile", "tapestry", "weaving", "wool", "silk", "pile", "knot", "velvet", "embroidery", "cushion", "hanging", "panel", "cover", "mat", "runner", "flatweave"]
+    if not any(inc in combined for inc in include_terms):
+        return None
+
+    return {
+        "institution": "Metropolitan Museum of Art",
+        "institution_code": "MET",
+        "object_id": str(oid),
+        "accession_number": data.get("accessionNumber") or str(oid),
+        "title": data.get("title") or f"Met Object {oid}",
+        "culture": data.get("culture") or data.get("period") or "Islamic / Near Eastern / European",
+        "period": data.get("period") or data.get("objectDate") or "",
+        "object_date": data.get("objectDate") or "",
+        "image_url": img_url,
+        "source_url": data.get("objectURL") or f"https://www.metmuseum.org/art/collection/search/{oid}",
+        "license": "CC0 1.0 Universal (Public Domain)",
+        "rights_statement": "Public Domain / CC0 Open Access",
+    }
 
 
 def download_and_validate(candidate: dict, holdout_blacklist: set):
     img_url = candidate["image_url"]
     try:
         req = urllib.request.Request(img_url, headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(req, timeout=20) as resp:
+        with urllib.request.urlopen(req, timeout=15) as resp:
             data = resp.read()
             if len(data) < 10000:
                 return None, "file_too_small"
@@ -190,9 +177,10 @@ def main():
     print("MET CORPUS AUGMENTATION & LICENSE SEGREGATION (Y6.5)")
     print("=" * 80)
 
+    IMAGES_DIR.mkdir(parents=True, exist_ok=True)
     holdout_blacklist = load_holdout_blacklist()
 
-    # Step 1: Load existing corpus metadata & fix license strings for V&A
+    # Step 1: Load existing corpus metadata & fix license strings
     existing_entries = []
     seen_corpus_hashes = set()
     existing_met_count = 0
@@ -224,17 +212,19 @@ def main():
         "short_edge_too_small": 0,
         "duplicate_in_corpus": 0,
         "download_error": 0,
+        "file_too_small": 0,
+        "decode_error": 0,
     }
 
     if needed_met > 0:
         met_oids = fetch_all_met_candidates()
-        print(f"Fetching details for {len(met_oids)} Met objects...")
+        print(f"Fetching details for {len(met_oids)} Met objects in parallel...")
         met_candidates = []
-        with ThreadPoolExecutor(max_workers=12) as executor:
+        with ThreadPoolExecutor(max_workers=25) as executor:
             futures = {executor.submit(get_met_object_detail, oid): oid for oid in met_oids}
             for fut in as_completed(futures):
                 res = fut.result()
-                if res and res["sha256_placeholder" if "sha256_placeholder" in res else "object_id"] not in seen_corpus_hashes:
+                if res:
                     met_candidates.append(res)
 
         print(f"Discovered {len(met_candidates)} verified Met textile/carpet candidates.")
@@ -242,7 +232,7 @@ def main():
         current_idx = len(existing_entries)
         print(f"Downloading new Met images (Target: {needed_met} new images)...")
 
-        with ThreadPoolExecutor(max_workers=8) as executor:
+        with ThreadPoolExecutor(max_workers=15) as executor:
             futures = [executor.submit(download_and_validate, c, holdout_blacklist) for c in met_candidates]
             for fut in as_completed(futures):
                 cand, reason = fut.result()
@@ -287,8 +277,8 @@ def main():
                 }
                 new_saved_entries.append(meta_record)
 
-                if len(new_saved_entries) % 10 == 0:
-                    print(f"  [Progress] Acquired {len(new_saved_entries)} new Met images...")
+                if len(new_saved_entries) % 5 == 0:
+                    print(f"  [Progress] Acquired {len(new_saved_entries)}/{needed_met} new Met images...")
 
                 if len(new_saved_entries) >= needed_met:
                     print(f"Reached target of {needed_met} new Met images. Stopping collection.")
@@ -307,7 +297,6 @@ def main():
 
     for e in all_entries:
         lic = (e.get("license") or "").lower()
-        inst = e.get("institution")
         if "cc0" in lic or ("public domain" in lic and "v&a" not in lic and "nc" not in lic):
             training_safe_list.append(e)
         else:
