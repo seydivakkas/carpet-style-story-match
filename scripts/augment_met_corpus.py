@@ -1,7 +1,7 @@
 """
-Met Museum Corpus Augmentation and License Segregation Script for Y6.5 (Fast & Parallel).
-Fetches CC0 public domain carpet/rug/kilim images from Met Open Access API,
-ensures Met share >= 25% of real_corpus_v1 (target 180 Met images -> 26.5% Met share),
+Met Museum Corpus Augmentation and License Segregation Script for Y6.5 (Polite, Fast & Resilient).
+Fetches CC0 public domain carpet/rug/kilim images from Met Museum Open Access collections,
+ensures Met share >= 25% of real_corpus_v1 (target 180 Met images -> 26.51% Met share),
 segregates licenses into training_safe (CC0) vs review_needed (NC),
 and updates metadata.jsonl & corpus_manifest.json.
 
@@ -17,7 +17,6 @@ import hashlib
 import urllib.request
 import urllib.parse
 from pathlib import Path
-from concurrent.futures import ThreadPoolExecutor, as_completed
 import cv2
 import numpy as np
 
@@ -29,7 +28,7 @@ MANIFEST_FILE = CORPUS_DIR / "corpus_manifest.json"
 
 TARGET_MET_TOTAL = 180  # 180 Met + 499 V&A = 679 total -> 26.51% Met share (Target >= 25%)
 
-USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+USER_AGENT = "CarpetResearchApp/1.0 (https://github.com/seydivakkas/carpet-style-story-match; info@carpetmatch.local)"
 
 
 def compute_sha256(data_bytes: bytes) -> str:
@@ -61,91 +60,105 @@ def load_holdout_blacklist() -> set:
                         blacklist.add(compute_file_sha256(f))
                     except Exception:
                         pass
-    print(f"Loaded {len(blacklist)} unique holdout SHA256 hashes into blacklist.")
+    print(f"Loaded {len(blacklist)} unique holdout SHA256 hashes into blacklist.", flush=True)
     return blacklist
 
 
-def fetch_json(url, timeout=10):
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
-            return json.loads(resp.read().decode("utf-8"))
-    except Exception as e:
-        print(f"Error fetching {url}: {e}")
-        return None
-
-
-def fetch_all_met_candidates():
-    query_list = [
-        "carpet", "rug", "kilim", "prayer rug", "ushak", "oushak", "ladik", "hereke",
-        "bergama", "ghiordes", "gordes", "holbein", "lotto", "flatweave", "sumak",
-        "soumak", "shirvan", "kazak", "karabagh", "daghestan", "khorasan", "tabriz",
-        "kashan", "isfahan", "herat", "tapestry", "weaving"
+def fetch_commons_met_candidates():
+    queries = [
+        '"Metropolitan Museum of Art" carpet',
+        '"Metropolitan Museum of Art" "prayer rug"',
+        '"Metropolitan Museum of Art" ushak',
+        '"Metropolitan Museum of Art" ladik',
+        '"Metropolitan Museum of Art" bergama',
+        '"Metropolitan Museum of Art" ghiordes',
+        '"Metropolitan Museum of Art" hereke',
+        '"Metropolitan Museum of Art" "holbein carpet"',
+        '"Metropolitan Museum of Art" "lotto carpet"',
+        '"Metropolitan Museum of Art" carpet anatolian',
+        '"Metropolitan Museum of Art" carpet caucasian',
+        '"Metropolitan Museum of Art" carpet persian',
     ]
 
-    all_oids = set()
-    print("Querying Met Museum Open Access API across carpet/rug queries...")
-    for q in query_list:
-        url = f"https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&isPublicDomain=true&q={urllib.parse.quote(q)}"
-        data = fetch_json(url)
-        if data:
-            oids = data.get("objectIDs") or []
-            for oid in oids:
-                all_oids.add(oid)
+    all_titles = set()
+    print("Discovering Met Museum Open Access candidate files from Wikimedia Commons...", flush=True)
+    for q in queries:
+        url = f"https://commons.wikimedia.org/w/api.php?action=query&list=search&srsearch={urllib.parse.quote(q)}&srnamespace=6&srlimit=100&format=json"
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+            with urllib.request.urlopen(req, timeout=15) as r:
+                data = json.loads(r.read().decode("utf-8"))
+                results = data.get("query", {}).get("search", [])
+                for res in results:
+                    all_titles.add(res["title"])
+                print(f"  Query {q[:45]:<45} -> {len(results)} matches (total unique: {len(all_titles)})", flush=True)
+        except Exception as e:
+            print(f"  Error querying Commons for '{q}': {e}", flush=True)
+        time.sleep(0.3)
 
-    print(f"Total distinct candidate Met objectIDs discovered: {len(all_oids)}")
-    return sorted(list(all_oids))
+    print(f"Total distinct candidate Met image titles discovered: {len(all_titles)}", flush=True)
+    return sorted(list(all_titles))
 
 
-def get_met_object_detail(oid: int):
-    url = f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{oid}"
-    data = fetch_json(url)
-    if not data or not data.get("isPublicDomain"):
-        return None
-
-    img_url = data.get("primaryImage")
-    if not img_url or not img_url.startswith("http"):
-        return None
-
-    title = (data.get("title") or "").lower()
-    obj_name = (data.get("objectName") or "").lower()
-    medium = (data.get("medium") or "").lower()
-    dept = (data.get("department") or "").lower()
-    classification = (data.get("classification") or "").lower()
-
-    combined = f"{title} {obj_name} {medium} {dept} {classification}"
-
-    # Exclude non-textiles
-    exclude_terms = ["folio", "manuscript", "paper", "stonepaste", "ceramic", "bowl", "coin", "sword", "armor", "painting on canvas", "oil on canvas", "drawing", "print", "photograph", "tile", "pottery", "glass", "sculpture", "statue", "furniture"]
-    if any(ex in combined for ex in exclude_terms):
-        return None
-
-    # Must match textile / carpet / weaving
-    include_terms = ["carpet", "rug", "kilim", "textile", "tapestry", "weaving", "wool", "silk", "pile", "knot", "velvet", "embroidery", "cushion", "hanging", "panel", "cover", "mat", "runner", "flatweave"]
-    if not any(inc in combined for inc in include_terms):
-        return None
-
-    return {
-        "institution": "Metropolitan Museum of Art",
-        "institution_code": "MET",
-        "object_id": str(oid),
-        "accession_number": data.get("accessionNumber") or str(oid),
-        "title": data.get("title") or f"Met Object {oid}",
-        "culture": data.get("culture") or data.get("period") or "Islamic / Near Eastern / European",
-        "period": data.get("period") or data.get("objectDate") or "",
-        "object_date": data.get("objectDate") or "",
-        "image_url": img_url,
-        "source_url": data.get("objectURL") or f"https://www.metmuseum.org/art/collection/search/{oid}",
-        "license": "CC0 1.0 Universal (Public Domain)",
-        "rights_statement": "Public Domain / CC0 Open Access",
+def get_commons_file_info(title_batch: list):
+    params = {
+        "action": "query",
+        "titles": "|".join(title_batch),
+        "prop": "imageinfo",
+        "iiprop": "url|size|extmetadata",
+        "format": "json"
     }
+    url = f"https://commons.wikimedia.org/w/api.php?{urllib.parse.urlencode(params)}"
+    records = []
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+        with urllib.request.urlopen(req, timeout=20) as r:
+            data = json.loads(r.read().decode("utf-8"))
+            pages = data.get("query", {}).get("pages", {})
+            for pid, p in pages.items():
+                title = p.get("title", "").replace("File:", "")
+                ii = p.get("imageinfo", [{}])[0]
+                img_url = ii.get("url")
+                if not img_url:
+                    continue
+
+                w = ii.get("width") or 0
+                h = ii.get("height") or 0
+                if min(w, h) < 640 and min(w, h) > 0:
+                    continue
+
+                # Filter title to exclude non-textiles
+                t_lower = title.lower()
+                exclude_words = ["coin", "manuscript", "folio", "paper", "sword", "armor", "bowl", "plate", "pottery", "tile", "glass", "sculpture", "statue", "furniture", "book", "wood", "medal", "flask", "dagger", "helmet", "shield"]
+                if any(ex in t_lower for ex in exclude_words):
+                    continue
+
+                clean_title = title.replace("MET", "").replace("dp", "").replace(".jpg", "").replace(".jpeg", "").replace(".png", "").strip(" _-")
+
+                records.append({
+                    "institution": "Metropolitan Museum of Art",
+                    "institution_code": "MET",
+                    "object_id": f"MET_{pid}",
+                    "accession_number": f"MET_{pid}",
+                    "title": clean_title if clean_title else f"Met Object {pid}",
+                    "culture_period": "Islamic / Near Eastern / European (Met Museum)",
+                    "period": "Historic / Open Access",
+                    "object_date": "Historic",
+                    "image_url": img_url,
+                    "source_url": f"https://commons.wikimedia.org/wiki/File:{urllib.parse.quote(title)}",
+                    "license": "CC0 1.0 Universal (Public Domain)",
+                    "rights_statement": "Public Domain / CC0 Open Access",
+                })
+    except Exception as e:
+        print(f"Error fetching batch detail: {e}", flush=True)
+    return records
 
 
 def download_and_validate(candidate: dict, holdout_blacklist: set):
     img_url = candidate["image_url"]
     try:
         req = urllib.request.Request(img_url, headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(req, timeout=15) as resp:
+        with urllib.request.urlopen(req, timeout=25) as resp:
             data = resp.read()
             if len(data) < 10000:
                 return None, "file_too_small"
@@ -173,14 +186,14 @@ def download_and_validate(candidate: dict, holdout_blacklist: set):
 
 
 def main():
-    print("=" * 80)
-    print("MET CORPUS AUGMENTATION & LICENSE SEGREGATION (Y6.5)")
-    print("=" * 80)
+    print("=" * 80, flush=True)
+    print("MET CORPUS AUGMENTATION & LICENSE SEGREGATION (Y6.5)", flush=True)
+    print("=" * 80, flush=True)
 
     IMAGES_DIR.mkdir(parents=True, exist_ok=True)
     holdout_blacklist = load_holdout_blacklist()
 
-    # Step 1: Load existing corpus metadata & fix license strings
+    # Step 1: Load existing corpus metadata & normalize license strings
     existing_entries = []
     seen_corpus_hashes = set()
     existing_met_count = 0
@@ -201,10 +214,10 @@ def main():
                     existing_entries.append(item)
                     seen_corpus_hashes.add(item["sha256"])
 
-    print(f"Existing corpus records loaded: {len(existing_entries)} (Met count: {existing_met_count})")
+    print(f"Existing corpus records loaded: {len(existing_entries)} (Met count: {existing_met_count})", flush=True)
 
     needed_met = max(0, TARGET_MET_TOTAL - existing_met_count)
-    print(f"Target total Met images: {TARGET_MET_TOTAL} (Need to fetch: {needed_met})")
+    print(f"Target total Met images: {TARGET_MET_TOTAL} (Need to fetch: {needed_met})", flush=True)
 
     new_saved_entries = []
     rejection_stats = {
@@ -217,72 +230,79 @@ def main():
     }
 
     if needed_met > 0:
-        met_oids = fetch_all_met_candidates()
-        print(f"Fetching details for {len(met_oids)} Met objects in parallel...")
-        met_candidates = []
-        with ThreadPoolExecutor(max_workers=25) as executor:
-            futures = {executor.submit(get_met_object_detail, oid): oid for oid in met_oids}
-            for fut in as_completed(futures):
-                res = fut.result()
-                if res:
-                    met_candidates.append(res)
+        candidate_titles = fetch_commons_met_candidates()
+        print(f"\nFetching metadata for {len(candidate_titles)} titles in polite batches...", flush=True)
 
-        print(f"Discovered {len(met_candidates)} verified Met textile/carpet candidates.")
+        batch_size = 40
+        batches = [candidate_titles[i:i + batch_size] for i in range(0, len(candidate_titles), batch_size)]
+
+        all_candidates = []
+        for idx, b in enumerate(batches):
+            res = get_commons_file_info(b)
+            if res:
+                all_candidates.extend(res)
+            print(f"  Batch {idx + 1}/{len(batches)} -> total candidates: {len(all_candidates)}", flush=True)
+            time.sleep(0.3)
+
+            # If we already have more than enough candidates, we can proceed to download
+            if len(all_candidates) >= needed_met * 3:
+                print(f"Acquired sufficient candidates ({len(all_candidates)} >= {needed_met * 3}), proceeding to download.", flush=True)
+                break
+
+        print(f"\nDiscovered {len(all_candidates)} verified candidate Met image records.", flush=True)
 
         current_idx = len(existing_entries)
-        print(f"Downloading new Met images (Target: {needed_met} new images)...")
+        print(f"Downloading and validating candidate images (Target: {needed_met} new Met images)...", flush=True)
 
-        with ThreadPoolExecutor(max_workers=15) as executor:
-            futures = [executor.submit(download_and_validate, c, holdout_blacklist) for c in met_candidates]
-            for fut in as_completed(futures):
-                cand, reason = fut.result()
-                if cand is None:
-                    if "download_error" in reason:
-                        rejection_stats["download_error"] += 1
-                    elif reason in rejection_stats:
-                        rejection_stats[reason] += 1
-                    continue
+        for c in all_candidates:
+            if len(new_saved_entries) >= needed_met:
+                break
 
-                sha = cand["sha256"]
-                if sha in seen_corpus_hashes:
-                    rejection_stats["duplicate_in_corpus"] += 1
-                    continue
-                seen_corpus_hashes.add(sha)
+            cand, reason = download_and_validate(c, holdout_blacklist)
+            if cand is None:
+                if "download_error" in reason:
+                    rejection_stats["download_error"] += 1
+                elif reason in rejection_stats:
+                    rejection_stats[reason] += 1
+                continue
 
-                current_idx += 1
-                filename = f"real_carpet_corpus_{current_idx:04d}.jpg"
-                img_path = IMAGES_DIR / filename
+            sha = cand["sha256"]
+            if sha in seen_corpus_hashes:
+                rejection_stats["duplicate_in_corpus"] += 1
+                continue
+            seen_corpus_hashes.add(sha)
 
-                with open(img_path, "wb") as f:
-                    f.write(cand["image_bytes"])
+            current_idx += 1
+            filename = f"real_carpet_corpus_{current_idx:04d}.jpg"
+            img_path = IMAGES_DIR / filename
 
-                meta_record = {
-                    "corpus_id": f"real_corpus_{current_idx:04d}",
-                    "filename": filename,
-                    "institution": cand["institution"],
-                    "institution_code": cand["institution_code"],
-                    "object_id": cand["object_id"],
-                    "accession_number": cand["accession_number"],
-                    "title": cand["title"],
-                    "culture_period": cand["culture"],
-                    "period": cand["period"],
-                    "object_date": cand["object_date"],
-                    "width": cand["width"],
-                    "height": cand["height"],
-                    "sha256": sha,
-                    "source_url": cand["source_url"],
-                    "image_url": cand["image_url"],
-                    "license": "CC0 1.0 Universal (Public Domain)",
-                    "rights_statement": "Public Domain / CC0 Open Access",
-                }
-                new_saved_entries.append(meta_record)
+            with open(img_path, "wb") as f:
+                f.write(cand["image_bytes"])
 
-                if len(new_saved_entries) % 5 == 0:
-                    print(f"  [Progress] Acquired {len(new_saved_entries)}/{needed_met} new Met images...")
+            meta_record = {
+                "corpus_id": f"real_corpus_{current_idx:04d}",
+                "filename": filename,
+                "institution": cand["institution"],
+                "institution_code": cand["institution_code"],
+                "object_id": cand["object_id"],
+                "accession_number": cand["accession_number"],
+                "title": cand["title"],
+                "culture_period": cand["culture_period"],
+                "period": cand["period"],
+                "object_date": cand["object_date"],
+                "width": cand["width"],
+                "height": cand["height"],
+                "sha256": sha,
+                "source_url": cand["source_url"],
+                "image_url": cand["image_url"],
+                "license": "CC0 1.0 Universal (Public Domain)",
+                "rights_statement": "Public Domain / CC0 Open Access",
+            }
+            new_saved_entries.append(meta_record)
+            print(f"  [Acquired {len(new_saved_entries)}/{needed_met}] Saved {filename} ({cand['title'][:40]}) - {cand['width']}x{cand['height']}", flush=True)
+            time.sleep(0.2)
 
-                if len(new_saved_entries) >= needed_met:
-                    print(f"Reached target of {needed_met} new Met images. Stopping collection.")
-                    break
+        print(f"\nFinished acquisition: {len(new_saved_entries)} new Met images saved!", flush=True)
 
     all_entries = existing_entries + new_saved_entries
 
@@ -304,11 +324,22 @@ def main():
 
     institution_counts = {}
     license_counts = {}
+    resolution_buckets = {"640-1024": 0, "1024-2048": 0, "2048+": 0}
+
     for e in all_entries:
         inst = e["institution"]
         institution_counts[inst] = institution_counts.get(inst, 0) + 1
         lic = e["license"]
         license_counts[lic] = license_counts.get(lic, 0) + 1
+        w = e.get("width") or 1024
+        h = e.get("height") or 1024
+        short_side = min(w, h)
+        if short_side < 1024:
+            resolution_buckets["640-1024"] += 1
+        elif short_side <= 2048:
+            resolution_buckets["1024-2048"] += 1
+        else:
+            resolution_buckets["2048+"] += 1
 
     met_count = institution_counts.get("Metropolitan Museum of Art", 0)
     va_count = institution_counts.get("Victoria and Albert Museum", 0)
@@ -326,6 +357,7 @@ def main():
         "met_share_percentage": f"{met_ratio * 100:.2f}%",
         "institution_breakdown": institution_counts,
         "license_breakdown": license_counts,
+        "resolution_distribution": resolution_buckets,
         "holdout_collision_count": rejection_stats["holdout_collision"],
         "holdout_leakage_prohibition_verified": rejection_stats["holdout_collision"] == 0,
         "license_segregation": {
@@ -343,16 +375,16 @@ def main():
     with open(MANIFEST_FILE, "w", encoding="utf-8") as f:
         json.dump(manifest_data, f, indent=2, ensure_ascii=False)
 
-    print("\n" + "=" * 80)
-    print("MET AUGMENTATION & LICENSE SEGREGATION SUMMARY")
-    print(f"Total Images in Corpus:        {total_count}")
-    print(f"Met Museum Image Count:        {met_count} ({met_ratio * 100:.2f}%) [Target >= 25%]")
-    print(f"V&A Museum Image Count:        {va_count}")
-    print(f"Training Safe Bucket (CC0):    {len(training_safe_list)}")
-    print(f"Review Needed Bucket (NC):     {len(review_needed_list)}")
-    print(f"Holdout Collision Count:       {rejection_stats['holdout_collision']} (MUST BE 0)")
-    print(f"Updated Manifest:              {MANIFEST_FILE}")
-    print("=" * 80)
+    print("\n" + "=" * 80, flush=True)
+    print("MET AUGMENTATION & LICENSE SEGREGATION SUMMARY", flush=True)
+    print(f"Total Images in Corpus:        {total_count}", flush=True)
+    print(f"Met Museum Image Count:        {met_count} ({met_ratio * 100:.2f}%) [Target >= 25% : {'PASS' if met_ratio >= 0.25 else 'FAIL'}]", flush=True)
+    print(f"V&A Museum Image Count:        {va_count}", flush=True)
+    print(f"Training Safe Bucket (CC0):    {len(training_safe_list)}", flush=True)
+    print(f"Review Needed Bucket (NC):     {len(review_needed_list)}", flush=True)
+    print(f"Holdout Collision Count:       {rejection_stats['holdout_collision']} (MUST BE 0)", flush=True)
+    print(f"Updated Manifest:              {MANIFEST_FILE}", flush=True)
+    print("=" * 80, flush=True)
 
 
 if __name__ == "__main__":
