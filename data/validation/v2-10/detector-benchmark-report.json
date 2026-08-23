@@ -1,9 +1,9 @@
 {
   "benchmark_version": "v2-10-detector-benchmark-v1.0.0",
   "status": "PASS",
-  "timestamp": "2026-08-21T13:33:16Z",
+  "timestamp": "2026-08-23T06:05:10Z",
   "weights_path": "artifacts\\v2-10\\models\\yolo11n_detect_seed42\\weights\\best.pt",
-  "weights_sha256": "985f9925cac0bdc9b6f7b9afb71e8091b4627e1e401adde1bf2deacc2519b22c",
+  "weights_sha256": "c5f66364662496c74cededd01a008621b9bb8058a2be9124b665a926d6f21e4f",
   "environment": {
     "python": "3.14.3",
     "torch": "2.11.0+cu126",
