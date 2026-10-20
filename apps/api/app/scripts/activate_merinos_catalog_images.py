@@ -7,6 +7,7 @@ import os
 import sys
 import uuid
 import urllib.parse
+from typing import Optional
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 import app.db.models

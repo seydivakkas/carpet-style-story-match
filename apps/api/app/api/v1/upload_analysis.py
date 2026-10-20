@@ -10,6 +10,7 @@ from typing import Dict, Any
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.session import get_db
+from app.domain.images.storage import get_image_storage
 from app.core.config import Settings
 from app.domain.upload_analysis.schemas import UploadAnalysisResult
 from app.domain.upload_analysis.image_preparation import ImageValidationError

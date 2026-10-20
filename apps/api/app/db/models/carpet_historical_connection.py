@@ -20,6 +20,12 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.session import Base
 
 
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from app.db.models.carpet import CarpetModel
+    from app.db.models.carpet_style_profile import CarpetStyleProfileModel
+    from app.db.models.carpet_historical_reference import HistoricalReferenceMetadataModel
+
 class HistoricalConnectionStatusEnum(str, Enum):
     """Result availability status for historical connection evaluation."""
     COMPLETE = "COMPLETE"

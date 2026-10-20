@@ -18,6 +18,11 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.session import Base
 
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from app.db.models.manufacturer_brand import ManufacturerBrandModel
+    from app.db.models.carpet_story_association import CarpetMotifAssociationModel
+
 class CarpetSourceType(str, enum.Enum):
     CATALOG = "CATALOG"
     USER_UPLOAD = "USER_UPLOAD"

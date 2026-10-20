@@ -1,6 +1,6 @@
 """Pure calculation engine for Explainable Narrative Affinity v1."""
 from dataclasses import dataclass, field
-from typing import List, Dict, Optional, Tuple
+from typing import Any, List, Dict, Optional, Tuple
 from app.db.models.carpet import CarpetSourceType
 from app.db.models.carpet_story_association import CarpetStoryAssociationModel
 from app.db.models.preference_assessment import (

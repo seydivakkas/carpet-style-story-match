@@ -242,7 +242,7 @@ class ProceduralStimulusGenerator:
 
         bg_h = cls.hex_color(bg)
         border_h = cls.hex_color(border)
-        motifs_str = "\n  ".join(svg_motifs if 'svg_motifs' in locals() else motifs_svg)
+        motifs_str = "\n  ".join(motifs_svg)
 
         svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}">
   <rect width="{W}" height="{H}" fill="{bg_h}"/>
