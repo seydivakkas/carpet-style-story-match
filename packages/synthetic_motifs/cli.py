@@ -11,7 +11,7 @@ import json
 import os
 from pathlib import Path
 import time
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 import numpy as np
 import cv2
 

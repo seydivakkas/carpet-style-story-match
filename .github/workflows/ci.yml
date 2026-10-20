@@ -19,7 +19,7 @@ jobs:
         run: python -m pip install -e "./apps/api[dev,s3]"
       - name: Tanımsız Python adlarını tara
         working-directory: apps/api
-        run: python -m ruff check app --select F821
+        run: python -m ruff check app ../../packages --select F821
       - name: API testleri
         working-directory: apps/api
         env:
