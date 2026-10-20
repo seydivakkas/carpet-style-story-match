@@ -1,0 +1,27 @@
+name: Geçici npm kilit onarımı
+on:
+  push:
+    branches: ["fix/31-eksik-kademeli-20261020"]
+permissions:
+  contents: write
+jobs:
+  repair-lock:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Kilit dosyasını yeniden çözümle
+        working-directory: apps/web
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - name: Yenilenmiş kilit dosyasını yalnızca geliştirme dalına yaz
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps/web/package-lock.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Paket kilidi: npm çözümlemesini düzelt"
+            git push origin HEAD:fix/31-eksik-kademeli-20261020
+          fi
