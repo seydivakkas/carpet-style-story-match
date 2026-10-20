@@ -1,34 +1,66 @@
-# Eksik giderme süreci — 20 Ekim 2026
+# 31 Eksiklik İçin Sürümlenmiş Mühendislik Takibi
 
-## Durum
+Son denetim: 20 Ekim 2026. Kaynak: Kullanıcının 31 maddelik inceleme listesi. Kullanıcı mesajında `32` yazmasına rağmen kaynak listede **7 P0 + 17 P1 + 7 P2 = 31** madde vardır. Bu kayda doğrulanmamış bir 32. madde eklenmeyecektir.
 
-İlk incelemede **31** eksik tespit edilmiştir (7 P0, 17 P1, 7 P2).
-Kullanıcı 32 sayısını belirtmiş olsa da gönderilen maddelerin toplamı 31'dir.
+## Kanıt ve durum sınıfları
+- `KOD_YAZILDI`: Değişiklik GitHub dalında var; testlerin tümü geçtiği anlamına gelmez.
+- `KISMİ_KOD`: Bir alt parça geliştirildi; sorun bütünüyle çözülmedi.
+- `HOLD`: Yeterli kod, kullanıcı onayı, gerçek veri veya test kanıtı yok.
+- `KABUL_PASS`: Güncel commit için olumlu, bağımsız ve tekrarlanabilir test kanıtı gerekir.
+- `MERGE_HOLD`: Bağımsız PR incelemesi ve bütün gerekli CI testleri geçmeden birleştirme yok.
 
-Bu dal, `master` üzerine doğrudan yazmadan kademeli düzeltme içerir.
-Tüm maddeler giderildi / PASS iddiası **yoktur**.
+## Eksiklerin tek tek mevcut durumu
 
-## İlk kod paketindeki hedefler
+| No | Öncelik | Konu | Durum | Kalan kabul koşulu |
+|---:|:---:|---|---|---|
+| 1 | P0 | Python başlangıç importları | KOD_YAZILDI | Temiz Python 3.11/3.14 backend kabul |
+| 2 | P0 | Beş eksik frontend API modülü | KOD_YAZILDI | Güncel HEAD frontend ve uçtan uca API kabulü |
+| 3 | P0 | Frontend/Docker paketleme | KOD_YAZILDI | Güncel HEAD Docker build ve gerçek container açılışı |
+| 4 | P0 | S3/MinIO gerçek saklama | KISMİ_KOD | Unit test, çalışan MinIO, kesinti/yetki kabulü |
+| 5 | P0 | Analiz kaynaklarının sahibi/yetkisi | HOLD | Oturum/erişim modeli, kimlik doğrulama, negatif 403 testleri |
+| 6 | P0 | Görsel silme ve ilişkili kayıtlar | KISMİ_KOD | S3/local atomiklik, erişim kontrolü, hata ve yarış koşulları |
+| 7 | P0 | Gerçek motif dedektörü (mAP50=0) | HOLD | Yeni bağımsız gerçek veri holdout; başarı eşiği tanımlanıp karşılanmalı |
+| 8 | P1 | VLM şema uyumu | HOLD | Gerçek yerel model ile yeni bağımsız ölçüm |
+| 9 | P1 | Gerçek motif veri kapsamı | HOLD | Hakları doğrulanmış, etiketli, gruplanmış veri seti |
+| 10 | P1 | İkinci marka katalog aktivasyonu | HOLD | Resmî kaynak izni ve gerçek ürün verisi |
+| 11 | P1 | Eksik Style DNA profilleri | HOLD | Eksik fotoğraflar ve ayrı doğrulama |
+| 12 | P1 | Motif kültürel bilgi/hikâye genişletme | HOLD | Bilimsel kanıt, uzman denetimi |
+| 13 | P1 | Tarihî referans görsel kapsamı | HOLD | Hakları uygun görsel ve müze kaynağı |
+| 14 | P1 | Kalıcı ve tekrar denenebilir iş kuyruğu | HOLD | Kuyruk, at-least-once/idempotency, restart kabulü |
+| 15 | P1 | Küratör üretim auth entegrasyonu | HOLD | Güvenilir gateway/rol ve audit testleri |
+| 16 | P1 | Compose güvenli varsayılanlar | KOD_YAZILDI | Secrets, TLS ve üretim ortamı testi |
+| 17 | P1 | Dağıtık rate limiting | HOLD | Redis/gateway ve çok-instance kabulü |
+| 18 | P1 | Yüklenen görsel EXIF gizliliği | KISMİ_KOD | Dosya saklama ve uç nokta negatif testleri |
+| 19 | P1 | Retention/silme politikası | HOLD | TTL, arka plan temizliği, audit/kişisel veri kabulü |
+| 20 | P1 | GET sonucunda veritabanına yazma | KOD_YAZILDI | Yan etkisiz GET regresyon testi |
+| 21 | P1 | Alembic tek şema yönetimi | KOD_YAZILDI | Boş PG DB migration ve tekrar açılış testi |
+| 22 | P1 | GitHub CI kalite kapıları | KISMİ_KOD | Full backend, PostgreSQL, güvenlik ve Windows/Edge PASS |
+| 23 | P1 | Frontend unit/E2E testleri | HOLD | Vitest + Playwright ve gerçek Edge |
+| 24 | P1 | PostgreSQL/üretim kabulü | HOLD | Gerçek PostgreSQL container ve migration |
+| 25 | P2 | Deterministik Python bağımlılık kilidi | KISMİ_KOD | npm lock onarıldı; Python lock/SBOM eksik |
+| 26 | P2 | Bellek güvenli upload sınırı | KOD_YAZILDI | Reverse proxy gövde sınırı ve yük testi |
+| 27 | P2 | Polling hata/backoff/yeniden dene | KOD_YAZILDI | Frontend E2E ve ağ kesintisi testi |
+| 28 | P2 | Sunucu tarafı güvenilir kullanıcı geçmişi | HOLD | Kimlik/sahiplik modeli, saklama kontrolü |
+| 29 | P2 | Kısmi toplu silme hatası | KOD_YAZILDI | Çoklu silme E2E ve yanlış başarı mesajı testi |
+| 30 | P2 | README güncelliği/lisans bağlantısı | KISMİ_KOD | V2/V3 doğrulama tablosu ve güncel kullanım adımları |
+| 31 | P2 | İzlenen generated cache ve geçici dosyalar | KOD_YAZILDI | 176 dosya çıkarıldı, .gitignore eklendi; release arşiv politikası teyidi |
 
-- [x] P0-01: Eksik Python tip importları
-- [ ] P0-02: Frontend API modülleri (ayrı kod paketi)
-- [x] P0-03: Docker public klasörü ve API kopyalama/kurulum sırası
-- [ ] P0-04: S3/MinIO somut implementasyonu
-- [ ] P0-05: Kayıt sahibi kontrolü ve kimlik doğrulama
-- [x] P0-06: Görsel silme metodu ve hata propagasyonu
-- [ ] P0-07: Gerçek motif benchmark kabulü; son kayıt mAP50=0
+## Kayıtlı CI bulguları
 
-## İlgili iyileştirmeler
+- `4d74b3b` temelinde npm paketi/build FAIL idi; package-lock CI üzerinden yeniden üretildi.
+- Daha sonraki CI'da Next.js kalite kontrolleri ve Docker imaj derlemesi **PASS**; backend eski kabul raporunun aksine doğrudan test edildiğinde hata verdi.
+- `13c0841` Ubuntu backend testlerinde **544 PASS, 42 FAIL, 1 SKIP**. Başarısızlıklar arasında 35 görüntü/92 gerçek motif yerine yerel veriye bağlı testler, bulunmayan orijinal Windows dosya yolları, kurulu olmayan `torch` ve Style DNA D9 testi vardır. Bunlar gizlenmedi veya sahte test verisiyle PASS yapılmadı.
+- Güncel committe Style DNA/OpenCV uyum kodu eklenmiştir; sonucu, güncel CI çalışması bitmeden PASS kabul etmeyin.
 
-- P1-18: Yeni yüklenen görseller ham EXIF yerine temizlenmiş JPEG ile saklanacak
-- P1-20: GET sonuç yolu read-only
-- P2-26: 1 MiB bloklarla boyut sınırlı okuma
-- P2-30: README lisans bağlantısı düzeltildi
-- P1-21: `create_all` ile Alembic çakışması ayrı doğrulanacak
+## Merge önkoşulları
 
-## Kabul disiplini
+1. P0 yetkilendirme ve silme sınırları fail-closed.
+2. Ubuntu + Windows backend test kapıları PASS.
+3. Next.js typecheck + lint + build PASS.
+4. PostgreSQL/Alembic migration, S3/MinIO ve Docker E2E kanıtları.
+5. Hakları uygun bağımsız gerçek veri ve model değerlendirme; mAP50=0 baseline üretime seçilemez.
+6. Bağımsız inceleme, PR-only merge ve Windows/Edge fiziksel kabul.
 
-Bu dalda kod değişiklikleri yapılmıştır; Windows/Edge, Docker Compose,
-gerçek PostgreSQL, eğitilmiş motif modeli, gerçek veri ve üretim güvenliği
-testleri henüz bu dal için çalıştırılmamıştır. Her maddede
-`KOD_HAZIR`, `TEST_PASS`, `BLOCKED`, `HOLD` ayrımı korunacaktır.
+**MÜHENDİSLİK KARARI: KOD_DÜZELTMELERİ_KISMİ / YETKİLENDİRME_HOLD / GERÇEK_MOTİF_HOLD / BACKEND_CI_HOLD / MERGE_HOLD**
+
+Bu kayıt bir tamamlanma sertifikası değil, eksiksiz izlenebilirlik listesidir.
