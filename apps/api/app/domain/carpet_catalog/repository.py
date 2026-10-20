@@ -1,5 +1,5 @@
 """Repository for Carpet Catalog & Story Association queries."""
-from typing import List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple
 import uuid
 from sqlalchemy import select, func, or_
 from sqlalchemy.ext.asyncio import AsyncSession
