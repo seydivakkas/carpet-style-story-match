@@ -120,7 +120,7 @@ async def get_analysis_image(
     from fastapi.responses import Response
     from sqlalchemy import select
     from app.db.models.upload_analysis import UploadAnalysisModel
-    from app.domain.images.storage import LocalImageStorage
+    from app.domain.images.storage import get_image_storage
 
     stmt = select(UploadAnalysisModel).where(UploadAnalysisModel.id == analysis_id)
     res = await db.execute(stmt)
@@ -132,7 +132,7 @@ async def get_analysis_image(
             detail=f"Image for analysis '{analysis_id}' not found."
         )
 
-    storage = LocalImageStorage()
+    storage = get_image_storage()
     try:
         image_bytes = storage.get_image_bytes(record.image_path)
         return Response(content=image_bytes, media_type=record.mime_type or "image/jpeg")
@@ -168,7 +168,7 @@ async def delete_analysis_record(
 
     if record and record.image_path:
         try:
-            storage = LocalImageStorage()
+            storage = get_image_storage()
             storage.delete_image(record.image_path)
         except Exception as e:
             logger.exception("Analysis image deletion failed for %s", analysis_id)

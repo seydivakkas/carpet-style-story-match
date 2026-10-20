@@ -18,7 +18,7 @@ from app.core.config import Settings
 from app.db.models.upload_analysis import UploadAnalysisModel, UploadAnalysisStatusEnum
 from app.db.models.motif_knowledge import MotifModel, MotifStoryClaimModel
 from app.db.models.motif_review import MotifReviewSubjectModel
-from app.domain.images.storage import LocalImageStorage
+from app.domain.images.storage import get_image_storage
 from app.domain.styledna.engine import StyleDNAEngine
 from app.domain.color_analysis.service import ColorAnalysisService
 from app.domain.upload_analysis.image_preparation import prepare_image_for_vlm, ImageValidationError
@@ -93,7 +93,7 @@ class UnifiedAnalysisOrchestrator:
     def __init__(self, db: AsyncSession, settings: Settings):
         self.db = db
         self.settings = settings
-        self.storage = LocalImageStorage()
+        self.storage = get_image_storage()
         self.style_engine = StyleDNAEngine()
         self.color_service = ColorAnalysisService()
 

@@ -52,8 +52,7 @@ async def _do_reap_stale(db: AsyncSession):
 async def lifespan(app: FastAPI):
     """Lifespan context manager for startup and shutdown events."""
     logger.info(f"Starting Carpet Style & Story Match API in {settings.APP_ENV} mode")
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+    # Şema Alembic tarafından yönetilir. Uygulama başlarken tablo oluşturmuyoruz.
     await reap_stale_processing_analyses()
     yield
     logger.info("Shutting down API. Disposing database engine...")

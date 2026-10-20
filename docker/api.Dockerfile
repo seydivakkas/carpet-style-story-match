@@ -9,7 +9,7 @@ RUN groupadd -g 10001 appuser && \
     chown -R appuser:appuser /app
 
 COPY apps/api/ ./
-RUN pip install --no-cache-dir .
+RUN pip install --no-cache-dir '.[s3]'
 RUN chown -R appuser:appuser /app
 
 USER appuser

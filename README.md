@@ -65,6 +65,8 @@ carpet-style-story-match/
 - Node.js 20+ & npm
 - Python 3.11+
 
+Önce veritabanına sürüm geçişlerini uygulayın: `cd apps/api && alembic upgrade head`.
+
 ### Local Development Topology (Two-Terminal Startup)
 
 **Terminal 1 (Backend API):**
