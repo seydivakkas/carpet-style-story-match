@@ -58,6 +58,10 @@ carpet-style-story-match/
 
 ---
 
+## Üretim güvenliği
+
+`docker-compose.prod.yml` için `POSTGRES_PASSWORD` ve `MINIO_ROOT_PASSWORD` ortam değişkenleri zorunludur. Varsayılan parola yoktur. Tüm container portları yalnızca `127.0.0.1` arayüzüne bağlanır; uzaktan erişim için ayrıca TLS kullanan güvenli reverse proxy gereklidir. Bu durum kullanıcı kimlik doğrulaması yerine geçmez.
+
 ## Quickstart
 
 ### Prerequisites
