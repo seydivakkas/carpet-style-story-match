@@ -108,7 +108,7 @@ class UnifiedAnalysisOrchestrator:
         # 1. Image Preparation & Persistence
         try:
             prepared = prepare_image_for_vlm(raw_bytes, mime_type)
-            storage_key = self.storage.save_image(aid, aid, raw_bytes, "jpg")
+            storage_key = self.storage.save_image(aid, aid, prepared.image_bytes, "jpg")
             img_meta = UploadedImageMeta(
                 original_sha256=prepared.original_sha256,
                 prepared_sha256=prepared.prepared_sha256,
@@ -152,7 +152,7 @@ class UnifiedAnalysisOrchestrator:
                 original_sha256=prepared.original_sha256,
                 prepared_sha256=prepared.prepared_sha256,
                 image_path=storage_key,
-                mime_type=mime_type,
+                mime_type=prepared.mime_type,
                 quality_status="PASS",
                 status=UploadAnalysisStatusEnum.PROCESSING
             )
@@ -161,7 +161,7 @@ class UnifiedAnalysisOrchestrator:
             analysis_record.original_sha256 = prepared.original_sha256
             analysis_record.prepared_sha256 = prepared.prepared_sha256
             analysis_record.image_path = storage_key
-            analysis_record.mime_type = mime_type
+            analysis_record.mime_type = prepared.mime_type
             analysis_record.quality_status = "PASS"
             analysis_record.status = UploadAnalysisStatusEnum.PROCESSING
         await self.db.commit()

@@ -8,10 +8,8 @@ RUN groupadd -g 10001 appuser && \
     mkdir -p /app/data/uploads && \
     chown -R appuser:appuser /app
 
-COPY apps/api/pyproject.toml .
+COPY apps/api/ ./
 RUN pip install --no-cache-dir .
-
-COPY apps/api/ .
 RUN chown -R appuser:appuser /app
 
 USER appuser

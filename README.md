@@ -97,4 +97,4 @@ cd apps/web && npm run typecheck && npm run lint && npm run build
 
 ## License
 
-ÖZEL LİSANS — TÜM HAKLAR SAKLIDIR. Telif Hakkı (c) 2026 Seydi Eryılmaz (@seydivakkas). Details in [LICENSE](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/LICENSE).
+ÖZEL LİSANS — TÜM HAKLAR SAKLIDIR. Telif Hakkı (c) 2026 Seydi Eryılmaz (@seydivakkas). Details in [LICENSE](LICENSE).

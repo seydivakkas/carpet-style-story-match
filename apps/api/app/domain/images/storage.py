@@ -52,7 +52,7 @@ class LocalImageStorage(ImageStorage):
         clean_key = storage_key.lstrip("/\\")
         target_path = (self.root_path / clean_key).resolve()
 
-        if not str(target_path).startswith(str(self.root_path)):
+        if not target_path.is_relative_to(self.root_path):
             raise ImageStorageFailedError("Path traversal detected in storage key")
         return target_path
 
@@ -90,12 +90,13 @@ class LocalImageStorage(ImageStorage):
             return False
 
     def delete_image(self, storage_key: str) -> None:
-        try:
-            target_path = self._resolve_safe_path(storage_key)
-            if target_path.exists() and target_path.is_file():
+        """Silme hatalarını üst katmana bildir; veritabanı silinmeden önce kontrol edilir."""
+        target_path = self._resolve_safe_path(storage_key)
+        if target_path.exists() and target_path.is_file():
+            try:
                 target_path.unlink()
-        except Exception:
-            pass
+            except OSError as exc:
+                raise ImageStorageFailedError("Görsel dosyası silinemedi.") from exc
 
     def delete_carpet_dir(self, carpet_id: uuid.UUID) -> None:
         rel_dir = f"carpets/{carpet_id}"

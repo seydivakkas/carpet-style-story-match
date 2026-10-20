@@ -92,26 +92,30 @@ async def generate_unified_result(
             detail="No image file provided in request."
         )
 
-    contents = await file.read()
-    if len(contents) > settings.MAX_IMAGE_UPLOAD_BYTES:
-        raise HTTPException(
-            status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
-            detail=f"Image file size ({len(contents)} bytes) exceeds maximum limit of {settings.MAX_IMAGE_UPLOAD_BYTES} bytes."
-        )
+    # Dosyanın tamamını okumadan önce limit uygulanır.
+    parts = []
+    received = 0
+    while chunk := await file.read(1024 * 1024):
+        received += len(chunk)
+        if received > settings.MAX_IMAGE_UPLOAD_BYTES:
+            raise HTTPException(
+                status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+                detail="Image exceeds configured upload size limit."
+            )
+        parts.append(chunk)
+    contents = b"".join(parts)
 
     mime_type = file.content_type or "image/jpeg"
     aid = uuid.uuid4()
 
-    # Save raw image to local storage
-    storage = LocalImageStorage()
-    storage_key = storage.save_image(aid, aid, contents, "jpg")
-
+    # Ham görüntü diske yazılmaz. İşçi doğrulama ve EXIF temizliği
+    # sonrasında normalize edilmiş görüntüyü kaydeder.
     # Persist initial PROCESSING record with standalone session
     async with db_session_module.AsyncSessionLocal() as post_db:
         initial_record = UploadAnalysisModel(
             id=aid,
             original_sha256="pending_computation",
-            image_path=storage_key,
+            image_path=None,
             mime_type=mime_type,
             quality_status="PENDING",
             status=UploadAnalysisStatusEnum.PROCESSING
@@ -195,9 +199,7 @@ async def get_unified_result_by_id(
                     analysis_id=analysis_id,
                     current_dict=record.unified_result
                 )
-                if refreshed_dict != record.unified_result:
-                    record.unified_result = refreshed_dict
-                    await db.commit()
+                # GET isteği veritabanı durumunu değiştirmemeli.
                 return UnifiedUploadResult.model_validate(refreshed_dict)
             except Exception as e:
                 logger.warning(f"Fallback to raw snapshot due to refresh error: {e}")

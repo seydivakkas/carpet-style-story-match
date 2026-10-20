@@ -169,11 +169,10 @@ async def delete_analysis_record(
     if record and record.image_path:
         try:
             storage = LocalImageStorage()
-            full_path = os.path.join(storage.base_dir, record.image_path)
-            if os.path.exists(full_path):
-                os.remove(full_path)
+            storage.delete_image(record.image_path)
         except Exception as e:
-            logger.warning(f"Could not delete image file for {analysis_id}: {e}")
+            logger.exception("Analysis image deletion failed for %s", analysis_id)
+            raise HTTPException(status_code=500, detail="Görsel silinemedi; analiz kaydı korunuyor.") from e
 
     # 2. Find and delete review subjects & events
     aid_str = str(analysis_id)

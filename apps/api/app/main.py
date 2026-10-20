@@ -5,6 +5,8 @@ Telif Hakkı (c) 2026 Seydi Eryılmaz (@seydivakkas)
 FastAPI Application Entry Point & Lifespan Bootstrap.
 """
 from contextlib import asynccontextmanager
+from typing import Optional
+from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import FastAPI, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
