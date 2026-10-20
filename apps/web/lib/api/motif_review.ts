@@ -24,7 +24,7 @@ interface QueueResponse {items:MotifReviewQueueItem[];total_count:number;limit:n
 export class ReviewApiError extends Error{
  constructor(public readonly code:string,message:string,public readonly status:number=0){super(message);this.name="ReviewApiError";}
 }
-const root="/api/v1/motif-review";
+const root="/api/v1/reviews/motif-candidates";
 async function request<T>(path:string,options?:RequestInit):Promise<T>{
  try{return await apiRequest<T>(path,options)}
  catch(e){if(e instanceof ApiClientError) throw new ReviewApiError(e.code,e.message,e.status);throw e}
