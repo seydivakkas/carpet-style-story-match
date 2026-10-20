@@ -25,6 +25,12 @@ export default function NewUploadPage() {
   const [recentAnalyses, setRecentAnalyses] = useState<RecentAnalysisEntry[]>([]);
 
   useEffect(() => {
+    return () => {
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+    };
+  }, [previewUrl]);
+
+  useEffect(() => {
     try {
       const stored = localStorage.getItem("carpet_recent_analyses");
       if (stored) {
@@ -61,23 +67,27 @@ export default function NewUploadPage() {
     if (!window.confirm("Tüm geçmiş analiz kayıtları veritabanından ve listeden silinecek. Emin misiniz?")) {
       return;
     }
-    try {
-      setError(null);
-      for (const item of recentAnalyses) {
-        try {
-          await deleteAnalysisRecord(item.id);
-        } catch {
-          // continue deleting others
-        }
+    setError(null);
+    setSuccessMsg(null);
+    const failed: RecentAnalysisEntry[] = [];
+    let deleted = 0;
+    for (const item of recentAnalyses) {
+      try {
+        await deleteAnalysisRecord(item.id);
+        deleted += 1;
+      } catch {
+        // Başarısız silmeleri listeden çıkarmayarak tekrar denemeyi mümkün kıl.
+        failed.push(item);
       }
+    }
+    setRecentAnalyses(failed);
+    if (failed.length) {
+      localStorage.setItem("carpet_recent_analyses", JSON.stringify(failed));
+      setError(`${deleted} analiz silindi, ${failed.length} analiz silinemedi. Kalanları tekrar deneyebilirsiniz.`);
+    } else {
       localStorage.removeItem("carpet_recent_analyses");
-      setRecentAnalyses([]);
       setSuccessMsg("Tüm geçmiş analiz kayıtları başarıyla silindi.");
       setTimeout(() => setSuccessMsg(null), 4000);
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        setError(err.message);
-      }
     }
   };
 
