@@ -17,6 +17,10 @@ depends_on: Union[str, Sequence[str], None] = None
 
 
 def upgrade() -> None:
+    # Enum tipleri tek bir kez oluşturulur; tekrar kullanılan alanlar DDL üretmez.
+    if op.get_bind().dialect.name == 'postgresql':
+        postgresql.ENUM('PRIMARY_OBJECT_RECORD', 'SUPPORTING_REFERENCE', name='historical_source_role_enum').create(op.get_bind(), checkfirst=True)
+
     bind = op.get_bind()
 
     historical_source_role_enum = postgresql.ENUM(
@@ -75,7 +79,7 @@ def upgrade() -> None:
         sa.Column('id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('historical_reference_id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('source_id', postgresql.UUID(as_uuid=True), nullable=False),
-        sa.Column('source_role', sa.Enum('PRIMARY_OBJECT_RECORD', 'SUPPORTING_REFERENCE', name='historical_source_role_enum'), nullable=False),
+        sa.Column('source_role', postgresql.ENUM('PRIMARY_OBJECT_RECORD', 'SUPPORTING_REFERENCE', name='historical_source_role_enum', create_type=False), nullable=False),
         sa.Column('locator', sa.String(length=255), nullable=True),
         sa.Column('source_note', sa.Text(), nullable=True),
         sa.Column('created_at', sa.DateTime(timezone=True), nullable=False, server_default=sa.text('CURRENT_TIMESTAMP')),

@@ -17,6 +17,12 @@ depends_on: Union[str, Sequence[str], None] = None
 
 
 def upgrade() -> None:
+    # Enum tipleri tek bir kez oluşturulur; tekrar kullanılan alanlar DDL üretmez.
+    if op.get_bind().dialect.name == 'postgresql':
+        postgresql.ENUM('COMPLETE', 'PARTIAL', 'NOT_AVAILABLE', name='historical_connection_status_enum').create(op.get_bind(), checkfirst=True)
+        postgresql.ENUM('INSUFFICIENT_COMPARABLE_DIMENSIONS', name='historical_connection_not_available_reason_enum').create(op.get_bind(), checkfirst=True)
+        postgresql.ENUM('VERY_CLOSE', 'CLOSE', 'MODERATE', 'LIMITED', name='historical_connection_level_enum').create(op.get_bind(), checkfirst=True)
+
     bind = op.get_bind()
 
     historical_connection_status_enum = postgresql.ENUM(
@@ -47,10 +53,10 @@ def upgrade() -> None:
         sa.Column('historical_reference_metadata_id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('historical_style_profile_id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('connection_version', sa.String(length=50), nullable=False, server_default='historical-connection-v1'),
-        sa.Column('status', sa.Enum('COMPLETE', 'PARTIAL', 'NOT_AVAILABLE', name='historical_connection_status_enum'), nullable=False),
-        sa.Column('not_available_reason', sa.Enum('INSUFFICIENT_COMPARABLE_DIMENSIONS', name='historical_connection_not_available_reason_enum'), nullable=True),
+        sa.Column('status', postgresql.ENUM('COMPLETE', 'PARTIAL', 'NOT_AVAILABLE', name='historical_connection_status_enum', create_type=False), nullable=False),
+        sa.Column('not_available_reason', postgresql.ENUM('INSUFFICIENT_COMPARABLE_DIMENSIONS', name='historical_connection_not_available_reason_enum', create_type=False), nullable=True),
         sa.Column('style_similarity', sa.Float(), nullable=True),
-        sa.Column('connection_level', sa.Enum('VERY_CLOSE', 'CLOSE', 'MODERATE', 'LIMITED', name='historical_connection_level_enum'), nullable=True),
+        sa.Column('connection_level', postgresql.ENUM('VERY_CLOSE', 'CLOSE', 'MODERATE', 'LIMITED', name='historical_connection_level_enum', create_type=False), nullable=True),
         sa.Column('comparable_dimension_count', sa.Integer(), nullable=False, server_default='0'),
         sa.Column('dimension_coverage', sa.Float(), nullable=False, server_default='0.0'),
         sa.Column('created_at', sa.DateTime(timezone=True), nullable=False, server_default=sa.text('CURRENT_TIMESTAMP')),
