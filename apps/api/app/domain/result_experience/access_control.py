@@ -2,6 +2,7 @@
 import hashlib
 import hmac
 import secrets
+from datetime import datetime, timezone
 from typing import Optional
 from fastapi import HTTPException, status
 from app.core.config import settings
@@ -25,3 +26,10 @@ def require_analysis_access(record: object, provided_token: Optional[str], *, en
         )
         if not valid:
             raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Analiz erişim yetkisi bulunamadı.")
+    expires_at = getattr(record, "expires_at", None)
+    if expires_at is not None:
+        if expires_at.tzinfo is None:
+            # SQLite UTC DATETIME tipinde saat dilimi bilgisini atabilir.
+            expires_at = expires_at.replace(tzinfo=timezone.utc)
+        if expires_at <= datetime.now(timezone.utc):
+            raise HTTPException(status_code=status.HTTP_410_GONE, detail="Analizin saklama süresi doldu.")

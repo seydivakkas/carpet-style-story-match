@@ -49,6 +49,7 @@ class Settings(BaseSettings):
     STORAGE_BACKEND: str = Field(default="local", description="Image storage backend: local or s3")
     IMAGE_STORAGE_ROOT: str = Field(default="./data/uploads", description="Local image storage directory")
     MAX_IMAGE_UPLOAD_BYTES: int = Field(default=15 * 1024 * 1024, description="Max upload size in bytes (15MB)")
+    ANALYSIS_RETENTION_DAYS: int = Field(default=7, ge=1, le=365, description="New analysis retention TTL in days")
     MIN_IMAGE_WIDTH: int = Field(default=128, description="Minimum allowed image width")
     MIN_IMAGE_HEIGHT: int = Field(default=128, description="Minimum allowed image height")
     MAX_IMAGE_WIDTH: int = Field(default=12000, description="Maximum allowed image width")

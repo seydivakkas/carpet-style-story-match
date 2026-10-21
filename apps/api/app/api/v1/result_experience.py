@@ -7,6 +7,7 @@ FastAPI Endpoints for Unified 5-Card Upload Result Experience & Async Polling (V
 import uuid
 import logging
 import asyncio
+from datetime import datetime, timedelta, timezone
 from typing import Dict, Any, Optional
 from fastapi import APIRouter, File, UploadFile, status, HTTPException, Depends, BackgroundTasks, Header
 from sqlalchemy import select
@@ -117,6 +118,7 @@ async def generate_unified_result(
         initial_record = UploadAnalysisModel(
             id=aid,
             owner_token_sha256=owner_token_sha256,
+            expires_at=datetime.now(timezone.utc) + timedelta(days=settings.ANALYSIS_RETENTION_DAYS),
             original_sha256="pending_computation",
             image_path=None,
             mime_type=mime_type,

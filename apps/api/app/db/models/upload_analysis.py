@@ -89,6 +89,8 @@ class UploadAnalysisModel(Base):
         nullable=True
     )
 
+    # Eski kayıtlar NULL kalır; bilinmeyen eski saklama koşullarına geriye dönük TTL uygulanmaz.
+    expires_at: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True, index=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
         nullable=False,
