@@ -8,7 +8,7 @@ EXPECTED_TABLES = {
     "motif_review_events", "alembic_version",
 }
 EXPECTED_COLS = {
-    "id", "owner_token_sha256", "status", "unified_result", "image_path",
+    "id", "owner_token_sha256", "status", "unified_result", "image_path", "expires_at",
 }
 
 async def main() -> None:
@@ -23,7 +23,7 @@ async def main() -> None:
         if EXPECTED_COLS - cols:
             raise RuntimeError(f"upload_analyses eksik alanlar: {sorted(EXPECTED_COLS - cols)}")
         version = (await conn.execute(text("SELECT version_num FROM alembic_version"))).scalar_one()
-        if version != "2026_10_21_018":
+        if version != "2026_10_21_019":
             raise RuntimeError(f"Beklenen Alembic sürümü yok: {version}")
         print("POSTGRESQL_ALEMBIC_SCHEMA_PASS",version)
     await engine.dispose()
