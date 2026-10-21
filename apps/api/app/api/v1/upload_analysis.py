@@ -5,12 +5,13 @@ Provides real backend VLM inference capabilities over user uploaded carpet image
 Strictly validates visual contracts, handles provider statuses, and guarantees zero cultural claims.
 """
 import uuid
-from fastapi import APIRouter, File, UploadFile, status, HTTPException, Depends
+from fastapi import APIRouter, File, UploadFile, status, HTTPException, Depends, Header
 from typing import Dict, Any
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.session import get_db
 from app.domain.images.storage import get_image_storage
+from app.domain.result_experience.access_control import require_analysis_access
 from app.core.config import Settings
 from app.domain.upload_analysis.schemas import UploadAnalysisResult
 from app.domain.upload_analysis.image_preparation import ImageValidationError
@@ -116,6 +117,7 @@ async def detect_motifs(
 )
 async def get_analysis_image(
     analysis_id: uuid.UUID,
+    x_analysis_token: str | None = Header(None, alias="X-Analysis-Token"),
     db: AsyncSession = Depends(get_db)
 ):
     from fastapi.responses import Response
@@ -127,7 +129,8 @@ async def get_analysis_image(
     res = await db.execute(stmt)
     record = res.scalar_one_or_none()
 
-    if not record or not record.image_path:
+    require_analysis_access(record, x_analysis_token)
+    if not record.image_path:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Image for analysis '{analysis_id}' not found."
@@ -151,6 +154,7 @@ async def get_analysis_image(
 )
 async def delete_analysis_record(
     analysis_id: uuid.UUID,
+    x_analysis_token: str | None = Header(None, alias="X-Analysis-Token"),
     db: AsyncSession = Depends(get_db)
 ) -> Dict[str, Any]:
     import os
@@ -166,8 +170,9 @@ async def delete_analysis_record(
     stmt = select(UploadAnalysisModel).where(UploadAnalysisModel.id == analysis_id)
     res = await db.execute(stmt)
     record = res.scalar_one_or_none()
+    require_analysis_access(record, x_analysis_token)
 
-    if record and record.image_path:
+    if record.image_path:
         try:
             storage = get_image_storage()
             storage.delete_image(record.image_path)
