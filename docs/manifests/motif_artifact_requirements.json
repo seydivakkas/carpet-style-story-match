@@ -1,0 +1,22 @@
+{
+  "schema": "motif-evidence-requirements-v1",
+  "notes": "Bu envanter yalnız dosya ve SHA kaydını doğrular, doğruluk/metrik başarısı değildir. Gerçek dataset ve model ağırlıkları izinsiz olarak depoya eklenmez.",
+  "artifacts": [
+    {
+      "name": "Merinos katalog kürasyon kaydı",
+      "path": "data/activation/merinos/merinos-catalog-curation.json"
+    },
+    {
+      "name": "V2-09 gerçek katalog motif sonuçları",
+      "path": "data/validation/v2-09/catalog-motif-batch-result-v1.json"
+    },
+    {
+      "name": "V2-09 sonuç bütünlük denetimi",
+      "path": "data/validation/v2-09/catalog-motif-batch-report-integrity-audit.json"
+    },
+    {
+      "name": "V2-09B YOLO11n seed42 deney manifesti",
+      "path": "data/detectors/v2-09b-yolo11n-detect-seed42-manifest.json"
+    }
+  ]
+}
