@@ -1,6 +1,6 @@
 {
   "schema": "motif-evidence-requirements-v1",
-  "notes": "Bu envanter yalnız dosya ve SHA kaydını doğrular, doğruluk/metrik başarısı değildir. Gerçek dataset ve model ağırlıkları izinsiz olarak depoya eklenmez.",
+  "notes": "Katalog JSON'larının varlığı canlı SQLite corpusunu kanıtlamaz. Eksik veri ve ağırlıkların yerine sahte dosya üretilmeyecek. Checkpoint SHA-256 kaynak rapordan gelir; kabul için bağımsız deney ve lisans ayrıca zorunludur.",
   "artifacts": [
     {
       "name": "Merinos katalog kürasyon kaydı",
@@ -17,6 +17,77 @@
     {
       "name": "V2-09B YOLO11n seed42 deney manifesti",
       "path": "data/detectors/v2-09b-yolo11n-detect-seed42-manifest.json"
+    },
+    {
+      "name": "Gerçek katalog ve tarihî referans veritabanı",
+      "path": "apps/api/carpet_db.sqlite"
+    },
+    {
+      "name": "V2-09 Detect ham öneri kayıtları",
+      "path": "artifacts/v2-09-final/catalog-batch/detect-raw-proposals.json"
+    },
+    {
+      "name": "V2-09 OBB ham öneri kayıtları",
+      "path": "artifacts/v2-09-final/catalog-batch/obb-raw-proposals.json"
+    },
+    {
+      "name": "Ultralytics lisans inceleme kanıtı",
+      "path": "data/detectors/ultralytics-license-review-v1.json"
+    },
+    {
+      "name": "Dedektör baseline deneyi politikası",
+      "path": "data/detectors/detector-baseline-policy-v1.json"
+    },
+    {
+      "name": "Gerçek motif benchmark hakları ve etiket manifesti",
+      "path": "data/datasets/real-motif-benchmark-v1/manifest.json"
+    },
+    {
+      "name": "YOLO11n OBB deney manifesti",
+      "path": "data/detectors/v2-09b-yolo11n-obb-seed42-manifest.json"
+    },
+    {
+      "name": "VLM R0 gerçek ağırlık model.safetensors",
+      "path": "artifacts/v2-09c/models/R0/model.safetensors",
+      "sha256": "72014d68fe47d4974e21fcab0cabef2e90de711f9fb1a179c5fa1400e71672d7",
+      "size_bytes": 3401785760,
+      "revision": "e7b623934290c5a4da0ee3c6e1e57bfb6b5abbf2"
+    },
+    {
+      "name": "VLM C1 gerçek ağırlık model.safetensors",
+      "path": "artifacts/v2-09c/models/C1/model.safetensors",
+      "sha256": "7de1838c87a5349b016c26a1c3f7d2bc400a3d485f95ef39a7059ffd734977a0",
+      "size_bytes": 4255140312,
+      "revision": "89644892e4d85e24eaac8bacfd4f463576704203"
+    },
+    {
+      "name": "VLM C2 gerçek ağırlık model-00001-of-00002.safetensors",
+      "path": "artifacts/v2-09c/models/C2/model-00001-of-00002.safetensors",
+      "sha256": "7c88a90e78f567460b2369a0369cc4dafbfda5607c9cb090b30fa4437b0282f2",
+      "size_bytes": 4959390584,
+      "revision": "482adb537c021c86670beed01cd58990d01e72e4"
+    },
+    {
+      "name": "VLM C2 gerçek ağırlık model-00002-of-00002.safetensors",
+      "path": "artifacts/v2-09c/models/C2/model-00002-of-00002.safetensors",
+      "sha256": "cf3d0958a8240f71054a6812038f2a6bfbe2e5124573a3b363f6b120c9a52657",
+      "size_bytes": 4027833472,
+      "revision": "482adb537c021c86670beed01cd58990d01e72e4"
+    },
+    {
+      "name": "VLM C3 gerçek ağırlık model-00001-of-00002.safetensors",
+      "path": "artifacts/v2-09c/models/C3/model-00001-of-00002.safetensors",
+      "sha256": "994ac2b03f97de8bc647d0fe5eba2e4b632b3e28dc03574c29bdfc36cf47e1b9",
+      "size_bytes": 3988609112,
+      "revision": "895c3a49bc3fa70a340399125c650a463535e71c"
+    },
+    {
+      "name": "VLM C3 gerçek ağırlık model-00002-of-00002.safetensors",
+      "path": "artifacts/v2-09c/models/C3/model-00002-of-00002.safetensors",
+      "sha256": "92540d8353c8d226a589a3b179bdb33851c970ee2cc2ac7ba035f79425e7b833",
+      "size_bytes": 429441656,
+      "revision": "895c3a49bc3fa70a340399125c650a463535e71c"
     }
-  ]
+  ],
+  "source": "data/validation/v2-09c/model-download-runtime-smoke-report.json"
 }
