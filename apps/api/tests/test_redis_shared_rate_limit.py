@@ -21,6 +21,10 @@ async def test_redis_shared_quota_atomic_and_isolates_clients():
         assert b"client-A" not in b"".join(keys)
     finally:
         await redis.flushdb()
+        # pytest-asyncio her test için farklı event loop açabilir.
+        # Önce bağlantı kapanır, sonraki test için havuz yeniden oluşturulur.
+        await redis.aclose()
+        get_redis_client.cache_clear()
 
 @pytest.mark.asyncio
 async def test_redis_limiter_concurrent_requests_have_single_winner():
@@ -35,3 +39,7 @@ async def test_redis_limiter_concurrent_requests_have_single_winner():
         assert sum(results) == 1
     finally:
         await redis.flushdb()
+        # pytest-asyncio her test için farklı event loop açabilir.
+        # Önce bağlantı kapanır, sonraki test için havuz yeniden oluşturulur.
+        await redis.aclose()
+        get_redis_client.cache_clear()
