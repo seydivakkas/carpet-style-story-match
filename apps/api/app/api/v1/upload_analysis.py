@@ -61,13 +61,19 @@ async def detect_motifs(
             detail="No image file provided in request."
         )
 
-    # Check file size bound
-    contents = await file.read()
-    if len(contents) > settings.MAX_IMAGE_UPLOAD_BYTES:
-        raise HTTPException(
-            status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
-            detail=f"Image file size ({len(contents)} bytes) exceeds maximum limit of {settings.MAX_IMAGE_UPLOAD_BYTES} bytes."
-        )
+    # Dosyayı tek seferde belleğe alma: her 1 MiB parçada boyut denetimi yapılır.
+    # HTTP reverse proxy için Content-Length sınırı ayrıca gerekir.
+    fragments: list[bytes] = []
+    received = 0
+    while fragment := await file.read(1024 * 1024):
+        received += len(fragment)
+        if received > settings.MAX_IMAGE_UPLOAD_BYTES:
+            raise HTTPException(
+                status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+                detail="Image upload exceeds configured maximum size."
+            )
+        fragments.append(fragment)
+    contents = b"".join(fragments)
 
     mime_type = file.content_type or "image/jpeg"
 
