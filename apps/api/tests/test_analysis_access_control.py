@@ -65,3 +65,11 @@ async def test_unauthorized_cannot_retrieve_or_delete_any_analysis_resource(monk
     with pytest.raises(HTTPException) as error:
         await handlers[target](record.id, x_analysis_token="yanlis-erisim-anahtari"*4, db=FakeDatabase())
     assert error.value.status_code == 403
+
+
+def test_development_mode_does_not_bypass_resource_ownership():
+    token, digest = new_analysis_access_token()
+    with pytest.raises(HTTPException) as ex:
+        require_analysis_access(SimpleNamespace(owner_token_sha256=digest), None, environment="development")
+    assert ex.value.status_code == 403
+    require_analysis_access(SimpleNamespace(owner_token_sha256=digest), token, environment="development")

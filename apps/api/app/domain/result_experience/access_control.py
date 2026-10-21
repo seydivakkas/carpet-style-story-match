@@ -14,7 +14,7 @@ def require_analysis_access(record: object, provided_token: Optional[str], *, en
     if record is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Analiz bulunamadı.")
     mode = (environment or settings.APP_ENV).lower()
-    if mode not in {"development", "test"}:
+    if mode != "test":
         stored_hash = getattr(record, "owner_token_sha256", None)
         valid = (
             isinstance(stored_hash, str)
