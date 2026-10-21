@@ -17,7 +17,7 @@ Son denetim: 20 Ekim 2026. Kaynak: Kullanıcının 31 maddelik inceleme listesi.
 | 2 | P0 | Beş eksik frontend API modülü | KOD_YAZILDI | Güncel HEAD frontend ve uçtan uca API kabulü |
 | 3 | P0 | Frontend/Docker paketleme | KOD_YAZILDI | Güncel HEAD Docker build ve gerçek container açılışı |
 | 4 | P0 | S3/MinIO gerçek saklama | KISMİ_KOD | Unit test, çalışan MinIO, kesinti/yetki kabulü |
-| 5 | P0 | Analiz kaynaklarının sahibi/yetkisi | HOLD | Oturum/erişim modeli, kimlik doğrulama, negatif 403 testleri |
+| 5 | P0 | Analiz kaynaklarının sahibi/yetkisi | KISMİ_KOD | 256-bit capability + 4 korumalı uç nokta ve negatif 403 testleri PASS; kullanıcı hesabı ve rol/oturum yönetimi eksik |
 | 6 | P0 | Görsel silme ve ilişkili kayıtlar | KISMİ_KOD | S3/local atomiklik, erişim kontrolü, hata ve yarış koşulları |
 | 7 | P0 | Gerçek motif dedektörü (mAP50=0) | HOLD | Yeni bağımsız gerçek veri holdout; başarı eşiği tanımlanıp karşılanmalı |
 | 8 | P1 | VLM şema uyumu | HOLD | Gerçek yerel model ile yeni bağımsız ölçüm |
@@ -33,10 +33,10 @@ Son denetim: 20 Ekim 2026. Kaynak: Kullanıcının 31 maddelik inceleme listesi.
 | 18 | P1 | Yüklenen görsel EXIF gizliliği | KISMİ_KOD | Dosya saklama ve uç nokta negatif testleri |
 | 19 | P1 | Retention/silme politikası | HOLD | TTL, arka plan temizliği, audit/kişisel veri kabulü |
 | 20 | P1 | GET sonucunda veritabanına yazma | KOD_YAZILDI | Yan etkisiz GET regresyon testi |
-| 21 | P1 | Alembic tek şema yönetimi | KOD_YAZILDI | Boş PG DB migration ve tekrar açılış testi |
+| 21 | P1 | Alembic tek şema yönetimi | KOD_YAZILDI | PostgreSQL 16 sıfırdan Alembic geçişi PASS; var olan DB yükseltme/geri yükleme bekliyor |
 | 22 | P1 | GitHub CI kalite kapıları | KISMİ_KOD | Full backend, PostgreSQL, güvenlik ve Windows/Edge PASS |
 | 23 | P1 | Frontend unit/E2E testleri | HOLD | Vitest + Playwright ve gerçek Edge |
-| 24 | P1 | PostgreSQL/üretim kabulü | HOLD | Gerçek PostgreSQL container ve migration |
+| 24 | P1 | PostgreSQL/üretim kabulü | KISMİ_KOD | PostgreSQL 16 + Alembic şema smoke PASS; üretim API uçtan uca ve veri koruma kabulü bekliyor |
 | 25 | P2 | Deterministik Python bağımlılık kilidi | KISMİ_KOD | npm lock onarıldı; Python lock/SBOM eksik |
 | 26 | P2 | Bellek güvenli upload sınırı | KOD_YAZILDI | Reverse proxy gövde sınırı ve yük testi |
 | 27 | P2 | Polling hata/backoff/yeniden dene | KOD_YAZILDI | Frontend E2E ve ağ kesintisi testi |
@@ -64,3 +64,13 @@ Son denetim: 20 Ekim 2026. Kaynak: Kullanıcının 31 maddelik inceleme listesi.
 **MÜHENDİSLİK KARARI: KOD_DÜZELTMELERİ_KISMİ / YETKİLENDİRME_HOLD / GERÇEK_MOTİF_HOLD / BACKEND_CI_HOLD / MERGE_HOLD**
 
 Bu kayıt bir tamamlanma sertifikası değil, eksiksiz izlenebilirlik listesidir.
+
+## 21 Ekim 2026 — Doğrulanmış ek mühendislik kayıtları
+
+- `e8e794af`: V2-09/V2-10 testlerinin eski kullanıcı bilgisayarına bağımlı kök yolları repo göreli hâle getirildi. Ubuntu ve Windows **572 PASS / 31 FAIL / 1 SKIP**. Böylece 9 koşul daha test ortamında doğrulandı.
+- `b98504bd`: 001–014 Alembic migration zincirindeki tekrar eden PostgreSQL enum türlerinin oluşturulması tekilleştirildi. `backend-postgresql-schema` gerçek PostgreSQL 16 işinde **PASS** (`2026_10_21_018` sürümü ve `upload_analyses.owner_token_sha256`).
+- `backend-security-smoke`: Analiz durumu, sonucu, görüntüsü ve silme uç noktalarında yetkisiz erişim negatif testleri PASS. Bu, tam oturum/rol sistemi kabulü değildir.
+- `motif-evidence-inventory`: Depodaki üç kanıt JSON'u SHA-256 ile doğrulandı. Gerçek YOLO11n deney manifesti eksiktir. Envanter işi PASS olsa da **MODEL_KABUL_HOLD**.
+- `data/validation/v2-09b/detector-benchmark-report.json`: 35 gerçek görüntü, 92 motif işaretlemesi üzerinden raporlanan Detect mAP50=0.001 ve OBB mAP50=0.0. 57/57 rapor/bütünlük kontrolünün PASS olması model başarısının PASS olduğu anlamına gelmez.
+
+**GÜNCEL KARAR: ANALİZ_CAPABILITY_TEST_PASS / PG_ŞEMA_SMOKE_PASS / GERÇEK_MODEL_HOLD / FULL_BACKEND_FAIL / MERGE_HOLD.**

@@ -30,3 +30,8 @@ Aynı halının fotoğrafı, yakın kopyası, kaydırılmış kırpması veya ay
 Yeni analiz access-token altyapısı üretimde kayıt bazlı yetki gerektirir; **gerçek oturum açma/kullanıcı profili/rol sistemi değildir**. Geliştirme ve test ortamındaki eski yetkisiz fixture davranışı üretime taşınmamalıdır. Frontend'deki yerel saklama XSS tehdidine açıktır; oturum açma ve güvenilir sahiplik kimliği üretim kapsamı öncesi ayrı kapıdır.
 
 **KARAR: VERİ_ENVANTERİ_HOLD / MODEL_DOĞRULUĞU_HOLD / TAM_BACKEND_CI_HOLD / MERGE_HOLD**
+
+## Teknik ölçüm düzeltmesi
+
+Kaynak: `data/validation/v2-09b/detector-benchmark-report.json` (önceki tarihli arşiv raporu).
+Gerçek referans kümesinde 35 görüntü ve 92 motif nesnesi raporlanıyor. Detect mAP50 `0.001`, OBB mAP50 `0.0`; Detect precision `0.0833`, recall `0.0109` (1 TP, 11 FP, 91 FN). Bu raporun `status: PASS` alanı mühendislik/bütünlük kontrolünü ifade eder; gerçek motif algılamasının doğruluğunu kanıtlamaz. Bağımsız holdout ve kullanılabilir checkpoint sağlanmadan model başarısı `FAIL/HOLD` kalır.
