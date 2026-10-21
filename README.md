@@ -65,6 +65,32 @@ npm run build
 
 Eksiklerin güncel, madde bazlı kaydı: [31 eksiklik takibi](docs/eksik-giderme-durumu.md).
 
+## Gerçek verilerin yerel aktarımı
+
+Gerçek model ağırlıklarını ve özgün dataset kayıtlarını GitHub'a eklemeden, doğrulanmış Windows klasöründen proje içine aktarabilirsiniz. Kaynağın repo alt klasör yapısını koruması gerekir. Dosyalar ve raporlar otomatik uydurulmaz; bilinen modellerin SHA-256 ve byte uzunluğu denetlenir.
+
+```powershell
+# Proje depo kökünde:
+python scripts/stage_motif_evidence.py --source-root "C:\\Kendi_Arsivim\\carpet-style-story-match"
+# Yalnız doğru kaynak doğrulandığında gerçek kopyalama:
+python scripts/stage_motif_evidence.py --source-root "C:\\Kendi_Arsivim\\carpet-style-story-match" --apply
+# Model ve kaynak envanteri: eksik veya doğrulanmamış kanıtta exit 2
+python scripts/motif_evidence_audit.py --strict --output artifacts/motif-evidence-audit.json
+```
+
+`PRESENT_UNVERIFIED` durumu gerçek dosya bulunduğu ancak kaynak manifestinde beklenen SHA-256 bulunmadığı anlamına gelir; bu **model başarısı değildir**. Orijinal veri kullanım hakları ve bağımsız holdout ayrıca belgelenmelidir.
+
+## Saklama ve silme
+
+Yeni oluşturulan analizler varsayılan **7 gün** saklanır. `ANALYSIS_RETENTION_DAYS` 1–365 arasında ayarlanabilir. Saklama süresi sona eren analizlere geçerli erişim kanıtıyla bile HTTP `410 GONE` döner. Üretim Compose dağıtımında `retention` servisi her saat silme işlemini dener; görsel silinemezse veritabanı kaydı korunur ve sonraki turda tekrar denenir. Eski `expires_at=NULL` kayıtları kullanıcı kararı olmadan otomatik silinmez. Yerelde tek defalık denetim:
+
+```powershell
+cd apps/api
+python -m app.scripts.cleanup_expired_analyses --once
+```
+
+Analiz **PROCESSING** durumundaysa kullanıcı silmesi HTTP `409` döner; işlem bitince yeniden denenebilir. Bu önlem arka plan işçisinin silinmiş analiz için tekrar dosya oluşturma yarışını engeller.
+
 ## Üretim yapılandırması
 
 `docker-compose.prod.yml` şifreleri otomatik üretmez ve gerçek güvenlik ayarı yerine örnek parola kullanmaz. `POSTGRES_PASSWORD`, `MINIO_ROOT_USER`, `MINIO_ROOT_PASSWORD` ve onaylı **`MINIO_IMAGE`** ortam değişkenleri zorunludur. `STORAGE_BACKEND=s3` kullanılırsa `S3_ACCESS_KEY`, `S3_SECRET_KEY` ve var olan bir `S3_BUCKET_NAME` de gereklidir. Portlar yerel arayüze bağlıdır. TLS, reverse proxy, hesap oturumu ve veri saklama politikası ayrıca tamamlanmalıdır.

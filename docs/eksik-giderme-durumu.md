@@ -18,7 +18,7 @@ Son denetim: 20 Ekim 2026. Kaynak: Kullanıcının 31 maddelik inceleme listesi.
 | 3 | P0 | Frontend/Docker paketleme | KOD_YAZILDI | Güncel HEAD Docker build ve gerçek container açılışı |
 | 4 | P0 | S3/MinIO gerçek saklama | KISMİ_KOD | Unit test, çalışan MinIO, kesinti/yetki kabulü |
 | 5 | P0 | Analiz kaynaklarının sahibi/yetkisi | KISMİ_KOD | 256-bit capability + 4 korumalı uç nokta ve negatif 403 testleri PASS; kullanıcı hesabı ve rol/oturum yönetimi eksik |
-| 6 | P0 | Görsel silme ve ilişkili kayıtlar | KISMİ_KOD | S3/local atomiklik, erişim kontrolü, hata ve yarış koşulları |
+| 6 | P0 | Görsel silme ve ilişkili kayıtlar | KISMİ_KOD | Silme sırasında PROCESSING için 409 kilidi eklendi; eşzamanlı yarış/çökme ve gerçek S3 tutarlılığı bekliyor |
 | 7 | P0 | Gerçek motif dedektörü (mAP50=0) | HOLD | Yeni bağımsız gerçek veri holdout; başarı eşiği tanımlanıp karşılanmalı |
 | 8 | P1 | VLM şema uyumu | HOLD | Gerçek yerel model ile yeni bağımsız ölçüm |
 | 9 | P1 | Gerçek motif veri kapsamı | HOLD | Hakları doğrulanmış, etiketli, gruplanmış veri seti |
@@ -31,14 +31,14 @@ Son denetim: 20 Ekim 2026. Kaynak: Kullanıcının 31 maddelik inceleme listesi.
 | 16 | P1 | Compose güvenli varsayılanlar | KOD_YAZILDI | Secrets, TLS ve üretim ortamı testi |
 | 17 | P1 | Dağıtık rate limiting | HOLD | Redis/gateway ve çok-instance kabulü |
 | 18 | P1 | Yüklenen görsel EXIF gizliliği | KISMİ_KOD | Dosya saklama ve uç nokta negatif testleri |
-| 19 | P1 | Retention/silme politikası | HOLD | TTL, arka plan temizliği, audit/kişisel veri kabulü |
+| 19 | P1 | Retention/silme politikası | KOD_YAZILDI | Yeni 7 gün TTL, Alembic 019, saatlik worker ve regresyon testleri yazıldı; gerçek GDPR/KVKK, eski veri, üretim cleanup kabulü bekliyor |
 | 20 | P1 | GET sonucunda veritabanına yazma | KOD_YAZILDI | Yan etkisiz GET regresyon testi |
 | 21 | P1 | Alembic tek şema yönetimi | KOD_YAZILDI | PostgreSQL 16 sıfırdan Alembic geçişi PASS; var olan DB yükseltme/geri yükleme bekliyor |
 | 22 | P1 | GitHub CI kalite kapıları | KISMİ_KOD | Full backend, PostgreSQL, güvenlik ve Windows/Edge PASS |
 | 23 | P1 | Frontend unit/E2E testleri | HOLD | Vitest + Playwright ve gerçek Edge |
 | 24 | P1 | PostgreSQL/üretim kabulü | KISMİ_KOD | PostgreSQL 16 + Alembic şema smoke PASS; üretim API uçtan uca ve veri koruma kabulü bekliyor |
 | 25 | P2 | Deterministik Python bağımlılık kilidi | KISMİ_KOD | npm lock onarıldı; Python lock/SBOM eksik |
-| 26 | P2 | Bellek güvenli upload sınırı | KOD_YAZILDI | Reverse proxy gövde sınırı ve yük testi |
+| 26 | P2 | Bellek güvenli upload sınırı | KOD_YAZILDI | Her iki upload uç noktası 1 MiB parçalı okuma kullanıyor; reverse proxy gövde sınırı ve yük testi bekliyor |
 | 27 | P2 | Polling hata/backoff/yeniden dene | KOD_YAZILDI | Frontend E2E ve ağ kesintisi testi |
 | 28 | P2 | Sunucu tarafı güvenilir kullanıcı geçmişi | HOLD | Kimlik/sahiplik modeli, saklama kontrolü |
 | 29 | P2 | Kısmi toplu silme hatası | KOD_YAZILDI | Çoklu silme E2E ve yanlış başarı mesajı testi |
@@ -84,3 +84,11 @@ Bu kayıt bir tamamlanma sertifikası değil, eksiksiz izlenebilirlik listesidir
 - `docker-compose.prod.yml`: MinIO imajı üretimde kullanıcı tarafından seçilmeli, parola ve ayrı S3 servis kimlik bilgileri tanımlanmalıdır.
 
 **Not:** 12 tam backend testinin veri/model bağlı hataları model ağırlıkları, gerçek DB ve hakları uygun benchmark dosyaları olmadan kapanmış sayılmaz. 31 maddeye topluca KABUL_PASS verilmemiştir.
+
+## 21 Ekim 2026 — İşlem devamı (master)
+
+- `c3d8d464` ve `f10f4e45`: 019 migration, yeni analizlerde 7 günlük TTL, 410 yetki kapısı, ayrı saatlik temizleyici; eski NULL TTL kayıtlar otomatik silinmez.
+- `e0aec4e8`: Model/gerçek veri yerel arşivden **SHA kontrollü** aktarımı; manifesto eksikse veya hash uyuşmazsa izin verilmez. Denetimde `PRESENT_UNVERIFIED` bilimsel PASS değildir.
+- `0600156d`: SQLite oturum rollback regresyon testi düzeltildi; son CI doğrulaması gerekir.
+- `895ab059`: İşlem sürerken silmeye HTTP 409 ve negatif regresyon testi eklendi.
+- Bu adımlar **gerçek dedektör mAP50>0 kabulü** veya gerçek model ağırlıklarının depoda bulunduğu anlamına gelmez. 12 harici veri/model testi açık kalır.
