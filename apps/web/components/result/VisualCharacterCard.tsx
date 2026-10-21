@@ -98,7 +98,7 @@ export default function VisualCharacterCard({ data, primaryImageUrl }: Props) {
   });
 
   const fullImageUrl = primaryImageUrl
-    ? (primaryImageUrl.startsWith("http") ? primaryImageUrl : `http://localhost:8000${primaryImageUrl}`)
+    ? (primaryImageUrl.startsWith("http") || primaryImageUrl.startsWith("blob:") ? primaryImageUrl : `http://localhost:8000${primaryImageUrl}`)
     : null;
 
   return (

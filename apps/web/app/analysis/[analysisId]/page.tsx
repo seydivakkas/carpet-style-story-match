@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, use } from "react";
-import { fetchAnalysisStatus, fetchUnifiedResultById, UnifiedUploadResult } from "@/lib/result-experience-api";
+import { fetchAnalysisStatus, fetchUnifiedResultById, fetchAnalysisImageObjectUrl, UnifiedUploadResult } from "@/lib/result-experience-api";
 import UnifiedUploadResultPage from "@/components/result/UnifiedUploadResultPage";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -22,6 +22,13 @@ export default function AnalysisResultPage({ params }: PageProps) {
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [retry, setRetry] = useState(0);
+
+  useEffect(() => {
+    const url = result?.image_meta.primary_image_url;
+    return () => {
+      if (url?.startsWith("blob:")) URL.revokeObjectURL(url);
+    };
+  }, [result?.image_meta.primary_image_url]);
 
   useEffect(() => {
     let isCancelled = false;
@@ -46,8 +53,18 @@ export default function AnalysisResultPage({ params }: PageProps) {
 
             if (statusRes.status === "COMPLETED" || statusRes.status === "BLOCKED_BY_QUALITY") {
               const resData = await fetchUnifiedResultById(analysisId);
+              let privateImageUrl = "";
+              try {
+                privateImageUrl = await fetchAnalysisImageObjectUrl(analysisId);
+              } catch {
+                // Görsel izni olmayan ya da dosyası silinmiş kayıt sonuçsuz kalmaz.
+              }
               if (!isCancelled) {
-                setResult(resData);
+                setResult({...resData, image_meta:{...resData.image_meta,primary_image_url:privateImageUrl}});
+              } else if (privateImageUrl) {
+                URL.revokeObjectURL(privateImageUrl);
+              }
+              if (!isCancelled) {
                 setLoading(false);
 
                 // Ensure stored in recent analyses
@@ -75,6 +92,13 @@ export default function AnalysisResultPage({ params }: PageProps) {
               return;
             }
           } catch (fetchErr: unknown) {
+            if (fetchErr instanceof ApiClientError && fetchErr.status === 403) {
+              if (!isCancelled) {
+                setError("Bu analize erişim anahtarı bulunamadı veya geçersiz. Yalnızca analiz sahibinin oturumu erişebilir.");
+                setLoading(false);
+              }
+              return;
+            }
             if (fetchErr instanceof ApiClientError && fetchErr.status === 404) {
               if (!isCancelled) {
                 setError("Analiz kaydı bulunamadı.");

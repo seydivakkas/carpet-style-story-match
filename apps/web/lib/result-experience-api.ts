@@ -25,18 +25,47 @@ export interface UnifiedUploadResult{
  visual_retrieval_version:string;catalog_corpus_fingerprint?:string|null;historical_corpus_fingerprint?:string|null};
  warnings:string[];
 }
-export interface AcceptedAnalysis{analysis_id:string;status:string;poll_url:string}
+export interface AcceptedAnalysis{analysis_id:string;status:string;poll_url:string;access_token:string}
 export interface AnalysisStatus{analysis_id:string;status:"PROCESSING"|"COMPLETED"|"FAILED"|"BLOCKED_BY_QUALITY";error?:string|null}
-export function startAnalysis(file:File):Promise<AcceptedAnalysis>{
- const body=new FormData();body.append("file",file);
- return apiRequest<AcceptedAnalysis>("/api/v1/upload-analysis/unified-result",{method:"POST",body});
+/** Sunucudaki analiz kimliğine özel bearer kanıtı, asla URL'de taşınmaz. */
+const tokenKey=(id:string)=>`carpet_analysis_secret_${id}`;
+function analysisHeaders(id:string):HeadersInit{
+ const token=typeof window==="undefined"?null:window.localStorage.getItem(tokenKey(id));
+ return token?{"X-Analysis-Token":token}:{};
 }
-export function fetchAnalysisStatus(id:string){return apiRequest<AnalysisStatus>(`/api/v1/upload-analysis/${encodeURIComponent(id)}/status`)}
+export async function startAnalysis(file:File):Promise<AcceptedAnalysis>{
+ const body=new FormData();body.append("file",file);
+ const res=await apiRequest<AcceptedAnalysis>("/api/v1/upload-analysis/unified-result",{method:"POST",body});
+ if(!res.access_token)throw new Error("Sunucu analiz erişim anahtarı üretmedi.");
+ try{
+   window.localStorage.setItem(tokenKey(res.analysis_id),res.access_token);
+ }catch{
+   throw new Error("Analiz oluşturuldu ancak erişim anahtarı kaydedilemedi. Tarayıcı depolama izinlerini kontrol edin.");
+ }
+ return res;
+}
+export function fetchAnalysisStatus(id:string){
+ return apiRequest<AnalysisStatus>(`/api/v1/upload-analysis/${encodeURIComponent(id)}/status`,{headers:analysisHeaders(id)});
+}
 export async function fetchUnifiedResultById(id:string):Promise<UnifiedUploadResult>{
- const res=await apiRequest<UnifiedUploadResult>(`/api/v1/upload-analysis/${encodeURIComponent(id)}/unified-result`);
+ const res=await apiRequest<UnifiedUploadResult>(`/api/v1/upload-analysis/${encodeURIComponent(id)}/unified-result`,{headers:analysisHeaders(id)});
  const path=res.image_meta.primary_image_url;
  return {...res,image_meta:{...res.image_meta,primary_image_url:path.startsWith("/")?API_BASE_URL+path:path}};
 }
-export function deleteAnalysisRecord(id:string){
- return apiRequest<{status:string;analysis_id:string}>(`/api/v1/upload-analysis/${encodeURIComponent(id)}`,{method:"DELETE"});
+/** Görsel isteği özel başlıkla yapılır; erişim anahtarı URL/log/referrer'a girmez. */
+export async function fetchAnalysisImageObjectUrl(id:string):Promise<string>{
+ const response=await fetch(`${API_BASE_URL}/api/v1/upload-analysis/${encodeURIComponent(id)}/image`,{
+   headers:analysisHeaders(id),cache:"no-store"
+ });
+ if(!response.ok)throw new Error(`Görsel erişimi başarısız: HTTP ${response.status}`);
+ const blob=await response.blob();
+ if(!blob.type.startsWith("image/"))throw new Error("Sunucudan beklenmeyen görsel içeriği.");
+ return URL.createObjectURL(blob);
+}
+export async function deleteAnalysisRecord(id:string){
+ const result=await apiRequest<{status:string;analysis_id:string}>(`/api/v1/upload-analysis/${encodeURIComponent(id)}`,{
+   method:"DELETE",headers:analysisHeaders(id)
+ });
+ if(typeof window!=="undefined")window.localStorage.removeItem(tokenKey(id));
+ return result;
 }
