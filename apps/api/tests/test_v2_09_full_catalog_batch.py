@@ -5,7 +5,7 @@ import pytest
 from pathlib import Path
 from packages.synthetic_motifs.cli import load_class_map
 
-ROOT_DIR = Path("c:/Users/seydieryilmaz/Desktop/carpet-style-story-match")
+ROOT_DIR = Path(__file__).resolve().parents[3]  # Çalışma dizininden bağımsız, depo kökü
 MANIFEST_PATH = ROOT_DIR / "data" / "validation" / "v2-09" / "catalog-motif-batch-input-manifest.json"
 RESULT_PATH = ROOT_DIR / "data" / "validation" / "v2-09" / "catalog-motif-batch-result-v1.json"
 AUDIT_PATH = ROOT_DIR / "data" / "validation" / "v2-09" / "catalog-motif-batch-integrity-audit.json"
