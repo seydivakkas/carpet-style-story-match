@@ -147,7 +147,11 @@ async def test_development_admin_access_mode_requires_explicit_reviewer_ref(sync
     old_mode = settings.MOTIF_REVIEW_ACCESS_MODE
     old_ref = settings.MOTIF_REVIEW_DEVELOPMENT_REVIEWER_REF
     old_env = settings.APP_ENV
+    old_backend = settings.RATE_LIMIT_BACKEND
+    old_redis_url = settings.REDIS_URL
 
+    settings.RATE_LIMIT_BACKEND = "redis"
+    settings.REDIS_URL = "redis://127.0.0.1:6379/0"
     settings.MOTIF_REVIEW_ACCESS_MODE = "DEVELOPMENT_ADMIN"
     settings.APP_ENV = "development"
 
@@ -169,10 +173,18 @@ async def test_development_admin_access_mode_requires_explicit_reviewer_ref(sync
         settings.MOTIF_REVIEW_ACCESS_MODE = old_mode
         settings.MOTIF_REVIEW_DEVELOPMENT_REVIEWER_REF = old_ref
         settings.APP_ENV = old_env
+        settings.RATE_LIMIT_BACKEND = old_backend
+        settings.REDIS_URL = old_redis_url
 
 
 @pytest.mark.asyncio
-async def test_development_admin_mode_rejected_in_production():
+async def test_development_admin_mode_rejected_in_production(monkeypatch):
+    # Bu test küratör erişim katmanını doğrular; Redis limiti ayrı CI'da test edilir.
+    from app.core import middleware as middleware_module
+    async def quota_allowed(*_args, **_kwargs):
+        return True
+    monkeypatch.setattr(middleware_module, "acquire_redis_quota", quota_allowed)
+
     """Test that DEVELOPMENT_ADMIN mode is forbidden if APP_ENV=production."""
     old_mode = settings.MOTIF_REVIEW_ACCESS_MODE
     old_ref = settings.MOTIF_REVIEW_DEVELOPMENT_REVIEWER_REF
