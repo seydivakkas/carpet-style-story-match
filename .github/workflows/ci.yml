@@ -102,3 +102,37 @@ jobs:
         with:
           name: motif-evidence-inventory
           path: artifacts/motif-evidence-audit.json
+
+  backend-postgresql-schema:
+    name: backend-postgresql-schema
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: carpet_ci
+          POSTGRES_PASSWORD: ci_temporary_only
+          POSTGRES_DB: carpet_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U carpet_ci -d carpet_ci"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 15
+    env:
+      APP_ENV: test
+      DATABASE_URL: "postgresql+asyncpg://carpet_ci:ci_temporary_only@localhost:5432/carpet_ci"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Python bağımlılıkları
+        run: python -m pip install -e "./apps/api[dev,s3]"
+      - name: Boş PostgreSQL üzerinde Alembic upgrade head
+        working-directory: apps/api
+        run: python -m alembic upgrade head
+      - name: Sahiplik alanı ve Alembic sürümünü doğrula
+        working-directory: apps/api
+        run: python -m app.scripts.verify_postgres_schema
