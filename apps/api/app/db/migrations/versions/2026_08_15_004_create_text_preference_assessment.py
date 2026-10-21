@@ -16,6 +16,12 @@ branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
 def upgrade() -> None:
+    # Tekilleştirilmiş PostgreSQL enum oluşturma.
+    if op.get_bind().dialect.name == 'postgresql':
+        postgresql.ENUM('TEXT_PENDING', 'TEXT_COMPLETE', name='assessment_status_enum').create(op.get_bind(), checkfirst=True)
+        postgresql.ENUM('STRONGLY_A', 'SLIGHTLY_A', 'NEUTRAL', 'SLIGHTLY_B', 'STRONGLY_B', name='text_choice_enum').create(op.get_bind(), checkfirst=True)
+        postgresql.ENUM('MEASURED', 'NOT_MEASURED', name='preference_dimension_status_enum').create(op.get_bind(), checkfirst=True)
+
     assessment_status_enum = postgresql.ENUM(
         'TEXT_PENDING', 'TEXT_COMPLETE',
         name='assessment_status_enum',
@@ -43,7 +49,7 @@ def upgrade() -> None:
         sa.Column('id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column(
             'status',
-            sa.Enum('TEXT_PENDING', 'TEXT_COMPLETE', name='assessment_status_enum'),
+            postgresql.ENUM('TEXT_PENDING', 'TEXT_COMPLETE', name='assessment_status_enum', create_type=False),
             nullable=False,
             server_default='TEXT_PENDING'
         ),
@@ -61,7 +67,7 @@ def upgrade() -> None:
         sa.Column('question_key', sa.String(length=50), nullable=False),
         sa.Column(
             'choice',
-            sa.Enum('STRONGLY_A', 'SLIGHTLY_A', 'NEUTRAL', 'SLIGHTLY_B', 'STRONGLY_B', name='text_choice_enum'),
+            postgresql.ENUM('STRONGLY_A', 'SLIGHTLY_A', 'NEUTRAL', 'SLIGHTLY_B', 'STRONGLY_B', name='text_choice_enum', create_type=False),
             nullable=False
         ),
         sa.Column('response_value', sa.Float(), nullable=False),
@@ -96,7 +102,7 @@ def upgrade() -> None:
         sa.Column('value', sa.Float(), nullable=True),
         sa.Column(
             'status',
-            sa.Enum('MEASURED', 'NOT_MEASURED', name='preference_dimension_status_enum'),
+            postgresql.ENUM('MEASURED', 'NOT_MEASURED', name='preference_dimension_status_enum', create_type=False),
             nullable=False,
             server_default='MEASURED'
         ),

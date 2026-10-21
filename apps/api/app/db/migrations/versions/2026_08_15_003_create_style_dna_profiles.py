@@ -16,6 +16,11 @@ branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
 def upgrade() -> None:
+    # Tekilleştirilmiş PostgreSQL enum oluşturma.
+    if op.get_bind().dialect.name == 'postgresql':
+        postgresql.ENUM('COMPLETE', 'PARTIAL', 'FAILED', name='style_profile_status_enum').create(op.get_bind(), checkfirst=True)
+        postgresql.ENUM('AVAILABLE', 'LOW_CONFIDENCE', 'NOT_AVAILABLE', 'FAILED', name='style_dimension_status_enum').create(op.get_bind(), checkfirst=True)
+
     # Create enums
     style_profile_status_enum = postgresql.ENUM(
         'COMPLETE', 'PARTIAL', 'FAILED',
@@ -41,7 +46,7 @@ def upgrade() -> None:
         sa.Column('analysis_scope', sa.String(length=50), nullable=False, server_default='FULL_IMAGE'),
         sa.Column(
             'status',
-            sa.Enum('COMPLETE', 'PARTIAL', 'FAILED', name='style_profile_status_enum'),
+            postgresql.ENUM('COMPLETE', 'PARTIAL', 'FAILED', name='style_profile_status_enum', create_type=False),
             nullable=False,
             server_default='COMPLETE'
         ),
@@ -65,7 +70,7 @@ def upgrade() -> None:
         sa.Column('confidence', sa.Float(), nullable=False, server_default='1.0'),
         sa.Column(
             'status',
-            sa.Enum('AVAILABLE', 'LOW_CONFIDENCE', 'NOT_AVAILABLE', 'FAILED', name='style_dimension_status_enum'),
+            postgresql.ENUM('AVAILABLE', 'LOW_CONFIDENCE', 'NOT_AVAILABLE', 'FAILED', name='style_dimension_status_enum', create_type=False),
             nullable=False,
             server_default='AVAILABLE'
         ),
