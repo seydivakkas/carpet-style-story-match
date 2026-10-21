@@ -185,6 +185,9 @@ async def get_unified_result_by_id(
     res = await db.execute(stmt)
     record = res.scalar_one_or_none()
 
+    if record is None:
+        # Var olmayan kayıt sözleşmesinin 404 detayını koru; mevcut kayıtta erişim zorunlu.
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Analysis result not found")
     require_analysis_access(record, x_analysis_token)
 
     status_val = record.status.value if hasattr(record.status, "value") else str(record.status)
