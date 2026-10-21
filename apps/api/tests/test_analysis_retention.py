@@ -46,10 +46,11 @@ async def test_retention_storage_error_keeps_record_for_retry(db_session):
     now = datetime.now(timezone.utc)
     old, _ = new_row(now - timedelta(seconds=1), "fail.jpg")
     db_session.add(old)
+    old_id = old.id  # Rollback sonrasında ORM nesnesinin expired attribute erişimi DB IO tetikleyebilir.
     await db_session.commit()
     result = await cleanup_expired_analyses(db_session, FakeStorage(fails=True), now=now)
     assert result == {"deleted": 0, "failed": 1}
-    assert (await db_session.get(UploadAnalysisModel, old.id)) is not None
+    assert (await db_session.get(UploadAnalysisModel, old_id)) is not None
 
 def test_expired_token_returns_410_after_owner_check():
     now = datetime.now(timezone.utc)
