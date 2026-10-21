@@ -21,7 +21,9 @@ def test_production_config_valid():
         DATABASE_URL="postgresql+asyncpg://carpet_user:secure_prod_pass_123@postgres:5432/carpet_db",
         CORS_ORIGINS=["https://example.com"],
         TRUSTED_HOSTS=["example.com", "api.example.com"],
-        MOTIF_REVIEW_ACCESS_MODE="AUTHENTICATED"
+        MOTIF_REVIEW_ACCESS_MODE="AUTHENTICATED",
+        RATE_LIMIT_BACKEND="redis",
+        REDIS_URL="redis://redis:6379/0",
     )
     s.validate_production_config()
 
@@ -103,4 +105,18 @@ def test_production_rejects_missing_s3_credentials():
         MOTIF_REVIEW_ACCESS_MODE="AUTHENTICATED"
     )
     with pytest.raises(ValueError, match="S3 credentials"):
+        s.validate_production_config()
+
+
+def test_production_rejects_local_memory_limiter():
+    s = Settings(
+        APP_ENV="production",
+        DEBUG=False,
+        DATABASE_URL="postgresql+asyncpg://carpet_user:secure_prod_pass_123@postgres:5432/carpet_db",
+        CORS_ORIGINS=["https://example.com"],
+        TRUSTED_HOSTS=["example.com"],
+        RATE_LIMIT_BACKEND="memory",
+        REDIS_URL=None,
+    )
+    with pytest.raises(ValueError, match="shared Redis rate limiting is required"):
         s.validate_production_config()

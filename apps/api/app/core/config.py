@@ -122,6 +122,9 @@ class Settings(BaseSettings):
             if not self.S3_ACCESS_KEY or not self.S3_SECRET_KEY or not self.S3_BUCKET_NAME:
                 raise ValueError("Production configuration violation: S3 credentials (access_key, secret_key, bucket_name) required when STORAGE_BACKEND=s3.")
 
+        if self.RATE_LIMIT_BACKEND.lower() != "redis" or not self.REDIS_URL:
+            raise ValueError("Production configuration violation: shared Redis rate limiting is required.")
+
 
 settings = Settings()
 # Run fail-fast production config validation on initialization

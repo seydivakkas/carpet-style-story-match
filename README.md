@@ -91,6 +91,12 @@ python -m app.scripts.cleanup_expired_analyses --once
 
 Analiz **PROCESSING** durumundaysa kullanıcı silmesi HTTP `409` döner; işlem bitince yeniden denenebilir. Bu önlem arka plan işçisinin silinmiş analiz için tekrar dosya oluşturma yarışını engeller.
 
+## Paylaşımlı hız sınırı
+
+Üretimde tüm FastAPI worker'ları ortak Redis 7 üzerinden atomik 60 saniyelik IP kotası kullanır. `RATE_LIMIT_BACKEND=redis` ve `REDIS_URL` zorunludur; Redis erişilemiyorsa güvenlik denetimi sessizce atlanmaz (HTTP 503). Geliştirme ortamı için `memory` modu hâlâ kullanılabilir. Redis yalnız Docker iç ağına açıktır.
+
+Ters proxy IP adresini maskeliyorsa kota proxy IP'sine uygulanır; güvenilir proxy zinciri belirlenmeden istemciden gelen `X-Forwarded-For` başlığına körü körüne güvenilmez. Dağıtık yük ve saldırı dayanımı fiziksel kabul aşamasında ölçülecek.
+
 ## Üretim yapılandırması
 
 `docker-compose.prod.yml` şifreleri otomatik üretmez ve gerçek güvenlik ayarı yerine örnek parola kullanmaz. `POSTGRES_PASSWORD`, `MINIO_ROOT_USER`, `MINIO_ROOT_PASSWORD` ve onaylı **`MINIO_IMAGE`** ortam değişkenleri zorunludur. `STORAGE_BACKEND=s3` kullanılırsa `S3_ACCESS_KEY`, `S3_SECRET_KEY` ve var olan bir `S3_BUCKET_NAME` de gereklidir. Portlar yerel arayüze bağlıdır. TLS, reverse proxy, hesap oturumu ve veri saklama politikası ayrıca tamamlanmalıdır.

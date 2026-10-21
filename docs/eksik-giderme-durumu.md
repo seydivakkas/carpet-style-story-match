@@ -29,7 +29,7 @@ Son denetim: 20 Ekim 2026. Kaynak: Kullanıcının 31 maddelik inceleme listesi.
 | 14 | P1 | Kalıcı ve tekrar denenebilir iş kuyruğu | HOLD | Kuyruk, at-least-once/idempotency, restart kabulü |
 | 15 | P1 | Küratör üretim auth entegrasyonu | HOLD | Güvenilir gateway/rol ve audit testleri |
 | 16 | P1 | Compose güvenli varsayılanlar | KOD_YAZILDI | Secrets, TLS ve üretim ortamı testi |
-| 17 | P1 | Dağıtık rate limiting | HOLD | Redis/gateway ve çok-instance kabulü |
+| 17 | P1 | Dağıtık rate limiting | KOD_YAZILDI | Redis atomik paylaşım ve negatif fail-closed testleri CI PASS; çok-instance/ters-proxy/yük kabulü bekliyor |
 | 18 | P1 | Yüklenen görsel EXIF gizliliği | KISMİ_KOD | Dosya saklama ve uç nokta negatif testleri |
 | 19 | P1 | Retention/silme politikası | KOD_YAZILDI | Yeni 7 gün TTL, Alembic 019, saatlik worker ve regresyon testleri yazıldı; gerçek GDPR/KVKK, eski veri, üretim cleanup kabulü bekliyor |
 | 20 | P1 | GET sonucunda veritabanına yazma | KOD_YAZILDI | Yan etkisiz GET regresyon testi |
@@ -92,3 +92,6 @@ Bu kayıt bir tamamlanma sertifikası değil, eksiksiz izlenebilirlik listesidir
 - `0600156d`: SQLite oturum rollback regresyon testi düzeltildi; son CI doğrulaması gerekir.
 - `895ab059`: İşlem sürerken silmeye HTTP 409 ve negatif regresyon testi eklendi.
 - Bu adımlar **gerçek dedektör mAP50>0 kabulü** veya gerçek model ağırlıklarının depoda bulunduğu anlamına gelmez. 12 harici veri/model testi açık kalır.
+
+- `12755e5c`: Gerçek Redis paylaşılmış kota için ayrı `backend-redis-integration` CI PASS. `RATE_LIMIT_BACKEND=redis` üretimde zorunlu; Redis kesintisinde fail-closed 503 testi eklendi.
+- `b9dc7ca0`: Model kabul API'si eski 9 kaynak yerine tek SHA manifestindeki 17 kanıta bakıyor; kaynak varlığına başarı etiketi verilmez.

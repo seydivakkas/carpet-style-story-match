@@ -24,6 +24,8 @@ services:
     container_name: carpet_migrate_prod
     environment:
       APP_ENV: production
+      RATE_LIMIT_BACKEND: redis
+      REDIS_URL: redis://redis:6379/0
       DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-carpet_user}:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD_is_required}@postgres:5432/${POSTGRES_DB:-carpet_db}
     command: ["alembic", "upgrade", "head"]
     depends_on:
@@ -101,6 +103,8 @@ services:
       STORAGE_BACKEND: ${STORAGE_BACKEND:-local}
       IMAGE_STORAGE_ROOT: /app/data/uploads
       ANALYSIS_RETENTION_DAYS: ${ANALYSIS_RETENTION_DAYS:-7}
+      RATE_LIMIT_BACKEND: redis
+      REDIS_URL: redis://redis:6379/0
       S3_ENDPOINT_URL: ${S3_ENDPOINT_URL:-http://minio:9000}
       S3_BUCKET_NAME: ${S3_BUCKET_NAME:-carpet-assets}
       S3_ACCESS_KEY: ${S3_ACCESS_KEY:-}
