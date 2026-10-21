@@ -16,6 +16,11 @@ branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
 def upgrade() -> None:
+    # Enum tipleri tek bir kez oluşturulur; tekrar kullanılan alanlar DDL üretmez.
+    if op.get_bind().dialect.name == 'postgresql':
+        postgresql.ENUM('STRONGLY_LEFT', 'SLIGHTLY_LEFT', 'NEUTRAL', 'SLIGHTLY_RIGHT', 'STRONGLY_RIGHT', name='visual_choice_enum').create(op.get_bind(), checkfirst=True)
+        postgresql.ENUM('MEASURED', 'NOT_MEASURED', name='preference_dimension_status_enum').create(op.get_bind(), checkfirst=True)
+
     bind = op.get_bind()
     if bind.dialect.name == "postgresql":
         op.execute("ALTER TYPE assessment_status_enum ADD VALUE IF NOT EXISTS 'VISUAL_PENDING';")
@@ -54,7 +59,7 @@ def upgrade() -> None:
         sa.Column('stimulus_key', sa.String(length=50), nullable=False),
         sa.Column(
             'choice',
-            sa.Enum('STRONGLY_LEFT', 'SLIGHTLY_LEFT', 'NEUTRAL', 'SLIGHTLY_RIGHT', 'STRONGLY_RIGHT', name='visual_choice_enum'),
+            postgresql.ENUM('STRONGLY_LEFT', 'SLIGHTLY_LEFT', 'NEUTRAL', 'SLIGHTLY_RIGHT', 'STRONGLY_RIGHT', name='visual_choice_enum', create_type=False),
             nullable=False
         ),
         sa.Column('canonical_direction', sa.Float(), nullable=False),
@@ -90,7 +95,7 @@ def upgrade() -> None:
         sa.Column('value', sa.Float(), nullable=True),
         sa.Column(
             'status',
-            sa.Enum('MEASURED', 'NOT_MEASURED', name='preference_dimension_status_enum'),
+            postgresql.ENUM('MEASURED', 'NOT_MEASURED', name='preference_dimension_status_enum', create_type=False),
             nullable=False,
             server_default='MEASURED'
         ),

@@ -16,6 +16,13 @@ branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
 def upgrade() -> None:
+    # Enum tipleri tek bir kez oluşturulur; tekrar kullanılan alanlar DDL üretmez.
+    if op.get_bind().dialect.name == 'postgresql':
+        postgresql.ENUM('COMPLETE', 'PARTIAL', 'NOT_AVAILABLE', name='style_match_status_enum').create(op.get_bind(), checkfirst=True)
+        postgresql.ENUM('VERY_STRONG', 'STRONG', 'MODERATE', 'LIMITED', 'LOW', name='style_match_label_enum').create(op.get_bind(), checkfirst=True)
+        postgresql.ENUM('INFERRED', 'USER_CONFIRMED', 'USER_OVERRIDDEN', name='user_preference_provenance_enum').create(op.get_bind(), checkfirst=True)
+        postgresql.ENUM('PRIORITY', 'STANDARD', 'FLEXIBLE', name='importance_level_enum').create(op.get_bind(), checkfirst=True)
+
     bind = op.get_bind()
 
     style_match_status_enum = postgresql.ENUM('COMPLETE', 'PARTIAL', 'NOT_AVAILABLE', name='style_match_status_enum', create_type=False)
@@ -39,10 +46,10 @@ def upgrade() -> None:
         sa.Column('importance_profile_id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('carpet_style_profile_id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('match_version', sa.String(length=50), nullable=False, server_default='visual-style-match-v1'),
-        sa.Column('status', sa.Enum('COMPLETE', 'PARTIAL', 'NOT_AVAILABLE', name='style_match_status_enum'), nullable=False, server_default='COMPLETE'),
+        sa.Column('status', postgresql.ENUM('COMPLETE', 'PARTIAL', 'NOT_AVAILABLE', name='style_match_status_enum', create_type=False), nullable=False, server_default='COMPLETE'),
         sa.Column('score', sa.Float(), nullable=True),
         sa.Column('score_100', sa.Float(), nullable=True),
-        sa.Column('match_label', sa.Enum('VERY_STRONG', 'STRONG', 'MODERATE', 'LIMITED', 'LOW', name='style_match_label_enum'), nullable=True),
+        sa.Column('match_label', postgresql.ENUM('VERY_STRONG', 'STRONG', 'MODERATE', 'LIMITED', 'LOW', name='style_match_label_enum', create_type=False), nullable=True),
         sa.Column('comparable_dimension_count', sa.Integer(), nullable=False, server_default='0'),
         sa.Column('weighted_coverage', sa.Float(), nullable=False, server_default='0.0'),
         sa.Column('total_importance_weight', sa.Float(), nullable=False, server_default='0.0'),
@@ -68,10 +75,10 @@ def upgrade() -> None:
         sa.Column('match_result_id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('dimension_key', sa.String(length=50), nullable=False),
         sa.Column('user_value', sa.Float(), nullable=True),
-        sa.Column('user_provenance', sa.Enum('INFERRED', 'USER_CONFIRMED', 'USER_OVERRIDDEN', name='user_preference_provenance_enum'), nullable=True),
+        sa.Column('user_provenance', postgresql.ENUM('INFERRED', 'USER_CONFIRMED', 'USER_OVERRIDDEN', name='user_preference_provenance_enum', create_type=False), nullable=True),
         sa.Column('carpet_value', sa.Float(), nullable=True),
         sa.Column('carpet_dimension_status', sa.String(length=50), nullable=True),
-        sa.Column('importance_level', sa.Enum('PRIORITY', 'STANDARD', 'FLEXIBLE', name='importance_level_enum'), nullable=False, server_default='STANDARD'),
+        sa.Column('importance_level', postgresql.ENUM('PRIORITY', 'STANDARD', 'FLEXIBLE', name='importance_level_enum', create_type=False), nullable=False, server_default='STANDARD'),
         sa.Column('importance_weight', sa.Float(), nullable=False, server_default='0.60'),
         sa.Column('difference', sa.Float(), nullable=True),
         sa.Column('similarity', sa.Float(), nullable=True),

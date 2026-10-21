@@ -16,6 +16,11 @@ branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
 def upgrade() -> None:
+    # Enum tipleri tek bir kez oluşturulur; tekrar kullanılan alanlar DDL üretmez.
+    if op.get_bind().dialect.name == 'postgresql':
+        postgresql.ENUM('EXPLICIT_SELECTION', 'SKIPPED_ALL_STANDARD', name='importance_completion_mode_enum').create(op.get_bind(), checkfirst=True)
+        postgresql.ENUM('PRIORITY', 'STANDARD', 'FLEXIBLE', name='importance_level_enum').create(op.get_bind(), checkfirst=True)
+
     bind = op.get_bind()
     if bind.dialect.name == "postgresql":
         op.execute("ALTER TYPE assessment_status_enum ADD VALUE IF NOT EXISTS 'IMPORTANCE_COMPLETE';")
@@ -33,7 +38,7 @@ def upgrade() -> None:
         sa.Column('assessment_id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('user_preference_profile_id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('importance_version', sa.String(length=50), nullable=False, server_default='importance-v1'),
-        sa.Column('completion_mode', sa.Enum('EXPLICIT_SELECTION', 'SKIPPED_ALL_STANDARD', name='importance_completion_mode_enum'), nullable=False, server_default='EXPLICIT_SELECTION'),
+        sa.Column('completion_mode', postgresql.ENUM('EXPLICIT_SELECTION', 'SKIPPED_ALL_STANDARD', name='importance_completion_mode_enum', create_type=False), nullable=False, server_default='EXPLICIT_SELECTION'),
         sa.Column('created_at', sa.DateTime(timezone=True), nullable=False, server_default=sa.text('CURRENT_TIMESTAMP')),
         sa.ForeignKeyConstraint(['assessment_id'], ['preference_assessments.id'], ondelete='CASCADE'),
         sa.ForeignKeyConstraint(['user_preference_profile_id'], ['user_preference_profiles.id'], ondelete='CASCADE'),
@@ -49,7 +54,7 @@ def upgrade() -> None:
         sa.Column('id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('importance_profile_id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('dimension_key', sa.String(length=50), nullable=False),
-        sa.Column('level', sa.Enum('PRIORITY', 'STANDARD', 'FLEXIBLE', name='importance_level_enum'), nullable=False, server_default='STANDARD'),
+        sa.Column('level', postgresql.ENUM('PRIORITY', 'STANDARD', 'FLEXIBLE', name='importance_level_enum', create_type=False), nullable=False, server_default='STANDARD'),
         sa.Column('weight', sa.Float(), nullable=False, server_default='0.60'),
         sa.ForeignKeyConstraint(['importance_profile_id'], ['importance_profiles.id'], ondelete='CASCADE'),
         sa.PrimaryKeyConstraint('id'),
