@@ -3,6 +3,8 @@ from typing import List, Optional
 import uuid
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.db.models.carpet import CarpetSourceType
+from app.db.models.carpet_story_association import CarpetStoryAssociationModel
+from app.db.models.preference_assessment import UserNarrativeProfileModel
 from app.db.models.carpet_narrative_affinity import (
     NarrativeAffinityResultModel,
     NarrativeAffinityThemeResultModel

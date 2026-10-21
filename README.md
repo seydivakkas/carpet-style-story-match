@@ -1,100 +1,76 @@
 # Carpet Style & Story Match
 
-![License](https://img.shields.io/badge/license-All%20Rights%20Reserved-red?style=flat-square)
+**Özel lisans — tüm hakları saklıdır.** Ayrıntılar: [LICENSE](LICENSE).
 
-**Carpet Style & Story Match** is a modern platform that quantifies the visual character of carpets, evaluates narrative affinities with user aesthetic themes, and connects carpets to documented historical reference artifacts.
+Halıların 9 boyutlu görsel karakterini (Style DNA), görsel benzerliğini ve kaynaklı tarihî bağlantılarını ayrı ayrı ele alan FastAPI + Next.js uygulaması. **Motif tanıma modeli henüz bilimsel üretim kabulünden geçmemiştir.** Halı motifi önerileri uzman onayı veya bağımsız gerçek veri değerlendirmesi yerine geçmez.
 
----
+## Mimari
 
-## Core Product Outputs
+- `apps/api/`: FastAPI, SQLAlchemy, Alembic ve modüler analiz.
+- `apps/web/`: Next.js, TypeScript, analiz yükleme ve beş kartlık sonuç ekranı.
+- `packages/`: Ortak sözleşmeler, deneysel motif doğrulama araçları.
+- `docs/`: Sürüm kayıtları, deney kanıtları, eksik/geliştirme takibi.
+- `docker-compose.prod.yml`: PostgreSQL, API, Next.js ve opsiyonel S3/MinIO altyapısı.
 
-The system evaluates three independent dimensions without combining them into a single personality score:
+## Çalışan ve bekleyen yetenekler
 
-1. **Visual Style Match**: "Is it visually close to my preferences?" (Driven by 9D Style DNA)
-2. **Narrative Affinity**: "Is its story / theme meaningful to me?" (Driven by 8 Narrative Themes)
-3. **Historical Connection**: "Which verified historical artifacts does this carpet connect with?"
+| Alan | Mühendislik durumu |
+|---|---|
+| Next.js typecheck / lint / build | CI PASS |
+| Backend Python 3.11 smoke ve pytest | Son baz: 591 PASS / 12 FAIL / 1 SKIP; son commit tekrar doğrulanmalı |
+| PostgreSQL 16 + Alembic sıfırdan geçiş | CI PASS |
+| Analiz bazlı 256-bit erişim kanıtı, negatif API testleri | Hedefli CI PASS; kullanıcı hesap sistemi henüz yok |
+| Gerçek S3 API yükle/oku/sil testi | Ayrı MinIO CI doğrulaması |
+| Gerçek motif dedektörü, holdout metrikleri | **HOLD** (üretim onayı yok) |
+| Kalıcı iş kuyruğu, gerçek Edge kabul, çok markalı veri | **HOLD** |
 
----
+**Erişim güvenliği sınırı:** Tek kullanıcının yüklediği analizin erişim anahtarı tarayıcıda saklanır. Bu yapı, gerçek çok kullanıcılı kimlik doğrulama ve rol yönetiminin yerini almaz. Geliştirme ortamını güvenilmeyen ağa açmayın.
 
-## Frozen System Contracts
+## Windows üzerinde geliştirme
 
-- **9D Style DNA**:
-  - D1 `color_energy` (Renk Enerjisi)
-  - D2 `color_diversity` (Renk Çeşitliliği)
-  - D3 `contrast` (Kontrast)
-  - D4 `warmth` (Renk Sıcaklığı)
-  - D5 `visual_complexity` (Görsel Karmaşıklık)
-  - D6 `structural_order` (Düzen & Simetri)
-  - D7 `rhythm_repetition` (Ritim & Tekrar)
-  - D8 `focal_strength` (Odak Gücü)
-  - D9 `form_language` (Form Dili)
+Gereksinimler: Python 3.11, Node.js 20 ve üzeri, npm; veri tabanı için PostgreSQL 16. API kurulumunda paketler kök klasörden yüklenebilir.
 
-- **8 Narrative Themes**:
-  - N1 `nature_growth` ( Doğa & Büyüme)
-  - N2 `belonging_home` ( Aidiyet & Yuva)
-  - N3 `journey_discovery` ( Yolculuk & Keşif)
-  - N4 `continuity_connection` ( Süreklilik & Bağ)
-  - N5 `balance_order` ( Denge & Düzen)
-  - N6 `renewal_transformation` ( Yenilenme & Dönüşüm)
-  - N7 `tradition_craft` ( Gelenek & Zanaat)
-  - N8 `cultural_heritage` ( Kültürel Miras)
-
----
-
-## Monorepo Architecture
-
-```text
-carpet-style-story-match/
-├── apps/
-│   ├── api/          # FastAPI Backend (Python 3.11+, SQLAlchemy 2 Async, Alembic)
-│   └── web/          # Next.js 15+ Frontend (TypeScript, Tailwind CSS, TanStack Query)
-├── packages/
-│   └── contracts/    # Shared contract schemas and definitions
-├── docs/             # Technical specifications & frozen invariants
-├── docker/           # Docker service configurations
-├── compose.yaml      # Docker Compose setup (PostgreSQL, API, Web)
-└── Makefile          # Project workflow automation
-```
-
----
-
-## Quickstart
-
-### Prerequisites
-- Docker & Docker Compose
-- Node.js 20+ & npm
-- Python 3.11+
-
-### Local Development Topology (Two-Terminal Startup)
-
-**Terminal 1 (Backend API):**
-```bash
+```powershell
+python -m pip install -e "./apps/api[dev,s3]"
 cd apps/api
+python -m alembic upgrade head
 python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
-- API Base URL: `http://localhost:8000`
-- Interactive Swagger UI: `http://localhost:8000/docs`
 
-**Terminal 2 (Frontend Web):**
-```bash
+İkinci PowerShell penceresinde:
+
+```powershell
 cd apps/web
+npm ci
 npm run dev
 ```
-- Web Application URL: `http://localhost:3000` (or `http://localhost:3001` if port 3000 is in use)
 
----
+- Uygulama: http://localhost:3000
+- Geliştirme API belgesi: http://localhost:8000/docs
+- Gerçek model kanıt durumu: http://localhost:8000/api/v1/system/model-acceptance
+- Analiz ekranı: http://localhost:3000/analysis/new
 
-### Verification Commands
-```bash
-# Run backend test suite
-cd apps/api && python -m pytest tests/ -v
+## Kabul ve test
 
-# Run frontend quality checks
-cd apps/web && npm run typecheck && npm run lint && npm run build
+```powershell
+cd apps/api
+python -m pytest tests/ -q
+cd ../web
+npm run typecheck
+npm run lint
+npm run build
 ```
 
----
+`python scripts/motif_evidence_audit.py --strict --output artifacts/motif-evidence-audit.json` komutu **depo kökünde** çalıştırılır. Gerçek ve lisanslı dosyalar bulunmadığında çıkış kodu `2` döndürür; sahte kanıt oluşturulmaz. Gerekli dosyaların tam listesi: [motif kanıt manifesti](docs/manifests/motif_artifact_requirements.json). Gerçek model için ayrı deney kuralları: [kabul belgesi](docs/gercek-motif-modeli-kabul.md).
 
-## License
+Eksiklerin güncel, madde bazlı kaydı: [31 eksiklik takibi](docs/eksik-giderme-durumu.md).
 
-ÖZEL LİSANS — TÜM HAKLAR SAKLIDIR. Telif Hakkı (c) 2026 Seydi Eryılmaz (@seydivakkas). Details in [LICENSE](file:///c:/Users/seydieryilmaz/Desktop/carpet-style-story-match/LICENSE).
+## Üretim yapılandırması
+
+`docker-compose.prod.yml` şifreleri otomatik üretmez ve gerçek güvenlik ayarı yerine örnek parola kullanmaz. `POSTGRES_PASSWORD`, `MINIO_ROOT_USER`, `MINIO_ROOT_PASSWORD` ve onaylı **`MINIO_IMAGE`** ortam değişkenleri zorunludur. `STORAGE_BACKEND=s3` kullanılırsa `S3_ACCESS_KEY`, `S3_SECRET_KEY` ve var olan bir `S3_BUCKET_NAME` de gereklidir. Portlar yerel arayüze bağlıdır. TLS, reverse proxy, hesap oturumu ve veri saklama politikası ayrıca tamamlanmalıdır.
+
+MinIO imaj kaynağı için [dağıtım/tedarik kapısı](docs/minio-dagitim-kaynagi.md) belgesini inceleyin. Üçüncü taraf test aynası otomatik üretim onayı değildir.
+
+## Lisans
+
+**ÖZEL LİSANS — TÜM HAKLAR SAKLIDIR.** Telif Hakkı © 2026 Seydi Eryılmaz (@seydivakkas). Kullanım koşulları için [LICENSE](LICENSE) dosyasına bakın.

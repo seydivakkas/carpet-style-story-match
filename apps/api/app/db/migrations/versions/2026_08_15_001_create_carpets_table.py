@@ -16,6 +16,10 @@ branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
 def upgrade() -> None:
+    # Tekilleştirilmiş PostgreSQL enum oluşturma.
+    if op.get_bind().dialect.name == 'postgresql':
+        postgresql.ENUM('CATALOG', 'USER_UPLOAD', 'HISTORICAL', 'MANUAL', name='carpet_source_type_enum').create(op.get_bind(), checkfirst=True)
+
     # Create enum type if postgresql
     carpet_source_type_enum = postgresql.ENUM(
         'CATALOG', 'USER_UPLOAD', 'HISTORICAL', 'MANUAL',
@@ -38,7 +42,7 @@ def upgrade() -> None:
         sa.Column('style_label', sa.String(length=100), nullable=True),
         sa.Column(
             'source_type',
-            sa.Enum('CATALOG', 'USER_UPLOAD', 'HISTORICAL', 'MANUAL', name='carpet_source_type_enum'),
+            postgresql.ENUM('CATALOG', 'USER_UPLOAD', 'HISTORICAL', 'MANUAL', name='carpet_source_type_enum', create_type=False),
             nullable=False,
             server_default='CATALOG'
         ),

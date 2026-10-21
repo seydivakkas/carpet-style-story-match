@@ -15,6 +15,10 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.session import Base
 
 
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from app.db.models.carpet import CarpetModel
+
 class ManufacturerBrandModel(Base):
     __tablename__ = "manufacturer_brands"
 

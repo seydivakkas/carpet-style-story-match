@@ -25,7 +25,7 @@ from app.domain.research.claim_models import CulturalClaimCandidate, CulturalCla
 from app.domain.research.story_curator import TemplateStoryCurator
 from app.domain.research.models import EvidencePack, EvidenceUnit, ResearchSubject, ResearchQueryPlan
 
-ROOT_DIR = Path("c:/Users/seydieryilmaz/Desktop/carpet-style-story-match")
+ROOT_DIR = Path(__file__).resolve().parents[3]  # Çalışma dizininden bağımsız, depo kökü
 CANONICAL_9D_KEYS = [item["key"] for item in CANONICAL_STYLE_DNA]
 
 

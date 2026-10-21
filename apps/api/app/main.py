@@ -5,6 +5,8 @@ Telif Hakkı (c) 2026 Seydi Eryılmaz (@seydivakkas)
 FastAPI Application Entry Point & Lifespan Bootstrap.
 """
 from contextlib import asynccontextmanager
+from typing import Optional
+from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import FastAPI, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
@@ -50,8 +52,7 @@ async def _do_reap_stale(db: AsyncSession):
 async def lifespan(app: FastAPI):
     """Lifespan context manager for startup and shutdown events."""
     logger.info(f"Starting Carpet Style & Story Match API in {settings.APP_ENV} mode")
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+    # Şema Alembic tarafından yönetilir. Uygulama başlarken tablo oluşturmuyoruz.
     await reap_stale_processing_analyses()
     yield
     logger.info("Shutting down API. Disposing database engine...")

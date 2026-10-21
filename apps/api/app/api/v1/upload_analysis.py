@@ -5,11 +5,13 @@ Provides real backend VLM inference capabilities over user uploaded carpet image
 Strictly validates visual contracts, handles provider statuses, and guarantees zero cultural claims.
 """
 import uuid
-from fastapi import APIRouter, File, UploadFile, status, HTTPException, Depends
+from fastapi import APIRouter, File, UploadFile, status, HTTPException, Depends, Header
 from typing import Dict, Any
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.session import get_db
+from app.domain.images.storage import get_image_storage
+from app.domain.result_experience.access_control import require_analysis_access
 from app.core.config import Settings
 from app.domain.upload_analysis.schemas import UploadAnalysisResult
 from app.domain.upload_analysis.image_preparation import ImageValidationError
@@ -59,13 +61,19 @@ async def detect_motifs(
             detail="No image file provided in request."
         )
 
-    # Check file size bound
-    contents = await file.read()
-    if len(contents) > settings.MAX_IMAGE_UPLOAD_BYTES:
-        raise HTTPException(
-            status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
-            detail=f"Image file size ({len(contents)} bytes) exceeds maximum limit of {settings.MAX_IMAGE_UPLOAD_BYTES} bytes."
-        )
+    # Dosyayı tek seferde belleğe alma: her 1 MiB parçada boyut denetimi yapılır.
+    # HTTP reverse proxy için Content-Length sınırı ayrıca gerekir.
+    fragments: list[bytes] = []
+    received = 0
+    while fragment := await file.read(1024 * 1024):
+        received += len(fragment)
+        if received > settings.MAX_IMAGE_UPLOAD_BYTES:
+            raise HTTPException(
+                status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+                detail="Image upload exceeds configured maximum size."
+            )
+        fragments.append(fragment)
+    contents = b"".join(fragments)
 
     mime_type = file.content_type or "image/jpeg"
 
@@ -115,24 +123,26 @@ async def detect_motifs(
 )
 async def get_analysis_image(
     analysis_id: uuid.UUID,
+    x_analysis_token: str | None = Header(None, alias="X-Analysis-Token"),
     db: AsyncSession = Depends(get_db)
 ):
     from fastapi.responses import Response
     from sqlalchemy import select
     from app.db.models.upload_analysis import UploadAnalysisModel
-    from app.domain.images.storage import LocalImageStorage
+    from app.domain.images.storage import get_image_storage
 
     stmt = select(UploadAnalysisModel).where(UploadAnalysisModel.id == analysis_id)
     res = await db.execute(stmt)
     record = res.scalar_one_or_none()
 
-    if not record or not record.image_path:
+    require_analysis_access(record, x_analysis_token)
+    if not record.image_path:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Image for analysis '{analysis_id}' not found."
         )
 
-    storage = LocalImageStorage()
+    storage = get_image_storage()
     try:
         image_bytes = storage.get_image_bytes(record.image_path)
         return Response(content=image_bytes, media_type=record.mime_type or "image/jpeg")
@@ -150,6 +160,7 @@ async def get_analysis_image(
 )
 async def delete_analysis_record(
     analysis_id: uuid.UUID,
+    x_analysis_token: str | None = Header(None, alias="X-Analysis-Token"),
     db: AsyncSession = Depends(get_db)
 ) -> Dict[str, Any]:
     import os
@@ -165,15 +176,15 @@ async def delete_analysis_record(
     stmt = select(UploadAnalysisModel).where(UploadAnalysisModel.id == analysis_id)
     res = await db.execute(stmt)
     record = res.scalar_one_or_none()
+    require_analysis_access(record, x_analysis_token)
 
-    if record and record.image_path:
+    if record.image_path:
         try:
-            storage = LocalImageStorage()
-            full_path = os.path.join(storage.base_dir, record.image_path)
-            if os.path.exists(full_path):
-                os.remove(full_path)
+            storage = get_image_storage()
+            storage.delete_image(record.image_path)
         except Exception as e:
-            logger.warning(f"Could not delete image file for {analysis_id}: {e}")
+            logger.exception("Analysis image deletion failed for %s", analysis_id)
+            raise HTTPException(status_code=500, detail="Görsel silinemedi; analiz kaydı korunuyor.") from e
 
     # 2. Find and delete review subjects & events
     aid_str = str(analysis_id)

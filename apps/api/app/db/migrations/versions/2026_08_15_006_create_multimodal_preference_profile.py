@@ -16,6 +16,13 @@ branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
 def upgrade() -> None:
+    # Enum tipleri tek bir kez oluşturulur; tekrar kullanılan alanlar DDL üretmez.
+    if op.get_bind().dialect.name == 'postgresql':
+        postgresql.ENUM('DRAFT', 'REVIEWED', name='user_profile_status_enum').create(op.get_bind(), checkfirst=True)
+        postgresql.ENUM('MEASURED', 'NOT_MEASURED', name='preference_dimension_status_enum').create(op.get_bind(), checkfirst=True)
+        postgresql.ENUM('INFERRED', 'USER_CONFIRMED', 'USER_OVERRIDDEN', name='user_preference_provenance_enum').create(op.get_bind(), checkfirst=True)
+        postgresql.ENUM('AVAILABLE', 'NO_EVIDENCE', name='confidence_status_enum').create(op.get_bind(), checkfirst=True)
+
     bind = op.get_bind()
     if bind.dialect.name == "postgresql":
         op.execute("ALTER TYPE assessment_status_enum ADD VALUE IF NOT EXISTS 'PROFILE_READY';")
@@ -36,7 +43,7 @@ def upgrade() -> None:
         sa.Column('id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('assessment_id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('profile_version', sa.String(length=50), nullable=False, server_default='multimodal-preference-v1'),
-        sa.Column('status', sa.Enum('DRAFT', 'REVIEWED', name='user_profile_status_enum'), nullable=False, server_default='DRAFT'),
+        sa.Column('status', postgresql.ENUM('DRAFT', 'REVIEWED', name='user_profile_status_enum', create_type=False), nullable=False, server_default='DRAFT'),
         sa.Column('created_at', sa.DateTime(timezone=True), nullable=False, server_default=sa.text('CURRENT_TIMESTAMP')),
         sa.Column('updated_at', sa.DateTime(timezone=True), nullable=False, server_default=sa.text('CURRENT_TIMESTAMP')),
         sa.ForeignKeyConstraint(['assessment_id'], ['preference_assessments.id'], ondelete='CASCADE'),
@@ -54,8 +61,8 @@ def upgrade() -> None:
         sa.Column('dimension_key', sa.String(length=50), nullable=False),
         sa.Column('inferred_value', sa.Float(), nullable=True),
         sa.Column('final_value', sa.Float(), nullable=True),
-        sa.Column('status', sa.Enum('MEASURED', 'NOT_MEASURED', name='preference_dimension_status_enum'), nullable=False, server_default='MEASURED'),
-        sa.Column('provenance', sa.Enum('INFERRED', 'USER_CONFIRMED', 'USER_OVERRIDDEN', name='user_preference_provenance_enum'), nullable=False, server_default='INFERRED'),
+        sa.Column('status', postgresql.ENUM('MEASURED', 'NOT_MEASURED', name='preference_dimension_status_enum', create_type=False), nullable=False, server_default='MEASURED'),
+        sa.Column('provenance', postgresql.ENUM('INFERRED', 'USER_CONFIRMED', 'USER_OVERRIDDEN', name='user_preference_provenance_enum', create_type=False), nullable=False, server_default='INFERRED'),
         sa.Column('text_value', sa.Float(), nullable=True),
         sa.Column('text_evidence_weight', sa.Float(), nullable=False, server_default='0.0'),
         sa.Column('visual_value', sa.Float(), nullable=True),
@@ -92,7 +99,7 @@ def upgrade() -> None:
         sa.Column('confidence_profile_id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('dimension_key', sa.String(length=50), nullable=False),
         sa.Column('confidence', sa.Float(), nullable=True),
-        sa.Column('status', sa.Enum('AVAILABLE', 'NO_EVIDENCE', name='confidence_status_enum'), nullable=False, server_default='AVAILABLE'),
+        sa.Column('status', postgresql.ENUM('AVAILABLE', 'NO_EVIDENCE', name='confidence_status_enum', create_type=False), nullable=False, server_default='AVAILABLE'),
         sa.Column('modality_count', sa.Integer(), nullable=False, server_default='0'),
         sa.Column('agreement', sa.Float(), nullable=True),
         sa.Column('source_coverage', sa.Float(), nullable=False, server_default='0.0'),

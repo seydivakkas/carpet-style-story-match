@@ -193,6 +193,7 @@ class UnifiedUploadResult(BaseResultModel):
 
 
 class AcceptedAnalysisResponse(BaseResultModel):
+    access_token: str
     analysis_id: uuid.UUID
     status: str = "PROCESSING"
     poll_url: str

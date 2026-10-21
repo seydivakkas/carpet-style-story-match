@@ -19,6 +19,11 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.session import Base
 
 
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from app.db.models.carpet import CarpetModel
+    from app.db.models.motif_knowledge import CuratedSourceModel
+
 class HistoricalSourceRoleEnum(str, Enum):
     """Source roles for historical reference objects."""
     PRIMARY_OBJECT_RECORD = "PRIMARY_OBJECT_RECORD"

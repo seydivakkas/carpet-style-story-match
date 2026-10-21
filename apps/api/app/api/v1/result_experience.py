@@ -8,7 +8,7 @@ import uuid
 import logging
 import asyncio
 from typing import Dict, Any, Optional
-from fastapi import APIRouter, File, UploadFile, status, HTTPException, Depends, BackgroundTasks
+from fastapi import APIRouter, File, UploadFile, status, HTTPException, Depends, BackgroundTasks, Header
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -16,6 +16,7 @@ from app.db import session as db_session_module
 from app.db.session import get_db
 from app.db.models.upload_analysis import UploadAnalysisModel, UploadAnalysisStatusEnum
 from app.core.config import Settings
+from app.domain.result_experience.access_control import new_analysis_access_token, require_analysis_access
 from app.domain.images.storage import LocalImageStorage
 from app.domain.result_experience.schemas import (
     UnifiedUploadResult,
@@ -92,26 +93,32 @@ async def generate_unified_result(
             detail="No image file provided in request."
         )
 
-    contents = await file.read()
-    if len(contents) > settings.MAX_IMAGE_UPLOAD_BYTES:
-        raise HTTPException(
-            status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
-            detail=f"Image file size ({len(contents)} bytes) exceeds maximum limit of {settings.MAX_IMAGE_UPLOAD_BYTES} bytes."
-        )
+    # Dosyanın tamamını okumadan önce limit uygulanır.
+    parts = []
+    received = 0
+    while chunk := await file.read(1024 * 1024):
+        received += len(chunk)
+        if received > settings.MAX_IMAGE_UPLOAD_BYTES:
+            raise HTTPException(
+                status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+                detail="Image exceeds configured upload size limit."
+            )
+        parts.append(chunk)
+    contents = b"".join(parts)
 
     mime_type = file.content_type or "image/jpeg"
     aid = uuid.uuid4()
+    access_token, owner_token_sha256 = new_analysis_access_token()
 
-    # Save raw image to local storage
-    storage = LocalImageStorage()
-    storage_key = storage.save_image(aid, aid, contents, "jpg")
-
+    # Ham görüntü diske yazılmaz. İşçi doğrulama ve EXIF temizliği
+    # sonrasında normalize edilmiş görüntüyü kaydeder.
     # Persist initial PROCESSING record with standalone session
     async with db_session_module.AsyncSessionLocal() as post_db:
         initial_record = UploadAnalysisModel(
             id=aid,
+            owner_token_sha256=owner_token_sha256,
             original_sha256="pending_computation",
-            image_path=storage_key,
+            image_path=None,
             mime_type=mime_type,
             quality_status="PENDING",
             status=UploadAnalysisStatusEnum.PROCESSING
@@ -129,6 +136,7 @@ async def generate_unified_result(
     )
 
     return AcceptedAnalysisResponse(
+        access_token=access_token,
         analysis_id=aid,
         status="PROCESSING",
         poll_url=f"/api/v1/upload-analysis/{aid}/status"
@@ -144,17 +152,14 @@ async def generate_unified_result(
 )
 async def get_analysis_status(
     analysis_id: uuid.UUID,
+    x_analysis_token: Optional[str] = Header(None, alias="X-Analysis-Token"),
     db: AsyncSession = Depends(get_db)
 ) -> AnalysisStatusResponse:
     stmt = select(UploadAnalysisModel).where(UploadAnalysisModel.id == analysis_id)
     res = await db.execute(stmt)
     record = res.scalar_one_or_none()
 
-    if not record:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Analysis not found"
-        )
+    require_analysis_access(record, x_analysis_token)
 
     return AnalysisStatusResponse(
         analysis_id=record.id,
@@ -172,6 +177,7 @@ async def get_analysis_status(
 )
 async def get_unified_result_by_id(
     analysis_id: uuid.UUID,
+    x_analysis_token: Optional[str] = Header(None, alias="X-Analysis-Token"),
     db: AsyncSession = Depends(get_db)
 ) -> UnifiedUploadResult:
     """Fetches persisted 5-card analysis run from database."""
@@ -179,11 +185,10 @@ async def get_unified_result_by_id(
     res = await db.execute(stmt)
     record = res.scalar_one_or_none()
 
-    if not record:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Analysis result not found"
-        )
+    if record is None:
+        # Var olmayan kayıt sözleşmesinin 404 detayını koru; mevcut kayıtta erişim zorunlu.
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Analysis result not found")
+    require_analysis_access(record, x_analysis_token)
 
     status_val = record.status.value if hasattr(record.status, "value") else str(record.status)
 
@@ -195,9 +200,7 @@ async def get_unified_result_by_id(
                     analysis_id=analysis_id,
                     current_dict=record.unified_result
                 )
-                if refreshed_dict != record.unified_result:
-                    record.unified_result = refreshed_dict
-                    await db.commit()
+                # GET isteği veritabanı durumunu değiştirmemeli.
                 return UnifiedUploadResult.model_validate(refreshed_dict)
             except Exception as e:
                 logger.warning(f"Fallback to raw snapshot due to refresh error: {e}")

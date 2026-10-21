@@ -16,6 +16,11 @@ branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
 def upgrade() -> None:
+    # Enum tipleri tek bir kez oluşturulur; tekrar kullanılan alanlar DDL üretmez.
+    if op.get_bind().dialect.name == 'postgresql':
+        postgresql.ENUM('MUSEUM_OBJECT', 'MUSEUM_CATALOG', 'ACADEMIC_ARTICLE', 'ACADEMIC_BOOK', 'INSTITUTIONAL_PUBLICATION', 'ARCHIVE_RECORD', 'OTHER', name='source_type_enum').create(op.get_bind(), checkfirst=True)
+        postgresql.ENUM('DOCUMENTED', 'CONTEXTUAL', 'CONTESTED', 'UNKNOWN', name='motif_story_status_enum').create(op.get_bind(), checkfirst=True)
+
     bind = op.get_bind()
 
     source_type_enum = postgresql.ENUM(
@@ -36,7 +41,7 @@ def upgrade() -> None:
         'curated_sources',
         sa.Column('id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('source_key', sa.String(length=100), nullable=False),
-        sa.Column('source_type', sa.Enum('MUSEUM_OBJECT', 'MUSEUM_CATALOG', 'ACADEMIC_ARTICLE', 'ACADEMIC_BOOK', 'INSTITUTIONAL_PUBLICATION', 'ARCHIVE_RECORD', 'OTHER', name='source_type_enum'), nullable=False, server_default='OTHER'),
+        sa.Column('source_type', postgresql.ENUM('MUSEUM_OBJECT', 'MUSEUM_CATALOG', 'ACADEMIC_ARTICLE', 'ACADEMIC_BOOK', 'INSTITUTIONAL_PUBLICATION', 'ARCHIVE_RECORD', 'OTHER', name='source_type_enum', create_type=False), nullable=False, server_default='OTHER'),
         sa.Column('title', sa.String(length=255), nullable=False),
         sa.Column('citation_text', sa.String(length=1000), nullable=False),
         sa.Column('creator_or_institution', sa.String(length=255), nullable=True),
@@ -74,7 +79,7 @@ def upgrade() -> None:
         sa.Column('id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('claim_key', sa.String(length=100), nullable=False),
         sa.Column('motif_id', postgresql.UUID(as_uuid=True), nullable=False),
-        sa.Column('status', sa.Enum('DOCUMENTED', 'CONTEXTUAL', 'CONTESTED', 'UNKNOWN', name='motif_story_status_enum'), nullable=False, server_default='DOCUMENTED'),
+        sa.Column('status', postgresql.ENUM('DOCUMENTED', 'CONTEXTUAL', 'CONTESTED', 'UNKNOWN', name='motif_story_status_enum', create_type=False), nullable=False, server_default='DOCUMENTED'),
         sa.Column('claim_text_tr', sa.String(length=2000), nullable=True),
         sa.Column('claim_text_en', sa.String(length=2000), nullable=True),
         sa.Column('context_note', sa.String(length=1000), nullable=True),

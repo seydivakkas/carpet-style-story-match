@@ -8,7 +8,6 @@ Telif Hakkı (c) 2026 Seydi Eryılmaz (@seydivakkas)
 import gc
 import time
 import json
-import torch
 from pathlib import Path
 from typing import Dict, Any, Tuple, Optional
 from PIL import Image
@@ -293,6 +292,7 @@ class VisualVerifierRuntimeAdapter:
         raise NotImplementedError
 
     def unload(self) -> Dict[str, Any]:
+        import torch  # Yalnız GPU kaynağı kullanılırken yüklenir.
         if self.model is not None:
             del self.model
             self.model = None
@@ -317,6 +317,7 @@ class Qwen3VLAdapter(VisualVerifierRuntimeAdapter):
     """Adapter for Qwen3-VL-2B-Instruct (C1)."""
 
     def load(self) -> Dict[str, Any]:
+        import torch  # Gerçek çıkarım yolu; şema/prompt doğrulama bundan bağımsız.
         from transformers import AutoProcessor, AutoModelForImageTextToText
         t0 = time.perf_counter()
         if torch.cuda.is_available():
@@ -345,6 +346,7 @@ class Qwen3VLAdapter(VisualVerifierRuntimeAdapter):
         canonical_message: CanonicalVerifierMessage,
         input_record: Optional[VerifierRuntimeInputRecord] = None
     ) -> Dict[str, Any]:
+        import torch
         assert canonical_message.template_sha256 == FROZEN_PROMPT_HASH, "Template hash mismatch"
         assert canonical_message.materializer_version == MATERIALIZER_VERSION, "Materializer version mismatch"
 
@@ -432,6 +434,7 @@ class SmolVLM2Adapter(VisualVerifierRuntimeAdapter):
     """Adapter for SmolVLM2-2.2B-Instruct (C2)."""
 
     def load(self) -> Dict[str, Any]:
+        import torch  # Gerçek çıkarım yolu; şema/prompt doğrulama bundan bağımsız.
         from transformers import AutoProcessor, AutoModelForImageTextToText
         t0 = time.perf_counter()
         if torch.cuda.is_available():
@@ -460,6 +463,7 @@ class SmolVLM2Adapter(VisualVerifierRuntimeAdapter):
         canonical_message: CanonicalVerifierMessage,
         input_record: Optional[VerifierRuntimeInputRecord] = None
     ) -> Dict[str, Any]:
+        import torch
         assert canonical_message.template_sha256 == FROZEN_PROMPT_HASH, "Template hash mismatch"
         assert canonical_message.materializer_version == MATERIALIZER_VERSION, "Materializer version mismatch"
 
@@ -547,6 +551,7 @@ class Qwen2VLAdapter(VisualVerifierRuntimeAdapter):
     """Adapter for Qwen2-VL-2B-Instruct (C3)."""
 
     def load(self) -> Dict[str, Any]:
+        import torch  # Gerçek çıkarım yolu; şema/prompt doğrulama bundan bağımsız.
         from transformers import AutoProcessor, AutoModelForImageTextToText
         t0 = time.perf_counter()
         if torch.cuda.is_available():
@@ -575,6 +580,7 @@ class Qwen2VLAdapter(VisualVerifierRuntimeAdapter):
         canonical_message: CanonicalVerifierMessage,
         input_record: Optional[VerifierRuntimeInputRecord] = None
     ) -> Dict[str, Any]:
+        import torch
         assert canonical_message.template_sha256 == FROZEN_PROMPT_HASH, "Template hash mismatch"
         assert canonical_message.materializer_version == MATERIALIZER_VERSION, "Materializer version mismatch"
 

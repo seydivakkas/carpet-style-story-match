@@ -21,6 +21,7 @@ from pathlib import Path
 from typing import Dict, Any, List, Optional
 
 from sqlalchemy import select, func
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
 from app.db.session import AsyncSessionLocal

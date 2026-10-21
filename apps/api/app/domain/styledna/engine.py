@@ -456,14 +456,16 @@ class StyleDNAEngine:
         if lines is not None:
             line_mask = np.zeros_like(ctx.edges)
             for line in lines:
-                x1, y1, x2, y2 = line[0]
+                # OpenCV sürümleri (N,1,4) veya (N,4) döndürebilir.
+                x1, y1, x2, y2 = [int(v) for v in np.asarray(line).reshape(-1)[:4]]
                 cv2.line(line_mask, (x1, y1), (x2, y2), 255, 2)
             straight_line_pixels = int(np.sum((line_mask > 0) & (ctx.edges > 0)))
 
         straight_ratio = float(np.clip(straight_line_pixels / float(total_edge_pixels + 1e-6), 0.0, 1.0))
 
         # Contour Curvature / Organic Evidence
-        contours, _ = cv2.findContours(ctx.edges, cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
+        contour_output = cv2.findContours(ctx.edges, cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
+        contours = contour_output[-2]  # OpenCV iki/üç elemanlı dönüş uyumluluğu
         organic_score_acc = 0.0
         contour_count = 0
 

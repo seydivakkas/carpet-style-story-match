@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useState, use } from "react";
-import { fetchAnalysisStatus, fetchUnifiedResultById, UnifiedUploadResult } from "@/lib/result-experience-api";
+import { fetchAnalysisStatus, fetchUnifiedResultById, fetchAnalysisImageObjectUrl, UnifiedUploadResult } from "@/lib/result-experience-api";
 import UnifiedUploadResultPage from "@/components/result/UnifiedUploadResultPage";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import { Loader2, AlertCircle } from "lucide-react";
+import { ApiClientError } from "@/lib/api/client";
 
 interface PageProps {
   params: Promise<{ analysisId: string }>;
@@ -20,12 +21,21 @@ export default function AnalysisResultPage({ params }: PageProps) {
   const [loading, setLoading] = useState(true);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [error, setError] = useState<string | null>(null);
+  const [retry, setRetry] = useState(0);
+
+  useEffect(() => {
+    const url = result?.image_meta.primary_image_url;
+    return () => {
+      if (url?.startsWith("blob:")) URL.revokeObjectURL(url);
+    };
+  }, [result?.image_meta.primary_image_url]);
 
   useEffect(() => {
     let isCancelled = false;
     let timerId: NodeJS.Timeout | null = null;
 
     const startTime = Date.now();
+    let transientErrors = 0;
     timerId = setInterval(() => {
       setElapsedSeconds(Math.floor((Date.now() - startTime) / 1000));
     }, 1000);
@@ -38,12 +48,23 @@ export default function AnalysisResultPage({ params }: PageProps) {
         while (!isCancelled) {
           try {
             const statusRes = await fetchAnalysisStatus(analysisId);
+            transientErrors = 0;
             if (isCancelled) break;
 
             if (statusRes.status === "COMPLETED" || statusRes.status === "BLOCKED_BY_QUALITY") {
               const resData = await fetchUnifiedResultById(analysisId);
+              let privateImageUrl = "";
+              try {
+                privateImageUrl = await fetchAnalysisImageObjectUrl(analysisId);
+              } catch {
+                // Görsel izni olmayan ya da dosyası silinmiş kayıt sonuçsuz kalmaz.
+              }
               if (!isCancelled) {
-                setResult(resData);
+                setResult({...resData, image_meta:{...resData.image_meta,primary_image_url:privateImageUrl}});
+              } else if (privateImageUrl) {
+                URL.revokeObjectURL(privateImageUrl);
+              }
+              if (!isCancelled) {
                 setLoading(false);
 
                 // Ensure stored in recent analyses
@@ -71,9 +92,24 @@ export default function AnalysisResultPage({ params }: PageProps) {
               return;
             }
           } catch (fetchErr: unknown) {
-            if (fetchErr instanceof Error && fetchErr.message === "NOT_FOUND") {
+            if (fetchErr instanceof ApiClientError && fetchErr.status === 403) {
+              if (!isCancelled) {
+                setError("Bu analize erişim anahtarı bulunamadı veya geçersiz. Yalnızca analiz sahibinin oturumu erişebilir.");
+                setLoading(false);
+              }
+              return;
+            }
+            if (fetchErr instanceof ApiClientError && fetchErr.status === 404) {
               if (!isCancelled) {
                 setError("Analiz kaydı bulunamadı.");
+                setLoading(false);
+              }
+              return;
+            }
+            transientErrors += 1;
+            if (transientErrors >= 5) {
+              if (!isCancelled) {
+                setError("Sunucuya erişilemiyor. Bağlantıyı kontrol edip yeniden deneyin.");
                 setLoading(false);
               }
               return;
@@ -88,7 +124,7 @@ export default function AnalysisResultPage({ params }: PageProps) {
             return;
           }
 
-          await new Promise((resolve) => setTimeout(resolve, 1500));
+          await new Promise((resolve) => setTimeout(resolve, transientErrors ? Math.min(12000, 1500 * 2 ** transientErrors) : 1500));
         }
       } catch (err: unknown) {
         if (!isCancelled) {
@@ -110,7 +146,7 @@ export default function AnalysisResultPage({ params }: PageProps) {
       isCancelled = true;
       if (timerId) clearInterval(timerId);
     };
-  }, [analysisId]);
+  }, [analysisId, retry]);
 
   if (loading) {
     return (
@@ -142,6 +178,11 @@ export default function AnalysisResultPage({ params }: PageProps) {
             <h2 className="text-lg font-bold text-white mb-1">Analiz Sonucu Alınamadı</h2>
             <p className="text-xs text-rose-200">{error || "Sonuç bulunamadı."}</p>
           </div>
+          <button
+            type="button"
+            onClick={() => { setLoading(true); setError(null); setElapsedSeconds(0); setRetry((n) => n + 1); }}
+            className="px-6 py-2.5 bg-slate-700 hover:bg-slate-600 text-white font-bold text-xs rounded-xl"
+          >Yeniden Dene</button>
           <Link
             href="/analysis/new"
             className="px-6 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-xl transition-all"

@@ -15,6 +15,10 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.session import Base
 
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from app.db.models.carpet_style_profile import CarpetStyleProfileModel
+
 class AssessmentStatus(str, enum.Enum):
     TEXT_PENDING = "TEXT_PENDING"
     TEXT_COMPLETE = "TEXT_COMPLETE"

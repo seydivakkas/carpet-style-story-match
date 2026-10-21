@@ -40,6 +40,8 @@ class UploadAnalysisModel(Base):
         nullable=False,
         index=True
     )
+    # DB yalnızca SHA-256 özeti saklar.
+    owner_token_sha256: Mapped[Optional[str]] = mapped_column(String(64), nullable=True)
     prepared_sha256: Mapped[Optional[str]] = mapped_column(
         String(64),
         nullable=True

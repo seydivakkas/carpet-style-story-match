@@ -125,3 +125,7 @@ uploads/
 scratch/
 
 
+
+# Üretilen analiz çıktıları ve TypeScript incremental cache
+graphify-out/
+*.tsbuildinfo

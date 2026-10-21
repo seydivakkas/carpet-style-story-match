@@ -18,7 +18,7 @@ from app.core.config import Settings
 from app.db.models.upload_analysis import UploadAnalysisModel, UploadAnalysisStatusEnum
 from app.db.models.motif_knowledge import MotifModel, MotifStoryClaimModel
 from app.db.models.motif_review import MotifReviewSubjectModel
-from app.domain.images.storage import LocalImageStorage
+from app.domain.images.storage import get_image_storage
 from app.domain.styledna.engine import StyleDNAEngine
 from app.domain.color_analysis.service import ColorAnalysisService
 from app.domain.upload_analysis.image_preparation import prepare_image_for_vlm, ImageValidationError
@@ -93,7 +93,7 @@ class UnifiedAnalysisOrchestrator:
     def __init__(self, db: AsyncSession, settings: Settings):
         self.db = db
         self.settings = settings
-        self.storage = LocalImageStorage()
+        self.storage = get_image_storage()
         self.style_engine = StyleDNAEngine()
         self.color_service = ColorAnalysisService()
 
@@ -108,7 +108,7 @@ class UnifiedAnalysisOrchestrator:
         # 1. Image Preparation & Persistence
         try:
             prepared = prepare_image_for_vlm(raw_bytes, mime_type)
-            storage_key = self.storage.save_image(aid, aid, raw_bytes, "jpg")
+            storage_key = self.storage.save_image(aid, aid, prepared.image_bytes, "jpg")
             img_meta = UploadedImageMeta(
                 original_sha256=prepared.original_sha256,
                 prepared_sha256=prepared.prepared_sha256,
@@ -152,7 +152,7 @@ class UnifiedAnalysisOrchestrator:
                 original_sha256=prepared.original_sha256,
                 prepared_sha256=prepared.prepared_sha256,
                 image_path=storage_key,
-                mime_type=mime_type,
+                mime_type=prepared.mime_type,
                 quality_status="PASS",
                 status=UploadAnalysisStatusEnum.PROCESSING
             )
@@ -161,7 +161,7 @@ class UnifiedAnalysisOrchestrator:
             analysis_record.original_sha256 = prepared.original_sha256
             analysis_record.prepared_sha256 = prepared.prepared_sha256
             analysis_record.image_path = storage_key
-            analysis_record.mime_type = mime_type
+            analysis_record.mime_type = prepared.mime_type
             analysis_record.quality_status = "PASS"
             analysis_record.status = UploadAnalysisStatusEnum.PROCESSING
         await self.db.commit()

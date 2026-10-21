@@ -52,7 +52,7 @@ class LocalImageStorage(ImageStorage):
         clean_key = storage_key.lstrip("/\\")
         target_path = (self.root_path / clean_key).resolve()
 
-        if not str(target_path).startswith(str(self.root_path)):
+        if not target_path.is_relative_to(self.root_path):
             raise ImageStorageFailedError("Path traversal detected in storage key")
         return target_path
 
@@ -90,12 +90,13 @@ class LocalImageStorage(ImageStorage):
             return False
 
     def delete_image(self, storage_key: str) -> None:
-        try:
-            target_path = self._resolve_safe_path(storage_key)
-            if target_path.exists() and target_path.is_file():
+        """Silme hatalarını üst katmana bildir; veritabanı silinmeden önce kontrol edilir."""
+        target_path = self._resolve_safe_path(storage_key)
+        if target_path.exists() and target_path.is_file():
+            try:
                 target_path.unlink()
-        except Exception:
-            pass
+            except OSError as exc:
+                raise ImageStorageFailedError("Görsel dosyası silinemedi.") from exc
 
     def delete_carpet_dir(self, carpet_id: uuid.UUID) -> None:
         rel_dir = f"carpets/{carpet_id}"
@@ -108,30 +109,88 @@ class LocalImageStorage(ImageStorage):
 
 
 class S3ImageStorage(ImageStorage):
-    """S3-compatible / MinIO Object Storage implementation."""
+    """Gerçek S3 uyumlu depolama; kayıp veri durumunda başarı döndürmez."""
+
     def __init__(self):
+        try:
+            import boto3
+            from botocore.config import Config
+        except ImportError as exc:
+            raise ImageStorageFailedError("S3 kullanımı için boto3 bağımlılığı gereklidir.") from exc
+        if not settings.S3_BUCKET_NAME or not settings.S3_ACCESS_KEY or not settings.S3_SECRET_KEY:
+            raise ImageStorageFailedError("S3 bucket ve kimlik bilgileri tanımlanmalı.")
         self.bucket = settings.S3_BUCKET_NAME
-        self.endpoint = settings.S3_ENDPOINT_URL
-        self.access_key = settings.S3_ACCESS_KEY
-        self.secret_key = settings.S3_SECRET_KEY
+        self.client = boto3.client(
+            "s3",
+            endpoint_url=settings.S3_ENDPOINT_URL,
+            aws_access_key_id=settings.S3_ACCESS_KEY,
+            aws_secret_access_key=settings.S3_SECRET_KEY,
+            region_name=settings.S3_REGION,
+            use_ssl=settings.S3_SECURE,
+            config=Config(signature_version="s3v4"),
+        )
+
+    @staticmethod
+    def _validate_key(storage_key: str) -> str:
+        key = storage_key.replace("\\", "/")
+        if (not key or key.startswith("/") or any(
+            part in ("", ".", "..") for part in key.split("/")
+        )):
+            raise ImageStorageFailedError("Geçersiz nesne anahtarı.")
+        return key
 
     def save_image(self, carpet_id: uuid.UUID, image_id: uuid.UUID, file_bytes: bytes, extension: str) -> str:
         clean_ext = extension.lstrip(".").lower() or "jpg"
-        storage_key = f"carpets/{carpet_id}/{image_id}.{clean_ext}"
-        # Server-generated safe key
-        return storage_key
+        if clean_ext not in ("jpg", "jpeg", "png", "webp"):
+            raise ImageStorageFailedError("Geçersiz görsel uzantısı.")
+        key = self._validate_key(f"carpets/{carpet_id}/{image_id}.{clean_ext}")
+        content_type = "image/jpeg" if clean_ext in ("jpg", "jpeg") else f"image/{clean_ext}"
+        try:
+            self.client.put_object(Bucket=self.bucket, Key=key, Body=file_bytes, ContentType=content_type)
+        except Exception as exc:
+            raise ImageStorageFailedError("S3 nesne yüklemesi başarısız.") from exc
+        return key
 
     def get_image_bytes(self, storage_key: str) -> bytes:
-        raise ImageStorageFailedError("S3 storage byte retrieval requires active S3/MinIO client connection.")
+        key = self._validate_key(storage_key)
+        try:
+            response = self.client.get_object(Bucket=self.bucket, Key=key)
+            with response["Body"] as body:
+                return body.read()
+        except Exception as exc:
+            raise ImageStorageFailedError("S3 nesnesi okunamadı.") from exc
 
     def image_exists(self, storage_key: str) -> bool:
-        return True
+        key = self._validate_key(storage_key)
+        try:
+            self.client.head_object(Bucket=self.bucket, Key=key)
+            return True
+        except Exception as exc:
+            from botocore.exceptions import ClientError
+            if isinstance(exc, ClientError) and exc.response.get("Error", {}).get("Code") in ("404", "NoSuchKey", "NotFound"):
+                return False
+            raise ImageStorageFailedError("S3 varlık kontrolü başarısız.") from exc
 
     def delete_image(self, storage_key: str) -> None:
-        pass
+        key = self._validate_key(storage_key)
+        try:
+            self.client.delete_object(Bucket=self.bucket, Key=key)
+        except Exception as exc:
+            raise ImageStorageFailedError("S3 nesnesi silinemedi.") from exc
 
     def delete_carpet_dir(self, carpet_id: uuid.UUID) -> None:
-        pass
+        prefix = f"carpets/{carpet_id}/"
+        try:
+            paginator = self.client.get_paginator("list_objects_v2")
+            for page in paginator.paginate(Bucket=self.bucket, Prefix=prefix):
+                items = page.get("Contents", [])
+                if items:
+                    self.client.delete_objects(
+                        Bucket=self.bucket,
+                        Delete={"Objects": [{"Key": item["Key"]} for item in items], "Quiet": True},
+                    )
+        except Exception as exc:
+            raise ImageStorageFailedError("S3 klasör nesneleri temizlenemedi.") from exc
 
 
 def get_image_storage() -> ImageStorage:

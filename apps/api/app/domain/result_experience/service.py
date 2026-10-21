@@ -101,7 +101,7 @@ class UnifiedUploadResultService:
         precomputed_claim: Optional[Dict[str, Any]] = None,
         precomputed_story: Optional[Dict[str, Any]] = None,
         precomputed_thematic_affinity: Optional[Dict[str, Any]] = None,
-        review_resolutions: Optional[Dict[str, EffectiveReviewStatus]] = None,
+        review_resolutions: Optional[Dict[str, str]] = None,
     ) -> UnifiedUploadResult:
         aid = analysis_id or uuid.uuid4()
 

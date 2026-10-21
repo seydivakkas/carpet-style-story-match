@@ -58,7 +58,9 @@ from app.db.models.preference_assessment import (
     ConfidenceStatusEnum,
     ImportanceLevelEnum,
     ImportanceCompletionModeEnum,
-    ImportanceProfileModel
+    ImportanceProfileModel,
+    UserPreferenceProfileModel,
+    PreferenceConfidenceProfileModel
 )
 from app.domain.preferences.constants import (
     MULTIMODAL_PREFERENCE_VERSION,

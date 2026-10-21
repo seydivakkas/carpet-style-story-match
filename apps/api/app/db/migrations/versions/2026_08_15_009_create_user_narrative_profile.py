@@ -16,6 +16,11 @@ branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
 def upgrade() -> None:
+    # Enum tipleri tek bir kez oluşturulur; tekrar kullanılan alanlar DDL üretmez.
+    if op.get_bind().dialect.name == 'postgresql':
+        postgresql.ENUM('EXPLICIT_SELECTION', 'SKIPPED', name='narrative_completion_mode_enum').create(op.get_bind(), checkfirst=True)
+        postgresql.ENUM('PRIMARY', 'SECONDARY', 'NOT_SELECTED', name='narrative_interest_level_enum').create(op.get_bind(), checkfirst=True)
+
     bind = op.get_bind()
 
     narrative_interest_level_enum = postgresql.ENUM('PRIMARY', 'SECONDARY', 'NOT_SELECTED', name='narrative_interest_level_enum', create_type=False)
@@ -31,7 +36,7 @@ def upgrade() -> None:
         sa.Column('assessment_id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('user_preference_profile_id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('profile_version', sa.String(length=50), nullable=False, server_default='user-narrative-profile-v1'),
-        sa.Column('completion_mode', sa.Enum('EXPLICIT_SELECTION', 'SKIPPED', name='narrative_completion_mode_enum'), nullable=False, server_default='EXPLICIT_SELECTION'),
+        sa.Column('completion_mode', postgresql.ENUM('EXPLICIT_SELECTION', 'SKIPPED', name='narrative_completion_mode_enum', create_type=False), nullable=False, server_default='EXPLICIT_SELECTION'),
         sa.Column('created_at', sa.DateTime(timezone=True), nullable=False, server_default=sa.text('CURRENT_TIMESTAMP')),
         sa.ForeignKeyConstraint(['assessment_id'], ['preference_assessments.id'], ondelete='CASCADE'),
         sa.ForeignKeyConstraint(['user_preference_profile_id'], ['user_preference_profiles.id'], ondelete='CASCADE'),
@@ -47,7 +52,7 @@ def upgrade() -> None:
         sa.Column('id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('narrative_profile_id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('theme_key', sa.String(length=50), nullable=False),
-        sa.Column('interest_level', sa.Enum('PRIMARY', 'SECONDARY', 'NOT_SELECTED', name='narrative_interest_level_enum'), nullable=False, server_default='NOT_SELECTED'),
+        sa.Column('interest_level', postgresql.ENUM('PRIMARY', 'SECONDARY', 'NOT_SELECTED', name='narrative_interest_level_enum', create_type=False), nullable=False, server_default='NOT_SELECTED'),
         sa.Column('interest_weight', sa.Float(), nullable=False, server_default='0.00'),
         sa.ForeignKeyConstraint(['narrative_profile_id'], ['user_narrative_profiles.id'], ondelete='CASCADE'),
         sa.PrimaryKeyConstraint('id'),
