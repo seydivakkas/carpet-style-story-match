@@ -1,7 +1,7 @@
 name: Zorunlu kalite kontrolleri
 on:
   push:
-    branches: [master, "fix/**"]
+    branches: [master]
   pull_request:
     branches: [master]
 permissions:
@@ -69,12 +69,14 @@ jobs:
           POSTGRES_PASSWORD: test_only
           MINIO_ROOT_PASSWORD: test_only
           MINIO_IMAGE: dappros/minio:RELEASE.2025-09-07T16-13-09Z
+          MINIO_ROOT_USER: carpet_ci
         run: docker compose -f docker-compose.prod.yml config --quiet
       - name: Üretim imajı derle
         env:
           POSTGRES_PASSWORD: test_only
           MINIO_ROOT_PASSWORD: test_only
           MINIO_IMAGE: dappros/minio:RELEASE.2025-09-07T16-13-09Z
+          MINIO_ROOT_USER: carpet_ci
         run: docker compose -f docker-compose.prod.yml build api web
 
   backend-security-smoke:

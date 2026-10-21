@@ -74,3 +74,13 @@ Bu kayıt bir tamamlanma sertifikası değil, eksiksiz izlenebilirlik listesidir
 - `data/validation/v2-09b/detector-benchmark-report.json`: 35 gerçek görüntü, 92 motif işaretlemesi üzerinden raporlanan Detect mAP50=0.001 ve OBB mAP50=0.0. 57/57 rapor/bütünlük kontrolünün PASS olması model başarısının PASS olduğu anlamına gelmez.
 
 **GÜNCEL KARAR: ANALİZ_CAPABILITY_TEST_PASS / PG_ŞEMA_SMOKE_PASS / GERÇEK_MODEL_HOLD / FULL_BACKEND_FAIL / MERGE_HOLD.**
+
+## 21 Ekim 2026 — Veri/envanter ve UI durum kapısı
+
+- `apps/api/app/api/v1/model_readiness.py`: /api/v1/system/model-acceptance API'si eksik kaynak anahtarlarını döndürür ve bağımsız model kabulü bulunmadığı için üretim durumunu HOLD tutar.
+- `apps/web/app/analysis/new/page.tsx`: analiz başlamadan önce motif modelinin kabul durumunu gösterir; YOLO modelinin üretimde doğrulandığını iddia etmez.
+- `docs/manifests/motif_artifact_requirements.json`: kayıtlı model indirme raporundaki ağırlık shard SHA256'larını da içeren **17 gerçek kaynak** envanteri. Beklenen artifact yerine sahte dosya üretilmez.
+- `backend-minio-integration`: gerçek S3 nesne yaşam döngüsü; boş sonuç sahte kabul değildir.
+- `docker-compose.prod.yml`: MinIO imajı üretimde kullanıcı tarafından seçilmeli, parola ve ayrı S3 servis kimlik bilgileri tanımlanmalıdır.
+
+**Not:** 12 tam backend testinin veri/model bağlı hataları model ağırlıkları, gerçek DB ve hakları uygun benchmark dosyaları olmadan kapanmış sayılmaz. 31 maddeye topluca KABUL_PASS verilmemiştir.
