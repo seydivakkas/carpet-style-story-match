@@ -9,6 +9,8 @@ RUN groupadd -g 10001 appuser && \
     chown -R appuser:appuser /app
 
 COPY apps/api/ ./
+# Ürün model kanıtının tek manifesti runtime imajına da kopyalanır.
+COPY docs/manifests/ ./docs/manifests/
 RUN pip install --no-cache-dir '.[s3]'
 RUN chown -R appuser:appuser /app
 

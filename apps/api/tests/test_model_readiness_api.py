@@ -10,8 +10,8 @@ def test_no_artifacts_cannot_pass_model_gate(tmp_path: Path):
     assert result.approved_for_production is False
     assert result.independent_holdout_verified is False
     assert result.available_artifacts == 0
-    assert result.checked_artifacts == 9
-    assert len(result.missing_artifacts) == 9
+    assert result.checked_artifacts == 17
+    assert len(result.missing_artifacts) == 17
 
 def test_file_presence_does_not_imply_valid_model(tmp_path: Path):
     (tmp_path / "artifacts/v2-09c/models/R0").mkdir(parents=True)
