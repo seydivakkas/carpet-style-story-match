@@ -17,6 +17,14 @@ depends_on: Union[str, Sequence[str], None] = None
 
 
 def upgrade() -> None:
+    # Enum tipleri tek bir kez oluşturulur; tekrar kullanılan alanlar DDL üretmez.
+    if op.get_bind().dialect.name == 'postgresql':
+        postgresql.ENUM('AVAILABLE', 'NOT_AVAILABLE', name='narrative_affinity_status_enum').create(op.get_bind(), checkfirst=True)
+        postgresql.ENUM('USER_NARRATIVE_SKIPPED', 'NO_SELECTED_USER_THEMES', 'NO_CARPET_NARRATIVE_THEME_EVIDENCE', 'ONLY_CONTESTED_CARPET_EVIDENCE', name='narrative_not_available_reason_enum').create(op.get_bind(), checkfirst=True)
+        postgresql.ENUM('VERY_STRONG', 'STRONG', 'MODERATE', 'LIMITED', name='narrative_affinity_level_enum').create(op.get_bind(), checkfirst=True)
+        postgresql.ENUM('PRIMARY', 'SECONDARY', 'NOT_SELECTED', name='narrative_interest_level_enum').create(op.get_bind(), checkfirst=True)
+        postgresql.ENUM('DOCUMENTED', 'CONTEXTUAL', 'CONTESTED_ONLY', 'NO_EVIDENCE', name='theme_support_status_enum').create(op.get_bind(), checkfirst=True)
+
     bind = op.get_bind()
 
     narrative_affinity_status_enum = postgresql.ENUM(
@@ -53,9 +61,9 @@ def upgrade() -> None:
         sa.Column('carpet_id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('affinity_version', sa.String(length=50), nullable=False),
         sa.Column('carpet_narrative_snapshot_hash', sa.String(length=64), nullable=False),
-        sa.Column('status', sa.Enum('AVAILABLE', 'NOT_AVAILABLE', name='narrative_affinity_status_enum'), nullable=False),
-        sa.Column('not_available_reason', sa.Enum('USER_NARRATIVE_SKIPPED', 'NO_SELECTED_USER_THEMES', 'NO_CARPET_NARRATIVE_THEME_EVIDENCE', 'ONLY_CONTESTED_CARPET_EVIDENCE', name='narrative_not_available_reason_enum'), nullable=True),
-        sa.Column('affinity_level', sa.Enum('VERY_STRONG', 'STRONG', 'MODERATE', 'LIMITED', name='narrative_affinity_level_enum'), nullable=True),
+        sa.Column('status', postgresql.ENUM('AVAILABLE', 'NOT_AVAILABLE', name='narrative_affinity_status_enum', create_type=False), nullable=False),
+        sa.Column('not_available_reason', postgresql.ENUM('USER_NARRATIVE_SKIPPED', 'NO_SELECTED_USER_THEMES', 'NO_CARPET_NARRATIVE_THEME_EVIDENCE', 'ONLY_CONTESTED_CARPET_EVIDENCE', name='narrative_not_available_reason_enum', create_type=False), nullable=True),
+        sa.Column('affinity_level', postgresql.ENUM('VERY_STRONG', 'STRONG', 'MODERATE', 'LIMITED', name='narrative_affinity_level_enum', create_type=False), nullable=True),
         sa.Column('confirmed_interest_coverage', sa.Float(), nullable=True),
         sa.Column('selected_theme_count', sa.Integer(), nullable=False, server_default='0'),
         sa.Column('selected_interest_weight', sa.Float(), nullable=False, server_default='0.0'),
@@ -85,10 +93,10 @@ def upgrade() -> None:
         sa.Column('id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('affinity_result_id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('theme_key', sa.String(length=50), nullable=False),
-        sa.Column('user_interest_level', sa.Enum('PRIMARY', 'SECONDARY', 'NOT_SELECTED', name='narrative_interest_level_enum'), nullable=False),
+        sa.Column('user_interest_level', postgresql.ENUM('PRIMARY', 'SECONDARY', 'NOT_SELECTED', name='narrative_interest_level_enum', create_type=False), nullable=False),
         sa.Column('user_interest_weight', sa.Float(), nullable=False),
         sa.Column('user_selected', sa.Boolean(), nullable=False),
-        sa.Column('carpet_support_status', sa.Enum('DOCUMENTED', 'CONTEXTUAL', 'CONTESTED_ONLY', 'NO_EVIDENCE', name='theme_support_status_enum'), nullable=False),
+        sa.Column('carpet_support_status', postgresql.ENUM('DOCUMENTED', 'CONTEXTUAL', 'CONTESTED_ONLY', 'NO_EVIDENCE', name='theme_support_status_enum', create_type=False), nullable=False),
         sa.Column('confirmed_match', sa.Boolean(), nullable=False),
         sa.Column('contested_overlap', sa.Boolean(), nullable=False),
         sa.Column('has_contested_evidence', sa.Boolean(), nullable=False, server_default='false'),

@@ -16,6 +16,10 @@ branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
 def upgrade() -> None:
+    # Enum tipleri tek bir kez oluşturulur; tekrar kullanılan alanlar DDL üretmez.
+    if op.get_bind().dialect.name == 'postgresql':
+        postgresql.ENUM('CURATOR_CONFIRMED', 'SOURCE_DOCUMENTED', 'UNCERTAIN', name='motif_evidence_type_enum').create(op.get_bind(), checkfirst=True)
+
     bind = op.get_bind()
 
     motif_evidence_type_enum = postgresql.ENUM(
@@ -30,7 +34,7 @@ def upgrade() -> None:
         sa.Column('id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('carpet_id', postgresql.UUID(as_uuid=True), nullable=False),
         sa.Column('motif_id', postgresql.UUID(as_uuid=True), nullable=False),
-        sa.Column('evidence_type', sa.Enum('CURATOR_CONFIRMED', 'SOURCE_DOCUMENTED', 'UNCERTAIN', name='motif_evidence_type_enum'), nullable=False, server_default='CURATOR_CONFIRMED'),
+        sa.Column('evidence_type', postgresql.ENUM('CURATOR_CONFIRMED', 'SOURCE_DOCUMENTED', 'UNCERTAIN', name='motif_evidence_type_enum', create_type=False), nullable=False, server_default='CURATOR_CONFIRMED'),
         sa.Column('curation_note', sa.String(length=1000), nullable=True),
         sa.Column('uncertainty_note', sa.String(length=1000), nullable=True),
         sa.Column('created_at', sa.DateTime(timezone=True), nullable=False, server_default=sa.text('CURRENT_TIMESTAMP')),
