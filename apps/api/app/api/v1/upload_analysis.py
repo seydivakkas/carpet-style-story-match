@@ -178,6 +178,15 @@ async def delete_analysis_record(
     record = res.scalar_one_or_none()
     require_analysis_access(record, x_analysis_token)
 
+    # Arka plan işçisi hâlâ görsel/sonuç yazarken silme yapılırsa orphan dosya
+    # veya tekrar oluşan sahipsiz analiz kaydı kalabilir. Bu nedenle 409.
+    from app.db.models.upload_analysis import UploadAnalysisStatusEnum
+    if record.status == UploadAnalysisStatusEnum.PROCESSING:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail="Analiz işlemi sürerken silinemez; tamamlandığında yeniden deneyin."
+        )
+
     if record.image_path:
         try:
             storage = get_image_storage()
