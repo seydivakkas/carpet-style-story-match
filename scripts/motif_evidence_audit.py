@@ -28,13 +28,26 @@ def audit(manifest_path: Path) -> dict:
             continue
         with file.open("rb") as handle:
             digest = hashlib.file_digest(handle, "sha256").hexdigest()
-        ok = not expected or expected.lower() == digest
-        entries.append({"name": item["name"], "path": str(rel), "status": "PRESENT" if ok else "HASH_MISMATCH",
-                        "sha256": digest, "bytes": file.stat().st_size})
-    complete = all(x["status"] == "PRESENT" for x in entries)
-    return {"schema": "motif-evidence-audit-v1", "timestamp_utc": datetime.now(timezone.utc).isoformat(),
-            "acceptance": "EVIDENCE_PRESENT_NOT_MODEL_PASS" if complete else "HOLD_MISSING_EVIDENCE",
-            "all_present": complete, "entries": entries}
+        actual_size = file.stat().st_size
+        expected_size = item.get("size_bytes")
+        if expected_size is not None and actual_size != expected_size:
+            state = "SIZE_MISMATCH"
+        elif expected and expected.lower() != digest:
+            state = "HASH_MISMATCH"
+        elif not expected:
+            state = "PRESENT_UNVERIFIED"
+        else:
+            state = "VERIFIED"
+        entries.append({"name": item["name"], "path": str(rel), "status": state,
+                        "sha256": digest, "bytes": actual_size})
+    all_present = all(e["status"] != "MISSING" for e in entries)
+    complete = all(e["status"] == "VERIFIED" for e in entries)
+    return {"schema": "motif-evidence-audit-v2", "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+            "acceptance": "FILES_VERIFIED_MODEL_NOT_ACCEPTED" if complete else "HOLD_MISSING_OR_UNVERIFIED_EVIDENCE",
+            "all_present": all_present, "all_verified": complete,
+            "counts": {k: sum(e["status"] == k for e in entries) for k in
+                       ("MISSING", "SIZE_MISMATCH", "HASH_MISMATCH", "PRESENT_UNVERIFIED", "VERIFIED")},
+            "entries": entries}
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Gerçek motif veri/model kanıt envanteri")
@@ -48,7 +61,7 @@ def main() -> int:
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(rendered + "\n", encoding="utf-8")
-    return 2 if args.strict and not result["all_present"] else 0
+    return 2 if args.strict and not result["all_verified"] else 0
 
 if __name__ == "__main__":
     raise SystemExit(main())
