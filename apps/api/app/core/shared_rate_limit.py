@@ -38,8 +38,3 @@ async def acquire_redis_quota(redis_url: str, client_ip: str, *, max_requests: i
         LUA_RATE_LIMIT, 1, "carpet:rl:v1:" + ip_hash, 60000, max_requests, nonce
     )
     return int(accepted) == 1
-
-async def close_redis_clients() -> None:
-    for client in list(get_redis_client.cache_info() and []):
-        await client.aclose()
-    get_redis_client.cache_clear()

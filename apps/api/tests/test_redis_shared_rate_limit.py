@@ -1,5 +1,9 @@
 """Dağıtık Redis hız sınırı: işçiler arasında atomik kota ve ayrıştırma."""
+import os
 import pytest
+
+if os.getenv('CARPET_RUN_REDIS_TESTS') != '1':
+    pytest.skip('Redis entegrasyonu ayrı gerçek Redis CI işinde koşar.', allow_module_level=True)
 from app.core.shared_rate_limit import acquire_redis_quota, get_redis_client
 
 @pytest.mark.asyncio

@@ -195,4 +195,5 @@ jobs:
         env:
           APP_ENV: test
           DATABASE_URL: "sqlite+aiosqlite:///:memory:"
+          CARPET_RUN_REDIS_TESTS: "1"
         run: python -m pytest tests/test_redis_shared_rate_limit.py -q
