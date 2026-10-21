@@ -76,7 +76,9 @@ class Settings(BaseSettings):
     S3_SECURE: bool = Field(default=True, description="S3 HTTPS requirement")
 
     # Rate Limiting Configuration
-    RATE_LIMIT_PER_MINUTE: int = Field(default=120, description="Max requests per minute per IP for sensitive endpoints")
+    RATE_LIMIT_PER_MINUTE: int = Field(default=120, ge=1, description="Max requests per minute per IP for sensitive endpoints")
+    RATE_LIMIT_BACKEND: str = Field(default="memory", description="Rate limiter: memory for local development, redis for production")
+    REDIS_URL: Optional[str] = Field(default=None, description="Shared Redis connection URL for rate limiting")
     ENABLE_RATE_LIMITER_IN_TEST: bool = Field(default=False, description="Flag to explicitly enable rate limiter in test mode")
 
     # Human Motif Review Access & Governance Configuration (V2-06B)

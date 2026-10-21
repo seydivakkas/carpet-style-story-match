@@ -10,6 +10,7 @@ Production Hardening Middleware Suite:
 import re
 import time
 import uuid
+from app.core.shared_rate_limit import acquire_redis_quota
 from typing import Dict, List
 from fastapi import Request, Response, status
 from fastapi.responses import JSONResponse
@@ -89,6 +90,36 @@ class RateLimiterMiddleware(BaseHTTPMiddleware):
             return await call_next(request)
 
         client_ip = request.client.host if request.client else "unknown"
+        if settings.RATE_LIMIT_BACKEND.lower() == "redis":
+            try:
+                if not settings.REDIS_URL:
+                    raise RuntimeError("Paylaşımlı hız sınırı Redis URL yapılandırılmamış.")
+                allowed = await acquire_redis_quota(
+                    settings.REDIS_URL, client_ip, max_requests=settings.RATE_LIMIT_PER_MINUTE
+                )
+            except Exception:
+                logger.exception("Paylaşımlı hız sınırı devre dışı kaldı; üretimde geçiş izni verilmiyor.")
+                return JSONResponse(
+                    status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+                    content={"detail":{"code":"RATE_LIMIT_UNAVAILABLE",
+                                       "message":"Request throttling service is unavailable."}}
+                )
+            if not allowed:
+                return JSONResponse(
+                    status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+                    headers={"Retry-After":"60"},
+                    content={"detail":{"code":"RATE_LIMIT_EXCEEDED",
+                                       "message":"Rate limit exceeded. Please try again later."}}
+                )
+            return await call_next(request)
+        if settings.APP_ENV.lower() == "production":
+            # Çok işçi dağıtımında in-memory hız sınırı güvenli değildir.
+            return JSONResponse(
+                status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+                content={"detail":{"code":"RATE_LIMIT_UNAVAILABLE",
+                                   "message":"Shared rate limiting is required in production."}}
+            )
+
         now = time.time()
         window_start = now - 60.0
 
