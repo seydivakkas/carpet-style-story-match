@@ -9,7 +9,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_MANIFEST = ROOT / "docs" / "manifests" / "motif_artifact_requirements.json"
 
 def audit(manifest_path: Path) -> dict:
@@ -26,7 +26,8 @@ def audit(manifest_path: Path) -> dict:
         if not file.is_file():
             entries.append({"name": item["name"], "path": str(rel), "status": "MISSING", "sha256": None})
             continue
-        digest = hashlib.file_digest(file.open("rb"), "sha256").hexdigest()
+        with file.open("rb") as handle:
+            digest = hashlib.file_digest(handle, "sha256").hexdigest()
         ok = not expected or expected.lower() == digest
         entries.append({"name": item["name"], "path": str(rel), "status": "PRESENT" if ok else "HASH_MISMATCH",
                         "sha256": digest, "bytes": file.stat().st_size})
