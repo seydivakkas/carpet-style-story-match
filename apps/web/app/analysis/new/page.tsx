@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { startAnalysis, deleteAnalysisRecord } from "@/lib/result-experience-api";
+import { startAnalysis, deleteAnalysisRecord, fetchModelAcceptance, ModelAcceptance } from "@/lib/result-experience-api";
 import { Upload, Sparkles, AlertCircle, Loader2, ArrowLeft, History, ArrowUpRight, ShieldCheck, Trash2, CheckCircle2 } from "lucide-react";
 
 interface RecentAnalysisEntry {
@@ -23,6 +23,7 @@ export default function NewUploadPage() {
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [recentAnalyses, setRecentAnalyses] = useState<RecentAnalysisEntry[]>([]);
+  const [modelAcceptance, setModelAcceptance] = useState<ModelAcceptance | null>(null);
 
   useEffect(() => {
     return () => {
@@ -39,6 +40,16 @@ export default function NewUploadPage() {
     } catch {
       // ignore
     }
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchModelAcceptance().then((result) => {
+      if (!cancelled) setModelAcceptance(result);
+    }).catch(() => {
+      // Servis erişimi yoksa bilimsel bir başarı iddiasında bulunulmaz.
+    });
+    return () => { cancelled = true; };
   }, []);
 
   const handleDeleteRecent = async (id: string) => {
@@ -156,9 +167,23 @@ export default function NewUploadPage() {
               Yüklenen Halı Görsel Analizi
             </h1>
             <p className="text-slate-400 text-sm">
-              Halı fotoğrafınızı yükleyin; 9D Style DNA, YOLO derin öğrenme motif tespiti ve müze koleksiyonlarındaki tarihsel bağlantıları 5 kartlı raporda görün.
+              Halı fotoğrafınızı yükleyin; görsel karakter analizini inceleyin. Motif çıkarımı ve tarihsel bağlantılar için doğrulanmamış çıktılar kesin bilgi olarak sunulmaz.
             </p>
           </div>
+        </div>
+
+        <div role="status" className="rounded-2xl border border-amber-600/40 bg-amber-950/30 p-4 text-amber-100 text-sm space-y-2">
+          <p className="font-semibold">Motif modeli — bilimsel kabul bekliyor</p>
+          <p>
+            {modelAcceptance?.caution_tr ??
+             "Gerçek motif dedektörünün bağımsız doğrulama kabulü henüz tamamlanmadı; kesin motif tanıma garantisi verilmez."}
+          </p>
+          {modelAcceptance && (
+            <p className="text-xs text-amber-200/80">
+              Kanıt envanteri: {modelAcceptance.available_artifacts}/{modelAcceptance.checked_artifacts} kaynak mevcut.
+              Model doğruluk kabulü: {modelAcceptance.model_quality}.
+            </p>
+          )}
         </div>
 
         {successMsg && (

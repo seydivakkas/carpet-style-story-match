@@ -17,6 +17,7 @@ from app.api.v1.research import router as research_router
 from app.api.v1.motif_review import router as motif_review_router
 from app.api.v1.visual_retrieval import router as visual_retrieval_router
 from app.api.v1.result_experience import router as result_experience_router
+from app.api.v1.model_readiness import router as model_readiness_router
 
 api_v1_router = APIRouter(prefix="/api/v1")
 api_v1_router.include_router(health_router)
@@ -37,5 +38,6 @@ api_v1_router.include_router(research_router)
 api_v1_router.include_router(motif_review_router)
 api_v1_router.include_router(visual_retrieval_router)
 api_v1_router.include_router(result_experience_router)
+api_v1_router.include_router(model_readiness_router)
 
 

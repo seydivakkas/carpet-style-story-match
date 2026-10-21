@@ -69,3 +69,13 @@ export async function deleteAnalysisRecord(id:string){
  if(typeof window!=="undefined")window.localStorage.removeItem(tokenKey(id));
  return result;
 }
+
+/** Bilimsel model kalitesi, dosya varlığından bağımsız HOLD olarak raporlanır. */
+export interface ModelAcceptance {
+ status:"HOLD"; model_quality:"NOT_VALIDATED";approved_for_production:boolean;
+ independent_holdout_verified:boolean;missing_artifacts:string[];
+ checked_artifacts:number;available_artifacts:number;caution_tr:string;
+}
+export function fetchModelAcceptance():Promise<ModelAcceptance>{
+ return apiRequest<ModelAcceptance>("/api/v1/system/model-acceptance");
+}
