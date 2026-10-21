@@ -68,11 +68,13 @@ jobs:
         env:
           POSTGRES_PASSWORD: test_only
           MINIO_ROOT_PASSWORD: test_only
+          MINIO_IMAGE: dappros/minio:RELEASE.2025-09-07T16-13-09Z
         run: docker compose -f docker-compose.prod.yml config --quiet
       - name: Üretim imajı derle
         env:
           POSTGRES_PASSWORD: test_only
           MINIO_ROOT_PASSWORD: test_only
+          MINIO_IMAGE: dappros/minio:RELEASE.2025-09-07T16-13-09Z
         run: docker compose -f docker-compose.prod.yml build api web
 
   backend-security-smoke:
@@ -152,7 +154,7 @@ jobs:
           docker run -d --name carpet-minio-ci -p 127.0.0.1:9000:9000 \
             -e MINIO_ROOT_USER=carpet_ci \
             -e MINIO_ROOT_PASSWORD=ci_testing_only_password \
-            minio/minio:RELEASE.2025-07-23T15-54-02Z server /data
+            dappros/minio:RELEASE.2025-09-07T16-13-09Z server /data
       - name: S3 görsel yaşam döngüsü kabulü
         working-directory: apps/api
         env:

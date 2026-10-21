@@ -31,7 +31,7 @@ services:
         condition: service_healthy
 
   minio:
-    image: minio/minio:RELEASE.2024-01-16T16-07-38Z
+    image: ${MINIO_IMAGE:?MINIO_IMAGE_is_required}
     container_name: carpet_minio_prod
     restart: always
     environment:
